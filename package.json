@@ -1,13 +1,13 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.2.5",
-  "description": "A sample Node.js app using Express 4",
+  "name": "discoveryourwonder",
+  "version": "0.0.1",
+  "description": "A social media app for artists",
   "engines": {
-    "node": "5.9.1"
+    "node": "6.3.0"
   },
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server/server.js"
   },
   "dependencies": {
     "ejs": "2.4.1",
@@ -22,5 +22,5 @@
     "heroku",
     "express"
   ],
-  "license": "MIT"
+  "license": "See license file licens.html"
 }
