@@ -1,8 +1,7 @@
 {
-  "name": "Node.js Getting Started",
-  "description": "A barebones Node.js app using Express 4",
-  "repository": "https://github.com/heroku/node-js-getting-started",
-  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "name": "discoveryourwonder",
+  "description": "A social art app",
+  "repository": "https://gitlab.com/projectSHAI/discoveryourwonder",
   "keywords": ["node", "express", "static"],
   "image": "heroku/nodejs"
 }
