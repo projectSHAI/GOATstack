@@ -1,21 +1,20 @@
-var express = require('express');
+"use strict";
+
+var express = require("express");
+var path = require("path");
+
+var port = process.env.PORT || 3000;
 var app = express();
 
-app.set('port', (process.env.PORT || 5000));
+app.use(express.static('client'));
+app.use(express.static('node_modules'));
 
-app.use(express.static(__dirname + '/../public'));
-
-// Sets the templating engine to EJS and lets the engine accept html files
-app.engine('html', require('ejs').renderFile);
-//sets the views keyword to the client directory
-app.set('views', __dirname + '/../client');
-//sets the view engine as EJS
-app.set('view engine', 'ejs');
-
-app.get('/', function(request, response) {
-  response.render('index.html');
+app.get('/', function (req, res) {
+    res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+var server = app.listen(port, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log('This express app is listening on port:' + port);
 });
