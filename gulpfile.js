@@ -31,7 +31,7 @@ gulp.task('buildClient', function () {
 gulp.task('nodemon', function () {
   return nodemon({
     script: 'server/server.js',
-    nodeArgs: ['--debug'],
+    //nodeArgs: ['--debug'],
     ext: 'js,html',
     env: { 'NODE_ENV': 'development' },
     watch: ['server/server.js', ]
