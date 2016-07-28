@@ -5,6 +5,7 @@ var ts = require('gulp-typescript');
 var defaultAssets = require('./config/assets/default');
 var runSequence = require('run-sequence');
 var nodemon = require('gulp-nodemon');
+var cleanCompiledTypeScript = require('gulp-clean-compiled-typescript');
 
 // Set NODE_ENV to 'test'
 gulp.task('env:test', function () {
@@ -35,6 +36,10 @@ gulp.task('nodemon', function () {
     ext: 'js,html',
     env: { 'NODE_ENV': 'development' },
     watch: ['server/server.js', ]
+  })
+  .on('stop', function() {
+    return gulp.src('./client/*.ts')
+      .pipe(cleanCompiledTypeScript());
   });
 });
 
