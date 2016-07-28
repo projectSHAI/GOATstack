@@ -22,17 +22,14 @@ var server = app.listen(port, function () {
     console.log('This express app is listening on port:' + port);
 });
 
-if(environment === 'development') {
-  MongoClient.connect('mongodb://localhost:27017/animals', function(err, db) {
-    if (err) {
-      throw err;
-    }
-    db.collection('mammals').find().toArray(function(err, result) {
-      if (err) {
-        throw err;
-      }
-      console.log(result);
-      console.log(environment);
-    });
-  });
+if(environment === 'production') {
+  var lol = require('../config/env/production');
+
+  lol.hello;
+
+} else {
+  var wow = require('../config/env/dev');
+
+  wow.damn;
+
 }
