@@ -10,3 +10,9 @@ npm-debug.log
 # Docker
 Dockerfile
 docker-compose.yml
+
+# TypeScript transpiled files
+client/app/*.js
+client/app/*.js.map
+client/app/**/*.js
+client/app/**/*.js.map
