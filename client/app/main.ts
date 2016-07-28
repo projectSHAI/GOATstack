@@ -1,5 +1,5 @@
 import { bootstrap }    from '@angular/platform-browser-dynamic';
 
-import { HomeComponent } from './home/components/home.component';
+import { HomeComponent } from './components/home/home.component';
 
 bootstrap(HomeComponent);
