@@ -10,9 +10,9 @@ module.exports = {
 			'client/styles.css',
 			'client/app/components/**/*.css'
 		],
-		js: [
-			'client/app/*.js',
-			'client/app/components/**/*.js'
+		ts: [
+			'client/app/*.ts',
+			'client/app/components/**/*.ts'
 		],
 		img: [],
 		views: [

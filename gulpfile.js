@@ -1,11 +1,13 @@
+'use strict';
+
 var _ = require('lodash');
 var path = require('path');
 var gulp = require('gulp');
 var ts = require('gulp-typescript');
 var defaultAssets = require('./config/assets/default');
 var runSequence = require('run-sequence');
+var plugins = require('gulp-load-plugins')();
 var nodemon = require('gulp-nodemon');
-var cleanCompiledTypeScript = require('gulp-clean-compiled-typescript');
 
 // Set NODE_ENV to 'test'
 gulp.task('env:test', function () {
@@ -25,7 +27,7 @@ gulp.task('buildClient', function () {
 	return gulp.src(path.resolve('./client/**/*.ts'))
 		.pipe(ts(tsProject))
 		.js
-		.pipe(gulp.dest(path.resolve('./client')))
+		.pipe(gulp.dest(path.resolve('./client')));
 });
 
 // Nodemon task
@@ -34,25 +36,69 @@ gulp.task('nodemon', function () {
     script: 'server/server.js',
     //nodeArgs: ['--debug'],
     ext: 'js,html',
-    env: { 'NODE_ENV': 'development' },
     watch: ['server/server.js', ]
-  })
-  .on('stop', function() {
-    return gulp.src('./client/*.ts')
-      .pipe(cleanCompiledTypeScript());
   });
 });
 
 // Watch Files For Changes
 gulp.task('watch', function () {
   // Add watch rules
-  gulp.watch(defaultAssets.server.allJS);//.on('change', plugins.livereload.changed);
-  gulp.watch(defaultAssets.client.js);
-  gulp.watch(defaultAssets.client.css);
+  gulp.watch(defaultAssets.server.allJS).on('change', plugins.livereload.changed);
+  gulp.watch(defaultAssets.client.ts).on('change', plugins.livereload.changed);
+  gulp.watch(defaultAssets.client.css).on('change', plugins.livereload.changed);
 
+});
+
+// CSS linting task
+gulp.task('csslint', function (done) {
+  return gulp.src(defaultAssets.client.css)
+    .pipe(plugins.csslint('.csslintrc'))
+    .pipe(plugins.csslint.reporter())
+    .pipe(plugins.csslint.reporter(function (file) {
+      if (!file.csslint.errorCount) {
+        done();
+      }
+    }));
+});
+
+// JS linting task
+gulp.task('jshint', function () {
+  var assets = _.union(
+    defaultAssets.server.gulpConfig,
+    defaultAssets.server.allJS
+  );
+
+  return gulp.src(assets)
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('default'))
+    .pipe(plugins.jshint.reporter('fail'));
+});
+
+gulp.task('tslint', function() {
+  return gulp.src(defaultAssets.client.ts)
+    .pipe(plugins.tslint({
+        // contains rules in the tslint.json format
+        configuration: "./tslint.json"
+    }))
+    .pipe(plugins.tslint.report());
+});
+
+// Lint CSS and JavaScript files.
+gulp.task('lint', function (done) {
+  runSequence(['csslint', 'jshint', 'tslint'], done);
 });
 
 // Run the project in development mode
 gulp.task('default', function (done) {
-  runSequence('env:dev', 'buildClient', ['nodemon', 'watch'], done);
+  runSequence('env:dev', 'buildClient', 'lint', ['nodemon', 'watch'], done);
+});
+
+// Run the project in production mode
+gulp.task('prod', function (done) {
+  runSequence('env:prod', 'buildClient', 'lint', ['nodemon', 'watch'], done);
+});
+
+// Run the project in test mode
+gulp.task('test', function (done) {
+  runSequence('env:test', 'buildClient', 'lint', ['nodemon', 'watch'], done);
 });
