@@ -1,6 +1,6 @@
 "use strict";
 
-var express = require("express"),
+var express = require('../config/lib/express'),
 	path = require("path"),
 	mongoose = require('../config/lib/mongoose'),
 	con = require('../config/config'),
@@ -11,17 +11,9 @@ mongoose.loadModels();
 
 var init = function init(callback) {
   mongoose.connect(function (db) {
-
-	console.log('in init');
-
+  	
     // Initialize express
-    var app = express();
-    app.use(express.static('client'));
-	app.use(express.static('node_modules'));
-	app.get('/', function (req, res) {
-	    res.sendFile(path.resolve(__dirname, 'index.html'));
-	});
-
+    var app = express.init();
     if (callback) callback(app, db, con);
 
   });
