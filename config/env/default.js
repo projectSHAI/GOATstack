@@ -3,8 +3,9 @@
 module.exports = {
   app: {
     title: 'Discover Your Wonder',
-    description: 'Discover your dream art',
-    keywords: 'art',
+    description: "A social art app",
+    repository: "https://gitlab.com/projectSHAI/discoveryourwonder",
+    keywords: ["node", "express", "static"],
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
   port: process.env.PORT || 5000,
@@ -22,7 +23,7 @@ module.exports = {
     secure: false
   },
   // sessionSecret should be changed for security measures and concerns
-  sessionSecret: process.env.SESSION_SECRET || 'MEAN',
+  sessionSecret: process.env.SESSION_SECRET || 'APP',
   // sessionKey is set to the generic sessionId key used by PHP applications
   // for obsecurity reasons
   sessionKey: 'sessionId',

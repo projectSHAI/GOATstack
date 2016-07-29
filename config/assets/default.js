@@ -13,6 +13,10 @@ module.exports = {
 		ts: [
 			'client/app/*.ts',
 			'client/app/components/**/*.ts'
+		],		
+		js: [
+			'client/app/*.js',
+			'client/app/components/**/*.js'
 		],
 		img: [],
 		views: [
