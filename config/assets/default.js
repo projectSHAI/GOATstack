@@ -2,7 +2,7 @@
 
 module.exports = {
 	client: {
-		libs: {
+		lib: {
 			css: [],
 			js: []
 		},
@@ -26,6 +26,8 @@ module.exports = {
 	},
 	server: {
 		gulpConfig: ['gulpfile.js'],
-		allJS: ['server/server.js', 'config/**/*.js']
+		allJS: ['server/server.js', 'config/**/*.js'],
+	    models: 'server/api/**/*.model.js',
+	    routes: 'server/api/**/*.route.js'
 	}
 };

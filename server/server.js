@@ -2,31 +2,45 @@
 
 var express = require("express"),
 	path = require("path"),
-	MongoClient = require('mongodb').MongoClient,
+	mongoose = require('../config/lib/mongoose'),
 	con = require('../config/config'),
-  	chalk = require('chalk'),
-  	wow = require('../config/env/dev');
+  	chalk = require('chalk');
 
-var app = express();
+// Initialize models
+mongoose.loadModels();
 
-app.use(express.static('client'));
-app.use(express.static('node_modules'));
+var init = function init(callback) {
+  mongoose.connect(function (db) {
 
-app.get('/', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'index.html'));
-});
+	console.log('in init');
 
-var server = app.listen(con.config.port, con.config.host, function () {
-    var host = server.address().address;
-    var port = server.address().port;
+    // Initialize express
+    var app = express();
+    app.use(express.static('client'));
+	app.use(express.static('node_modules'));
+	app.get('/', function (req, res) {
+	    res.sendFile(path.resolve(__dirname, 'index.html'));
+	});
 
-    // Logging initialization
-    console.log('\t--');
-    console.log(chalk.green('\tProject Name:\t\t\t' + con.config.app.title));
-    console.log(chalk.green('\tEnvironment:\t\t\t' + process.env.NODE_ENV));
-    console.log(chalk.green('\tPort:\t\t\t\t' + port));
-    console.log(chalk.green('\tHost:\t\t\t\t' + host));
-    console.log(chalk.green('\tDatabase:\t\t\t' + con.config.db.uri));
+    if (callback) callback(app, db, con);
 
-    wow.damn();
+  });
+};
+
+init(function (app, db, con) {
+
+	var server = app.listen(con.config.port, con.config.host, function () {
+	    var host = server.address().address;
+	    var port = server.address().port;
+
+	    // Logging initialization
+	    console.log('\t--');
+	    console.log(chalk.green('\tProject Name:\t\t\t' + con.config.app.title));
+	    console.log(chalk.green('\tEnvironment:\t\t\t' + process.env.NODE_ENV));
+	    console.log(chalk.green('\tPort:\t\t\t\t' + port));
+	    console.log(chalk.green('\tHost:\t\t\t\t' + host));
+	    console.log(chalk.green('\tDatabase:\t\t\t' + con.config.db.uri));
+
+	});
+
 });
