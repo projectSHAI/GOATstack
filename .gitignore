@@ -16,3 +16,6 @@ client/app/*.js
 client/app/*.js.map
 client/app/**/*.js
 client/app/**/*.js.map
+
+# Typings folder
+client/typings
