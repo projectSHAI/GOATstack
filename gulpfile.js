@@ -128,5 +128,5 @@ gulp.task('prod', function (done) {
 
 // Run the project in test mode
 gulp.task('test', function (done) {
-  runSequence('env:test', 'buildClient', 'lint', ['nodemon', 'watch'], done);
+  runSequence('env:test', 'buildClient', 'lint', ['nodemon'], done);
 });
