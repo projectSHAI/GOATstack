@@ -1,10 +1,10 @@
 "use strict";
 
-var express = require('../config/lib/express'),
-	path = require("path"),
-	mongoose = require('../config/lib/mongoose'),
-	con = require('../config/config'),
-  	chalk = require('chalk');
+var express = require('../config/lib/express');
+var mongoose = require('../config/lib/mongoose');
+var con = require('../config/config');
+var path = require('path');	
+var chalk = require('chalk');
 
 // Initialize models
 mongoose.loadModels();

@@ -7,7 +7,6 @@ var ts = require('gulp-typescript');
 var defaultAssets = require('./config/assets/default');
 var runSequence = require('run-sequence');
 var plugins = require('gulp-load-plugins')();
-var nodemon = require('gulp-nodemon');
 var chalk = require('chalk');
 
 // Set NODE_ENV to 'test'
@@ -24,7 +23,7 @@ gulp.task('env:prod', function () {
 });
 
 // Transpile client side TS files
-gulp.task('buildClient', function () {
+gulp.task('build:client', function () {
 	var tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
 	return gulp.src(path.resolve('./client/**/*.ts'))
 		.pipe(ts(tsProject))
@@ -49,17 +48,37 @@ var buildFile = function (file) {
   return gulp.src(['./client/typings/*.ts', file.path])
     .pipe(ts(tsProject))
     .js
-    .pipe(gulp.dest(path.resolve(file.path.substring(0,index))));
+    .pipe(gulp.dest(path.resolve('dist/' + file.path.substring(0,index))));
 };
 
 // Nodemon task
 gulp.task('nodemon', function () {
-  return nodemon({
+  return plugins.nodemon({
     script: 'server/server.js',
     //nodeArgs: ['--debug'],
     ext: 'js,html',
-    watch: ['server/server.js', ]
+    watch: defaultAssets.server.allJS
   });
+});
+
+gulp.task('test:server', function (done) {
+  runSequence('mocha:unit', 'mocha:integration', done);
+});
+
+// Mocha unit
+gulp.task('mocha:unit', function () {
+  return gulp.src(defaultAssets.server.tests.unit)
+    .pipe(plugins.mocha());
+});
+
+// Mocha integration
+gulp.task('mocha:integration', function () {
+  return gulp.src(defaultAssets.server.tests.integration)
+    .pipe(plugins.mocha());
+});
+
+gulp.task('test:client', function () {
+  console.log(chalk.yellow('\tThis is where client tests will start!!'));
 });
 
 // Watch Files For Changes
@@ -90,7 +109,7 @@ gulp.task('csslint', function (done) {
 });
 
 // JS linting task
-gulp.task('jshint', function () {
+gulp.task('jshint:server', function () {
   var assets = _.union(
     defaultAssets.server.gulpConfig,
     defaultAssets.server.allJS
@@ -98,8 +117,19 @@ gulp.task('jshint', function () {
 
   return gulp.src(assets)
     .pipe(plugins.jshint())
-    .pipe(plugins.jshint.reporter('default'))
-    .pipe(plugins.jshint.reporter('fail'));
+    .pipe(plugins.jshint.reporter('default'));
+});
+
+//JS linting server tests
+gulp.task('jshint:server:test', function () {
+  var assets = _.union(
+    defaultAssets.server.tests.unit,
+    defaultAssets.server.tests.integration
+  );
+
+  return gulp.src(assets)
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('default'));
 });
 
 gulp.task('tslint', function() {
@@ -113,20 +143,40 @@ gulp.task('tslint', function() {
 
 // Lint CSS and JavaScript files.
 gulp.task('lint', function (done) {
-  runSequence(['csslint', 'jshint', 'tslint'], done);
+  runSequence(['csslint', 'jshint:server', 'tslint'], done);
+});
+
+// Lint test JavaScript files.
+gulp.task('lint:test', function (done) {
+  runSequence(['jshint:server:test', 'lint'], done);
 });
 
 // Run the project in development mode
 gulp.task('default', function (done) {
-  runSequence('env:dev', 'buildClient', 'lint', ['nodemon', 'watch'], done);
+  runSequence(
+    'env:dev', 
+    'build:client', 
+    ['nodemon', 'watch'], 
+    done);
 });
 
 // Run the project in production mode
 gulp.task('prod', function (done) {
-  runSequence('env:prod', 'buildClient', 'lint', ['nodemon', 'watch'], done);
+  runSequence(
+    'env:prod', 
+    'build:client', 
+    'lint', 
+    ['nodemon', 'watch'], 
+    done);
 });
 
 // Run the project in test mode
 gulp.task('test', function (done) {
-  runSequence('env:test', 'buildClient', 'lint', ['nodemon'], done);
+  runSequence(
+    'env:test', 
+    'build:client',
+    'lint:test', 
+    'test:server',
+    'test:client',
+    done);
 });

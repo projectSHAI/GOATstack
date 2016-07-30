@@ -22,12 +22,23 @@ module.exports = {
 		views: [
 			'client/index.html',
 			'client/app/components/**/*.html'
-		]
+		],
+		tests: ''
 	},
 	server: {
 		gulpConfig: ['gulpfile.js'],
-		allJS: ['server/server.js', 'config/**/*.js'],
+		allJS: ['config/**/*.js', 
+			'server/**/**/*controller.js',
+			'server/**/**/*events.js',
+			'server/**/**/*model.js',
+			'server/**/**/*router.js'
+		],
 	    models: 'server/api/**/*.model.js',
-	    routes: 'server/api/**/*.route.js'
+	    routes: 'server/api/**/*.router.js',
+	    sockets: 'server/api/**/*.socket.js',
+	    tests: {
+	    	integration: 'server/api/**/*.integration.js',
+	    	unit: 'server/api/**/*.spec.js'
+	    }
 	}
 };

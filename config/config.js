@@ -58,7 +58,7 @@ var initGlobalConfigFiles = function (config, assets) {
 
   // Setting Globbed model files
   config.files.server.models = getGlobbedPaths(assets.server.models);
-
+  
   // Setting Globbed route files
   config.files.server.routes = getGlobbedPaths(assets.server.routes);
 
