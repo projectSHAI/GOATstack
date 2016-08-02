@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'my-app',
-  template: '<h1>My First Angular 2 App with livereload</h1>'
+  selector: 'home-section',
+  moduleId: module.id,  
+  templateUrl: 'home.html',
+  styleUrls: ['home.css']
 })
 
 export class HomeComponent { }

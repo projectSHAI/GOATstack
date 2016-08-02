@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'header-section',
-  templateUrl: './header.html',
-  styleUrls: ['./header.css']
+  moduleId: module.id,
+  templateUrl: 'header.html',
+  styleUrls: ['header.css']
 })
 
 export class HeaderComponent { }
