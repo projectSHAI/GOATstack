@@ -1,0 +1,5 @@
+client/app/components/**/*.test.js
+--recursive
+
+server/api/**/*.test.js
+--recursive

@@ -8,7 +8,8 @@
   "scripts": {
     "start": "tsc -p ./client && concurrently \"tsc -w -p ./client\" \"node server/server.js\" ",
     "postinstall": "cd client && typings install",
-    "typings": "typings"
+    "typings": "typings",
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
