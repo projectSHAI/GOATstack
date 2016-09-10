@@ -18,6 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { Four0FourComponent } from './components/404/four0four.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component'
 
 //decorator which packages all resources for the app
 @NgModule({
@@ -28,18 +29,19 @@ import { Four0FourComponent } from './components/404/four0four.component';
     routing
   ],
   //declarations: this object imports all child components which are used in this module
-  declarations: [ 
+  declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    Four0FourComponent
+    Four0FourComponent,
+    UserProfileComponent
   ],
   //providers: this object imports all necessary services into the module
   providers: [
     appRoutingProviders
   ],
-  //bootstrap: identifies which component is supposed to be bootstrapped 
+  //bootstrap: identifies which component is supposed to be bootstrapped
   bootstrap:    [ AppComponent ]
 })
 
