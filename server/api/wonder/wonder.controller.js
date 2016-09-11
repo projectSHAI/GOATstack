@@ -165,6 +165,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of Wonders
 module.exports.index = function (req, res) {
+  console.log('index fired');
   return Wonder.find().exec()
     .then(respondWithResult(res))
     .catch(handleError(res));

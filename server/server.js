@@ -5,6 +5,7 @@ var mongoose = require('../config/lib/mongoose');
 var con = require('../config/config');
 var path = require('path');	
 var chalk = require('chalk');
+var myApp;
 
 // Initialize models
 mongoose.loadModels();
@@ -20,7 +21,7 @@ var init = function init(callback) {
 };
 
 init(function (app, db, con) {
-
+	myApp = app;
 	var server = app.listen(con.config.port, con.config.host, function () {
 	    var host = server.address().address;
 	    var port = server.address().port;
@@ -36,3 +37,13 @@ init(function (app, db, con) {
 	});
 
 });
+
+exports = module.exports = function(){
+
+	while(!myApp)
+	{
+		console.log('waiting for server to start');
+	}
+	return myApp;
+
+};
