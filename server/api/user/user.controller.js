@@ -18,8 +18,6 @@ module.exports.allUsers = function(req, res){
 
 module.exports.createUser = function(req, res){
 
-	console.log(req.body.firstName);
-
 	User.create({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: req.body.password});
 
 	res.send(req.body);
