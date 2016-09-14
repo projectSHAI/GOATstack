@@ -12,8 +12,8 @@
 var _ = require('lodash');
 var User = require('./user.model');
 
-module.exports.allUsers = function(req, res){
-	res.json({ message: 'User returned!' });
+module.exports.allUsers = function(req, res){	
+	res.json(User.find({}));
 }
 
 module.exports.createUser = function(req, res){

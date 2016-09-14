@@ -7,9 +7,37 @@ var request = require('supertest');
 
 describe('User API:', function() {
 
-	describe('POST /api/users', function() {
+	////////////////////////////////////////
+	//Test 1 for getting list of all users//
+	////////////////////////////////////////
+	describe('GET /api/users', function() {
 
 		var users;
+
+		it('responds with JSON', function(done) {
+			request(app)
+				.get('/api/users')
+				.expect('Content-Type', /json/)
+				.expect(function(res) {
+			
+					users = res.body;
+					expect(res).to.have.status(200)
+						.expect(users).to.be.instanceOf(Array)
+						.expect(users[0].firstName).to.be.a('string');
+				})
+				
+				done();
+				
+		});
+
+	});
+
+	////////////////////////////////////////
+	//-----Test 2 for creating a user-----//
+	////////////////////////////////////////
+	describe('POST /api/users', function() {
+
+		var user;
 
 	    before(function(done) {
 	      request(app)
@@ -26,22 +54,22 @@ describe('User API:', function() {
 	          if (err) {
 	            return done(err);
 	          }
-	          users = res.body;
+	          user = res.body;
 	          done();
 	        });
 	    });		
 
 	    it('firstName should equal Chris', function() {
-	      expect(users.firstName).to.equal('Chris');
+	      expect(user.firstName).to.equal('Chris');
 	    });
 	    it('lastName should equal Haugen', function() {
-	      expect(users.lastName).to.equal('Haugen');
+	      expect(user.lastName).to.equal('Haugen');
 	    });
 	    it('email should equal chris24@gmail.com', function() {
-	      expect(users.email).to.equal('chris24@gmail.com');
+	      expect(user.email).to.equal('chris24@gmail.com');
 	    });
 	    it('password should equal damn', function() {
-	      expect(users.password).to.equal('damn');
+	      expect(user.password).to.equal('damn');
 	    });
 
 	});
