@@ -106,6 +106,7 @@ function updateWonder(res, wonder) {
         y: switchY
       };
       entity.save();
+      console.log(entity);
       res.json(entity);
 
       counter++;
@@ -181,17 +182,11 @@ module.exports.show = function (req, res) {
 
 // Creates a new Wonder in the DB
 module.exports.create = function (req, res) {
-
   return Wonder.findOne({}).sort({
       created: 1
     }).exec()
     .then(updateWonder(res, req.body))
     .catch(handleError(res));
-
-  // var body = assignCoords(req.body);
-  // return Wonder.create(body)
-  //   .then(respondWithResult(res, 201))
-  //   .catch(handleError(res));
 }
 
 // Updates an existing Wonder in the DB

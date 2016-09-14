@@ -30,7 +30,6 @@
     "core-js": "^2.4.1",
     "ejs": "2.5.1",
     "express": "^4.14.0",
-    "gulp-concat": "2.6.0",
     "mongodb": "^2.2.9",
     "mongoose": "^4.6.0",
     "preboot": "^4.5.1",

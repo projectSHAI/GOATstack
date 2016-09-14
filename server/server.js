@@ -5,7 +5,19 @@ var mongoose = require('../config/lib/mongoose');
 var con = require('../config/config');
 var path = require('path');	
 var chalk = require('chalk');
-var myApp;
+
+
+if(con.config.seedDB){ 
+
+	require('../config/lib/seed'); 
+
+	var chai = require('chai');
+
+	global.expect = chai.expect;
+	global.assert = chai.assert;
+	chai.should();
+	
+};
 
 // Initialize models
 mongoose.loadModels();
@@ -21,7 +33,7 @@ var init = function init(callback) {
 };
 
 init(function (app, db, con) {
-	myApp = app;
+
 	var server = app.listen(con.config.port, con.config.host, function () {
 	    var host = server.address().address;
 	    var port = server.address().port;
@@ -38,12 +50,5 @@ init(function (app, db, con) {
 
 });
 
-exports = module.exports = function(){
+exports = module.exports = express.init();
 
-	while(!myApp)
-	{
-		console.log('waiting for server to start');
-	}
-	return myApp;
-
-};

@@ -28,7 +28,8 @@ module.exports = {
 	server: {
 		gulpConfig: ['gulpfile.js'],
 		allJS: [
-			'config/**/*.js', 
+			'config/**/*.js',
+			'server/**/*.js', 
 			'server/**/**/*controller.js',
 			'server/**/**/*events.js',
 			'server/**/**/*model.js',
