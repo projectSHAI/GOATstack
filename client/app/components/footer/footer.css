@@ -1,0 +1,12 @@
+footer{
+    position: fixed;
+    bottom: 0;
+    right:0;
+    left:0;
+    background: rgb(224, 150, 50);
+}
+footer .docs{
+  color: white;
+  text-decoration: none;
+  padding: 15px;
+}
