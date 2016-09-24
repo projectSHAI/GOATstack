@@ -58,7 +58,7 @@ var initGlobalConfigFiles = function (config, assets) {
 
   // Setting Globbed model files
   config.files.server.models = getGlobbedPaths(assets.server.models);
-  
+
   // Setting Globbed route files
   config.files.server.routes = getGlobbedPaths(assets.server.routes);
 
@@ -74,31 +74,31 @@ var initGlobalConfigFiles = function (config, assets) {
 
 var initGlobalConfig = function () {
 
-	// Get the default assets
-  	var defaultAssets = require(path.join(process.cwd(), 'config/assets/default'));
+  // Get the default assets
+  var defaultAssets = require(path.join(process.cwd(), 'config/assets/default'));
 
-	// Get the current assets
-	var environmentAssets = require(path.join(process.cwd(), 'config/assets/', process.env.NODE_ENV)) || {};
+  // Get the current assets
+  var environmentAssets = require(path.join(process.cwd(), 'config/assets/', process.env.NODE_ENV)) || {};
 
-	// Merge assets
-	var assets = _.merge(defaultAssets, environmentAssets);
+  // Merge assets
+  var assets = _.merge(defaultAssets, environmentAssets);
 
-    // Get the default config
-    var defaultConfig = require(path.join(process.cwd(), 'config/env/default'));
+  // Get the default config
+  var defaultConfig = require(path.join(process.cwd(), 'config/env/default'));
 
-    // Get the current config
-    var environmentConfig = require(path.join(process.cwd(), 'config/env/', process.env.NODE_ENV)) || {};
+  // Get the current config
+  var environmentConfig = require(path.join(process.cwd(), 'config/env/', process.env.NODE_ENV)) || {};
 
-    // Merge config files
-    var config = _.merge(defaultConfig, environmentConfig);
+  // Merge config files
+  var config = _.merge(defaultConfig, environmentConfig);
 
-    // Initialize global globbed files
-  	initGlobalConfigFiles(config, assets);
+  // Initialize global globbed files
+  initGlobalConfigFiles(config, assets);
 
-    return {
-    	config: config,
-    	assets: assets
-    };
+  return {
+    config: config,
+    assets: assets
+  };
 };
 
 /**
