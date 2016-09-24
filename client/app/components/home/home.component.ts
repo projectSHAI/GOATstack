@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { WonderService } from '../../services/wonder.service';
 
 export class Wonder {
-  id: number;
+  _id: number;
   name: string;
+  xcoor: number;
+  ycoor: number;
 }
 
 @Component({
