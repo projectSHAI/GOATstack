@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+
 import { WonderService } from '../../services/wonder.service';
 
 export class Wonder {
-  _id: number;
-  name: string;
-  xcoor: number;
-  ycoor: number;
+    _id: number;
+    name: string;
+    xcoor: number;
+    ycoor: number;
 }
 
 @Component({
     selector: 'home-section',
-    providers: [ WonderService ],
+    providers: [WonderService],
     moduleId: module.id,
     templateUrl: 'home.html',
     styleUrls: ['home.css']
@@ -28,10 +29,11 @@ export class HomeComponent implements OnInit {
 
     getWonders() {
         this.wonderService.getWonders()
-            .subscribe(
-            wonders => this.wonders = wonders,
-            error => this.errorMessage = <any>error
-            );
+            .then(wonders => this.wonders = wonders)
+            .then(() => {
+              console.log(this.wonders);
+            })
+            .catch(error => this.errorMessage = <any>error);
     }
 
     testWonders() {

@@ -6,4 +6,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'app.html'
 })
 
-export class AppComponent {}
+export class AppComponent {
+
+}

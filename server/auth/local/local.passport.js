@@ -1,9 +1,10 @@
 'use strict';
 
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport'),
+  LocalStrategy = require('passport-local').Strategy;
 
 function localAuthenticate(User, email, password, done) {
+  console.log('inside the passport.auth');
   User.findOne({
       email: email.toLowerCase()
     }).exec()
@@ -32,10 +33,12 @@ function localAuthenticate(User, email, password, done) {
 };
 
 module.exports.setup = function (User, config) {
-  passport.use(new LocalStrategy({
+  console.log('inside the passport setup');
+  passport.use('local-login', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password' // this is the virtual field on the model
   }, function (email, password, done) {
+    console.log('inside the passport setup callback');
     return localAuthenticate(User, email, password, done);
   }));
 };
