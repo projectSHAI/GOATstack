@@ -12,10 +12,9 @@ export class WonderService {
 
   private wonderUrl = 'api/wonders';
 
-  getWonders(): Promise<Wonder[]> {
+  getWonders(): Observable<Wonder[]> {
     return this.http.get(this.wonderUrl)
-      .toPromise()
-      .then(this.extractData)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 

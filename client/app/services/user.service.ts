@@ -32,7 +32,6 @@ export class UserService {
 
     // Public functions that components may call
     login(email: string, password: string): Observable<User> {
-      console.log('inside login');
       let body = JSON.stringify({
         email: email,
         password: password

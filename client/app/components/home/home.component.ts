@@ -24,19 +24,19 @@ export class HomeComponent implements OnInit {
     constructor(private wonderService: WonderService) { }
 
     ngOnInit() {
-        // this.getWonders();
+        
     }
 
     getWonders() {
         this.wonderService.getWonders()
-            .then(wonders => this.wonders = wonders)
-            .then(() => {
+            .subscribe(wonders => this.wonders = wonders,
+              error => this.errorMessage = <any>error,
+              () => {
               console.log(this.wonders);
-            })
-            .catch(error => this.errorMessage = <any>error);
+            });
     }
 
     testWonders() {
-        console.log(this.wonders);
+        this.getWonders();
     }
 }

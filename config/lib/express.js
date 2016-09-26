@@ -20,12 +20,10 @@ module.exports.init = function () {
   app = express();
 
   //aditional app Initializations
-  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
-
-  app.use(passport.initialize());
 
   app.use(session({
     secret: con.config.sessionSecret,
@@ -37,7 +35,12 @@ module.exports.init = function () {
     })
   }));
 
+  // Initialize passport and passport session
+  app.use(passport.initialize());
   app.use(passport.session());
+
+  //sets the routes for all the API queries
+  require('../../server/routes')(app);
 
   //exposes the client and node_modules folders to the client for file serving when client queries "/"
   app.use(express.static('client'));
@@ -46,9 +49,7 @@ module.exports.init = function () {
   //exposes the client and node_modules folders to the client for file serving when client queries anything, * is a wildcard
   app.use('*', express.static('client'));
   app.use('*', express.static('node_modules'));
-  
-  //sets the routes for all the API queries
-  require('../../server/routes')(app);
+
   // app.use(errorHandler());
 
   //fire's a get function when any directory is queried (* is a wildcard) by the client, sends back the index.html as a response. Angular then does the proper routing on client side
