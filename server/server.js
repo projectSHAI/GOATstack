@@ -3,20 +3,20 @@
 var express = require('../config/lib/express');
 var mongoose = require('../config/lib/mongoose');
 var con = require('../config/config');
-var path = require('path');	
+var path = require('path');
 var chalk = require('chalk');
 
 
-if(con.config.seedDB){ 
+if(con.config.seedDB){
 
-	require('../config/lib/seed'); 
+	require('../config/lib/seed');
 
 	var chai = require('chai');
 
 	global.expect = chai.expect;
 	global.assert = chai.assert;
 	chai.should();
-	
+
 };
 
 // Initialize models
@@ -24,7 +24,7 @@ mongoose.loadModels();
 
 var init = function init(callback) {
   mongoose.connect(function (db) {
-  	
+
     // Initialize express
     var app = express.init();
     if (callback) callback(app, db, con);
@@ -51,4 +51,3 @@ init(function (app, db, con) {
 });
 
 exports = module.exports = express.init();
-

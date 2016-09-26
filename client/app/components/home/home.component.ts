@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     constructor(private wonderService: WonderService) { }
 
     ngOnInit() {
-        this.getWonders();
+        // this.getWonders();
     }
 
     getWonders() {

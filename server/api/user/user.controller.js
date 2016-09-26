@@ -11,15 +11,24 @@
 
 var _ = require('lodash');
 var User = require('./user.model');
+var con = require('../../../config/config');
+var jwt = require('jsonwebtoken');
 
-module.exports.allUsers = function(req, res){	
+function validationError(res, statusCode) {
+  statusCode = statusCode || 422;
+  return function (err) {
+    res.status(statusCode).json(err);
+  }
+}
+
+module.exports.allUsers = function(req, res){
 		//User is a mongoose schema model
-		//.find is a mongoose method that accepts a json to search mongodb as the first argument, and a callback function that can take err and res as arguments	
+		//.find is a mongoose method that accepts a json to search mongodb as the first argument, and a callback function that can take err and res as arguments
 		User.find({})
 			//.then is a promise method that fires after the previous method and fires whatever function you place inside
 			//entity is the argument which catches the json object that is passed back from the mongodb query invoked by the .find method
 			.then(function(entity) {
-				//if we have the mongodb entity then we will send back the status 200 message and the json object 
+				//if we have the mongodb entity then we will send back the status 200 message and the json object
 				if(entity)
 				res.status(200).json(entity)
 			})
@@ -30,11 +39,25 @@ module.exports.allUsers = function(req, res){
 
 }
 
-module.exports.createUser = function(req, res){
-
-	User.create({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: req.body.password});
-
-	res.send(req.body);
+/**
+ * Creates a new user
+ */
+module.exports.createUser = function (req, res, next) {
+  var newUser = new User(req.body);
+  newUser.provider = 'local';
+  newUser.role = 'user';
+  return newUser.save()
+    .then(function (user) {
+      var token = jwt.sign({
+        _id: user._id
+      }, con.config.sessionSecret, {
+        expiresIn: 60 * 60 * 5
+      });
+      res.json({
+        token
+      });
+    })
+    .catch(validationError(res));
 }
 
 module.exports.showUser = function(req, res){

@@ -7,8 +7,8 @@ var signToken = require('../auth.service').signToken;
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
-  console.log('inside router before the auth');
-  passport.authenticate('local-login', function(err, user, info) {
+  console.log(req.body);
+  passport.authenticate('local', function(err, user, info) {
     console.log('inside the passport callback');
     var error = err || info;
     if (error) {

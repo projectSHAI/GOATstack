@@ -4,12 +4,11 @@
 
 'use strict';
 
-var path = require('path'),
-    bodyParser = require('body-parser'),
-    jsonParser = bodyParser.json();
+var path = require('path');
+
 module.exports = function(app) {
   // Insert routes below
-  app.use(bodyParser.json());
+
   // app.use('/api/images', require('./api/image'));
   // app.use('/api/dropbox', require('./api/dropbox'));
   // app.use('/api/collections', require('./api/collection'));

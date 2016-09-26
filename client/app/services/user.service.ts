@@ -9,22 +9,11 @@ import { User } from '../components/header/header.component';
 export class UserService {
     constructor(private http: Http) {}
 
+    // Private variables that only this service can use
     private authUrl = 'auth/local';
-    private userUrl = 'api/user';
+    private userUrl = 'api/users';
 
-    login(email: string, password: string): Promise<User> {
-      console.log('inside login');
-      let body = JSON.stringify({
-        email: email,
-        password: password
-      });
-
-      return this.http.post(this.authUrl, body)
-        .toPromise()
-        .then(this.extractToken_Data)
-        .catch(this.handleError);
-    }
-
+    // Private functions that only  this service can use
     private extractToken_Data(res: Response) {
       let body = res.json();
       console.log(body);
@@ -39,5 +28,34 @@ export class UserService {
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
       console.error(errMsg); // log to console instead
       return Observable.throw(errMsg);
+    }
+
+    // Public functions that components may call
+    login(email: string, password: string): Observable<User> {
+      console.log('inside login');
+      let body = JSON.stringify({
+        email: email,
+        password: password
+      });
+
+      return this.http.post(this.authUrl, body)
+        .map(this.extractToken_Data)
+        .catch(this.handleError);
+    }
+
+    logout() {
+
+    }
+
+    signup(firstName: string, email: string, password: string): Observable<User> {
+      let body = JSON.stringify({
+        name: firstName,
+        email: email,
+        password: password
+      });
+
+      return this.http.post(this.userUrl, body)
+        .map(this.extractToken_Data)
+        .catch(this.handleError);
     }
 }

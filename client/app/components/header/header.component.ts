@@ -28,19 +28,29 @@ export class HeaderComponent {
   ngOnInit() {
     // let token = this._cookieservice.get('token');
     // console.log(token);
-    this.testUser();
+    // this.testUser();
   }
 
   login(email: string, password: string) {
     this.userService.login(email, password)
-      .then(user => this.user = user)
-      .then(() => {
+      .subscribe(user => this.user = user, () => {
         console.log(this.user);
         console.log('test');
       });
   }
 
+  registerUser(name: string, email: string, password: string) {
+    this.userService.signup(name, email, password)
+      .subscribe(user => this.user = user, () => {
+        console.log(this.user);
+      });
+  }
+
   testUser() {
-    this.login('admin@admin.com', 'admin1');
+    this.login('jc.thomas4214@gmail.com', 'flight1855');
+  }
+
+  testRegisterUser() {
+    this.registerUser('Jason', 'jc.thomas4214@gmail.com', 'flight1855');
   }
 }
