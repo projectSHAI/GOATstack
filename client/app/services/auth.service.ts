@@ -13,26 +13,26 @@ export class HttpIntercept extends Http {
     }
 
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-        return super.request(url, this.getRequestOptionArgs(options));
+        return super.request(url, this.getRequestOptionArgs(false, options));
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.get(url, this.getRequestOptionArgs(options));
+        return super.get(url, this.getRequestOptionArgs(false, options));
     }
 
     post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.post(url, body, this.getRequestOptionArgs(options));
+        return super.post(url, body, this.getRequestOptionArgs(true, options));
     }
 
     put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.put(url, body, this.getRequestOptionArgs(options));
+        return super.put(url, body, this.getRequestOptionArgs(true, options));
     }
 
     delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.delete(url, this.getRequestOptionArgs(options));
+        return super.delete(url, this.getRequestOptionArgs(false, options));
     }
 
-    getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
+    getRequestOptionArgs(sendJSON: boolean, options?: RequestOptionsArgs): RequestOptionsArgs {
         let token = Cookie.get('token');
 
         if (options == null) {
@@ -41,9 +41,12 @@ export class HttpIntercept extends Http {
         if (options.headers == null) {
             options.headers = new Headers();
         }
-        options.headers.append('Content-Type', 'application/json');
+
+        if (sendJSON)
+          options.headers.append('Content-Type', 'application/json');
         if (token)
           options.headers.append('Authorization', 'Bearer ' + token);
+
         return options;
     }
 

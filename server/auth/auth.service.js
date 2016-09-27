@@ -1,6 +1,8 @@
 'use strict';
 
 var passport = require('passport');
+var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 var con = require('../../config/config');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
@@ -18,22 +20,24 @@ var validateJwt = expressJwt({
 module.exports.isAuthenticated = function() {
   return compose()
     // Validate jwt
-    .use(function(req, res, next) {
+    .use((req, res, next) => {
       // allow access_token to be passed through query parameter as well
       if (req.query && req.query.hasOwnProperty('access_token')) {
         req.headers.authorization = 'Bearer ' + req.query.access_token;
       }
-      validateJwt(req, res, next);
+      return validateJwt(req, res, next);
     })
     // Attach user to request
-    .use(function(req, res, next) {
-      User.findById(req.user._id).exec()
+    .use((req, res, next) => {
+      return User.findById(req.user._id).exec()
         .then(user => {
           if (!user) {
             return res.status(401).end();
           }
           req.user = user;
           next();
+          // runnaway promise to remove node warning
+          return null;
         })
         .catch(err => next(err));
     });
