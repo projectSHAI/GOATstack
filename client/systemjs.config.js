@@ -22,6 +22,7 @@
 
       // other libraries
       'rxjs':                       'rxjs',
+      'ng2-cookies':                'ng2-cookies',
       'angular2-in-memory-web-api': 'angular2-in-memory-web-api'
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -31,6 +32,9 @@
         defaultExtension: 'js'
       },
       rxjs: {
+        defaultExtension: 'js'
+      },
+      'ng2-cookies': {
         defaultExtension: 'js'
       },
       'angular2-in-memory-web-api': {

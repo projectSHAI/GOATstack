@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-// import { CookieService } from 'angular2-cookie/core';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 import { User } from '../components/header/header.component';
 
@@ -17,7 +17,7 @@ export class UserService {
     private extractToken_Data(res: Response) {
       let body = res.json();
       console.log(body);
-      // this._cookieservice.put('token', body.data.token);
+      Cookie.set('token', body.token);
       return body || { };
     }
 
@@ -43,7 +43,7 @@ export class UserService {
     }
 
     logout() {
-
+      Cookie.delete('token');
     }
 
     signup(firstName: string, email: string, password: string): Observable<User> {
@@ -56,5 +56,9 @@ export class UserService {
       return this.http.post(this.userUrl, body)
         .map(this.extractToken_Data)
         .catch(this.handleError);
+    }
+
+    getUser() {
+
     }
 }

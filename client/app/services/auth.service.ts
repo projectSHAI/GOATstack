@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Request, RequestOptionsArgs, Response, XHRBackend, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
 // import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 // import * as _ from 'lodash';
 // var _ = require('lodash');
 
@@ -32,7 +33,7 @@ export class HttpIntercept extends Http {
     }
 
     getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
-        var jwt = '3216040189flight';
+        let token = Cookie.get('token');
 
         if (options == null) {
             options = new RequestOptions();
@@ -41,7 +42,8 @@ export class HttpIntercept extends Http {
             options.headers = new Headers();
         }
         options.headers.append('Content-Type', 'application/json');
-        options.headers.append('Authorization', 'Bearer ' + jwt);
+        if (token)
+          options.headers.append('Authorization', 'Bearer ' + token);
         return options;
     }
 

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-// import { CookieService } from 'angular2-cookie/core';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 import { UserService } from '../../services/user.service';
 
@@ -26,8 +26,9 @@ export class HeaderComponent {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    // let token = this._cookieservice.get('token');
-    // console.log(token);
+    let token = Cookie.get('token');
+    if (token)
+      console.log(token);
     // this.testUser();
   }
 
@@ -35,8 +36,11 @@ export class HeaderComponent {
     this.userService.login(email, password)
       .subscribe(user => this.user = user, () => {
         console.log(this.user);
-        console.log('test');
       });
+  }
+
+  logout() {
+    this.userService.logout();
   }
 
   registerUser(name: string, email: string, password: string) {
