@@ -20,13 +20,8 @@ export class WonderService {
           .map(this.extractData)
           .catch(this.handleError);
         // return new Observable<Wonder>(observer => {
-        //     this.socket = io('', {
-        //         // Send auth token on connection, you will need to DI the Auth service above
-        //         // 'query': 'token=' + Auth.getToken()
-        //         path: '/socket.io-client'
-        //     });
+        //     this.socket = io('http://localhost:5000');
         //     this.socket.on('wonder:save', (data) => {
-        //         console.log('inside the socket listener');
         //         observer.next(data);
         //     });
         //     return () => {

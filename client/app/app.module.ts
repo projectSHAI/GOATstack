@@ -9,7 +9,7 @@ import { HttpIntercept } from './services/auth.service';
 import { Http, Request, RequestOptionsArgs, Response, XHRBackend, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
 // import { Router } from '@angular/router';
 
-// import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 //other necessary modules for this app
 import { NgModule }      from '@angular/core';
@@ -49,6 +49,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     //providers: this object imports all necessary services into the module
     providers: [
         appRoutingProviders,
+        Cookie,
         {
             provide: Http,
             useFactory: (

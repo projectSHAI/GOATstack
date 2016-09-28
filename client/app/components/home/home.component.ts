@@ -36,35 +36,33 @@ export class HomeComponent implements OnInit {
         //   console.log(this.wonders);
         // })
         this.wonderService.getWonders()
-            .subscribe(wonders => this.wonders = wonders,
-            this.socket.syncUpdates('wonder', this.wonders, (res) => {
-                console.log(res);
-            }));
-    }
-
-    ngOnDestroy() {
-        this.connection.unsubscribe();
-    }
-
-    getWonders() {
-        this.wonderService.getWonders()
-            .subscribe(wonders => this.wonders = wonders,
-              error => this.errorMessage = <any>error,
-              () => {
-              console.log(this.wonders);
+            .subscribe(wonders => {
+              this.wonders = wonders;
+              this.socket.syncUpdates('wonder', this.wonders, (res) => {
+                  // console.log(res);
+              });
             });
     }
 
-    saveWonder(name: string) {
-        console.log('inside saveWonder');
-        this.wonderService.saveWonder(name)
-          .subscribe(() => {
-            console.log('saveWonder returns');
-          });
+    ngOnDestroy() {
+        this.socket.unsyncUpdates('wonder');
     }
 
-    testWonders() {
-        // this.getWonders();
+    getWonders() {
+        // this.wonderService.getWonders()
+        //     .subscribe(wonders => this.wonders = wonders,
+        //     error => this.errorMessage = <any>error,
+        //     () => {
+        //         console.log(this.wonders);
+        //     });
         console.log(this.wonders);
     }
+
+    saveWonder(name: string) {
+        this.wonderService.saveWonder(name)
+            .subscribe(() => {
+                // console.log('saveWonder returns');
+            });
+    }
+
 }

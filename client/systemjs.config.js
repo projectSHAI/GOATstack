@@ -23,6 +23,7 @@
       // other libraries
       'rxjs':                       'rxjs',
       'ng2-cookies':                'ng2-cookies',
+      'socket.io':                  'socket.io/socket.io.js',
       'socket.io-client':           'socket.io-client/socket.io.js',
       'lodash':                     'lodash/lodash.js',
       'angular2-in-memory-web-api': 'angular2-in-memory-web-api'
@@ -39,10 +40,13 @@
       'ng2-cookies': {
         defaultExtension: 'js'
       },
+      'socket.io': {
+        defaultExtension: 'js'
+      },
       'socket.io-client': {
         defaultExtension: 'js'
       },
-      'lodash': {
+      lodash: {
         defaultExtension: 'js'
       },
       'angular2-in-memory-web-api': {

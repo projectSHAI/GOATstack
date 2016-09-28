@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
+import * as SocketFactory from 'socket.io';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -11,9 +12,13 @@ export class SocketService {
 
     constructor() {
         // socket.io now auto-configures its connection when we ommit a connection url
-        var socket = io('http://localhost:5000');
+        var socket = io('http://localhost:5000', {
+            // Send auth token on connection, you will need to DI the Auth service above
+            // 'query': 'token=' + Auth.getToken()
+            path: '/socket.io'
+        });
 
-        // var socket = socketFactory({ ioSocket });
+        // var socket = SocketFactory({ ioSocket });
 
         return {
             socket,
@@ -28,9 +33,8 @@ export class SocketService {
              * @param {Array} array
              * @param {Function} cb
              */
-            syncUpdates(modelName, array, cb) {
+            syncUpdates(modelName: string, array: any, cb) {
                 cb = cb || null;
-
                 /**
                  * Syncs item creation/updates on 'model:save'
                  */
@@ -67,8 +71,8 @@ export class SocketService {
              * @param modelName
              */
             unsyncUpdates(modelName) {
-                // socket.removeAllListeners(modelName + ':save');
-                // socket.removeAllListeners(modelName + ':remove');
+                socket.removeListener(modelName + ':save');
+                socket.removeListener(modelName + ':remove');
             }
         };
     }

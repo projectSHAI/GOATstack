@@ -27,12 +27,13 @@ var init = function init(callback) {
   mongoose.connect(function (db) {
     // Initialize express
     var app = express();
+
     var server = http.createServer(app);
-    var socketio = require('socket.io')(server);
-    require('../config/lib/socketio')(socketio, {
+    var socketio = require('socket.io')(server, {
       serveClient: process.env.NODE_ENV !== 'production',
-      path: '/socket.io-client'
+      path: '/socket.io'
     });
+    require('../config/lib/socketio')(socketio);
     require('../config/lib/express').init(app);
 
     if (callback) callback(app, db, con, server);
