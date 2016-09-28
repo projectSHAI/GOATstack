@@ -53,9 +53,7 @@ module.exports.createUser = function (req, res, next) {
       }, con.config.sessionSecret, {
         expiresIn: 60 * 60 * 5
       });
-      res.json({
-        token
-      });
+      res.json({ token });
     })
     .catch(validationError(res));
 }

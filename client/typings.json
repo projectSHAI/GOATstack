@@ -1,6 +1,8 @@
 {
   "globalDependencies": {
     "core-js": "registry:dt/core-js#0.0.0+20160602141332",
-    "node": "registry:dt/node#6.0.0+20160621231320"
+    "lodash": "registry:dt/lodash#4.14.0+20160919145112",
+    "node": "registry:dt/node#6.0.0+20160621231320",
+    "socket.io-client": "registry:dt/socket.io-client#1.4.4+20160317120654"
   }
 }

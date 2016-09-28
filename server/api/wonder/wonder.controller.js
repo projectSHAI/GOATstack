@@ -114,6 +114,7 @@ function updateWonder(res, wonder) {
         counter = 0;
       }
     }
+    return null;
   };
 }
 
@@ -167,7 +168,6 @@ function handleError(res, statusCode) {
 
 // Gets a list of Wonders
 module.exports.index = function (req, res) {
-  console.log(req.headers);
   return Wonder.find().exec()
     .then(respondWithResult(res))
     .catch(handleError(res));

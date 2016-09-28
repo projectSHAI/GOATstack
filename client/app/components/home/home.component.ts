@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { WonderService } from '../../services/wonder.service';
+import { SocketService } from '../../services/socketio.service';
 
 export class Wonder {
-    _id: number;
     name: string;
-    xcoor: number;
-    ycoor: number;
+
+    constructor(private atr: string) {
+        this.name = atr;
+    }
 }
 
 @Component({
     selector: 'home-section',
-    providers: [WonderService],
+    providers: [WonderService, SocketService],
     moduleId: module.id,
     templateUrl: 'home.html',
     styleUrls: ['home.css']
@@ -19,12 +21,29 @@ export class Wonder {
 
 export class HomeComponent implements OnInit {
     errorMessage: string;
-    wonders: Wonder[];
+    wonders = [];
+    connection;
+    wonder;
+    private socket;
 
-    constructor(private wonderService: WonderService) { }
+    constructor(private wonderService: WonderService) {
+        this.socket = new SocketService();
+    }
 
     ngOnInit() {
-        
+        // this.connection = this.wonderService.getWonders().subscribe(wonder => {
+        //   this.wonders.push(wonder);
+        //   console.log(this.wonders);
+        // })
+        this.wonderService.getWonders()
+            .subscribe(wonders => this.wonders = wonders,
+            this.socket.syncUpdates('wonder', this.wonders, (res) => {
+                console.log(res);
+            }));
+    }
+
+    ngOnDestroy() {
+        this.connection.unsubscribe();
     }
 
     getWonders() {
@@ -36,7 +55,16 @@ export class HomeComponent implements OnInit {
             });
     }
 
+    saveWonder(name: string) {
+        console.log('inside saveWonder');
+        this.wonderService.saveWonder(name)
+          .subscribe(() => {
+            console.log('saveWonder returns');
+          });
+    }
+
     testWonders() {
-        this.getWonders();
+        // this.getWonders();
+        console.log(this.wonders);
     }
 }

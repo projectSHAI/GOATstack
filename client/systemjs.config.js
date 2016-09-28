@@ -23,6 +23,8 @@
       // other libraries
       'rxjs':                       'rxjs',
       'ng2-cookies':                'ng2-cookies',
+      'socket.io-client':           'socket.io-client/socket.io.js',
+      'lodash':                     'lodash/lodash.js',
       'angular2-in-memory-web-api': 'angular2-in-memory-web-api'
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -35,6 +37,12 @@
         defaultExtension: 'js'
       },
       'ng2-cookies': {
+        defaultExtension: 'js'
+      },
+      'socket.io-client': {
+        defaultExtension: 'js'
+      },
+      'lodash': {
         defaultExtension: 'js'
       },
       'angular2-in-memory-web-api': {

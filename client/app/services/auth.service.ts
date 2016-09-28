@@ -3,7 +3,7 @@ import { Http, Request, RequestOptionsArgs, Response, XHRBackend, RequestOptions
 // import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
-// import * as _ from 'lodash';
+import * as _ from 'lodash';
 // var _ = require('lodash');
 
 @Injectable()
@@ -58,8 +58,7 @@ export class HttpIntercept extends Http {
     //         } else {
     //             return Observable.throw(err);
     //         }
-    //     });
-    //
+    //     });    //
     // }
 
 }

@@ -10,20 +10,21 @@ var express = require('express'),
   cookieParser = require('cookie-parser'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session),
-  con = require('../config'),
-  app;
+  con = require('../config');
 
 mongoose.Promise = require('bluebird');
 
-module.exports.init = function () {
-
-  app = express();
+module.exports.init = function (app) {
 
   //aditional app Initializations
-  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.urlencoded({
+    extended: false
+  }));
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
+  // Initialize passport and passport session
+  app.use(passport.initialize());
 
   app.use(session({
     secret: con.config.sessionSecret,
@@ -34,10 +35,6 @@ module.exports.init = function () {
       db: 'dreams'
     })
   }));
-
-  // Initialize passport and passport session
-  app.use(passport.initialize());
-  app.use(passport.session());
 
   //sets the routes for all the API queries
   require('../../server/routes')(app);
@@ -60,3 +57,7 @@ module.exports.init = function () {
   return app;
 
 };
+
+module.exports.exp = function () {
+  return express();
+}
