@@ -1,4 +1,4 @@
-# This stack is currently in development
+# This Stack is Currently in Development
 
 # [![MongoDB Logo](http://www.mfactorengineering.com/img/mongo_logo_square.png)](https://www.mongodb.com/)[![ExpressJS Logo](http://nodejs-cloud.com/img/128px/expressjs.png)](http://expressjs.com/)[![Angular2 Logo](http://www.opinya.co.il/assets/angularjs-logo-36eaa6e1dedf111b67ced19c73d21851.png)](https://angular.io/)[![NodeJS Logo](http://www.alex-arriaga.com/wp-content/uploads/2015/10/nodejs-logo.png)](https://nodejs.org/en/) MEA2N Stack
 
@@ -17,6 +17,9 @@ The MEAN framework is not the only thing which comes out of the box with this fu
 # Getting-started
 
 ## Windows
+
+### 1) Install [NodeJS](https://nodejs.org/en/)
+  * Note: You may need to configure system PATH to appropriate node command 
 
 ## Linux
 
