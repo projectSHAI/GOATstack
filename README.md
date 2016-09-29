@@ -1,4 +1,4 @@
-# [![Angular2 Logo](https://angular.io/resources/images/logos/angular2/angular.svg)](https://angular.io/) MEA2N Stack
+# [![MongoDB Logo](http://www.mfactorengineering.com/img/mongo_logo_square.png)](https://www.mongodb.com/)[![ExpressJS Logo](http://nodejs-cloud.com/img/128px/expressjs.png)](http://expressjs.com/)[![Angular2 Logo](http://www.opinya.co.il/assets/angularjs-logo-36eaa6e1dedf111b67ced19c73d21851.png)](https://angular.io/)[![NodeJS Logo](http://www.alex-arriaga.com/wp-content/uploads/2015/10/nodejs-logo.png)](https://nodejs.org/en/) MEA2N Stack
 
 
 
