@@ -25,7 +25,8 @@ The MEAN framework is not the only thing which comes out of the box with this fu
   * Note: You may need to configure system PATH to appropriate node command 
   
 ### 3) Install [MongoDB](https://www.mongodb.com/download-center?jmp=nav#community)
-
+  * Note: You may need to configure system PATH to appropriate mongod command 
+  
 ### 4) Install [Python](https://www.python.org/downloads/release/python-2712/) and C++ compiler
   * Note: Installing [Visual Studios Community](https://www.visualstudio.com/downloads/) will be sufficiant 
   
@@ -36,10 +37,42 @@ $ git clone https://github.com/projectSHAI/mea2n-full-stack # or clone your own 
 $ cd mea2n-full-stack
 $ npm install -g gulp-cli typescript
 $ npm install
+$ # mongod in a different cmd prompt
 $ gulp
 ```
 
 ## Linux
+
+### 1) Install Git
+
+```sh
+$ sudo apt-get install git
+```
+
+### 2) Install [NodeJS](https://nodejs.org/en/download/package-manager/)
+
+```sh
+$ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+$ sudo apt-get install -y nodejs
+```
+
+```sh
+$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+$ sudo apt-get install -y nodejs
+```
+
+### 3) Install [MongoDB](https://docs.mongodb.com/manual/administration/install-on-linux/)
+
+### Clone and Run
+
+```sh
+$ git clone https://github.com/projectSHAI/mea2n-full-stack # or clone your own fork
+$ cd mea2n-full-stack
+$ npm install -g gulp-cli typescript
+$ npm install
+$ # mongod in a different terminal
+$ gulp
+```
 
 ## OSX
 
