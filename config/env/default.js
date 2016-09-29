@@ -10,6 +10,8 @@ module.exports = {
   },
   port: process.env.PORT || 5000,
   host: process.env.HOST || '0.0.0.0',
+  port_s: process.env.PORT_S || 8443,
+  host_s: process.env.HOST_S || '0.0.0.0',
   // Session Cookie settings
   sessionCookie: {
     // session expiration is set by default to 24 hours

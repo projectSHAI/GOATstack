@@ -31,10 +31,6 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.connection = this.wonderService.getWonders().subscribe(wonder => {
-        //   this.wonders.push(wonder);
-        //   console.log(this.wonders);
-        // })
         this.wonderService.getWonders()
             .subscribe(wonders => {
               this.wonders = wonders;
@@ -49,12 +45,6 @@ export class HomeComponent implements OnInit {
     }
 
     getWonders() {
-        // this.wonderService.getWonders()
-        //     .subscribe(wonders => this.wonders = wonders,
-        //     error => this.errorMessage = <any>error,
-        //     () => {
-        //         console.log(this.wonders);
-        //     });
         console.log(this.wonders);
     }
 
