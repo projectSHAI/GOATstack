@@ -12,7 +12,7 @@ export class SocketService {
 
     constructor() {
         // socket.io now auto-configures its connection when we ommit a connection url
-        var socket = io('http://localhost:5000', {
+        var socket = io('', {
             // Send auth token on connection, you will need to DI the Auth service above
             // 'query': 'token=' + Auth.getToken()
             path: '/socket.io'
