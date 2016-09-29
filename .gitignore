@@ -11,6 +11,9 @@ npm-debug.log
 Dockerfile
 docker-compose.yml
 
+# certificates
+config/sslcerts
+
 # TypeScript transpiled files
 client/app/*.js
 client/app/*.js.map
