@@ -20,6 +20,7 @@ The MEAN framework is not the only thing which comes out of the box with this fu
 
 ### 1) Install [NodeJS](https://nodejs.org/en/)
   * Note: You may need to configure system PATH to appropriate node command 
+  
 ### 2) Install [MongoDB](https://www.mongodb.com/download-center?jmp=nav#community)
 
 ### 3) Install [Python](https://www.python.org/downloads/release/python-2712/) and C++ compiler
