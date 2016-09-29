@@ -18,13 +18,26 @@ The MEAN framework is not the only thing which comes out of the box with this fu
 
 ## Windows
 
-### 1) Install [NodeJS](https://nodejs.org/en/)
+### 1) Install [Git](https://git-scm.com/downloads)
+  * Note: You may need to configure system PATH to appropriate git command 
+
+### 2) Install [NodeJS](https://nodejs.org/en/)
   * Note: You may need to configure system PATH to appropriate node command 
   
-### 2) Install [MongoDB](https://www.mongodb.com/download-center?jmp=nav#community)
+### 3) Install [MongoDB](https://www.mongodb.com/download-center?jmp=nav#community)
 
-### 3) Install [Python](https://www.python.org/downloads/release/python-2712/) and C++ compiler
+### 4) Install [Python](https://www.python.org/downloads/release/python-2712/) and C++ compiler
   * Note: Installing [Visual Studios Community](https://www.visualstudio.com/downloads/) will be sufficiant 
+  
+### 5) Clone and Run
+
+```sh
+$ git clone https://github.com/projectSHAI/mea2n-full-stack # or clone your own fork
+$ cd mea2n-full-stack
+$ npm install -g gulp-cli typescript
+$ npm install
+$ gulp
+```
 
 ## Linux
 
