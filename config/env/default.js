@@ -11,7 +11,7 @@ module.exports = {
   // Change to use https
   https_secure: false,
   // You will need to generate a self signed ssl certificate
-  // or use a trusted certificate
+  // using the generator in ./scripts or use a trusted certificate
   cert_loc: './config/sslcerts/cert.pem',
   key_loc: './config/sslcerts/key.pem',
 
