@@ -1,10 +1,16 @@
 # [![MongoDB Logo](http://www.mfactorengineering.com/img/mongo_logo_square.png)](https://www.mongodb.com/)[![ExpressJS Logo](http://nodejs-cloud.com/img/128px/expressjs.png)](http://expressjs.com/)[![Angular2 Logo](http://www.opinya.co.il/assets/angularjs-logo-36eaa6e1dedf111b67ced19c73d21851.png)](https://angular.io/)[![NodeJS Logo](http://www.alex-arriaga.com/wp-content/uploads/2015/10/nodejs-logo.png)](https://nodejs.org/en/) MEA2N Stack
 
+#### Main technologies
+[MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. MEA2N has been built from the ground up to give you an efficient way to start developing secure MEAN web apps. Once deployed you will find a file structure which is organized, and compliant with each technologies best practices to give you a great foundation, and reference to build an efficient, and scaleable web app.
+#### integrated libraries and modules
+The MEAN framework is not the only thing which comes out of the box with this full stack. After download you will also find useful modules like SocketIO, Mongoose, Passport, and OAUTH2 pre-configured in our boilerplate. These extra libraries have been added to address common boilerplate needs; such as user login, authentication, security, and communication not onlly between client and server, but also client to client without the need for the browser to ever refresh.
 
-
-
-
-
+##required technologies for your development environment
+*Gulp
+*typescript
+*npm
+*nodejs
+*mongodb
 
 # Getting-started
 
