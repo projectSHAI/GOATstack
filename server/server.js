@@ -29,12 +29,11 @@ var init = function init(callback) {
   mongoose.connect(function (db) {
     // Initialize express
     var app = express();
-
     var server = http.createServer(app);
 
     if (con.config.https_secure) {
-      var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
-      var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
+      var privateKey = fs.readFileSync(con.config.key_loc, 'utf8');
+      var certificate = fs.readFileSync(con.config.cert_loc, 'utf8');
 
       var credentials = {
         key: privateKey,

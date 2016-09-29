@@ -3,13 +3,18 @@
 module.exports = {
   app: {
     title: 'Discover Your Wonder',
-    description: "A social art app",
-    repository: "https://gitlab.com/projectSHAI/discoveryourwonder",
-    keywords: ["node", "express", "static"],
+    description: 'A social art app',
+    repository: 'https://gitlab.com/projectSHAI/discoveryourwonder',
+    keywords: ['node', 'express', 'static'],
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
   // Change to use https
   https_secure: false,
+  // You will need to generate a self signed ssl certificate
+  // or use a trusted certificate
+  cert_loc: './config/sslcerts/cert.pem',
+  key_loc: './config/sslcerts/key.pem',
+
   port: process.env.PORT || 5000,
   host: process.env.HOST || '0.0.0.0',
   // Session Cookie settings
