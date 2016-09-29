@@ -6,11 +6,11 @@
 The MEAN framework is not the only thing which comes out of the box with this full stack. After download you will also find useful modules like SocketIO, Mongoose, Passport, and OAUTH2 pre-configured in our boilerplate. These extra libraries have been added to address common boilerplate needs; such as user login, authentication, security, and communication not onlly between client and server, but also client to client without the need for the browser to ever refresh.
 
 ##required technologies for your development environment
-*Gulp
-*typescript
-*npm
-*nodejs
-*mongodb
+..*Gulp
+..*typescript
+..*npm
+..*nodejs
+..*mongodb
 
 # Getting-started
 
