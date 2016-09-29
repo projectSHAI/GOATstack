@@ -1,8 +1,18 @@
-# node-js-getting-started
+# [![Angular2 Logo](https://angular.io/resources/images/logos/angular2/angular.svg)](https://angular.io/) MEA2N Stack
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+
+
+
+
+
+# Getting-started
+
+## Windows
+
+## Linux
+
+## OSX
 
 ## Running Locally
 
@@ -17,7 +27,7 @@ $ npm start
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
-## Deploying to Heroku
+# Deploying to Heroku
 
 ```
 $ heroku create
