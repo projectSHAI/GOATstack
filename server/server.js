@@ -30,37 +30,43 @@ var init = function init(callback) {
     // Initialize express
     var app = express();
 
-    var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
-    var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
+    var server = http.createServer(app);
 
-    var credentials = {key: privateKey, cert: certificate};
+    if (con.config.https_secure) {
+      var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
+      var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
 
-    var httpServer = http.createServer(app);
-    var httpsServer = https.createServer(credentials, app);
+      var credentials = {
+        key: privateKey,
+        cert: certificate
+      };
 
-    var socketio = require('socket.io')(httpServer, {
+      server = https.createServer(credentials, app);
+    }
+
+    var socketio = require('socket.io')(server, {
       serveClient: process.env.NODE_ENV !== 'production',
       path: '/socket.io'
     });
-    var socketios = require('socket.io')(httpsServer, {
-      serveClient: process.env.NODE_ENV !== 'production',
-      path: '/socket.io'
-    });
+    // var socketios = require('socket.io')(httpsServer, {
+    //   serveClient: process.env.NODE_ENV !== 'production',
+    //   path: '/socket.io'
+    // });
 
     require('../config/lib/socketio')(socketio);
-    require('../config/lib/socketio')(socketios);
+    // require('../config/lib/socketio')(socketios);
     require('../config/lib/express').init(app);
 
-    if (callback) callback(app, db, con, httpServer, httpsServer);
+    if (callback) callback(app, db, con, server);
 
   });
 };
 
-init(function (app, db, con, httpServer, httpsServer) {
+init(function (app, db, con, server) {
 
-  httpServer.listen(con.config.port, con.config.host, function () {
-    var host = httpServer.address().address;
-    var port = httpServer.address().port;
+  server.listen(con.config.port, con.config.host, function () {
+    var host = server.address().address;
+    var port = server.address().port;
 
     // Logging initialization
     console.log('');
@@ -68,25 +74,20 @@ init(function (app, db, con, httpServer, httpsServer) {
     console.log(chalk.bold.cyan('\tEnvironment:\t\t\t' + process.env.NODE_ENV));
     console.log(chalk.bold.cyan('\tDatabase:\t\t\t' + con.config.db.uri));
     console.log('');
-    console.log(chalk.bold.magenta('\tHTTP Server'));
-    console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'http://localhost:' + port));
+
+    if (!con.config.https_secure) {
+      console.log(chalk.bold.magenta('\tHTTP Server'));
+      console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'http://localhost:' + port));
+    } else {
+      console.log(chalk.bold.magenta('\tHTTPS Server'));
+      console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'https://localhost:' + port));
+    }
+
     console.log(chalk.bold.gray('\tPort:\t\t\t\t' + port));
     console.log(chalk.bold.gray('\tHost:\t\t\t\t' + host));
     console.log('');
 
   });
-  httpsServer.listen(con.config.port_s, con.config.host_s, function () {
-    var host = httpsServer.address().address;
-    var port = httpsServer.address().port;
-
-    console.log(chalk.bold.magenta('\tHTTPS Server'));
-    console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'https://localhost:' + port));
-    console.log(chalk.bold.gray('\tPort:\t\t\t\t' + port));
-    console.log(chalk.bold.gray('\tHost:\t\t\t\t' + host));
-    console.log('');
-
-  });
-
 });
 
 // exports = module.exports = express.init();
