@@ -85,7 +85,6 @@ gulp.task('test:client', function () {
 gulp.task('watch', function () {
   // Start livereload
   plugins.livereload.listen();
-
   // Add watch rules
   gulp.watch(defaultAssets.server.allJS).on('change', plugins.livereload.changed);
   gulp.watch(defaultAssets.client.ts).on('change', function(file) {
@@ -170,7 +169,7 @@ gulp.task('prod', function (done) {
 gulp.task('test', function (done) {
   runSequence(
     'env:test',
-    'build:client',
+    // 'build:client',
     'lint:test',
     'test:server',
     'test:client',

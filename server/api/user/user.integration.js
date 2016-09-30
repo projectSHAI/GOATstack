@@ -1,77 +1,60 @@
 'use strict';
 
 var app = require('../../server.js');
+var User = require('./user.model');
 var request = require('supertest');
 
+describe('User API:', function () {
+  var user;
+  var token;
 
+  // Clear users before testing
+  before(function () {
+    return User.remove().then(function () {
+      user = new User({
+        name: 'Fake User',
+        email: 'test@example.com',
+        password: 'password'
+      });
 
-describe('User API:', function() {
+      return user.save();
+    });
+  });
 
-	////////////////////////////////////////
-	//Test 1 for getting list of all users//
-	////////////////////////////////////////
-	describe('GET /api/users', function() {
+  describe('GET /api/users/me', function () {
 
-		var users;
+    before(function (done) {
+      request(app)
+        .post('/auth/local')
+        .send({
+          email: 'test@example.com',
+          password: 'password'
+        })
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          token = res.body.token;
+          done();
+        });
+    });
 
-		it('responds with JSON', function(done) {
-			request(app)
-				.get('/api/users')
-				.expect('Content-Type', /json/)
-				.expect(function(res) {
-			
-					users = res.body;
-					expect(res).to.have.status(200)
-						.expect(users).to.be.instanceOf(Array)
-						.expect(users[0].firstName).to.be.a('string');
-				})
-				
-				done();
-				
-		});
+    it('should respond with a user profile when authenticated', function (done) {
+      request(app)
+        .get('/api/users/me')
+        .set('authorization', 'Bearer ' + token)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          expect(res.body._id.toString()).to.equal(user._id.toString());
+          done();
+        });
+    });
 
-	});
-
-	////////////////////////////////////////
-	//-----Test 2 for creating a user-----//
-	////////////////////////////////////////
-	describe('POST /api/users', function() {
-
-		var user;
-
-	    before(function(done) {
-	      request(app)
-	        .post('/api/users')
-	        .send({
-	        	          firstName: 'Chris',
-	        	          lastName: 'Haugen',
-	        	          email: 'chris24@gmail.com',
-	        	          password: 'damn'
-	        	        })
-	        .expect(200)
-	        .expect('Content-Type', /json/)
-	        .end(function(err, res) {
-	          if (err) {
-	            return done(err);
-	          }
-	          user = res.body;
-	          done();
-	        });
-	    });		
-
-	    it('firstName should equal Chris', function() {
-	      expect(user.firstName).to.equal('Chris');
-	    });
-	    it('lastName should equal Haugen', function() {
-	      expect(user.lastName).to.equal('Haugen');
-	    });
-	    it('email should equal chris24@gmail.com', function() {
-	      expect(user.email).to.equal('chris24@gmail.com');
-	    });
-	    it('password should equal damn', function() {
-	      expect(user.password).to.equal('damn');
-	    });
-
-	});
-
+    it('should respond with a 401 when not authenticated', function (done) {
+      request(app)
+        .get('/api/users/me')
+        .expect(401)
+        .end(done);
+    });
+  });
 });

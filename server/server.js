@@ -9,6 +9,8 @@ var https = require('https');
 var path = require('path');
 var chalk = require('chalk');
 
+// Initialize express
+var app = express();
 
 if (con.config.seedDB) {
 
@@ -27,8 +29,7 @@ mongoose.loadModels();
 
 var init = function init(callback) {
   mongoose.connect(function (db) {
-    // Initialize express
-    var app = express();
+    // Initialize http server
     var server = http.createServer(app);
 
     // If specified in the default assets, https will be used
@@ -63,26 +64,28 @@ init(function (app, db, con, server) {
     var host = server.address().address;
     var port = server.address().port;
 
-    // Logging initialization
-    console.log('');
-    console.log(chalk.bold.cyan('\tProject Name:\t\t\t' + con.config.app.title));
-    console.log(chalk.bold.cyan('\tEnvironment:\t\t\t' + process.env.NODE_ENV));
-    console.log(chalk.bold.cyan('\tDatabase:\t\t\t' + con.config.db.uri));
-    console.log('');
+    if (process.env.NODE_ENV !== 'test') {
+      // Logging initialization
+      console.log('');
+      console.log(chalk.bold.cyan('\tProject Name:\t\t\t' + con.config.app.title));
+      console.log(chalk.bold.cyan('\tEnvironment:\t\t\t' + process.env.NODE_ENV));
+      console.log(chalk.bold.cyan('\tDatabase:\t\t\t' + con.config.db.uri));
+      console.log('');
 
-    if (!con.config.https_secure) {
-      console.log(chalk.bold.magenta('\tHTTP Server'));
-      console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'http://localhost:' + port));
-    } else {
-      console.log(chalk.bold.magenta('\tHTTPS Server'));
-      console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'https://localhost:' + port));
+      if (!con.config.https_secure) {
+        console.log(chalk.bold.magenta('\tHTTP Server'));
+        console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'http://localhost:' + port));
+      } else {
+        console.log(chalk.bold.magenta('\tHTTPS Server'));
+        console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'https://localhost:' + port));
+      }
+
+      console.log(chalk.bold.gray('\tPort:\t\t\t\t' + port));
+      console.log(chalk.bold.gray('\tHost:\t\t\t\t' + host));
+      console.log('');
     }
-
-    console.log(chalk.bold.gray('\tPort:\t\t\t\t' + port));
-    console.log(chalk.bold.gray('\tHost:\t\t\t\t' + host));
-    console.log('');
-
   });
 });
 
-// exports = module.exports = express.init();
+// export app for mocha-chai
+exports = module.exports = app;
