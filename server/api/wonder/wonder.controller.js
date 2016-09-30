@@ -1,96 +1,16 @@
-/**
- * Using Rails-like standard naming convention for endpoints.
- * GET     /api/wonders              ->  index
- * POST    /api/wonders              ->  create
- * GET     /api/wonders/:id          ->  show
- * PUT     /api/wonders/:id          ->  update
- * DELETE  /api/wonders/:id          ->  destroy
- */
-
 'use strict';
 
 var _ = require('lodash');
 var Wonder = require('./wonder.model');
 
-var Coords = [{
-  x: 10,
-  y: 10
-}, {
-  x: 15,
-  y: 20
-}, {
-  x: 20,
-  y: 15
-}, {
-  x: 25,
-  y: 20
-}, {
-  x: 20,
-  y: 25
-}, {
-  x: 30,
-  y: 25
-}, {
-  x: 25,
-  y: 30
-}, {
-  x: 30,
-  y: 35
-}, {
-  x: 35,
-  y: 30
-}, {
-  x: 40,
-  y: 35
-}, {
-  x: 35,
-  y: 40
-}, {
-  x: 45,
-  y: 40
-}, {
-  x: 50,
-  y: 45
-}, {
-  x: 45,
-  y: 50
-}, {
-  x: 55,
-  y: 50
-}, {
-  x: 50,
-  y: 55
-}, {
-  x: 60,
-  y: 55
-}, {
-  x: 55,
-  y: 60
-}, {
-  x: 65,
-  y: 60
-}, {
-  x: 60,
-  y: 65
-}, {
-  x: 70,
-  y: 65
-}, {
-  x: 65,
-  y: 70
-}, {
-  x: 75,
-  y: 70
-}, {
-  x: 70,
-  y: 75
-}, {
-  x: 80,
-  y: 75
-}];
-var switchX,
-    switchY,
-    counter = 0;
+var Coords = [
+  {x: 10, y: 10}, {x: 15, y: 20}, {x: 20, y: 15}, {x: 25, y: 20}, {x: 20, y: 25}, {x: 30, y: 25}, {x: 25, y: 30},
+  {x: 30, y: 35}, {x: 35, y: 30}, {x: 40, y: 35}, {x: 35, y: 40}, {x: 45, y: 40}, {x: 50, y: 45}, {x: 45, y: 50},
+  {x: 55, y: 50}, {x: 50, y: 55}, {x: 60, y: 55}, {x: 55, y: 60}, {x: 65, y: 60}, {x: 60, y: 65}, {x: 70, y: 65},
+  {x: 65, y: 70}, {x: 75, y: 70}, {x: 70, y: 75}, {x: 80, y: 75}
+];
+
+var switchX, switchY, counter = 0;
 
 function updateWonder(res, wonder) {
   return function(entity) {
@@ -106,7 +26,6 @@ function updateWonder(res, wonder) {
         y: switchY
       };
       entity.save();
-      console.log(entity);
       res.json(entity);
 
       counter++;

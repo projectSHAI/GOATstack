@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 describe('Wonder', function() {
   describe('Unit', function() {
