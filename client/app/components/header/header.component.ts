@@ -45,8 +45,8 @@ export class HeaderComponent {
 
   registerUser(name: string, email: string, password: string) {
     this.userService.signup(name, email, password)
-      .subscribe(user => this.user = user, () => {
-        console.log(this.user);
+      .subscribe(obj => {
+        console.log(obj);
       });
   }
 

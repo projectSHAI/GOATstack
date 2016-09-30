@@ -15,10 +15,13 @@ var controller = require('./user.controller');
 
 var router = express.Router();
 
-router.get('/', controller.allUsers);
+router.get('/', auth.hasRole('admin'), controller.allUsers);
+router.get('/me', auth.isAuthenticated(), controller.me);
+router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
+
 router.post('/', controller.createUser);
 router.get('/:id', controller.showUser);
 router.put('/:id', controller.updateUser);
-router.delete('/:id', controller.destroyUser);
+router.delete('/:id', auth.hasRole('admin'), controller.destroyUser);
 
 module.exports = router;

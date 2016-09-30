@@ -13,7 +13,13 @@ export class UserService {
     private authUrl = 'auth/local';
     private userUrl = 'api/users';
 
-    // Private functions that only  this service can use
+    // Private functions that only this service can use
+    private extractData(res: Response) {
+      let body = res.json();
+      console.log(body);
+      return body || { };
+    }
+
     private extractToken_Data(res: Response) {
       let body = res.json();
       console.log(body);
@@ -30,12 +36,22 @@ export class UserService {
       return Observable.throw(errMsg);
     }
 
+    private createUser(body: string) {
+
+    }
+
     // Public functions that components may call
+    getMe(): Observable<User> {
+      return this.http.get(this.userUrl + '/me')
+        .map(this.extractData)
+        .catch(this.handleError);
+    }
+
     login(email: string, password: string): Observable<User> {
       let body = JSON.stringify({
         email: email,
         password: password
-      });
+      });7
 
       return this.http.post(this.authUrl, body)
         .map(this.extractToken_Data)
@@ -54,11 +70,12 @@ export class UserService {
       });
 
       return this.http.post(this.userUrl, body)
-        .map(this.extractToken_Data)
+        .map((res: Response) => {
+          let body = res.json();
+          console.log(body);
+          Cookie.set('token', body.token);
+          return body || { };
+        })
         .catch(this.handleError);
-    }
-
-    getUser() {
-
     }
 }

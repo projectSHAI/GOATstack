@@ -57,7 +57,3 @@ module.exports.init = function (app) {
   return app;
 
 };
-
-module.exports.exp = function () {
-  return express();
-}

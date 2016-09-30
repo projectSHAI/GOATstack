@@ -4,7 +4,6 @@ import { Http, Request, RequestOptionsArgs, Response, XHRBackend, RequestOptions
 import { Observable } from 'rxjs/Rx';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import * as _ from 'lodash';
-// var _ = require('lodash');
 
 @Injectable()
 export class HttpIntercept extends Http {

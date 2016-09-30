@@ -31,32 +31,28 @@ var init = function init(callback) {
     var app = express();
     var server = http.createServer(app);
 
+    // If specified in the default assets, https will be used
     if (con.config.https_secure) {
-      var privateKey = fs.readFileSync(con.config.key_loc, 'utf8');
-      var certificate = fs.readFileSync(con.config.cert_loc, 'utf8');
-
       var credentials = {
-        key: privateKey,
-        cert: certificate
+        key: fs.readFileSync(con.config.key_loc, 'utf8'),
+        cert: fs.readFileSync(con.config.cert_loc, 'utf8')
       };
 
       server = https.createServer(credentials, app);
     }
 
+    // Initialize the socketio with the respective server
     var socketio = require('socket.io')(server, {
       serveClient: process.env.NODE_ENV !== 'production',
       path: '/socket.io'
     });
-    // var socketios = require('socket.io')(httpsServer, {
-    //   serveClient: process.env.NODE_ENV !== 'production',
-    //   path: '/socket.io'
-    // });
 
+    // Start configure the socketio
     require('../config/lib/socketio')(socketio);
-    // require('../config/lib/socketio')(socketios);
+    // Initialize express features
     require('../config/lib/express').init(app);
 
-    if (callback) callback(app, db, con, server);
+    return callback ? callback(app, db, con, server) : null;
 
   });
 };

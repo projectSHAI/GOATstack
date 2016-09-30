@@ -8,8 +8,6 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class SocketService {
-    // private url = 'http://localhost:5000';
-
     constructor() {
         // socket.io now auto-configures its connection when we ommit a connection url
         var socket = io('', {
@@ -73,6 +71,8 @@ export class SocketService {
             unsyncUpdates(modelName) {
                 socket.removeListener(modelName + ':save');
                 socket.removeListener(modelName + ':remove');
+
+                // User socket listeners will be here
             }
         };
     }
