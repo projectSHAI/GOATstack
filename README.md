@@ -18,7 +18,7 @@ MEA2N includes SocketIO, Mongoose, Passport out of the box. These extra librarie
 
 ## Windows
 
-### 1) Install [![Git](https://git-scm.com/downloads)
+### 1) Install [Git](https://git-scm.com/downloads)
   * Note: You may need to configure system PATH to appropriate git command 
 
 ### 2) Install [NodeJS](https://nodejs.org/en/)
