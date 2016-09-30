@@ -149,28 +149,28 @@ gulp.task('lint:test', function (done) {
 // Run the project in development mode
 gulp.task('default', function (done) {
   runSequence(
-    'env:dev', 
-    'build:client', 
-    ['nodemon', 'watch'], 
+    'env:dev',
+    'build:client',
+    ['nodemon', 'watch'],
     done);
 });
 
 // Run the project in production mode
 gulp.task('prod', function (done) {
   runSequence(
-    'env:prod', 
-    'build:client', 
-    'lint', 
-    ['nodemon', 'watch'], 
+    'env:prod',
+    'build:client',
+    'lint',
+    ['nodemon', 'watch'],
     done);
 });
 
 // Run the project in test mode
 gulp.task('test', function (done) {
   runSequence(
-    'env:test', 
+    'env:test',
     'build:client',
-    'lint:test', 
+    'lint:test',
     'test:server',
     'test:client',
     done);
