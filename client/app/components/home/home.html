@@ -1,3 +1,7 @@
 <h1>Home</h1>
 <button type="button" class="btn" (click)="getWonders()">Test Wonders</button>
 <button type="button" class="btn" (click)="saveWonder('test')">add Wonders</button>
+
+<h1 class="dream-reflection">{{dream}}</h1>
+
+<input [(ngModel)]="dream" placeholder="Do you wonder?" class="dreams-input"/>

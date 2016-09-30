@@ -4,8 +4,6 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 
-import { Wonder } from '../components/home/home.component';
-
 import 'rxjs/Rx';
 
 @Injectable()

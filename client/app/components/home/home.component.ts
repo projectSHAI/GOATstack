@@ -3,14 +3,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WonderService } from '../../services/wonder.service';
 import { SocketService } from '../../services/socketio.service';
 
-export class Wonder {
-    name: string;
-
-    constructor(private atr: string) {
-        this.name = atr;
-    }
-}
-
 @Component({
     selector: 'home-section',
     providers: [WonderService, SocketService],
@@ -25,6 +17,7 @@ export class HomeComponent implements OnInit {
     connection;
     wonder;
     private socket;
+    dream = 'Wonders';
 
     constructor(private wonderService: WonderService) {
         this.socket = new SocketService();
