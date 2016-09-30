@@ -32,23 +32,23 @@ gulp.task('build:client', function () {
 });
 
 var buildFile = function (file) {
-  var index = file.path.lastIndexOf('\\');
+  // console.log(file.path);
+  // var index = file.path.lastIndexOf('\\');
 
   var tsProject = ts.createProject({
     target: 'es5',
     module: 'commonjs',
     moduleResolution: 'node',
-    sourceMap: true,
-    experimentalDecorators: true,
+    sourceMap: false,
     emitDecoratorMetadata: true,
-    noExternalResolve: false,
+    experimentalDecorators: true,
     removeComments: false,
     noImplicitAny: false
   });
   return gulp.src(['./client/typings/*.ts', file.path])
     .pipe(ts(tsProject))
     .js
-    .pipe(gulp.dest(path.resolve('dist/' + file.path.substring(0,index))));
+    .pipe(gulp.dest(path.resolve(file.path.replace('client', 'dist'))));
 };
 
 // Nodemon task
@@ -93,6 +93,7 @@ gulp.task('watch', function () {
   });
   gulp.watch(defaultAssets.client.js).on('change', plugins.livereload.changed);
   gulp.watch(defaultAssets.client.css).on('change', plugins.livereload.changed);
+  gulp.watch(defaultAssets.client.views).on('change', plugins.livereload.changed);
 
 });
 

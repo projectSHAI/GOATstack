@@ -5,8 +5,9 @@
   <a [routerLink]="['/yoloswaq69420blazeitfgt']">404</a>
 
   <div class="user-sign">
-    <button type="button" (click)="testRegisterUser()">Sign up</button>
-    <button type="button" (click)="testUser()">Sign in</button>
+    <h3 *ngIf="currentUser">Welcome, {{currentUser.name}}</h3>
+    <button *ngIf="!currentUser" type="button" (click)="testRegisterUser()">Sign up</button>
+    <button *ngIf="!currentUser" type="button" (click)="testUser()">Sign in</button>
     <button type="button" (click)="logout()">Sign out</button>
   </div>
 

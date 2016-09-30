@@ -12,11 +12,13 @@ module.exports = {
 		],
 		ts: [
 			'client/app/*.ts',
-			'client/app/components/**/*.ts'
-		],		
+			'client/app/**/*.ts',
+			'client/app/**/**/*.ts',
+		],
 		js: [
 			'client/app/*.js',
-			'client/app/components/**/*.js'
+			'client/app/**/*.js',
+			'client/app/**/**/*.js'
 		],
 		img: [],
 		views: [
@@ -29,7 +31,7 @@ module.exports = {
 		gulpConfig: ['gulpfile.js'],
 		allJS: [
 			'config/**/*.js',
-			'server/**/*.js', 
+			'server/**/*.js',
 			'server/**/**/*controller.js',
 			'server/**/**/*events.js',
 			'server/**/**/*model.js',

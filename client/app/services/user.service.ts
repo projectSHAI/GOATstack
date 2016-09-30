@@ -5,9 +5,12 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 import { User } from '../components/header/header.component';
 
+import 'rxjs/Rx';
+
+
 @Injectable()
 export class UserService {
-    constructor(private http: Http) {}
+    constructor(private http: Http) { }
 
     // Private variables that only this service can use
     private authUrl = 'auth/local';
@@ -15,67 +18,57 @@ export class UserService {
 
     // Private functions that only this service can use
     private extractData(res: Response) {
-      let body = res.json();
-      console.log(body);
-      return body || { };
+        let body = res.json();
+        console.log(body);
+        return body || {};
     }
 
-    private extractToken_Data(res: Response) {
-      let body = res.json();
-      console.log(body);
-      Cookie.set('token', body.token);
-      return body || { };
+    private extractToken_Data(res: Response): Observable<User> {
+        let body = res.json();
+        Cookie.set('token', body.token);
+        return body || { };
     }
 
-    private handleError (error: any) {
-      // In a real world app, we might use a remote logging infrastructure
-      // We'd also dig deeper into the error to get a better message
-      let errMsg = (error.message) ? error.message :
-        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-      console.error(errMsg); // log to console instead
-      return Observable.throw(errMsg);
-    }
-
-    private createUser(body: string) {
-
+    private handleError(error: any) {
+        // In a real world app, we might use a remote logging infrastructure
+        // We'd also dig deeper into the error to get a better message
+        let errMsg = (error.message) ? error.message :
+            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(errMsg); // log to console instead
+        return Observable.throw(errMsg);
     }
 
     // Public functions that components may call
     getMe(): Observable<User> {
-      return this.http.get(this.userUrl + '/me')
-        .map(this.extractData)
-        .catch(this.handleError);
+        return this.http.get(this.userUrl + '/me')
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 
     login(email: string, password: string): Observable<User> {
-      let body = JSON.stringify({
-        email: email,
-        password: password
-      });7
+        let body = JSON.stringify({
+            email: email,
+            password: password
+        });
 
-      return this.http.post(this.authUrl, body)
-        .map(this.extractToken_Data)
-        .catch(this.handleError);
+        return this.http.post(this.authUrl, body)
+            .map(this.extractToken_Data)
+            .catch(this.handleError);
     }
 
     logout() {
-      Cookie.delete('token');
+        Cookie.delete('token');
     }
 
     signup(firstName: string, email: string, password: string): Observable<User> {
-      let body = JSON.stringify({
-        name: firstName,
-        email: email,
-        password: password
-      });
+        let body = JSON.stringify({
+            name: firstName,
+            email: email,
+            password: password
+        });
 
-      return this.http.post(this.userUrl, body)
-        .map((res: Response) => {
-          let body = res.json();
-          console.log(body);
-          Cookie.set('token', body.token);
-          return body || { };
-        })
-        .catch(this.handleError);
+        return this.http.post(this.userUrl, body)
+            .map(this.extractToken_Data)
+            .catch(this.handleError);
     }
 }

@@ -13,4 +13,6 @@ module.exports = {
     // Enable mongoose debug mode
     debug: process.env.MONGODB_DEBUG || false
   },
+  livereload: false,
+  seedDB: false
 };

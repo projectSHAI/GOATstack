@@ -8,7 +8,7 @@ export class User {
   firstName: string;
   lastName: string;
   email: string;
-  role: string;
+  created: string;
 }
 
 @Component({
@@ -21,32 +21,41 @@ export class User {
 
 export class HeaderComponent {
   errorMessage: string;
-  user: User;
+  currentUser: User;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     let token = Cookie.get('token');
     if (token)
-      console.log(token);
-    // this.testUser();
+      this.userService.getMe()
+        .subscribe(user => {
+          this.currentUser = user;
+        });
   }
 
   login(email: string, password: string) {
     this.userService.login(email, password)
-      .subscribe(user => this.user = user, () => {
-        console.log(this.user);
+      .subscribe(() => {
+        return this.userService.getMe()
+          .subscribe(user => {
+            this.currentUser = user;
+          })
       });
   }
 
   logout() {
     this.userService.logout();
+    this.currentUser = null;
   }
 
   registerUser(name: string, email: string, password: string) {
     this.userService.signup(name, email, password)
-      .subscribe(obj => {
-        console.log(obj);
+      .subscribe(() => {
+        return this.userService.getMe()
+          .subscribe(user => {
+            this.currentUser = user;
+          })
       });
   }
 
