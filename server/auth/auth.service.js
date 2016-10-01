@@ -54,8 +54,8 @@ module.exports.hasRole = function(roleRequired) {
   return compose()
     .use(exports.isAuthenticated())
     .use(function meetsRequirements(req, res, next) {
-      if (config.userRoles.indexOf(req.user.role) >=
-          config.userRoles.indexOf(roleRequired)) {
+      if (con.config.userRoles.indexOf(req.user.role) >=
+          con.config.userRoles.indexOf(roleRequired)) {
         next();
       } else {
         res.status(403).send('Forbidden');
@@ -79,7 +79,7 @@ module.exports.setTokenCookie = function(req, res) {
   if (!req.user) {
     return res.status(404).send('It looks like you aren\'t logged in, please try again.');
   }
-  var token = signToken(req.user._id, req.user.role);
+  var token = exports.signToken(req.user._id, req.user.role);
   res.cookie('token', token);
   res.redirect('/');
 };

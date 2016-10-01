@@ -1,3 +1,5 @@
+/*jshint loopfunc: true */
+
 'use strict';
 
 var app = require('../../server.js');
@@ -25,8 +27,8 @@ describe('Wonder API:', function() {
     it('should respond with JSON array', function() {
       expect(wonders).to.be.instanceOf(Array);
     });
-
   });
+
   describe('POST /api/wonders', function() {
 
     var counter = 0;
@@ -62,12 +64,11 @@ describe('Wonder API:', function() {
         });
     });
 
-    for(var i = 0; i < 23; i++){
+    for(var i = 0; i < 23; i++) {
       it('should respond with the newly created wonder:' + i % 8 + ' at index:' + i % 20, function() {
         expect(wonders[counter].name).to.equal('wonder: ' + counter % 8);
         counter = (counter + 1) % 20;
       });
     }
-
   });
 });

@@ -1,3 +1,5 @@
+'use strict';
+
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -22,10 +24,10 @@ function localAuthenticate(User, email, password, done) {
         } else {
           return done(null, user);
         }
-      });
+      })
     })
     .catch(err => done(err));
-};
+}
 
 module.exports.setup = function (User, config) {
   passport.use(new LocalStrategy({

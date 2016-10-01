@@ -169,7 +169,6 @@ gulp.task('prod', function (done) {
 gulp.task('test', function (done) {
   runSequence(
     'env:test',
-    // 'build:client',
     'lint:test',
     'test:server',
     'test:client',

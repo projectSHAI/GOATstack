@@ -22,7 +22,7 @@ if (con.config.seedDB) {
   global.assert = chai.assert;
   chai.should();
 
-};
+}
 
 // Initialize models
 mongoose.loadModels();
