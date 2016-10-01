@@ -17,10 +17,10 @@ mongoose.Promise = require('bluebird');
 module.exports.init = function (app) {
 
   //aditional app Initializations
-  app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: false
   }));
+  app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
   // Initialize passport and passport session

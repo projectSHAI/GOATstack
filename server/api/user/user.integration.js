@@ -12,9 +12,11 @@ describe('User API:', function () {
   before(function () {
     return User.remove().then(function () {
       user = new User({
-        name: 'Fake User',
-        email: 'test@example.com',
-        password: 'password'
+        userName : 'MrFakie',
+				firstName : 'Fake',
+				lastName : 'Fakie',
+        email : 'test@example.com',
+        password : 'password'
       });
 
       return user.save();
@@ -46,6 +48,10 @@ describe('User API:', function () {
         .expect('Content-Type', /json/)
         .end((err, res) => {
           expect(res.body._id.toString()).to.equal(user._id.toString());
+					expect(res.body.userName).to.equal(user.userName);
+					expect(res.body.firstName).to.equal(user.firstName);
+					expect(res.body.lastName).to.equal(user.lastName);
+					expect(res.body.email).to.equal(user.email);
           done();
         });
     });

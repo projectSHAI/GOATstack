@@ -151,6 +151,7 @@ gulp.task('default', function (done) {
   runSequence(
     'env:dev',
     'build:client',
+    'lint',
     ['nodemon', 'watch'],
     done);
 });

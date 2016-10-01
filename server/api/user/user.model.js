@@ -12,7 +12,12 @@ var UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  name: String,
+  userName: {
+    type: String,
+    required: 'A user needs at least a username'
+  },
+  firstName: String,
+  lastName: String,
   email: {
     type: String,
     lowercase: true,
@@ -57,7 +62,9 @@ UserSchema
   .virtual('profile')
   .get(function() {
     return {
-      'name': this.name,
+      'userName': this.userName,
+      'firstName': this.firstName,
+      'lastName': this.lastName,
       'role': this.role
     };
   });

@@ -85,7 +85,6 @@ module.exports.createUser = function (req, res, next) {
  * Get my info
  */
 module.exports.me = function(req, res, next) {
-  console.log('inside me');
   var userId = req.user._id;
 
   return User.findOne({
