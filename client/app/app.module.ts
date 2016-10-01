@@ -18,7 +18,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 //routing imports
-import { routing, appRoutingProviders } from './routes';
+import { routing } from './routes';
 
 //components for different views
 import { HeaderComponent } from './components/header/header.component';
@@ -48,7 +48,6 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ],
     //providers: this object imports all necessary services into the module
     providers: [
-        appRoutingProviders,
         Cookie,
         {
             provide: Http,

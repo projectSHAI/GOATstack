@@ -29,9 +29,5 @@ const appRoutes: Routes = [
     }
 ];
 
-export const appRoutingProviders: any[] = [
-
-];
-
 //routing is exported so we can usee it in app.module.ts where we will add a configured Router module to our root NgModule imports
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
