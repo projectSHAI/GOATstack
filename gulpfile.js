@@ -24,11 +24,11 @@ gulp.task('env:prod', function () {
 
 // Transpile client side TS files
 gulp.task('build:client', function () {
-	var tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
-	return gulp.src(path.resolve('./client/**/*.ts'))
-		.pipe(ts(tsProject))
-		.js
-		.pipe(gulp.dest(path.resolve('./client')));
+  var tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
+  return gulp.src(path.resolve('./client/**/*.ts'))
+    .pipe(ts(tsProject))
+    .js
+    .pipe(gulp.dest(path.resolve('./client')));
 });
 
 var buildFile = function (file) {
@@ -68,13 +68,25 @@ gulp.task('test:server', function (done) {
 // Mocha unit
 gulp.task('mocha:unit', function () {
   return gulp.src(defaultAssets.server.tests.unit)
-    .pipe(plugins.mocha());
+    .pipe(plugins.mocha({
+      reporter: 'spec',
+      timeout: 5000,
+      require: [
+        './mocha.conf'
+      ]
+    }));
 });
 
 // Mocha integration
 gulp.task('mocha:integration', function () {
   return gulp.src(defaultAssets.server.tests.integration)
-    .pipe(plugins.mocha());
+    .pipe(plugins.mocha({
+      reporter: 'spec',
+      timeout: 5000,
+      require: [
+        './mocha.conf'
+      ]
+    }));
 });
 
 gulp.task('test:client', function () {
@@ -87,7 +99,7 @@ gulp.task('watch', function () {
   plugins.livereload.listen();
   // Add watch rules
   gulp.watch(defaultAssets.server.allJS).on('change', plugins.livereload.changed);
-  gulp.watch(defaultAssets.client.ts).on('change', function(file) {
+  gulp.watch(defaultAssets.client.ts).on('change', function (file) {
     buildFile(file);
   });
   gulp.watch(defaultAssets.client.js).on('change', plugins.livereload.changed);
@@ -127,11 +139,11 @@ gulp.task('jshint:server:test', function () {
     .pipe(plugins.jshint.reporter('default'));
 });
 
-gulp.task('tslint', function() {
+gulp.task('tslint', function () {
   return gulp.src(defaultAssets.client.ts)
     .pipe(plugins.tslint({
-        // contains rules in the tslint.json format
-        configuration: "./tslint.json"
+      // contains rules in the tslint.json format
+      configuration: "./tslint.json"
     }))
     .pipe(plugins.tslint.report());
 });
@@ -151,8 +163,7 @@ gulp.task('default', function (done) {
   runSequence(
     'env:dev',
     'build:client',
-    'lint',
-    ['nodemon', 'watch'],
+    'lint', ['nodemon', 'watch'],
     done);
 });
 
@@ -161,8 +172,7 @@ gulp.task('prod', function (done) {
   runSequence(
     'env:prod',
     'build:client',
-    'lint',
-    ['nodemon', 'watch'],
+    'lint', ['nodemon', 'watch'],
     done);
 });
 

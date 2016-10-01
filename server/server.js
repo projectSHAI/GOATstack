@@ -12,17 +12,7 @@ var chalk = require('chalk');
 // Initialize express
 var app = express();
 
-if (con.config.seedDB) {
-
-  require('../config/lib/seed');
-
-  var chai = require('chai');
-
-  global.expect = chai.expect;
-  global.assert = chai.assert;
-  chai.should();
-
-}
+if (con.config.seedDB) { require('../config/lib/seed'); }
 
 // Initialize models
 mongoose.loadModels();
