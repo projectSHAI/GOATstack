@@ -23,7 +23,6 @@
     "@angular/router": "3.0.0",
     "@angular/upgrade": "2.0.0",
     "@types/lodash": "^4.14.36",
-    "angular2-cookie": "^1.2.4",
     "angular2-in-memory-web-api": "0.0.20",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",

@@ -21,6 +21,13 @@ function validationError(res, statusCode) {
   }
 }
 
+function handleError(res, statusCode) {
+  statusCode = statusCode || 500;
+  return function (err) {
+    res.status(statusCode).send(err);
+  };
+}
+
 /**
  * Change a users password
  */
@@ -44,28 +51,22 @@ module.exports.changePassword = function(req, res, next) {
     });
 }
 
-module.exports.allUsers = function(req, res){
-		//User is a mongoose schema model
-		//.find is a mongoose method that accepts a json to search mongodb as the first argument, and a callback function that can take err and res as arguments
-		User.find({})
-			//.then is a promise method that fires after the previous method and fires whatever function you place inside
-			//entity is the argument which catches the json object that is passed back from the mongodb query invoked by the .find method
-			.then(function(entity) {
-				//if we have the mongodb entity then we will send back the status 200 message and the json object
-				if(entity)
-				res.status(200).json(entity)
-			})
-			//.catch will occur if one of the promises fails to do error handling
-			.catch(function(){
-				res.status(500).send({error: "Server did not get an entity response object from the database"})
-			});
-
+/**
+ * Get list of users
+ * restriction: 'admin'
+ */
+module.exports.index = function (req, res) {
+  return User.find({}, '-salt -password').exec()
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(handleError(res));
 }
 
 /**
  * Creates a new user
  */
-module.exports.createUser = function (req, res, next) {
+module.exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
@@ -79,6 +80,34 @@ module.exports.createUser = function (req, res, next) {
       res.json({ token });
     })
     .catch(validationError(res));
+}
+
+/**
+ * Deletes a user
+ * restriction: 'admin'
+ */
+module.exports.destroy = function (req, res) {
+  return User.findByIdAndRemove(req.params.id).exec()
+    .then(function () {
+      res.status(204).end();
+    })
+    .catch(handleError(res));
+}
+
+/**
+ * Get a single user
+ */
+module.exports.show = function (req, res, next) {
+  var userId = req.params.id;
+
+  return User.findById(userId).exec()
+    .then(user => {
+      if (!user) {
+        return res.status(404).end();
+      }
+      res.json(user.profile);
+    })
+    .catch(err => next(err));
 }
 
 /**
@@ -97,16 +126,4 @@ module.exports.me = function(req, res, next) {
       res.json(user);
     })
     .catch(err => next(err));
-}
-
-module.exports.showUser = function(req, res){
-	return 'showUser';
-}
-
-module.exports.updateUser = function(req, res){
-	return 'updateUser';
-}
-
-module.exports.destroyUser = function(req, res){
-	return 'destroyUser';
 }
