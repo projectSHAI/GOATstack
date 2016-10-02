@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A MEAN stack boilerplate",
   "engines": {
-    "node": "6.3.0"
+    "node": "6.6.0"
   },
   "scripts": {
     "start": "tsc -p ./client && concurrently \"tsc -w -p ./client\" \"node server/server.js\" ",
@@ -12,18 +12,19 @@
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "dependencies": {
-    "@angular/common": "2.0.0",
-    "@angular/compiler": "2.0.0",
-    "@angular/core": "2.0.0",
-    "@angular/forms": "2.0.0",
-    "@angular/http": "2.0.0",
-    "@angular/platform-browser": "2.0.0",
-    "@angular/platform-browser-dynamic": "2.0.0",
-    "@angular/platform-server": "2.0.0",
-    "@angular/router": "3.0.0",
-    "@angular/upgrade": "2.0.0",
+    "@angular/common": "~2.0.1",
+    "@angular/compiler": "~2.0.1",
+    "@angular/core": "~2.0.1",
+    "@angular/forms": "~2.0.1",
+    "@angular/http": "~2.0.1",
+    "@angular/platform-browser": "~2.0.1",
+    "@angular/platform-browser-dynamic": "~2.0.1",
+    "@angular/platform-server": "~2.0.1",
+    "@angular/router": "~3.0.1",
+    "@angular/upgrade": "~2.0.1",
+
     "@types/lodash": "^4.14.36",
-    "angular2-in-memory-web-api": "0.0.20",
+    "angular-in-memory-web-api": "~0.1.1",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
@@ -60,6 +61,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
+    "chai-spies": "^0.7.1",
     "chai-things": "^0.2.0",
     "concurrently": "^2.2.0",
     "del": "2.2.2",

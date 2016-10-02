@@ -25,7 +25,9 @@ module.exports = {
 			'client/index.html',
 			'client/app/components/**/*.html'
 		],
-		tests: ''
+		tests: [
+			'client/app/components/**/*.component.test.js'
+		]
 	},
 	server: {
 		gulpConfig: ['gulpfile.js'],

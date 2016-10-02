@@ -18,6 +18,7 @@ function validationError(res, statusCode) {
   statusCode = statusCode || 422;
   return function (err) {
     res.status(statusCode).json(err);
+    return null;
   }
 }
 
@@ -25,6 +26,7 @@ function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function (err) {
     res.status(statusCode).send(err);
+    return null;
   };
 }
 
@@ -124,6 +126,7 @@ module.exports.me = function(req, res, next) {
         return res.status(401).end();
       }
       res.json(user);
+      return null;
     })
     .catch(err => next(err));
 }

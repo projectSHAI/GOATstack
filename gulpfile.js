@@ -62,11 +62,11 @@ gulp.task('nodemon', function () {
 });
 
 gulp.task('test:server', function (done) {
-  runSequence('mocha:unit', 'mocha:integration', done);
+  runSequence('server:mocha:unit', 'server:mocha:integration', done);
 });
 
 // Mocha unit
-gulp.task('mocha:unit', function () {
+gulp.task('server:mocha:unit', function () {
   return gulp.src(defaultAssets.server.tests.unit)
     .pipe(plugins.mocha({
       reporter: 'spec',
@@ -78,7 +78,7 @@ gulp.task('mocha:unit', function () {
 });
 
 // Mocha integration
-gulp.task('mocha:integration', function () {
+gulp.task('server:mocha:integration', function () {
   return gulp.src(defaultAssets.server.tests.integration)
     .pipe(plugins.mocha({
       reporter: 'spec',
@@ -89,8 +89,20 @@ gulp.task('mocha:integration', function () {
     }));
 });
 
-gulp.task('test:client', function () {
-  console.log(chalk.yellow('\tThis is where client tests will start!!'));
+gulp.task('test:client', function (done) {
+  runSequence('client:mocha:test', done);
+});
+
+// Mocha integration
+gulp.task('client:mocha:test', function () {
+  return gulp.src(defaultAssets.client.tests)
+    .pipe(plugins.mocha({
+      reporter: 'spec',
+      timeout: 5000,
+      require: [
+        './mocha.conf'
+      ]
+    }));
 });
 
 // Watch Files For Changes
@@ -182,6 +194,6 @@ gulp.task('test', function (done) {
     'env:test',
     'lint:test',
     'test:server',
-    'test:client',
+    // 'test:client',
     done);
 });
