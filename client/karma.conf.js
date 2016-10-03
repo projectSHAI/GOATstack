@@ -1,9 +1,9 @@
 // #docregion
 module.exports = function(config) {
 
-  var appBase    = 'app/';       // transpiled app JS and map files
-  var appSrcBase = 'app/';       // app source TS files
-  var appAssets  = '/base/app/'; // component assets fetched by Angular's compiler
+  var appBase    = 'client/app/';       // transpiled app JS and map files
+  var appSrcBase = 'client/app/';       // app source TS files
+  var appAssets  = '/base/client/app/'; // component assets fetched by Angular's compiler
 
   var testBase    = 'testing/';       // transpiled test JS and map files
   var testSrcBase = 'testing/';       // test source TS files
@@ -52,8 +52,8 @@ module.exports = function(config) {
       {pattern: 'node_modules/@angular/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false},
 
-      {pattern: 'systemjs.config.js', included: false, watched: false},
-      {pattern: 'systemjs.config.extras.js', included: false, watched: false},
+      {pattern: 'systemjs.config.js', included: true, watched: false},
+      {pattern: 'systemjs.config.extras.js', included: true, watched: false},
       'karma-test-shim.js',
 
       // transpiled application & spec code paths loaded via module imports

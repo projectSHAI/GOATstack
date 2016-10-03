@@ -9,7 +9,8 @@
     "start": "tsc -p ./client && concurrently \"tsc -w -p ./client\" \"node server/server.js\" ",
     "postinstall": "cd client && typings install",
     "typings": "typings",
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "karma": "tsc && concurrently \"tsc -w\" \"karma start client/karma.conf.js\""
   },
   "dependencies": {
     "@angular/common": "~2.0.1",
@@ -95,7 +96,9 @@
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
-    "protractor": "4.0.9"
+    "protractor": "4.0.9",
+    "karma-htmlfile-reporter": "^0.3.4",
+    "karma-jasmine-html-reporter": "^0.2.2"
   },
   "repository": {
     "type": "git",
