@@ -10,7 +10,7 @@
     "postinstall": "cd client && typings install",
     "typings": "typings",
     "test": "./node_modules/.bin/mocha --reporter spec",
-    "karma": "tsc && concurrently \"tsc -w\" \"karma start client/karma.conf.js\""
+    "karma": "tsc -p ./client && concurrently \"tsc -w -p ./client\" \"karma start client/karma.conf.js\""
   },
   "dependencies": {
     "@angular/common": "~2.0.1",

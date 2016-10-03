@@ -5,8 +5,8 @@ module.exports = function(config) {
   var appSrcBase = 'client/app/';       // app source TS files
   var appAssets  = '/base/client/app/'; // component assets fetched by Angular's compiler
 
-  var testBase    = 'testing/';       // transpiled test JS and map files
-  var testSrcBase = 'testing/';       // test source TS files
+  var testBase    = 'client/app/components/**/';       // transpiled test JS and map files
+  var testSrcBase = 'client/app/components/**/';       // test source TS files
 
   config.set({
     basePath: '../',
@@ -52,9 +52,9 @@ module.exports = function(config) {
       {pattern: 'node_modules/@angular/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false},
 
-      {pattern: 'systemjs.config.js', included: false, watched: false},
-      {pattern: 'systemjs.config.extras.js', included: false, watched: false},
-      'karma-test-shim.js',
+      {pattern: 'client/systemjs.config.js', included: false, watched: false},
+      {pattern: 'client/systemjs.config.extras.js', included: false, watched: false},
+      'client/karma-test-shim.js',
 
       // transpiled application & spec code paths loaded via module imports
       {pattern: appBase + '**/*.js', included: false, watched: true},
@@ -63,7 +63,7 @@ module.exports = function(config) {
 
       // Asset (HTML & CSS) paths loaded via Angular's component compiler
       // (these paths need to be rewritten, see proxies section)
-      {pattern: appBase + '**/*.html', included: false, watched: true},
+      {pattern: appBase + '**/*.html', included: true, watched: true},
       {pattern: appBase + '**/*.css', included: false, watched: true},
 
       // Paths for debugging with source maps in dev tools
@@ -76,7 +76,7 @@ module.exports = function(config) {
     // Proxied base paths for loading assets
     proxies: {
       // required for component assets fetched by Angular's compiler
-      "/app/": appAssets
+      "app/": appAssets
     },
 
     exclude: [],

@@ -7,7 +7,7 @@ Error.stackTraceLimit = 0; // "No stacktrace"" is usually best for app testing.
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
-var builtPath = '/base/app/';
+var builtPath = '/base/client/app/';
 
 __karma__.loaded = function () { };
 
@@ -30,7 +30,7 @@ var allSpecFiles = Object.keys(window.__karma__.files)
 System.config({
   baseURL: '/base',
   // Extend usual application package list with test folder
-  packages: { 'testing': { main: 'index.js', defaultExtension: 'js' } },
+  packages: { 'testing': { main: 'server/server.js', defaultExtension: 'js' } },
 
   // Assume npm: is set in `paths` in systemjs.config
   // Map the angular testing umd bundles
@@ -46,14 +46,14 @@ System.config({
   },
 });
 
-System.import('systemjs.config.js')
+System.import('client/systemjs.config.js')
   .then(importSystemJsExtras)
   .then(initTestBed)
   .then(initTesting);
 
 /** Optional SystemJS configuration extras. Keep going w/o it */
 function importSystemJsExtras(){
-  return System.import('systemjs.config.extras.js')
+  return System.import('client/systemjs.config.extras.js')
   .catch(function(reason) {
     console.log(
       'Warning: System.import could not load the optional "systemjs.config.extras.js". Did you omit it by accident? Continuing without it.'
