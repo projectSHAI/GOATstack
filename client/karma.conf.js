@@ -9,7 +9,7 @@ module.exports = function(config) {
   var testSrcBase = 'testing/';       // test source TS files
 
   config.set({
-    basePath: '',
+    basePath: '../',
     frameworks: ['jasmine'],
     plugins: [
       require('karma-jasmine'),
@@ -52,8 +52,8 @@ module.exports = function(config) {
       {pattern: 'node_modules/@angular/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false},
 
-      {pattern: 'systemjs.config.js', included: true, watched: false},
-      {pattern: 'systemjs.config.extras.js', included: true, watched: false},
+      {pattern: 'systemjs.config.js', included: false, watched: false},
+      {pattern: 'systemjs.config.extras.js', included: false, watched: false},
       'karma-test-shim.js',
 
       // transpiled application & spec code paths loaded via module imports
