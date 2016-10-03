@@ -42,10 +42,12 @@ module.exports.init = function (app) {
   //exposes the client and node_modules folders to the client for file serving when client queries "/"
   app.use(express.static('client'));
   app.use('/node_modules', express.static('node_modules'));
+  app.use(express.static('config/sys'));
 
   //exposes the client and node_modules folders to the client for file serving when client queries anything, * is a wildcard
   app.use('*', express.static('client'));
   app.use('*', express.static('node_modules'));
+  app.use('*', express.static('config/sys'));
 
   // app.use(errorHandler());
 

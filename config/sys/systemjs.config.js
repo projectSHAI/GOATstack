@@ -1,3 +1,5 @@
+/* jshint ignore:start */
+
 "use strict";
 /**
  * System configuration for Angular 2 samples
@@ -60,3 +62,5 @@
     }
   });
 })(this);
+
+/* jshint ignore:end */

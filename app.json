@@ -1,7 +1,0 @@
-{
-  "name": "discoveryourwonder",
-  "description": "A social art app",
-  "repository": "https://gitlab.com/projectSHAI/discoveryourwonder",
-  "keywords": ["node", "express", "static"],
-  "image": "heroku/nodejs"
-}

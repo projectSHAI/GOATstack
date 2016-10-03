@@ -1,3 +1,5 @@
+/* jshint ignore:start */
+
 // #docregion
 module.exports = function(config) {
 
@@ -9,7 +11,7 @@ module.exports = function(config) {
   var testSrcBase = 'client/app/components/**/';       // test source TS files
 
   config.set({
-    basePath: '../',
+    basePath: '../../',
     frameworks: ['jasmine'],
     plugins: [
       require('karma-jasmine'),
@@ -45,16 +47,16 @@ module.exports = function(config) {
 
       // RxJs
       { pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false },
-      { pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false },
+      // { pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false },
 
       // Paths loaded via module imports:
       // Angular itself
       {pattern: 'node_modules/@angular/**/*.js', included: false, watched: false},
-      {pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false},
+      // {pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false},
 
-      {pattern: 'client/systemjs.config.js', included: false, watched: false},
-      {pattern: 'client/systemjs.config.extras.js', included: false, watched: false},
-      'client/karma-test-shim.js',
+      {pattern: 'config/sys/systemjs.config.js', included: false, watched: false},
+      {pattern: 'config/sys/systemjs.config.extras.js', included: false, watched: false},
+      'config/sys/karma-test-shim.js',
 
       // transpiled application & spec code paths loaded via module imports
       {pattern: appBase + '**/*.js', included: false, watched: true},
@@ -68,9 +70,9 @@ module.exports = function(config) {
 
       // Paths for debugging with source maps in dev tools
       {pattern: appSrcBase + '**/*.ts', included: false, watched: false},
-      {pattern: appBase + '**/*.js.map', included: false, watched: false},
+      // {pattern: appBase + '**/*.js.map', included: false, watched: false},
       {pattern: testSrcBase + '**/*.ts', included: false, watched: false},
-      {pattern: testBase + '**/*.js.map', included: false, watched: false}
+      // {pattern: testBase + '**/*.js.map', included: false, watched: false}
     ],
 
     // Proxied base paths for loading assets
@@ -102,3 +104,5 @@ module.exports = function(config) {
     singleRun: false
   })
 }
+
+/* jshint ignore:end */

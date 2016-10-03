@@ -1,3 +1,5 @@
+/* jshint ignore:start */
+
 // FIRST TIME ONLY- run:
 //   ./node_modules/.bin/webdriver-manager update
 //
@@ -193,3 +195,5 @@ function Reporter(options) {
   }
 
 }
+
+/* jshint ignore:end */

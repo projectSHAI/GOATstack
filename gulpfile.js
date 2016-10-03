@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var path = require('path');
 var gulp = require('gulp');
+var KarmaServer = require('karma').Server;
 var ts = require('gulp-typescript');
 var defaultAssets = require('./config/assets/default');
 var runSequence = require('run-sequence');
@@ -72,7 +73,7 @@ gulp.task('server:mocha:unit', function () {
       reporter: 'spec',
       timeout: 5000,
       require: [
-        './mocha.conf'
+        './config/sys/mocha.conf'
       ]
     }));
 });
@@ -84,7 +85,7 @@ gulp.task('server:mocha:integration', function () {
       reporter: 'spec',
       timeout: 5000,
       require: [
-        './mocha.conf'
+        './config/sys/mocha.conf'
       ]
     }));
 });
@@ -94,15 +95,11 @@ gulp.task('test:client', function (done) {
 });
 
 // Mocha integration
-gulp.task('client:mocha:test', function () {
-  return gulp.src(defaultAssets.client.tests)
-    .pipe(plugins.mocha({
-      reporter: 'spec',
-      timeout: 5000,
-      require: [
-        './mocha.conf'
-      ]
-    }));
+gulp.task('client:mocha:test', function (done) {
+  return new KarmaServer({
+    configFile: __dirname + '/config/sys/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 // Watch Files For Changes
@@ -194,6 +191,6 @@ gulp.task('test', function (done) {
     'env:test',
     'lint:test',
     'test:server',
-    // 'test:client',
+    'test:client',
     done);
 });
