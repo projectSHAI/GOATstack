@@ -11,7 +11,11 @@ var chalk = require('chalk');
 
 // Initialize express
 var app = express();
+// Set address for jasmine supertest
+// There was problems with just 'app'
+app.set('address', 'http://localhost:' + con.config.port)
 
+//seed db
 if (con.config.seedDB) { require('../config/lib/seed'); }
 
 // Initialize models
@@ -43,7 +47,7 @@ var init = function init(callback) {
     // Initialize express features
     require('../config/lib/express').init(app);
 
-    return callback ? callback(app, db, con, server) : null;
+    return callback ? callback(app, db, con, server) : app;
 
   });
 };
@@ -77,5 +81,5 @@ init(function (app, db, con, server) {
   });
 });
 
-// export app for mocha-chai
+// export app for testing
 exports = module.exports = app;

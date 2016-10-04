@@ -1,6 +1,6 @@
 'use strict';
 
-var app = require('../../server.js');
+var app = require('../../server.js').get('address');
 var User = require('./user.model');
 var request = require('supertest');
 
@@ -9,14 +9,14 @@ describe('User API:', function () {
   var token;
 
   // Clear users before testing
-  before(function () {
+  beforeAll(function () {
     return User.remove().then(function () {
       user = new User({
-        userName : 'MrFakie',
-				firstName : 'Fake',
-				lastName : 'Fakie',
-        email : 'test@example.com',
-        password : 'password'
+        userName: 'MrFakie',
+        firstName: 'Fake',
+        lastName: 'Fakie',
+        email: 'test@example.com',
+        password: 'password'
       });
 
       return user.save();
@@ -25,7 +25,7 @@ describe('User API:', function () {
 
   describe('GET /api/users/me', function () {
 
-    before(function (done) {
+    beforeAll(function (done) {
       request(app)
         .post('/auth/local')
         .send({
@@ -35,8 +35,12 @@ describe('User API:', function () {
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
-          token = res.body.token;
-          done();
+          if (err) {
+            done.fail(err);
+          } else {
+            token = res.body.token;
+            done();
+          }
         });
     });
 
@@ -47,12 +51,16 @@ describe('User API:', function () {
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
-          expect(res.body._id.toString()).to.equal(user._id.toString());
-					expect(res.body.userName).to.equal(user.userName);
-					expect(res.body.firstName).to.equal(user.firstName);
-					expect(res.body.lastName).to.equal(user.lastName);
-					expect(res.body.email).to.equal(user.email);
-          done();
+          if (err) {
+            done.fail(err);
+          } else {
+            expect(res.body._id.toString()).toEqual(user._id.toString());
+            expect(res.body.userName).toEqual(user.userName);
+            expect(res.body.firstName).toEqual(user.firstName);
+            expect(res.body.lastName).toEqual(user.lastName);
+            expect(res.body.email).toEqual(user.email);
+            done();
+          }
         });
     });
 
@@ -60,7 +68,13 @@ describe('User API:', function () {
       request(app)
         .get('/api/users/me')
         .expect(401)
-        .end(done);
+        .end((err, res) => {
+          if (err) {
+            done.fail(err);
+          } else {
+            done();
+          }
+        });
     });
   });
 });

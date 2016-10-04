@@ -44,7 +44,8 @@ module.exports = {
 	    sockets: 'server/api/**/*.socket.js',
 	    tests: {
 	    	integration: 'server/api/**/*.integration.js',
-	    	unit: 'server/api/**/*.spec.js'
+	    	unit: 'server/api/**/*.spec.js',
+				jas: 'server/api/user/user.integration.js'
 	    }
 	}
 };

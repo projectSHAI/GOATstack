@@ -4,6 +4,7 @@ var _ = require('lodash');
 var path = require('path');
 var gulp = require('gulp');
 var KarmaServer = require('karma').Server;
+var JasmineReporter = require('jasmine-spec-reporter');
 var ts = require('gulp-typescript');
 var defaultAssets = require('./config/assets/default');
 var runSequence = require('run-sequence');
@@ -67,7 +68,7 @@ gulp.task('test:server', function (done) {
 });
 
 // Mocha unit
-gulp.task('server:mocha:unit', function () {
+gulp.task('server:mocha:unit', function (done) {
   return gulp.src(defaultAssets.server.tests.unit)
     .pipe(plugins.mocha({
       reporter: 'spec',
@@ -75,19 +76,15 @@ gulp.task('server:mocha:unit', function () {
       require: [
         './config/sys/mocha.conf'
       ]
-    }));
+    }), done);
 });
 
 // Mocha integration
-gulp.task('server:mocha:integration', function () {
+gulp.task('server:mocha:integration', function (done) {
   return gulp.src(defaultAssets.server.tests.integration)
-    .pipe(plugins.mocha({
-      reporter: 'spec',
-      timeout: 5000,
-      require: [
-        './config/sys/mocha.conf'
-      ]
-    }));
+    .pipe(plugins.jasmine({
+      reporter: new JasmineReporter()
+    }), done);
 });
 
 gulp.task('test:client', function (done) {
