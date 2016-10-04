@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { Cookie } from 'ng2-cookies/ng2-cookies';
+import { Cookie }    from 'ng2-cookies/ng2-cookies';
+import{ Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
-import { UserService } from '../../services/user.service';
+import { UserService }  from '../../services/user/user.service';
+import { ClockService } from '../../services/clock/clock.service';
 
-export class User {
-  _id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  created: string;
-}
+import { User } from '../../models/user/user.model';
 
 @Component({
   selector: 'header-section',
-  providers: [UserService],
+  providers: [
+    UserService,
+    ClockService
+  ],
   moduleId: module.id,
   templateUrl: 'header.html',
   styleUrls: ['header.css']
@@ -22,8 +22,12 @@ export class User {
 export class HeaderComponent {
   errorMessage: string;
   currentUser: User;
+  clock = this.clockService.currentTime;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private clockService: ClockService
+  ) { }
 
   ngOnInit() {
     let token = Cookie.get('token');

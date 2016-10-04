@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { WonderService } from '../../services/wonder.service';
-import { SocketService } from '../../services/socketio.service';
+import { WonderService } from '../../services/wonder/wonder.service';
+import { SocketService } from '../../services/socketio/socketio.service';
 
 @Component({
     selector: 'home-section',

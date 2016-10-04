@@ -5,27 +5,29 @@
 //main component to bootstrap too
 import { AppComponent }  from './components/app/app.component';
 
-import { HttpIntercept } from './services/auth.service';
 import { Http, Request, RequestOptionsArgs, Response, XHRBackend, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
-// import { Router } from '@angular/router';
 
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 //other necessary modules for this app
-import { NgModule }      from '@angular/core';
-import { FormsModule }    from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { NgModule }                  from '@angular/core';
+import { FormsModule }               from '@angular/forms';
+import { BrowserModule }             from '@angular/platform-browser';
+import { HttpModule, JsonpModule }   from '@angular/http';
 
 //routing imports
 import { routing } from './routes';
 
 //components for different views
-import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { Four0FourComponent } from './components/404/four0four.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component'
+import { HeaderComponent }      from './components/header/header.component';
+import { HomeComponent }        from './components/home/home.component';
+import { FooterComponent }      from './components/footer/footer.component';
+import { Four0FourComponent }   from './components/404/four0four.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
+//services for global use
+import { ClockService }         from './services/clock/clock.service';
+import { HttpIntercept } from './services/auth/auth.service';
 
 //decorator which packages all resources for the app
 @NgModule({
@@ -56,7 +58,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
                 defaultOptions: RequestOptions) =>
                 new HttpIntercept(backend, defaultOptions),
             deps: [XHRBackend, RequestOptions]
-        }
+        },
+        ClockService
     ],
 
     //bootstrap: identifies which component is supposed to be bootstrapped

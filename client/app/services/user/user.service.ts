@@ -3,10 +3,9 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
-import { User } from '../components/header/header.component';
+import { User } from '../../models/user/user.model';
 
 import 'rxjs/Rx';
-
 
 @Injectable()
 export class UserService {
