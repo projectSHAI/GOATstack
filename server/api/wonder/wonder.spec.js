@@ -1,6 +1,8 @@
 'use strict';
 
 var proxyquire = require('proxyquire').noPreserveCache();
+var sinon = require('sinon');
+require('jasmine-sinon');
 
 var wonderCtrlStub = {
   index: 'wonderCtrl.index',
@@ -31,7 +33,7 @@ var wonderIndex = proxyquire('./wonder.router.js', {
 describe('Wonder API Router:', function() {
 
   it('should return an express router instance', function() {
-    expect(wonderIndex).to.equal(routerStub);
+    expect(wonderIndex).toEqual(routerStub);
   });
 
   describe('GET /api/wonders', function() {
@@ -39,7 +41,7 @@ describe('Wonder API Router:', function() {
     it('should route to wonder.controller.index', function() {
       expect(routerStub.get
         .withArgs('/', 'wonderCtrl.index')
-        ).to.have.been.calledOnce;
+        ).toHaveBeenCalledOnce();
     });
 
   });
@@ -49,7 +51,7 @@ describe('Wonder API Router:', function() {
     it('should route to wonder.controller.show', function() {
       expect(routerStub.get
         .withArgs('/:id', 'wonderCtrl.show')
-        ).to.have.been.calledOnce;
+        ).toHaveBeenCalledOnce();
     });
 
   });
@@ -59,7 +61,7 @@ describe('Wonder API Router:', function() {
     it('should route to wonder.controller.create', function() {
       expect(routerStub.post
         .withArgs('/', 'wonderCtrl.create')
-        ).to.have.been.calledOnce;
+        ).toHaveBeenCalledOnce();
     });
 
   });
@@ -69,7 +71,7 @@ describe('Wonder API Router:', function() {
     it('should route to wonder.controller.update', function() {
       expect(routerStub.put
         .withArgs('/:id', 'wonderCtrl.update')
-        ).to.have.been.calledOnce;
+        ).toHaveBeenCalledOnce();
     });
 
   });
@@ -79,7 +81,7 @@ describe('Wonder API Router:', function() {
     it('should route to wonder.controller.update', function() {
       expect(routerStub.patch
         .withArgs('/:id', 'wonderCtrl.update')
-        ).to.have.been.calledOnce;
+        ).toHaveBeenCalledOnce();
     });
 
   });
@@ -89,7 +91,7 @@ describe('Wonder API Router:', function() {
     it('should route to wonder.controller.destroy', function() {
       expect(routerStub.delete
         .withArgs('/:id', 'wonderCtrl.destroy')
-        ).to.have.been.calledOnce;
+        ).toHaveBeenCalledOnce();
     });
 
   });

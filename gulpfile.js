@@ -14,6 +14,7 @@ var chalk = require('chalk');
 // Set NODE_ENV to 'test'
 gulp.task('env:test', function () {
   process.env.NODE_ENV = 'test';
+  return null;
 });
 // Set NODE_ENV to 'development'
 gulp.task('env:dev', function () {
@@ -25,7 +26,7 @@ gulp.task('env:prod', function () {
 });
 
 // Transpile client side TS files
-gulp.task('build:client', function () {
+gulp.task('build:client', function (done) {
   var tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
   return gulp.src(path.resolve('./client/**/*.ts'))
     .pipe(ts(tsProject))
@@ -64,35 +65,31 @@ gulp.task('nodemon', function () {
 });
 
 gulp.task('test:server', function (done) {
-  runSequence('server:mocha:unit', 'server:mocha:integration', done);
+  runSequence('server:jasmine:unit', 'server:jasmine:integration', done);
 });
 
 // Mocha unit
-gulp.task('server:mocha:unit', function (done) {
+gulp.task('server:jasmine:unit', function (done) {
   return gulp.src(defaultAssets.server.tests.unit)
-    .pipe(plugins.mocha({
-      reporter: 'spec',
-      timeout: 5000,
-      require: [
-        './config/sys/mocha.conf'
-      ]
-    }), done);
+    .pipe(plugins.jasmine({
+      reporter: new JasmineReporter()
+    }));
 });
 
 // Mocha integration
-gulp.task('server:mocha:integration', function (done) {
+gulp.task('server:jasmine:integration', function (done) {
   return gulp.src(defaultAssets.server.tests.integration)
     .pipe(plugins.jasmine({
       reporter: new JasmineReporter()
-    }), done);
+    }));
 });
 
 gulp.task('test:client', function (done) {
-  runSequence('client:mocha:test', done);
+  runSequence('client:karma:test', done);
 });
 
 // Mocha integration
-gulp.task('client:mocha:test', function (done) {
+gulp.task('client:karma:test', function (done) {
   return new KarmaServer({
     configFile: __dirname + '/config/sys/karma.conf.js',
     singleRun: true
@@ -122,7 +119,7 @@ gulp.task('csslint', function (done) {
 });
 
 // JS linting task
-gulp.task('jshint:server', function () {
+gulp.task('jshint:server', function (done) {
   var assets = _.union(
     defaultAssets.server.gulpConfig,
     defaultAssets.server.allJS
@@ -134,7 +131,7 @@ gulp.task('jshint:server', function () {
 });
 
 //JS linting server tests
-gulp.task('jshint:server:test', function () {
+gulp.task('jshint:server:test', function (done) {
   var assets = _.union(
     defaultAssets.server.tests.unit,
     defaultAssets.server.tests.integration
@@ -145,7 +142,7 @@ gulp.task('jshint:server:test', function () {
     .pipe(plugins.jshint.reporter('default'));
 });
 
-gulp.task('tslint', function () {
+gulp.task('tslint', function (done) {
   return gulp.src(defaultAssets.client.ts)
     .pipe(plugins.tslint({
       // contains rules in the tslint.json format
