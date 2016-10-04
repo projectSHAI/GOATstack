@@ -125,19 +125,19 @@ Wonder.find({}).remove()
     });
   });
 
-User.find({}).remove()
-  .then(() => {
-    User.create({
-      userName: 'AdMiN',
-      firstName: 'admin',
-      lastName: 'admin',
-      email: 'admin@admin.com',
-      password: 'admin1'
-    }, {
-      userName: 'test',
-      firstName: 'test',
-      lastName: 'testlast',
-      email: 'test@test.com',
-      password: 'test'
-    });
-  });
+// User.find({}).remove()
+//   .then(() => {
+//     User.create({
+//       userName: 'AdMiN',
+//       firstName: 'admin',
+//       lastName: 'admin',
+//       email: 'admin@admin.com',
+//       password: 'admin1'
+//     }, {
+//       userName: 'test',
+//       firstName: 'test',
+//       lastName: 'testlast',
+//       email: 'test@test.com',
+//       password: 'test'
+//     });
+//   });

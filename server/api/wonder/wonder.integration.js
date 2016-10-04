@@ -33,15 +33,14 @@ describe('Wonder API:', function () {
 
   describe('POST /api/wonders', function () {
 
-    for (var counter = 0; counter < inputs.length; counter++) {
-      (function (input, output, counter) {
-        describe('wonder input', () => {
-
-          beforeAll((done) => {
+    describe('Input Wonders', () => {
+      for (var counter = 0; counter < inputs.length; counter++) {
+        (function (input) {
+          it('should respond back with inputted wonder: ' + input, (done) => {
             request(app)
               .post('/api/wonders')
               .send({
-                name: 'wonder: ' + inputs[counter]
+                name: 'wonder: ' + input
               })
               .expect(200)
               .expect('Content-Type', /json/)
@@ -49,31 +48,44 @@ describe('Wonder API:', function () {
                 if (err) {
                   done.fail(err);
                 }
-                newWonder = res.body;
+                expect(res.body.name).toEqual('wonder: ' + input);
                 done();
               });
           });
+        })(inputs[counter]);
+      }
+    });
 
-          beforeAll((done) => {
-            request(app)
-              .get('/api/wonders')
-              .expect(200)
-              .expect('Content-Type', /json/)
-              .end((err, res) => {
-                if (err) {
-                  done.fail(err);
-                }
-                wonders = res.body;
-                done();
-              });
-          });
+    describe('Gather Wonders Array', () => {
+      it('should respond back with all current wonders', (done) => {
+        request(app)
+          .get('/api/wonders')
+          .expect(200)
+          .expect('Content-Type', /json/)
+          .end((err, res) => {
+            if (err) {
+              done.fail(err);
+            }
+            wonders = res.body;
 
-          it('should respond with the correct wonder: ' + input + ' at index: ' + output, () => {
-            expect(wonders[output].name).toEqual('wonder: ' + input);
+            expect(wonders).toEqual(jasmine.any(Array));
+            expect(wonders.length).toEqual(20);
+
+            done();
           });
-        })
-      })(inputs[counter], counter % 20, counter)
-    }
+      });
+    });
+
+    describe('Check Wonders Response Array', () => {
+      for (var i = 0; i < 20; i++) {
+        (function (input, counter) {
+          it('wonders[' + counter + '] should equal wonder: ' + input, (done) => {
+            expect(wonders[counter].name).toEqual('wonder: ' + input)
+            done();
+          });
+        })(inputs[i + 3], (i + 3) % 20)
+      }
+    });
 
   });
 });

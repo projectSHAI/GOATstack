@@ -11,6 +11,9 @@ var runSequence = require('run-sequence');
 var plugins = require('gulp-load-plugins')();
 var chalk = require('chalk');
 
+var lazypipe = require('lazypipe');
+var exit = require('gulp-exit');
+
 // Set NODE_ENV to 'test'
 gulp.task('env:test', function () {
   process.env.NODE_ENV = 'test';
@@ -161,6 +164,10 @@ gulp.task('lint:test', function (done) {
   runSequence(['jshint:server:test', 'lint'], done);
 });
 
+gulp.task('exit', function () {
+  gulp.src('').pipe(exit());
+});
+
 // Run the project in development mode
 gulp.task('default', function (done) {
   runSequence(
@@ -186,5 +193,7 @@ gulp.task('test', function (done) {
     'lint:test',
     'test:server',
     'test:client',
-    done);
+    'exit',
+    done
+  );
 });

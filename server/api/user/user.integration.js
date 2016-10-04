@@ -15,8 +15,8 @@ describe('User API:', function () {
         userName: 'MrFakie',
         firstName: 'Fake',
         lastName: 'Fakie',
-        email: 'test@example.com',
-        password: 'password'
+        email: 'Fakie@mrfake.com',
+        password: 'mrfakie'
       });
 
       return user.save();
@@ -29,8 +29,8 @@ describe('User API:', function () {
       request(app)
         .post('/auth/local')
         .send({
-          email: 'test@example.com',
-          password: 'password'
+          email: 'Fakie@mrfake.com',
+          password: 'mrfakie'
         })
         .expect(200)
         .expect('Content-Type', /json/)
