@@ -85,7 +85,7 @@ module.exports = function(config) {
     exclude: [],
     preprocessors: {},
     // disabled HtmlReporter; suddenly crashing w/ strange socket error
-    reporters: ['mocha'],//'html'],
+    reporters: ['kjhtml', 'mocha'],//'html'],
 
     // HtmlReporter configuration
     htmlReporter: {
