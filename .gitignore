@@ -23,3 +23,6 @@ client/app/**/*.js.map
 
 # Typings folder
 client/typings
+
+# e2e test output
+config/sys/_test-output

@@ -27,6 +27,9 @@ module.exports = {
 		],
 		tests: [
 			'client/app/components/**/*.component.test.js'
+		],
+		e2e: [
+			'client/e2e/*.e2e-spec.js'
 		]
 	},
 	server: {

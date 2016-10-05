@@ -5,13 +5,14 @@ var path = require('path');
 var gulp = require('gulp');
 var KarmaServer = require('karma').Server;
 var JasmineReporter = require('jasmine-spec-reporter');
+var protractor = require('gulp-protractor').protractor;
+var webdriver_update = require('gulp-protractor').webdriver_update;
 var ts = require('gulp-typescript');
 var defaultAssets = require('./config/assets/default');
 var runSequence = require('run-sequence');
 var plugins = require('gulp-load-plugins')();
 var chalk = require('chalk');
 
-var lazypipe = require('lazypipe');
 var exit = require('gulp-exit');
 
 // Set NODE_ENV to 'test'
@@ -97,6 +98,17 @@ gulp.task('client:karma:test', function (done) {
     configFile: __dirname + '/config/sys/karma.conf.js',
     singleRun: true
   }, done).start();
+});
+
+// Downloads the selenium webdriver
+gulp.task('webdriver_update', webdriver_update);
+
+gulp.task('test:protractor', ['nodemon', 'webdriver_update'], (done) => {
+  gulp.src('../../' + defaultAssets.client.e2e)
+    .pipe(protractor({
+      configFile: 'config/sys/protractor.config.js',
+    }))
+    .pipe(exit());
 });
 
 // Watch Files For Changes
@@ -196,4 +208,11 @@ gulp.task('test', function (done) {
     'exit',
     done
   );
+});
+
+gulp.task('test:e2e', (done) => {
+  runSequence(
+    'env:test',
+    'test:protractor',
+    done);
 });

@@ -20,6 +20,18 @@ var _ = require('lodash');
 exports.config = {
   directConnect: true,
 
+  // For angular tests
+  useAllAngular2AppRoots: true,
+
+  // Base URL for application server
+  baseUrl: 'http://localhost:7001',
+
+  // The address of a running selenium server.
+  // seleniumAddress: 'http://localhost:4444/wd/hub',
+
+  // Spec patterns are relative to this config file
+  specs: ['../../client/e2e/**/*.e2e-spec.js'],
+
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
     'browserName': 'chrome'
@@ -28,20 +40,10 @@ exports.config = {
   // Framework to use. Jasmine is recommended.
   framework: 'jasmine',
 
-  // Spec patterns are relative to this config file
-  specs: ['**/*e2e-spec.js' ],
-
-
-  // For angular tests
-  useAllAngular2AppRoots: true,
-
-  // Base URL for application server
-  baseUrl: 'http://localhost:8080',
-
   // doesn't seem to work.
   // resultJsonOutputFile: "foo.json",
 
-  onPrepare: function() {
+  onPrepare: function () {
     //// SpecReporter
     //var SpecReporter = require('jasmine-spec-reporter');
     //jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'none'}));
@@ -51,10 +53,10 @@ exports.config = {
     // console.log('browser.params:' + JSON.stringify(browser.params));
     jasmine.getEnv().addReporter(new Reporter( browser.params )) ;
 
-    global.sendKeys = sendKeys;
+    // global.sendKeys = sendKeys;
 
     // Allow changing bootstrap mode to NG1 for upgrade tests
-    global.setProtractorToNg1Mode = function() {
+    global.setProtractorToNg1Mode = function () {
       browser.useAllAngular2AppRoots = false;
       browser.rootEl = 'body';
     };
@@ -62,9 +64,9 @@ exports.config = {
 
   jasmineNodeOpts: {
     // defaultTimeoutInterval: 60000,
-    defaultTimeoutInterval: 10000,
+    defaultTimeoutInterval: 40000,
     showTiming: true,
-    print: function() {}
+    print: function () {}
   }
 };
 
@@ -80,7 +82,7 @@ function sendKeys(element, str) {
 
 // Custom reporter
 function Reporter(options) {
-  var _defaultOutputFile = path.resolve(process.cwd(), './_test-output', 'protractor-results.txt');
+  var _defaultOutputFile = path.resolve(process.cwd(), './config/sys/_test-output', 'protractor-results.txt');
   options.outputFile = options.outputFile || _defaultOutputFile;
 
   initOutputFile(options.outputFile);
