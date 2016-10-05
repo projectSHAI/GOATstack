@@ -5,14 +5,13 @@
 #### Main Technologies
 [MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), MEA2N has been built to give you an organized and efficient way to start developing secure MEAN web apps. 
 #### Integrated Libraries and Modules
-MEA2N includes SocketIO, Mongoose, Passport, Jasmine, Karma, and Protractor out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
+MEA2N includes [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
 
 ##required technologies for your development environment
-  * Gulp
-  * typescript
-  * npm
-  * nodejs
-  * mongodb
+  * [gulp](http://gulpjs.com/)
+  * [typescript](https://www.typescriptlang.org/)
+  * [nodejs](https://nodejs.org/en/)
+  * [mongodb](https://docs.mongodb.com/)
 
 # Getting-started
 
