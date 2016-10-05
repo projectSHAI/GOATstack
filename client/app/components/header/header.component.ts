@@ -53,8 +53,8 @@ export class HeaderComponent {
     this.currentUser = null;
   }
 
-  registerUser(name: string, email: string, password: string) {
-    this.userService.signup(name, email, password)
+  registerUser(username: string, email: string, password: string) {
+    this.userService.signup(username, email, password)
       .subscribe(() => {
         return this.userService.getMe()
           .subscribe(user => {

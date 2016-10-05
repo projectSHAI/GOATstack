@@ -18,8 +18,7 @@ export class UserService {
     // Private functions that only this service can use
     private extractData(res: Response) {
         let body = res.json();
-        console.log(body);
-        return body || {};
+        return new User(body);
     }
 
     private extractToken_Data(res: Response): Observable<User> {
@@ -59,9 +58,9 @@ export class UserService {
         Cookie.delete('token');
     }
 
-    signup(firstName: string, email: string, password: string): Observable<User> {
+    signup(username: string, email: string, password: string): Observable<User> {
         let body = JSON.stringify({
-            name: firstName,
+            userName: username,
             email: email,
             password: password
         });

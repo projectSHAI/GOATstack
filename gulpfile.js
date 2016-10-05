@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var del = require('del');
 var path = require('path');
 var gulp = require('gulp');
 var KarmaServer = require('karma').Server;
@@ -12,8 +13,6 @@ var defaultAssets = require('./config/assets/default');
 var runSequence = require('run-sequence');
 var plugins = require('gulp-load-plugins')();
 var chalk = require('chalk');
-
-var exit = require('gulp-exit');
 
 // Set NODE_ENV to 'test'
 gulp.task('env:test', function () {
@@ -29,8 +28,12 @@ gulp.task('env:prod', function () {
   process.env.NODE_ENV = 'production';
 });
 
+gulp.task('build:clean', () => {
+  del(defaultAssets.client.js);
+});
+
 // Transpile client side TS files
-gulp.task('build:client', function (done) {
+gulp.task('build:client', ['build:clean'], function (done) {
   var tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
   return gulp.src(path.resolve('./client/**/*.ts'))
     .pipe(ts(tsProject))
@@ -39,9 +42,6 @@ gulp.task('build:client', function (done) {
 });
 
 var buildFile = function (file) {
-  // console.log(file.path);
-  // var index = file.path.lastIndexOf('\\');
-
   var tsProject = ts.createProject({
     target: 'es5',
     module: 'commonjs',
@@ -203,6 +203,7 @@ gulp.task('prod', function (done) {
 gulp.task('test', function (done) {
   runSequence(
     'env:test',
+    'build:client',
     'lint:test',
     'test:server',
     'test:client',

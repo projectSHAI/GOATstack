@@ -69,7 +69,6 @@
     "gulp": "3.9.1",
     "gulp-concat": "2.6.0",
     "gulp-csslint": "^1.0.0",
-    "gulp-exit": "0.0.2",
     "gulp-jasmine": "^2.4.2",
     "gulp-jshint": "^2.0.1",
     "gulp-karma": "0.0.5",
