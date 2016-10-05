@@ -42,7 +42,7 @@ function respondWithResult(res, statusCode) {
   return function(entity) {
     if (entity) {
       res.status(statusCode).json(entity);
-      return;
+      return null;
     }
   };
 }
