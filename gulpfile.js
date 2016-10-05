@@ -107,8 +107,9 @@ gulp.task('test:protractor', ['nodemon', 'webdriver_update'], (done) => {
   gulp.src('../../' + defaultAssets.client.e2e)
     .pipe(protractor({
       configFile: 'config/sys/protractor.config.js',
-    }))
-    .pipe(exit());
+    })).on('end', () => {
+      done();
+    });
 });
 
 // Watch Files For Changes
@@ -177,7 +178,7 @@ gulp.task('lint:test', function (done) {
 });
 
 gulp.task('exit', function () {
-  gulp.src('').pipe(exit());
+  process.exit();
 });
 
 // Run the project in development mode
@@ -214,5 +215,6 @@ gulp.task('test:e2e', (done) => {
   runSequence(
     'env:test',
     'test:protractor',
+    'exit',
     done);
 });
