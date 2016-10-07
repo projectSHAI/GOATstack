@@ -24,10 +24,7 @@ export class HeaderComponent {
   currentUser: User;
   clock = this.clockService.currentTime;
 
-  constructor(
-    private userService: UserService,
-    private clockService: ClockService
-  ) { }
+  constructor(private userService: UserService, private clockService: ClockService) { }
 
   ngOnInit() {
     let token = Cookie.get('token');

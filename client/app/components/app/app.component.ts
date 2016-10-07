@@ -8,4 +8,9 @@ import { Component, OnInit } from '@angular/core';
 
 export class AppComponent {
 
+  constructor() {}
+
+  test(): string {
+    return 'this is a test';
+  }
 }
