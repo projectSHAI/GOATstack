@@ -8,7 +8,7 @@ import { Four0FourComponent } from './components/404/four0four.component';
 import { HomeComponent } from './components/home/home.component';
 
 //this is the json object which stores all the data the router uses to determine which component to show in the view based on which href the client uses to query the app
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
     {
         //path: the relative href queried by the client
         path: '',

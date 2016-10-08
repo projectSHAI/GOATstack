@@ -3,8 +3,17 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'user-profile',
   moduleId: module.id,
-  templateUrl: 'user-profile.html',
-  styleUrls: ['user-profile.css']
+  template: `
+  <img class="background" src="{{bgImg}}" />
+
+  <section class="user-card">
+    <img class="user-img" src="{{userImg}}" />
+    <p class="user-name">{{userName}}</p>
+  </section>
+
+  <section class="user-body">
+
+  </section>`
 })
 
 export class UserProfileComponent {

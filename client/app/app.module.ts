@@ -26,44 +26,44 @@ import { Four0FourComponent }   from './components/404/four0four.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 //services for global use
+import { UserService }          from './services/user/user.service';
 import { ClockService }         from './services/clock/clock.service';
-import { HttpIntercept } from './services/auth/auth.service';
+import { HttpIntercept }        from './services/auth/auth.service';
 
 //decorator which packages all resources for the app
 @NgModule({
-    //imports: this object imports helper modules which are children in the module tree
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        JsonpModule,
-        routing
-    ],
-    //declarations: this object imports all child components which are used in this module
-    declarations: [
-        AppComponent,
-        HeaderComponent,
-        HomeComponent,
-        FooterComponent,
-        Four0FourComponent,
-        UserProfileComponent
-    ],
-    //providers: this object imports all necessary services into the module
-    providers: [
-        Cookie,
-        {
-            provide: Http,
-            useFactory: (
-                backend: XHRBackend,
-                defaultOptions: RequestOptions) =>
-                new HttpIntercept(backend, defaultOptions),
-            deps: [XHRBackend, RequestOptions]
-        },
-        ClockService
-    ],
+  //imports: this object imports helper modules which are children in the module tree
+  imports: [
+    BrowserModule,
+    HttpModule,
+    FormsModule,
+    JsonpModule,
+    routing
+  ],
+  //declarations: this object imports all child components which are used in this module
+  declarations: [
+    Four0FourComponent,
+    UserProfileComponent,
+    FooterComponent,
+    HeaderComponent,
+    HomeComponent,
+    AppComponent,
+  ],
+  //providers: this object imports all necessary services into the module
+  providers: [
+    {
+      provide: Http,
+      useFactory: (
+        backend: XHRBackend,
+        defaultOptions: RequestOptions) =>
+        new HttpIntercept(backend, defaultOptions),
+      deps: [XHRBackend, RequestOptions]
+    },
+    Cookie
+  ],
 
-    //bootstrap: identifies which component is supposed to be bootstrapped
-    bootstrap: [AppComponent]
+  //bootstrap: identifies which component is supposed to be bootstrapped
+  bootstrap: [AppComponent]
 })
 
 //by convention the root module is called AppModule as stated in the Angular2 docs
