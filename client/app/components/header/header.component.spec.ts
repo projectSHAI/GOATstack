@@ -15,12 +15,6 @@ import { By } from '@angular/platform-browser';
 
 import { User } from '../../models/user/user.model';
 
-class MockUserService {
-  public getMe() { };
-};
-
-class MockClockService { };
-
 describe('HeaderComponent Test', () => {
   let fixture;
   let comp;
@@ -39,14 +33,7 @@ describe('HeaderComponent Test', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppModule,
-        RouterTestingModule
-      ],
-      providers: [
-        { provide: UserService, useClass: MockUserService },
-        { provide: ClockService, useClass: MockClockService }
-      ]
+      imports: [AppModule, RouterTestingModule]
     });
 
     fixture = TestBed.createComponent(HeaderComponent);
