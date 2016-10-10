@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
-import { User } from '../../models/user/user.model';
+import { User, mapUser } from '../../models/user/user.model';
 
 import 'rxjs/Rx';
 
@@ -15,13 +15,7 @@ export class UserService {
     private authUrl = 'auth/local';
     private userUrl = 'api/users';
 
-    // Private functions that only this service can use
-    private extractData(res: Response) {
-        let body = res.json();
-        return new User(body);
-    }
-
-    private extractToken_Data(res: Response): Observable<User> {
+    private extractToken(res: Response): Observable<User> {
         let body = res.json();
         Cookie.set('token', body.token);
         return body || { };
@@ -39,7 +33,7 @@ export class UserService {
     // Public functions that components may call
     getMe(): Observable<User> {
         return this.http.get(this.userUrl + '/me')
-            .map(this.extractData)
+            .map(mapUser)
             .catch(this.handleError);
     }
 
@@ -50,7 +44,7 @@ export class UserService {
         });
 
         return this.http.post(this.authUrl, body)
-            .map(this.extractToken_Data)
+            .map(this.extractToken)
             .catch(this.handleError);
     }
 
@@ -66,7 +60,7 @@ export class UserService {
         });
 
         return this.http.post(this.userUrl, body)
-            .map(this.extractToken_Data)
+            .map(this.extractToken)
             .catch(this.handleError);
     }
 }

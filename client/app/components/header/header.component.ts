@@ -42,7 +42,7 @@ import { User } from '../../models/user/user.model';
     }
   </style>
   <header>
-    <a routerLink='/' routerLinkActive='active'>Home</a>
+    <a routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">Home</a>
     <a routerLink='/profile' routerLinkActive='active'>Profile</a>
     <a routerLink='/yoloswaq69420blazeitfgt' routerLinkActive='active'>404</a>
     <div class='user-sign'>
