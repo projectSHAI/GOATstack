@@ -6,7 +6,7 @@ import 'rxjs/add/observable/interval';
 import { UserService }  from '../../services/user/user.service';
 import { ClockService } from '../../services/clock/clock.service';
 
-import * as Models from '../../models/models.namespace';
+import { User } from '../../models/models.namespace';
 
 @Component({
   selector: 'header-section',
@@ -56,7 +56,7 @@ import * as Models from '../../models/models.namespace';
 })
 
 export class HeaderComponent {
-  public currentUser: Models.User;
+  public currentUser: User;
   clock;
 
   constructor(private userService: UserService, private clockService: ClockService) {

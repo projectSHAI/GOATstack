@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { User } from '../../models/user/user.model';
+import { User } from '../../models/models.namespace';
 
 describe('HeaderComponent Test', () => {
   let fixture;

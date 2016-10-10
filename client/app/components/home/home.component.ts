@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
 
-import * as Models from '../../models/models.namespace';
+import { Wonder } from '../../models/models.namespace';
 
 @Component({
   selector: 'home-section',
@@ -38,7 +38,7 @@ import * as Models from '../../models/models.namespace';
 
 export class HomeComponent implements OnInit {
   errorMessage: string;
-  wonders: Models.Wonder[];
+  wonders: Wonder[];
   connection;
   wonder;
   private socket;

@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
-import * as Models from '../../models/models.namespace';
+import { Wonder, mapWonders, mapWonder } from '../../models/models.namespace';
 
 @Injectable()
 export class WonderService {
@@ -20,19 +20,19 @@ export class WonderService {
     return Observable.throw(errMsg);
   }
 
-  getWonders(): Observable<Models.Wonder[]> {
+  getWonders(): Observable<Wonder[]> {
     return this.http.get(this.url)
-      .map(Models.mapWonders)
+      .map(mapWonders)
       .catch(this.handleError);
   }
 
-  saveWonder(wonder: string): Observable<Models.Wonder> {
+  saveWonder(wonder: string): Observable<Wonder> {
     let body = JSON.stringify({
       name: wonder
     });
 
     return this.http.post(this.url, body)
-      .map(Models.mapWonder)
+      .map(mapWonder)
       .catch(this.handleError);
   }
 }
