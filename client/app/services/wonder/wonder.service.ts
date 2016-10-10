@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Wonder, mapWonders, mapWonder } from '../../models/wonder/wonder.model';
-
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+
+import * as Models from '../../models/models.namespace';
 
 @Injectable()
 export class WonderService {
@@ -20,19 +20,19 @@ export class WonderService {
     return Observable.throw(errMsg);
   }
 
-  getWonders(): Observable<Wonder[]> {
+  getWonders(): Observable<Models.Wonder[]> {
     return this.http.get(this.url)
-      .map(mapWonders)
+      .map(Models.mapWonders)
       .catch(this.handleError);
   }
 
-  saveWonder(wonder: string): Observable<Wonder> {
+  saveWonder(wonder: string): Observable<Models.Wonder> {
     let body = JSON.stringify({
       name: wonder
     });
 
     return this.http.post(this.url, body)
-      .map(mapWonder)
+      .map(Models.mapWonder)
       .catch(this.handleError);
   }
 }

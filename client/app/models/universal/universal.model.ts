@@ -1,3 +1,5 @@
+import { Response } from '@angular/http';
+
 export class Universal {
   _id: string;
   created: string;
@@ -6,5 +8,4 @@ export class Universal {
     this._id = body._id;
     this.created = body.created;
   }
-
 }

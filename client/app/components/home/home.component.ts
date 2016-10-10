@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
 
-import { Wonder } from '../../models/wonder/wonder.model';
+import * as Models from '../../models/models.namespace';
 
 @Component({
   selector: 'home-section',
@@ -38,7 +38,7 @@ import { Wonder } from '../../models/wonder/wonder.model';
 
 export class HomeComponent implements OnInit {
   errorMessage: string;
-  wonders: Wonder[];
+  wonders: Models.Wonder[];
   connection;
   wonder;
   private socket;
@@ -52,14 +52,14 @@ export class HomeComponent implements OnInit {
     this.wonderService.getWonders()
       .subscribe(wonders => {
         this.wonders = wonders;
-        this.socket.syncUpdates('wonder', this.wonders, res => {
+        this.socket.syncUpdates('Wonder', this.wonders, res => {
           // callback each time a new wonder comes
         });
       });
   }
 
   ngOnDestroy() {
-    this.socket.unsyncUpdates('wonder');
+    this.socket.unsyncUpdates('Wonder');
   }
 
   getWonders() {

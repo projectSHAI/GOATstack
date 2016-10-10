@@ -6,7 +6,7 @@ import * as io from 'socket.io-client';
 import * as SocketFactory from 'socket.io';
 import * as _ from 'lodash';
 
-import { Universal } from '../../models/universal/universal.model';
+import * as Models from '../../models/models.namespace';
 
 @Injectable()
 export class SocketService {
@@ -33,7 +33,7 @@ export class SocketService {
        * @param {Array} array
        * @param {Function} cb
        */
-      syncUpdates(modelName: string, array: Universal[], cb) {
+      syncUpdates(modelName: string, array: Models.Universal[], cb) {
         cb = cb || null;
 
         /**
@@ -50,7 +50,9 @@ export class SocketService {
             oldItem.replace(item);
             event = 'updated';
           } else {
-            array.push(item);
+            // Finds the model for the listener
+            // and pushes a new object to array
+            array.push(new Models[modelName](item));
           }
 
           cb(event, item, array);

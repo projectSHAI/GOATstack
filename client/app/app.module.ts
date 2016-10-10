@@ -9,7 +9,7 @@ import { Http, Request, RequestOptionsArgs, Response, XHRBackend, RequestOptions
 
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
-import { Universal } from './models/universal/universal.model';
+// import { Universal } from './models/universal/universal.model';
 
 //other necessary modules for this app
 import { NgModule }                  from '@angular/core';
@@ -61,8 +61,7 @@ import { HttpIntercept }        from './services/auth/auth.service';
         new HttpIntercept(backend, defaultOptions),
       deps: [XHRBackend, RequestOptions]
     },
-    Cookie,
-    Universal
+    Cookie
   ],
 
   //bootstrap: identifies which component is supposed to be bootstrapped
