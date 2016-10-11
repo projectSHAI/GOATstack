@@ -14,7 +14,6 @@ import { User } from '../../models/models.namespace';
     UserService,
     ClockService
   ],
-  moduleId: module.id,
   template: `
   <style>
     header{
@@ -52,6 +51,7 @@ import { User } from '../../models/models.namespace';
       <button type='button' (click)='logout()'>Sign out</button>
     </div>
     <h1 class='app-title'>MEA2N Fullstack</h1>
+    <h2>{{clock | async | date: 'mediumTime'}}</h2>
   </header>`
 })
 
