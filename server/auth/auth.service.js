@@ -17,10 +17,11 @@ var validateJwt = expressJwt({
  * Attaches the user object to the request if authenticated
  * Otherwise returns 403
  */
-module.exports.isAuthenticated = function() {
+module.exports.isAuthenticated = function () {
   return compose()
     // Validate jwt
     .use((req, res, next) => {
+      console.log(req.query);
       // allow access_token to be passed through query parameter as well
       if (req.query && req.query.hasOwnProperty('access_token')) {
         req.headers.authorization = 'Bearer ' + req.query.access_token;
@@ -46,7 +47,7 @@ module.exports.isAuthenticated = function() {
 /**
  * Checks if the user role meets the minimum requirements of the route
  */
-module.exports.hasRole = function(roleRequired) {
+module.exports.hasRole = function (roleRequired) {
   if (!roleRequired) {
     throw new Error('Required role needs to be set');
   }
@@ -55,7 +56,7 @@ module.exports.hasRole = function(roleRequired) {
     .use(exports.isAuthenticated())
     .use(function meetsRequirements(req, res, next) {
       if (con.config.userRoles.indexOf(req.user.role) >=
-          con.config.userRoles.indexOf(roleRequired)) {
+        con.config.userRoles.indexOf(roleRequired)) {
         next();
       } else {
         res.status(403).send('Forbidden');
@@ -66,8 +67,11 @@ module.exports.hasRole = function(roleRequired) {
 /**
  * Returns a jwt token signed by the app secret
  */
-module.exports.signToken = function(id, role) {
-  return jwt.sign({ _id: id, role: role }, con.config.sessionSecret, {
+module.exports.signToken = function (id, role) {
+  return jwt.sign({
+    _id: id,
+    role: role
+  }, con.config.sessionSecret, {
     expiresIn: 60 * 60 * 5
   });
 };
@@ -75,7 +79,7 @@ module.exports.signToken = function(id, role) {
 /**
  * Set token cookie directly for oAuth strategies
  */
-module.exports.setTokenCookie = function(req, res) {
+module.exports.setTokenCookie = function (req, res) {
   if (!req.user) {
     return res.status(404).send('It looks like you aren\'t logged in, please try again.');
   }

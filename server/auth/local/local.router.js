@@ -3,6 +3,8 @@
 var express = require('express');
 var passport = require('passport');
 var signToken = require('../auth.service').signToken;
+var isAuthenticated = require('../auth.service').isAuthenticated;
+var getMe = require('../../api/user/user.controller').me;
 
 var router = express.Router();
 
@@ -17,7 +19,11 @@ router.post('/', function(req, res, next) {
     }
 
     var token = signToken(user._id, user.role);
-    res.json({ token });
+    req.headers.token = token;
+    req.user = user;
+
+    return getMe(req, res, next);
+    // res.json({ token });
   })(req, res, next)
 });
 

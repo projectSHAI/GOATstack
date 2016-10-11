@@ -79,7 +79,11 @@ module.exports.create = function (req, res, next) {
       }, con.config.sessionSecret, {
         expiresIn: 60 * 60 * 5
       });
-      res.json({ token });
+
+      req.headers.token = token;
+      req.user = user;
+      next();
+      // res.json({ token });
     })
     .catch(validationError(res));
 }
@@ -117,6 +121,7 @@ module.exports.show = function (req, res, next) {
  */
 module.exports.me = function(req, res, next) {
   var userId = req.user._id;
+  var token = req.headers.token;
 
   return User.findOne({
       _id: userId
@@ -125,7 +130,10 @@ module.exports.me = function(req, res, next) {
       if (!user) {
         return res.status(401).end();
       }
-      res.json(user);
+
+      if (token) res.json({ token, user });
+      else res.json(user);
+
       return null;
     })
     .catch(err => next(err));

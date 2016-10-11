@@ -72,12 +72,7 @@ export class HeaderComponent {
 
   login(email: string, password: string) {
     this.userService.login(email, password)
-      .subscribe(() => {
-        return this.userService.getMe()
-          .subscribe(user => {
-            this.currentUser = user;
-          })
-      });
+      .subscribe(user => this.currentUser = user);
   }
 
   logout() {
@@ -87,12 +82,7 @@ export class HeaderComponent {
 
   registerUser(username: string, email: string, password: string) {
     this.userService.signup(username, email, password)
-      .subscribe(() => {
-        return this.userService.getMe()
-          .subscribe(user => {
-            this.currentUser = user;
-          })
-      });
+      .subscribe(user => this.currentUser = user);
   }
 
   testUser() {
@@ -100,6 +90,6 @@ export class HeaderComponent {
   }
 
   testRegisterUser() {
-    this.registerUser('Jason', 'jc.thomas4214@gmail.com', 'flight1855');
+    this.registerUser('Jays', 'jc.thomas42@gmail.com', 'flight1855');
   }
 }

@@ -9,58 +9,58 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
-    constructor(private http: Http) { }
+  constructor(private http: Http) { }
 
-    // Private variables that only this service can use
-    private authUrl = 'auth/local';
-    private userUrl = 'api/users';
+  // Private variables that only this service can use
+  private authUrl = 'auth/local';
+  private userUrl = 'api/users';
 
-    private extractToken(res: Response): Observable<User> {
-        let body = res.json();
-        Cookie.set('token', body.token);
-        return body || { };
-    }
+  private extractToken(res: Response) {
+    let body = res.json();
+    Cookie.set('token', body.token);
+    return new User(body.user);
+  }
 
-    private handleError(error: any) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
-    }
+  private handleError(error: any) {
+    // In a real world app, we might use a remote logging infrastructure
+    // We'd also dig deeper into the error to get a better message
+    let errMsg = (error.message) ? error.message :
+      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    console.error(errMsg); // log to console instead
+    return Observable.throw(errMsg);
+  }
 
-    // Public functions that components may call
-    getMe(): Observable<User> {
-        return this.http.get(this.userUrl + '/me')
-            .map(mapUser)
-            .catch(this.handleError);
-    }
+  // Public functions that components may call
+  getMe(): Observable<User> {
+    return this.http.get(this.userUrl + '/me')
+      .map(mapUser)
+      .catch(this.handleError);
+  }
 
-    login(email: string, password: string): Observable<User> {
-        let body = JSON.stringify({
-            email: email,
-            password: password
-        });
+  login(email: string, password: string): Observable<User> {
+    let body = JSON.stringify({
+      email: email,
+      password: password
+    });
 
-        return this.http.post(this.authUrl, body)
-            .map(this.extractToken)
-            .catch(this.handleError);
-    }
+    return this.http.post(this.authUrl, body)
+      .map(this.extractToken)
+      .catch(this.handleError);
+  }
 
-    logout() {
-        Cookie.delete('token');
-    }
+  logout() {
+    Cookie.delete('token');
+  }
 
-    signup(username: string, email: string, password: string): Observable<User> {
-        let body = JSON.stringify({
-            userName: username,
-            email: email,
-            password: password
-        });
+  signup(username: string, email: string, password: string): Observable<User> {
+    let body = JSON.stringify({
+      userName: username,
+      email: email,
+      password: password
+    });
 
-        return this.http.post(this.userUrl, body)
-            .map(this.extractToken)
-            .catch(this.handleError);
-    }
+    return this.http.post(this.userUrl, body)
+      .map(this.extractToken)
+      .catch(this.handleError);
+  }
 }

@@ -21,13 +21,12 @@ export class User extends Universal {
   }
 
   replace(body: any) {
-    this._id = body._id;
+    super.replace(body);
     this.userName = body.userName;
     this.firstName = body.firstName;
     this.lastName = body.lastName;
 
     this.email = body.email;
-    this.created = body.created;
     this.role = body.role;
   }
 }

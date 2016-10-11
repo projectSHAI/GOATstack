@@ -52,18 +52,12 @@ export class HomeComponent implements OnInit {
     this.wonderService.getWonders()
       .subscribe(wonders => {
         this.wonders = wonders;
-        this.socket.syncUpdates('Wonder', this.wonders, res => {
-          // callback each time a new wonder comes
-        });
+        this.socket.syncUpdates('Wonder', this.wonders);
       });
   }
 
   ngOnDestroy() {
     this.socket.unsyncUpdates('Wonder');
-  }
-
-  getWonders() {
-    // console.log(this.wonders);
   }
 
   saveWonder(name: string) {
