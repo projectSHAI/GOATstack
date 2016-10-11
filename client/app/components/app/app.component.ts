@@ -9,11 +9,4 @@ import { Component, OnInit } from '@angular/core';
   <footer-section></footer-section>`
 })
 
-export class AppComponent {
-
-  constructor() {}
-
-  test(): string {
-    return 'this is a test';
-  }
-}
+export class AppComponent { }

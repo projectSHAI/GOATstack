@@ -1,4 +1,7 @@
 /* tslint:disable:no-unused-variable */
+import { AppModule } from '../../app.module';
+import { RouterTestingModule } from "@angular/router/testing";
+
 import { AppComponent } from './app.component';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -7,29 +10,17 @@ describe('AppComponent Test', () => {
   let fixture;
   let comp;
 
-  beforeEach(() => {
+  beforeEach(done => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent]
+      imports: [AppModule, RouterTestingModule]
     });
+
+    fixture = TestBed.createComponent(AppComponent);
+
+    done();
   });
 
   it('should instantiate component', () => {
-    TestBed.compileComponents().then(() => {
-
-      fixture = TestBed.createComponent(AppComponent);
-      expect(fixture.componentInstance instanceof AppComponent).toBe(true, 'should create AppComponent');
-
-    });
+    expect(fixture.componentInstance instanceof AppComponent).toBe(true, 'should create AppComponent');
   });
-
-  it('should pass component test function', () => {
-    TestBed.compileComponents().then(() => {
-
-      fixture = TestBed.createComponent(AppComponent);
-      comp = fixture.componentInstance;
-      expect(comp.test()).toBe('this is a test');
-
-    });
-  });
-
 });

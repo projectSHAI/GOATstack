@@ -1,4 +1,7 @@
 /* tslint:disable:no-unused-variable */
+import { AppModule } from '../../app.module';
+import { RouterTestingModule } from "@angular/router/testing";
+
 import { UserProfileComponent } from './user-profile.component';
 
 import { TestBed } from '@angular/core/testing';
@@ -8,18 +11,17 @@ describe('UserProfileComponent Test', () => {
   let fixture;
   let comp;
 
-  beforeEach(() => {
+  beforeEach(done => {
     TestBed.configureTestingModule({
-      declarations: [UserProfileComponent]
+      imports: [AppModule, RouterTestingModule]
     });
+
+    fixture = TestBed.createComponent(UserProfileComponent);
+
+    done();
   });
 
   it('should instantiate component', () => {
-    TestBed.compileComponents().then(() => {
-
-      fixture = TestBed.createComponent(UserProfileComponent);
-      expect(fixture.componentInstance instanceof UserProfileComponent).toBe(true, 'should create UserProfileComponent');
-
-    });
+    expect(fixture.componentInstance instanceof UserProfileComponent).toBe(true, 'should create UserProfileComponent');
   });
 });

@@ -22,6 +22,7 @@ import { routing } from './routes';
 
 //components for different views
 import { HeaderComponent }      from './components/header/header.component';
+import { SignInOutComponent }   from './components/signinout/signinout.component';
 import { HomeComponent }        from './components/home/home.component';
 import { FooterComponent }      from './components/footer/footer.component';
 import { Four0FourComponent }   from './components/404/four0four.component';
@@ -47,6 +48,7 @@ import { HttpIntercept }        from './services/auth/auth.service';
     Four0FourComponent,
     UserProfileComponent,
     FooterComponent,
+    SignInOutComponent,
     HeaderComponent,
     HomeComponent,
     AppComponent,
