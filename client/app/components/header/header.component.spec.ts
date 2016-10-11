@@ -8,15 +8,15 @@ import { HeaderComponent } from './header.component';
 import { ClockService } from '../../services/clock/clock.service';
 import { Observable } from 'rxjs/Observable';
 
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 class MockClockService {}
 
-describe('HeaderComponent Test', () => {
-  let fixture;
-  let comp;
+let comp: HeaderComponent;
+let fixture: ComponentFixture<HeaderComponent>;
 
+describe('HeaderComponent Test', () => {
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],

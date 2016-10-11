@@ -4,13 +4,13 @@ import { RouterTestingModule } from "@angular/router/testing";
 
 import { FooterComponent } from './footer.component';
 
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-describe('FooterComponent Test', () => {
-  let fixture;
-  let comp;
+let comp: FooterComponent;
+let fixture: ComponentFixture<FooterComponent>;
 
+describe('FooterComponent Test', () => {
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule]

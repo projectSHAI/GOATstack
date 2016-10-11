@@ -4,13 +4,13 @@ import { RouterTestingModule } from "@angular/router/testing";
 
 import { UserProfileComponent } from './user-profile.component';
 
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-describe('UserProfileComponent Test', () => {
-  let fixture;
-  let comp;
+let comp: UserProfileComponent;
+let fixture: ComponentFixture<UserProfileComponent>;
 
+describe('UserProfileComponent Test', () => {
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule]

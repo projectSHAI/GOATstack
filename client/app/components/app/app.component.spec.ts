@@ -3,13 +3,13 @@ import { AppModule } from '../../app.module';
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { AppComponent } from './app.component';
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-describe('AppComponent Test', () => {
-  let fixture;
-  let comp;
+let comp: AppComponent;
+let fixture: ComponentFixture<AppComponent>;
 
+describe('AppComponent Test', () => {
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule]

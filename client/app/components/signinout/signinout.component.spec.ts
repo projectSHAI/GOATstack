@@ -1,15 +1,15 @@
 /* tslint:disable:no-unused-variable */
 import { AppModule } from '../../app.module';
-import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { RouterTestingModule } from "@angular/router/testing";
-import { appRoutes } from '../../routes';
+import { DebugElement }    from '@angular/core';
 
 import { SignInOutComponent } from './signinout.component';
 
 import { UserService } from '../../services/user/user.service';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Observable } from 'rxjs/Observable';
 
-import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { User } from '../../models/models.namespace';
@@ -36,14 +36,13 @@ class MockUserService {
   }
 }
 
+let comp: SignInOutComponent;
+let fixture: ComponentFixture<SignInOutComponent>;
+let userService: DebugElement;
+Cookie.set('token', 'token_test');
+
 describe('SignInOutComponent Test', () => {
-  let fixture;
-  let comp;
-  let userService;
-
-  Cookie.set('token', 'token_test');
-
-  beforeEach(() => {
+  beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],
       providers: [
@@ -56,6 +55,7 @@ describe('SignInOutComponent Test', () => {
 
     userService = fixture.debugElement.injector.get(UserService);
 
+    done();
   });
 
   it('should instantiate component', () => {
