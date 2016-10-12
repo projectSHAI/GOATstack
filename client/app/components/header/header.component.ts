@@ -18,7 +18,7 @@ import { ClockService } from '../../services/clock/clock.service';
     </header>`,
   styles: [`
     header{
-      background: rgb(55, 129, 215);
+      background-image: url(../../../assets/banner.jpg);
       position: relative;
     }
     .app-title{

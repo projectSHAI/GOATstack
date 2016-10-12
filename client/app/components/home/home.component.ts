@@ -11,15 +11,21 @@ import { Wonder } from '../../models/models.namespace';
   providers: [WonderService, SocketService],
   template: `
     <h1 class="app-test">Home</h1>
-    <li *ngFor="let wonder of wonders">
+    <li *ngFor="let wonder of wonders" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
       <p>{{wonder.name}}</p>
     </li>
-    <button type="button" class="btn" (click)="getWonders()">Test Wonders</button>
-    <button type="button" class="btn" (click)="saveWonder('test')">add Wonders</button>
     <h1 class="dream-reflection">{{dream}}</h1>
     <input [(ngModel)]="dream" (keyup.enter)="saveWonder(dream)"
       placeholder="Do you wonder?" class="dreams-input"/>`,
   styles: [`
+    :host {
+      position: relative;
+      display: block;
+      height: 1000px;
+  }
+    .wonder{
+      position: absolute;
+    }
     .dream-reflection{
       margin: 0 auto;
       display: block;
