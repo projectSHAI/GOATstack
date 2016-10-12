@@ -35,10 +35,13 @@ gulp.task('build:clean', () => {
 // Transpile client side TS files
 gulp.task('build:client', ['build:clean'], function (done) {
   var tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
-  return gulp.src(path.resolve('./client/**/*.ts'))
-    .pipe(ts(tsProject))
-    .js
-    .pipe(gulp.dest(path.resolve('./client')));
+
+  var tsResult = tsProject.src()
+    .pipe(tsProject());
+
+  return tsResult.js.pipe(gulp.dest(path.resolve('./client/app')));
+    // .js
+    // .pipe(gulp.dest(path.resolve('./client')));
 });
 
 var buildFile = function (file) {
@@ -53,7 +56,7 @@ var buildFile = function (file) {
     noImplicitAny: false
   });
   return gulp.src(['./client/typings/*.ts', file.path])
-    .pipe(ts(tsProject))
+    .pipe(tsProject())
     .js
     .pipe(gulp.dest(path.resolve(file.path.replace('client', 'dist'))));
 };

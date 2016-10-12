@@ -13,7 +13,7 @@ import * as Models from '../../models/models.namespace';
 export class SocketService {
   constructor() {
     // socket.io now auto-configures its connection when we ommit a connection url
-    var socket = io('', {
+    let socket = io('', {
       // Send auth token on connection, you will need to DI the Auth service above
       // 'query': 'token=' + Auth.getToken()
       path: '/socket.io'
@@ -35,8 +35,6 @@ export class SocketService {
        * @param {Function} cb
        */
       syncUpdates(modelName: string, array: Models.Universal[], cb) {
-        cb = cb || null;
-
         /**
          * Syncs item creation/updates on 'model:save'
          */
@@ -56,14 +54,14 @@ export class SocketService {
             array.push(new Models[modelName](item));
           }
 
-          cb(event, item, array);
+          return cb ? cb(event, item, array) : null;
         });
 
         /**
          * Syncs removed items on 'model:remove'
          */
         socket.on(modelName + ':remove', function(item) {
-          var event = 'deleted';
+          let event = 'deleted';
           _.remove(array, { _id: item._id });
           cb(event, item, array);
         });

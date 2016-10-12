@@ -5,9 +5,7 @@
 //main component to bootstrap too
 import { AppComponent }  from './components/app/app.component';
 
-import { Http, Request, RequestOptionsArgs, Response, XHRBackend, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
-
-import { Cookie } from 'ng2-cookies/ng2-cookies';
+import { Http, XHRBackend, RequestOptions } from '@angular/http';
 
 // import { Universal } from './models/universal/universal.model';
 
@@ -29,9 +27,8 @@ import { Four0FourComponent }   from './components/404/four0four.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 //services for global use
+import { Cookie }               from 'ng2-cookies/ng2-cookies';
 import { MaterialModule }       from '@angular/material';
-import { UserService }          from './services/user/user.service';
-import { ClockService }         from './services/clock/clock.service';
 import { HttpIntercept }        from './services/auth/auth.service';
 
 //decorator which packages all resources for the app

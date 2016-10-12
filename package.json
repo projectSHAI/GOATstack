@@ -16,18 +16,17 @@
     "webdriver:update": "webdriver-manager update"
   },
   "dependencies": {
-    "@angular/common": "~2.0.1",
-    "@angular/compiler": "~2.0.1",
-    "@angular/core": "~2.0.1",
-    "@angular/forms": "~2.0.1",
-    "@angular/http": "~2.0.1",
-    "@angular/material": "^2.0.0-alpha.9-3",
-    "@angular/platform-browser": "~2.0.1",
-    "@angular/platform-browser-dynamic": "~2.0.1",
-    "@angular/platform-server": "~2.0.1",
-    "@angular/router": "~3.0.1",
-    "@angular/upgrade": "~2.0.1",
-    "@types/lodash": "^4.14.36",
+    "@angular/common": "^2.0.1",
+    "@angular/compiler": "^2.0.1",
+    "@angular/core": "^2.0.1",
+    "@angular/forms": "^2.0.1",
+    "@angular/http": "^2.0.1",
+    "@angular/material": "^2.0.0-alpha.9-experimental-pizza",
+    "@angular/platform-browser": "^2.0.1",
+    "@angular/platform-browser-dynamic": "^2.0.1",
+    "@angular/platform-server": "^2.0.1",
+    "@angular/router": "^3.0.1",
+    "@angular/upgrade": "^2.0.1",
     "angular-in-memory-web-api": "^0.1.6",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
@@ -63,8 +62,9 @@
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.2.30",
+    "@types/hammerjs": "^2.0.33",
     "canonical-path": "0.0.2",
+    "codelyzer": "^1.0.0-beta.1",
     "concurrently": "^2.2.0",
     "del": "2.2.2",
     "gulp": "3.9.1",
@@ -79,7 +79,7 @@
     "gulp-protractor": "^3.0.0",
     "gulp-sourcemaps": "1.6.0",
     "gulp-tslint": "^6.1.1",
-    "gulp-typescript": "^2.14.1",
+    "gulp-typescript": "^3.0.2",
     "http-server": "^0.9.0",
     "jasmine": "^2.5.2",
     "jasmine-core": "^2.5.2",
@@ -102,7 +102,7 @@
     "supertest": "^2.0.0",
     "traceur": "0.0.111",
     "tslint": "^3.15.1",
-    "typescript": "^1.8.10",
+    "typescript": "^2.0.3",
     "typings": "^1.4.0"
   },
   "repository": {
@@ -114,5 +114,5 @@
     "heroku",
     "express"
   ],
-  "license": "See license file licens.html"
+  "license": ""
 }
