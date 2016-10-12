@@ -26,9 +26,9 @@ import { User } from '../../models/models.namespace';
         <md-card-content class="reg-content">
           <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
             <table style="width: 100%" cellspacing="0"><tr>
-              <td><md-input name="email" ngModel required placeholder="Email"
+              <td><md-input name="login_email" ngModel required placeholder="Email"
                 style="width: 100%" class="user-signin-input"></md-input></td>
-              <td><md-input type="password" name="password" ngModel required
+              <td><md-input type="password" name="login_password" ngModel required
                 style="width: 100%" placeholder="Password" class="user-signin-input"></md-input></td>
             </tr><tr>
               <td><button md-raised-button type="button" (click)="backButton()"
@@ -46,14 +46,14 @@ import { User } from '../../models/models.namespace';
         <md-card-content class="reg-content">
           <form #registerForm="ngForm" (ngSubmit)="registerUser(registerForm)">
             <table style="width: 100%" cellspacing="0"><tr>
-              <td><md-input name="username" ngModel required placeholder="Username"
+              <td><md-input name="signup_username" ngModel required placeholder="Username"
                 class="user-signup-input" style="width: 100%" autoComplete="off"></md-input></td>
-              <td><md-input name="email" ngModel required placeholder="Email"
+              <td><md-input name="signup_email" ngModel required placeholder="Email"
                 class="user-signup-input" style="width: 100%" autoComplete="off"></md-input></td>
             </tr><tr>
-              <td><md-input type="password" name="password" ngModel required placeholder="Password"
+              <td><md-input type="password" name="signup_password" ngModel required placeholder="Password"
                 class="user-signup-input" style="width: 100%" autoComplete="off"></md-input></td>
-              <td><md-input type="password" name="re_password" ngModel required placeholder="Password Again"
+              <td><md-input type="password" name="signup_re_password" ngModel required placeholder="Password Again"
                 class="user-signup-input" style="width: 100%" autoComplete="off"></md-input></td>
             </tr><tr>
               <td><button md-raised-button type="button" (click)="backButton()"
@@ -113,7 +113,7 @@ export class SignInOutComponent implements OnInit {
       this.userSigning = true;
     else if (this.userSigning && lf.valid) {
       this.userSigning = false;
-      this.userService.login(lf.value.email, lf.value.password)
+      this.userService.login(lf.value.login_email, lf.value.login_password)
         .subscribe(user => this.currentUser = user);
     }
   }
@@ -126,9 +126,9 @@ export class SignInOutComponent implements OnInit {
   registerUser(rf: NgForm) {
     if (this.userSigning) this.userSigning = false;
     if (!this.userSignup) this.userSignup = true;
-    else if (this.userSignup && rf.valid && (rf.value.password === rf.value.re_password)) {
+    else if (this.userSignup && rf.valid && (rf.value.signup_password === rf.value.signup_re_password)) {
       this.userSignup = false;
-      this.userService.signup(rf.value.username, rf.value.email, rf.value.password)
+      this.userService.signup(rf.value.signup_username, rf.value.signup_email, rf.value.signup_password)
         .subscribe(user => this.currentUser = user);
     }
     else if (rf.value.password !== rf.value.re_password) alert('Passwords are not the same!');

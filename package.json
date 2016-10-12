@@ -10,7 +10,7 @@
     "postinstall": "cd client && typings install",
     "typings": "typings",
     "test": "./node_modules/.bin/mocha --reporter spec",
-    "karma": "tsc -p ./client && concurrently \"tsc -w -p ./client\" \"karma start config/sys/karma.conf.js\"",
+    "karma": "karma start config/sys/karma.conf.js",
     "pree2e": "npm run webdriver:update",
     "e2e": "concurrently \"node server/server.js -s\" \"protractor config/sys/protractor.config.js\" --kill-others --success first",
     "webdriver:update": "webdriver-manager update"

@@ -16,9 +16,9 @@ module.exports = {
 			'client/app/**/**/*.ts',
 		],
 		js: [
-			'client/app/*.js*',
-			'client/app/**/*.js*',
-			'client/app/**/**/*.js*'
+			'dist/*.js*',
+			'dist/**/*.js*',
+			'dist/**/**/*.js*'
 		],
 		img: [],
 		views: [

@@ -4,7 +4,7 @@
 module.exports = function(config) {
 
   var appBase    = 'client/app/';       // transpiled app JS and map files
-  var appSrcBase = 'client/app/';       // app source TS files
+  var appSrcBase = 'dist/';       // app source TS files
 
   config.set({
     basePath: '../../',
@@ -60,15 +60,15 @@ module.exports = function(config) {
       'config/sys/karma-test-shim.js',
 
       // transpiled application & spec code paths loaded via module imports
-      {pattern: appBase + '**/**/*.js', included: false, watched: true},
+      {pattern: appSrcBase + '**/**/*.js', included: false, watched: true},
 
       // Asset (HTML & CSS) paths loaded via Angular's component compiler
       // (these paths need to be rewritten, see proxies section)
-      {pattern: appBase + '**/**/*.html', included: false, watched: true},
-      {pattern: appBase + '**/**/*.css', included: false, watched: true},
+      {pattern: appSrcBase + '**/**/*.html', included: false, watched: true},
+      {pattern: appSrcBase + '**/**/*.css', included: false, watched: true},
 
       // Paths for debugging with source maps in dev tools
-      {pattern: appSrcBase + '**/**/*.ts', included: false, watched: false},
+      {pattern: appBase + '**/**/*.ts', included: false, watched: false},
 
       // Assets
       {pattern: 'client/assets/*.jpg', included: false, watched: false},

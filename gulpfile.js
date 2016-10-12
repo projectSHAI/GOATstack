@@ -39,33 +39,24 @@ gulp.task('build:client', ['build:clean'], function (done) {
   var tsResult = tsProject.src()
     .pipe(tsProject());
 
-  return tsResult.js.pipe(gulp.dest(path.resolve('./client/app')));
-    // .js
-    // .pipe(gulp.dest(path.resolve('./client')));
+  return tsResult.js.pipe(gulp.dest(path.resolve('./dist')));
 });
 
 var buildFile = function (file) {
-  var tsProject = ts.createProject({
-    target: 'es5',
-    module: 'commonjs',
-    moduleResolution: 'node',
-    sourceMap: false,
-    emitDecoratorMetadata: true,
-    experimentalDecorators: true,
-    removeComments: false,
-    noImplicitAny: false
-  });
-  return gulp.src(['./client/typings/*.ts', file.path])
-    .pipe(tsProject())
-    .js
-    .pipe(gulp.dest(path.resolve(file.path.replace('client', 'dist'))));
+  var tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
+  var tsResult = gulp.src(['./client/typings/*.ts', file.path])
+    .pipe(tsProject());
+
+  var fPath = file.path.replace('client\\app', 'dist');
+  fPath = fPath.substring(0, fPath.lastIndexOf('\\'))
+
+  return tsResult.js.pipe(gulp.dest(path.resolve(fPath)));
 };
 
 // Nodemon task
 gulp.task('nodemon', function () {
   return plugins.nodemon({
     script: 'server/server.js',
-    //nodeArgs: ['--debug'],
     ext: 'js,html',
     watch: defaultAssets.server.allJS
   });
