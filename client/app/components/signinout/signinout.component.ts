@@ -14,30 +14,55 @@ import { User } from '../../models/models.namespace';
     <div class="user-sign">
       <div>
         <h3 *ngIf="currentUser">Welcome, {{currentUser.userName}}</h3>
-        <button *ngIf="!currentUser && !userSignup" type="button" (click)="registerUser()">Sign up</button>
-        <button *ngIf="!currentUser && !userSigning && !userSignup" type="button" (click)="login(loginForm)">Sign in</button>
-        <button *ngIf="currentUser" type="button" (click)="logout()">Sign out</button>
-        <button *ngIf="userSigning || userSignup" type="button" (click)="backButton()">Back</button>
+        <button md-raised-button *ngIf="!currentUser && !userSignup && !userSigning"
+          type="button" (click)="registerUser()" color="primary">Sign up</button>
+        <button md-raised-button *ngIf="!currentUser && !userSigning && !userSignup"
+          type="button" (click)="login(loginForm)" color="primary">Sign in</button>
+        <button md-raised-button *ngIf="currentUser" type="button"
+          (click)="logout()" color="primary">Sign out</button>
       </div>
-      <form #loginForm="ngForm" *ngIf="userSigning" (ngSubmit)="login(loginForm)">
-        <input name="email" ngModel required placeholder="Email" class="user-signin-input"/>
-        <input type="password" name="password" ngModel required
-          placeholder="Password" class="user-signin-input"/>
-        <button>Login</button>
-      </form>
-      <form #registerForm="ngForm" *ngIf="userSignup" (ngSubmit)="registerUser(registerForm)">
-        <div>
-          <input name="username" ngModel required placeholder="Username" class="user-signup-input"/>
-          <input name="email" ngModel required placeholder="Email" class="user-signup-input"/>
-        </div>
-        <div>
-          <input type="password" name="password" ngModel required
-            placeholder="Password" xlass="user-signup-input"/>
-          <input type="password" name="re_password" ngModel required
-            placeholder="Password Again" class="user-signup-input"/>
-          <button>Register</button>
-        </div>
-      </form>
+      <md-card class="reg-card" *ngIf="userSigning">
+        <md-toolbar color="primary">Sign In</md-toolbar>
+        <md-card-content class="reg-content">
+          <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <table style="width: 100%" cellspacing="0"><tr>
+              <td><md-input name="email" ngModel required placeholder="Email"
+                style="width: 100%" class="user-signin-input"></md-input></td>
+              <td><md-input type="password" name="password" ngModel required
+                style="width: 100%" placeholder="Password" class="user-signin-input"></md-input></td>
+            </tr><tr>
+              <td><button md-raised-button type="button" (click)="backButton()"
+                color="primary" class="form-button">Back</button>
+              <button md-raised-button type="button" (click)="registerUser()"
+                color="primary" class="form-button pos-right">Sign up</button></td>
+              <td class="submit-col"><button md-raised-button color="accent"
+                class="form-button">Login</button></td>
+            </tr></table>
+          </form>
+        </md-card-content>
+      </md-card>
+      <md-card class="reg-card" *ngIf="userSignup">
+        <md-toolbar color="primary">Create New User</md-toolbar>
+        <md-card-content class="reg-content">
+          <form #registerForm="ngForm" (ngSubmit)="registerUser(registerForm)">
+            <table style="width: 100%" cellspacing="0"><tr>
+              <td><md-input name="username" ngModel required placeholder="Username"
+                class="user-signup-input" style="width: 100%" autoComplete="off"></md-input></td>
+              <td><md-input name="email" ngModel required placeholder="Email"
+                class="user-signup-input" style="width: 100%" autoComplete="off"></md-input></td>
+            </tr><tr>
+              <td><md-input type="password" name="password" ngModel required placeholder="Password"
+                class="user-signup-input" style="width: 100%" autoComplete="off"></md-input></td>
+              <td><md-input type="password" name="re_password" ngModel required placeholder="Password Again"
+                class="user-signup-input" style="width: 100%" autoComplete="off"></md-input></td>
+            </tr><tr>
+              <td><button md-raised-button type="button" (click)="backButton()"
+                color="primary" class="form-button">Back</button></td>
+              <td class="submit-col"><button md-raised-button color="accent">Register</button></td>
+            </tr></table>
+          </form>
+        </md-card-content>
+      </md-card>
     </div>`,
   styles: [`
     .user-sign{
@@ -48,6 +73,22 @@ import { User } from '../../models/models.namespace';
     }
     .user-sign button:hover{
       cursor: pointer;
+    }
+    .reg-card {
+    	z-index: 1000;
+    	padding: 0;
+    }
+    .reg-content {
+      padding: 10px;
+    }
+    .form-button {
+      margin-right: 2px;
+    }
+    td {
+      padding: 2px;
+    }
+    .submit-col {
+      text-align: right;
     }`]
 
 })
@@ -83,6 +124,7 @@ export class SignInOutComponent implements OnInit {
   }
 
   registerUser(rf: NgForm) {
+    if (this.userSigning) this.userSigning = false;
     if (!this.userSignup) this.userSignup = true;
     else if (this.userSignup && rf.valid && (rf.value.password === rf.value.re_password)) {
       this.userSignup = false;

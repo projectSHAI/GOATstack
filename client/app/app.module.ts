@@ -29,6 +29,7 @@ import { Four0FourComponent }   from './components/404/four0four.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 //services for global use
+import { MaterialModule }       from '@angular/material';
 import { UserService }          from './services/user/user.service';
 import { ClockService }         from './services/clock/clock.service';
 import { HttpIntercept }        from './services/auth/auth.service';
@@ -41,7 +42,8 @@ import { HttpIntercept }        from './services/auth/auth.service';
     HttpModule,
     FormsModule,
     JsonpModule,
-    routing
+    routing,
+    MaterialModule.forRoot()
   ],
   //declarations: this object imports all child components which are used in this module
   declarations: [
