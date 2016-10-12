@@ -22,7 +22,7 @@ import { Wonder } from '../../models/models.namespace';
       position: relative;
       display: block;
       height: 1000px;
-  }
+    }
     .wonder{
       position: absolute;
     }

@@ -106,5 +106,11 @@ User.find({}).remove()
       lastName: 'testlast',
       email: 'test@test.com',
       password: 'test'
+    }, {
+      userName: 'Atheteo',
+      firstName: 'Jason',
+      lastName: 'Thomas',
+      email: 'jc.thomas4214@gmail.com',
+      password: 'flight1855'
     });
   });
