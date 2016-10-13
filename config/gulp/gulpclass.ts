@@ -1,3 +1,5 @@
+/// <reference path="../../node_modules/@types/node/index.d.ts" />
+
 import {Gulpclass, Task, SequenceTask} from "gulpclass/Decorators";
 
 let fs = require('fs');
