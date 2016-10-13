@@ -50,7 +50,7 @@ import { HttpIntercept }        from './services/auth/auth.service';
     SignInOutComponent,
     HeaderComponent,
     HomeComponent,
-    AppComponent,
+    AppComponent
   ],
   //providers: this object imports all necessary services into the module
   providers: [
@@ -64,7 +64,6 @@ import { HttpIntercept }        from './services/auth/auth.service';
     },
     Cookie
   ],
-
   //bootstrap: identifies which component is supposed to be bootstrapped
   bootstrap: [AppComponent]
 })

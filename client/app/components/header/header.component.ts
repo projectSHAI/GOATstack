@@ -13,7 +13,7 @@ import { ClockService } from '../../services/clock/clock.service';
       <a routerLink='/profile' routerLinkActive='active'>Profile</a>
       <a routerLink='/yoloswaq69420blazeitfgt' routerLinkActive='active'>404</a>
       <signinout></signinout>
-      <h1 class='app-title'>MEA2N Fullstack</h1>
+      <h1 class='app-title'>GOAT Stack</h1>
       <h2>{{clock | async | date: 'mediumTime'}}{{clockService.period}}</h2>
     </header>`,
   styles: [`
