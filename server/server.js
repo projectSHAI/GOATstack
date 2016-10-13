@@ -16,7 +16,7 @@ var app = express();
 app.set('address', 'http://localhost:' + con.config.port)
 
 //seed db
-if (con.config.seedDB) { require('../config/lib/seed'); }
+if (con.config.seedDB) { require(con.config.seedFile); }
 
 // Initialize models
 mongoose.loadModels();
@@ -38,7 +38,7 @@ var init = function init(callback) {
 
     // Initialize the socketio with the respective server
     var socketio = require('socket.io')(server, {
-      serveClient: process.env.NODE_ENV !== 'production',
+      // serveClient: process.env.NODE_ENV !== 'production',
       path: '/socket.io'
     });
 

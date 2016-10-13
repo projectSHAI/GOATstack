@@ -10,17 +10,11 @@
         "removeComments": false,
         "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
+        "outDir": "../../",
         "typeRoots": [
-            "../node_modules/@types"
+            "../../node_modules/@types"
         ],
-        "types": [
-          "core-js",
-          "lodash",
-          "jasmine",
-          "socket.io",
-          "socket.io-client",
-          "hammerjs"
-        ]
+        "types": [ ]
     },
     "compileOnSave": false,
     "exclude": [ ]

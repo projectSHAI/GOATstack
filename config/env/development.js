@@ -11,5 +11,6 @@ module.exports = {
     debug: process.env.MONGODB_DEBUG || false
   },
   livereload: true,
-  seedDB: true
+  seedDB: true,
+  seedFile: '../config/lib/seed'
 };
