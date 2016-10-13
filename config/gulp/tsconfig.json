@@ -14,7 +14,11 @@
         "typeRoots": [
             "../../node_modules/@types"
         ],
-        "types": [ ]
+        "types": [
+          "core-js",
+          "node",
+          "lodash"
+        ]
     },
     "compileOnSave": false,
     "exclude": [ ]
