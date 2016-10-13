@@ -1,5 +1,6 @@
 'use strict';
 
+var fs = require('fs');
 var _ = require('lodash');
 var del = require('del');
 var path = require('path');
@@ -47,6 +48,9 @@ gulp.task('build:html', function (done) {
 })
 
 gulp.task('build:sass', function (done) {
+  // Brute force fix for angular material import .css .scss error
+  del('node_modules/@angular/material/core/overlay/overlay.css');
+
   return gulp.src(defaultAssets.client.scss)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./dist'));
@@ -58,13 +62,17 @@ gulp.task('build:assets', function (done) {
 });
 
 // Transpile client side TS files
-gulp.task('build:client', ['build:sass', 'build:html', 'build:assets'], function (done) {
+gulp.task('build:client', ['build:sass', 'build:html', 'build:assets'], function () {
   var tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
-
   var tsResult = tsProject.src()
     .pipe(tsProject());
 
   return tsResult.js.pipe(gulp.dest(path.resolve('./dist')));
+});
+
+gulp.task('build:clean:spec', (done) => {
+  del('./dist/**/**/*.spec.js');
+  done();
 });
 
 var buildFile = function (file) {

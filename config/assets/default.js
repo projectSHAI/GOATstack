@@ -34,11 +34,6 @@ module.exports = {
 			'client/app/**/*.ts',
 			'client/app/**/**/*.ts',
 		],
-		js: [
-			'client/app/*.js*',
-			'client/app/**/*.js*',
-			'client/app/**/**/*.js*'
-		],
 		assets: [
 			'client/assets/*.jpg',
 			'client/assets/*.png',
@@ -48,8 +43,8 @@ module.exports = {
 			'client/index.html',
 			'client/app/components/**/*.html'
 		],
-		tests: [
-			'client/app/components/**/*.component.spec.js'
+		spec: [
+			'client/app/**/**/*.spec.ts'
 		],
 		e2e: [
 			'client/e2e/*.e2e-spec.js'
