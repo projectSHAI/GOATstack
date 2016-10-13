@@ -4,6 +4,7 @@ var _ = require('lodash');
 var del = require('del');
 var path = require('path');
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 var KarmaServer = require('karma').Server;
 var JasmineReporter = require('jasmine-spec-reporter');
 var protractor = require('gulp-protractor').protractor;
@@ -28,12 +29,36 @@ gulp.task('env:prod', function () {
   process.env.NODE_ENV = 'production';
 });
 
-gulp.task('build:clean', () => {
-  del(defaultAssets.client.js);
+gulp.task('build:clean', (done) => {
+  var all = _.union(
+    defaultAssets.client.dist.js,
+    defaultAssets.client.dist.css,
+    defaultAssets.client.dist.views,
+    defaultAssets.client.dist.assets
+  );
+
+  del(all);
+  done();
+});
+
+gulp.task('build:html', function (done) {
+  return gulp.src(defaultAssets.client.views)
+    .pipe(gulp.dest('./dist'));
+})
+
+gulp.task('build:sass', function (done) {
+  return gulp.src(defaultAssets.client.scss)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('build:assets', function (done) {
+  return gulp.src(defaultAssets.client.assets)
+    .pipe(gulp.dest('./dist/assets'));
 });
 
 // Transpile client side TS files
-gulp.task('build:client', ['build:clean'], function (done) {
+gulp.task('build:client', ['build:sass', 'build:html', 'build:assets'], function (done) {
   var tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
 
   var tsResult = tsProject.src()
@@ -111,19 +136,23 @@ gulp.task('watch', function () {
   // Start livereload
   plugins.livereload.listen();
   // Add watch rules
+  // Watch all server JS files
   gulp.watch(defaultAssets.server.allJS).on('change', plugins.livereload.changed);
-  gulp.watch(defaultAssets.client.ts).on('change', function (file) {
-    buildFile(file);
-  });
-  gulp.watch(defaultAssets.client.js).on('change', plugins.livereload.changed);
-  gulp.watch(defaultAssets.client.css).on('change', plugins.livereload.changed);
-  gulp.watch(defaultAssets.client.views).on('change', plugins.livereload.changed);
+  // Watch all TS files in client and compiles JS files in dist
+  gulp.watch(defaultAssets.client.ts).on('change', file => buildFile(file));
+  gulp.watch(defaultAssets.client.dist.js).on('change', plugins.livereload.changed);
+  // Watch all scss files to build css is change
+  gulp.watch(defaultAssets.client.scss).on('change', file => runSequence('build:sass'));
+  gulp.watch(defaultAssets.client.dist.css).on('change', plugins.livereload.changed);
+  // Watch all html files to build them in dist
+  gulp.watch(defaultAssets.client.views).on('change', file => runSequence('build:html'));
+  gulp.watch(defaultAssets.client.dist.views).on('change', plugins.livereload.changed);
 
 });
 
 // CSS linting task
 gulp.task('csslint', function (done) {
-  return gulp.src(defaultAssets.client.css)
+  return gulp.src(defaultAssets.client.dist.css)
     .pipe(plugins.csslint('.csslintrc'))
     .pipe(plugins.csslint.formatter());
 });
@@ -179,6 +208,7 @@ gulp.task('exit', function () {
 gulp.task('default', function (done) {
   runSequence(
     'env:dev',
+    'build:clean',
     'build:client',
     'lint', ['nodemon', 'watch'],
     done);

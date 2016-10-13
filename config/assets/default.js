@@ -2,10 +2,29 @@
 
 module.exports = {
 	client: {
-		lib: {
-			css: [],
-			js: []
+		dist: {
+			js: [
+				'dist/*.js*',
+				'dist/**/*.js*',
+				'dist/**/**/*.js*'
+			],
+			css: [
+				'dist/styles.css',
+				'dist/components/**/*.css'
+			],
+			assets: [
+				'dist/assets/*.jpg',
+				'dist/assets/*.png',
+				'dist/assets/*.svg',
+			],
+			views: [
+				'dist/index.html',
+				'dist/components/**/*.html'
+			]
 		},
+		scss: [
+			'client/styles.scss'
+		],
 		css: [
 			'client/styles.css',
 			'client/app/components/**/*.css'
@@ -16,17 +35,21 @@ module.exports = {
 			'client/app/**/**/*.ts',
 		],
 		js: [
-			'dist/*.js*',
-			'dist/**/*.js*',
-			'dist/**/**/*.js*'
+			'client/app/*.js*',
+			'client/app/**/*.js*',
+			'client/app/**/**/*.js*'
 		],
-		img: [],
+		assets: [
+			'client/assets/*.jpg',
+			'client/assets/*.png',
+			'client/assets/*.svg',
+		],
 		views: [
 			'client/index.html',
 			'client/app/components/**/*.html'
 		],
 		tests: [
-			'client/app/components/**/*.component.test.js'
+			'client/app/components/**/*.component.spec.js'
 		],
 		e2e: [
 			'client/e2e/*.e2e-spec.js'

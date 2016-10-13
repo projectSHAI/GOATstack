@@ -21,6 +21,10 @@ client/app/*.js.map
 client/app/**/*.js
 client/app/**/*.js.map
 
+# CSS files
+client/*.css
+client/app/components/**/*.css
+
 # Typings folder
 client/typings
 

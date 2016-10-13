@@ -66,10 +66,10 @@ var initGlobalConfigFiles = function (config, assets) {
   // config.files.server.sockets = getGlobbedPaths(assets.server.sockets);
 
   // Setting Globbed js files
-  config.files.client.js = getGlobbedPaths(assets.client.lib.js, 'client/').concat(getGlobbedPaths(assets.client.js, ['client/']));
+  config.files.client.js = getGlobbedPaths(assets.client.dist.js, 'client/').concat(getGlobbedPaths(assets.client.js, ['client/']));
 
   // Setting Globbed css files
-  config.files.client.css = getGlobbedPaths(assets.client.lib.css, 'client/').concat(getGlobbedPaths(assets.client.css, ['client/']));
+  config.files.client.css = getGlobbedPaths(assets.client.dist.css, 'client/').concat(getGlobbedPaths(assets.client.css, ['client/']));
 };
 
 var initGlobalConfig = function () {
