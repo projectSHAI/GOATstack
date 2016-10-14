@@ -88,7 +88,7 @@ export class Gulpfile {
   // Transpile client side TS files
   @Task()
   client(done) {
-    let tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
+    let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
     let tsResult = gulp.src(`${clientPath}/**/**/!(*.spec).ts`)
       .pipe(tsProject());
 
@@ -97,7 +97,7 @@ export class Gulpfile {
   // Transpile client test TS files
   @Task()
   client_test(done) {
-    let tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
+    let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
     let tsResult = gulp.src(`${clientPath}/**/**/*.spec.ts`)
       .pipe(tsProject());
 
@@ -105,8 +105,8 @@ export class Gulpfile {
   }
 
   buildFile(file: any) {
-    let tsProject = ts.createProject(path.resolve('./client/tsconfig.json'));
-    let tsResult = gulp.src(['./client/typings/*.ts', file.path])
+    let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
+    let tsResult = gulp.src([file.path])
       .pipe(tsProject());
 
     let fPath = file.path.replace('client\\app', 'dist');

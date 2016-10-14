@@ -11,7 +11,7 @@
         "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
         "typeRoots": [
-            "../node_modules/@types"
+            "./node_modules/@types"
         ],
         "types": [
           "core-js",
@@ -24,5 +24,11 @@
         ]
     },
     "compileOnSave": false,
-    "exclude": [ ]
+    "exclude": [
+      "./dist",
+      "./node_modules",
+      "./scripts",
+      "./server",
+      "./config"
+    ]
 }
