@@ -10,7 +10,7 @@ import { Wonder } from '../../models/models.namespace';
   selector: 'home-section',
   providers: [WonderService, SocketService],
   template: `
-    <h1 class="app-test">Home</h1>
+    <sun-and-moon></sun-and-moon>
     <li *ngFor="let wonder of wonders" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
       <p>{{wonder.name}}</p>
     </li>

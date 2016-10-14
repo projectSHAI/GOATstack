@@ -20,11 +20,13 @@ import { routing } from './routes';
 
 //components for different views
 import { HeaderComponent }      from './components/header/header.component';
+import { NavbarComponent }      from './components/navbar/navbar.component';
 import { SignInOutComponent }   from './components/signinout/signinout.component';
 import { HomeComponent }        from './components/home/home.component';
 import { FooterComponent }      from './components/footer/footer.component';
 import { Four0FourComponent }   from './components/404/four0four.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { SunandmoonComponent }  from './components/sunandmoon/sunandmoon.component';
 
 //services for global use
 import { Cookie }               from 'ng2-cookies/ng2-cookies';
@@ -50,7 +52,9 @@ import { HttpIntercept }        from './services/auth/auth.service';
     SignInOutComponent,
     HeaderComponent,
     HomeComponent,
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    SunandmoonComponent
   ],
   //providers: this object imports all necessary services into the module
   providers: [
