@@ -4,7 +4,7 @@
 module.exports = function(config) {
 
   var appBase    = 'client/app/';       // transpiled app JS and map files
-  var appSrcBase = 'dist/';       // app source TS files
+  var appSrcBase = 'dist/app/';       // app source TS files
 
   config.set({
     basePath: '../../',

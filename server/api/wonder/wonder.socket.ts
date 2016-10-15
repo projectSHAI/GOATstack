@@ -4,16 +4,16 @@
 
 'use strict';
 
-var WonderEvents = require('./wonder.events');
+let WonderEvents = require('./wonder.events');
 
 // Model events to emit
-var events = ['save', 'remove'];
+let events = ['save', 'remove'];
 
-module.exports.register = function (socket) {
+export function register(socket) {
   // Bind model events to socket events
-  for (var i = 0, eventsLength = events.length; i < eventsLength; i++) {
-    var event = events[i];
-    var listener = createListener('Wonder:' + event, socket);
+  for (let i = 0, eventsLength = events.length; i < eventsLength; i++) {
+    let event = events[i];
+    let listener = createListener('Wonder:' + event, socket);
 
     WonderEvents.on(event, listener);
     socket.on('disconnect', removeListener(event, listener));

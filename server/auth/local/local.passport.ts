@@ -1,7 +1,7 @@
 'use strict';
 
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+let passport = require('passport');
+let LocalStrategy = require('passport-local').Strategy;
 
 function localAuthenticate(User, email, password, done) {
   User.findOne({
@@ -24,16 +24,16 @@ function localAuthenticate(User, email, password, done) {
         } else {
           return done(null, user);
         }
-      })
+      });
     })
     .catch(err => done(err));
 }
 
-module.exports.setup = function (User, config) {
+export function setup(User, config) {
   passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password' // this is the virtual field on the model
   }, function (email, password, done) {
     return localAuthenticate(User, email, password, done);
   }));
-};
+}

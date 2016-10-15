@@ -1,15 +1,16 @@
 'use strict';
 
-var passport = require('passport');
-var mongoose = require('mongoose');
+import mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-var con = require('../../config/config');
-var jwt = require('jsonwebtoken');
-var expressJwt = require('express-jwt');
-var compose = require('composable-middleware');
-var User = require('../api/user/user.model');
 
-var validateJwt = expressJwt({
+let passport = require('passport');
+let con = require('../../config/config');
+let jwt = require('jsonwebtoken');
+let expressJwt = require('express-jwt');
+let compose = require('composable-middleware');
+let User = require('../api/user/user.model');
+
+let validateJwt = expressJwt({
   secret: con.config.sessionSecret
 });
 
@@ -17,7 +18,7 @@ var validateJwt = expressJwt({
  * Attaches the user object to the request if authenticated
  * Otherwise returns 403
  */
-module.exports.isAuthenticated = function () {
+export function isAuthenticated() {
   return compose()
     // Validate jwt
     .use((req, res, next) => {
@@ -46,7 +47,7 @@ module.exports.isAuthenticated = function () {
 /**
  * Checks if the user role meets the minimum requirements of the route
  */
-module.exports.hasRole = function (roleRequired) {
+export function hasRole(roleRequired) {
   if (!roleRequired) {
     throw new Error('Required role needs to be set');
   }
@@ -66,23 +67,23 @@ module.exports.hasRole = function (roleRequired) {
 /**
  * Returns a jwt token signed by the app secret
  */
-module.exports.signToken = function (id, role) {
+export function signToken(id, role) {
   return jwt.sign({
     _id: id,
     role: role
   }, con.config.sessionSecret, {
     expiresIn: 60 * 60 * 5
   });
-};
+}
 
 /**
  * Set token cookie directly for oAuth strategies
  */
-module.exports.setTokenCookie = function (req, res) {
+export function setTokenCookie(req, res) {
   if (!req.user) {
     return res.status(404).send('It looks like you aren\'t logged in, please try again.');
   }
-  var token = exports.signToken(req.user._id, req.user.role);
+  let token = exports.signToken(req.user._id, req.user.role);
   res.cookie('token', token);
   res.redirect('/');
-};
+}

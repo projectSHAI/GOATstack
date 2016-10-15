@@ -1,13 +1,27 @@
 'use strict';
 
-var crypto = require('crypto');
-var mongoose = require('mongoose');
-var Schema = require('mongoose').Schema;
+let crypto = require('crypto');
+import mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
-var UserSchema = new Schema({
+interface IUser extends mongoose.Document {
+  created: Date;
+  name: String;
+  email: String;
+  role: String;
+  password: String;
+  provider: String;
+  facebook: any;
+  google: any;
+  github: any;
+  collections: [{
+    _id: mongoose.Schema.Types.ObjectId
+  }];
+}
+
+let UserSchema: mongoose.Schema = new mongoose.Schema({
   created: {
     type: Date,
     default: Date.now
@@ -49,7 +63,7 @@ var UserSchema = new Schema({
   google: {},
   github: {},
   collections: [{
-    _id: Schema.Types.ObjectId
+    _id: mongoose.Schema.Types.ObjectId
   }]
 });
 
@@ -107,7 +121,7 @@ UserSchema
 UserSchema
   .path('email')
   .validate(function(value, respond) {
-    var self = this;
+    let self = this;
     return this.constructor.findOne({ email: value }).exec()
       .then(function(user) {
         if (user) {
@@ -123,7 +137,7 @@ UserSchema
       });
   }, 'The specified email address is already in use.');
 
-var validatePresenceOf = function(value) {
+let validatePresenceOf = function(value) {
   return value && value.length;
 };
 
@@ -199,8 +213,8 @@ UserSchema.methods = {
    * @return {String}
    * @api public
    */
-  makeSalt(byteSize, callback) {
-    var defaultByteSize = 16;
+  makeSalt(byteSize, callback): any {
+    let defaultByteSize = 16;
 
     if (typeof arguments[0] === 'function') {
       callback = arguments[0];
@@ -234,7 +248,7 @@ UserSchema.methods = {
    * @return {String}
    * @api public
    */
-  encryptPassword(password, callback) {
+  encryptPassword(password, callback): any {
     if (!password || !this.salt) {
       if (!callback) {
         return null;
@@ -243,13 +257,13 @@ UserSchema.methods = {
       }
     }
 
-    var defaultIterations = 10000;
-    var defaultKeyLength = 64;
-    var salt = new Buffer(this.salt, 'base64');
+    let defaultIterations = 10000;
+    let defaultKeyLength = 64;
+    let salt = new Buffer(this.salt, 'base64');
 
     if (!callback) {
       return crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength)
-                   .toString('base64');
+        .toString('base64');
     }
 
     return crypto.pbkdf2(password, salt, defaultIterations, defaultKeyLength, (err, key) => {
@@ -262,4 +276,4 @@ UserSchema.methods = {
   }
 };
 
-module.exports = mongoose.model('User', UserSchema);
+export = mongoose.model<IUser>('User', UserSchema);

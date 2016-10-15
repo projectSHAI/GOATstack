@@ -19,7 +19,7 @@ function onConnect(socket) {
   // Insert sockets below
   // require('../api/image/image.socket').register(socket);
   // require('../api/collection/collection.socket').register(socket);
-  require('../../server/api/wonder/wonder.socket').register(socket);
+  require('../../dist/api/wonder/wonder.socket').register(socket);
   // require('../api/thing/thing.socket').register(socket);
 
 }

@@ -1,8 +1,15 @@
 'use strict';
 
-var mongoose = require('mongoose');
+import mongoose = require('mongoose');
 
-var WonderSchema = new mongoose.Schema({
+interface IWonder extends mongoose.Document {
+  created: Date;
+  name: String;
+  xcoor: Number;
+  ycoor: Number;
+}
+
+let WonderSchema: mongoose.Schema = new mongoose.Schema({
   created: {
     type: Date,
     default: Date.now
@@ -21,4 +28,4 @@ var WonderSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Wonder', WonderSchema);
+export = mongoose.model<IWonder>('Wonder', WonderSchema);

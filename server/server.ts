@@ -1,19 +1,19 @@
 "use strict";
 
-var fs = require('fs');
-var express = require('express');
-var mongoose = require('../config/lib/mongoose');
-var con = require('../config/config');
-var http = require('http');
-var https = require('https');
-var path = require('path');
-var chalk = require('chalk');
+let fs = require('fs');
+let express = require('express');
+let mongoose = require('../config/lib/mongoose');
+let con = require('../config/config');
+let http = require('http');
+let https = require('https');
+let path = require('path');
+let chalk = require('chalk');
 
 // Initialize express
-var app = express();
+let app = express();
 // Set address for jasmine supertest
 // There was problems with just 'app'
-app.set('address', 'http://localhost:' + con.config.port)
+app.set('address', 'http://localhost:' + con.config.port);
 
 //seed db
 if (con.config.seedDB) { require(con.config.seedFile); }
@@ -21,14 +21,14 @@ if (con.config.seedDB) { require(con.config.seedFile); }
 // Initialize models
 mongoose.loadModels();
 
-var init = function init(callback) {
+let init = function init(callback) {
   mongoose.connect(function (db) {
     // Initialize http server
-    var server = http.createServer(app);
+    let server = http.createServer(app);
 
     // If specified in the default assets, https will be used
     if (con.config.https_secure) {
-      var credentials = {
+      let credentials = {
         key: fs.readFileSync(con.config.key_loc, 'utf8'),
         cert: fs.readFileSync(con.config.cert_loc, 'utf8')
       };
@@ -37,7 +37,7 @@ var init = function init(callback) {
     }
 
     // Initialize the socketio with the respective server
-    var socketio = require('socket.io')(server, {
+    let socketio = require('socket.io')(server, {
       // serveClient: process.env.NODE_ENV !== 'production',
       path: '/socket.io'
     });
@@ -55,8 +55,8 @@ var init = function init(callback) {
 init(function (app, db, con, server) {
 
   server.listen(con.config.port, con.config.host, function () {
-    var host = server.address().address;
-    var port = server.address().port;
+    let host = server.address().address;
+    let port = server.address().port;
 
     if (process.env.NODE_ENV !== 'test') {
       // Logging initialization
@@ -82,4 +82,4 @@ init(function (app, db, con, server) {
 });
 
 // export app for testing
-exports = module.exports = app;
+export = app;

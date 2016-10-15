@@ -4,8 +4,8 @@
  */
 
 'use strict';
-var Wonder = require('../../server/api/wonder/wonder.model');
-var User = require('../../server/api/user/user.model');
+var Wonder = require('../../dist/api/wonder/wonder.model');
+var User = require('../../dist/api/user/user.model');
 
 Wonder.find({}).remove()
   .then(() => {

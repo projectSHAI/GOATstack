@@ -2,20 +2,20 @@
 
 'use strict';
 
-var app = require('../../server.js').get('address');
-var request = require('supertest');
+import app = require('../../server.js');
+import request = require('supertest');
 
 describe('Wonder API:', function () {
-  var newWonder;
-  var wonders;
+  let newWonder;
+  let wonders;
 
   const inputs = [1, 43, 2, 35, 65, 36, 10, 57, 32, 45, 90, 79, 32, 47, 19, 14, 30, 15, 69, 25, 50, 38, 29];
 
   describe('POST /api/wonders', function () {
-    for (var counter = 0; counter < inputs.length; counter++) {
+    for (let counter = 0; counter < inputs.length; counter++) {
       (function (input) {
         return beforeAll((done) => {
-          request(app)
+          request(app.get('address'))
             .post('/api/wonders')
             .send({
               name: 'wonder: ' + input
@@ -40,7 +40,7 @@ describe('Wonder API:', function () {
 
   describe('GET /api/wonders', function () {
     beforeAll(function (done) {
-      request(app)
+      request(app.get('address'))
         .get('/api/wonders')
         .expect(200)
         .expect('Content-Type', /json/)
@@ -58,10 +58,10 @@ describe('Wonder API:', function () {
     });
 
     it('wonders should equal the original input array', () => {
-      for (var i = 0; i < 20; i++) {
+      for (let i = 0; i < 20; i++) {
         (function (input, counter) {
-          return expect(wonders[counter].name).toEqual('wonder: ' + input)
-        })(inputs[i + 3], (i + 3) % 20)
+          return expect(wonders[counter].name).toEqual('wonder: ' + input);
+        })(inputs[i + 3], (i + 3) % 20);
       }
     });
   });

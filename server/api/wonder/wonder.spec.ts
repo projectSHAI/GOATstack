@@ -1,10 +1,10 @@
 'use strict';
 
-var proxyquire = require('proxyquire').noPreserveCache();
-var sinon = require('sinon');
-require('jasmine-sinon');
+import proxyquire = require('proxyquire');
+let pq = proxyquire.noPreserveCache();
+import sinon = require('sinon');
 
-var wonderCtrlStub = {
+let wonderCtrlStub = {
   index: 'wonderCtrl.index',
   show: 'wonderCtrl.show',
   create: 'wonderCtrl.create',
@@ -12,7 +12,7 @@ var wonderCtrlStub = {
   destroy: 'wonderCtrl.destroy'
 };
 
-var routerStub = {
+let wonderRouterStub = {
   get: sinon.spy(),
   put: sinon.spy(),
   patch: sinon.spy(),
@@ -21,10 +21,10 @@ var routerStub = {
 };
 
 // require the index with our stubbed out modules
-var wonderIndex = proxyquire('./wonder.router.js', {
+let wonderIndex = pq('./wonder.router.js', {
   'express': {
     Router: function() {
-      return routerStub;
+      return wonderRouterStub;
     }
   },
   './wonder.controller': wonderCtrlStub
@@ -33,15 +33,14 @@ var wonderIndex = proxyquire('./wonder.router.js', {
 describe('Wonder API Router:', function() {
 
   it('should return an express router instance', function() {
-    expect(wonderIndex).toEqual(routerStub);
+    expect(wonderIndex).toEqual(wonderRouterStub);
   });
 
   describe('GET /api/wonders', function() {
 
     it('should route to wonder.controller.index', function() {
-      expect(routerStub.get
-        .withArgs('/', 'wonderCtrl.index')
-        ).toHaveBeenCalledOnce();
+      expect(wonderRouterStub.get.withArgs('/', 'wonderCtrl.index').calledOnce)
+        .toBe(true);
     });
 
   });
@@ -49,9 +48,8 @@ describe('Wonder API Router:', function() {
   describe('GET /api/wonders/:id', function() {
 
     it('should route to wonder.controller.show', function() {
-      expect(routerStub.get
-        .withArgs('/:id', 'wonderCtrl.show')
-        ).toHaveBeenCalledOnce();
+      expect(wonderRouterStub.get.withArgs('/:id', 'wonderCtrl.show').calledOnce)
+        .toBe(true);
     });
 
   });
@@ -59,9 +57,8 @@ describe('Wonder API Router:', function() {
   describe('POST /api/wonders', function() {
 
     it('should route to wonder.controller.create', function() {
-      expect(routerStub.post
-        .withArgs('/', 'wonderCtrl.create')
-        ).toHaveBeenCalledOnce();
+      expect(wonderRouterStub.post.withArgs('/', 'wonderCtrl.create').calledOnce)
+        .toBe(true);
     });
 
   });
@@ -69,9 +66,8 @@ describe('Wonder API Router:', function() {
   describe('PUT /api/wonders/:id', function() {
 
     it('should route to wonder.controller.update', function() {
-      expect(routerStub.put
-        .withArgs('/:id', 'wonderCtrl.update')
-        ).toHaveBeenCalledOnce();
+      expect(wonderRouterStub.put.withArgs('/:id', 'wonderCtrl.update').calledOnce)
+        .toBe(true);
     });
 
   });
@@ -79,9 +75,8 @@ describe('Wonder API Router:', function() {
   describe('PATCH /api/wonders/:id', function() {
 
     it('should route to wonder.controller.update', function() {
-      expect(routerStub.patch
-        .withArgs('/:id', 'wonderCtrl.update')
-        ).toHaveBeenCalledOnce();
+      expect(wonderRouterStub.patch.withArgs('/:id', 'wonderCtrl.update').calledOnce)
+        .toBe(true);
     });
 
   });
@@ -89,9 +84,8 @@ describe('Wonder API Router:', function() {
   describe('DELETE /api/wonders/:id', function() {
 
     it('should route to wonder.controller.destroy', function() {
-      expect(routerStub.delete
-        .withArgs('/:id', 'wonderCtrl.destroy')
-        ).toHaveBeenCalledOnce();
+      expect(wonderRouterStub.delete.withArgs('/:id', 'wonderCtrl.destroy').calledOnce)
+        .toBe(true);
     });
 
   });

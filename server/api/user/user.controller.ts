@@ -1,30 +1,20 @@
-/**
- * Using Rails-like standard naming convention for endpoints.
- * GET     /api/user              ->  allUsers
- * POST    /api/user              ->  createUser
- * GET     /api/user/:id          ->  showUser
- * PUT     /api/user/:id          ->  updateUser
- * DELETE  /api/user/:id          ->  destroyUser
- */
-
 'use strict';
 
-var _ = require('lodash');
-var User = require('./user.model');
-var con = require('../../../config/config');
-var jwt = require('jsonwebtoken');
+let User = require('./user.model');
+let con = require('../../../config/config');
+let jwt = require('jsonwebtoken');
 
-function validationError(res, statusCode) {
+function validationError(res, statusCode = null) {
   statusCode = statusCode || 422;
-  return function (err) {
+  return function(err) {
     res.status(statusCode).json(err);
     return null;
-  }
+  };
 }
 
-function handleError(res, statusCode) {
+function handleError(res, statusCode = null) {
   statusCode = statusCode || 500;
-  return function (err) {
+  return function(err) {
     res.status(statusCode).send(err);
     return null;
   };
@@ -33,10 +23,10 @@ function handleError(res, statusCode) {
 /**
  * Change a users password
  */
-module.exports.changePassword = function(req, res, next) {
-  var userId = req.user._id;
-  var oldPass = String(req.body.oldPassword);
-  var newPass = String(req.body.newPassword);
+export function changePassword(req, res, next) {
+  let userId = req.user._id;
+  let oldPass = String(req.body.oldPassword);
+  let newPass = String(req.body.newPassword);
 
   return User.findById(userId).exec()
     .then(user => {
@@ -57,7 +47,7 @@ module.exports.changePassword = function(req, res, next) {
  * Get list of users
  * restriction: 'admin'
  */
-module.exports.index = function (req, res) {
+export function index(req, res) {
   return User.find({}, '-salt -password').exec()
     .then(users => {
       res.status(200).json(users);
@@ -68,17 +58,17 @@ module.exports.index = function (req, res) {
 /**
  * Creates a new user
  */
-module.exports.create = function (req, res, next) {
-  var newUser = new User(req.body);
+export function create(req, res, next) {
+  let newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
   return newUser.save()
-    .then(function (user) {
-      var token = jwt.sign({
-        _id: user._id
-      }, con.config.sessionSecret, {
-        expiresIn: 60 * 60 * 5
-      });
+    .then(user => {
+      let token = jwt.sign(
+        { _id: user._id },
+        con.config.sessionSecret,
+        { expiresIn: 60 * 60 * 5 }
+      );
 
       req.headers.token = token;
       req.user = user;
@@ -92,9 +82,9 @@ module.exports.create = function (req, res, next) {
  * Deletes a user
  * restriction: 'admin'
  */
-module.exports.destroy = function (req, res) {
+export function destroy(req, res) {
   return User.findByIdAndRemove(req.params.id).exec()
-    .then(function () {
+    .then(function() {
       res.status(204).end();
     })
     .catch(handleError(res));
@@ -103,8 +93,8 @@ module.exports.destroy = function (req, res) {
 /**
  * Get a single user
  */
-module.exports.show = function (req, res, next) {
-  var userId = req.params.id;
+export function show(req, res, next) {
+  let userId = req.params.id;
 
   return User.findById(userId).exec()
     .then(user => {
@@ -119,13 +109,13 @@ module.exports.show = function (req, res, next) {
 /**
  * Get my info
  */
-module.exports.me = function(req, res, next) {
-  var userId = req.user._id;
-  var token = req.headers.token;
+export function me(req, res, next) {
+  let userId = req.user._id;
+  let token = req.headers.token;
 
   return User.findOne({
-      _id: userId
-    }, '-salt -password').exec()
+    _id: userId
+  }, '-salt -password').exec()
     .then(user => { // don't ever give out the password or salt
       if (!user) {
         return res.status(401).end();

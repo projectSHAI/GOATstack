@@ -18,9 +18,12 @@
           "node",
           "lodash",
           "jasmine",
+          "supertest",
+          "proxyquire",
           "socket.io",
           "socket.io-client",
-          "hammerjs"
+          "hammerjs",
+          "mongoose"
         ]
     },
     "compileOnSave": false,

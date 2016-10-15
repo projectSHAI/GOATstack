@@ -19,6 +19,7 @@ let plugins = require('gulp-load-plugins')();
 let chalk = require('chalk');
 
 const clientPath = 'client/app';
+const serverPath = 'server/api';
 const distPath = 'dist';
 
 @Gulpclass()
@@ -49,7 +50,10 @@ export class Gulpfile {
       defaultAssets.client.dist.js,
       defaultAssets.client.dist.css,
       defaultAssets.client.dist.views,
-      defaultAssets.client.dist.assets
+      defaultAssets.client.dist.assets,
+      defaultAssets.server.allJS,
+      defaultAssets.server.tests.integration,
+      defaultAssets.server.tests.spec,
     );
 
     del(all);
@@ -59,7 +63,7 @@ export class Gulpfile {
   @Task()
   build_html(done) {
     return gulp.src(defaultAssets.client.views)
-      .pipe(gulp.dest('./dist'));
+      .pipe(gulp.dest('./dist/app'));
   }
   @Task()
   build_sass(done) {
@@ -68,49 +72,87 @@ export class Gulpfile {
 
     return gulp.src(defaultAssets.client.scss)
       .pipe(sass().on('error', sass.logError))
-      .pipe(gulp.dest('./dist'));
+      .pipe(gulp.dest('./dist/app'));
   }
   @Task()
   build_assets(done) {
     return gulp.src(defaultAssets.client.assets)
-      .pipe(gulp.dest('./dist/assets'));
+      .pipe(gulp.dest('./dist/app/assets'));
   }
-
-  @SequenceTask()
-  build_client() {
-    return ['build_sass', 'build_html', 'build_assets', 'client']
-  }
-  @SequenceTask()
-  build_client_test() {
-    return ['client_test', 'build_client'];
-  }
-
   // Transpile client side TS files
   @Task()
-  client(done) {
+  build_client(done) {
     let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
-    let tsResult = gulp.src(`${clientPath}/**/**/!(*.spec).ts`)
+    let tsResult = gulp.src(`client/**/**/**/!(*.spec).ts`)
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest(path.resolve('./dist')));
   }
+  @Task()
+  build_server() {
+    let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
+    let tsResult = gulp.src(`server/**/**/!(*.spec|*.integration).ts`)
+      .pipe(tsProject());
+
+    return tsResult.js.pipe(gulp.dest(path.resolve('./dist')));
+  }
+
   // Transpile client test TS files
   @Task()
   client_test(done) {
     let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
-    let tsResult = gulp.src(`${clientPath}/**/**/*.spec.ts`)
+    let tsResult = gulp.src(`client/**/**/**/*.spec.ts`)
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest(path.resolve('./dist')));
   }
+  // Transpile server test TS files
+  @Task()
+  server_test(done) {
+    let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
+    let tsResult = gulp.src(`server/**/**/*.{spec,integration}.ts`)
+      .pipe(tsProject());
+
+    return tsResult.js.pipe(gulp.dest(path.resolve('./dist')));
+  }
+
+  @SequenceTask()
+  build_client_test() {
+    return ['client_test', 'build_client_sequence'];
+  }
+  @SequenceTask()
+  build_server_test() {
+    return ['server_test', 'build_server']
+  }
+
+  @SequenceTask()
+  build_client_sequence() {
+    return ['build_sass', 'build_html', 'build_assets', 'build_client']
+  }
+
+  @SequenceTask()
+  build_project() {
+    return ['build_client_sequence', 'build_server']
+  }
+  @SequenceTask()
+  build_project_test() {
+    return ['build_client_test', 'build_server_test']
+  }
+
 
   buildFile(file: any) {
     let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
     let tsResult = gulp.src([file.path])
       .pipe(tsProject());
 
-    let fPath = file.path.replace('client\\app', 'dist');
-    fPath = fPath.substring(0, fPath.lastIndexOf('\\'))
+    let fPath;
+    if (file.path.includes('client')) {
+      fPath = file.path.replace('client', 'dist');
+    } else {
+      fPath = file.path.replace('server\\', 'dist\\');
+    }
+
+    fPath = fPath.substring(0, fPath.lastIndexOf('\\'));
 
     return tsResult.js.pipe(gulp.dest(path.resolve(fPath)));
   }
@@ -119,7 +161,7 @@ export class Gulpfile {
   @Task()
   nodemon() {
     return plugins.nodemon({
-      script: 'server/server.js',
+      script: 'dist/server.js',
       ext: 'js,html',
       watch: defaultAssets.server.allJS
     });
@@ -160,7 +202,7 @@ export class Gulpfile {
   }
   @Task()
   clean_test(done) {
-    return del(['dist/components/**/*.spec.js']);
+    return del(['dist/**/**/*.{spec,integration}.js']);
   }
 
   // Downloads the selenium webdriver
@@ -188,6 +230,8 @@ export class Gulpfile {
   watch() {
     // Start livereload
     plugins.livereload.listen();
+    // Watch all server TS files to build JS
+    gulp.watch(defaultAssets.server.allTS).on('change', file => this.buildFile(file));
     // Watch all server JS files
     gulp.watch(defaultAssets.server.allJS).on('change', plugins.livereload.changed);
     // Watch all TS files in client and compiles JS files in dist
@@ -210,32 +254,20 @@ export class Gulpfile {
   }
   // JS linting task
   @Task()
-  jshint_server(done) {
-    var assets = _.union(
-      defaultAssets.server.gulpConfig,
-      defaultAssets.server.allJS
-    );
-
-    return gulp.src(assets)
-      .pipe(plugins.jshint())
-      .pipe(plugins.jshint.reporter('default'));
-  }
-  //JS linting server tests
-  @Task()
-  jshint_server_test(done) {
-    var assets = _.union(
-      defaultAssets.server.tests.unit,
-      defaultAssets.server.tests.integration
-    );
-
-    return gulp.src(assets)
+  jshint(done) {
+    return gulp.src(defaultAssets.config.allJS)
       .pipe(plugins.jshint())
       .pipe(plugins.jshint.reporter('default'));
   }
 
   @Task()
   tslint(done) {
-    return gulp.src(defaultAssets.client.ts)
+    let assets = _.union(
+      defaultAssets.client.ts,
+      defaultAssets.server.allTS
+    );
+
+    return gulp.src(assets)
       .pipe(plugins.tslint({
         // contains rules in the tslint.json format
         configuration: "./tslint.json"
@@ -245,17 +277,13 @@ export class Gulpfile {
   // Lint CSS and JavaScript files.
   @SequenceTask()
   lint() {
-    return ['csslint', 'jshint_server', 'tslint'];
-  }
-  // Lint test JavaScript files.
-  @SequenceTask()
-  lint_test() {
-    return ['jshint_server_test', 'lint'];
+    return ['csslint', 'jshint', 'tslint'];
   }
 
   @Task()
   exit(done) {
     process.exit();
+    done();
   }
 
   // Run the project in development mode
@@ -264,7 +292,7 @@ export class Gulpfile {
     return [
       'env_dev',
       'build_clean',
-      'build_client',
+      'build_project',
       'lint', ['nodemon', 'watch']
     ];
   }
@@ -273,7 +301,8 @@ export class Gulpfile {
   prod() {
     return [
       'env_prod',
-      'build_client',
+      'build_clean',
+      'build_project',
       'lint', ['nodemon', 'watch']
     ];
   }
@@ -282,8 +311,9 @@ export class Gulpfile {
   test() {
     return [
       'env_test',
-      'build_client_test',
-      'lint_test',
+      'build_clean',
+      'build_project_test',
+      'lint',
       'test_server',
       'test_client',
       'exit'

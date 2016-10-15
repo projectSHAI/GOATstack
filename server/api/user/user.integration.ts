@@ -1,12 +1,13 @@
 'use strict';
 
-var app = require('../../server.js').get('address');
-var User = require('./user.model');
-var request = require('supertest');
+import app = require('../../server.js');
+import request = require('supertest');
+
+let User = require('./user.model');
 
 describe('User API:', function () {
-  var user;
-  var token;
+  let user;
+  let token;
 
   // Clear users before testing
   beforeAll(function () {
@@ -26,7 +27,7 @@ describe('User API:', function () {
   describe('GET /api/users/me', function () {
 
     beforeAll(function (done) {
-      request(app)
+      request(app.get('address'))
         .post('/auth/local')
         .send({
           email: 'Fakie@mrfake.com',
@@ -45,7 +46,7 @@ describe('User API:', function () {
     });
 
     it('should respond with a user profile when authenticated', function (done) {
-      request(app)
+      request(app.get('address'))
         .get('/api/users/me')
         .set('authorization', 'Bearer ' + token)
         .expect(200)
@@ -65,7 +66,7 @@ describe('User API:', function () {
     });
 
     it('should respond with a 401 when not authenticated', function (done) {
-      request(app)
+      request(app.get('address'))
         .get('/api/users/me')
         .expect(401)
         .end((err, res) => {
