@@ -1,5 +1,4 @@
 "use strict";
-
 let fs = require('fs');
 let express = require('express');
 let mongoose = require('../config/lib/mongoose');
