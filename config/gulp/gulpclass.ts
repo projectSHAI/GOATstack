@@ -233,19 +233,11 @@ export class Gulpfile {
     }, done).start();
   }
 
-  // Downloads the selenium webdriver
-  @Task()
-  webdriver_update() {
-    webdriver_update();
-  }
-
-  @SequenceTask()
-  test_protractor() {
-    return ['nodemon', 'webdriver_update', 'protractor'];
-  }
   @Task()
   protractor(done) {
-    gulp.src('../../' + defaultAssets.client.e2e)
+    runSequence('nodemon', webdriver_update);
+
+    return gulp.src('../../' + defaultAssets.client.e2e)
       .pipe(protractor({
         configFile: 'config/sys/protractor.config.js',
       })).on('end', () => {
@@ -352,7 +344,7 @@ export class Gulpfile {
   test_e2e() {
     return [
       'env_test',
-      'test_protractor',
+      'protractor',
       'exit'
     ];
   }

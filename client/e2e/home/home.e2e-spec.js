@@ -1,5 +1,5 @@
 describe('QuickStart E2E Tests', function () {
-    var title = 'MEA2N Fullstack';
+    var title = 'GOAT Stack';
 
     beforeAll(function () {
         // Important to have this line
@@ -11,9 +11,9 @@ describe('QuickStart E2E Tests', function () {
         expect(element(by.css('.app-title')).isPresent()).toBeTruthy();
         expect(element(by.css('.app-title')).getText()).toEqual(title);
     });
-    
-    it('should display: Home', function () {
-        expect(element(by.css('.app-test')).isPresent()).toBeTruthy();
-        expect(element(by.css('.app-test')).getText()).toEqual('Home');
+
+    it('should display: Wonders', function () {
+        expect(element(by.css('.dream-reflection')).isPresent()).toBeTruthy();
+        expect(element(by.css('.dream-reflection')).getText()).toEqual('Wonders');
     });
 });

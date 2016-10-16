@@ -45,7 +45,7 @@ module.exports = {
       'client/app/**/**/*.spec.ts'
     ],
     e2e: [
-      'client/e2e/*.e2e-spec.js'
+      'client/e2e/**/*.e2e-spec.js'
     ]
   },
   server: {

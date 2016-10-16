@@ -73,6 +73,8 @@ export function create(req, res, next) {
       req.headers.token = token;
       req.user = user;
       next();
+
+      return null;
       // res.json({ token });
     })
     .catch(validationError(res));
