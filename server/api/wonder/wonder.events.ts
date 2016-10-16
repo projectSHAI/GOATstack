@@ -2,8 +2,6 @@
  * Wonder model events
  */
 
-'use strict';
-
 let EventEmitter = require('events').EventEmitter;
 let Wonder = require('./wonder.model');
 let WonderEvents = new EventEmitter();

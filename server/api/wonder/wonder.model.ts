@@ -1,5 +1,3 @@
-'use strict';
-
 import mongoose = require('mongoose');
 
 interface IWonder extends mongoose.Document {

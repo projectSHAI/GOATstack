@@ -7,8 +7,6 @@
  * DELETE  /api/user/:id          ->  destroyUser
  */
 
-'use strict';
-
 let express = require('express');
 let auth = require('../../auth/auth.service');
 import * as UserController from './user.controller';

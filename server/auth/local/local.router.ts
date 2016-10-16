@@ -1,5 +1,3 @@
-'use strict';
-
 let express = require('express');
 let passport = require('passport');
 let signToken = require('../auth.service').signToken;

@@ -1,5 +1,3 @@
-'use strict';
-
 let express = require('express');
 import * as controller from './wonder.controller';
 

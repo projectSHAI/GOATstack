@@ -1,5 +1,3 @@
-'use strict';
-
 let _ = require('lodash');
 let Wonder = require('./wonder.model');
 
@@ -29,7 +27,7 @@ function updateWonder(res, wonder) {
       res.json(entity);
 
       counter++;
-      if(counter > 19){
+      if(counter > 9){
         counter = 0;
       }
     }

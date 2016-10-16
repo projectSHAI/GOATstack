@@ -1,9 +1,9 @@
-'use strict';
-
-import app = require('../../server.js');
+import app = require('../../server');
 import request = require('supertest');
 
 let User = require('./user.model');
+
+let addr = app.get('address');
 
 describe('User API:', function () {
   let user;
@@ -11,23 +11,18 @@ describe('User API:', function () {
 
   // Clear users before testing
   beforeAll(function () {
-    return User.remove().then(function () {
-      user = new User({
-        userName: 'MrFakie',
-        firstName: 'Fake',
-        lastName: 'Fakie',
-        email: 'Fakie@mrfake.com',
-        password: 'mrfakie'
-      });
-
-      return user.save();
+    user = new User({
+      userName: 'MrFakie',
+      email: 'Fakie@mrfake.com',
+      password: 'mrfakie'
     });
+    return user.save();
   });
 
   describe('GET /api/users/me', function () {
 
     beforeAll(function (done) {
-      request(app.get('address'))
+      request(addr)
         .post('/auth/local')
         .send({
           email: 'Fakie@mrfake.com',
@@ -46,7 +41,7 @@ describe('User API:', function () {
     });
 
     it('should respond with a user profile when authenticated', function (done) {
-      request(app.get('address'))
+      request(addr)
         .get('/api/users/me')
         .set('authorization', 'Bearer ' + token)
         .expect(200)
@@ -66,7 +61,7 @@ describe('User API:', function () {
     });
 
     it('should respond with a 401 when not authenticated', function (done) {
-      request(app.get('address'))
+      request(addr)
         .get('/api/users/me')
         .expect(401)
         .end((err, res) => {

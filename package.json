@@ -1,9 +1,9 @@
 {
-  "name": "expreessgular2",
+  "name": "GOAT-stack",
   "version": "0.0.1",
   "description": "A MEAN stack boilerplate",
   "engines": {
-    "node": "6.7.0"
+    "node": "6.8.1"
   },
   "scripts": {
     "start": "node server/server",

@@ -2,8 +2,6 @@
  * Main application routes
  */
 
-'use strict';
-
 let path = require('path');
 
 export = function(app) {

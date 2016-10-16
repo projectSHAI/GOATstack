@@ -49,46 +49,6 @@ Wonder.find({}).remove()
       name: 'Jelly',
       xcoor: 15,
       ycoor: 64
-    }, {
-      name: 'Jelly',
-      xcoor: 78,
-      ycoor: 64
-    }, {
-      name: 'Jelly',
-      xcoor: 97,
-      ycoor: 13
-    }, {
-      name: 'Jelly',
-      xcoor: 54,
-      ycoor: 21
-    }, {
-      name: 'Jelly',
-      xcoor: 37,
-      ycoor: 91
-    }, {
-      name: 'Jelly',
-      xcoor: 64,
-      ycoor: 54
-    }, {
-      name: 'Jelly',
-      xcoor: 32,
-      ycoor: 23
-    }, {
-      name: 'Jelly',
-      xcoor: 45,
-      ycoor: 82
-    }, {
-      name: 'Jelly',
-      xcoor: 60,
-      ycoor: 30
-    }, {
-      name: 'Jelly',
-      xcoor: 12,
-      ycoor: 40
-    }, {
-      name: 'Jelly',
-      xcoor: 25,
-      ycoor: 11
     });
   });
 

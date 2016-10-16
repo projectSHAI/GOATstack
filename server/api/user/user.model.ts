@@ -1,5 +1,3 @@
-'use strict';
-
 let crypto = require('crypto');
 import mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');

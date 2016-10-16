@@ -1,4 +1,3 @@
-"use strict";
 let fs = require('fs');
 let express = require('express');
 let mongoose = require('../config/lib/mongoose');
@@ -10,9 +9,6 @@ let chalk = require('chalk');
 
 // Initialize express
 let app = express();
-// Set address for jasmine supertest
-// There was problems with just 'app'
-app.set('address', 'http://localhost:' + con.config.port);
 
 //seed db
 if (con.config.seedDB) { require(con.config.seedFile); }
@@ -79,6 +75,10 @@ init(function (app, db, con, server) {
     }
   });
 });
+
+// Set address for jasmine supertest
+// There was problems with just 'app'
+app.set('address', 'http://localhost:' + con.config.port);
 
 // export app for testing
 export = app;

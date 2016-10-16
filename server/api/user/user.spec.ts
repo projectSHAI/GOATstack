@@ -1,5 +1,3 @@
-'use strict';
-
 import proxyquire = require('proxyquire');
 let pq = proxyquire.noPreserveCache();
 import sinon = require('sinon');

@@ -2,8 +2,6 @@
  * Broadcast updates to client when the model changes
  */
 
-'use strict';
-
 let WonderEvents = require('./wonder.events');
 
 // Model events to emit
