@@ -6,7 +6,7 @@ import { SocketService } from '../../services/socketio/socketio.service';
 import { Wonder } from '../../models/models.namespace';
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'home-section',
   providers: [WonderService, SocketService],
   template: `

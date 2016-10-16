@@ -14,9 +14,10 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
+    <script src="app.js"></script>
     <script>
         'use strict'
-        System.import('app').catch(function(err) {
+        System.import('main').catch(function(err) {
             console.error(err);
         });
     </script>

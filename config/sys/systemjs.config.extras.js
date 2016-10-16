@@ -2,10 +2,14 @@
 
 /** App specific SystemJS configuration */
 System.config({
+  map: {
+    app: ''
+  },
   packages: {
-    // barrels
-    'app/model': {main:'server/server.js', defaultExtension:'js'},
-    'app/model/testing': {main:'server/server.js', defaultExtension:'js'}
+    app: {
+      main: 'main.js',
+      defaultExtension: 'js'
+    }
   }
 });
 

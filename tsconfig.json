@@ -16,12 +16,12 @@
         "types": [
           "core-js",
           "node",
+          "socket.io",
+          "socket.io-client",
           "lodash",
           "jasmine",
           "supertest",
           "proxyquire",
-          "socket.io",
-          "socket.io-client",
           "hammerjs",
           "mongoose"
         ]
@@ -32,6 +32,7 @@
       "./node_modules",
       "./scripts",
       "./server",
-      "./config"
+      "./config",
+      "./client/e2e"
     ]
 }

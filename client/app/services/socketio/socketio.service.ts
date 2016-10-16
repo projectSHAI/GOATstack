@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import * as io from 'socket.io-client';
-import * as SocketFactory from 'socket.io';
 
 import * as _ from 'lodash';
+import * as io from 'socket.io-client';
 
 // Make Models namespace for dynamic class initialization
 import * as Models from '../../models/models.namespace';
@@ -14,13 +13,7 @@ import * as Models from '../../models/models.namespace';
 export class SocketService {
   constructor() {
     // socket.io now auto-configures its connection when we ommit a connection url
-    let socket = io('', {
-      // Send auth token on connection, you will need to DI the Auth service above
-      // 'query': 'token=' + Auth.getToken()
-      path: '/socket.io'
-    });
-
-    // var socket = SocketFactory({ ioSocket });
+    let socket = io.connect({ path: '/socket.io' });
 
     return {
       socket,

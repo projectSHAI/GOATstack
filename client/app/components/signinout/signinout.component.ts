@@ -7,7 +7,7 @@ import { UserService }  from '../../services/user/user.service';
 import { User } from '../../models/models.namespace';
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'signinout',
   providers: [UserService],
   template: `

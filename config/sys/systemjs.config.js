@@ -14,8 +14,6 @@
     },
     // map tells the System loader where to look for things
     map: {
-      // our app is within the app folder
-      app: './',
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -29,36 +27,23 @@
       '@angular/material': 'npm:@angular/material/material.umd.js',
 
       // other libraries
-      'rxjs':                       'npm:rxjs',
-      'ng2-cookies':                'npm:ng2-cookies',
-      'socket.io':                  'npm:socket.io/socket.io.js',
-      'socket.io-client':           'npm:socket.io-client/socket.io.js',
-      'lodash':                     'npm:lodash/lodash.js',
-      'angular-in-memory-web-api':  'npm:angular-in-memory-web-api'
+      'rxjs': 'npm:rxjs',
+      'ng2-cookies': 'npm:ng2-cookies',
+      'socket.io-client': 'npm:socket.io-client/socket.io.js',
+      'lodash': 'npm:lodash/lodash.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
-      app: {
-        main: './main.js',
-        defaultExtension: 'js'
-      },
       rxjs: {
         defaultExtension: 'js'
       },
       'ng2-cookies': {
         defaultExtension: 'js'
       },
-      'socket.io': {
-        defaultExtension: 'js'
-      },
       'socket.io-client': {
         defaultExtension: 'js'
       },
       lodash: {
-        defaultExtension: 'js'
-      },
-      'angular-in-memory-web-api': {
-        main: 'server/server.js',
         defaultExtension: 'js'
       }
     }

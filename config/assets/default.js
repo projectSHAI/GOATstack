@@ -17,8 +17,7 @@ module.exports = {
         'dist/assets/*.svg',
       ],
       views: [
-        'dist/index.html',
-        'dist/components/**/*.html'
+        'dist/app/index.html'
       ]
     },
     scss: [

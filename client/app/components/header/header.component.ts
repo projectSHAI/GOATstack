@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'header-section',
   template: `
     <header>

@@ -16,7 +16,6 @@ let ts = require('gulp-typescript');
 let defaultAssets = require('./config/assets/default');
 let runSequence = require('run-sequence');
 let plugins = require('gulp-load-plugins')();
-let chalk = require('chalk');
 
 const clientPath = 'client/app';
 const serverPath = 'server/api';
@@ -46,17 +45,7 @@ export class Gulpfile {
 
   @Task()
   build_clean(done) {
-    var all = _.union(
-      defaultAssets.client.dist.js,
-      defaultAssets.client.dist.css,
-      defaultAssets.client.dist.views,
-      defaultAssets.client.dist.assets,
-      defaultAssets.server.allJS,
-      defaultAssets.server.tests.integration,
-      defaultAssets.server.tests.spec,
-    );
-
-    del(all);
+    del(['dist/**', '!dist']);
     done();
   }
 
@@ -82,29 +71,29 @@ export class Gulpfile {
   // Transpile client side TS files
   @Task()
   build_client(done) {
-    let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
-    let tsResult = gulp.src(`client/**/**/**/!(*.spec).ts`)
-      .pipe(tsProject());
+    let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'app.js' });
+    let tsResult = gulp.src(`client/**/**/!(*.spec).ts`)
+      .pipe(tsProject())
 
-    return tsResult.js.pipe(gulp.dest(path.resolve('./dist')));
+    return tsResult.js.pipe(gulp.dest('./dist/app'));
   }
   @Task()
   build_server() {
-    let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
+    let tsProject = ts.createProject('./tsconfig.json');
     let tsResult = gulp.src(`server/**/**/!(*.spec|*.integration).ts`)
       .pipe(tsProject());
 
-    return tsResult.js.pipe(gulp.dest(path.resolve('./dist')));
+    return tsResult.js.pipe(gulp.dest('./dist'));
   }
 
   // Transpile client test TS files
   @Task()
   client_test(done) {
-    let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
-    let tsResult = gulp.src(`client/**/**/**/*.spec.ts`)
+    let tsProject = ts.createProject('./tsconfig.json', { module: 'system' });
+    let tsResult = tsProject.src()
       .pipe(tsProject());
 
-    return tsResult.js.pipe(gulp.dest(path.resolve('./dist')));
+    return tsResult.js.pipe(gulp.dest('./dist/app'));
   }
   // Transpile server test TS files
   @Task()
@@ -113,7 +102,7 @@ export class Gulpfile {
     let tsResult = gulp.src(`server/**/**/*.{spec,integration}.ts`)
       .pipe(tsProject());
 
-    return tsResult.js.pipe(gulp.dest(path.resolve('./dist')));
+    return tsResult.js.pipe(gulp.dest('./dist'));
   }
 
   @SequenceTask()
@@ -127,21 +116,21 @@ export class Gulpfile {
 
   @SequenceTask()
   build_client_sequence() {
-    return ['build_sass', 'build_html', 'build_assets', 'build_client']
+    return ['build_sass', 'build_html', 'build_assets']
   }
 
   @SequenceTask()
   build_project() {
-    return ['build_client_sequence', 'build_server']
+    return ['build_client', 'build_client_sequence', 'build_server', 'compress_client']
   }
   @SequenceTask()
   build_project_test() {
-    return ['build_client_test', 'build_server_test']
+    return ['client_test', 'build_client_sequence', 'build_server_test']
   }
 
 
   buildFile(file: any) {
-    let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
+    let tsProject = ts.createProject('./tsconfig.json');
     let tsResult = gulp.src([file.path])
       .pipe(tsProject());
 
@@ -155,6 +144,49 @@ export class Gulpfile {
     fPath = fPath.substring(0, fPath.lastIndexOf('\\'));
 
     return tsResult.js.pipe(gulp.dest(path.resolve(fPath)));
+  }
+
+  @SequenceTask()
+  compress_client() {
+    return ['compress_js', 'compress_css'];
+  }
+
+  // Compress the app.js file
+  @Task()
+  compress_js() {
+    return gulp.src('dist/app/app.js')
+      .pipe(plugins.uglify({
+        compress: {
+          sequences: true,  // join consecutive statemets with the “comma operator”
+          properties: true,  // optimize property access: a["foo"] → a.foo
+          dead_code: true,  // discard unreachable code
+          drop_debugger: true,  // discard “debugger” statements
+          unsafe: false, // some unsafe optimizations (see below)
+          conditionals: true,  // optimize if-s and conditional expressions
+          comparisons: true,  // optimize comparisons
+          evaluate: true,  // evaluate constant expressions
+          booleans: true,  // optimize boolean expressions
+          loops: true,  // optimize loops
+          unused: true,  // drop unused variables/functions
+          hoist_funs: true,  // hoist function declarations
+          hoist_vars: false, // hoist variable declarations
+          if_return: true,  // optimize if-s followed by return/continue
+          join_vars: true,  // join var declarations
+          cascade: true,  // try to cascade `right` into `left` in sequences
+          side_effects: true,  // drop side-effect-free statements
+        }
+      }))
+      .pipe(gulp.dest('dist/app'));
+  }
+
+  // Compress css
+  @Task()
+  compress_css() {
+    return gulp.src('dist/app/styles.css')
+      .pipe(plugins.uglifycss({
+        "maxLineLen": 80
+      }))
+      .pipe(gulp.dest('dist/app'));
   }
 
   // Nodemon task
@@ -190,7 +222,7 @@ export class Gulpfile {
 
   @SequenceTask()
   test_client() {
-    return ['client_karma_test', 'clean_test'];
+    return ['client_karma_test'];
   }
   // Mocha integration
   @Task()
@@ -199,10 +231,6 @@ export class Gulpfile {
       configFile: __dirname + '/config/sys/karma.conf.js',
       singleRun: true
     }, done).start();
-  }
-  @Task()
-  clean_test(done) {
-    return del(['dist/**/**/*.{spec,integration}.js']);
   }
 
   // Downloads the selenium webdriver
@@ -235,13 +263,13 @@ export class Gulpfile {
     // Watch all server JS files
     gulp.watch(defaultAssets.server.allJS).on('change', plugins.livereload.changed);
     // Watch all TS files in client and compiles JS files in dist
-    gulp.watch(defaultAssets.client.ts).on('change', file => this.buildFile(file));
+    gulp.watch(defaultAssets.client.ts).on('change', file => runSequence('build_client', 'compress_js'));
     gulp.watch(defaultAssets.client.dist.js).on('change', plugins.livereload.changed);
     // Watch all scss files to build css is change
-    gulp.watch(defaultAssets.client.scss).on('change', file => runSequence('build:sass'));
+    gulp.watch(defaultAssets.client.scss).on('change', file => runSequence('build_sass', 'compress_css'));
     gulp.watch(defaultAssets.client.dist.css).on('change', plugins.livereload.changed);
     // Watch all html files to build them in dist
-    gulp.watch(defaultAssets.client.views).on('change', file => runSequence('build:html'));
+    gulp.watch(defaultAssets.client.views).on('change', file => runSequence('build_html'));
     gulp.watch(defaultAssets.client.dist.views).on('change', plugins.livereload.changed);
   }
 
