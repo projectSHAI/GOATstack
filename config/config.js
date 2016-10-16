@@ -3,7 +3,7 @@
 var _ = require('lodash'),
   chalk = require('chalk'),
   glob = require('glob'),
-  fs = require('fs'),
+  fs = require('graceful-fs'),
   path = require('path');
 
 /**

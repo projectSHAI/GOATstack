@@ -1,4 +1,4 @@
-let fs = require('fs');
+let fs = require('graceful-fs');
 let express = require('express');
 let mongoose = require('../config/lib/mongoose');
 let con = require('../config/config');
