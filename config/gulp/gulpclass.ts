@@ -10,11 +10,10 @@ let gulp = require('gulp');
 let sass = require('gulp-sass');
 let KarmaServer = require('karma').Server;
 let JasmineReporter = require('jasmine-spec-reporter');
-let protractor = require('gulp-protractor').protractor;
-let webdriver_update = require('gulp-protractor').webdriver_update;
 let ts = require('gulp-typescript');
 let runSequence = require('run-sequence');
 let plugins = require('gulp-load-plugins')();
+let shell = require('gulp-shell');
 
 let defaultAssets = eval(require("typescript")  // jshint ignore:line
   .transpile(fs
@@ -296,14 +295,8 @@ export class Gulpfile {
 
   @Task()
   protractor(done) {
-    runSequence('nodemon_test');
-
-    return gulp.src('../../' + defaultAssets.client.e2e)
-      .pipe(protractor({
-        configFile: 'config/sys/protractor.config.js',
-      })).on('end', () => {
-        done();
-      });
+    return gulp.src('')
+      .pipe(shell(['npm run e2e']));
   }
 
   // Watch Files For Changes
@@ -406,9 +399,8 @@ export class Gulpfile {
     return [
       'env_test',
       'build_clean',
-      'build_project_test',
+      'build_project',
       'protractor',
-      'exit'
     ];
   }
 }

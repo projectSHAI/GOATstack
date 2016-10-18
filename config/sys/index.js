@@ -42,7 +42,6 @@ System.config({
     lodash: 'npm:lodash/lodash.js'
   },
   packages: {
-    app: { defaultExtension: 'js' },
     lodash: { defaultExtension: 'js' }
   }
 });

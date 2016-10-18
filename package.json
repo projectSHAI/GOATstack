@@ -6,13 +6,13 @@
     "node": "6.8.1"
   },
   "scripts": {
-    "start": "node server/server",
+    "start": "node dist/index",
     "postinstall": "cd client && typings install",
     "typings": "typings",
     "test": "./node_modules/.bin/mocha --reporter spec",
     "karma": "karma start config/sys/karma.conf.js",
     "pree2e": "npm run webdriver:update",
-    "e2e": "concurrently \"node dist/server/server.js -s\" \"protractor config/sys/protractor.config.js\" --kill-others --success first",
+    "e2e": "concurrently \"node dist/index.js -s\" \"protractor config/sys/protractor.config.js\" --kill-others --success first",
     "webdriver:update": "webdriver-manager update"
   },
   "dependencies": {
@@ -88,8 +88,8 @@
     "gulp-livereload": "^3.8.1",
     "gulp-load-plugins": "^1.3.0",
     "gulp-nodemon": "^2.1.0",
-    "gulp-protractor": "^3.0.0",
     "gulp-sass": "^2.3.2",
+    "gulp-shell": "^0.5.2",
     "gulp-sourcemaps": "1.6.0",
     "gulp-tslint": "^6.1.1",
     "gulp-typescript": "^3.0.2",
