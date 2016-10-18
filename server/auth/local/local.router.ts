@@ -1,8 +1,8 @@
 let express = require('express');
 let passport = require('passport');
-let signToken = require('../auth.service').signToken;
-let isAuthenticated = require('../auth.service').isAuthenticated;
-let getMe = require('../../api/user/user.controller').me;
+
+import {signToken, isAuthenticated} from '../auth.service';
+import {me} from '../../api/user/user.controller';
 
 let router = express.Router();
 
@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
       return res.status(401).json(error);
     }
     if (!user) {
-      return res.status(404).json({message: 'Something went wrong, please try again.'});
+      return res.status(404).json({ message: 'Something went wrong, please try again.' });
     }
 
     let token = signToken(user._id, user.role);
@@ -22,6 +22,6 @@ router.post('/', function(req, res, next) {
     next();
 
   })(req, res, next);
-}, getMe);
+}, me);
 
-export = router;
+export {router as localRoutes};

@@ -1,14 +1,15 @@
 /**
  * Main application routes
  */
+import {wonderRoutes} from './api/wonder/wonder.router';
+import {userRoutes} from './api/user/user.router';
+import {authRoutes} from './auth/auth.router';
 
 let path = require('path');
 
-export = function(app) {
+export function routes(app) {
   // Insert routes below
-
-  app.use('/api/wonders', require('./api/wonder/wonder.router'));
-  app.use('/api/users', require('./api/user/user.router'));
-  app.use('/auth', require('./auth/auth.router'));
-
+  app.use('/api/wonders', wonderRoutes);
+  app.use('/api/users', userRoutes);
+  app.use('/auth', authRoutes);
 };

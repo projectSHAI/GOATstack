@@ -1,5 +1,5 @@
+import Wonder from './wonder.model';
 let _ = require('lodash');
-let Wonder = require('./wonder.model');
 
 let Coords = [
   {x: 10, y: 10}, {x: 15, y: 20}, {x: 20, y: 15}, {x: 25, y: 20}, {x: 20, y: 25}, {x: 30, y: 25}, {x: 25, y: 30},

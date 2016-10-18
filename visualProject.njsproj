@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{bb1eb641-63b1-4f28-92bf-654d92c8d44d}</ProjectGuid>
+        <ProjectHome />
+        <ProjectView>ShowAllFiles</ProjectView>
+        <StartupFile>gulpfile.js</StartupFile>
+        <WorkingDirectory>.</WorkingDirectory>
+        <OutputPath>.</OutputPath>
+        <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+        <TypeScriptSourceMap>true</TypeScriptSourceMap>
+        <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+        <EnableTypeScript>true</EnableTypeScript>
+        <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+    <ItemGroup>
+        <Content Include="package.json" />
+        <Content Include="tsconfig.json" />
+        <Content Include="tslint.json" />
+        <Content Include="README.md" />
+        <Compile Include="gulpfile.js" />
+        <Content Include="client\index.html" />
+        <TypeScriptCompile Include="config\config.ts" />
+        <Compile Include="dist\index.js" />
+        <Compile Include="dist\server.js" />
+        <TypeScriptCompile Include="server\routes.ts" />
+        <TypeScriptCompile Include="server\server.ts" />
+        <TypeScriptCompile Include="client\app\app.module.ts" />
+        <TypeScriptCompile Include="client\app\main.ts" />
+        <TypeScriptCompile Include="client\app\routes.ts" />
+        <Content Include="client\assets\dywlogo.png" />
+        <Content Include="client\assets\octocat.png" />
+        <Content Include="client\assets\banner.jpg" />
+        <Content Include="client\assets\banner2.jpg" />
+        <Content Include="client\assets\footer.jpg" />
+        <Content Include="client\assets\pedobear.jpg" />
+        <TypeScriptCompile Include="client\app\models\models.namespace.ts" />
+        <TypeScriptCompile Include="client\app\components\404\four0four.component.spec.ts" />
+        <TypeScriptCompile Include="client\app\components\404\four0four.component.ts" />
+        <TypeScriptCompile Include="client\app\components\app\app.component.spec.ts" />
+        <TypeScriptCompile Include="client\app\components\app\app.component.ts" />
+        <TypeScriptCompile Include="client\app\components\footer\footer.component.spec.ts" />
+        <TypeScriptCompile Include="client\app\components\footer\footer.component.ts" />
+        <TypeScriptCompile Include="client\app\components\header\header.component.spec.ts" />
+        <TypeScriptCompile Include="client\app\components\header\header.component.ts" />
+        <TypeScriptCompile Include="client\app\components\home\home.component.spec.ts" />
+        <TypeScriptCompile Include="client\app\components\home\home.component.ts" />
+        <TypeScriptCompile Include="client\app\components\navbar\navbar.component.spec.ts" />
+        <TypeScriptCompile Include="client\app\components\navbar\navbar.component.ts" />
+        <TypeScriptCompile Include="client\app\components\signinout\signinout.component.spec.ts" />
+        <TypeScriptCompile Include="client\app\components\signinout\signinout.component.ts" />
+        <TypeScriptCompile Include="client\app\components\sunandmoon\sunandmoon.component.spec.ts" />
+        <TypeScriptCompile Include="client\app\components\sunandmoon\sunandmoon.component.ts" />
+        <TypeScriptCompile Include="client\app\components\user-profile\user-profile.component.spec.ts" />
+        <TypeScriptCompile Include="client\app\components\user-profile\user-profile.component.ts" />
+        <TypeScriptCompile Include="client\app\models\universal\universal.model.ts" />
+        <TypeScriptCompile Include="client\app\models\user\user.model.ts" />
+        <TypeScriptCompile Include="client\app\models\wonder\wonder.model.ts" />
+        <TypeScriptCompile Include="client\app\services\auth\auth.service.ts" />
+        <TypeScriptCompile Include="client\app\services\clock\clock.service.ts" />
+        <TypeScriptCompile Include="client\app\services\socketio\socketio.service.ts" />
+        <TypeScriptCompile Include="client\app\services\user\user.service.ts" />
+        <TypeScriptCompile Include="client\app\services\wonder\wonder.service.ts" />
+        <Compile Include="client\e2e\home\home.e2e-spec.js" />
+        <TypeScriptCompile Include="config\assets\default.ts" />
+        <TypeScriptCompile Include="config\assets\development.ts" />
+        <TypeScriptCompile Include="config\assets\production.ts" />
+        <TypeScriptCompile Include="config\assets\test.ts" />
+        <TypeScriptCompile Include="config\env\default.ts" />
+        <TypeScriptCompile Include="config\env\development.ts" />
+        <TypeScriptCompile Include="config\env\production.ts" />
+        <TypeScriptCompile Include="config\env\test.ts" />
+        <Content Include="config\gulp\tsconfig.json" />
+        <TypeScriptCompile Include="config\gulp\gulpclass.ts" />
+        <TypeScriptCompile Include="config\lib\express.ts" />
+        <TypeScriptCompile Include="config\lib\mongoose.ts" />
+        <TypeScriptCompile Include="config\lib\seed.prod.ts" />
+        <TypeScriptCompile Include="config\lib\seed.ts" />
+        <TypeScriptCompile Include="config\lib\socketio.ts" />
+        <Compile Include="config\sys\karma-test-shim.js" />
+        <Compile Include="config\sys\karma.conf.js" />
+        <Compile Include="config\sys\protractor.config.js" />
+        <Compile Include="config\sys\systemjs.config.extras.js" />
+        <Compile Include="config\sys\systemjs.config.js" />
+        <Content Include="dist\app\index.html" />
+        <Content Include="dist\app\styles.css" />
+        <Compile Include="dist\app\app.js" />
+        <Compile Include="dist\api\wonder\wonder.model.js" />
+        <Content Include="dist\app\assets\dywlogo.png" />
+        <Content Include="dist\app\assets\octocat.png" />
+        <Content Include="dist\app\assets\banner.jpg" />
+        <Content Include="dist\app\assets\banner2.jpg" />
+        <Content Include="dist\app\assets\footer.jpg" />
+        <Content Include="dist\app\assets\pedobear.jpg" />
+        <TypeScriptCompile Include="server\auth\auth.router.ts" />
+        <TypeScriptCompile Include="server\auth\auth.service.ts" />
+        <TypeScriptCompile Include="server\api\user\user.controller.ts" />
+        <TypeScriptCompile Include="server\api\user\user.integration.ts" />
+        <TypeScriptCompile Include="server\api\user\user.model.ts" />
+        <TypeScriptCompile Include="server\api\user\user.router.ts" />
+        <TypeScriptCompile Include="server\api\user\user.spec.ts" />
+        <TypeScriptCompile Include="server\api\wonder\wonder.controller.ts" />
+        <TypeScriptCompile Include="server\api\wonder\wonder.events.ts" />
+        <TypeScriptCompile Include="server\api\wonder\wonder.integration.ts" />
+        <TypeScriptCompile Include="server\api\wonder\wonder.model.ts" />
+        <TypeScriptCompile Include="server\api\wonder\wonder.router.ts" />
+        <TypeScriptCompile Include="server\api\wonder\wonder.socket.ts" />
+        <TypeScriptCompile Include="server\api\wonder\wonder.spec.ts" />
+        <TypeScriptCompile Include="server\auth\local\local.passport.ts" />
+        <TypeScriptCompile Include="server\auth\local\local.router.ts" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="client" />
+        <Folder Include="client\app" />
+        <Folder Include="client\app\components" />
+        <Folder Include="client\app\components\404" />
+        <Folder Include="client\app\components\app" />
+        <Folder Include="client\app\components\footer" />
+        <Folder Include="client\app\components\header" />
+        <Folder Include="client\app\components\home" />
+        <Folder Include="client\app\components\navbar" />
+        <Folder Include="client\app\components\signinout" />
+        <Folder Include="client\app\components\sunandmoon" />
+        <Folder Include="client\app\components\user-profile" />
+        <Folder Include="client\app\models" />
+        <Folder Include="client\app\models\universal" />
+        <Folder Include="client\app\models\user" />
+        <Folder Include="client\app\models\wonder" />
+        <Folder Include="client\app\services" />
+        <Folder Include="client\app\services\auth" />
+        <Folder Include="client\app\services\clock" />
+        <Folder Include="client\app\services\socketio" />
+        <Folder Include="client\app\services\user" />
+        <Folder Include="client\app\services\wonder" />
+        <Folder Include="client\assets" />
+        <Folder Include="client\e2e" />
+        <Folder Include="client\e2e\home" />
+        <Folder Include="config" />
+        <Folder Include="config\assets" />
+        <Folder Include="config\env" />
+        <Folder Include="config\gulp" />
+        <Folder Include="config\lib" />
+        <Folder Include="config\sys" />
+        <Folder Include="dist" />
+        <Folder Include="dist\api" />
+        <Folder Include="dist\api\wonder" />
+        <Folder Include="dist\app" />
+        <Folder Include="dist\app\assets" />
+        <Folder Include="scripts" />
+        <Folder Include="server" />
+        <Folder Include="server\api" />
+        <Folder Include="server\api\user" />
+        <Folder Include="server\api\wonder" />
+        <Folder Include="server\auth" />
+        <Folder Include="server\auth\local" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+    <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+    <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+    <ProjectExtensions>
+        <VisualStudio>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+            <WebProjectProperties>
+              <UseIIS>False</UseIIS>
+              <AutoAssignPort>True</AutoAssignPort>
+              <DevelopmentServerPort>0</DevelopmentServerPort>
+              <DevelopmentServerVPath>/</DevelopmentServerVPath>
+              <IISUrl>http://localhost:48022/</IISUrl>
+              <NTLMAuthentication>False</NTLMAuthentication>
+              <UseCustomServer>True</UseCustomServer>
+              <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+              <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+            </WebProjectProperties>
+          </FlavorProperties>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+            <WebProjectProperties>
+              <StartPageUrl>
+              </StartPageUrl>
+              <StartAction>CurrentPage</StartAction>
+              <AspNetDebugging>True</AspNetDebugging>
+              <SilverlightDebugging>False</SilverlightDebugging>
+              <NativeDebugging>False</NativeDebugging>
+              <SQLDebugging>False</SQLDebugging>
+              <ExternalProgram>
+              </ExternalProgram>
+              <StartExternalURL>
+              </StartExternalURL>
+              <StartCmdLineArguments>
+              </StartCmdLineArguments>
+              <StartWorkingDirectory>
+              </StartWorkingDirectory>
+              <EnableENC>False</EnableENC>
+              <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+            </WebProjectProperties>
+          </FlavorProperties>
+        </VisualStudio>
+    </ProjectExtensions>
+</Project>

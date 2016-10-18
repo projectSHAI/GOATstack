@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = {
+export const devEnv = {
   db: {
     uri: 'mongodb://localhost/dreams-dev',
     options: {

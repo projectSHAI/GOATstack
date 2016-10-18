@@ -1,7 +1,7 @@
-import app = require('../../server');
+import app from '../../server';
 import request = require('supertest');
 
-let User = require('./user.model');
+import User from './user.model';
 
 let addr = app.get('address');
 

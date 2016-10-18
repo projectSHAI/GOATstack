@@ -1,9 +1,9 @@
 /**
  * Wonder model events
  */
+import Wonder from './wonder.model';
 
 let EventEmitter = require('events').EventEmitter;
-let Wonder = require('./wonder.model');
 let WonderEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
@@ -28,4 +28,4 @@ function emitEvent(event) {
   };
 }
 
-export = WonderEvents;
+export default WonderEvents;

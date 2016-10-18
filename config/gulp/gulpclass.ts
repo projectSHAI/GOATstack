@@ -13,9 +13,13 @@ let JasmineReporter = require('jasmine-spec-reporter');
 let protractor = require('gulp-protractor').protractor;
 let webdriver_update = require('gulp-protractor').webdriver_update;
 let ts = require('gulp-typescript');
-let defaultAssets = require('./config/assets/default');
 let runSequence = require('run-sequence');
 let plugins = require('gulp-load-plugins')();
+
+let defaultAssets = eval(require("typescript")  // jshint ignore:line
+  .transpile(fs
+    .readFileSync("./config/assets/default.ts")
+    .toString()));
 
 const clientPath = 'client/app';
 const serverPath = 'server/api';
@@ -45,7 +49,7 @@ export class Gulpfile {
 
   @Task()
   build_clean(done) {
-    del(['dist/**', '!dist']);
+    del(['dist/**', '!dist', '!dist/index.js']);
     done();
   }
 
@@ -79,8 +83,8 @@ export class Gulpfile {
   }
   @Task()
   build_server() {
-    let tsProject = ts.createProject('./tsconfig.json');
-    let tsResult = gulp.src(`server/**/**/!(*.spec|*.integration).ts`)
+    let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'server.js' });
+    let tsResult = tsProject.src() //`**/**/**/!(*.spec|*.integration).ts`
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./dist'));
@@ -193,7 +197,7 @@ export class Gulpfile {
   @Task()
   nodemon() {
     return plugins.nodemon({
-      script: 'dist/server.js',
+      script: 'dist/index.js',
       ext: 'js,html',
       watch: defaultAssets.server.allJS
     });

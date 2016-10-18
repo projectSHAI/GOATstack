@@ -1,9 +1,10 @@
 /**
  * Socket.io configuration
  */
-'use strict';
+import {config} from '../config';
+let con = config();
 
-var con = require('../config');
+import {wonderRegister} from '../../server/api/wonder/wonder.socket';
 
 // When the user disconnects.. perform this
 function onDisconnect(socket) {
@@ -17,14 +18,11 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
-  // require('../api/image/image.socket').register(socket);
-  // require('../api/collection/collection.socket').register(socket);
-  require('../../dist/api/wonder/wonder.socket').register(socket);
-  // require('../api/thing/thing.socket').register(socket);
+  wonderRegister(socket);
 
 }
 
-module.exports = function(socketio) {
+function init(socketio) {
   // socket.io (v1.x.x) is powered by debug.
   // In order to see all the debug output, set DEBUG (in server/config/local.env.js) to including the desired scope.
   //
@@ -61,3 +59,5 @@ module.exports = function(socketio) {
     socket.log('CONNECTED');
   });
 }
+
+export {init as socketInit};

@@ -1,20 +1,20 @@
-'use strict';
+import {routes} from '../../server/routes';
+import {config} from '../config';
+let con = config();
 
-var express = require('express'),
+import * as mongoose from 'mongoose';
+
+let express = require('express'),
   path = require("path"),
   bodyParser = require('body-parser'),
   passport = require('passport'),
-  mongoose = require('mongoose'),
   errorHandler = require('errorHandler'),
   methodOverride = require('method-override'),
   cookieParser = require('cookie-parser'),
   session = require('express-session'),
-  MongoStore = require('connect-mongo')(session),
-  con = require('../config');
+  MongoStore = require('connect-mongo')(session);
 
-mongoose.Promise = require('bluebird');
-
-module.exports.init = function (app) {
+function init(app) {
 
   //aditional app Initializations
   app.use(bodyParser.urlencoded({
@@ -37,7 +37,7 @@ module.exports.init = function (app) {
   }));
 
   //sets the routes for all the API queries
-  require('../../dist/routes')(app);
+  routes(app);
 
   //exposes the client and node_modules folders to the client for file serving when client queries "/"
   app.use('/node_modules', express.static('node_modules'));
@@ -53,9 +53,11 @@ module.exports.init = function (app) {
 
   //fire's a get function when any directory is queried (* is a wildcard) by the client, sends back the index.html as a response. Angular then does the proper routing on client side
   app.get('*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, '../../dist/app/index.html'));
+    res.sendFile(path.resolve(__dirname, '../dist/app/index.html'));
   });
 
   return app;
 
 };
+
+export {init as expressInit};

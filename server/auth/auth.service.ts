@@ -1,12 +1,14 @@
-import mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
+import User from '../api/user/user.model';
+// let mongoose = require('mongoose');
+// mongoose.Promise = require('bluebird');
+
+import {config} from '../../config/config';
+let con = config();
 
 let passport = require('passport');
-let con = require('../../config/config');
 let jwt = require('jsonwebtoken');
 let expressJwt = require('express-jwt');
 let compose = require('composable-middleware');
-let User = require('../api/user/user.model');
 
 let validateJwt = expressJwt({
   secret: con.config.sessionSecret
@@ -51,7 +53,7 @@ export function hasRole(roleRequired) {
   }
 
   return compose()
-    .use(exports.isAuthenticated())
+    .use(isAuthenticated())
     .use(function meetsRequirements(req, res, next) {
       if (con.config.userRoles.indexOf(req.user.role) >=
         con.config.userRoles.indexOf(roleRequired)) {
@@ -81,7 +83,7 @@ export function setTokenCookie(req, res) {
   if (!req.user) {
     return res.status(404).send('It looks like you aren\'t logged in, please try again.');
   }
-  let token = exports.signToken(req.user._id, req.user.role);
+  let token = signToken(req.user._id, req.user.role);
   res.cookie('token', token);
   res.redirect('/');
 }

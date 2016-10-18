@@ -1,20 +1,31 @@
-'use strict';
+import * as _ from 'lodash';
 
-var _ = require('lodash'),
-  chalk = require('chalk'),
+import {defaultAssets} from './assets/default';
+import {defaultConfig} from './env/default';
+
+import {devAssets} from './assets/development';
+import {prodAssets} from './assets/production';
+import {testAssets} from './assets/test';
+import {devEnv} from './env/development';
+import {prodEnv} from './env/production';
+import {testEnv} from './env/test';
+
+
+let  chalk = require('chalk'),
   glob = require('glob'),
   fs = require('graceful-fs'),
-  path = require('path');
+  path = require('path'),
+  System = require('systemjs');
 
 /**
  * Get files by glob patterns
  */
-var getGlobbedPaths = function (globPatterns, excludes) {
+function getGlobbedPaths(globPatterns, excludes?) {
   // URL paths regex
-  var urlRegex = new RegExp('^(?:[a-z]+:)?\/\/', 'i');
+  let urlRegex = new RegExp('^(?:[a-z]+:)?\/\/', 'i');
 
   // The output array
-  var output = [];
+  let output = [];
 
   // If glob pattern is array then we use each pattern in a recursive way, otherwise we use glob
   if (_.isArray(globPatterns)) {
@@ -25,11 +36,11 @@ var getGlobbedPaths = function (globPatterns, excludes) {
     if (urlRegex.test(globPatterns)) {
       output.push(globPatterns);
     } else {
-      var files = glob.sync(globPatterns);
+      let files = glob.sync(globPatterns);
       if (excludes) {
         files = files.map(function (file) {
           if (_.isArray(excludes)) {
-            for (var i in excludes) {
+            for (let i in excludes) {
               file = file.replace(excludes[i], '');
             }
           } else {
@@ -49,7 +60,7 @@ var getGlobbedPaths = function (globPatterns, excludes) {
 /**
  * Initialize global configuration files
  */
-var initGlobalConfigFiles = function (config, assets) {
+function initGlobalConfigFiles(config, assets) {
   // Appending files
   config.files = {
     server: {},
@@ -72,25 +83,29 @@ var initGlobalConfigFiles = function (config, assets) {
   config.files.client.css = getGlobbedPaths(assets.client.dist.css, 'client/').concat(getGlobbedPaths(assets.client.css, ['client/']));
 };
 
-var initGlobalConfig = function () {
+function init() {
 
-  // Get the default assets
-  var defaultAssets = require(path.join(process.cwd(), 'config/assets/default'));
+  let environmentAssets;
+  let environmentConfig;
 
-  // Get the current assets
-  var environmentAssets = require(path.join(process.cwd(), 'config/assets/', process.env.NODE_ENV)) || {};
+  if (process.env.NODE_ENV === 'development') {
+    environmentAssets = devAssets;
+    environmentConfig = devEnv;
+  }
+  else if (process.env.NODE_ENV === 'production') {
+    environmentAssets = prodAssets;
+    environmentConfig = prodEnv;
+  }
+  else {
+    environmentAssets = testAssets;
+    environmentConfig = testEnv;
+  }
 
   // Merge assets
-  var assets = _.merge(defaultAssets, environmentAssets);
-
-  // Get the default config
-  var defaultConfig = require(path.join(process.cwd(), 'config/env/default'));
-
-  // Get the current config
-  var environmentConfig = require(path.join(process.cwd(), 'config/env/', process.env.NODE_ENV)) || {};
+  let assets = _.merge(defaultAssets, environmentAssets);
 
   // Merge config files
-  var config = _.merge(defaultConfig, environmentConfig);
+  let config = _.merge(defaultConfig, environmentConfig);
 
   // Initialize global globbed files
   initGlobalConfigFiles(config, assets);
@@ -101,7 +116,4 @@ var initGlobalConfig = function () {
   };
 };
 
-/**
- * Set configuration object
- */
-module.exports = initGlobalConfig();
+export {init as config};

@@ -1,23 +1,34 @@
 let fs = require('graceful-fs');
 let express = require('express');
-let mongoose = require('../config/lib/mongoose');
-let con = require('../config/config');
 let http = require('http');
 let https = require('https');
 let path = require('path');
 let chalk = require('chalk');
 
+import {config} from '../config/config';
+let con = config();
+
+import {socketInit} from '../config/lib/socketio';
+import {expressInit} from '../config/lib/express';
+import {loadModels, connect, disconnect} from '../config/lib/mongoose';
+
+import {seed} from '../config/lib/seed';
+import {seedProd} from '../config/lib/seed.prod';
+
 // Initialize express
 let app = express();
 
 //seed db
-if (con.config.seedDB) { require(con.config.seedFile); }
+if (con.config.seedDB) {
+  if (process.env.NODE_ENV === 'production') { seedProd(); }
+  else { seed(); }
+}
 
 // Initialize models
-mongoose.loadModels();
+loadModels();
 
 let init = function init(callback) {
-  mongoose.connect(function (db) {
+  connect(function (db) {
     // Initialize http server
     let server = http.createServer(app);
 
@@ -38,9 +49,9 @@ let init = function init(callback) {
     });
 
     // Start configure the socketio
-    require('../config/lib/socketio')(socketio);
+    socketInit(socketio);
     // Initialize express features
-    require('../config/lib/express').init(app);
+    expressInit(app);
 
     return callback ? callback(app, db, con, server) : app;
 
@@ -81,4 +92,4 @@ init(function (app, db, con, server) {
 app.set('address', 'http://localhost:' + con.config.port);
 
 // export app for testing
-export = app;
+export default app;

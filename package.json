@@ -1,7 +1,7 @@
 {
   "name": "GOAT-stack",
   "version": "0.0.1",
-  "description": "A MEAN stack boilerplate",
+  "description": "A MEAN stack boilerplate using Angular 2",
   "engines": {
     "node": "6.8.1"
   },
@@ -48,7 +48,7 @@
     "lodash": "^4.16.1",
     "method-override": "^2.3.6",
     "mongodb": "^2.2.10",
-    "mongoose": "^4.6.1",
+    "mongoose": "^4.6.4",
     "ng2-cookies": "^1.0.2",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
@@ -75,6 +75,7 @@
     "@types/socket.io": "^1.4.27",
     "@types/socket.io-client": "^1.4.27",
     "@types/supertest": "^1.1.31",
+    "@types/systemjs": "^0.19.31",
     "canonical-path": "0.0.2",
     "codelyzer": "^1.0.0-beta.1",
     "concurrently": "^2.2.0",

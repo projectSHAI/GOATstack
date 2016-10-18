@@ -27,7 +27,7 @@ function localAuthenticate(User, email, password, done) {
     .catch(err => done(err));
 }
 
-export function setup(User, config) {
+function setup(User, config) {
   passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password' // this is the virtual field on the model
@@ -35,3 +35,5 @@ export function setup(User, config) {
     return localAuthenticate(User, email, password, done);
   }));
 }
+
+export {setup as localSetup};

@@ -1,5 +1,7 @@
-let User = require('./user.model');
-let con = require('../../../config/config');
+import User from './user.model';
+import {config} from '../../../config/config';
+let con = config();
+
 let jwt = require('jsonwebtoken');
 
 function validationError(res, statusCode = null) {

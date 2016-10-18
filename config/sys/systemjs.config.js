@@ -1,10 +1,6 @@
 /* jshint ignore:start */
 
 "use strict";
-/**
- * System configuration for Angular 2 samples
- * Adjust as necessary for your application needs.
- */
 
 (function (global) {
   System.config({
@@ -27,10 +23,10 @@
       '@angular/material': 'npm:@angular/material/material.umd.js',
 
       // other libraries
-      'rxjs': 'npm:rxjs',
+      rxjs: 'npm:rxjs',
       'ng2-cookies': 'npm:ng2-cookies',
-      'socket.io-client': 'npm:socket.io-client/socket.io.js',
-      'lodash': 'npm:lodash/lodash.js'
+      'socket.io-client': 'npm:socket.io-client',
+      lodash: 'npm:lodash'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -41,9 +37,11 @@
         defaultExtension: 'js'
       },
       'socket.io-client': {
+        main: 'socket.io.js',
         defaultExtension: 'js'
       },
       lodash: {
+        main: 'lodash.js',
         defaultExtension: 'js'
       }
     }

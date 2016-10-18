@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = {
+export const testEnv = {
 	port: process.env.PORT || 7001,
 	db: {
 		uri: 'mongodb://localhost/dreams-test',

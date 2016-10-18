@@ -8,7 +8,7 @@
  */
 
 let express = require('express');
-let auth = require('../../auth/auth.service');
+import * as auth from '../../auth/auth.service';
 import * as UserController from './user.controller';
 
 let router = express.Router();
@@ -21,4 +21,4 @@ router.post('/', UserController.create, UserController.me);
 router.get('/me', auth.isAuthenticated(), UserController.me);
 router.get('/:id', auth.isAuthenticated(), UserController.show);
 
-export = router;
+export {router as userRoutes};

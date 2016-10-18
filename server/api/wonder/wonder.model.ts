@@ -1,4 +1,4 @@
-import mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 
 interface IWonder extends mongoose.Document {
   created: Date;
@@ -26,4 +26,4 @@ let WonderSchema: mongoose.Schema = new mongoose.Schema({
   }
 });
 
-export = mongoose.model<IWonder>('Wonder', WonderSchema);
+export default mongoose.model<IWonder>('Wonder', WonderSchema, null, null);

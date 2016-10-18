@@ -1,6 +1,5 @@
-'use strict';
 
-module.exports = {
+export const defaultConfig = {
   app: {
     title: 'Discover Your Wonder',
     description: 'A social art app',

@@ -1,13 +1,16 @@
 let express = require('express');
 let passport = require('passport');
-let config = require('../../config/config');
-let User = require('../api/user/user.model');
+
+import {config} from '../../config/config';
+import User from '../api/user/user.model';
+import {localRoutes} from './local/local.router';
+import {localSetup} from './local/local.passport';
 
 // Passport configuration
-require('./local/local.passport').setup(User, config);
+localSetup(User, config());
 
 let router = express.Router();
 
-router.use('/local', require('./local/local.router'));
+router.use('/local', localRoutes);
 
-export = router;
+export {router as authRoutes};

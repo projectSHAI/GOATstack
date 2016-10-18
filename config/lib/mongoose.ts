@@ -1,13 +1,14 @@
-'use strict';
+import {config} from '../config';
+let con = config();
 
-var con = require('../config'),
-  	chalk = require('chalk'),
+import * as mongoose from 'mongoose';
+
+let chalk = require('chalk'),
   	path = require('path'),
-  	mongoose = require('mongoose'),
     db;
 
 // Load the mongoose models
-module.exports.loadModels = function (callback) {
+export function loadModels(callback?) {
   // Globbing model files
   con.config.files.server.models.forEach(function (modelPath) {
     require(path.resolve(modelPath));
@@ -17,8 +18,8 @@ module.exports.loadModels = function (callback) {
 };
 
 // Initialize Mongoose
-module.exports.connect = function (cb) {
-  var db = mongoose.connect(con.config.db.uri, con.config.db.options, function (err) {
+export function connect(cb?) {
+  let db = mongoose.connect(con.config.db.uri, con.config.db.options, function (err) {
     // Log Error
     if (err) {
       console.error(chalk.red('Could not connect to MongoDB!'));
@@ -34,7 +35,7 @@ module.exports.connect = function (cb) {
   });
 };
 
-module.exports.disconnect = function (cb) {
+export function disconnect(cb?) {
   mongoose.disconnect(function (err) {
     console.info(chalk.yellow('Disconnected from MongoDB.'));
     cb(err);

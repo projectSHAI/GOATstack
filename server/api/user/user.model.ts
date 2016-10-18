@@ -1,6 +1,6 @@
 let crypto = require('crypto');
-import mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
+import * as mongoose from 'mongoose';
+// let mongoose = require('mongoose');
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
@@ -17,6 +17,10 @@ interface IUser extends mongoose.Document {
   collections: [{
     _id: mongoose.Schema.Types.ObjectId
   }];
+
+  profile(): any;
+  token(): any;
+  authenticate(password: string, callback?): any;
 }
 
 let UserSchema: mongoose.Schema = new mongoose.Schema({
@@ -274,4 +278,4 @@ UserSchema.methods = {
   }
 };
 
-export = mongoose.model<IUser>('User', UserSchema);
+export default mongoose.model<IUser>('User', UserSchema);

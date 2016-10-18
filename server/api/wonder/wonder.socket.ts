@@ -2,12 +2,12 @@
  * Broadcast updates to client when the model changes
  */
 
-let WonderEvents = require('./wonder.events');
+import WonderEvents from './wonder.events';
 
 // Model events to emit
 let events = ['save', 'remove'];
 
-export function register(socket) {
+function register(socket) {
   // Bind model events to socket events
   for (let i = 0, eventsLength = events.length; i < eventsLength; i++) {
     let event = events[i];
@@ -30,3 +30,5 @@ function removeListener(event, listener) {
     WonderEvents.removeListener(event, listener);
   };
 }
+
+export {register as wonderRegister};

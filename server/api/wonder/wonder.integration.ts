@@ -1,6 +1,6 @@
 /*jshint loopfunc: true */
 
-import app = require('../../server');
+import app from '../../server';
 import request = require('supertest');
 
 let addr = app.get('address');

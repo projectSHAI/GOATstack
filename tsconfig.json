@@ -16,14 +16,14 @@
         "types": [
           "core-js",
           "node",
+          "systemjs",
           "socket.io",
           "socket.io-client",
           "lodash",
           "jasmine",
           "supertest",
           "proxyquire",
-          "hammerjs",
-          "mongoose"
+          "hammerjs"
         ]
     },
     "compileOnSave": false,
@@ -31,8 +31,7 @@
       "./dist",
       "./node_modules",
       "./scripts",
-      "./server",
-      "./config",
-      "./client/e2e"
+      "./config/gulp",
+      "./client"
     ]
 }
