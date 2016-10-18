@@ -70,8 +70,8 @@ export const defaultAssets = {
     routes: 'dist/api/**/*.router.js',
     sockets: 'dist/api/**/*.socket.js',
     tests: {
-      integration: 'dist/api/**/*.integration.js',
-      unit: 'dist/api/**/*.spec.js'
+      integration: 'dist/server/api/**/*.integration.js',
+      unit: 'dist/server/api/**/*.spec.js'
     }
   },
   config: {

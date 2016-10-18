@@ -31,7 +31,7 @@ let wonderIndex = pq('./wonder.router.js', {
 describe('Wonder API Router:', function() {
 
   it('should return an express router instance', function() {
-    expect(wonderIndex).toEqual(wonderRouterStub);
+    expect(wonderIndex.wonderRoutes).toEqual(wonderRouterStub);
   });
 
   describe('GET /api/wonders', function() {

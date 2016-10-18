@@ -32,3 +32,4 @@ client/typings
 config/sys/_test-output
 
 visualProject.njsproj
+.vs

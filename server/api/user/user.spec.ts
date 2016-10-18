@@ -41,7 +41,7 @@ let userIndex = pq('./user.router.js', {
 describe('User API Router:', function() {
 
   it('should return an express router instance', function() {
-    expect(userIndex).toEqual(routerStub);
+    expect(userIndex.userRoutes).toEqual(routerStub);
   });
 
   describe('GET /api/users', function() {

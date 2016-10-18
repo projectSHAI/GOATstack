@@ -49,7 +49,7 @@ export class Gulpfile {
 
   @Task()
   build_clean(done) {
-    del(['dist/**', '!dist', '!dist/index.js']);
+    del(['dist/**', '!dist']);
     done();
   }
 
@@ -71,6 +71,16 @@ export class Gulpfile {
   build_assets(done) {
     return gulp.src(defaultAssets.client.assets)
       .pipe(gulp.dest('./dist/app/assets'));
+  }
+  @Task()
+  build_systemConf() {
+    return gulp.src('config/sys/systemjs.config.js')
+      .pipe(gulp.dest('./dist/app'));
+  }
+  @Task()
+  build_index(done) {
+    return gulp.src('config/sys/index.js')
+      .pipe(gulp.dest('./dist'));
   }
   // Transpile client side TS files
   @Task()
@@ -94,16 +104,16 @@ export class Gulpfile {
   @Task()
   client_test(done) {
     let tsProject = ts.createProject('./tsconfig.json', { module: 'system' });
-    let tsResult = tsProject.src()
+    let tsResult = gulp.src(`client/**/**/*.ts`)
       .pipe(tsProject());
 
-    return tsResult.js.pipe(gulp.dest('./dist/app'));
+    return tsResult.js.pipe(gulp.dest('./dist'));
   }
   // Transpile server test TS files
   @Task()
   server_test(done) {
-    let tsProject = ts.createProject(path.resolve('./tsconfig.json'));
-    let tsResult = gulp.src(`server/**/**/*.{spec,integration}.ts`)
+    let tsProject = ts.createProject('./tsconfig.json');
+    let tsResult = tsProject.src() //`server/**/**/*.ts`
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./dist'));
@@ -115,17 +125,24 @@ export class Gulpfile {
   }
   @SequenceTask()
   build_server_test() {
-    return ['server_test', 'build_server']
+    return ['server_test']
   }
 
   @SequenceTask()
   build_client_sequence() {
-    return ['build_sass', 'build_html', 'build_assets']
+    return ['build_sass', 'build_html', 'build_assets', 'build_systemConf']
   }
 
   @SequenceTask()
   build_project() {
-    return ['build_client', 'build_client_sequence', 'build_server', 'compress_client']
+    return [
+      'build_client',
+      'build_client_sequence',
+      'build_index',
+      'build_server',
+      'compress_client',
+      'compress_backend'
+    ]
   }
   @SequenceTask()
   build_project_test() {
@@ -153,6 +170,10 @@ export class Gulpfile {
   @SequenceTask()
   compress_client() {
     return ['compress_js', 'compress_css'];
+  }
+  @SequenceTask()
+  compress_backend() {
+    return ['compress_server'];
   }
 
   // Compress the app.js file
@@ -193,11 +214,47 @@ export class Gulpfile {
       .pipe(gulp.dest('dist/app'));
   }
 
+  @Task()
+  compress_server() {
+    return gulp.src('dist/server.js')
+      .pipe(plugins.uglify({
+        compress: {
+          sequences: true,  // join consecutive statemets with the “comma operator”
+          properties: true,  // optimize property access: a["foo"] → a.foo
+          dead_code: true,  // discard unreachable code
+          drop_debugger: true,  // discard “debugger” statements
+          unsafe: false, // some unsafe optimizations (see below)
+          conditionals: true,  // optimize if-s and conditional expressions
+          comparisons: true,  // optimize comparisons
+          evaluate: true,  // evaluate constant expressions
+          booleans: true,  // optimize boolean expressions
+          loops: true,  // optimize loops
+          unused: true,  // drop unused variables/functions
+          hoist_funs: true,  // hoist function declarations
+          hoist_vars: false, // hoist variable declarations
+          if_return: true,  // optimize if-s followed by return/continue
+          join_vars: true,  // join var declarations
+          cascade: true,  // try to cascade `right` into `left` in sequences
+          side_effects: true,  // drop side-effect-free statements
+        }
+      }))
+      .pipe(gulp.dest('dist'));
+  }
+
   // Nodemon task
   @Task()
   nodemon() {
     return plugins.nodemon({
       script: 'dist/index.js',
+      ext: 'js,html',
+      watch: defaultAssets.server.allJS
+    });
+  }
+  // Nodemon test task
+  @Task()
+  nodemon_test() {
+    return plugins.nodemon({
+      script: 'dist/server/server.js',
       ext: 'js,html',
       watch: defaultAssets.server.allJS
     });
@@ -239,7 +296,7 @@ export class Gulpfile {
 
   @Task()
   protractor(done) {
-    runSequence('nodemon', webdriver_update);
+    runSequence('nodemon_test');
 
     return gulp.src('../../' + defaultAssets.client.e2e)
       .pipe(protractor({
@@ -255,7 +312,7 @@ export class Gulpfile {
     // Start livereload
     plugins.livereload.listen();
     // Watch all server TS files to build JS
-    gulp.watch(defaultAssets.server.allTS).on('change', file => this.buildFile(file));
+    gulp.watch(defaultAssets.server.allTS).on('change', file => runSequence('build_server', 'compress_backend'));
     // Watch all server JS files
     gulp.watch(defaultAssets.server.allJS).on('change', plugins.livereload.changed);
     // Watch all TS files in client and compiles JS files in dist
@@ -348,6 +405,8 @@ export class Gulpfile {
   test_e2e() {
     return [
       'env_test',
+      'build_clean',
+      'build_project_test',
       'protractor',
       'exit'
     ];
