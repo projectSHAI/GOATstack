@@ -30,3 +30,5 @@ client/typings
 
 # e2e test output
 config/sys/_test-output
+
+visualProject.njsproj
