@@ -14,8 +14,13 @@ let ts = require('gulp-typescript');
 let runSequence = require('run-sequence');
 let plugins = require('gulp-load-plugins')();
 let shell = require('gulp-shell');
+let imagemin = require('imagemin');
+let imageminJPEGOptim = require('imagemin-jpegoptim');
+let imageminOptiPNG = require('imagemin-optipng');
+let imageminSVGO = require('imagemin-svgo');
 
-let defaultAssets = eval(require("typescript")  // jshint ignore:line
+// tslint:disable-next-line
+let defaultAssets = eval(require("typescript")
   .transpile(fs
     .readFileSync("./config/assets/default.ts")
     .toString()));
@@ -68,8 +73,13 @@ export class Gulpfile {
   }
   @Task()
   build_assets(done) {
-    return gulp.src(defaultAssets.client.assets)
-      .pipe(gulp.dest('./dist/app/assets'));
+    return imagemin(defaultAssets.client.assets, 'dist/app/assets', {
+      plugins: [
+        imageminJPEGOptim(),
+        imageminOptiPNG(),
+        imageminSVGO()
+      ]
+    });
   }
   @Task()
   build_systemConf() {
@@ -86,7 +96,7 @@ export class Gulpfile {
   build_client(done) {
     let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'app.js' });
     let tsResult = gulp.src(`client/**/**/!(*.spec).ts`)
-      .pipe(tsProject())
+      .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./dist/app'));
   }
@@ -124,12 +134,12 @@ export class Gulpfile {
   }
   @SequenceTask()
   build_server_test() {
-    return ['server_test']
+    return ['server_test'];
   }
 
   @SequenceTask()
   build_client_sequence() {
-    return ['build_sass', 'build_html', 'build_assets', 'build_systemConf']
+    return ['build_sass', 'build_html', 'build_assets', 'build_systemConf'];
   }
 
   @SequenceTask()
@@ -141,11 +151,11 @@ export class Gulpfile {
       'build_server',
       'compress_client',
       'compress_backend'
-    ]
+    ];
   }
   @SequenceTask()
   build_project_test() {
-    return ['client_test', 'build_client_sequence', 'build_server_test']
+    return ['client_test', 'build_client_sequence', 'build_server_test'];
   }
 
 
@@ -302,10 +312,15 @@ export class Gulpfile {
   // Watch Files For Changes
   @Task()
   watch() {
+    let serverts = _.union(
+      defaultAssets.server.allTS,
+      defaultAssets.config.allTS
+    );
+
     // Start livereload
     plugins.livereload.listen();
     // Watch all server TS files to build JS
-    gulp.watch(defaultAssets.server.allTS).on('change', file => runSequence('build_server', 'compress_backend'));
+    gulp.watch(serverts).on('change', file => runSequence('build_server', 'compress_backend'));
     // Watch all server JS files
     gulp.watch(defaultAssets.server.allJS).on('change', plugins.livereload.changed);
     // Watch all TS files in client and compiles JS files in dist
@@ -327,18 +342,19 @@ export class Gulpfile {
       .pipe(plugins.csslint.formatter());
   }
   // JS linting task
-  @Task()
-  jshint(done) {
-    return gulp.src(defaultAssets.config.allJS)
-      .pipe(plugins.jshint())
-      .pipe(plugins.jshint.reporter('default'));
-  }
+  // @Task()
+  // jshint(done) {
+  //   return gulp.src(defaultAssets.config.allJS)
+  //     .pipe(plugins.jshint())
+  //     .pipe(plugins.jshint.reporter('default'));
+  // }
 
   @Task()
   tslint(done) {
     let assets = _.union(
       defaultAssets.client.ts,
-      defaultAssets.server.allTS
+      defaultAssets.server.allTS,
+      defaultAssets.config.allTS
     );
 
     return gulp.src(assets)
@@ -351,7 +367,7 @@ export class Gulpfile {
   // Lint CSS and JavaScript files.
   @SequenceTask()
   lint() {
-    return ['csslint', 'jshint', 'tslint'];
+    return ['csslint', 'tslint'];
   }
 
   @Task()

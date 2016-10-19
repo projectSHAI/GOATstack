@@ -37,7 +37,7 @@ export function connect(cb?) {
 
 export function disconnect(cb?) {
   mongoose.disconnect(function (err) {
-    console.info(chalk.yellow('Disconnected from MongoDB.'));
+    console.log(chalk.yellow('Disconnected from MongoDB.'));
     cb(err);
   });
 };

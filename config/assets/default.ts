@@ -10,9 +10,7 @@ export const defaultAssets = {
         'dist/components/**/*.css'
       ],
       assets: [
-        'dist/assets/*.jpg',
-        'dist/assets/*.png',
-        'dist/assets/*.svg',
+        `dist/assets/*.{jpg,png,svg}`
       ],
       views: [
         'dist/app/index.html'
@@ -31,9 +29,7 @@ export const defaultAssets = {
       'client/app/**/**/*.ts',
     ],
     assets: [
-      'client/assets/*.jpg',
-      'client/assets/*.png',
-      'client/assets/*.svg',
+      `client/assets/*.{jpg,png,svg}`
     ],
     views: [
       'client/index.html',
@@ -50,21 +46,13 @@ export const defaultAssets = {
     gulpConfig: ['gulpfile.js'],
 		allTS: [
 			'server/*.ts',
-      'server/api/**/*.controller.ts',
-      'server/api/**/*.events.ts',
-      'server/api/**/*.model.ts',
-      'server/api/**/*.router.ts',
-      'server/auth/*.ts',
-      'server/auth/**/*.ts'
+      `server/api/**/*.{controller,events,model,router}.ts`,
+      `server/auth/{*.ts,**/*.ts}`
     ],
     allJS: [
       'dist/*.js',
-      'dist/api/**/*.controller.js',
-      'dist/api/**/*.events.js',
-      'dist/api/**/*.model.js',
-      'dist/api/**/*.router.js',
-      'dist/auth/*.js',
-      'dist/auth/**/*.js'
+      `dist/api/**/*.{controller,events,model,router}.js`,
+      `dist/auth/{*.js,**/*.js}`
     ],
     models: 'dist/api/**/*.model.js',
     routes: 'dist/api/**/*.router.js',
@@ -75,8 +63,8 @@ export const defaultAssets = {
     }
   },
   config: {
-    allJS: [
-      'config/**/*.js',
+    allTS: [
+      'config/**/*.ts',
     ]
   }
 };

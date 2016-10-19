@@ -1,6 +1,4 @@
 import User from '../api/user/user.model';
-// let mongoose = require('mongoose');
-// mongoose.Promise = require('bluebird');
 
 import {config} from '../../config/config';
 let con = config();

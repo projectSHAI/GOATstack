@@ -23,7 +23,8 @@
           "jasmine",
           "supertest",
           "proxyquire",
-          "hammerjs"
+          "hammerjs",
+          "mongoose"
         ]
     },
     "compileOnSave": false,
