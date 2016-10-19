@@ -33,3 +33,5 @@ config/sys/_test-output
 
 visualProject.njsproj
 .vs
+
+debug.log
