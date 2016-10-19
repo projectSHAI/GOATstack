@@ -1,6 +1,5 @@
 let crypto = require('crypto');
-import * as mongoose from 'mongoose';
-// let mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 

@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 interface IWonder extends mongoose.Document {
   created: Date;

@@ -2,7 +2,7 @@ import {routes} from '../../server/routes';
 import {config} from '../config';
 let con = config();
 
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 let express = require('express'),
   path = require("path"),
