@@ -91,6 +91,11 @@ export class Gulpfile {
       ]
     });
   }
+  deleteAsset(file) {
+    let loc = file.path.replace('client', 'dist\\app');
+    del(loc);
+    console.log('DELETION OF ' + loc);
+  }
   @Task()
   build_systemConf() {
     return gulp.src('config/sys/systemjs.config.js')
@@ -342,7 +347,8 @@ export class Gulpfile {
     watch(defaultAssets.client.views, file => runSequence('build_html'));
     watch(defaultAssets.client.dist.views, plugins.livereload.changed);
     // Watch all client assets to compress in dist
-    watch(defaultAssets.client.assets, file => this.compressAsset(file));
+    watch(defaultAssets.client.assets, { events: ['add'] },  file => this.compressAsset(file));
+    watch(defaultAssets.client.assets, { events: ['unlink'] },  file => this.deleteAsset(file));
     watch(defaultAssets.client.dist.assets, plugins.livereload.changed);
   }
 
