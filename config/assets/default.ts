@@ -2,8 +2,7 @@ export const defaultAssets = {
   client: {
     dist: {
       js: [
-        'dist/app/*.js*',
-        'dist/app/**/*.js*'
+        `dist/app/{*.js,**/*.js}`
       ],
       css: [
         'dist/styles.css',
@@ -24,9 +23,7 @@ export const defaultAssets = {
       'client/app/components/**/*.css'
     ],
     ts: [
-      'client/app/*.ts',
-      'client/app/**/*.ts',
-      'client/app/**/**/*.ts',
+      `client/app/{*.ts,**/*.ts,**/**/*.ts}`
     ],
     assets: [
       `client/assets/*.{jpg,png,svg}`
@@ -44,8 +41,8 @@ export const defaultAssets = {
   },
   server: {
     gulpConfig: ['gulpfile.js'],
-		allTS: [
-			'server/*.ts',
+    allTS: [
+      'server/*.ts',
       `server/api/**/*.{controller,events,model,router}.ts`,
       `server/auth/{*.ts,**/*.ts}`
     ],
