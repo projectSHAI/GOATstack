@@ -1,6 +1,6 @@
 'use strict';
 
-eval(require("typescript")  // jshint ignore:line
+eval(require("typescript")
   .transpile(require("fs")
   .readFileSync("./config/gulp/gulpclass.ts")
   .toString()));
