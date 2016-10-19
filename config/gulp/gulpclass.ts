@@ -2,6 +2,7 @@
 
 import {Gulpclass, Task, SequenceTask} from "gulpclass/Decorators";
 
+
 let fs = require('graceful-fs');
 let _ = require('lodash');
 let del = require('del');
