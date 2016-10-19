@@ -2,14 +2,17 @@ export const defaultAssets = {
   client: {
     dist: {
       js: [
-        `dist/app/{*.js,**/*.js}`
+        'dist/app/*.js',
+        'dist/app/**/*.js'
       ],
       css: [
         'dist/styles.css',
         'dist/components/**/*.css'
       ],
       assets: [
-        `dist/assets/*.{jpg,png,svg}`
+        'dist/app/assets/*jpg',
+        'dist/app/assets/*.png',
+        'dist/app/assets/*.svg'
       ],
       views: [
         'dist/app/index.html'
@@ -23,10 +26,14 @@ export const defaultAssets = {
       'client/app/components/**/*.css'
     ],
     ts: [
-      `client/app/{*.ts,**/*.ts,**/**/*.ts}`
+      'client/app/*.ts',
+      'client/app/**/*.ts',
+      'client/app/**/**/*.ts'
     ],
     assets: [
-      `client/assets/*.{jpg,png,svg}`
+      'client/assets/*jpg',
+      'client/assets/*.png',
+      'client/assets/*.svg'
     ],
     views: [
       'client/index.html',
@@ -43,13 +50,21 @@ export const defaultAssets = {
     gulpConfig: ['gulpfile.js'],
     allTS: [
       'server/*.ts',
-      `server/api/**/*.{controller,events,model,router}.ts`,
-      `server/auth/{*.ts,**/*.ts}`
+      'server/api/**/*.controller.ts',
+      'server/api/**/*.events.ts',
+      'server/api/**/*.model.ts',
+      'server/api/**/*.router.ts',
+      'server/auth/*.ts',
+      'server/auth/**/*.ts'
     ],
     allJS: [
       'dist/*.js',
-      `dist/api/**/*.{controller,events,model,router}.js`,
-      `dist/auth/{*.js,**/*.js}`
+      'dist/api/**/*.controller.ts',
+      'dist/api/**/*.events.ts',
+      'dist/api/**/*.model.ts',
+      'dist/api/**/*.router.ts',
+      'dist/auth/*.ts',
+      'dist/auth/**/*.ts'
     ],
     models: 'dist/api/**/*.model.js',
     routes: 'dist/api/**/*.router.js',

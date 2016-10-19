@@ -8,6 +8,7 @@ let del = require('del');
 let path = require('path');
 let gulp = require('gulp');
 let sass = require('gulp-sass');
+let watch = require('gulp-watch');
 let KarmaServer = require('karma').Server;
 let JasmineReporter = require('jasmine-spec-reporter');
 let ts = require('gulp-typescript');
@@ -74,6 +75,15 @@ export class Gulpfile {
   @Task()
   build_assets(done) {
     return imagemin(defaultAssets.client.assets, 'dist/app/assets', {
+      plugins: [
+        imageminJPEGOptim(),
+        imageminOptiPNG(),
+        imageminSVGO()
+      ]
+    });
+  }
+  compressAsset(file) {
+    return imagemin([file.path], 'dist/app/assets', {
       plugins: [
         imageminJPEGOptim(),
         imageminOptiPNG(),
@@ -320,18 +330,20 @@ export class Gulpfile {
     // Start livereload
     plugins.livereload.listen();
     // Watch all server TS files to build JS
-    gulp.watch(serverts).on('change', file => runSequence('build_server', 'compress_backend'));
-    // Watch all server JS files
-    gulp.watch(defaultAssets.server.allJS).on('change', plugins.livereload.changed);
+    watch(serverts, file => runSequence('build_server', 'compress_backend'));
+    watch(defaultAssets.server.allJS, plugins.livereload.changed);
     // Watch all TS files in client and compiles JS files in dist
-    gulp.watch(defaultAssets.client.ts).on('change', file => runSequence('build_client', 'compress_js'));
-    gulp.watch(defaultAssets.client.dist.js).on('change', plugins.livereload.changed);
+    watch(defaultAssets.client.ts, file => runSequence('build_client', 'compress_js'));
+    watch(defaultAssets.client.dist.js, plugins.livereload.changed);
     // Watch all scss files to build css is change
-    gulp.watch(defaultAssets.client.scss).on('change', file => runSequence('build_sass', 'compress_css'));
-    gulp.watch(defaultAssets.client.dist.css).on('change', plugins.livereload.changed);
+    watch(defaultAssets.client.scss, file => runSequence('build_sass', 'compress_css'));
+    watch(defaultAssets.client.dist.css, plugins.livereload.changed);
     // Watch all html files to build them in dist
-    gulp.watch(defaultAssets.client.views).on('change', file => runSequence('build_html'));
-    gulp.watch(defaultAssets.client.dist.views).on('change', plugins.livereload.changed);
+    watch(defaultAssets.client.views, file => runSequence('build_html'));
+    watch(defaultAssets.client.dist.views, plugins.livereload.changed);
+    // Watch all client assets to compress in dist
+    watch(defaultAssets.client.assets, file => this.compressAsset(file));
+    watch(defaultAssets.client.dist.assets, plugins.livereload.changed);
   }
 
   // CSS linting task
@@ -383,7 +395,7 @@ export class Gulpfile {
       'env_dev',
       'build_clean',
       'build_project',
-      'lint', ['nodemon', 'watch']
+      'lint', ['nodemon','watch']
     ];
   }
   // Run the project in production mode
@@ -393,7 +405,7 @@ export class Gulpfile {
       'env_prod',
       'build_clean',
       'build_project',
-      'lint', ['nodemon', 'watch']
+      'lint', ['nodemon','watch']
     ];
   }
   // Run the project in test mode
