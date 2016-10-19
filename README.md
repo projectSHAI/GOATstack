@@ -1,7 +1,6 @@
-# This Stack is Currently in Beta
+# Greatest Of All Time Stack (beta)
 
 # [![MongoDB Logo](http://www.mfactorengineering.com/img/mongo_logo_square.png)](https://www.mongodb.com/)[![ExpressJS Logo](http://nodejs-cloud.com/img/128px/expressjs.png)](http://expressjs.com/)[![Angular2 Logo](http://www.opinya.co.il/assets/angularjs-logo-36eaa6e1dedf111b67ced19c73d21851.png)](https://angular.io/)[![NodeJS Logo](http://www.alex-arriaga.com/wp-content/uploads/2015/10/nodejs-logo.png)](https://nodejs.org/en/)
-# Greatest Of All Time Stack 
 
 #### Main Technologies
 [MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), MEA2N has been built to give you an organized and efficient way to start developing secure MEAN web apps.
