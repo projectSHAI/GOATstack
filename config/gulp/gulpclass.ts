@@ -354,10 +354,7 @@ export class Gulpfile {
     // Watch if system.config files are changed
     watch(defaultAssets.client.system, file => runSequence('build_systemConf'));
     watch(defaultAssets.server.system, file => runSequence('build_index'));
-    watch([
-      'dist/index.js',
-      'dist/app/systemjs.config.js'
-    ], plugins.livereload.changed);
+    watch(['dist/index.js', 'dist/app/systemjs.config.js'], plugins.livereload.changed);
   }
 
   // CSS linting task
