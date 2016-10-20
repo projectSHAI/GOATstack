@@ -5,11 +5,17 @@ import { SocketService } from '../../services/socketio/socketio.service';
 
 import { Wonder } from '../../models/models.namespace';
 
+//give javascript variables from custom js libraries a type so the
+//typescript compiler does not throw an error TS2304: Cannot find name 'var'.
+declare let TweenMax: any;
+declare let TimelineMax: any;
+
 @Component({
   // moduleId: module.id,
   selector: 'home-section',
   providers: [WonderService, SocketService],
   template: `
+    <img id="hello" src="assets/kiwi.svg">
     <sun-and-moon></sun-and-moon>
     <li *ngFor="let wonder of wonders" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
       <p>{{wonder.name}}</p>
@@ -56,6 +62,14 @@ export class HomeComponent implements OnInit {
         this.wonders = wonders;
         this.socket.syncUpdates('Wonder', this.wonders);
       });
+
+      let kiwi = document.getElementById('hello')
+
+
+      let tl = new TimelineMax();
+
+  tl.to(kiwi, 1, {x: 50}).to(kiwi, 1, {y: 50}).to(kiwi, 1, {opacity: 0.5});
+
   }
 
   ngOnDestroy() {

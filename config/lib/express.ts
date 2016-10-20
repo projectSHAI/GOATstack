@@ -41,10 +41,12 @@ function init(app) {
 
   //exposes the client and node_modules folders to the client for file serving when client queries "/"
   app.use('/node_modules', express.static('node_modules'));
+  app.use('/custom_modules', express.static('custom_modules'));
   app.use(express.static('dist/app'));
 
   //exposes the client and node_modules folders to the client for file serving when client queries anything, * is a wildcard
   app.use('*', express.static('node_modules'));
+  app.use('*', express.static('custom_modules'));
   app.use('*', express.static('dist/app'));
 
   // app.use(errorHandler());

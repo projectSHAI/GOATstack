@@ -33,6 +33,9 @@ import { Cookie }               from 'ng2-cookies/ng2-cookies';
 import { MaterialModule }       from '@angular/material';
 import { HttpIntercept }        from './services/auth/auth.service';
 
+//declare all custom non npm libraries here
+import 'gsap';
+
 //decorator which packages all resources for the app
 @NgModule({
   //imports: this object imports helper modules which are children in the module tree
