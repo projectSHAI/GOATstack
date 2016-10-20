@@ -113,15 +113,15 @@ export class Gulpfile {
     let tsResult = gulp.src(`client/**/**/!(*.spec).ts`)
       .pipe(tsProject());
 
-    return tsResult.js.pipe(gulp.dest('./dist/app'));
+    return tsResult.js.pipe(gulp.dest('./tmp'));
   }
   @Task()
   build_server() {
     let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'server.js' });
-    let tsResult = tsProject.src() //`**/**/**/!(*.spec|*.integration).ts`
+    let tsResult = tsProject.src()
       .pipe(tsProject());
 
-    return tsResult.js.pipe(gulp.dest('./dist'));
+    return tsResult.js.pipe(gulp.dest('./tmp'));
   }
 
   // Transpile client test TS files
@@ -165,7 +165,8 @@ export class Gulpfile {
       'build_index',
       'build_server',
       'compress_client',
-      'compress_backend'
+      'compress_server',
+      'delete_tmp'
     ];
   }
   @SequenceTask()
@@ -195,15 +196,11 @@ export class Gulpfile {
   compress_client() {
     return ['compress_js', 'compress_css'];
   }
-  @SequenceTask()
-  compress_backend() {
-    return ['compress_server'];
-  }
 
   // Compress the app.js file
   @Task()
   compress_js() {
-    return gulp.src('dist/app/app.js')
+    return gulp.src('tmp/app.js')
       .pipe(plugins.uglify({
         compress: {
           sequences: true,  // join consecutive statemets with the “comma operator”
@@ -240,7 +237,7 @@ export class Gulpfile {
 
   @Task()
   compress_server() {
-    return gulp.src('dist/server.js')
+    return gulp.src('tmp/server.js')
       .pipe(plugins.uglify({
         compress: {
           sequences: true,  // join consecutive statemets with the “comma operator”
@@ -263,6 +260,10 @@ export class Gulpfile {
         }
       }))
       .pipe(gulp.dest('dist'));
+  }
+  @Task()
+  delete_tmp() {
+    return del('tmp/**');
   }
 
   // Nodemon task
@@ -335,10 +336,10 @@ export class Gulpfile {
     // Start livereload
     plugins.livereload.listen();
     // Watch all server TS files to build JS
-    watch(serverts, file => runSequence('build_server', 'compress_backend'));
+    watch(serverts, file => runSequence('build_server', 'compress_server', 'delete_tmp'));
     watch(defaultAssets.server.allJS, plugins.livereload.changed);
     // Watch all TS files in client and compiles JS files in dist
-    watch(defaultAssets.client.ts, file => runSequence('build_client', 'compress_js'));
+    watch(defaultAssets.client.ts, file => runSequence('build_client', 'compress_js', 'delete_tmp'));
     watch(defaultAssets.client.dist.js, plugins.livereload.changed);
     // Watch all scss files to build css is change
     watch(defaultAssets.client.scss, file => runSequence('build_sass', 'compress_css'));
@@ -350,6 +351,13 @@ export class Gulpfile {
     watch(defaultAssets.client.assets, { events: ['add'] },  file => this.compressAsset(file));
     watch(defaultAssets.client.assets, { events: ['unlink'] },  file => this.deleteAsset(file));
     watch(defaultAssets.client.dist.assets, plugins.livereload.changed);
+    // Watch if system.config files are changed
+    watch(defaultAssets.client.system, file => runSequence('build_systemConf'));
+    watch(defaultAssets.server.system, file => runSequence('build_index'));
+    watch([
+      'dist/index.js',
+      'dist/app/systemjs.config.js'
+    ], plugins.livereload.changed);
   }
 
   // CSS linting task
@@ -359,14 +367,7 @@ export class Gulpfile {
       .pipe(plugins.csslint('.csslintrc'))
       .pipe(plugins.csslint.formatter());
   }
-  // JS linting task
-  // @Task()
-  // jshint(done) {
-  //   return gulp.src(defaultAssets.config.allJS)
-  //     .pipe(plugins.jshint())
-  //     .pipe(plugins.jshint.reporter('default'));
-  // }
-
+  // Typescript linting task
   @Task()
   tslint(done) {
     let assets = _.union(

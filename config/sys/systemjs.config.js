@@ -1,5 +1,3 @@
-/* jshint ignore:start */
-
 "use strict";
 
 (function (global) {
@@ -53,5 +51,3 @@
     }
   });
 })(this);
-
-/* jshint ignore:end */

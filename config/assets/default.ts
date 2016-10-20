@@ -2,8 +2,7 @@ export const defaultAssets = {
   client: {
     dist: {
       js: [
-        'dist/app/*.js',
-        'dist/app/**/*.js'
+        'dist/app/app.js'
       ],
       css: [
         'dist/styles.css',
@@ -44,10 +43,10 @@ export const defaultAssets = {
     ],
     e2e: [
       'client/e2e/**/*.e2e-spec.js'
-    ]
+    ],
+    system: ['config/sys/systemjs.config.js']
   },
   server: {
-    gulpConfig: ['gulpfile.js'],
     allTS: [
       'server/*.ts',
       'server/api/**/*.controller.ts',
@@ -58,25 +57,19 @@ export const defaultAssets = {
       'server/auth/**/*.ts'
     ],
     allJS: [
-      'dist/*.js',
-      'dist/api/**/*.controller.ts',
-      'dist/api/**/*.events.ts',
-      'dist/api/**/*.model.ts',
-      'dist/api/**/*.router.ts',
-      'dist/auth/*.ts',
-      'dist/auth/**/*.ts'
+      'dist/server.js'
     ],
-    models: 'dist/api/**/*.model.js',
-    routes: 'dist/api/**/*.router.js',
-    sockets: 'dist/api/**/*.socket.js',
     tests: {
       integration: 'dist/server/api/**/*.integration.js',
       unit: 'dist/server/api/**/*.spec.js'
-    }
+    },
+    system: ['config/sys/index.js']
   },
   config: {
     allTS: [
-      'config/**/*.ts',
+      'config/assets/*.ts',
+      'config/env/*.ts',
+      'config/lib/*.ts',
     ]
   }
 };
