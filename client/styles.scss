@@ -54,6 +54,10 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background: #19497f; /* Old browsers */
+	background: -moz-radial-gradient(bottom, ellipse cover, #19497f 1%, #8EE1FF 100%); /* FF3.6-15 */
+	background: -webkit-radial-gradient(bottom, ellipse cover, #19497f 1%,#8EE1FF 100%); /* Chrome10-25,Safari5.1-6 */
+	background: radial-gradient(ellipse at bottom, #19497f 1%,#8EE1FF 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 ol, ul {
 	list-style: none;

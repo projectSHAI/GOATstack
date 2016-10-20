@@ -19,14 +19,16 @@ import { HttpModule, JsonpModule }   from '@angular/http';
 import { routing } from './routes';
 
 //components for different views
-import { HeaderComponent }      from './components/header/header.component';
-import { NavbarComponent }      from './components/navbar/navbar.component';
-import { SignInOutComponent }   from './components/signinout/signinout.component';
-import { HomeComponent }        from './components/home/home.component';
-import { FooterComponent }      from './components/footer/footer.component';
-import { Four0FourComponent }   from './components/404/four0four.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { SunandmoonComponent }  from './components/sunandmoon/sunandmoon.component';
+import { HeaderComponent }          from './components/header/header.component';
+import { NavbarComponent }          from './components/navbar/navbar.component';
+import { SignInOutComponent }       from './components/signinout/signinout.component';
+import { HomeComponent }            from './components/home/home.component';
+import { FooterComponent }          from './components/footer/footer.component';
+import { Four0FourComponent }       from './components/404/four0four.component';
+import { UserProfileComponent }     from './components/user-profile/user-profile.component';
+import { SunandmoonComponent }      from './components/sunandmoon/sunandmoon.component';
+import { MountainRangeComponent }   from './components/mountain-range/mountain-range.component';
+import { GOATComponent }            from './components/GOAT/GOAT.component';
 
 //services for global use
 import { Cookie }               from 'ng2-cookies/ng2-cookies';
@@ -57,7 +59,9 @@ import 'gsap';
     HomeComponent,
     AppComponent,
     NavbarComponent,
-    SunandmoonComponent
+    SunandmoonComponent,
+    MountainRangeComponent,
+    GOATComponent
   ],
   //providers: this object imports all necessary services into the module
   providers: [

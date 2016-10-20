@@ -4,15 +4,29 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   // moduleId: module.id,
   selector: 'header-section',
+
+
+
+
   template: `
     <header>
       <main-navbar></main-navbar>
       <signinout></signinout>
       <h1 class='app-title'>GOAT Stack</h1>
     </header>`,
+
+
+
+
   styles: [`
+    :host{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10000;
+    }
     header{
-      background-image: url(../../../assets/banner.jpg);
       position: relative;
     }
     .app-title{
@@ -23,6 +37,10 @@ import { Observable } from 'rxjs/Observable';
       color: white;
     }
     `]
+
+
+
+
 })
 
 export class HeaderComponent {
