@@ -25,7 +25,8 @@
           "supertest",
           "proxyquire",
           "hammerjs",
-          "mongoose"
+          "mongoose",
+          "gsap"
         ]
     },
     "compileOnSave": false,

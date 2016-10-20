@@ -21,13 +21,14 @@
       '@angular/forms':                    'npm:@angular/forms/bundles/forms.umd.js',
       '@angular/upgrade':                  'npm:@angular/upgrade/bundles/upgrade.umd.js',
       '@angular/material':                 'npm:@angular/material/material.umd.js',
-      'gsap':                              'custom_modules/greensock',
+
 
       // other libraries
-      rxjs: 'npm:rxjs',
-      'ng2-cookies': 'npm:ng2-cookies',
-      'socket.io-client': 'npm:socket.io-client',
-      lodash: 'npm:lodash'
+      rxjs:                'npm:rxjs',
+      'ng2-cookies':       'npm:ng2-cookies',
+      'socket.io-client':  'npm:socket.io-client',
+      lodash:              'npm:lodash',
+      'gsap':              'custom_modules/greensock',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
