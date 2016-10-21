@@ -118,6 +118,13 @@ export class HomeComponent implements OnInit {
         this.socket.syncUpdates('Wonder', this.wonders);
       });
 
+    let kiwi = document.getElementById('hello');
+
+
+    let tl = new TimelineMax();
+
+    tl.to(kiwi, 1, { x: 50 }).to(kiwi, 1, { y: 50 }).to(kiwi, 1, { opacity: 0.5 });
+
   }
 
   ngOnDestroy() {
