@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 
+import { WonderService } from '../../services/wonder/wonder.service';
+import { SocketService } from '../../services/socketio/socketio.service';
+
+import { Wonder } from '../../models/wonder/wonder.model';
+
 //give javascript variables from custom js libraries a type so the
 //typescript compiler does not throw an error TS2304: Cannot find name 'var'.
 declare let TweenMax: any;
@@ -8,18 +13,12 @@ declare let TimelineMax: any;
 @Component({
   // moduleId: module.id,
   selector: 'home-section',
-
-
+  providers: [WonderService, SocketService],
   template: `
     <sun-and-moon [style.left.%]="sunXPos" [style.top.%]="sunYPos" ></sun-and-moon>
     <cloud-generator></cloud-generator>
     <mountain-range></mountain-range>
-    <the-goat></the-goat>
-      `,
-
-
-
-
+    <the-goat></the-goat>`,
   styles: [`
     :host {
       position: relative;
@@ -47,15 +46,12 @@ declare let TimelineMax: any;
       display: block;
       height: 300px;
       width: 300px;
-    }
-    `]
-
-
-
-
+    }`]
 })
 
 export class HomeComponent {
+  wonders: Wonder[];
+  socket;
 
   sunXPos: number = 24;
   sunYPos = 1;
