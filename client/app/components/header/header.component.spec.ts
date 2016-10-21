@@ -34,6 +34,8 @@ describe('HeaderComponent Test', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule]
+    }).compileComponents().then(() => {
+
     });
 
     fixture = TestBed.createComponent(HeaderComponent);

@@ -20,11 +20,10 @@ router.post('/', function(req, res, next) {
 
     var token = signToken(user._id, user.role);
     req.headers.token = token;
-    req.user = user;
+    req.user = user;    
+    next();
 
-    return getMe(req, res, next);
-    // res.json({ token });
   })(req, res, next)
-});
+}, getMe);
 
 module.exports = router;

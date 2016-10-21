@@ -9,13 +9,27 @@ import { ClockService } from '../../services/clock/clock.service';
 import { User } from '../../models/models.namespace';
 
 @Component({
+  moduleId: module.id,
   selector: 'header-section',
   providers: [
     UserService,
     ClockService
   ],
   template: `
-  <style>
+    <header>
+      <a routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">Home</a>
+      <a routerLink='/profile' routerLinkActive='active'>Profile</a>
+      <a routerLink='/yoloswaq69420blazeitfgt' routerLinkActive='active'>404</a>
+      <div class='user-sign'>
+        <h3 *ngIf='currentUser'>Welcome, {{currentUser.userName}}</h3>
+        <button *ngIf='!currentUser' type='button' (click)='testRegisterUser()'>Sign up</button>
+        <button *ngIf='!currentUser' type='button' (click)='testUser()'>Sign in</button>
+        <button type='button' (click)='logout()'>Sign out</button>
+      </div>
+      <h1 class='app-title'>MEA2N Fullstack</h1>
+      <h2>{{clock | async | date: 'mediumTime'}}{{clockService.period}}</h2>
+    </header>`,
+  styles: [`
     header{
       background: rgb(55, 129, 215);
       position: relative;
@@ -38,21 +52,7 @@ import { User } from '../../models/models.namespace';
     }
     .active{
       color: orange;
-    }
-  </style>
-  <header>
-    <a routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">Home</a>
-    <a routerLink='/profile' routerLinkActive='active'>Profile</a>
-    <a routerLink='/yoloswaq69420blazeitfgt' routerLinkActive='active'>404</a>
-    <div class='user-sign'>
-      <h3 *ngIf='currentUser'>Welcome, {{currentUser.userName}}</h3>
-      <button *ngIf='!currentUser' type='button' (click)='testRegisterUser()'>Sign up</button>
-      <button *ngIf='!currentUser' type='button' (click)='testUser()'>Sign in</button>
-      <button type='button' (click)='logout()'>Sign out</button>
-    </div>
-    <h1 class='app-title'>MEA2N Fullstack</h1>
-    <h2>{{clock | async | date: 'mediumTime'}}</h2>
-  </header>`
+    }`]
 })
 
 export class HeaderComponent {
@@ -65,8 +65,7 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    let token = Cookie.get('token');
-    if (token)
+    if (Cookie.get('token'))
       this.userService.getMe().subscribe(user => this.currentUser = user);
   }
 

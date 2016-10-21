@@ -6,34 +6,30 @@ import { SocketService } from '../../services/socketio/socketio.service';
 import { Wonder } from '../../models/models.namespace';
 
 @Component({
+  moduleId: module.id,
   selector: 'home-section',
   providers: [WonderService, SocketService],
-  moduleId: module.id,
   template: `
-    <style>
-      .dream-reflection{
-        margin: 0 auto;
-        display: block;
-        text-align: center;
-      }
-      .dreams-input{
-        text-align: center;
-        display: block;
-        margin: 0 auto;
-      }
-    </style>
     <h1 class="app-test">Home</h1>
-
     <li *ngFor="let wonder of wonders">
       <p>{{wonder.name}}</p>
     </li>
-
     <button type="button" class="btn" (click)="getWonders()">Test Wonders</button>
     <button type="button" class="btn" (click)="saveWonder('test')">add Wonders</button>
-
     <h1 class="dream-reflection">{{dream}}</h1>
-
-    <input [(ngModel)]="dream" (keyup.enter)="saveWonder(dream)" placeholder="Do you wonder?" class="dreams-input"/>`,
+    <input [(ngModel)]="dream" (keyup.enter)="saveWonder(dream)"
+      placeholder="Do you wonder?" class="dreams-input"/>`,
+  styles: [`
+    .dream-reflection{
+      margin: 0 auto;
+      display: block;
+      text-align: center;
+    }
+    .dreams-input{
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+    }`]
 })
 
 export class HomeComponent implements OnInit {

@@ -21,7 +21,7 @@ module.exports.isAuthenticated = function () {
   return compose()
     // Validate jwt
     .use((req, res, next) => {
-      console.log(req.query);
+      console.log(req.headers);
       // allow access_token to be passed through query parameter as well
       if (req.query && req.query.hasOwnProperty('access_token')) {
         req.headers.authorization = 'Bearer ' + req.query.access_token;
