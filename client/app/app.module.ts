@@ -29,6 +29,7 @@ import { UserProfileComponent }     from './components/user-profile/user-profile
 import { SunandmoonComponent }      from './components/sunandmoon/sunandmoon.component';
 import { MountainRangeComponent }   from './components/mountain-range/mountain-range.component';
 import { GOATComponent }            from './components/GOAT/GOAT.component';
+import { CloudGeneratorComponent }           from './components/cloud-generator/cloud-generator.component';
 
 //services for global use
 import { Cookie }               from 'ng2-cookies/ng2-cookies';
@@ -61,7 +62,8 @@ import 'gsap';
     NavbarComponent,
     SunandmoonComponent,
     MountainRangeComponent,
-    GOATComponent
+    GOATComponent,
+    CloudGeneratorComponent
   ],
   //providers: this object imports all necessary services into the module
   providers: [
