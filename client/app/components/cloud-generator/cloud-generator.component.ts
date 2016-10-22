@@ -59,7 +59,6 @@ export class CloudGeneratorComponent{
 
   constructor(private wonderService: WonderService, private renderer: Renderer) {
     this.socket = new SocketService();
-    // this.cb = new CloudProps();
   }
 
   ngOnInit() {
@@ -70,6 +69,7 @@ export class CloudGeneratorComponent{
 
         this.wonders.forEach((item, index) => CloudProps.cloudType(item.name.length, index));
       });
+
   }
 
   ngOnDestroy() {

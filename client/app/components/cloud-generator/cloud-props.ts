@@ -10,48 +10,48 @@ class CloudProps {
 
     CloudProps.randomInt = CloudProps.getRandomInt(1, 3);
 
-    if(wonderName <= 4) {
+    if (wonderName <= 4) {
 
-      switch(CloudProps.randomInt) {
+      switch (CloudProps.randomInt) {
         case 1:
-            CloudProps.cloudStyle[index] = 'smallcloud1';
-            break;
+          CloudProps.cloudStyle[index] = 'smallcloud1';
+          break;
         case 2:
-            CloudProps.cloudStyle[index] = 'smallcloud1';
-            break;
+          CloudProps.cloudStyle[index] = 'smallcloud1';
+          break;
         case 3:
-            CloudProps.cloudStyle[index] = 'smallcloud1';
-            break;
+          CloudProps.cloudStyle[index] = 'smallcloud1';
+          break;
       }
 
     }
-    else if(wonderName > 4 && wonderName <= 15) {
+    else if (wonderName > 4 && wonderName <= 15) {
 
-      switch(CloudProps.randomInt) {
+      switch (CloudProps.randomInt) {
         case 1:
-            CloudProps.cloudStyle[index] = 'mediumcloud2';
-            break;
+          CloudProps.cloudStyle[index] = 'mediumcloud2';
+          break;
         case 2:
-            CloudProps.cloudStyle[index] = 'mediumcloud2';
-            break;
+          CloudProps.cloudStyle[index] = 'mediumcloud2';
+          break;
         case 3:
-            CloudProps.cloudStyle[index] = 'mediumcloud2';
-            break;
+          CloudProps.cloudStyle[index] = 'mediumcloud2';
+          break;
       }
 
     }
-    else{
+    else {
 
-      switch(CloudProps.randomInt) {
+      switch (CloudProps.randomInt) {
         case 1:
-            CloudProps.cloudStyle[index] = 'largecloud3';
-            break;
+          CloudProps.cloudStyle[index] = 'largecloud3';
+          break;
         case 2:
-            CloudProps.cloudStyle[index] = 'largecloud3';
-            break;
+          CloudProps.cloudStyle[index] = 'largecloud3';
+          break;
         case 3:
-            CloudProps.cloudStyle[index] = 'largecloud3';
-            break;
+          CloudProps.cloudStyle[index] = 'largecloud3';
+          break;
       }
 
     }
@@ -61,7 +61,8 @@ class CloudProps {
 
   static cloudAnima(el) {
 
-    TweenMax.to(el, CloudProps.getRandomInt(1,3), {opacity: 1});
+    TweenMax.to(el, CloudProps.getRandomInt(1, 3), { opacity: 1 });
+
 
     tl = new TimelineMax();
 
