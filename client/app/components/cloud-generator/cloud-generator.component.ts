@@ -61,19 +61,9 @@ export class CloudGeneratorComponent implements AfterViewInit{
 
   constructor(private wonderService: WonderService, private renderer: Renderer) {
     this.socket = new SocketService();
-    // this.cb = new CloudProps();
   }
   ngAfterViewInit() {
 
-    let nl = this.renderer.createViewRoot(this.wonderCloud.nativeElement);
-
-    document.addEventListener('DOMContentLoaded', function(){
-      let xx = nl.children;
-      console.log(xx[1]);
-    });
-
-  }
-  ngOnInit() {
     this.wonderService.getWonders()
       .subscribe(wonders => {
         this.wonders = wonders;
@@ -81,7 +71,13 @@ export class CloudGeneratorComponent implements AfterViewInit{
 
         this.wonders.forEach((item, index) => CloudProps.cloudType(item.name.length, index));
 
+        setTimeout(() => console.log(this.wonderCloud.nativeElement.children[0]), 100);
+
       });
+
+  }
+  ngOnInit() {
+
   }
 
   ngOnDestroy() {
