@@ -26,7 +26,6 @@ export const defaultAssets = {
     ],
     ts: [
       'client/app/*.ts',
-      'client/app/**/*.ts',
       'client/app/**/**/*.ts'
     ],
     assets: [

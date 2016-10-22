@@ -19,8 +19,7 @@ import { Component } from '@angular/core';
       }
       a:hover{
         cursor: pointer;
-      }
-    `]
+      }`]
 })
 
 export class NavbarComponent {

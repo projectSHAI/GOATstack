@@ -61,20 +61,10 @@
     ],
     "variable-name": false,
 
-    "directive-selector-prefix": [false, "app"],
-    "component-selector-prefix": [false, "app"],
-    "directive-selector-name": [false, "camelCase"],
-    "component-selector-name": [false, "kebab-case"],
-    "directive-selector-type": [false, "attribute"],
-    "component-selector-type": [false, "element"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
-    "no-input-rename": true,
-    "no-output-rename": true,
     "use-life-cycle-interface": false,
-    "use-pipe-transform-interface": true,
-    "component-class-suffix": true,
-    "directive-class-suffix": true
+    "use-pipe-transform-interface": true
   }
 }

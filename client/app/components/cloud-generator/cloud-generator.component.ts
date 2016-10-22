@@ -11,8 +11,6 @@ declare let TimelineMax: any;
 @Component({
   selector: 'cloud-generator',
   providers: [WonderService, SocketService],
-
-
   template: `
   <li #wonderCloud *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
     <p>{{wonder.name}}</p>
@@ -21,9 +19,7 @@ declare let TimelineMax: any;
   </li>
 
   <input [(ngModel)]="dream" (keyup.enter)="saveWonder(dream)"
-    placeholder="Do you wonder?" class="dreams-input"/>
-  `,
-
+    placeholder="Do you wonder?" class="dreams-input"/>`,
   styles: [`
     .wonder{
       position: absolute;
@@ -44,11 +40,10 @@ declare let TimelineMax: any;
     }
     #li{
       position: fixed;
-    }
-    `]
+    }`]
 })
 
-export class CloudGeneratorComponent{
+export class CloudGeneratorComponent {
   @ViewChild('wonderCloud') wonderCloud: ElementRef;
 
   wonders: Wonder[];
@@ -91,43 +86,43 @@ export class CloudGeneratorComponent{
 
     this.randomInt = this.getRandomInt(1, 3);
 
-    if(wonderName.length <= 4) {
-      switch(this.randomInt) {
+    if (wonderName.length <= 4) {
+      switch (this.randomInt) {
         case 1:
-            this.cloud = 'smallcloud1';
-            break;
+          this.cloud = 'smallcloud1';
+          break;
         case 2:
-            this.cloud = 'smallcloud1';
-            break;
+          this.cloud = 'smallcloud1';
+          break;
         case 3:
-            this.cloud = 'smallcloud1';
-            break;
+          this.cloud = 'smallcloud1';
+          break;
       }
     }
-    else if(wonderName.length > 4 && wonderName.length <= 15) {
-      switch(this.randomInt) {
+    else if (wonderName.length > 4 && wonderName.length <= 15) {
+      switch (this.randomInt) {
         case 1:
-            this.cloud = 'mediumcloud2';
-            break;
+          this.cloud = 'mediumcloud2';
+          break;
         case 2:
-            this.cloud = 'mediumcloud2';
-            break;
+          this.cloud = 'mediumcloud2';
+          break;
         case 3:
-            this.cloud = 'mediumcloud2';
-            break;
+          this.cloud = 'mediumcloud2';
+          break;
       }
     }
-    else{
-      switch(this.randomInt) {
+    else {
+      switch (this.randomInt) {
         case 1:
-            this.cloud = 'largecloud3';
-            break;
+          this.cloud = 'largecloud3';
+          break;
         case 2:
-            this.cloud = 'largecloud3';
-            break;
+          this.cloud = 'largecloud3';
+          break;
         case 3:
-            this.cloud = 'largecloud3';
-            break;
+          this.cloud = 'largecloud3';
+          break;
       }
       console.log(wonderName.length);
     }
@@ -138,8 +133,6 @@ export class CloudGeneratorComponent{
 
     let tl = new TimelineMax();
 
-    tl.to(kiwi, 1, {x: 50}).to(kiwi, 1, {y: 50}).to(kiwi, 1, {opacity: 0.5});
+    tl.to(kiwi, 1, { x: 50 }).to(kiwi, 1, { y: 50 }).to(kiwi, 1, { opacity: 0.5 });
   }
-
-
 }

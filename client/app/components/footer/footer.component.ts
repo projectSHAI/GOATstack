@@ -44,8 +44,7 @@ import { Component } from '@angular/core';
     .devs{
       float: right;
       margin-right: 5px;
-    }
-    `]
+    }`]
 })
 
 export class FooterComponent { }

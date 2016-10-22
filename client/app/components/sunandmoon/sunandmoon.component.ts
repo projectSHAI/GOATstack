@@ -14,12 +14,10 @@ import { ClockService }  from '../../services/clock/clock.service';
       position: absolute;
       top: 47%;
     }
-      #sun{
-        height: 300px;
-        width: 300px;
-      }
-    `]
-
+    #sun{
+      height: 300px;
+      width: 300px;
+    }`]
 })
 
 export class SunandmoonComponent {
