@@ -1,4 +1,4 @@
-export default class {
+class CloudProps {
 
   cloudStyle: Array<string> = [];
   randomInt: number;
@@ -53,3 +53,5 @@ export default class {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 }
+
+export default CloudProps;
