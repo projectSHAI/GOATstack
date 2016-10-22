@@ -15,7 +15,7 @@ declare let TimelineMax: any;
 
   template: `
   <div #wonderCloud>
-  <li *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
+  <li id="wow" *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
     <p>{{wonders[i].name}}</p>
     <img src="assets/{{cloudStyle[i]}}.svg">
   </li>
@@ -58,6 +58,7 @@ export class CloudGeneratorComponent implements AfterViewInit{
   cloudStyle: Array<string> = [];
   randomInt: number;
   wonderName;
+  rand = this.getRandomInt(1, 1000);
 
   constructor(private wonderService: WonderService, private renderer: Renderer) {
     this.socket = new SocketService();
@@ -79,6 +80,7 @@ export class CloudGeneratorComponent implements AfterViewInit{
         this.socket.syncUpdates('Wonder', this.wonders);
 
         this.wonders.forEach(item => this.cloudType(item.name.length));
+
       });
   }
 
@@ -144,11 +146,11 @@ export class CloudGeneratorComponent implements AfterViewInit{
   }
 
   cloudAnim() {
-    let kiwi = this.wonderCloud;
+    let kiwi = document.getElementById('wow');
 
     let tl = new TimelineMax();
 
-    tl.to(kiwi, 1, {x: 50}).to(kiwi, 1, {y: 50}).to(kiwi, 1, {opacity: 0.5});
+    tl.to(kiwi, 1, {x: this.rand}).to(kiwi, 1, {y: this.rand}).to(kiwi, 1, {opacity: 0.5});
   }
 
 
