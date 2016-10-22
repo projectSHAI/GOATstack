@@ -15,10 +15,12 @@ declare let TimelineMax: any;
   <li id="hello" *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
     <img src="assets/cloud1.svg">
     {{cloudAnim()}}
-  </li>`
+  </li>
+
+  `
 })
 
-export class CloudGeneratorComponent {
+export class CloudGeneratorComponent{
 
   wonders: Wonder[];
   errorMessage: string;
@@ -56,6 +58,8 @@ export class CloudGeneratorComponent {
 
     let tl = new TimelineMax();
 
-    tl.to(kiwi, 1, { x: 50 }).to(kiwi, 1, { y: 50 }).to(kiwi, 1, { opacity: 0.5 });
+    tl.to(kiwi, 1, {x: 50}).to(kiwi, 1, {y: 50}).to(kiwi, 1, {opacity: 0.5});
   }
+
+
 }
