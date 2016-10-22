@@ -1,3 +1,6 @@
+declare let TweenMax: any;
+declare let TimelineMax: any;
+
 class CloudProps {
 
   static cloudStyle: Array<string> = new Array(10);
@@ -53,6 +56,18 @@ class CloudProps {
 
     }
   }
+
+
+
+  static cloudAnima() {
+    let kiwi = document.getElementById('wow');
+
+    let tl = new TimelineMax();
+
+    tl.to(kiwi, 1, {x: CloudProps.getRandomInt(1, 1000)}).to(kiwi, 1, {y: CloudProps.getRandomInt(1, 1000)}).to(kiwi, 1, {opacity: 0.5});
+  }
+
+
 
   static getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
