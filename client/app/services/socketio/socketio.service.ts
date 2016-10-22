@@ -48,7 +48,7 @@ export class SocketService {
             array.push(new Models[modelName](item));
           }
 
-          return cb ? cb(event, item, array) : null;
+          return cb ? cb(item, index, array, event) : null;
         });
 
         /**
@@ -57,7 +57,7 @@ export class SocketService {
         socket.on(modelName + ':remove', function(item) {
           let event = 'deleted';
           _.remove(array, { _id: item._id });
-          cb(event, item, array);
+          cb(item, array, event);
         });
       },
 
