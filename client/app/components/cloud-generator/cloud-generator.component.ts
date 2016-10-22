@@ -77,9 +77,9 @@ export class CloudGeneratorComponent implements AfterViewInit{
     this.wonderService.getWonders()
       .subscribe(wonders => {
         this.wonders = wonders;
-        this.socket.syncUpdates('Wonder', this.wonders);
+        this.socket.syncUpdates('Wonder', this.wonders, (item, index) => CloudProps.cloudType(item.name.length, index));
 
-        this.wonders.forEach(item => CloudProps.cloudType(item.name.length));
+        this.wonders.forEach((item, index) => CloudProps.cloudType(item.name.length, index));
 
       });
   }
