@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
 
+//give javascript variables from custom js libraries a type so the
+//typescript compiler does not throw an error TS2304: Cannot find name 'var'.
+declare let TweenMax: any;
+declare let TimelineMax: any;
+
 @Component({
+  // moduleId: module.id,
   selector: 'home-section',
+
+
   template: `
     <sun-and-moon [style.left.%]="sunXPos" [style.top.%]="sunYPos" ></sun-and-moon>
     <cloud-generator></cloud-generator>
     <mountain-range></mountain-range>
-    <the-goat></the-goat>`,
+    <the-goat></the-goat>
+      `,
   styles: [`
     :host {
       position: relative;
@@ -34,11 +43,13 @@ import { Component } from '@angular/core';
       display: block;
       height: 300px;
       width: 300px;
-    }`]
+    }
+    `]
 })
 
 export class HomeComponent {
 
-  constructor() { }
+  sunXPos: number = 24;
+  sunYPos = 1;
 
 }
