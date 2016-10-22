@@ -75,7 +75,6 @@ export function create(req, res, next) {
       next();
 
       return null;
-      // res.json({ token });
     })
     .catch(validationError(res));
 }

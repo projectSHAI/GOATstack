@@ -1,8 +1,6 @@
 import * as _ from 'lodash';
 import Wonder from './wonder.model';
 
-let counter = 0;
-
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -10,19 +8,16 @@ function getRandomInt(min, max) {
 function updateWonder(res, wonder) {
   return function(entity) {
     if (entity) {
-      entity.name = wonder.name;
       entity.created = new Date().toISOString();
+      entity.name = wonder.name;
       entity.xcoor = getRandomInt(10, 90);
       entity.ycoor = getRandomInt(10, 55);
-      entity.save();
-      res.json(entity);
 
-      counter++;
-      if(counter > 9){
-        counter = 0;
-      }
+      return entity.save(() => {
+        res.json(entity);
+      });
     }
-    return null;
+
   };
 }
 
@@ -92,8 +87,8 @@ export function show(req, res) {
 // Creates a new Wonder in the DB
 export function create(req, res) {
   return Wonder.findOne({}).sort({
-      created: 1
-    }).exec()
+    created: 1
+  }).exec()
     .then(updateWonder(res, req.body))
     .catch(handleError(res));
 }
