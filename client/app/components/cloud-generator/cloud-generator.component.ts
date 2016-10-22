@@ -12,13 +12,13 @@ declare let TimelineMax: any;
   selector: 'cloud-generator',
   providers: [WonderService, SocketService],
   template: `
-  <li #wonderCloud *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
-    <p>{{wonder.name}}</p>
-    <img src="assets/{{cloud}}.svg">
+    <li #wonderCloud *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
+      <p>{{wonder.name}}</p>
+      <img src="assets/{{cloud}}.svg">
 
-  </li>
+    </li>
 
-  <input [(ngModel)]="dream" (keyup.enter)="saveWonder(dream)"
+    <input [(ngModel)]="dream" (keyup.enter)="saveWonder(dream)"
     placeholder="Do you wonder?" class="dreams-input"/>`,
   styles: [`
     .wonder{
