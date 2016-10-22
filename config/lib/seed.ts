@@ -8,46 +8,47 @@ import User from '../../server/api/user/user.model';
 export function seed() {
   Wonder.find({}).remove()
     .then(() => {
-      Wonder.create({
-        name: 'PeanutButter',
-        xcoor: 10,
-        ycoor: 10
-      }, {
+      Wonder.create(
+        {
+          name: 'PeanutButter',
+          xcoor: 20,
+          ycoor: 10
+        }, {
           name: 'Jelly',
           xcoor: 20,
-          ycoor: 12
+          ycoor: 30
         }, {
           name: 'Jelly',
           xcoor: 25,
-          ycoor: 13
+          ycoor: 14
         }, {
           name: 'Jelly',
           xcoor: 40,
-          ycoor: 5
+          ycoor: 18
         }, {
           name: 'Jelly',
-          xcoor: 75,
-          ycoor: 80
+          xcoor: 60,
+          ycoor: 61
         }, {
           name: 'Jelly',
-          xcoor: 25,
-          ycoor: 75
+          xcoor: 80,
+          ycoor: 40
         }, {
           name: 'Jelly',
           xcoor: 15,
-          ycoor: 80
+          ycoor: 35
         }, {
           name: 'Jelly',
           xcoor: 13,
-          ycoor: 74
+          ycoor: 55
         }, {
           name: 'Jelly',
           xcoor: 15,
-          ycoor: 65
+          ycoor: 35
         }, {
-          name: 'Jelly',
-          xcoor: 15,
-          ycoor: 64
+          name: 'PeanutButter And Jelly',
+          xcoor: 50,
+          ycoor: 12
         });
     });
 

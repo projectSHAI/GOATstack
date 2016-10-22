@@ -31,6 +31,9 @@ import { MountainRangeComponent }   from './components/mountain-range/mountain-r
 import { GOATComponent }            from './components/GOAT/GOAT.component';
 import { CloudGeneratorComponent }           from './components/cloud-generator/cloud-generator.component';
 
+//custom pipes
+import { NgForHookPipe } from './pipes/ngFor-hook.pipe';
+
 //services for global use
 import { Cookie }               from 'ng2-cookies/ng2-cookies';
 import { MaterialModule }       from '@angular/material';
@@ -63,7 +66,8 @@ import 'gsap';
     SunandmoonComponent,
     MountainRangeComponent,
     GOATComponent,
-    CloudGeneratorComponent
+    CloudGeneratorComponent,
+    NgForHookPipe
   ],
   //providers: this object imports all necessary services into the module
   providers: [

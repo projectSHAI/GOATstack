@@ -59,12 +59,12 @@ class CloudProps {
 
 
 
-  static cloudAnima() {
-    let kiwi = document.getElementById('wow');
+  static cloudAnima(el) {
 
-    let tl = new TimelineMax();
+    TweenMax.to(el, CloudProps.getRandomInt(1,3), {opacity: 1});
 
-    tl.to(kiwi, 1, {x: CloudProps.getRandomInt(1, 1000)}).to(kiwi, 1, {y: CloudProps.getRandomInt(1, 1000)}).to(kiwi, 1, {opacity: 0.5});
+    
+
   }
 
 
