@@ -18,7 +18,7 @@ declare let TimelineMax: any;
   <div #wonderCloud>
   <li id="wow" *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
     <p>{{wonders[i].name}}</p>
-    <img src="assets/{{cb.cloudStyle[i]}}.svg">
+    <img src="assets/{{cloudStyle[i]}}.svg">
   </li>
   </div>
   <input [(ngModel)]="dream" (keyup.enter)="saveWonder(dream)" placeholder="Do you wonder?" class="dreams-input"/>
@@ -53,7 +53,7 @@ export class CloudGeneratorComponent implements AfterViewInit{
 
   private socket;
   wonders: Wonder[];
-  cb: CloudProps;
+  cloudStyle = CloudProps.cloudStyle;
 
   errorMessage: string;
   dream = 'Wonders';
@@ -61,7 +61,7 @@ export class CloudGeneratorComponent implements AfterViewInit{
 
   constructor(private wonderService: WonderService, private renderer: Renderer) {
     this.socket = new SocketService();
-    this.cb = new CloudProps();
+    // this.cb = new CloudProps();
   }
   ngAfterViewInit() {
 
@@ -79,7 +79,7 @@ export class CloudGeneratorComponent implements AfterViewInit{
         this.wonders = wonders;
         this.socket.syncUpdates('Wonder', this.wonders);
 
-        this.wonders.forEach(item => this.cb.cloudType(item.name.length));
+        this.wonders.forEach(item => CloudProps.cloudType(item.name.length));
 
       });
   }
@@ -100,7 +100,7 @@ export class CloudGeneratorComponent implements AfterViewInit{
 
     let tl = new TimelineMax();
 
-    tl.to(kiwi, 1, {x: this.cb.getRandomInt(1, 1000)}).to(kiwi, 1, {y: this.cb.getRandomInt(1, 1000)}).to(kiwi, 1, {opacity: 0.5});
+    tl.to(kiwi, 1, {x: CloudProps.getRandomInt(1, 1000)}).to(kiwi, 1, {y: CloudProps.getRandomInt(1, 1000)}).to(kiwi, 1, {opacity: 0.5});
   }
 
 

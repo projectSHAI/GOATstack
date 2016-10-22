@@ -1,55 +1,55 @@
 class CloudProps {
 
-  cloudStyle: Array<string> = [];
-  randomInt: number;
+  static cloudStyle: Array<string> = [];
+  private static randomInt: number;
 
-  cloudType(wonderName) {
+  static cloudType(wonderName) {
 
-    this.randomInt = this.getRandomInt(1, 3);
+    CloudProps.randomInt = CloudProps.getRandomInt(1, 3);
 
     if(wonderName <= 4) {
-      switch(this.randomInt) {
+      switch(CloudProps.randomInt) {
         case 1:
-            this.cloudStyle.push('smallcloud1');
+            CloudProps.cloudStyle.push('smallcloud1');
             break;
         case 2:
-            this.cloudStyle.push('smallcloud1');
+            CloudProps.cloudStyle.push('smallcloud1');
             break;
         case 3:
-            this.cloudStyle.push('smallcloud1');
+            CloudProps.cloudStyle.push('smallcloud1');
             break;
       }
     }
     else if(wonderName > 4 && wonderName <= 15) {
-      switch(this.randomInt) {
+      switch(CloudProps.randomInt) {
         case 1:
-            this.cloudStyle.push('mediumcloud2');
+            CloudProps.cloudStyle.push('mediumcloud2');
             break;
         case 2:
-            this.cloudStyle.push('mediumcloud2');
+            CloudProps.cloudStyle.push('mediumcloud2');
             break;
         case 3:
-            this.cloudStyle.push('mediumcloud2');
+            CloudProps.cloudStyle.push('mediumcloud2');
             break;
       }
     }
     else{
-      switch(this.randomInt) {
+      switch(CloudProps.randomInt) {
         case 1:
-            this.cloudStyle.push('largecloud3');
+            CloudProps.cloudStyle.push('largecloud3');
             break;
         case 2:
-            this.cloudStyle.push('largecloud3');
+            CloudProps.cloudStyle.push('largecloud3');
             break;
         case 3:
-            this.cloudStyle.push('largecloud3');
+            CloudProps.cloudStyle.push('largecloud3');
             break;
       }
       console.log(wonderName);
     }
   }
 
-  getRandomInt(min, max) {
+  static getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 }
