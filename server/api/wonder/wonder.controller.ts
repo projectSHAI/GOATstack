@@ -3,7 +3,7 @@ import Wonder from './wonder.model';
 
 let counter = 0;
 
-function getRandomInt(min, max) {
+function rndInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
@@ -12,8 +12,8 @@ function updateWonder(res, wonder) {
     if (entity) {
       entity.name = wonder.name;
       entity.created = new Date().toISOString();
-      entity.xcoor = getRandomInt(10, 90);
-      entity.ycoor = getRandomInt(10, 55);
+      entity.xcoor = rndInt(10, 90);
+      entity.ycoor = rndInt(10, 55);
       entity.save();
       res.json(entity);
 

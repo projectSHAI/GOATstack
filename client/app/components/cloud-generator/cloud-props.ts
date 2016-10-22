@@ -8,7 +8,7 @@ class CloudProps {
 
   static cloudType(wonderName, index) {
 
-    CloudProps.randomInt = CloudProps.getRandomInt(1, 3);
+    CloudProps.randomInt = CloudProps.rndInt(1, 3);
 
     if (wonderName <= 4) {
 
@@ -61,18 +61,27 @@ class CloudProps {
 
   static cloudAnima(el) {
 
-    TweenMax.to(el, CloudProps.getRandomInt(1, 3), { opacity: 1 });
+    TweenMax.to(el, CloudProps.rndInt(1, 3), { opacity: 1});
 
+    console.log(el.style.left);
 
-    tl = new TimelineMax();
+    let anima = new TimelineMax({onComplete:loopAnima, onCompleteParams:["loop"]});
 
-    tl.to(el, 10, {x: '100%'});
+    anima.to(el, CloudProps.rndInt(40, 70), {left: '+=100%'})
+          .addLabel("loop", "+=0")
+          .to(el, 0, {left: '-=200%'})
+          .to(el, CloudProps.rndInt(40, 70), {left: '+=200%'});
+
+    function loopAnima(position) {
+      anima.play(position);
+    }
 
   }
 
 
 
-  static getRandomInt(min, max) {
+
+  static rndInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 }
