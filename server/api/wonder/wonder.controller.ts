@@ -1,28 +1,19 @@
 import * as _ from 'lodash';
 import Wonder from './wonder.model';
 
-let Coords = [
-  {x: 10, y: 20}, {x: 40, y: 20}, {x: 80, y: 15}, {x: 25, y: 20}, {x: 18, y: 25}, {x: 60, y: 40}, {x: 25, y: 30},
-  {x: 30, y: 35}, {x: 35, y: 30}, {x: 40, y: 35}, {x: 35, y: 40}, {x: 45, y: 40}, {x: 50, y: 45}, {x: 45, y: 50},
-  {x: 55, y: 50}, {x: 50, y: 55}, {x: 60, y: 55}, {x: 55, y: 60}, {x: 65, y: 60}, {x: 60, y: 65}, {x: 70, y: 65},
-  {x: 65, y: 70}, {x: 75, y: 70}, {x: 70, y: 75}, {x: 80, y: 75}
-];
+let counter = 0;
 
-let switchX, switchY, counter = 0;
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 function updateWonder(res, wonder) {
   return function(entity) {
     if (entity) {
-      switchX = entity.xcoor;
-      switchY = entity.ycoor;
       entity.name = wonder.name;
       entity.created = new Date().toISOString();
-      entity.xcoor = Coords[counter].x;
-      entity.ycoor = Coords[counter].y;
-      Coords[counter] = {
-        x: switchX,
-        y: switchY
-      };
+      entity.xcoor = getRandomInt(10, 90);
+      entity.ycoor = getRandomInt(10, 55);
       entity.save();
       res.json(entity);
 
