@@ -1,11 +1,9 @@
+import * as mongoose from 'mongoose';
+import * as chalk from 'chalk';
+import * as path from 'path';
 import {config} from '../config';
 let con = config();
-
-import * as mongoose from 'mongoose';
-
-let chalk = require('chalk'),
-  	path = require('path'),
-    db;
+let db;
 
 // Load the mongoose models
 export function loadModels(callback?) {
@@ -22,7 +20,7 @@ export function connect(cb?) {
   let db = mongoose.connect(con.config.db.uri, con.config.db.options, function (err) {
     // Log Error
     if (err) {
-      console.error(chalk.red('Could not connect to MongoDB!'));
+      console.error(chalk.bold.red('Could not connect to MongoDB!'));
       console.log(err);
     } else {
 
@@ -37,7 +35,7 @@ export function connect(cb?) {
 
 export function disconnect(cb?) {
   mongoose.disconnect(function (err) {
-    console.log(chalk.yellow('Disconnected from MongoDB.'));
+    console.log(chalk.bold.yellow('Disconnected from MongoDB.'));
     cb(err);
   });
 };

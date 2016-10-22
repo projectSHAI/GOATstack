@@ -53,6 +53,7 @@ module.exports = function(config) {
       {pattern: 'node_modules/ng2-cookies/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/lodash/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/socket.io-client/**/*.js', included: false, watched: false},
+      {pattern: 'custom_modules/greensock/*.js', included: false, watched: false},
 
       {pattern: 'config/sys/systemjs.config.js', included: false, watched: false},
       {pattern: 'config/sys/systemjs.config.extras.js', included: false, watched: false},

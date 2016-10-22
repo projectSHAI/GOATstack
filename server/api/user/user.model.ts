@@ -1,4 +1,4 @@
-let crypto = require('crypto');
+import * as crypto from 'crypto';
 import * as mongoose from 'mongoose';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];

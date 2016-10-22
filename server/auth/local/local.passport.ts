@@ -1,5 +1,5 @@
-let passport = require('passport');
-let LocalStrategy = require('passport-local').Strategy;
+import * as passport from 'passport';
+import {Strategy as LocalStrategy} from 'passport-local';
 
 function localAuthenticate(User, email, password, done) {
   User.findOne({

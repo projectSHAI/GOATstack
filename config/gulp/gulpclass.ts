@@ -26,10 +26,6 @@ let defaultAssets = eval(require("typescript")
     .readFileSync("./config/assets/default.ts")
     .toString()));
 
-const clientPath = 'client/app';
-const serverPath = 'server/api';
-const distPath = 'dist';
-
 @Gulpclass()
 export class Gulpfile {
 
@@ -98,12 +94,12 @@ export class Gulpfile {
   }
   @Task()
   build_systemConf() {
-    return gulp.src('config/sys/systemjs.config.js')
+    return gulp.src(defaultAssets.client.system)
       .pipe(gulp.dest('./dist/app'));
   }
   @Task()
   build_index(done) {
-    return gulp.src('config/sys/*{index,server}.js')
+    return gulp.src(defaultAssets.server.system)
       .pipe(gulp.dest('./dist'));
   }
   // Transpile client side TS files
@@ -173,7 +169,6 @@ export class Gulpfile {
   build_project_test() {
     return ['client_test', 'build_client_sequence', 'build_server_test'];
   }
-
 
   buildFile(file: any) {
     let tsProject = ts.createProject('./tsconfig.json');

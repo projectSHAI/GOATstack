@@ -3,8 +3,8 @@ import User from '../api/user/user.model';
 import {config} from '../../config/config';
 let con = config();
 
-let passport = require('passport');
-let jwt = require('jsonwebtoken');
+import * as jwt from 'jsonwebtoken';
+
 let expressJwt = require('express-jwt');
 let compose = require('composable-middleware');
 

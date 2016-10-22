@@ -21,6 +21,8 @@
           "socket.io",
           "socket.io-client",
           "lodash",
+          "glob",
+          "jsonwebtoken",
           "jasmine",
           "supertest",
           "proxyquire",

@@ -1,10 +1,9 @@
-let fs = require('graceful-fs');
 let express = require('express');
-let http = require('http');
-let https = require('https');
-let path = require('path');
-let chalk = require('chalk');
 
+import * as chalk from 'chalk';
+import * as fs from 'graceful-fs';
+import * as http from 'http';
+import * as https from 'https';
 import {config} from '../config/config';
 let con = config();
 
@@ -30,7 +29,7 @@ loadModels();
 let init = function init(callback) {
   connect(function (db) {
     // Initialize http server
-    let server = http.createServer(app);
+    let server: any = http.createServer(app);
 
     // If specified in the default assets, https will be used
     if (con.config.https_secure) {

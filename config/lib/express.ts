@@ -3,11 +3,11 @@ import {config} from '../config';
 let con = config();
 
 import * as mongoose from 'mongoose';
+import * as path from 'path';
+import * as passport from 'passport';
 
 let express = require('express'),
-  path = require("path"),
   bodyParser = require('body-parser'),
-  passport = require('passport'),
   errorHandler = require('errorHandler'),
   methodOverride = require('method-override'),
   cookieParser = require('cookie-parser'),

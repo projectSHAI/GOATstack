@@ -12,8 +12,8 @@ describe('QuickStart E2E Tests', function () {
         expect(element(by.css('.app-title')).getText()).toEqual(title);
     });
 
-    it('should display: Wonders', function () {
-        expect(element(by.css('.dream-reflection')).isPresent()).toBeTruthy();
-        expect(element(by.css('.dream-reflection')).getText()).toEqual('Wonders');
-    });
+    // it('should display: Wonders', function () {
+    //     expect(element(by.css('.dream-reflection')).isPresent()).toBeTruthy();
+    //     expect(element(by.css('.dream-reflection')).getText()).toEqual('Wonders');
+    // });
 });

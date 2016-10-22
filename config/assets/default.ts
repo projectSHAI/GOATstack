@@ -62,7 +62,10 @@ export const defaultAssets = {
       integration: 'dist/server/api/**/*.integration.js',
       unit: 'dist/server/api/**/*.spec.js'
     },
-    system: ['config/sys/index.js']
+    system: [
+      'config/sys/index.js',
+      'config/sys/systemjs.server.js'
+    ]
   },
   config: {
     allTS: [

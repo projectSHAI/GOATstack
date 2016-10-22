@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import * as glob from 'glob';
 
 import {defaultAssets} from './assets/default';
 import {defaultConfig} from './env/default';
@@ -9,13 +10,6 @@ import {testAssets} from './assets/test';
 import {devEnv} from './env/development';
 import {prodEnv} from './env/production';
 import {testEnv} from './env/test';
-
-
-let  chalk = require('chalk'),
-  glob = require('glob'),
-  fs = require('graceful-fs'),
-  path = require('path'),
-  System = require('systemjs');
 
 /**
  * Get files by glob patterns
@@ -38,7 +32,7 @@ function getGlobbedPaths(globPatterns, excludes?) {
     } else {
       let files = glob.sync(globPatterns);
       if (excludes) {
-        files = files.map(function (file) {
+        files = files.map(function (file: any) {
           if (_.isArray(excludes)) {
             for (let i in excludes) {
               file = file.replace(excludes[i], '');

@@ -2,7 +2,7 @@ import User from './user.model';
 import {config} from '../../../config/config';
 let con = config();
 
-let jwt = require('jsonwebtoken');
+import * as jwt from 'jsonwebtoken';
 
 function validationError(res, statusCode = null) {
   statusCode = statusCode || 422;
