@@ -4,6 +4,7 @@ import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
 
 import { Wonder } from '../../models/models.namespace';
+import CloudProps from './cloud-props';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
@@ -17,7 +18,7 @@ declare let TimelineMax: any;
   <div #wonderCloud>
   <li id="wow" *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
     <p>{{wonders[i].name}}</p>
-    <img src="assets/{{cloudStyle[i]}}.svg">
+    <img src="assets/{{cb.cloudStyle[i]}}.svg">
   </li>
   </div>
   <input [(ngModel)]="dream" (keyup.enter)="saveWonder(dream)" placeholder="Do you wonder?" class="dreams-input"/>
@@ -50,18 +51,17 @@ declare let TimelineMax: any;
 export class CloudGeneratorComponent implements AfterViewInit{
   @ViewChild('wonderCloud') wonderCloud;
 
-  wonders: Wonder[];
-  errorMessage: string;
-  connection;
   private socket;
+  wonders: Wonder[];
+  cb: CloudProps;
+
+  errorMessage: string;
   dream = 'Wonders';
-  cloudStyle: Array<string> = [];
-  randomInt: number;
   wonderName;
-  rand = this.getRandomInt(1, 1000);
 
   constructor(private wonderService: WonderService, private renderer: Renderer) {
     this.socket = new SocketService();
+    this.cb = new CloudProps();
   }
   ngAfterViewInit() {
 
@@ -79,7 +79,7 @@ export class CloudGeneratorComponent implements AfterViewInit{
         this.wonders = wonders;
         this.socket.syncUpdates('Wonder', this.wonders);
 
-        this.wonders.forEach(item => this.cloudType(item.name.length));
+        this.wonders.forEach(item => this.cb.cloudType(item.name.length));
 
       });
   }
@@ -95,62 +95,12 @@ export class CloudGeneratorComponent implements AfterViewInit{
       });
   }
 
-  getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
-  cloudType(wonderName) {
-
-    this.randomInt = this.getRandomInt(1, 3);
-
-    if(wonderName <= 4) {
-      switch(this.randomInt) {
-        case 1:
-            this.cloudStyle.push('smallcloud1');
-            break;
-        case 2:
-            this.cloudStyle.push('smallcloud1');
-            break;
-        case 3:
-            this.cloudStyle.push('smallcloud1');
-            break;
-      }
-    }
-    else if(wonderName > 4 && wonderName <= 15) {
-      switch(this.randomInt) {
-        case 1:
-            this.cloudStyle.push('mediumcloud2');
-            break;
-        case 2:
-            this.cloudStyle.push('mediumcloud2');
-            break;
-        case 3:
-            this.cloudStyle.push('mediumcloud2');
-            break;
-      }
-    }
-    else{
-      switch(this.randomInt) {
-        case 1:
-            this.cloudStyle.push('largecloud3');
-            break;
-        case 2:
-            this.cloudStyle.push('largecloud3');
-            break;
-        case 3:
-            this.cloudStyle.push('largecloud3');
-            break;
-      }
-      console.log(wonderName);
-    }
-  }
-
   cloudAnim() {
     let kiwi = document.getElementById('wow');
 
     let tl = new TimelineMax();
 
-    tl.to(kiwi, 1, {x: this.rand}).to(kiwi, 1, {y: this.rand}).to(kiwi, 1, {opacity: 0.5});
+    tl.to(kiwi, 1, {x: this.cb.getRandomInt(1, 1000)}).to(kiwi, 1, {y: this.cb.getRandomInt(1, 1000)}).to(kiwi, 1, {opacity: 0.5});
   }
 
 
