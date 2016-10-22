@@ -63,7 +63,9 @@ class CloudProps {
 
     TweenMax.to(el, CloudProps.getRandomInt(1,3), {opacity: 1});
 
-    
+    tl = new TimelineMax();
+
+    tl.to(el, 10, {x: '100%'});
 
   }
 
