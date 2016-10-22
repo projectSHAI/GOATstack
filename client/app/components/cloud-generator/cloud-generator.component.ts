@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, Renderer } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, Renderer } from '@angular/core';
 
 import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
@@ -6,18 +6,15 @@ import { SocketService } from '../../services/socketio/socketio.service';
 import { Wonder } from '../../models/models.namespace';
 import CloudProps from './cloud-props';
 
-declare let TweenMax: any;
-declare let TimelineMax: any;
-
 @Component({
   selector: 'cloud-generator',
   providers: [WonderService, SocketService],
 
 
   template: `
-  <div #wonderCloud>
-  <li id="wow" *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
-    <p>{{wonders[i].name}}</p>
+  <div>
+  <li #wonderCloud id="wow" *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.ycoor" class="wonder">
+    <p>{{wonders[i].name | ngForHook:wonderCloud:cloudAnima}}</p>
     <img src="assets/{{cloudStyle[i]}}.svg">
   </li>
   </div>
@@ -28,6 +25,7 @@ declare let TimelineMax: any;
     .wonder{
       position: absolute;
       list-style: none;
+      opacity: 0;
     }
     .wonder p{
       position: absolute;
@@ -48,12 +46,12 @@ declare let TimelineMax: any;
     `]
 })
 
-export class CloudGeneratorComponent implements AfterViewInit{
-  @ViewChild('wonderCloud') wonderCloud;
+export class CloudGeneratorComponent{
 
   private socket;
   wonders: Wonder[];
   cloudStyle = CloudProps.cloudStyle;
+  cloudAnima = CloudProps.cloudAnima;
 
   errorMessage: string;
   dream = 'Wonders';
@@ -62,21 +60,15 @@ export class CloudGeneratorComponent implements AfterViewInit{
   constructor(private wonderService: WonderService, private renderer: Renderer) {
     this.socket = new SocketService();
   }
-  ngAfterViewInit() {
 
+  ngOnInit() {
     this.wonderService.getWonders()
       .subscribe(wonders => {
         this.wonders = wonders;
         this.socket.syncUpdates('Wonder', this.wonders, (item, index) => CloudProps.cloudType(item.name.length, index));
 
         this.wonders.forEach((item, index) => CloudProps.cloudType(item.name.length, index));
-
-        setTimeout(() => console.log(this.wonderCloud.nativeElement.children[0]), 100);
-
       });
-
-  }
-  ngOnInit() {
 
   }
 
@@ -90,14 +82,5 @@ export class CloudGeneratorComponent implements AfterViewInit{
         // console.log('saveWonder returns');
       });
   }
-
-  cloudAnim() {
-    let kiwi = document.getElementById('wow');
-
-    let tl = new TimelineMax();
-
-    tl.to(kiwi, 1, {x: CloudProps.getRandomInt(1, 1000)}).to(kiwi, 1, {y: CloudProps.getRandomInt(1, 1000)}).to(kiwi, 1, {opacity: 0.5});
-  }
-
 
 }
