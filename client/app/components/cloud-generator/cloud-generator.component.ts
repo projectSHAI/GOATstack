@@ -18,11 +18,9 @@ declare let TimelineMax: any;
   <li *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.xcoor" class="wonder">
     <p>{{wonders[i].name}}</p>
     <img src="assets/{{cloudStyle[i]}}.svg">
-
   </li>
   </div>
-  <input [(ngModel)]="dream" (keyup.enter)="saveWonder(dream)"
-    placeholder="Do you wonder?" class="dreams-input"/>
+  <input [(ngModel)]="dream" (keyup.enter)="saveWonder(dream)" placeholder="Do you wonder?" class="dreams-input"/>
   `,
 
   styles: [`

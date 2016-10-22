@@ -2,14 +2,7 @@
 
 var System = require('systemjs');
 require('./server.js');
-
-var mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
-
-// Make an System module for Mongoose
-System.set('mongoose', System.newModule({
-  default: mongoose
-}));
+require('./systemjs.server.js');
 
 System.config({
   paths: {

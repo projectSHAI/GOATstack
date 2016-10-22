@@ -1,7 +1,7 @@
 import {config} from '../config';
 let con = config();
 
-import mongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 
 let chalk = require('chalk'),
   	path = require('path'),

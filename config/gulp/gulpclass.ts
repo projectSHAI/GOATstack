@@ -103,7 +103,7 @@ export class Gulpfile {
   }
   @Task()
   build_index(done) {
-    return gulp.src('config/sys/index.js')
+    return gulp.src('config/sys/*{index,server}.js')
       .pipe(gulp.dest('./dist'));
   }
   // Transpile client side TS files
