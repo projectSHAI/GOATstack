@@ -1,5 +1,3 @@
-import {ViewChild} from '@angular/core';
-
 declare let TweenMax: any;
 declare let TimelineMax: any;
 declare let Power0: any;
@@ -7,10 +5,19 @@ declare let Power0: any;
 class CloudProps {
 
 
-  static cloudStyle: Array<string> = new Array(10);
   private static randomInt: number;
+  static cloudStyle: Array<string> = new Array<string>(10);
   static counter: number = 0;
-  static animaArray: Array<any> = new Array(10);
+  static animaArray: Array<any> = new Array<any>(10);
+
+  private static cloudAnimaAfterCB(afterWonders: any, item: any, index: number, position: string): void {
+    afterWonders[index].replace(item);
+    CloudProps.loopAnima(index, position);
+  }
+
+  private static loopAnima(index: number, position: string): void {
+    CloudProps.animaArray[index].play(position);
+  }
 
   static cloudType(wonderLength: number, index: number): void {
     CloudProps.randomInt = CloudProps.rndInt(1, 3);
@@ -62,8 +69,6 @@ class CloudProps {
     }
   }
 
-
-
   static cloudAnima(value: string, afterWonders: any, object: any, el, index: number): string {
 
     if (CloudProps.counter < 10) {
@@ -71,12 +76,12 @@ class CloudProps {
 
       anima.to(el, 0, { ease: Power0.easeNone, left: object.xcoor + "%", top: object.ycoor + "%" })
         .to(el, CloudProps.rndInt(1, 3), { opacity: 1 })
-        .to(el, 25, { ease: Power0.easeNone, left: '100%' }, 0)
+        .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, left: '100%' }, 0)
         .addLabel("loop", "+=0")
         .add(() => CloudProps.cloudType(object.name.length, index))
         .to(el, 0, { ease: Power0.easeNone, left: '-15%', top: object.ycoor + "%" })
         .to(el, 1, { opacity: 1 })
-        .to(el, 25, { ease: Power0.easeNone, left: '+=115%' });
+        .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, left: '+=115%' });
 
 
       CloudProps.counter++;
@@ -90,15 +95,6 @@ class CloudProps {
 
   static cloudAnimaAfter(el, afterWonders: any, item: any, index: number): void {
     TweenMax.to(el, 1, { opacity: 0, onComplete: CloudProps.cloudAnimaAfterCB, onCompleteParams: [afterWonders, item, index, "loop"] });
-  }
-
-  private static cloudAnimaAfterCB(afterWonders: any, item: any, index: number, position: string): void {
-    afterWonders[index].replace(item);
-    CloudProps.loopAnima(index, position);
-  }
-
-  private static loopAnima(index: number, position: string): void {
-    CloudProps.animaArray[index].play(position);
   }
 
   static rndInt(min: number, max: number): number {

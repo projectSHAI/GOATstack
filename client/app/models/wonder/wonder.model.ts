@@ -23,7 +23,7 @@ export class Wonder extends Universal {
 }
 
 export function cloneWonders(wonders: Wonder[]): Wonder[] {
-  let wonders2: Wonder[] = new Array(10);
+  let wonders2: Wonder[] = new Array<Wonder>(10);
 
   wonders.forEach((item, index) => {
     wonders2[index] = new Wonder(item);
