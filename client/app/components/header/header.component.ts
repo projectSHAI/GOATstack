@@ -12,7 +12,11 @@ import { Observable } from 'rxjs/Observable';
     <header>
       <main-navbar></main-navbar>
       <signinout></signinout>
-      <h1 class='app-title'>GOAT Stack</h1>
+      <div class='app-title'>
+        <object id="logo" type="image/svg+xml" data="assets/goatlogo.svg">Your browser does not support SVGs</object>
+        <h1>GOAT Stack</h1>
+      </div>
+
     </header>`,
 
 
@@ -30,11 +34,24 @@ import { Observable } from 'rxjs/Observable';
       position: relative;
     }
     .app-title{
+      width: 300px;
+      display: block;
+      margin: 0 auto;
+    }
+    .app-title h1{
       font-family: cursive;
-      padding: 15px;
+      padding: 10px;
       text-align: center;
-      font-size: 36px;
+      vertical-align: top;
+      font-size: 32px;
       color: white;
+      display: inline-block;
+    }
+    #logo{
+      display: inline-block;
+      opacity: 0.8;
+      width: 50px;
+      height: 50px;
     }
     `]
 
