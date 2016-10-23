@@ -13,8 +13,8 @@ import CloudProps from './cloud-props';
 
   template: `
   <div>
-  <li #wonderCloud id="wow" *ngFor="let wonder of wonders; let i = index" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.ycoor" class="wonder">
-    <p>{{wonders[i].name | ngForHook:wonderCloud:cloudAnima}}</p>
+  <li #wonderCloud id="wow" *ngFor="let wonder of wonders; let i = index" class="wonder">
+    <p>{{wonders[i].name | ngForHook:wonder:wonderCloud:i:cloudAnima}}</p>
     <img src="assets/{{cloudStyle[i]}}.svg">
   </li>
   </div>
@@ -65,7 +65,7 @@ export class CloudGeneratorComponent{
     this.wonderService.getWonders()
       .subscribe(wonders => {
         this.wonders = wonders;
-        this.socket.syncUpdates('Wonder', this.wonders, (item, index) => CloudProps.cloudType(item.name.length, index));
+        this.socket.syncUpdates('Wonder', this.wonders);
 
         this.wonders.forEach((item, index) => CloudProps.cloudType(item.name.length, index));
       });

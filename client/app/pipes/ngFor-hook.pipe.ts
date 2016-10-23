@@ -6,9 +6,9 @@ import { Pipe, PipeTransform, ElementRef } from '@angular/core';
 
 export class NgForHookPipe implements PipeTransform {
 
-  transform(value: string, element: ElementRef, fn: any): any {
+  transform(value: string, object: any, element: ElementRef, index: number, fn: any): any {
 
-    fn(element);
+    fn(object, element, index);
 
     return value;
   }

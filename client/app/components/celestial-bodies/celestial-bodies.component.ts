@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ClockService }  from '../../services/clock/clock.service';
 
 @Component({
-  selector: 'sun-and-moon',
+  selector: 'celestial-bodies',
   providers: [ClockService],
   template: `
     <h2 class="clock" [style.left.%]="clockAlign" >{{clock | async | date: 'mediumTime'}}</h2>
@@ -23,7 +23,7 @@ import { ClockService }  from '../../services/clock/clock.service';
 
 })
 
-export class SunandmoonComponent {
+export class CelestialBodiesComponent {
 
   public dayTime: boolean;
   public clock: any;

@@ -50,7 +50,7 @@ import { Observable } from 'rxjs/Observable';
     #logo{
       display: inline-block;
       opacity: 0.8;
-      width: 50px;
+      width: 75px;
       height: 50px;
     }
     `]

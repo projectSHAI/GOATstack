@@ -11,7 +11,7 @@ declare let TimelineMax: any;
 
 
   template: `
-    <sun-and-moon [style.left.%]="sunXPos" [style.top.%]="sunYPos" ></sun-and-moon>
+    <celestial-bodies [style.left.%]="sunXPos" [style.top.%]="sunYPos" ></celestial-bodies>
     <cloud-generator></cloud-generator>
     <mountain-range></mountain-range>
     <the-goat></the-goat>
@@ -38,7 +38,7 @@ declare let TimelineMax: any;
     mountain-range img{
       width: 100%;
     }
-    sun-and-moon{
+    celestial-bodies{
       position: fixed;
       display: block;
       height: 300px;
