@@ -6,15 +6,15 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ClockService {
-  period: string = "AM";
+  dayTime: boolean = true;
   currentTime = Observable.interval(1000).map(()=> new Date());
 
   subscription = this.currentTime.subscribe(x => {
-    if(x.getHours() < 12) {
-      this.period = "AM";
+    if(x.getHours() >= 6 && x.getHours() <= 18) {
+      this.dayTime = true;
     }
     else {
-      this.period = "PM";
+      this.dayTime = false;
     }
 
   });
