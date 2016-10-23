@@ -8,6 +8,7 @@ import { ClockService }  from '../../services/clock/clock.service';
   template: `
     <h2 class="clock" [style.left.%]="clockAlign" >{{clock | async | date: 'mediumTime'}}</h2>
     <img id="sun" src="assets/sun.svg">
+    <img id="moon" src="assets/moon.svg"
     `,
   styles: [`
     .clock{

@@ -17,10 +17,10 @@ class CloudProps {
           CloudProps.cloudStyle[index] = 'smallcloud1';
           break;
         case 2:
-          CloudProps.cloudStyle[index] = 'smallcloud1';
+          CloudProps.cloudStyle[index] = 'smallcloud2';
           break;
         case 3:
-          CloudProps.cloudStyle[index] = 'smallcloud1';
+          CloudProps.cloudStyle[index] = 'smallcloud3';
           break;
       }
 
@@ -29,13 +29,13 @@ class CloudProps {
 
       switch (CloudProps.randomInt) {
         case 1:
-          CloudProps.cloudStyle[index] = 'mediumcloud2';
+          CloudProps.cloudStyle[index] = 'mediumcloud1';
           break;
         case 2:
           CloudProps.cloudStyle[index] = 'mediumcloud2';
           break;
         case 3:
-          CloudProps.cloudStyle[index] = 'mediumcloud2';
+          CloudProps.cloudStyle[index] = 'mediumcloud3';
           break;
       }
 
@@ -44,10 +44,10 @@ class CloudProps {
 
       switch (CloudProps.randomInt) {
         case 1:
-          CloudProps.cloudStyle[index] = 'largecloud3';
+          CloudProps.cloudStyle[index] = 'largecloud1';
           break;
         case 2:
-          CloudProps.cloudStyle[index] = 'largecloud3';
+          CloudProps.cloudStyle[index] = 'largecloud2';
           break;
         case 3:
           CloudProps.cloudStyle[index] = 'largecloud3';
