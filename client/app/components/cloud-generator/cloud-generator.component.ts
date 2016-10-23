@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, Renderer } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, Renderer, ViewChild } from '@angular/core';
 
 import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
 
-import { Wonder } from '../../models/models.namespace';
+import { Wonder, cloneWonders } from '../../models/models.namespace';
 import CloudProps from './cloud-props';
+
+import * as _ from 'lodash';
 
 @Component({
   selector: 'cloud-generator',
@@ -12,9 +14,9 @@ import CloudProps from './cloud-props';
 
 
   template: `
-  <div>
-  <li #wonderCloud id="wow" *ngFor="let wonder of wonders; let i = index" class="wonder">
-    <p>{{wonders[i].name | ngForHook:wonder:wonderCloud:i:cloudAnima}}</p>
+  <div #wonderSky>
+  <li #wonderCloud id="wow" *ngFor="let wonder of afterWonders; let i = index" class="wonder">
+    <p>{{wonder.name | ngForHook : afterWonders : wonder : wonderCloud : i : cloudAnima}}</p>
     <img src="assets/{{cloudStyle[i]}}.svg">
   </li>
   </div>
@@ -47,11 +49,14 @@ import CloudProps from './cloud-props';
 })
 
 export class CloudGeneratorComponent{
+  @ViewChild('wonderSky') wonderSky;
 
   private socket;
-  wonders: Wonder[];
   cloudStyle = CloudProps.cloudStyle;
   cloudAnima = CloudProps.cloudAnima;
+
+  beforeWonders: Wonder[];
+  afterWonders: Wonder[];
 
   errorMessage: string;
   dream = 'Wonders';
@@ -64,12 +69,15 @@ export class CloudGeneratorComponent{
   ngOnInit() {
     this.wonderService.getWonders()
       .subscribe(wonders => {
-        this.wonders = wonders;
-        this.socket.syncUpdates('Wonder', this.wonders);
+        this.beforeWonders = wonders;
 
-        this.wonders.forEach((item, index) => CloudProps.cloudType(item.name.length, index));
+        this.afterWonders = cloneWonders(wonders);
+        this.afterWonders.forEach((item, index) => CloudProps.cloudType(item.name.length, index));
+
+        this.socket.syncUpdates('Wonder', this.beforeWonders, (item, index) => {
+          CloudProps.cloudAnimaAfter(this.wonderSky.nativeElement.children[index], this.afterWonders, item, index);
+        });
       });
-
   }
 
   ngOnDestroy() {
@@ -77,10 +85,7 @@ export class CloudGeneratorComponent{
   }
 
   saveWonder(name: string) {
-    this.wonderService.saveWonder(name)
-      .subscribe(() => {
-        // console.log('saveWonder returns');
-      });
+    this.wonderService.saveWonder(name).subscribe();
   }
 
 }

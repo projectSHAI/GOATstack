@@ -7,9 +7,7 @@ export class Wonder extends Universal {
   ycoor: number;
 
   constructor(body: any) {
-    super();
-    this._id = body._id;
-    this.created = body.created;
+    super(body);
     this.name = body.name;
     this.xcoor = body.xcoor;
     this.ycoor = body.ycoor;
@@ -22,6 +20,16 @@ export class Wonder extends Universal {
     this.ycoor = body.ycoor;
   }
 
+}
+
+export function cloneWonders(wonders: Wonder[]): Wonder[] {
+  let wonders2: Wonder[] = new Array(10);
+
+  wonders.forEach((item, index) => {
+    wonders2[index] = new Wonder(item);
+  });
+
+  return wonders2;
 }
 
 export function mapWonders(res: Response): Wonder[] {

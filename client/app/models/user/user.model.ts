@@ -9,14 +9,12 @@ export class User extends Universal {
   role: string;
 
   constructor(body: any) {
-    super();
-    this._id = body._id;
+    super(body);
     this.userName = body.userName;
     this.firstName = body.firstName;
     this.lastName = body.lastName;
 
     this.email = body.email;
-    this.created = body.created;
     this.role = body.role;
   }
 
