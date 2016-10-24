@@ -1,0 +1,15 @@
+.error-card {
+    opacity: 0;
+    z-index: 1000;
+    width: 20%;
+    padding: 0;
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+}
+
+.error-content {
+    padding: 15px;
+    font-size: medium;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

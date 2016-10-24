@@ -12,6 +12,8 @@ let watch = require('gulp-watch');
 let KarmaServer = require('karma').Server;
 let JasmineReporter = require('jasmine-spec-reporter');
 let ts = require('gulp-typescript');
+let embedTemplates = require('gulp-angular-embed-templates');
+let embedSass = require('gulp-angular2-embed-sass');
 let runSequence = require('run-sequence');
 let plugins = require('gulp-load-plugins')();
 let shell = require('gulp-shell');
@@ -57,6 +59,11 @@ export class Gulpfile {
   @Task()
   build_html(done) {
     return gulp.src(defaultAssets.client.views)
+      .pipe(gulp.dest('./dist/app'));
+  }
+  @Task()
+  build_css(done) {
+    return gulp.src(defaultAssets.client.css)
       .pipe(gulp.dest('./dist/app'));
   }
   @Task()
@@ -107,6 +114,8 @@ export class Gulpfile {
   build_client(done) {
     let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'app.js' });
     let tsResult = gulp.src(`client/**/**/!(*.spec).ts`)
+      .pipe(embedTemplates())
+      .pipe(embedSass())
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./tmp'));
@@ -125,6 +134,8 @@ export class Gulpfile {
   client_test(done) {
     let tsProject = ts.createProject('./tsconfig.json', { module: 'system' });
     let tsResult = gulp.src(`client/**/**/*.ts`)
+      .pipe(embedTemplates())
+      .pipe(embedSass())
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./dist'));

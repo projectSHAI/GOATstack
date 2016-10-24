@@ -1,0 +1,14 @@
+.active {
+    color: orange;
+}
+
+:host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 23px 5%;
+}
+
+a:hover {
+    cursor: pointer;
+}

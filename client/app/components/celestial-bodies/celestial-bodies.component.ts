@@ -5,22 +5,8 @@ import { ClockService }  from '../../services/clock/clock.service';
 @Component({
   selector: 'celestial-bodies',
   providers: [ClockService],
-  template: `
-    <h2 class="clock" [style.left.%]="clockAlign" >{{clock | async | date: 'mediumTime'}}</h2>
-    <img id="sun" src="assets/sun.svg">
-    <img id="moon" src="assets/moon.svg">
-    `,
-  styles: [`
-    .clock{
-      position: absolute;
-      top: 47%;
-    }
-      #sun{
-        height: 300px;
-        width: 300px;
-      }
-    `]
-
+  templateUrl: './celestial-bodies.component.html',
+  styleUrls: ['./celestial-bodies.component.scss']
 })
 
 export class CelestialBodiesComponent {

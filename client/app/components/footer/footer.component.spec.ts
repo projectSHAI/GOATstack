@@ -7,21 +7,22 @@ import { FooterComponent } from './footer.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-let comp: FooterComponent;
-let fixture: ComponentFixture<FooterComponent>;
-
 describe('FooterComponent Test', () => {
+  let comp: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
+
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule]
     });
 
     fixture = TestBed.createComponent(FooterComponent);
+    comp = fixture.componentInstance;
 
     done();
   });
 
   it('should instantiate component', () => {
-    expect(fixture.componentInstance instanceof FooterComponent).toBe(true, 'should create FooterComponent');
+    expect(comp instanceof FooterComponent).toBe(true, 'should create FooterComponent');
   });
 });

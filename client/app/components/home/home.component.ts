@@ -6,45 +6,9 @@ declare let TweenMax: any;
 declare let TimelineMax: any;
 
 @Component({
-  // moduleId: module.id,
   selector: 'home-section',
-
-
-  template: `
-    <celestial-bodies [style.left.%]="sunXPos" [style.top.%]="sunYPos" ></celestial-bodies>
-    <cloud-generator></cloud-generator>
-    <mountain-range></mountain-range>
-    <the-goat></the-goat>
-      `,
-  styles: [`
-    :host {
-      position: relative;
-      display: block;
-      height: 1000px;
-    }
-    the-goat{
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      top: 10%;
-      left: 46%;
-    }
-    mountain-range{
-      position: absolute;
-      bottom: -400px;
-      left: 0;
-      right: 0;
-    }
-    mountain-range img{
-      width: 100%;
-    }
-    celestial-bodies{
-      position: fixed;
-      display: block;
-      height: 300px;
-      width: 300px;
-    }
-    `]
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent {

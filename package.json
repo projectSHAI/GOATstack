@@ -88,6 +88,8 @@
     "concurrently": "^2.2.0",
     "del": "2.2.2",
     "gulp": "3.9.1",
+    "gulp-angular-embed-templates": "^2.3.0",
+    "gulp-angular2-embed-sass": "^0.3.0",
     "gulp-concat": "2.6.0",
     "gulp-csslint": "^1.0.0",
     "gulp-jasmine": "^2.4.2",

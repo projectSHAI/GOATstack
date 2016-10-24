@@ -12,10 +12,10 @@ import { By } from '@angular/platform-browser';
 class MockWonderService {}
 class MockSocketSerivce {}
 
-let comp: HomeComponent;
-let fixture: ComponentFixture<HomeComponent>;
-
 describe('HomeComponent Test', () => {
+  let comp: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
+
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],
@@ -26,11 +26,12 @@ describe('HomeComponent Test', () => {
     });
 
     fixture = TestBed.createComponent(HomeComponent);
+    comp = fixture.componentInstance;
 
     done();
   });
 
   it('should instantiate component', () => {
-    expect(fixture.componentInstance instanceof HomeComponent).toBe(true, 'should create HomeComponent');
+    expect(comp instanceof HomeComponent).toBe(true, 'should create HomeComponent');
   });
 });

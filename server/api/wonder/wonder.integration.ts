@@ -1,5 +1,3 @@
-/*jshint loopfunc: true */
-
 import app from '../../server';
 import request = require('supertest');
 

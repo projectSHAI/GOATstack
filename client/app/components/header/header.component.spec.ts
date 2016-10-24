@@ -13,10 +13,10 @@ import { By } from '@angular/platform-browser';
 
 class MockClockService {}
 
-let comp: HeaderComponent;
-let fixture: ComponentFixture<HeaderComponent>;
-
 describe('HeaderComponent Test', () => {
+  let comp: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
+
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],
@@ -32,6 +32,6 @@ describe('HeaderComponent Test', () => {
   });
 
   it('should instantiate component', () => {
-    expect(fixture.componentInstance instanceof HeaderComponent).toBe(true);
+    expect(comp instanceof HeaderComponent).toBe(true);
   });
 });

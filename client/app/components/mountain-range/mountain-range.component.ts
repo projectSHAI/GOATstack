@@ -2,17 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'mountain-range',
-  template: `
-      <img src="assets/mountainRange.svg">
-    `,
-  styles: [`
-      img{
-        width: 100%;
-      }
-    `]
-
+  templateUrl: './mountain-range.component.html',
+  styleUrls: ['./mountain-range.component.scss']
 })
 
-export class MountainRangeComponent {
-
-}
+export class MountainRangeComponent { }

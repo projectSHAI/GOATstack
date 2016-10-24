@@ -6,7 +6,6 @@ export const defaultAssets = {
       ],
       css: [
         'dist/styles.css',
-        'dist/components/**/*.css'
       ],
       assets: [
         'dist/app/assets/*jpg',
@@ -14,15 +13,14 @@ export const defaultAssets = {
         'dist/app/assets/*.svg'
       ],
       views: [
-        'dist/app/index.html'
+        'dist/app/index.html',
       ]
     },
     scss: [
       'client/styles.scss'
     ],
     css: [
-      'client/styles.css',
-      'client/app/components/**/*.css'
+      'client/app/**/**/*.css'
     ],
     ts: [
       'client/app/*.ts',
@@ -35,7 +33,6 @@ export const defaultAssets = {
     ],
     views: [
       'client/index.html',
-      'client/app/components/**/*.html'
     ],
     spec: [
       'client/app/**/**/*.spec.ts'

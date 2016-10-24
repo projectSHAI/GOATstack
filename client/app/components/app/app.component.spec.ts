@@ -6,21 +6,22 @@ import { AppComponent } from './app.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-let comp: AppComponent;
-let fixture: ComponentFixture<AppComponent>;
-
 describe('AppComponent Test', () => {
+  let comp: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule]
     });
 
     fixture = TestBed.createComponent(AppComponent);
+    comp = fixture.componentInstance;
 
     done();
   });
 
   it('should instantiate component', () => {
-    expect(fixture.componentInstance instanceof AppComponent).toBe(true, 'should create AppComponent');
+    expect(comp instanceof AppComponent).toBe(true, 'should create AppComponent');
   });
 });

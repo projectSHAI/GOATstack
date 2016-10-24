@@ -36,19 +36,19 @@ class MockUserService {
   }
 }
 
-let comp: SignInOutComponent;
-let fixture: ComponentFixture<SignInOutComponent>;
-let userService: DebugElement;
-Cookie.set('token', 'token_test');
-
 describe('SignInOutComponent Test', () => {
+  let comp: SignInOutComponent;
+  let fixture: ComponentFixture<SignInOutComponent>;
+  let userService: DebugElement;
+  Cookie.set('token', 'token_test');
+
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],
       providers: [
         { provide: UserService, useClass: MockUserService }
       ]
-    }).compileComponents();
+    });
 
     fixture = TestBed.createComponent(SignInOutComponent);
     comp = fixture.componentInstance;
@@ -59,7 +59,7 @@ describe('SignInOutComponent Test', () => {
   });
 
   it('should instantiate component', () => {
-    expect(fixture.componentInstance instanceof SignInOutComponent).toBe(true);
+    expect(comp instanceof SignInOutComponent).toBe(true);
   });
 
   it('should not show currentUser before OnInit', () => {

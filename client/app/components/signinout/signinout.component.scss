@@ -1,0 +1,25 @@
+.user-sign{
+  position: absolute;
+  top:0;
+  right:0;
+  margin: 23px 5%;
+}
+.user-sign button:hover{
+  cursor: pointer;
+}
+.reg-card {
+  z-index: 1000;
+  padding: 0;
+}
+.reg-content {
+  padding: 10px;
+}
+.form-button {
+  margin-right: 2px;
+}
+td {
+  padding: 2px;
+}
+.submit-col {
+  text-align: right;
+}
