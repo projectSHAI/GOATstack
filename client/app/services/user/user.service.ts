@@ -25,10 +25,16 @@ export class UserService {
     // In a real world app, we might use a remote logging infrastructure
     // We'd also dig deeper into the error to get a better message
     let body = JSON.parse(error._body);
-    let errMsg = body.errors ? body.errors :
-      body.message ? body.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    return Observable.throw(errMsg);
+    let errMsg;
+
+    if (body.errors) {
+      errMsg = body.errors.userName ? body.errors.userName : body.errors.email;
+    } else {
+      errMsg = body ? body :
+        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    }
+
+    return Observable.throw(errMsg.message);
   }
 
   // Public functions that components may call

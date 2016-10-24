@@ -133,7 +133,7 @@ export class SignInOutComponent implements OnInit {
       this.userSignup = false;
       this.userService.signup(rf.value.signup_username, rf.value.signup_email, rf.value.signup_password)
         .subscribe(user => this.currentUser = user,
-          err => this.errorHandler.error(err.email.message));
+          err => this.errorHandler.error(err));
     }
     else if (rf.value.signup_password !== rf.value.signup_re_password)
       this.errorHandler.error('Inputted passwords are not the same!');

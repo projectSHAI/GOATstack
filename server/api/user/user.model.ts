@@ -122,21 +122,39 @@ UserSchema
 UserSchema
   .path('email')
   .validate(function(value, respond) {
-    let self = this;
     return this.constructor.findOne({ email: value }).exec()
-      .then(function(user) {
+      .then(user => {
         if (user) {
-          if (self.id === user.id) {
+          if (this.id === user.id) {
             return respond(true);
           }
           return respond(false);
         }
         return respond(true);
       })
-      .catch(function(err) {
+      .catch(err => {
         throw err;
       });
-  }, 'The email address is already in use!');
+  }, 'This email address is already in use!');
+
+// Validate username is not taken
+UserSchema
+  .path('userName')
+  .validate(function(value, respond) {
+    return this.constructor.findOne({ userName: value }).exec()
+      .then(user => {
+        if (user) {
+          if (this.id === user.id) {
+            return respond(true);
+          }
+          return respond(false);
+        }
+        return respond(true);
+      })
+      .catch(err => {
+        throw err;
+      });
+  }, 'This username is already in use!');
 
 let validatePresenceOf = function(value) {
   return value && value.length;
