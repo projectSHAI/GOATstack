@@ -116,7 +116,8 @@ export class SignInOutComponent implements OnInit {
     else if (this.userSigning && lf.valid) {
       this.userSigning = false;
       this.userService.login(lf.value.login_email, lf.value.login_password)
-        .subscribe(user => this.currentUser = user, err => this.errorHandler.error("There was an issue during signin!"));
+        .subscribe(user => this.currentUser = user,
+          err => this.errorHandler.error(err));
     }
   }
 
@@ -131,8 +132,10 @@ export class SignInOutComponent implements OnInit {
     else if (this.userSignup && rf.valid && (rf.value.signup_password === rf.value.signup_re_password)) {
       this.userSignup = false;
       this.userService.signup(rf.value.signup_username, rf.value.signup_email, rf.value.signup_password)
-        .subscribe(user => this.currentUser = user);
+        .subscribe(user => this.currentUser = user,
+          err => this.errorHandler.error(err.email.message));
     }
-    else if (rf.value.password !== rf.value.re_password) alert('Passwords are not the same!');
+    else if (rf.value.signup_password !== rf.value.signup_re_password)
+      this.errorHandler.error('Inputted passwords are not the same!');
   }
 }

@@ -136,7 +136,7 @@ UserSchema
       .catch(function(err) {
         throw err;
       });
-  }, 'The specified email address is already in use.');
+  }, 'The email address is already in use!');
 
 let validatePresenceOf = function(value) {
   return value && value.length;
