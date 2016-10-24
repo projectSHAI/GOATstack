@@ -4,6 +4,7 @@ import { Cookie }    from 'ng2-cookies/ng2-cookies';
 import { Observable } from 'rxjs/Observable';
 
 import { UserService }  from '../../services/user/user.service';
+import { ErrorHandlerService } from '../../services/errorHandler/errorHandler.service';
 import { User } from '../../models/models.namespace';
 
 @Component({
@@ -97,7 +98,7 @@ export class SignInOutComponent implements OnInit {
   userSigning: boolean = false;
   userSignup: boolean = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     if (Cookie.get('token'))
@@ -109,12 +110,13 @@ export class SignInOutComponent implements OnInit {
   }
 
   login(lf: NgForm) {
-    if (!this.userSigning)
+    if (!this.userSigning) {
       this.userSigning = true;
+    }
     else if (this.userSigning && lf.valid) {
       this.userSigning = false;
       this.userService.login(lf.value.login_email, lf.value.login_password)
-        .subscribe(user => this.currentUser = user);
+        .subscribe(user => this.currentUser = user, err => this.errorHandler.error("There was an issue during signin!"));
     }
   }
 

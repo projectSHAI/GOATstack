@@ -7,8 +7,6 @@ import { AppComponent }  from './components/app/app.component';
 
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
 
-// import { Universal } from './models/universal/universal.model';
-
 //other necessary modules for this app
 import { NgModule }                  from '@angular/core';
 import { FormsModule }               from '@angular/forms';
@@ -19,25 +17,28 @@ import { HttpModule, JsonpModule }   from '@angular/http';
 import { routing } from './routes';
 
 //components for different views
-import { HeaderComponent }          from './components/header/header.component';
-import { NavbarComponent }          from './components/navbar/navbar.component';
-import { SignInOutComponent }       from './components/signinout/signinout.component';
-import { HomeComponent }            from './components/home/home.component';
-import { FooterComponent }          from './components/footer/footer.component';
-import { Four0FourComponent }       from './components/404/four0four.component';
-import { UserProfileComponent }     from './components/user-profile/user-profile.component';
-import { CelestialBodiesComponent }      from './components/celestial-bodies/celestial-bodies.component';
-import { MountainRangeComponent }   from './components/mountain-range/mountain-range.component';
-import { GOATComponent }            from './components/GOAT/GOAT.component';
-import { CloudGeneratorComponent }           from './components/cloud-generator/cloud-generator.component';
+import { HeaderComponent }            from './components/header/header.component';
+import { NavbarComponent }            from './components/navbar/navbar.component';
+import { SignInOutComponent }         from './components/signinout/signinout.component';
+import { HomeComponent }              from './components/home/home.component';
+import { FooterComponent }            from './components/footer/footer.component';
+import { Four0FourComponent }         from './components/404/four0four.component';
+import { UserProfileComponent }       from './components/user-profile/user-profile.component';
+import { CelestialBodiesComponent }   from './components/celestial-bodies/celestial-bodies.component';
+import { MountainRangeComponent }     from './components/mountain-range/mountain-range.component';
+import { GOATComponent }              from './components/GOAT/GOAT.component';
+import { CloudGeneratorComponent }    from './components/cloud-generator/cloud-generator.component';
+
+//services that need to be singletons
+import { ErrorHandlerService }        from './services/errorHandler/errorHandler.service';
 
 //custom pipes
-import { NgForHookPipe } from './pipes/ngFor-hook.pipe';
+import { NgForHookPipe }              from './pipes/ngFor-hook.pipe';
 
 //services for global use
-import { Cookie }               from 'ng2-cookies/ng2-cookies';
-import { MaterialModule }       from '@angular/material';
-import { HttpIntercept }        from './services/auth/auth.service';
+import { Cookie }                     from 'ng2-cookies/ng2-cookies';
+import { MaterialModule }             from '@angular/material';
+import { HttpIntercept }              from './services/auth/auth.service';
 
 //declare all custom non npm libraries here
 import 'gsap';
@@ -79,7 +80,8 @@ import 'gsap';
         new HttpIntercept(backend, defaultOptions),
       deps: [XHRBackend, RequestOptions]
     },
-    Cookie
+    Cookie,
+    ErrorHandlerService
   ],
   //bootstrap: identifies which component is supposed to be bootstrapped
   bootstrap: [AppComponent]
