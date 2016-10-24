@@ -1,4 +1,6 @@
-import * as mongoose from 'mongoose';
+let mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+
 import * as chalk from 'chalk';
 import * as path from 'path';
 import {config} from '../config';

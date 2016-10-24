@@ -1,7 +1,6 @@
 'use strict';
 
 var mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
 let crypto = require('crypto');
 let jsonwebtoken = require('jsonwebtoken');
 let passport = require('passport');
