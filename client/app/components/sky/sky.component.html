@@ -1,7 +1,5 @@
 <cloud-generator></cloud-generator>
 
-<h2 class="clock" [style.left.%]="clockAlign" >{{clock | async | date: 'mediumTime'}}</h2>
-
-<svg viewBox="0 0 200px 200px" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="100" cy="100" r="100" fill="white"/>
-</svg>
+<div class="sun-moon" [style.box-shadow]="sunMoonGlow">
+  <h2 class="clock">{{clock | async | date: 'mediumTime'}}</h2>
+</div>

@@ -1,7 +1,8 @@
 :host {
     position: relative;
     display: block;
-    height: 1000px;
+    width: 100%;
+    overflow: hidden;
 }
 
 the-goat {
@@ -23,9 +24,8 @@ mountain-range img {
     width: 100%;
 }
 
-celestial-bodies {
-    position: fixed;
+the-sky {
     display: block;
-    height: 300px;
-    width: 300px;
+    background-color: rgb(83,148,190);
+    height: 200vh;
 }

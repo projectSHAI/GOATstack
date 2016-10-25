@@ -74,14 +74,13 @@ class CloudProps {
     if (CloudProps.counter < 10) {
       let anima = new TimelineMax({ onComplete: CloudProps.loopAnima, onCompleteParams: [index, "loop"] });
 
-      anima.to(el, 0, { ease: Power0.easeNone, left: object.xcoor + "%", top: object.ycoor + "%" })
-        .to(el, CloudProps.rndInt(1, 3), { opacity: 1 })
-        .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, left: '100%' }, 0)
-        .addLabel("loop", "+=0")
-        .add(() => CloudProps.cloudType(object.name.length, index))
-        .to(el, 0, { ease: Power0.easeNone, left: '-15%', top: object.ycoor + "%" })
-        .to(el, 1, { opacity: 1 })
-        .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, left: '+=115%' });
+      anima.to(el, CloudProps.rndInt(1, 3), { opacity: 1 })
+           .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '100%' }, 0)
+           .addLabel("loop", "+=0")
+           .add(() => CloudProps.cloudType(object.name.length, index))
+           .to(el, 0, { ease: Power0.easeNone, left: '-20%', x: '0%' })
+           .to(el, 1, { opacity: 1 })
+           .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '150%' });
 
 
       CloudProps.counter++;

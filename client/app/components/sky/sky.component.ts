@@ -13,11 +13,17 @@ export class SkyComponent {
 
   public dayTime: boolean;
   public clock: any;
-  clockAlign: number = 37;
+  public sunMoonGlow: string = "0px 0px 100px 12px orange";
 
   constructor(public clockService: ClockService) {
     this.clock = this.clockService.currentTime;
     this.dayTime = this.clockService.dayTime;
   }
+
+
+  rgbToHex() {
+    //make a function that converts rgba and returns a hex
+  }
+
 
 }
