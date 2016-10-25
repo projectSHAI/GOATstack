@@ -39,7 +39,6 @@ describe('SignInOutComponent Test', () => {
   let comp: SignInOutComponent;
   let fixture: ComponentFixture<SignInOutComponent>;
   let userService: DebugElement;
-  Cookie.set('token', 'token_test');
 
   beforeEach(done => {
     TestBed.configureTestingModule({
@@ -54,6 +53,7 @@ describe('SignInOutComponent Test', () => {
     comp = fixture.debugElement.componentInstance;
 
     userService = fixture.debugElement.injector.get(UserService);
+    Cookie.set('token', 'token_test');
 
     done();
   });
@@ -75,10 +75,17 @@ describe('SignInOutComponent Test', () => {
 
     fixture.detectChanges();
     expect(getMeSpy.calls.any()).toBe(true, 'getMe called');
-    expect(comp.currentUser).toEqual(user);
+    expect(comp.currentUser).toBe(user);
   });
 
   it('should remove currentUser after logout called', () => {
+    let getMeSpy = spyOn(userService, 'getMe')
+      .and.returnValue(Observable.of(user));
+
+    fixture.detectChanges();
+    expect(getMeSpy.calls.any()).toBe(true, 'getMe called');
+    expect(comp.currentUser).toEqual(user);
+
     let logoutSpy = spyOn(userService, 'logout')
       .and.returnValue(Cookie.delete('token'));
 
@@ -93,6 +100,8 @@ describe('SignInOutComponent Test', () => {
   });
 
   it('should add currentUser after registerUser called', () => {
+    Cookie.delete('token');
+
     let signupSpy = spyOn(userService, 'signup')
       .and.returnValue(Observable.of(user));
 

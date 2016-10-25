@@ -4,10 +4,9 @@ declare let Power0: any;
 
 class CloudProps {
 
-
   private static randomInt: number;
-  static cloudStyle: Array<string> = new Array<string>(10);
   static counter: number = 0;
+  static cloudStyle: Array<string> = new Array<string>(10);
   static animaArray: Array<any> = new Array<any>(10);
 
   private static cloudAnimaAfterCB(afterWonders: any, item: any, index: number, position: string): void {
@@ -75,12 +74,12 @@ class CloudProps {
       let anima = new TimelineMax({ onComplete: CloudProps.loopAnima, onCompleteParams: [index, "loop"] });
 
       anima.to(el, CloudProps.rndInt(1, 3), { opacity: 1 })
-           .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '100%' }, 0)
-           .addLabel("loop", "+=0")
-           .add(() => CloudProps.cloudType(object.name.length, index))
-           .to(el, 0, { ease: Power0.easeNone, left: '-20%', x: '0%' })
-           .to(el, 1, { opacity: 1 })
-           .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '150%' });
+        .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '100%' }, 0)
+        .addLabel("loop", "+=0")
+        .add(() => CloudProps.cloudType(object.name.length, index))
+        .to(el, 0, { ease: Power0.easeNone, left: '-20%', x: '0%' })
+        .to(el, 1, { opacity: 1 })
+        .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '150%' });
 
 
       CloudProps.counter++;
@@ -98,6 +97,19 @@ class CloudProps {
 
   static rndInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  static reset() {
+    CloudProps.counter = 0;
+
+    CloudProps.cloudStyle.forEach((item, index) => {
+      CloudProps.cloudStyle.pop();
+    });
+
+    CloudProps.animaArray.forEach((item, index) => {
+      CloudProps.animaArray.pop();
+    });
+
   }
 }
 

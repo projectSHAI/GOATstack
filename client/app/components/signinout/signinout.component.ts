@@ -9,6 +9,7 @@ import { User } from '../../models/models.namespace';
 
 @Component({
   selector: 'signinout',
+  providers: [UserService],
   templateUrl: './signinout.component.html',
   styleUrls: ['./signinout.component.scss']
 })

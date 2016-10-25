@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, Renderer, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 
 import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
@@ -6,11 +6,9 @@ import { SocketService } from '../../services/socketio/socketio.service';
 import { Wonder, cloneWonders } from '../../models/models.namespace';
 import CloudProps from './cloud-props';
 
-import * as _ from 'lodash';
-
 @Component({
   selector: 'cloud-generator',
-  providers: [WonderService, SocketService],
+  providers: [WonderService],
   templateUrl: './cloud-generator.component.html',
   styleUrls: ['./cloud-generator.component.scss']
 })
@@ -18,7 +16,7 @@ import * as _ from 'lodash';
 export class CloudGeneratorComponent{
   @ViewChild('wonderSky') wonderSky;
 
-  private socket;
+  // private socket;
   cloudStyle = CloudProps.cloudStyle;
   cloudAnima = CloudProps.cloudAnima;
 
@@ -29,8 +27,8 @@ export class CloudGeneratorComponent{
   dream = 'Wonders';
   wonderName;
 
-  constructor(private wonderService: WonderService, private renderer: Renderer) {
-    this.socket = new SocketService();
+  constructor(private wonderService: WonderService, private socket: SocketService) {
+    // this.socket = new SocketService();
   }
 
   ngOnInit() {
@@ -48,6 +46,7 @@ export class CloudGeneratorComponent{
   }
 
   ngOnDestroy() {
+    CloudProps.reset();
     this.socket.unsyncUpdates('Wonder');
   }
 

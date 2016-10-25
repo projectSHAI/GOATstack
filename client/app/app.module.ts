@@ -30,7 +30,7 @@ import { GOATComponent }              from './components/GOAT/GOAT.component';
 import { CloudGeneratorComponent }    from './components/cloud-generator/cloud-generator.component';
 
 //services that need to be singletons
-import { UserService }                from './services/user/user.service';
+import { SocketService }              from './services/socketio/socketio.service';
 import { ErrorHandlerService }        from './services/errorHandler/errorHandler.service';
 
 //custom pipes
@@ -74,7 +74,7 @@ import 'gsap';
   //providers: this object imports all necessary services into the module
   providers: [
     ErrorHandlerService,
-    UserService,
+    SocketService,
     {
       provide: Http,
       useFactory: (
