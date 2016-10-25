@@ -24,7 +24,7 @@ import { HomeComponent }              from './components/home/home.component';
 import { FooterComponent }            from './components/footer/footer.component';
 import { Four0FourComponent }         from './components/404/four0four.component';
 import { UserProfileComponent }       from './components/user-profile/user-profile.component';
-import { CelestialBodiesComponent }   from './components/celestial-bodies/celestial-bodies.component';
+import { SkyComponent }               from './components/sky/sky.component';
 import { MountainRangeComponent }     from './components/mountain-range/mountain-range.component';
 import { GOATComponent }              from './components/GOAT/GOAT.component';
 import { CloudGeneratorComponent }    from './components/cloud-generator/cloud-generator.component';
@@ -64,7 +64,7 @@ import 'gsap';
     HomeComponent,
     AppComponent,
     NavbarComponent,
-    CelestialBodiesComponent,
+    SkyComponent,
     MountainRangeComponent,
     GOATComponent,
     CloudGeneratorComponent,

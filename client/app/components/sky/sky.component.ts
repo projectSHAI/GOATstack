@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 import { ClockService }  from '../../services/clock/clock.service';
 
 @Component({
-  selector: 'celestial-bodies',
+  selector: 'the-sky',
   providers: [ClockService],
-  templateUrl: './celestial-bodies.component.html',
-  styleUrls: ['./celestial-bodies.component.scss']
+  templateUrl: './sky.component.html',
+  styleUrls: ['./sky.component.scss']
 })
 
-export class CelestialBodiesComponent {
+export class SkyComponent {
 
   public dayTime: boolean;
   public clock: any;
