@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { Cookie }    from 'ng2-cookies/ng2-cookies';
 import { Observable } from 'rxjs/Observable';
 
@@ -28,7 +28,7 @@ export class SignInOutComponent implements OnInit {
     this.userSignup = this.userSigning = false;
   }
 
-  login(lf: NgForm) {
+  login(lf: FormGroup) {
     if (!this.userSigning) {
       this.userSigning = true;
     }
@@ -40,12 +40,12 @@ export class SignInOutComponent implements OnInit {
     }
   }
 
-  logout() {
+  logout(): void {
     this.userService.logout();
     this.currentUser = null;
   }
 
-  registerUser(rf: NgForm) {
+  registerUser(rf: FormGroup) {
     if (this.userSigning) this.userSigning = false;
     if (!this.userSignup) this.userSignup = true;
     else if (this.userSignup && rf.valid && (rf.value.signup_password === rf.value.signup_re_password)) {

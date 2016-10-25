@@ -26,21 +26,13 @@ let user = new User({
 });
 
 class MockUserService {
-  getMe(): Observable<User> {
-    console.log('Inside GetMe');
-    return Observable.of(user);
-  }
+  getMe(): Observable<User> { return Observable.of(user); }
   login(userName: string, email: string): Observable<User> {
-    console.log('Inside Login');
+    Cookie.set('token', 'token_test');
     return Observable.of(user);
   }
-  logout() {
-    console.log('Inside Logout');
-    Cookie.delete('token');
-  }
-  signup(username: string, email: string, password: string): Observable<User> {
-    return Observable.of(user);
-  }
+  logout(): void { Cookie.delete('token'); }
+  signup(username: string, email: string, password: string): Observable<User> { return Observable.of(user); }
 }
 
 describe('SignInOutComponent Test', () => {
@@ -52,23 +44,18 @@ describe('SignInOutComponent Test', () => {
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],
-      // providers: [
-      //   { provide: UserService, useFactory: MockUserService }
-      // ]
+      providers: [
+        { provide: UserService, useClass: MockUserService },
+        Cookie
+      ]
     });
 
-    TestBed.overrideComponent(SignInOutComponent, {
-      set: {
-        providers: [{ provide: UserService, useClass: MockUserService }]
-      }
-    }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(SignInOutComponent);
-      comp = fixture.componentInstance;
+    fixture = TestBed.createComponent(SignInOutComponent);
+    comp = fixture.debugElement.componentInstance;
 
-      userService = fixture.debugElement.injector.get(UserService);
+    userService = fixture.debugElement.injector.get(UserService);
 
-      done();
-    });
+    done();
   });
 
   it('should instantiate component', () => {
@@ -92,42 +79,62 @@ describe('SignInOutComponent Test', () => {
   });
 
   it('should remove currentUser after logout called', () => {
-    let logoutSpy = spyOn(userService, 'logout');
+    let logoutSpy = spyOn(userService, 'logout')
+      .and.returnValue(Cookie.delete('token'));
 
     fixture.detectChanges();
     comp.logout();
     fixture.detectChanges();
     expect(logoutSpy.calls.any()).toBe(true, 'logout called');
-    fixture.detectChanges();
     expect(comp.currentUser).toBe(null);
     fixture.detectChanges();
     expect(Cookie.get('token')).toBe(null);
 
   });
 
-  it('should remove then add currentUser after logout and login', () => {
-    let logoutSpy = spyOn(userService, 'logout');
-    let loginSpy = spyOn(userService, 'login')
+  it('should add currentUser after registerUser called', () => {
+    let signupSpy = spyOn(userService, 'signup')
       .and.returnValue(Observable.of(user));
 
+    let form = new FormGroup({
+      signup_username: new FormControl("testUser"),
+      signup_email: new FormControl("testEmail"),
+      signup_password: new FormControl("test"),
+      signup_re_password: new FormControl("test")
+    });
+
     fixture.detectChanges();
-    comp.logout();
+    //simulate opening the signup form
+    comp.userSignup = true;
     fixture.detectChanges();
-    expect(logoutSpy.calls.any()).toBe(true, 'logout called');
-    expect(comp.currentUser).toBe(null);
-    // comp.login('testName', 'test@email.com');
-    // fixture.detectChanges();
-    // expect(loginSpy.calls.any()).toBe(true, 'logout called');
-    // expect(comp.currentUser).toBe(user);
+    //simulate registering new user
+    comp.registerUser(form);
+    fixture.detectChanges();
+    expect(signupSpy.calls.any()).toBe(true, 'signup called');
+    expect(comp.currentUser).toBe(user);
 
   });
 
-  // ERROR: using async or fakeAsync will cause errors!!
+  it('should add currentUser after login called', () => {
+    Cookie.delete('token');
 
-  // it('should show currentUser after getMe promise', fakeAsync(() => {
-  //   fixture.detectChanges();
-  //   tick();
-  //   fixture.detectChanges();
-  //   expect(comp.currentUser).toEqual(user);
-  // }));
+    let loginSpy = spyOn(userService, 'login')
+      .and.returnValue(Observable.of(user));
+
+    let form = new FormGroup({
+      login_email: new FormControl("test"),
+      login_password: new FormControl("test")
+    });
+
+    fixture.detectChanges();
+    //simulate opening the login form
+    comp.userSigning = true;
+    fixture.detectChanges();
+    //simulate logging in
+    comp.login(form);
+    fixture.detectChanges();
+    expect(loginSpy.calls.any()).toBe(true, 'login called');
+    expect(comp.currentUser).toBe(user);
+
+  });
 });

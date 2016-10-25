@@ -55,7 +55,8 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  logout() {
+  logout(): void {
+    console.log('inside service logout');
     Cookie.delete('token');
   }
 
