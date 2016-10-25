@@ -349,9 +349,11 @@ export class Gulpfile {
     watch(defaultAssets.client.dist.js, plugins.livereload.changed);
     // Watch all scss files to build css is change
     watch(defaultAssets.client.scss, file => runSequence('build_sass', 'compress_css'));
+    watch(['client/app/**/**/*.scss'], file => runSequence('build_client', 'compress_js', 'delete_tmp'));
     watch(defaultAssets.client.dist.css, plugins.livereload.changed);
     // Watch all html files to build them in dist
     watch(defaultAssets.client.views, file => runSequence('build_html'));
+    watch(['client/app/**/**/*.html'], file => runSequence('build_client', 'compress_js', 'delete_tmp'));
     watch(defaultAssets.client.dist.views, plugins.livereload.changed);
     // Watch all client assets to compress in dist
     watch(defaultAssets.client.assets, { events: ['add'] },  file => this.compressAsset(file));

@@ -30,6 +30,7 @@ import { GOATComponent }              from './components/GOAT/GOAT.component';
 import { CloudGeneratorComponent }    from './components/cloud-generator/cloud-generator.component';
 
 //services that need to be singletons
+import { UserService }                from './services/user/user.service';
 import { ErrorHandlerService }        from './services/errorHandler/errorHandler.service';
 
 //custom pipes
@@ -72,6 +73,8 @@ import 'gsap';
   ],
   //providers: this object imports all necessary services into the module
   providers: [
+    ErrorHandlerService,
+    UserService,
     {
       provide: Http,
       useFactory: (
@@ -80,8 +83,7 @@ import 'gsap';
         new HttpIntercept(backend, defaultOptions),
       deps: [XHRBackend, RequestOptions]
     },
-    Cookie,
-    ErrorHandlerService
+    Cookie
   ],
   //bootstrap: identifies which component is supposed to be bootstrapped
   bootstrap: [AppComponent]
