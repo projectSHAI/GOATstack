@@ -1,7 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { AppModule } from '../../app.module';
 import { RouterTestingModule } from "@angular/router/testing";
-import { DebugElement }    from '@angular/core';
+import { DebugElement } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { SignInOutComponent } from './signinout.component';
 
@@ -26,13 +27,19 @@ let user = new User({
 
 class MockUserService {
   getMe(): Observable<User> {
+    console.log('Inside GetMe');
     return Observable.of(user);
   }
   login(userName: string, email: string): Observable<User> {
+    console.log('Inside Login');
     return Observable.of(user);
   }
   logout() {
-    return Cookie.delete('token');
+    console.log('Inside Logout');
+    Cookie.delete('token');
+  }
+  signup(username: string, email: string, password: string): Observable<User> {
+    return Observable.of(user);
   }
 }
 
@@ -45,17 +52,23 @@ describe('SignInOutComponent Test', () => {
   beforeEach(done => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],
-      providers: [
-        { provide: UserService, useClass: MockUserService }
-      ]
+      // providers: [
+      //   { provide: UserService, useFactory: MockUserService }
+      // ]
     });
 
-    fixture = TestBed.createComponent(SignInOutComponent);
-    comp = fixture.componentInstance;
+    TestBed.overrideComponent(SignInOutComponent, {
+      set: {
+        providers: [{ provide: UserService, useClass: MockUserService }]
+      }
+    }).compileComponents().then(() => {
+      fixture = TestBed.createComponent(SignInOutComponent);
+      comp = fixture.componentInstance;
 
-    userService = fixture.debugElement.injector.get(UserService);
+      userService = fixture.debugElement.injector.get(UserService);
 
-    done();
+      done();
+    });
   });
 
   it('should instantiate component', () => {
@@ -85,8 +98,10 @@ describe('SignInOutComponent Test', () => {
     comp.logout();
     fixture.detectChanges();
     expect(logoutSpy.calls.any()).toBe(true, 'logout called');
+    fixture.detectChanges();
     expect(comp.currentUser).toBe(null);
-    // expect(Cookie.get('token')).toBe(null);
+    fixture.detectChanges();
+    expect(Cookie.get('token')).toBe(null);
 
   });
 

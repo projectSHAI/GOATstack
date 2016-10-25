@@ -72,14 +72,15 @@ module.exports = function(config) {
 
       // Assets
       {pattern: appSrcBase + 'assets/*.jpg', included: false, watched: false},
-      {pattern: appSrcBase + 'assets/*.png', included: false, watched: false}
+      {pattern: appSrcBase + 'assets/*.png', included: false, watched: false},
+      {pattern: appSrcBase + 'assets/*.svg', included: false, watched: false}
     ],
 
     // Proxied base paths for loading assets
     proxies: {
       // required for component assets fetched by Angular's compiler
-      '/dist/': '/base/dist/',
-      '/assets/': '/base/dist/assets/'
+      '/assets/': '/base/dist/app/assets/',
+      '/api/': 'http://localhost:7001/api/'
     },
 
     exclude: [],
