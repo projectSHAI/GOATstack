@@ -2,7 +2,7 @@
 import { AppModule } from '../../app.module';
 import { RouterTestingModule } from "@angular/router/testing";
 
-import { CelestialBodiesComponent } from './celestial-bodies.component';
+import { SkyComponent } from './sky.component';
 import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
 
@@ -12,9 +12,9 @@ import { By } from '@angular/platform-browser';
 class MockWonderService {}
 class MockSocketSerivce {}
 
-describe('CelestialBodiesComponent Test', () => {
-  let comp: CelestialBodiesComponent;
-  let fixture: ComponentFixture<CelestialBodiesComponent>;
+describe('SkyComponent Test', () => {
+  let comp: SkyComponent;
+  let fixture: ComponentFixture<SkyComponent>;
 
   beforeEach(done => {
     TestBed.configureTestingModule({
@@ -25,13 +25,13 @@ describe('CelestialBodiesComponent Test', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(CelestialBodiesComponent);
+    fixture = TestBed.createComponent(SkyComponent);
     comp = fixture.componentInstance;
 
     done();
   });
 
   it('should instantiate component', () => {
-    expect(comp instanceof CelestialBodiesComponent).toBe(true, 'should create CelestialBodiesComponent');
+    expect(comp instanceof SkyComponent).toBe(true, 'should create SkyComponent');
   });
 });
