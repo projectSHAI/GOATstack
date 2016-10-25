@@ -74,12 +74,12 @@ class CloudProps {
       let anima = new TimelineMax({ onComplete: CloudProps.loopAnima, onCompleteParams: [index, "loop"] });
 
       anima.to(el, CloudProps.rndInt(1, 3), { opacity: 1 })
-           .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '100%' }, 0)
-           .addLabel("loop", "+=0")
-           .add(() => CloudProps.cloudType(object.name.length, index))
-           .to(el, 0, { ease: Power0.easeNone, left: '-20%', x: '0%' })
-           .to(el, 1, { opacity: 1 })
-           .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '150%' });
+        .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '100%' }, 0)
+        .addLabel("loop", "+=0")
+        .add(() => CloudProps.cloudType(object.name.length, index))
+        .to(el, 0, { ease: Power0.easeNone, left: '-20%', x: '0%' })
+        .to(el, 1, { opacity: 1 })
+        .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '150%' });
 
 
       CloudProps.counter++;
@@ -109,7 +109,7 @@ class CloudProps {
     CloudProps.animaArray.forEach((item, index) => {
       CloudProps.animaArray.pop();
     });
-    
+
   }
 }
 
