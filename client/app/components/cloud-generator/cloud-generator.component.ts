@@ -1,12 +1,10 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, Renderer, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 
 import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
 
 import { Wonder, cloneWonders } from '../../models/models.namespace';
 import CloudProps from './cloud-props';
-
-import * as _ from 'lodash';
 
 @Component({
   selector: 'cloud-generator',
@@ -29,7 +27,7 @@ export class CloudGeneratorComponent{
   dream = 'Wonders';
   wonderName;
 
-  constructor(private wonderService: WonderService, private renderer: Renderer) {
+  constructor(private wonderService: WonderService) {
     this.socket = new SocketService();
   }
 
@@ -48,6 +46,7 @@ export class CloudGeneratorComponent{
   }
 
   ngOnDestroy() {
+    CloudProps.reset();
     this.socket.unsyncUpdates('Wonder');
   }
 

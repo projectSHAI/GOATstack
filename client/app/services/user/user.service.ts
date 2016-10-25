@@ -56,7 +56,6 @@ export class UserService {
   }
 
   logout(): void {
-    console.log('inside service logout');
     Cookie.delete('token');
   }
 

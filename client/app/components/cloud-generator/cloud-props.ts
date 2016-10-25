@@ -4,10 +4,9 @@ declare let Power0: any;
 
 class CloudProps {
 
-
   private static randomInt: number;
-  static cloudStyle: Array<string> = new Array<string>(10);
   static counter: number = 0;
+  static cloudStyle: Array<string> = new Array<string>(10);
   static animaArray: Array<any> = new Array<any>(10);
 
   private static cloudAnimaAfterCB(afterWonders: any, item: any, index: number, position: string): void {
@@ -98,6 +97,19 @@ class CloudProps {
 
   static rndInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  static reset() {
+    CloudProps.counter = 0;
+
+    CloudProps.cloudStyle.forEach((item, index) => {
+      CloudProps.cloudStyle.pop();
+    });
+
+    CloudProps.animaArray.forEach((item, index) => {
+      CloudProps.animaArray.pop();
+    });
+    
   }
 }
 
