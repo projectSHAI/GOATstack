@@ -16,7 +16,7 @@ import CloudProps from './cloud-props';
 export class CloudGeneratorComponent{
   @ViewChild('wonderSky') wonderSky;
 
-  private socket;
+  // private socket;
   cloudStyle = CloudProps.cloudStyle;
   cloudAnima = CloudProps.cloudAnima;
 
@@ -27,8 +27,8 @@ export class CloudGeneratorComponent{
   dream = 'Wonders';
   wonderName;
 
-  constructor(private wonderService: WonderService) {
-    this.socket = new SocketService();
+  constructor(private wonderService: WonderService, private socket: SocketService) {
+    // this.socket = new SocketService();
   }
 
   ngOnInit() {
