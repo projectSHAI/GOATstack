@@ -10,25 +10,24 @@ import { ClockService }  from '../../services/clock/clock.service';
   styleUrls: ['./sky.component.scss']
 })
 
-export class SkyComponent{
-  @ViewChild('sunMoon') sunMoon: ElementRef
+export class SkyComponent {
+  @ViewChild('sunMoon') sunMoon: ElementRef;
 
   public dayTime: boolean;
   public clock: any;
   public sunMoonGlow: string;
-          clockSubscription;
+  clockSubscription;
 
-
-         safeTransform;
-         safeRGBA;
+  safeTransform;
+  safeRGBA;
 
   public sunMoonX: number = 25;
   public sunMoonY: number = 25;
-         sunMoonAngle: number;
+  sunMoonAngle: number;
 
-         radius: number = 1000;
-         centerX = 500;
-         centerY = 500;
+  radius: number = 1000;
+  centerX = 500;
+  centerY = 500;
 
   constructor(public clockService: ClockService, private sanitizer: DomSanitizer, private hostRef: ElementRef) {
 
@@ -44,7 +43,7 @@ export class SkyComponent{
 
     this.clockSubscription = this.clock.subscribe(time => {
 
-      if(time.getHours() >= 6 && time.getHours() <= 18) {
+      if (time.getHours() >= 6 && time.getHours() <= 18) {
         this.dayTime = true;
         this.sunMoonGlow = "0px 0px 100px 12px orange";
         this.safeRGBA = this.sanitizer.bypassSecurityTrustStyle("rgba(255,129,0, 0.3)");
@@ -84,11 +83,8 @@ export class SkyComponent{
 
 
 
-  toRadians (angle) {
+  toRadians(angle) {
     return angle * (Math.PI / 180);
   }
-
-
-
 
 }

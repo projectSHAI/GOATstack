@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
@@ -7,33 +7,39 @@ declare let Power0: any;
 @Injectable()
 export class CloudProps {
 
-  private static counter: number = 0;
-  static cloudStyle: Array<string> = new Array<string>(10);
-  static animaArray: Array<any> = new Array<any>(10);
+  private counter: number;
+  cloudStyle: Array<string>;
+  animaArray: Array<any>;
 
-  private static cloudAnimaAfterCB(afterWonders: any, item: any, index: number, position: string): void {
+  constructor() {
+    this.counter = 0;
+    this.cloudStyle = new Array<string>(10);
+    this.animaArray = new Array<any>(10);
+  }
+
+  private cloudAnimaAfterCB(afterWonders: any, item: any, index: number, position: string): void {
     afterWonders[index].replace(item);
-    CloudProps.loopAnima(index, position);
+    this.loopAnima(index, position);
   }
 
-  private static loopAnima(index: number, position: string): void {
-    CloudProps.animaArray[index].play(position);
+  private loopAnima(index: number, position: string): void {
+    this.animaArray[index].play(position);
   }
 
-  static cloudType(wonderLength: number, index: number): void {
-    let randomInt = CloudProps.rndInt(1, 3);
+  cloudType(wonderLength: number, index: number): void {
+    let randomInt = this.rndInt(1, 3);
 
     if (wonderLength <= 4) {
 
       switch (randomInt) {
         case 1:
-          CloudProps.cloudStyle[index] = 'smallcloud1';
+          this.cloudStyle[index] = 'smallcloud1';
           break;
         case 2:
-          CloudProps.cloudStyle[index] = 'smallcloud2';
+          this.cloudStyle[index] = 'smallcloud2';
           break;
         case 3:
-          CloudProps.cloudStyle[index] = 'smallcloud3';
+          this.cloudStyle[index] = 'smallcloud3';
           break;
       }
 
@@ -42,13 +48,13 @@ export class CloudProps {
 
       switch (randomInt) {
         case 1:
-          CloudProps.cloudStyle[index] = 'mediumcloud1';
+          this.cloudStyle[index] = 'mediumcloud1';
           break;
         case 2:
-          CloudProps.cloudStyle[index] = 'mediumcloud2';
+          this.cloudStyle[index] = 'mediumcloud2';
           break;
         case 3:
-          CloudProps.cloudStyle[index] = 'mediumcloud3';
+          this.cloudStyle[index] = 'mediumcloud3';
           break;
       }
 
@@ -57,35 +63,38 @@ export class CloudProps {
 
       switch (randomInt) {
         case 1:
-          CloudProps.cloudStyle[index] = 'largecloud1';
+          this.cloudStyle[index] = 'largecloud1';
           break;
         case 2:
-          CloudProps.cloudStyle[index] = 'largecloud2';
+          this.cloudStyle[index] = 'largecloud2';
           break;
         case 3:
-          CloudProps.cloudStyle[index] = 'largecloud3';
+          this.cloudStyle[index] = 'largecloud3';
           break;
       }
 
     }
   }
 
-  static cloudAnima(value: string, afterWonders: any, object: any, el, index: number): string {
+  cloudAnima(value: string, el: ElementRef, object: any, index: number): string {
 
-    if (CloudProps.counter < 10) {
-      let anima = new TimelineMax({ onComplete: CloudProps.loopAnima, onCompleteParams: [index, "loop"] });
+    if (this.counter < 10) {
+      let anima = new TimelineMax({
+        callbackScope: this,
+        onComplete: this.loopAnima,
+        onCompleteParams: [index, "loop"]
+      });
 
-      anima.to(el, CloudProps.rndInt(1, 3), { opacity: 1 })
-        .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '100%' }, 0)
+      anima.to(el, this.rndInt(1, 3), { opacity: 1 })
+        .to(el, this.rndInt(15, 30), { ease: Power0.easeNone, x: '100%' }, 0)
         .addLabel("loop", "+=0")
-        .add(() => CloudProps.cloudType(object.name.length, index))
+        .add(() => this.cloudType(object.name.length, index))
         .to(el, 0, { ease: Power0.easeNone, left: '-20%', x: '0%' })
         .to(el, 1, { opacity: 1 })
-        .to(el, CloudProps.rndInt(15, 30), { ease: Power0.easeNone, x: '150%' });
+        .to(el, this.rndInt(15, 30), { ease: Power0.easeNone, x: '150%' });
 
-
-      CloudProps.counter++;
-      CloudProps.animaArray[index] = anima;
+      this.counter++;
+      this.animaArray[index] = anima;
       return value;
     }
 
@@ -93,24 +102,17 @@ export class CloudProps {
 
   }
 
-  static cloudAnimaAfter(el, afterWonders: any, item: any, index: number): void {
-    TweenMax.to(el, 1, { opacity: 0, onComplete: CloudProps.cloudAnimaAfterCB, onCompleteParams: [afterWonders, item, index, "loop"] });
+  cloudAnimaAfter(el: ElementRef, afterWonders: any, item: any, index: number): void {
+    TweenMax.to(el, 1, {
+      opacity: 0,
+      callbackScope: this,
+      onComplete: this.cloudAnimaAfterCB,
+      onCompleteParams: [afterWonders, item, index, "loop"]
+    });
   }
 
-  static rndInt(min: number, max: number): number {
+  rndInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  static reset() {
-    CloudProps.counter = 0;
-
-    CloudProps.cloudStyle.forEach((item, index) => {
-      CloudProps.cloudStyle.pop();
-    });
-
-    CloudProps.animaArray.forEach((item, index) => {
-      CloudProps.animaArray.pop();
-    });
-
-  }
 }

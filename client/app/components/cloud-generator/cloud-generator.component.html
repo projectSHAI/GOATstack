@@ -1,6 +1,6 @@
 <div #wonderSky>
-    <li #wonderCloud id="wow" *ngFor="let wonder of afterWonders; let i = index" class="wonder" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.ycoor">
-        <p>{{wonder.name | ngForHook : afterWonders : wonder : wonderCloud : i : cp.cloudAnima}}</p>
+    <li #wonderCloud *ngFor="let wonder of afterWonders; let i = index" class="wonder" [style.left.%]="wonder.xcoor" [style.top.%]="wonder.ycoor">
+        <p>{{wonder.name | ngForHook : wonderCloud : wonder : i : cp}}</p>
         <img src="assets/{{cp.cloudStyle[i]}}.svg">
     </li>
 </div>

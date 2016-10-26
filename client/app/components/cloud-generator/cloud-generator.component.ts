@@ -8,7 +8,7 @@ import { CloudProps } from './cloud-props';
 
 @Component({
   selector: 'cloud-generator',
-  providers: [WonderService],
+  providers: [WonderService, SocketService, CloudProps],
   templateUrl: './cloud-generator.component.html',
   styleUrls: ['./cloud-generator.component.scss']
 })
@@ -16,17 +16,15 @@ import { CloudProps } from './cloud-props';
 export class CloudGeneratorComponent {
   @ViewChild('wonderSky') wonderSky;
 
-  cp = CloudProps;
-
   beforeWonders: Wonder[];
   afterWonders: Wonder[];
 
   dream = 'Wonders';
 
   constructor(
-    private wonderService: WonderService,
-    private socket: SocketService
-  ) { }
+    private wonderService: WonderService, 
+    private socket: SocketService,
+    private cp: CloudProps) { }
 
   ngOnInit() {
     this.wonderService.getWonders()
@@ -43,7 +41,6 @@ export class CloudGeneratorComponent {
   }
 
   ngOnDestroy() {
-    CloudProps.reset();
     this.socket.unsyncUpdates('Wonder');
   }
 
