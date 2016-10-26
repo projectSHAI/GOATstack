@@ -86,12 +86,12 @@ export class CloudProps {
       });
 
       anima.to(el, this.rndInt(1, 3), { opacity: 1 })
-        .to(el, this.rndInt(15, 30), { ease: Power0.easeNone, x: '100%' }, 0)
+        .to(el, this.rndInt(30, 85), { ease: Power0.easeNone, x: window.innerWidth + 350, y: this.rndInt(-200, 200) }, 0)
         .addLabel("loop", "+=0")
         .add(() => this.cloudType(object.name.length, index))
-        .to(el, 0, { ease: Power0.easeNone, left: '-20%', x: '0%' })
+        .to(el, 0, { ease: Power0.easeNone, left: '-350px', x: '0' })
         .to(el, 1, { opacity: 1 })
-        .to(el, this.rndInt(15, 30), { ease: Power0.easeNone, x: '150%' });
+        .to(el, this.rndInt(30, 55), { ease: Power0.easeNone, x: window.innerWidth + 350, y: this.rndInt(-200, 200) });
 
       this.counter++;
       this.animaArray[index] = anima;

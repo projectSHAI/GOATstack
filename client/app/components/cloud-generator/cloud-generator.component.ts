@@ -22,7 +22,7 @@ export class CloudGeneratorComponent {
   dream = 'Wonders';
 
   constructor(
-    private wonderService: WonderService, 
+    private wonderService: WonderService,
     private socket: SocketService,
     private cp: CloudProps) { }
 

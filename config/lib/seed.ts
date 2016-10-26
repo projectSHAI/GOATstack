@@ -10,45 +10,45 @@ export function seed() {
     .then(() => {
       Wonder.create(
         {
-          name: 'PeanutButter',
+          name: 'SocketIO',
           xcoor: 20,
-          ycoor: 10
+          ycoor: 25
         }, {
-          name: 'Jelly',
+          name: 'MongoDB',
           xcoor: 20,
-          ycoor: 30
+          ycoor: 35
         }, {
-          name: 'Jelly',
+          name: 'Angular 2',
           xcoor: 25,
-          ycoor: 14
+          ycoor: 45
         }, {
-          name: 'Jelly',
+          name: 'Karma',
           xcoor: 40,
           ycoor: 18
         }, {
-          name: 'Jelly',
+          name: 'Express',
           xcoor: 60,
-          ycoor: 61
+          ycoor: 65
         }, {
-          name: 'Jelly',
+          name: 'Jasmine',
           xcoor: 80,
-          ycoor: 40
-        }, {
-          name: 'Jelly',
-          xcoor: 15,
-          ycoor: 35
-        }, {
-          name: 'Jelly',
-          xcoor: 13,
           ycoor: 55
         }, {
-          name: 'Jelly',
+          name: 'OAuth',
           xcoor: 15,
           ycoor: 35
         }, {
-          name: 'PeanutButter And Jelly',
+          name: 'Node',
+          xcoor: 13,
+          ycoor: 40
+        }, {
+          name: 'Gulp',
+          xcoor: 15,
+          ycoor: 35
+        }, {
+          name: 'Protractor',
           xcoor: 50,
-          ycoor: 12
+          ycoor: 15
         });
     });
 
