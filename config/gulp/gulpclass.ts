@@ -434,7 +434,7 @@ export class Gulpfile {
     ];
   }
   // Run all e2e tests
-  @SequenceTask()
+  @SequenceTask('test:e2e')
   test_e2e() {
     return [
       'env_test',

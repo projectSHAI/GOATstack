@@ -28,7 +28,7 @@ exports.config = {
   // seleniumAddress: 'http://localhost:4444/wd/hub',
 
   // Spec patterns are relative to this config file
-  specs: ['../../client/e2e/**/*.e2e-spec.js'],
+  specs: ['../../client/e2e/*.e2e-spec.js'],
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
