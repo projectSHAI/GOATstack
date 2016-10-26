@@ -1,6 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import { AppModule } from '../../app.module';
 import { RouterTestingModule } from "@angular/router/testing";
+import { appRoutes } from '../../routes';
 import { DebugElement } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -44,8 +45,7 @@ describe('SignInOutComponent Test', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],
       providers: [
-        { provide: UserService, useClass: MockUserService },
-        Cookie
+        { provide: UserService, useClass: MockUserService }
       ]
     });
 

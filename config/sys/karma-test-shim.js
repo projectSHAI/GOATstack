@@ -1,5 +1,3 @@
-/* jshint ignore:start */
-
 // #docregion
 // /*global jasmine, __karma__, window*/
 Error.stackTraceLimit = 0; // "No stacktrace"" is usually best for app testing.
@@ -11,7 +9,7 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
 var builtPath = '/base/dist/app/';
 
-__karma__.loaded = function () { };
+__karma__.loaded = function () {};
 
 function isJsFile(path) {
   return path.slice(-3) == '.js';
@@ -32,7 +30,12 @@ var allSpecFiles = Object.keys(window.__karma__.files)
 System.config({
   baseURL: '/base',
   // Extend usual application package list with test folder
-  packages: { 'testing': { main: 'server/server.js', defaultExtension: 'js' } },
+  packages: {
+    'testing': {
+      main: 'server/server.js',
+      defaultExtension: 'js'
+    }
+  },
 
   // Assume npm: is set in `paths` in systemjs.config
   // Map the angular testing umd bundles
@@ -54,40 +57,37 @@ System.import('config/sys/systemjs.config.js')
   .then(initTesting);
 
 /** Optional SystemJS configuration extras. Keep going w/o it */
-function importSystemJsExtras(){
+function importSystemJsExtras() {
   return System.import('config/sys/systemjs.config.extras.js')
-  .catch(function(reason) {
-    console.log(
-      'Warning: System.import could not load the optional "systemjs.config.extras.js". Did you omit it by accident? Continuing without it.'
-    );
-    console.log(reason);
-  });
+    .catch(function (reason) {
+      console.log(
+        'Warning: System.import could not load the optional "systemjs.config.extras.js". Did you omit it by accident? Continuing without it.'
+      );
+      console.log(reason);
+    });
 }
 
-function initTestBed(){
+function initTestBed() {
   return Promise.all([
-    System.import('@angular/core/testing'),
-    System.import('@angular/platform-browser-dynamic/testing')
-  ])
-  .then(function (providers) {
-    var coreTesting    = providers[0];
-    var browserTesting = providers[1];
+      System.import('@angular/core/testing'),
+      System.import('@angular/platform-browser-dynamic/testing')
+    ])
+    .then(function (providers) {
+      var coreTesting = providers[0];
+      var browserTesting = providers[1];
 
-    coreTesting.TestBed.initTestEnvironment(
-      browserTesting.BrowserDynamicTestingModule,
-      browserTesting.platformBrowserDynamicTesting());
-  })
+      coreTesting.TestBed.initTestEnvironment(
+        browserTesting.BrowserDynamicTestingModule,
+        browserTesting.platformBrowserDynamicTesting());
+    })
 }
 
 // Import all spec files and start karma
-function initTesting () {
+function initTesting() {
   return Promise.all(
-    allSpecFiles.map(function (moduleName) {
-      return System.import(moduleName);
-    })
-  )
-  .then(__karma__.start, __karma__.error);
+      allSpecFiles.map(function (moduleName) {
+        return System.import(moduleName);
+      })
+    )
+    .then(__karma__.start, __karma__.error);
 }
-
-
-/* jshint ignore:end */

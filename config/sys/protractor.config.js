@@ -1,5 +1,3 @@
-/* jshint ignore:start */
-
 // FIRST TIME ONLY- run:
 //   ./node_modules/.bin/webdriver-manager update
 //
@@ -79,6 +77,3 @@ function sendKeys(element, str) {
   }, element.getAttribute('value'));
   // better to create a resolved promise here but ... don't know how with protractor;
 }
-
-
-/* jshint ignore:end */

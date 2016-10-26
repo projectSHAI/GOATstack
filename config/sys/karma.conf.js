@@ -1,5 +1,3 @@
-/* jshint ignore:start */
-
 // #docregion
 module.exports = function(config) {
 
@@ -106,5 +104,3 @@ module.exports = function(config) {
     singleRun: false
   })
 }
-
-/* jshint ignore:end */

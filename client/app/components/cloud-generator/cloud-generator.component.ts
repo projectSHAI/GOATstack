@@ -8,7 +8,7 @@ import { CloudProps } from './cloud-props';
 
 @Component({
   selector: 'cloud-generator',
-  providers: [WonderService, SocketService],
+  providers: [WonderService],
   templateUrl: './cloud-generator.component.html',
   styleUrls: ['./cloud-generator.component.scss']
 })
@@ -21,9 +21,7 @@ export class CloudGeneratorComponent {
   beforeWonders: Wonder[];
   afterWonders: Wonder[];
 
-  errorMessage: string;
   dream = 'Wonders';
-  wonderName;
 
   constructor(
     private wonderService: WonderService,

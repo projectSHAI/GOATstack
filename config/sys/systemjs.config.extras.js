@@ -1,5 +1,3 @@
-/* jshint ignore:start */
-
 /** App specific SystemJS configuration */
 System.config({
   map: {
@@ -12,5 +10,3 @@ System.config({
     }
   }
 });
-
-/* jshint ignore:end */
