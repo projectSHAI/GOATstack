@@ -1,11 +1,13 @@
+import { Injectable, Inject } from '@angular/core';
+
 declare let TweenMax: any;
 declare let TimelineMax: any;
 declare let Power0: any;
 
-class CloudProps {
+@Injectable()
+export class CloudProps {
 
-  private static randomInt: number;
-  static counter: number = 0;
+  private static counter: number = 0;
   static cloudStyle: Array<string> = new Array<string>(10);
   static animaArray: Array<any> = new Array<any>(10);
 
@@ -19,11 +21,11 @@ class CloudProps {
   }
 
   static cloudType(wonderLength: number, index: number): void {
-    CloudProps.randomInt = CloudProps.rndInt(1, 3);
+    let randomInt = CloudProps.rndInt(1, 3);
 
     if (wonderLength <= 4) {
 
-      switch (CloudProps.randomInt) {
+      switch (randomInt) {
         case 1:
           CloudProps.cloudStyle[index] = 'smallcloud1';
           break;
@@ -38,7 +40,7 @@ class CloudProps {
     }
     else if (wonderLength > 4 && wonderLength <= 15) {
 
-      switch (CloudProps.randomInt) {
+      switch (randomInt) {
         case 1:
           CloudProps.cloudStyle[index] = 'mediumcloud1';
           break;
@@ -53,7 +55,7 @@ class CloudProps {
     }
     else {
 
-      switch (CloudProps.randomInt) {
+      switch (randomInt) {
         case 1:
           CloudProps.cloudStyle[index] = 'largecloud1';
           break;
@@ -112,5 +114,3 @@ class CloudProps {
 
   }
 }
-
-export default CloudProps;
