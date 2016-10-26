@@ -89,7 +89,7 @@ export class CloudProps {
         .to(el, this.rndInt(30, 85), { ease: Power0.easeNone, x: window.innerWidth + 350, y: this.rndInt(-200, 200) }, 0)
         .addLabel("loop", "+=0")
         .add(() => this.cloudType(object.name.length, index))
-        .to(el, 0, { ease: Power0.easeNone, left: '-350px', x: '0' })
+        .to(el, 0, { ease: Power0.easeNone, left: '-350px', x: '0', y: '0' })
         .to(el, 1, { opacity: 1 })
         .to(el, this.rndInt(30, 55), { ease: Power0.easeNone, x: window.innerWidth + 350, y: this.rndInt(-200, 200) });
 
