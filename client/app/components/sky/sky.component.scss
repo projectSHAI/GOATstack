@@ -4,8 +4,9 @@
   width: 100px;
   background-color: white;
   border-radius: 50%;
-  left: 75%;
-  top: 0;
+  margin: 0 auto;
+  transition-duration: 2s;
+  border: 3px solid;
 }
 .clock {
   position: relative;

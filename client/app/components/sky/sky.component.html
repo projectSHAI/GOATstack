@@ -1,5 +1,5 @@
 <cloud-generator></cloud-generator>
 
-<div class="sun-moon" [style.box-shadow]="sunMoonGlow">
+<div #sunMoon class="sun-moon" [style.box-shadow]="sunMoonGlow" [style.transform]="safeTransform" [style.borderColor]="safeRGBA">
   <h2 class="clock">{{clock | async | date: 'mediumTime'}}</h2>
 </div>
