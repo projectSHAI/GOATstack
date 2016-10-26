@@ -8,12 +8,12 @@ import { CloudProps } from './cloud-props';
 
 @Component({
   selector: 'cloud-generator',
-  providers: [WonderService],
+  providers: [WonderService, SocketService],
   templateUrl: './cloud-generator.component.html',
   styleUrls: ['./cloud-generator.component.scss']
 })
 
-export class CloudGeneratorComponent{
+export class CloudGeneratorComponent {
   @ViewChild('wonderSky') wonderSky;
 
   cp = CloudProps;

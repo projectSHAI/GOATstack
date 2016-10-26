@@ -74,7 +74,6 @@ import 'gsap';
   //providers: this object imports all necessary services into the module
   providers: [
     ErrorHandlerService,
-    SocketService,
     {
       provide: Http,
       useFactory: (
