@@ -23,10 +23,6 @@ export class SocketService {
    *
    * Takes the array we want to sync, the model name that socket updates are sent from,
    * and an optional callback function after new items are updated.
-   *
-   * @param {String} modelName
-   * @param {Array} array
-   * @param {Function} cb
    */
   syncUpdates(modelName: string, array: Models.Universal[], cb) {
     /**
@@ -63,13 +59,9 @@ export class SocketService {
 
   /**
    * Removes listeners for a models updates on the socket
-   *
-   * @param modelName
    */
   unsyncUpdates(modelName) {
     this.socket.removeListener(modelName + ':save');
     this.socket.removeListener(modelName + ':remove');
-
-    // User socket listeners will be here
   }
 }

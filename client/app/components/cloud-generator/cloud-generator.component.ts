@@ -4,21 +4,19 @@ import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
 
 import { Wonder, cloneWonders } from '../../models/models.namespace';
-import CloudProps from './cloud-props';
+import { CloudProps } from './cloud-props';
 
 @Component({
   selector: 'cloud-generator',
-  providers: [WonderService],
+  providers: [WonderService, SocketService],
   templateUrl: './cloud-generator.component.html',
   styleUrls: ['./cloud-generator.component.scss']
 })
 
-export class CloudGeneratorComponent{
+export class CloudGeneratorComponent {
   @ViewChild('wonderSky') wonderSky;
 
-  // private socket;
-  cloudStyle = CloudProps.cloudStyle;
-  cloudAnima = CloudProps.cloudAnima;
+  cp = CloudProps;
 
   beforeWonders: Wonder[];
   afterWonders: Wonder[];
@@ -27,9 +25,10 @@ export class CloudGeneratorComponent{
   dream = 'Wonders';
   wonderName;
 
-  constructor(private wonderService: WonderService, private socket: SocketService) {
-    // this.socket = new SocketService();
-  }
+  constructor(
+    private wonderService: WonderService,
+    private socket: SocketService
+  ) { }
 
   ngOnInit() {
     this.wonderService.getWonders()
@@ -37,10 +36,10 @@ export class CloudGeneratorComponent{
         this.beforeWonders = wonders;
 
         this.afterWonders = cloneWonders(wonders);
-        this.afterWonders.forEach((item, index) => CloudProps.cloudType(item.name.length, index));
+        this.afterWonders.forEach((item, index) => this.cp.cloudType(item.name.length, index));
 
         this.socket.syncUpdates('Wonder', this.beforeWonders, (item, index) => {
-          CloudProps.cloudAnimaAfter(this.wonderSky.nativeElement.children[index], this.afterWonders, item, index);
+          this.cp.cloudAnimaAfter(this.wonderSky.nativeElement.children[index], this.afterWonders, item, index);
         });
       });
   }
