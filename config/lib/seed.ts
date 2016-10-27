@@ -62,8 +62,8 @@ export function seed() {
         password: 'admin1'
       }, {
           userName: 'test',
-          firstName: 'test',
-          lastName: 'testlast',
+          firstName: 'testFirst',
+          lastName: 'testLast',
           email: 'test@test.com',
           password: 'test'
         }, {
