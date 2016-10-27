@@ -8,6 +8,7 @@ let del = require('del');
 let path = require('path');
 let gulp = require('gulp');
 let sass = require('gulp-sass');
+let sassLint = require('gulp-sass-lint')
 let watch = require('gulp-watch');
 let KarmaServer = require('karma').Server;
 let JasmineReporter = require('jasmine-spec-reporter');
@@ -59,11 +60,6 @@ export class Gulpfile {
   @Task()
   build_html(done) {
     return gulp.src(defaultAssets.client.views)
-      .pipe(gulp.dest('./dist/app'));
-  }
-  @Task()
-  build_css(done) {
-    return gulp.src(defaultAssets.client.css)
       .pipe(gulp.dest('./dist/app'));
   }
   @Task()
@@ -356,8 +352,8 @@ export class Gulpfile {
     watch(['client/app/**/**/*.html'], file => runSequence('build_client', 'compress_js', 'delete_tmp'));
     watch(defaultAssets.client.dist.views, plugins.livereload.changed);
     // Watch all client assets to compress in dist
-    watch(defaultAssets.client.assets, { events: ['add'] },  file => this.compressAsset(file));
-    watch(defaultAssets.client.assets, { events: ['unlink'] },  file => this.deleteAsset(file));
+    watch(defaultAssets.client.assets, { events: ['add'] }, file => this.compressAsset(file));
+    watch(defaultAssets.client.assets, { events: ['unlink'] }, file => this.deleteAsset(file));
     watch(defaultAssets.client.dist.assets, plugins.livereload.changed);
     // Watch if system.config files are changed
     watch(defaultAssets.client.system, file => runSequence('build_systemConf'));
@@ -365,12 +361,32 @@ export class Gulpfile {
     watch(['dist/index.js', 'dist/app/systemjs.config.js'], plugins.livereload.changed);
   }
 
-  // CSS linting task
+  // SASS linting task
   @Task()
-  csslint(done) {
-    return gulp.src(defaultAssets.client.dist.css)
-      .pipe(plugins.csslint('.csslintrc'))
-      .pipe(plugins.csslint.formatter());
+  scsslint(done) {
+    return gulp.src(['client/styles.scss', 'client/app/components/**/*.scss'])
+      .pipe(sassLint({
+        rules: {
+          'no-css-comments': 0,
+          'single-line-per-selector': 0,
+          'property-sort-order': 0,
+          'empty-args': 0,
+          'indentation': 0,
+          'empty-line-between-blocks': 0,
+          'force-pseudo-nesting': 0,
+          'pseudo-element': 0,
+          'no-vendor-prefixes': 0,
+          'no-color-literals': 0,
+          'no-color-keywords': 0,
+          'quotes': 0,
+          'force-element-nesting': 0,
+          'no-ids': 0,
+          'leading-zero': 0,
+          'space-after-comma': 0
+        }
+      }))
+      .pipe(sassLint.format())
+      .pipe(sassLint.failOnError())
   }
   // Typescript linting task
   @Task()
@@ -391,7 +407,7 @@ export class Gulpfile {
   // Lint CSS and JavaScript files.
   @SequenceTask()
   lint() {
-    return ['csslint', 'tslint'];
+    return ['scsslint', 'tslint'];
   }
 
   @Task()
@@ -405,9 +421,10 @@ export class Gulpfile {
   default() {
     return [
       'env_dev',
+      'lint',
       'build_clean',
       'build_project',
-      'lint', ['nodemon','watch']
+      ['nodemon', 'watch']
     ];
   }
   // Run the project in production mode
@@ -415,9 +432,10 @@ export class Gulpfile {
   prod() {
     return [
       'env_prod',
+      'lint',
       'build_clean',
       'build_project',
-      'lint', ['nodemon','watch']
+      ['nodemon', 'watch']
     ];
   }
   // Run the project in test mode
@@ -425,9 +443,9 @@ export class Gulpfile {
   test() {
     return [
       'env_test',
+      'lint',
       'build_clean',
       'build_project_test',
-      'lint',
       'test_server',
       'test_client',
       'exit'

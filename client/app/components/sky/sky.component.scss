@@ -1,16 +1,17 @@
-.sun-moon{
-  position: relative;
-  height: 100px;
-  width: 100px;
-  background-color: white;
-  border-radius: 50%;
-  transition-duration: 2s;
-  border: 3px solid;
+.sun-moon {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    border-radius: 50%;
+    transition-duration: 2s;
+    border: 3px solid;
 }
+
 .clock {
-  position: relative;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 100px;
-  font-style: cursive;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+    font-style: cursive;
 }

@@ -49,7 +49,7 @@ function init(app) {
   app.use('*', express.static('custom_modules'));
   app.use('*', express.static('dist/app'));
 
-  // app.use(errorHandler());
+  app.use(errorHandler());
 
   //fire's a get function when any directory is queried (* is a wildcard) by the client, sends back the index.html as a response. Angular then does the proper routing on client side
   app.get('*', function (req, res) {
