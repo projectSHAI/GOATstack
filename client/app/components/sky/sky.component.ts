@@ -26,8 +26,8 @@ export class SkyComponent {
   sunMoonAngle: number;
 
   radius: number = 1000;
-  centerX = 500;
-  centerY = 500;
+  centerX;
+  centerY;
 
   constructor(public clockService: ClockService, private sanitizer: DomSanitizer, private hostRef: ElementRef) {
 
@@ -38,7 +38,7 @@ export class SkyComponent {
 
   ngAfterViewInit() {
     this.centerX = this.hostRef.nativeElement.offsetWidth / 2 - (this.sunMoon.nativeElement.offsetWidth / 2);
-    this.centerY = this.hostRef.nativeElement.offsetHeight / 4 - (this.sunMoon.nativeElement.offsetHeight / 2);
+    this.centerY = this.hostRef.nativeElement.offsetHeight / 2 - (this.sunMoon.nativeElement.offsetHeight / 2);
     this.radius = this.hostRef.nativeElement.offsetWidth / 2;
 
     this.clockSubscription = this.clock.subscribe(time => {
@@ -68,7 +68,7 @@ export class SkyComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.centerX = this.hostRef.nativeElement.offsetWidth / 2 - (this.sunMoon.nativeElement.offsetWidth / 2);
-    this.centerY = this.hostRef.nativeElement.offsetHeight / 4 - (this.sunMoon.nativeElement.offsetHeight / 2);
+    this.centerY = this.hostRef.nativeElement.offsetHeight / 2 - (this.sunMoon.nativeElement.offsetHeight / 2);
     this.radius = this.hostRef.nativeElement.offsetWidth / 2;
 
     this.plotSunOnArc(this.sunMoonAngle, this.radius, this.centerX, this.centerY);
@@ -84,7 +84,7 @@ export class SkyComponent {
 
 
   toRadians(angle) {
-    return angle * (Math.PI / 180);
+    return -(angle * (Math.PI / 180));
   }
 
 }
