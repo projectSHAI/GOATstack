@@ -10,7 +10,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 class MockWonderService {}
-class MockSocketSerivce {}
+class MockSocketSerivce {
+  syncUpdates(model: string, array: any, cb) { }
+  unsyncUpdates(model: string) { }
+}
 
 describe('CloudGeneratorComponent Test', () => {
   let comp: CloudGeneratorComponent;

@@ -3,14 +3,15 @@ import { AppModule } from '../../app.module';
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { SkyComponent } from './sky.component';
-import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-class MockWonderService {}
-class MockSocketSerivce {}
+class MockSocketSerivce {
+  syncUpdates(model: string, array: any, cb) { }
+  unsyncUpdates(model: string) { }
+}
 
 describe('SkyComponent Test', () => {
   let comp: SkyComponent;
@@ -20,7 +21,6 @@ describe('SkyComponent Test', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],
       providers: [
-        { provide: WonderService, useClass: MockWonderService },
         { provide: SocketService, useClass: MockSocketSerivce }
       ]
     });

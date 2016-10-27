@@ -3,8 +3,15 @@ import { AppModule } from '../../app.module';
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { AppComponent } from './app.component';
+import { SocketService } from '../../services/socketio/socketio.service';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
+class MockSocketSerivce {
+  syncUpdates(model: string, array: any, cb) { }
+  unsyncUpdates(model: string) { }
+}
 
 describe('AppComponent Test', () => {
   let comp: AppComponent;
@@ -12,7 +19,10 @@ describe('AppComponent Test', () => {
 
   beforeEach(done => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule]
+      imports: [AppModule, RouterTestingModule],
+      providers: [
+        { provide: SocketService, useClass: MockSocketSerivce }
+      ]
     });
 
     fixture = TestBed.createComponent(AppComponent);

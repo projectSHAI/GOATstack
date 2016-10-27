@@ -2,13 +2,13 @@ import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular
 
 import { WonderService } from '../../services/wonder/wonder.service';
 import { SocketService } from '../../services/socketio/socketio.service';
+import { CloudProps } from './cloud-props';
 
 import { Wonder, cloneWonders } from '../../models/models.namespace';
-import { CloudProps } from './cloud-props';
 
 @Component({
   selector: 'cloud-generator',
-  providers: [WonderService, SocketService, CloudProps],
+  providers: [WonderService, CloudProps],
   templateUrl: './cloud-generator.component.html',
   styleUrls: ['./cloud-generator.component.scss']
 })

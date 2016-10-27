@@ -13,6 +13,7 @@ export class AppComponent implements AfterViewInit {
   constructor(private errorHandler: ErrorHandlerService) { }
 
   ngAfterViewInit() {
+    // initialize error handling service
     this.errorHandler.initHandler(this.errorToast.nativeElement.children[0]);
   }
 

@@ -81,6 +81,7 @@ Services
 */
 //user created services
 import { ErrorHandlerService }        from './services/errorHandler/errorHandler.service';
+import { SocketService }              from './services/socketio/socketio.service';
 
 //Angular and 3rd party serices
 import { Cookie }                     from 'ng2-cookies/ng2-cookies';
@@ -145,6 +146,7 @@ NgModule
   //providers: this object imports all necessary services into the module
   providers: [
     ErrorHandlerService,
+    SocketService,
     {
       provide: Http,
       useFactory: (
