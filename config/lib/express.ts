@@ -16,9 +16,9 @@ let express = require('express'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session);
 
-morgan.token('method', function(req, res){
+morgan.token('method', function(req, res) {
   let method = req.method;
-  switch(method) {
+  switch (method) {
     case 'GET':
       return '[' + chalk.cyan(method) + ']';
     default:
@@ -27,7 +27,7 @@ morgan.token('method', function(req, res){
 });
 
 morgan.token('url', function(req, res) {
-  return chalk.magenta(req.url);
+  return chalk.magenta(req.originalUrl);
 });
 
 function init(app) {
@@ -41,7 +41,20 @@ function init(app) {
   app.use(cookieParser());
   // Initialize passport and passport session
   app.use(passport.initialize());
-  app.use(morgan('dev'));
+  //initialize morgan express logger
+  // NOTE: all node and custom module requests
+  app.use(morgan('dev', {
+    skip: function(req, res) {
+      let url = req.originalUrl;
+
+      if (url.indexOf('node') !== -1)
+        return true;
+      if (url.indexOf('custom') !== -1)
+        return true;
+      if(url.length === 1)
+        return true;
+    }
+  }));
 
   app.use(session({
     secret: con.config.sessionSecret,
@@ -69,7 +82,7 @@ function init(app) {
   app.use(errorHandler());
 
   //fire's a get function when any directory is queried (* is a wildcard) by the client, sends back the index.html as a response. Angular then does the proper routing on client side
-  app.get('*', function (req, res) {
+  app.get('*', function(req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/app/index.html'));
   });
 
