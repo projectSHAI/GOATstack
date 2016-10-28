@@ -7,12 +7,29 @@ import * as path from 'path';
 import * as passport from 'passport';
 
 let express = require('express'),
+  chalk = require('chalk'),
+  morgan = require('morgan'),
   bodyParser = require('body-parser'),
   errorHandler = require('errorHandler'),
   methodOverride = require('method-override'),
   cookieParser = require('cookie-parser'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session);
+
+morgan.token('method', function(req, res){
+  let method = req.method;
+  switch(method) {
+    case 'GET':
+      return '[' + chalk.bold.cyan(method) + ']';
+    case 'POST':
+    case 'PUT':
+    case 'DELETE':
+    case 'PATCH':
+      return '[' + chalk.bold.green(method) + ']';
+    default:
+      return '[' + chalk.bold.orange(method) + ']';
+  }
+});
 
 function init(app) {
 
@@ -25,6 +42,7 @@ function init(app) {
   app.use(cookieParser());
   // Initialize passport and passport session
   app.use(passport.initialize());
+  app.use(morgan('dev'));
 
   app.use(session({
     secret: con.config.sessionSecret,

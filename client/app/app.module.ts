@@ -118,6 +118,7 @@ Redux Store Interface
 */
 import { IAppState, rootReducer, enhancers } from './store';
 // const createLogger = require('redux-logger');
+import createLogger from 'redux-logger';
 
 
 /*
@@ -180,9 +181,7 @@ export class AppModule {
     private ngRedux: NgRedux<IAppState>,
     private devTool: DevToolsExtension) {
 
-      this.ngRedux.configureStore(
-            rootReducer,
-            {},
-            []);
-    }
+    this.ngRedux.configureStore(rootReducer, {},
+      [createLogger()], [...enhancers, devTool.isEnabled() ? devTool.enhancer() : f => f]);
+  }
 }

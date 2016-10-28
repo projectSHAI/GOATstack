@@ -27,8 +27,10 @@
       'socket.io-client':                   'npm:socket.io-client',
       'lodash':                             'npm:lodash',
       'gsap':                               'custom_modules/greensock',
-      'ng2-redux':                          'node_modules/ng2-redux/lib',
-      'redux':                              'node_modules/redux/dist/redux.min.js'
+      'ng2-redux':                          'npm:ng2-redux/lib',
+      'redux':                              'npm:redux/dist/redux.min.js',
+
+      'redux-logger':                       'npm:redux-logger/dist'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -52,6 +54,10 @@
       },
       'ng2-redux': {
         main: 'index.js',
+        defaultExtension: 'js'
+      },
+      'redux-logger': {
+        main: 'index.min.js',
         defaultExtension: 'js'
       }
     }
