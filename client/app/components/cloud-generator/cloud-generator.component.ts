@@ -52,7 +52,6 @@ export class CloudGeneratorComponent {
     this.wonderService.saveWonder(name).subscribe();
   }
 
-
   timeOfDayCss() {
     if(this.clockService.sunRise) {
       this.wonderSky.nativeElement.style.filter = "brightness(70%)";

@@ -24,6 +24,8 @@ import { NgModule }                  from '@angular/core';
 import { FormsModule }               from '@angular/forms';
 import { BrowserModule }             from '@angular/platform-browser';
 import { HttpModule, JsonpModule }   from '@angular/http';
+import { MaterialModule }            from '@angular/material';
+import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 
 /*
 --------------------------------------------------
@@ -31,7 +33,7 @@ Routing
 --------------------------------------------------
 //enables navigation capabilities capitilizing on the browsers history stack
 */
-import { routing } from './routes';
+import { routing }                  from './routes';
 
 /*
 --------------------------------------------------
@@ -82,11 +84,10 @@ Services
 //user created services
 import { ErrorHandlerService }        from './services/errorHandler/errorHandler.service';
 import { SocketService }              from './services/socketio/socketio.service';
+import { HttpIntercept }              from './services/auth/auth.service';
 
 //Angular and 3rd party serices
 import { Cookie }                     from 'ng2-cookies/ng2-cookies';
-import { MaterialModule }             from '@angular/material';
-import { HttpIntercept }              from './services/auth/auth.service';
 
 /*
 --------------------------------------------------
@@ -109,6 +110,15 @@ Non NPM libraries
 */
 import 'gsap';
 
+/*
+--------------------------------------------------
+Redux Store Interface
+--------------------------------------------------
+//Declare import for redux store interface
+*/
+import { IAppState, rootReducer, enhancers } from './store';
+// const createLogger = require('redux-logger');
+
 
 /*
 --------------------------------------------------
@@ -125,6 +135,7 @@ NgModule
     FormsModule,
     JsonpModule,
     routing,
+    NgReduxModule.forRoot(),
     MaterialModule.forRoot()
   ],
   //declarations: this object imports all child components which are used in this module
@@ -155,7 +166,8 @@ NgModule
         new HttpIntercept(backend, defaultOptions),
       deps: [XHRBackend, RequestOptions]
     },
-    Cookie
+    Cookie,
+    { provide: DevToolsExtension, useClass: DevToolsExtension }
   ],
   //bootstrap: identifies which component is supposed to be bootstrapped
   bootstrap: [AppComponent]
@@ -163,4 +175,14 @@ NgModule
 
 //by convention the root module is called AppModule as stated in the Angular2 docs
 //we call AppModule in main.ts to bootstrap the application which points to the AppComponent defined in @NgModule
-export class AppModule { }
+export class AppModule {
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private devTool: DevToolsExtension) {
+
+      this.ngRedux.configureStore(
+            rootReducer,
+            {},
+            []);
+    }
+}
