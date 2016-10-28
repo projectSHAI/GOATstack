@@ -18,7 +18,7 @@ export class ClockService {
   //sets the time of day in real time
   setTOD = this.currentTime.subscribe(time => {
 
-    if(time.getHours() == 5 || time.getHours() == 6) {
+    if(time.getHours() === 5 || time.getHours() === 6) {
       this.sunRise = true;
       this.dayTime = false;
       this.sunSet = false;
@@ -30,7 +30,7 @@ export class ClockService {
       this.sunSet = false;
       this.nightTime = false;
     }
-    else if(time.getHours() == 18 || time.getHours() == 19) {
+    else if(time.getHours() === 18 || time.getHours() === 19) {
       this.sunRise = false;
       this.dayTime = false;
       this.sunSet = true;

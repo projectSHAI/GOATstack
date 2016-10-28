@@ -43,7 +43,7 @@ export class SkyComponent {
 
     this.clockSubscription = this.clock.subscribe(time => {
       //sets the css based on the time of day
-      this.timeOfDayCss()
+      this.timeOfDayCss();
 
       this.sunMoonAngle = (Math.floor((((time.getHours() + 6) % 12) * 60 + time.getMinutes()) * 0.25)) + 180;
 
