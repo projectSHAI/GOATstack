@@ -20,15 +20,14 @@ morgan.token('method', function(req, res){
   let method = req.method;
   switch(method) {
     case 'GET':
-      return '[' + chalk.bold.cyan(method) + ']';
-    case 'POST':
-    case 'PUT':
-    case 'DELETE':
-    case 'PATCH':
-      return '[' + chalk.bold.green(method) + ']';
+      return '[' + chalk.cyan(method) + ']';
     default:
-      return '[' + chalk.bold.orange(method) + ']';
+      return '[' + chalk.bold.green(method) + ']';
   }
+});
+
+morgan.token('url', function(req, res) {
+  return chalk.magenta(req.url);
 });
 
 function init(app) {
