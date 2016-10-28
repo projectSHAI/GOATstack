@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 // const persistState = require('redux-localstorage');
-import { counterReducer } from './counter.reducer';
+// import { counterReducer } from './counter.reducer';
 
 export class IAppState {
-  counter?: number;
+  // counter?: number;
   // pathDemo?: IPathDemoData;
   // search?: ISearchState;
 };
 
 export const rootReducer = combineReducers<IAppState>({
-  counter: counterReducer,
+  // counter: counterReducer,
   // pathDemo: pathDemoReducer,
   // search: searchReducer
 });
