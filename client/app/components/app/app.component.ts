@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { ErrorHandlerService } from '../../services/errorHandler/errorHandler.service';
+import { NgRedux, select } from 'ng2-redux';
+import { ErrorHandlerActions } from '../../actions/errorHandler.actions';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'my-app',
@@ -8,9 +10,11 @@ import { ErrorHandlerService } from '../../services/errorHandler/errorHandler.se
 })
 
 export class AppComponent implements AfterViewInit {
+  @select('error') error$: Observable<string>;
+
   @ViewChild('errorToast') errorToast;
 
-  constructor(private errorHandler: ErrorHandlerService) { }
+  constructor(private errorHandler: ErrorHandlerActions) { }
 
   ngAfterViewInit() {
     // initialize error handling service

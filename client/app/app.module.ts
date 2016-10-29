@@ -82,9 +82,11 @@ Services
 // import { SocketService }              from './services/socketio/socketio.service';
 */
 //user created services
-import { ErrorHandlerService }        from './services/errorHandler/errorHandler.service';
+import { ErrorHandlerActions }        from './actions/errorHandler.actions';
 import { SocketService }              from './services/socketio/socketio.service';
 import { HttpIntercept }              from './services/auth/auth.service';
+import { UserService }                from './services/user/user.service';
+import { UserActions }                from './actions/user.actions';
 
 //Angular and 3rd party serices
 import { Cookie }                     from 'ng2-cookies/ng2-cookies';
@@ -117,7 +119,6 @@ Redux Store Interface
 //Declare import for redux store interface
 */
 import { IAppState, rootReducer, enhancers } from './store';
-// const createLogger = require('redux-logger');
 import createLogger from 'redux-logger';
 
 
@@ -157,7 +158,7 @@ NgModule
   ],
   //providers: this object imports all necessary services into the module
   providers: [
-    ErrorHandlerService,
+    ErrorHandlerActions,
     SocketService,
     {
       provide: Http,
@@ -168,7 +169,8 @@ NgModule
       deps: [XHRBackend, RequestOptions]
     },
     Cookie,
-    { provide: DevToolsExtension, useClass: DevToolsExtension }
+    { provide: DevToolsExtension, useClass: DevToolsExtension },
+    UserService
   ],
   //bootstrap: identifies which component is supposed to be bootstrapped
   bootstrap: [AppComponent]
@@ -182,6 +184,6 @@ export class AppModule {
     private devTool: DevToolsExtension) {
 
     this.ngRedux.configureStore(rootReducer, {},
-      [createLogger()], [...enhancers, devTool.isEnabled() ? devTool.enhancer() : f => f]);
+      [createLogger({ collapsed: true })], [...enhancers, devTool.isEnabled() ? devTool.enhancer() : f => f]);
   }
 }

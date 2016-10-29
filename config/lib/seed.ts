@@ -42,7 +42,7 @@ export function seed() {
           xcoor: 13,
           ycoor: 40
         }, {
-          name: 'Gulp',
+          name: 'Redux',
           xcoor: 15,
           ycoor: 35
         }, {

@@ -1,19 +1,27 @@
 import { combineReducers } from 'redux';
 // const persistState = require('redux-localstorage');
-// import { counterReducer } from './counter.reducer';
+import { errorHandlerReducer } from './errorHandler.reducer';
+import { userReducer } from './user.reducer';
+import { userFormReducer } from './userForm.reducer';
+
+// Models
+import { User } from '../models/models.namespace';
 
 export class IAppState {
-  // counter?: number;
-  // pathDemo?: IPathDemoData;
-  // search?: ISearchState;
+  error?: string;
+  user?: User;
+  userForm?: {
+    userSigning: boolean,
+    userSignup: boolean
+  };
 };
 
 export const rootReducer = combineReducers<IAppState>({
-  // counter: counterReducer,
-  // pathDemo: pathDemoReducer,
-  // search: searchReducer
+  error: errorHandlerReducer,
+  user: userReducer,
+  userForm: userFormReducer
 });
 
 export const enhancers = [
-  // persistState('counter', { key: 'ng2-redux/examples/counter' })
+  // persistState('GOAT-stack', { key: 'GOAT-stack' })
 ];
