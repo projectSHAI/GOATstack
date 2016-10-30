@@ -184,6 +184,7 @@ export class AppModule {
     private devTool: DevToolsExtension) {
 
     this.ngRedux.configureStore(rootReducer, {},
-      [createLogger({ collapsed: true })], [...enhancers, devTool.isEnabled() ? devTool.enhancer() : f => f]);
+      [createLogger({ collapsed: true })],
+      [...enhancers, devTool.isEnabled() ? devTool.enhancer() : f => f]);
   }
 }

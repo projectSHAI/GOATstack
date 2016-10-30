@@ -1,20 +1,24 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { select } from 'ng2-redux';
 
 import { WonderService } from '../../services/wonder/wonder.service';
 import { ClockService } from '../../services/clock/clock.service';
 import { SocketService } from '../../services/socketio/socketio.service';
-import { CloudProps } from './cloud-props';
+import { CloudActions } from '../../actions/cloud.actions';
 
 import { Wonder, cloneWonders } from '../../models/models.namespace';
 
 @Component({
   selector: 'cloud-generator',
-  providers: [WonderService, CloudProps],
+  providers: [WonderService, CloudActions],
   templateUrl: './cloud-generator.component.html',
   styleUrls: ['./cloud-generator.component.scss']
 })
 
 export class CloudGeneratorComponent {
+  @select('cloud') cloud$: Observable<any>;
+
   @ViewChild('wonderSky') wonderSky;
 
   beforeWonders: Wonder[];
@@ -25,7 +29,7 @@ export class CloudGeneratorComponent {
   constructor(
     private wonderService: WonderService,
     private socket: SocketService,
-    private cp: CloudProps,
+    private cp: CloudActions,
     private clockService: ClockService) { }
 
   ngOnInit() {

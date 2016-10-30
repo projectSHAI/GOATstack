@@ -30,7 +30,8 @@
       'ng2-redux':                          'npm:ng2-redux/lib',
       'redux':                              'npm:redux/dist/redux.min.js',
 
-      'redux-logger':                       'npm:redux-logger/dist'
+      'redux-logger':                       'npm:redux-logger/dist',
+      'redux-localstorage':                 'npm:redux-localstorage/lib'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -58,6 +59,10 @@
       },
       'redux-logger': {
         main: 'index.min.js',
+        defaultExtension: 'js'
+      },
+      'redux-localstorage': {
+        main: 'persistState.js',
         defaultExtension: 'js'
       }
     }

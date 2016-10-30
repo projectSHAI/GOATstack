@@ -147,7 +147,10 @@ describe('GOAT-stack E2E Tests', function () {
     });
 
     it('should login as newly registered user', function (done) {
-      element(by.id('signup_re_password-input')).clear();
+      element(by.cssContainingText('button', 'SIGN UP')).click();
+      element(by.id('signup_username-input')).sendKeys('testUserName');
+      element(by.id('signup_email-input')).sendKeys('thisisatest@test.com');
+      element(by.id('signup_password-input')).sendKeys('password');
       element(by.id('signup_re_password-input')).sendKeys('password');
 
       element(by.cssContainingText('button', 'REGISTER')).click();

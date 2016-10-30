@@ -4,7 +4,6 @@ import { FormGroup, NgForm } from '@angular/forms';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../store';
 import { UserService } from '../services/user/user.service';
-import { UserFormActions } from '../actions/userForm.actions';
 import { ErrorHandlerActions } from '../actions/errorHandler.actions';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
@@ -12,7 +11,6 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 export class UserActions {
   constructor(
     private ngRedux: NgRedux<IAppState>,
-    private userFormActions: UserFormActions,
     private errorHandler: ErrorHandlerActions,
     private userService: UserService) { }
 
