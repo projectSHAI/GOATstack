@@ -28,6 +28,7 @@
       'lodash':                             'npm:lodash',
       'gsap':                               'custom_modules/greensock',
       'ng2-redux':                          'npm:ng2-redux/lib',
+      'immutable':                          'npm:immutable/dist/immutable.min.js',
       'redux':                              'npm:redux/dist/redux.min.js',
 
       'redux-logger':                       'npm:redux-logger/dist',

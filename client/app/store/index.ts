@@ -1,21 +1,19 @@
 import { combineReducers } from 'redux';
 // import persistState from 'redux-localStorage';
-import { errorHandlerReducer } from './errorHandler.reducer';
 import { userReducer } from './user.reducer';
 import { userFormReducer } from './userForm.reducer';
 import { wonderReducer } from './wonder.reducer';
 import { cloudReducer } from './cloud.reducer';
 
+import * as error from './errorHandler';
+import * as userForm from './userForm';
 // Models
 import { User, Wonder } from '../models/models.namespace';
 
 export class IAppState {
-  error?: string;
+  error?: error.IError;
   user?: User;
-  userForm?: {
-    userSigning: boolean,
-    userSignup: boolean
-  };
+  userForm?: userForm.IUserForm;
   wonder?: {
     beforeWonders: Array<Wonder>,
     afterWonders: Array<Wonder>
@@ -27,9 +25,9 @@ export class IAppState {
 };
 
 export const rootReducer = combineReducers<IAppState>({
-  error: errorHandlerReducer,
+  error: error.errorHandlerReducer,
   user: userReducer,
-  userForm: userFormReducer,
+  userForm: userForm.userFormReducer,
   wonder: wonderReducer,
   cloud: cloudReducer
 });

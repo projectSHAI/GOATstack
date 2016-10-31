@@ -26,7 +26,7 @@ import { Observable } from 'rxjs/Observable';
 //-- to learn more about Angular's event lifecycle read here: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
 export class AppComponent implements AfterViewInit {
   //this decorator is for NgRedux. you can read more about Redux here: https://github.com/angular-redux/ng2-redux
-  @select('error') error$: Observable<string>;
+  @select('error') error$: Observable<any>;
 
   //this decorator gabs the object associated with the #errorToast template variable assigned in the app.componnent.html file,
   //-- and assigns this object to the class variable errorToast

@@ -1,14 +1,14 @@
 <div class="user-sign">
   <div>
     <h3 id="welcomeUser" *ngIf="(user$ | async)">Welcome, {{(user$ | async).userName}}</h3>
-    <button md-raised-button *ngIf="!(user$ | async) && !(userForm$ | async).userSigning && !(userForm$ | async).userSignup"
+    <button md-raised-button *ngIf="!(user$ | async) && !(userForm$ | async).get('userSigning') && !(userForm$ | async).get('userSignup')"
       type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
-    <button md-raised-button *ngIf="!(user$ | async) && !(userForm$ | async).userSigning && !(userForm$ | async).userSignup"
+    <button md-raised-button *ngIf="!(user$ | async) && !(userForm$ | async).get('userSigning') && !(userForm$ | async).get('userSignup')"
       type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
     <button md-raised-button *ngIf="(user$ | async)" type="button"
       (click)="userActions.logout()" color="primary">SIGN OUT</button>
   </div>
-  <md-card class="reg-card" *ngIf="(userForm$ | async).userSigning">
+  <md-card class="reg-card" *ngIf="(userForm$ | async).get('userSigning')">
     <md-toolbar color="primary">Sign In</md-toolbar>
     <md-card-content class="reg-content">
       <form #loginForm="ngForm" (ngSubmit)="userActions.login(loginForm) || userFormActions.loginForm(false)">
@@ -28,7 +28,7 @@
       </form>
     </md-card-content>
   </md-card>
-  <md-card class="reg-card" *ngIf="(userForm$ | async).userSignup">
+  <md-card class="reg-card" *ngIf="(userForm$ | async).get('userSignup')">
     <md-toolbar color="primary">Create New User</md-toolbar>
     <md-card-content class="reg-content">
       <form #registerForm="ngForm" (ngSubmit)="userActions.register(registerForm) || userFormActions.registerForm(false)">
