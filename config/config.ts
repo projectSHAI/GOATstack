@@ -90,9 +90,12 @@ function init() {
     environmentAssets = prodAssets;
     environmentConfig = prodEnv;
   }
-  else {
+  else if (process.env.NODE_ENV === 'test'){
     environmentAssets = testAssets;
     environmentConfig = testEnv;
+  }
+  else{
+    console.log('Error: process.env.NODE_ENV has not been set correctly, please define it as development, production, or test in a gulp task in config/gulp/gulpclass.ts');
   }
 
   // Merge assets
