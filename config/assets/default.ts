@@ -1,3 +1,9 @@
+/*
+===============================================================================
+These assets get called no matter what Node's process.env.NODE_ENV is set to.
+===============================================================================
+*/
+
 export const defaultAssets = {
   client: {
     dist: {
