@@ -23,6 +23,7 @@ let imagemin = require('imagemin');
 let imageminJPEGOptim = require('imagemin-jpegoptim');
 let imageminOptiPNG = require('imagemin-optipng');
 let imageminSVGO = require('imagemin-svgo');
+let exec = require('child_process').exec;
 
 // tslint:disable-next-line
 let defaultAssets = eval(require("typescript")
@@ -51,7 +52,18 @@ export class Gulpfile {
     process.env.NODE_ENV = 'production';
     done();
   }
-
+  //start mongo db for development mode
+  @Task()
+  mongod_start(done, cb) {
+    exec('mongod --dbpath=/data', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+    console.log('helloworld');
+    done();
+  }
+  
   @Task()
   build_clean(done) {
     del(['dist/**', '!dist']);
@@ -421,7 +433,9 @@ export class Gulpfile {
   @SequenceTask()
   default() {
     return [
+
       'env_dev',
+      'mongod_start',
       'lint',
       'build_clean',
       'build_project',
@@ -433,6 +447,7 @@ export class Gulpfile {
   prod() {
     return [
       'env_prod',
+      'mongod_start',
       'lint',
       'build_clean',
       'build_project',
@@ -444,6 +459,7 @@ export class Gulpfile {
   test() {
     return [
       'env_test',
+      'mongod_start',
       'lint',
       'build_clean',
       'build_project_test',
@@ -457,6 +473,7 @@ export class Gulpfile {
   test_e2e() {
     return [
       'env_test',
+      'mongod_start',
       'build_clean',
       'build_project',
       'protractor',
