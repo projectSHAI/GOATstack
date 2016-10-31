@@ -14,11 +14,16 @@ function updateWonder(res, wonder) {
       entity.created = new Date().toISOString();
       entity.xcoor = rndInt(10, 90);
       entity.ycoor = rndInt(10, 55);
-      entity.save();
-      res.json(entity);
+      entity.save((err, wonder) => {
+        if (err)
+          res.status(400).json(err.errors.name);
+
+        res.json(wonder);
+      });
+
 
       counter++;
-      if(counter > 9){
+      if (counter > 9) {
         counter = 0;
       }
     }
@@ -91,9 +96,7 @@ export function show(req, res) {
 
 // Creates a new Wonder in the DB
 export function create(req, res) {
-  return Wonder.findOne({}).sort({
-      created: 1
-    }).exec()
+  return Wonder.findOne({}).sort({ created: 1 }).exec()
     .then(updateWonder(res, req.body))
     .catch(handleError(res));
 }

@@ -1,7 +1,6 @@
 import { CloudActions } from '../actions/cloud.actions';
 
 const INITIAL_STATE: any = {
-  counter: 0,
   cloudStyle: [],
   animaArray: [],
 };

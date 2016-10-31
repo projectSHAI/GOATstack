@@ -2,58 +2,37 @@ import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular
 import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 
-import { WonderService } from '../../services/wonder/wonder.service';
+import { WonderActions } from '../../actions/wonder.actions';
 import { ClockService } from '../../services/clock/clock.service';
 import { SocketService } from '../../services/socketio/socketio.service';
 import { CloudActions } from '../../actions/cloud.actions';
 
-import { Wonder, cloneWonders } from '../../models/models.namespace';
-
 @Component({
   selector: 'cloud-generator',
-  providers: [WonderService, CloudActions],
+  providers: [WonderActions, CloudActions],
   templateUrl: './cloud-generator.component.html',
   styleUrls: ['./cloud-generator.component.scss']
 })
 
 export class CloudGeneratorComponent {
   @select('cloud') cloud$: Observable<any>;
+  @select('wonder') wonder$: Observable<any>;
 
   @ViewChild('wonderSky') wonderSky;
 
-  beforeWonders: Wonder[];
-  afterWonders: Wonder[];
-
-  dream = 'Wonders';
-
   constructor(
-    private wonderService: WonderService,
+    private wonderActions: WonderActions,
+    private cloudActions: CloudActions,
     private socket: SocketService,
-    private cp: CloudActions,
     private clockService: ClockService) { }
 
   ngOnInit() {
-    this.wonderService.getWonders()
-      .subscribe(wonders => {
-        this.beforeWonders = wonders;
-
-        this.afterWonders = cloneWonders(wonders);
-        this.afterWonders.forEach((item, index) => this.cp.cloudType(item.name.length, index));
-
-        this.socket.syncUpdates('Wonder', this.beforeWonders, (item, index) => {
-          this.cp.cloudAnimaAfter(this.wonderSky.nativeElement.children[index], this.afterWonders, item, index);
-        });
-      });
-
+    this.wonderActions.initWonders(this.wonderSky);
     this.clockService.currentTime.subscribe(time => this.timeOfDayCss());
   }
 
   ngOnDestroy() {
     this.socket.unsyncUpdates('Wonder');
-  }
-
-  saveWonder(name: string) {
-    this.wonderService.saveWonder(name).subscribe();
   }
 
   timeOfDayCss() {

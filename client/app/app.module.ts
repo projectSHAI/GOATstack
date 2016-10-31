@@ -86,7 +86,7 @@ import { ErrorHandlerActions }        from './actions/errorHandler.actions';
 import { SocketService }              from './services/socketio/socketio.service';
 import { HttpIntercept }              from './services/auth/auth.service';
 import { UserService }                from './services/user/user.service';
-import { UserActions }                from './actions/user.actions';
+import { WonderService }              from './services/wonder/wonder.service';
 
 //Angular and 3rd party serices
 import { Cookie }                     from 'ng2-cookies/ng2-cookies';
@@ -170,7 +170,8 @@ NgModule
     },
     Cookie,
     { provide: DevToolsExtension, useClass: DevToolsExtension },
-    UserService
+    UserService,
+    WonderService
   ],
   //bootstrap: identifies which component is supposed to be bootstrapped
   bootstrap: [AppComponent]
