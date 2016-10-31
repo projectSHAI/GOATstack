@@ -48,7 +48,7 @@ export class SkyComponent {
       this.sunMoonAngle = (Math.floor((((time.getHours() + 6) % 12) * 60 + time.getMinutes()) * 0.25)) + 180;
 
       this.plotSunOnArc(this.sunMoonAngle, this.radius, this.centerX, this.centerY);
-      this.safeTransform = this.sanitizer.bypassSecurityTrustStyle("translate( " + this.sunMoonX + "px, " + this.sunMoonY + "px )");
+      this.safeTransform = this.sanitizer.bypassSecurityTrustStyle(`translate( ${this.sunMoonX}px, ${this.sunMoonY}px )`);
     });
   }
 
@@ -58,7 +58,7 @@ export class SkyComponent {
     this.sunMoonPos();
 
     this.plotSunOnArc(this.sunMoonAngle, this.radius, this.centerX, this.centerY);
-    this.safeTransform = this.sanitizer.bypassSecurityTrustStyle("translate( " + this.sunMoonX + "px, " + this.sunMoonY + "px )");
+    this.safeTransform = this.sanitizer.bypassSecurityTrustStyle(`translate( ${this.sunMoonX}px, ${this.sunMoonY}px )`);
   }
 
 
