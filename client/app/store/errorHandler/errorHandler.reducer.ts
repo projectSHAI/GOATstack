@@ -8,7 +8,7 @@ export function errorHandlerReducer(state: IError = INITIAL_STATE, action: any) 
   switch(action.type) {
     case ErrorHandlerActions.SHOW_ERROR:
     case ErrorHandlerActions.HIDE_ERROR:
-      return reimmutifyError({ message: action.payload });
+      return state.updateIn(['message'], val => action.payload);
     default:
       return state;
   }

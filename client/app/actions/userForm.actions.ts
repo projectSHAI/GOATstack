@@ -19,27 +19,15 @@ export class UserFormActions {
 
   loginForm(action: boolean) {
     if (action)
-      this.ngRedux.dispatch({
-        type: UserFormActions.LOGIN_FORM_IN,
-        payload: { userSigning: true, userSignup: false }
-      });
+      this.ngRedux.dispatch({ type: UserFormActions.LOGIN_FORM_IN });
     else
-      this.ngRedux.dispatch({
-        type: UserFormActions.LOGIN_FORM_OUT,
-        payload: { userSigning: false, userSignup: false }
-      });
+      this.ngRedux.dispatch({ type: UserFormActions.LOGIN_FORM_OUT });
   }
 
   registerForm(action: boolean) {
     if (action)
-      this.ngRedux.dispatch({
-        type: UserFormActions.REGISTER_FORM_IN,
-        payload: { userSigning: false, userSignup: true }
-      });
+      this.ngRedux.dispatch({ type: UserFormActions.REGISTER_FORM_IN });
     else
-      this.ngRedux.dispatch({
-        type: UserFormActions.REGISTER_FORM_OUT,
-        payload: { userSigning: false, userSignup: false }
-      });
+      this.ngRedux.dispatch({ type: UserFormActions.REGISTER_FORM_OUT });
   }
 }

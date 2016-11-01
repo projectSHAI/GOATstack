@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 // import persistState from 'redux-localStorage';
 import { userReducer } from './user.reducer';
-import { userFormReducer } from './userForm.reducer';
 import { wonderReducer } from './wonder.reducer';
 import { cloudReducer } from './cloud.reducer';
 
