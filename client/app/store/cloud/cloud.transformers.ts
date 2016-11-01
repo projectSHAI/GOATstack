@@ -1,4 +1,4 @@
-import { List, Map } from 'immutable';
+import { List } from 'immutable';
 import { ICloudStyle, IAnimaArray } from './cloud.types';
 
 export function deimmutifyCloudStyle(state: ICloudStyle): Object[] {

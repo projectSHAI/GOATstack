@@ -13,25 +13,28 @@ declare let Power0: any;
 export class CloudActions {
   @select('animaArray') animaArray$: Observable<any>;
 
-  counter: number = 0;
-  animaArray: any;
+  private animaArray: any;
+  private afterWonders: any;
+
+  private width: number;
 
   constructor(private ngRedux: NgRedux<IAppState>) {
-    this.animaArray$.subscribe(anima => {
-      this.animaArray = anima;
-    });
+    this.width = window.innerWidth;
+    this.animaArray$.subscribe(anima => this.animaArray = anima);
   }
 
   static CHANGE_STYLES: string = 'CHANGE_STYLES';
   static CHANGE_ANIMA: string = 'CHANGE_ANIMA';
 
-  private cloudAnimaAfterCB(item: any, index: number, position: string): void {
-    this.ngRedux.dispatch({ type: WonderActions.CHANGE_AFTER_WONDERS, payload: { index: index, wonder: item } });
-    this.loopAnima(index, position);
+  private cloudAnimaAfterCB(item: any, index: number): void {
+    // First kill the old timeline ddetaching it from the parent obj
+    this.animaArray.get(index).kill();
+    // Then push the new wonder to the dom to trigger update
+    this.ngRedux.dispatch({ type: WonderActions.CHANGE_AFTER_WONDERS, payload: { index: index, object: item } });
   }
 
-  private loopAnima(index: number, position: string): void {
-    this.animaArray.get(index).play(position);
+  private loopAnima(index: number): void {
+    this.animaArray.get(index).restart();
   }
 
   cloudType(wonderLength: number, index: number): void {
@@ -85,28 +88,19 @@ export class CloudActions {
   }
 
   cloudAnima(value: string, el: ElementRef, object: any, index: number): string {
+    let anima = new TimelineMax({
+      callbackScope: this,
+      onComplete: this.loopAnima,
+      onCompleteParams: [index]
+    });
 
-    if (this.counter < 10) {
-      let anima = new TimelineMax({
-        callbackScope: this,
-        onComplete: this.loopAnima,
-        onCompleteParams: [index, "loop"]
-      });
+    // TODO: find a way to get the initial element position to subtract from innerWidth
+    anima
+      .to(el, 0, { ease: Power0.easeNone, left: '-350px', x: '0', y: '0' })
+      .to(el, this.rndInt(30, 85), { ease: Power0.easeNone, x: 1707 + 350, y: this.rndInt(-200, 200) });
 
-      // TODO: find a way to get the initial element position to subtract from innerWidth
-      anima //.add(() => this.cloudType(object.name.length, index))
-        .to(el, this.rndInt(1, 3), { opacity: 1 })
-        .to(el, this.rndInt(30, 85), { ease: Power0.easeNone, x: window.innerWidth + 350, y: this.rndInt(-200, 200) }, 0)
-        .addLabel('loop', '+=0')
-        .to(el, 0, { ease: Power0.easeNone, left: '-350px', x: '0', y: '0' })
-        .to(el, 1, { opacity: 1 })
-        .to(el, this.rndInt(30, 85), { ease: Power0.easeNone, x: window.innerWidth + 350, y: this.rndInt(-200, 200) });
-
-      this.counter++;
-      this.ngRedux.dispatch({ type: CloudActions.CHANGE_ANIMA, payload: anima });
-      return value;
-    }
-
+    // Push new gsap timeline to animaArray List
+    this.ngRedux.dispatch({ type: CloudActions.CHANGE_ANIMA, payload: { index: index, timeline: anima } });
     return value;
   }
 
@@ -123,7 +117,7 @@ export class CloudActions {
     TweenMax.to(el, 1, {
       callbackScope: this,
       onComplete: this.cloudAnimaAfterCB,
-      onCompleteParams: [item, index, 'loop']
+      onCompleteParams: [item, index]
     });
   }
 

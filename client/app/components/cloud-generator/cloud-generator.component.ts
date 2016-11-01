@@ -16,7 +16,7 @@ import { CloudActions } from '../../actions/cloud.actions';
 
 export class CloudGeneratorComponent {
   @select('cloudStyle') cloudStyle$: Observable<any>;
-  @select('wonder') wonder$: Observable<any>;
+  @select('afterWonder') afterWonder$: Observable<any>;
 
   @ViewChild('wonderSky') wonderSky;
 

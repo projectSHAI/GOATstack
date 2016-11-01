@@ -8,8 +8,6 @@ import { SocketService } from '../services/socketio/socketio.service';
 import { ErrorHandlerActions } from '../actions/errorHandler.actions';
 import { CloudActions } from '../actions/cloud.actions';
 
-import { Wonder, cloneWonders } from '../models/models.namespace';
-
 @Injectable()
 export class WonderActions {
   constructor(
@@ -30,7 +28,7 @@ export class WonderActions {
     this.wonderService.getWonders()
       .subscribe(wonders => {
         this.ngRedux.dispatch({ type: WonderActions.INITIALIZE_BEFORE_WONDERS, payload: wonders });
-        this.ngRedux.dispatch({ type: WonderActions.INITIALIZE_AFTER_WONDERS, payload: cloneWonders(wonders) });
+        this.ngRedux.dispatch({ type: WonderActions.INITIALIZE_AFTER_WONDERS, payload: wonders });
         wonders.forEach((item, index) => this.cloudActions.cloudType(item.name.length, index));
 
         this.socket.syncUpdates('Wonder', wonders, 'CHANGE_BEFORE_WONDERS', (item, index) => {

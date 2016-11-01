@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/Observable';
 import { UserActions }  from '../../actions/user.actions';
 import { UserFormActions } from '../../actions/userForm.actions';
 import { ErrorHandlerActions } from '../../actions/errorHandler.actions';
-import { User } from '../../models/models.namespace';
 
 @Component({
   selector: 'signinout',
@@ -16,7 +15,7 @@ import { User } from '../../models/models.namespace';
   styleUrls: ['./signinout.component.scss']
 })
 export class SignInOutComponent implements OnInit {
-  @select('user') user$: Observable<User>;
+  @select('user') user$: Observable<any>;
   @select('userForm') userForm$: Observable<any>;
 
   constructor(

@@ -3,8 +3,6 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
-import { User, mapUser } from '../../models/models.namespace';
-
 import 'rxjs/Rx';
 
 @Injectable()
@@ -18,7 +16,7 @@ export class UserService {
   private extractToken(res: Response) {
     let body = res.json();
     Cookie.set('token', body.token);
-    return new User(body.user);
+    return body.user;
   }
 
   private handleError(error: any) {
@@ -38,13 +36,13 @@ export class UserService {
   }
 
   // Public functions that components may call
-  getMe(): Observable<User> {
+  getMe(): Observable<any> {
     return this.http.get(this.userUrl + '/me')
-      .map(mapUser)
+      .map(res => res.json())
       .catch(this.handleError);
   }
 
-  login(email: string, password: string): Observable<User> {
+  login(email: string, password: string): Observable<any> {
     let body = JSON.stringify({
       email: email,
       password: password
@@ -59,7 +57,7 @@ export class UserService {
     Cookie.delete('token');
   }
 
-  signup(username: string, email: string, password: string): Observable<User> {
+  signup(username: string, email: string, password: string): Observable<any> {
     let body = JSON.stringify({
       userName: username,
       email: email,

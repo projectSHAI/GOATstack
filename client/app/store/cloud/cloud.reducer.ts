@@ -15,7 +15,8 @@ export function cloudReducer(state: ICloudStyle = STYLE_INITIAL_STATE, action: a
 export function animaReducer(state: IAnimaArray = ANIMA_INITIAL_STATE, action: any) {
   switch (action.type) {
     case CloudActions.CHANGE_ANIMA:
-      return state.push(action.payload);
+      return state.size < 10 ? state.push(action.payload.timeline) :
+        state.updateIn([action.payload.index], val => action.payload.timeline);
     default:
       return state;
   }

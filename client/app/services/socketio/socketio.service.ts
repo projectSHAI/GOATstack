@@ -8,9 +8,6 @@ import { IAppState } from '../../store';
 import * as _ from 'lodash';
 import * as io from 'socket.io-client';
 
-// Make Models namespace for dynamic class initialization
-import * as Models from '../../models/models.namespace';
-
 @Injectable()
 export class SocketService {
   socket;
@@ -26,7 +23,7 @@ export class SocketService {
    * Takes the array we want to sync, the model name that socket updates are sent from,
    * and an optional callback function after new items are updated.
    */
-  syncUpdates(modelName: string, array: Models.Universal[], state: string, cb?) {
+  syncUpdates(modelName: string, array: any, state: string, cb?) {
     /**
      * Syncs item creation/updates on 'model:save'
      */
@@ -38,13 +35,13 @@ export class SocketService {
       // replace oldItem if it exists
       // otherwise just add item to the collection
       if (oldItem) {
-        // oldItem.replace(item);
-        this.ngRedux.dispatch({ type: state, payload: { index: index, wonder: item } });
+        // Update store with new object
+        this.ngRedux.dispatch({ type: state, payload: { index: index, object: item, isnew: false } });
         event = 'updated';
       } else {
         // Finds the model for the listener
-        // and pushes a new object to array
-        array.push(new Models[modelName](item));
+        // and pushes a new object to store
+        this.ngRedux.dispatch({ type: state, payload: { object: item, isnew: true } });
       }
 
       return cb ? cb(item, index, array, event) : null;
