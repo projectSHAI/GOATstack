@@ -1,14 +1,10 @@
 import { combineReducers } from 'redux';
 // import persistState from 'redux-localStorage';
-// import { wonderReducer } from './wonder.reducer';
 import * as error from './errorHandler';
 import * as userForm from './userForm';
 import * as user from './user';
 import * as cloud from './cloud';
 import * as wonder from './wonder';
-
-// Models
-import { Wonder } from '../models/models.namespace';
 
 export class IAppState {
   error?: error.IError;

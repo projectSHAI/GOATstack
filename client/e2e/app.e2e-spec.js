@@ -1,4 +1,7 @@
 describe('GOAT-stack E2E Tests', function () {
+
+  var EC = protractor.ExpectedConditions;
+
   beforeAll(function () {
     // Important to have this line
     browser.ignoreSynchronization = true;
@@ -16,11 +19,13 @@ describe('GOAT-stack E2E Tests', function () {
     var title = 'GOAT Stack';
 
     it('Header should display: ' + title, function () {
+      browser.wait(EC.presenceOf(element(by.css('.app-title>h1'))), 2000);
       expect(element(by.css('.app-title>h1')).isPresent()).toBeTruthy();
       expect(element(by.css('.app-title>h1')).getText()).toEqual(title);
     });
 
     it('Header should display: SVG Object', function () {
+      browser.wait(EC.presenceOf(element(by.css('#logo'))), 2000);
       expect(element(by.css('#logo')).isPresent()).toBeTruthy();
     });
 
@@ -33,8 +38,6 @@ describe('GOAT-stack E2E Tests', function () {
    * and register user key actions
    */
   describe('Signinout E2E Tests', function () {
-
-    var EC = protractor.ExpectedConditions;
 
     it('should not display: Welcome, "userName"', function (done) {
       expect(element(by.css('.user-sign>h3')).isPresent()).toBeFalsy();
