@@ -6,5 +6,5 @@ export function deimmutifyUserForm(state: IUserForm): Object {
 }
 
 export function reimmutifyUserForm(plain): IUserForm {
-  return Map<IUserFormItem, IUserFormItem>(plain ? plain : '');
+  return Map<IUserFormItem, IUserFormItem>(plain ? plain : {});
 }

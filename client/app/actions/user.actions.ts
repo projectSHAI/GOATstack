@@ -41,10 +41,7 @@ export class UserActions {
 
   logout() {
     Cookie.delete('token');
-    this.ngRedux.dispatch({
-      type: UserActions.LOGOUT_USER,
-      payload: null
-    });
+    this.ngRedux.dispatch({ type: UserActions.LOGOUT_USER });
   }
 
   register(rf: FormGroup) {

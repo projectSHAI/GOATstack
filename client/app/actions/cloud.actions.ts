@@ -11,16 +11,14 @@ declare let Power0: any;
 
 @Injectable()
 export class CloudActions {
-  @select('cloud') cloud$: Observable<any>;
+  @select('animaArray') animaArray$: Observable<any>;
 
   counter: number = 0;
-  cloudStyle: Array<string>;
-  animaArray: Array<any>;
+  animaArray: any;
 
   constructor(private ngRedux: NgRedux<IAppState>) {
-    this.cloud$.subscribe(cloud => {
-      this.cloudStyle = cloud.cloudStyle;
-      this.animaArray = cloud.animaArray;
+    this.animaArray$.subscribe(anima => {
+      this.animaArray = anima;
     });
   }
 
@@ -33,7 +31,7 @@ export class CloudActions {
   }
 
   private loopAnima(index: number, position: string): void {
-    this.animaArray[index].play(position);
+    this.animaArray.get(index).play(position);
   }
 
   cloudType(wonderLength: number, index: number): void {
@@ -96,7 +94,7 @@ export class CloudActions {
       });
 
       // TODO: find a way to get the initial element position to subtract from innerWidth
-      anima.add(() => this.cloudType(object.name.length, index))
+      anima //.add(() => this.cloudType(object.name.length, index))
         .to(el, this.rndInt(1, 3), { opacity: 1 })
         .to(el, this.rndInt(30, 85), { ease: Power0.easeNone, x: window.innerWidth + 350, y: this.rndInt(-200, 200) }, 0)
         .addLabel('loop', '+=0')

@@ -31,6 +31,7 @@ export class WonderActions {
       .subscribe(wonders => {
         this.ngRedux.dispatch({ type: WonderActions.INITIALIZE_BEFORE_WONDERS, payload: wonders });
         this.ngRedux.dispatch({ type: WonderActions.INITIALIZE_AFTER_WONDERS, payload: cloneWonders(wonders) });
+        wonders.forEach((item, index) => this.cloudActions.cloudType(item.name.length, index));
 
         this.socket.syncUpdates('Wonder', wonders, 'CHANGE_BEFORE_WONDERS', (item, index) => {
           this.cloudActions.cloudAnimaAfter(el.nativeElement.children[index], item, index);

@@ -1,34 +1,33 @@
 import { combineReducers } from 'redux';
 // import persistState from 'redux-localStorage';
-import { userReducer } from './user.reducer';
 import { wonderReducer } from './wonder.reducer';
-import { cloudReducer } from './cloud.reducer';
-
 import * as error from './errorHandler';
 import * as userForm from './userForm';
+import * as user from './user';
+import * as cloud from './cloud';
+
 // Models
-import { User, Wonder } from '../models/models.namespace';
+import { Wonder } from '../models/models.namespace';
 
 export class IAppState {
   error?: error.IError;
-  user?: User;
+  user?: user.IUser;
   userForm?: userForm.IUserForm;
   wonder?: {
     beforeWonders: Array<Wonder>,
     afterWonders: Array<Wonder>
   };
-  cloud?: {
-    cloudStyle: Array<string>,
-    animaArray: Array<any>
-  };
+  cloudStyle?: cloud.ICloudStyle;
+  animaArray?: cloud.IAnimaArray;
 };
 
 export const rootReducer = combineReducers<IAppState>({
   error: error.errorHandlerReducer,
-  user: userReducer,
+  user: user.userReducer,
   userForm: userForm.userFormReducer,
   wonder: wonderReducer,
-  cloud: cloudReducer
+  cloudStyle: cloud.cloudReducer,
+  animaArray: cloud.animaReducer
 });
 
 export const enhancers = [
