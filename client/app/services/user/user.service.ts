@@ -53,10 +53,6 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  logout(): void {
-    Cookie.delete('token');
-  }
-
   signup(username: string, email: string, password: string): Observable<any> {
     let body = JSON.stringify({
       userName: username,

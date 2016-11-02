@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { NgRedux, select } from 'ng2-redux';
-import { IAppState } from '../store';
+import { IAppState } from '../../store';
 
-import { WonderService } from '../services/wonder/wonder.service';
-import { SocketService } from '../services/socketio/socketio.service';
-import { ErrorHandlerActions } from './error/errorHandler.actions';
-import { CloudActions } from './cloud.actions';
+import { WonderService } from '../../services/wonder/wonder.service';
+import { SocketService } from '../../services/socketio/socketio.service';
+import { ErrorHandlerActions } from '../error/errorHandler.actions';
+import { CloudActions } from '../cloud/cloud.actions';
 
 @Injectable()
 export class WonderActions {
@@ -16,9 +16,7 @@ export class WonderActions {
     private errorHandler: ErrorHandlerActions,
     private cloudActions: CloudActions,
     private wonderService: WonderService,
-    private socket: SocketService) {
-
-  }
+    private socket: SocketService) { }
 
   static INITIALIZE_BEFORE_WONDERS: string = 'INITIALIZE_BEFORE_WONDERS';
   static INITIALIZE_AFTER_WONDERS: string = 'INITIALIZE_AFTER_WONDERS';

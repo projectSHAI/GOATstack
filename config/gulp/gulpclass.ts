@@ -60,10 +60,9 @@ export class Gulpfile {
         console.log(stderr);
         cb(err);
     });
-    console.log('helloworld');
     done();
   }
-  
+
   @Task()
   build_clean(done) {
     del(['dist/**', '!dist']);

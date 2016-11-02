@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 
 import { NgRedux } from 'ng2-redux';
-import { IAppState } from '../store';
+import { IAppState } from '../../store';
 
-import { UserService } from '../services/user/user.service';
-import { ErrorHandlerActions } from './error/errorHandler.actions';
+import { UserService } from '../../services/user/user.service';
+import { ErrorHandlerActions } from '../error/errorHandler.actions';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 @Injectable()
@@ -20,12 +20,13 @@ export class UserActions {
   static REGISTER_USER: string = 'REGISTER_USER';
 
   getMe() {
-    this.userService.getMe().subscribe(user => {
-      this.ngRedux.dispatch({
-        type: UserActions.LOGIN_USER,
-        payload: user
+    if (Cookie.get('token'))
+      this.userService.getMe().subscribe(user => {
+        this.ngRedux.dispatch({
+          type: UserActions.LOGIN_USER,
+          payload: user
+        });
       });
-    });
   }
 
   login(lf: FormGroup) {

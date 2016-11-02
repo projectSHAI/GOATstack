@@ -3,10 +3,9 @@ import { Observable } from 'rxjs/Observable';
 
 import { select } from 'ng2-redux';
 
-import { UserActions }  from '../../actions/user.actions';
+import { UserActions }  from '../../actions/user/user.actions';
 import { UserFormActions } from '../../actions/userForm/userForm.actions';
 import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
-import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 @Component({
   selector: 'signinout',
@@ -24,7 +23,6 @@ export class SignInOutComponent implements OnInit {
     private errorHandler: ErrorHandlerActions) { }
 
   ngOnInit() {
-    if (Cookie.get('token'))
-      this.userActions.getMe();
+    this.userActions.getMe();
   }
 }

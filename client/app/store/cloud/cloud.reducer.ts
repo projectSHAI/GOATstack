@@ -1,4 +1,4 @@
-import { CloudActions } from '../../actions/cloud.actions';
+import { CloudActions } from '../../actions/cloud/cloud.actions';
 import { ICloudStyle, IAnimaArray } from './cloud.types';
 import { STYLE_INITIAL_STATE, ANIMA_INITIAL_STATE } from './cloud.initial-state';
 

@@ -2,10 +2,10 @@ import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular
 import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 
-import { WonderActions } from '../../actions/wonder.actions';
+import { WonderActions } from '../../actions/wonder/wonder.actions';
 import { ClockService } from '../../services/clock/clock.service';
 import { SocketService } from '../../services/socketio/socketio.service';
-import { CloudActions } from '../../actions/cloud.actions';
+import { CloudActions } from '../../actions/cloud/cloud.actions';
 
 @Component({
   selector: 'cloud-generator',

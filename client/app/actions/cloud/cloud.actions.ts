@@ -2,9 +2,9 @@ import { Injectable, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { NgRedux, select } from 'ng2-redux';
-import { IAppState } from '../store';
+import { IAppState } from '../../store';
 
-import { WonderActions } from './wonder.actions';
+import { WonderActions } from '../wonder/wonder.actions';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
