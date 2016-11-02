@@ -41,20 +41,23 @@ function init(app) {
   app.use(cookieParser());
   // Initialize passport and passport session
   app.use(passport.initialize());
+
   //initialize morgan express logger
   // NOTE: all node and custom module requests
-  app.use(morgan('dev', {
-    skip: function(req, res) {
-      let url = req.originalUrl;
+  if (process.env.NODE_ENV !== 'test') {
+    app.use(morgan('dev', {
+      skip: function(req, res) {
+        let url = req.originalUrl;
 
-      if (url.indexOf('node') !== -1)
-        return true;
-      if (url.indexOf('custom') !== -1)
-        return true;
-      if(url.length === 1)
-        return true;
-    }
-  }));
+        if (url.indexOf('node') !== -1)
+          return true;
+        if (url.indexOf('custom') !== -1)
+          return true;
+        if (url.length === 1)
+          return true;
+      }
+    }));
+  }
 
   app.use(session({
     secret: con.config.sessionSecret,

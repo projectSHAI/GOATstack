@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../store';
+
 import { WonderActions } from './wonder.actions';
 
 declare let TweenMax: any;

@@ -48,6 +48,9 @@ module.exports = function(config) {
       {pattern: 'node_modules/@angular/**/*.js', included: false, watched: false},
 
       // External Libraries
+      {pattern: 'node_modules/redux/**/*.js', included: false, watched: false},      
+      {pattern: 'node_modules/ng2-redux/**/*.js', included: false, watched: false},
+      {pattern: 'node_modules/immutable/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/ng2-cookies/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/lodash/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/socket.io-client/**/*.js', included: false, watched: false},

@@ -3,10 +3,11 @@ import { Observable } from 'rxjs/Observable';
 
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../store';
+
 import { WonderService } from '../services/wonder/wonder.service';
 import { SocketService } from '../services/socketio/socketio.service';
-import { ErrorHandlerActions } from '../actions/errorHandler.actions';
-import { CloudActions } from '../actions/cloud.actions';
+import { ErrorHandlerActions } from './errorHandler.actions';
+import { CloudActions } from './cloud.actions';
 
 @Injectable()
 export class WonderActions {

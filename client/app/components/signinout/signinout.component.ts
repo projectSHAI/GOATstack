@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NgRedux, select } from 'ng2-redux';
-
-import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Observable } from 'rxjs/Observable';
+
+import { select } from 'ng2-redux';
 
 import { UserActions }  from '../../actions/user.actions';
 import { UserFormActions } from '../../actions/userForm.actions';
 import { ErrorHandlerActions } from '../../actions/errorHandler.actions';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 @Component({
   selector: 'signinout',
