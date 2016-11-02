@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 
 import { UserActions }  from '../../actions/user.actions';
-import { UserFormActions } from '../../actions/userForm.actions';
-import { ErrorHandlerActions } from '../../actions/errorHandler.actions';
+import { UserFormActions } from '../../actions/userForm/userForm.actions';
+import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 @Component({

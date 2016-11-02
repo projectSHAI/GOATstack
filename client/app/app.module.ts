@@ -82,7 +82,7 @@ Services
 // import { SocketService }              from './services/socketio/socketio.service';
 */
 //user created services
-import { ErrorHandlerActions }        from './actions/errorHandler.actions';
+import { ErrorHandlerActions }        from './actions/error/errorHandler.actions';
 import { SocketService }              from './services/socketio/socketio.service';
 import { HttpIntercept }              from './services/auth/auth.service';
 import { UserService }                from './services/user/user.service';

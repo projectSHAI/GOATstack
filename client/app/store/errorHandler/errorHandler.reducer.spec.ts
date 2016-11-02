@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import { errorHandlerReducer } from './errorHandler.reducer';
 import { INITIAL_STATE } from './errorHandler.initial-state';
-import { ErrorHandlerActions } from '../../actions/errorHandler.actions';
+import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
 
 describe('ErrorHandler Reducer', () => {
   let initialState = INITIAL_STATE;
@@ -15,9 +15,11 @@ describe('ErrorHandler Reducer', () => {
   });
 
   it('should set the error message on SHOW_ERROR', () => {
-    const previousValue = initialState.getIn(['message']);
+    const previousState = initialState;
     const nextState = errorHandlerReducer(initialState,
       { type: ErrorHandlerActions.SHOW_ERROR, payload: 'Testing Error Message' });
+
+    expect(previousState.getIn(['message'])).toBe('');
     expect(nextState.getIn(['message'])).toBe('Testing Error Message');
   });
 

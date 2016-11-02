@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 
 import { NgRedux } from 'ng2-redux';
-import { IAppState } from '../store';
+import { IAppState } from '../../store';
 
-import { UserService } from '../services/user/user.service';
+import { UserService } from '../../services/user/user.service';
 
 @Injectable()
 export class UserFormActions {

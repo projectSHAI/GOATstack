@@ -12,8 +12,11 @@ Bootstrapping component
 //main imports
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
-import { ErrorHandlerActions } from '../../actions/errorHandler.actions';
+import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
 import { Observable } from 'rxjs/Observable';
+
+declare let TweenMax: any;
+declare let TimelineMax: any;
 
 //decorator
 @Component({
@@ -27,6 +30,7 @@ import { Observable } from 'rxjs/Observable';
 export class AppComponent implements AfterViewInit {
   //this decorator is for NgRedux. you can read more about Redux here: https://github.com/angular-redux/ng2-redux
   @select('error') error$: Observable<any>;
+  private timeline: any;
 
   //this decorator gabs the object associated with the #errorToast template variable assigned in the app.componnent.html file,
   //-- and assigns this object to the class variable errorToast
@@ -35,8 +39,15 @@ export class AppComponent implements AfterViewInit {
   constructor(private errorHandler: ErrorHandlerActions) { }
 
   ngAfterViewInit() {
-    // initialize error handling service
-    this.errorHandler.initHandler(this.errorToast.nativeElement.children[0]);
+    // initialize error handling animation timeline
+    this.timeline = new TimelineMax({ paused: true });
+
+    this.timeline.to(this.errorToast.nativeElement.children[0], 1, { opacity: 1 })
+      .to(this.errorToast.nativeElement.children[0], 1, { opacity: 0 }, "+=3")
+      .add(() => this.errorHandler.hideError());
+
+    // Let the component be in charge of triggering the animation
+    this.error$.subscribe(error => error.get('message') ? this.timeline.play(0) : null);
   }
 
 }

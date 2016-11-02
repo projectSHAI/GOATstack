@@ -1,4 +1,4 @@
-import { ErrorHandlerActions } from '../../actions/errorHandler.actions';
+import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
 import { reimmutifyError } from './errorHandler.transformers';
 import { IError } from './errorHandler.types';
 

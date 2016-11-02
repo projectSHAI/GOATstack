@@ -6,7 +6,7 @@ import { IAppState } from '../store';
 
 import { WonderService } from '../services/wonder/wonder.service';
 import { SocketService } from '../services/socketio/socketio.service';
-import { ErrorHandlerActions } from './errorHandler.actions';
+import { ErrorHandlerActions } from './error/errorHandler.actions';
 import { CloudActions } from './cloud.actions';
 
 @Injectable()
