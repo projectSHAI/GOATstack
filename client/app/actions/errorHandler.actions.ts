@@ -31,10 +31,7 @@ export class ErrorHandlerActions {
   }
 
   hideError(): void {
-    this.ngRedux.dispatch({
-      type: ErrorHandlerActions.HIDE_ERROR,
-      payload: ''
-    });
+    this.ngRedux.dispatch({ type: ErrorHandlerActions.HIDE_ERROR });
   }
 
 }

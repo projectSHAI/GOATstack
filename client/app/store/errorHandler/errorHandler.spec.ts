@@ -21,7 +21,7 @@ describe('ErrorHandler Reducer', () => {
     expect(nextState.getIn(['message'])).toBe('Testing Error Message');
   });
 
-  it('should set the error message on HIDE_ERROR', () => {
+  it('should remove error message on HIDE_ERROR', () => {
     // First SHOW_ERROR and check
     const nextState = errorHandlerReducer(initialState,
       { type: ErrorHandlerActions.SHOW_ERROR, payload: 'Testing Error Message' });
