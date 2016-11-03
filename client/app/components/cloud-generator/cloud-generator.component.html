@@ -1,7 +1,7 @@
 <div #wonderSky>
     <li #wonderCloud *ngFor="let wonder of (wonder$ | async); let i = index" class="wonder" [style.left.px]="-350" [style.top.%]="wonder.ycoor">
         <img src="assets/{{ (cloudStyle$ | async).get(i) }}.svg">
-        <p id={{wonder.name}}>{{wonder.name | ngForHook:wonderCloud:wonder:i:cloudActions}}</p>
+        <p id={{wonder.name}}>{{wonder.name | ngForHook:wonderCloud:wonder:i:this}}</p>
     </li>
 </div>
 <input id="testWonder" [(ngModel)]="dream" (keyup.enter)="wonderActions.saveWonder(dream)" placeholder="Do you wonder?" class="dreams-input" />
