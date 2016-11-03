@@ -5,9 +5,13 @@
 #### Main Technologies
 [MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps.
 #### Integrated Libraries and Modules
-GOAT includes [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
+GOAT includes the [Redux](http://redux.js.org/) architechture, [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
 
-##required technologies for your development environment
+# Documentation
+  * [Server-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/server-side.md)
+  * [Client-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/client-side.md)
+
+## required technologies for your development environment
   * [gulp](http://gulpjs.com/) (standard privileges required)
   * [typescript](https://www.typescriptlang.org/)
   * [nodejs](https://nodejs.org/en/)
@@ -32,11 +36,11 @@ GOAT includes [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/),
 ### 5) Clone and Run
 
 ```sh
-$ git clone https://github.com/projectSHAI/mea2n-full-stack # or clone your own fork
-$ cd mea2n-full-stack
+$ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
+$ cd GOAT-stack
 $ npm install -g gulp-cli typescript
 $ npm install
-$ # mongod in a different cmd prompt
+$ # mongod runs as a child process!
 $ gulp
 ```
 
@@ -51,14 +55,14 @@ $ sudo apt-get install git
 ### 2) Install [NodeJS](https://nodejs.org/en/download/package-manager/)
 
 ```sh
-$ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
 ```
 
-  or 6.x
+  or 7.x
 
 ```sh
-$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+$ curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
 ```
 
@@ -67,14 +71,14 @@ $ sudo apt-get install -y nodejs
 ### 4) Clone and Run
 
 ```sh
-$ git clone https://github.com/projectSHAI/mea2n-full-stack # or clone your own fork
-$ cd mea2n-full-stack
+$ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
+$ cd GOAT-stack
 $ npm install -g gulp-cli typescript
 $ npm install
-$ # mongod in a different terminal
+$ # mongod runs as a child process!
 $ gulp
 ```
-
+<!--
 # Deploying to Heroku
 
 Make sure you have [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
@@ -95,3 +99,4 @@ or
 - [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
 - [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
 - [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+-->
