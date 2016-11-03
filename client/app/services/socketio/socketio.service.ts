@@ -26,13 +26,13 @@ export class SocketService {
    * modelName: The server model with atached socket listener
    * array: model array from service subscription
    * stateArray: Redux states that this syncUpdates instance will invoke
-   *    index 0: update-state, index 1: remove-state
-   * cb: callback function, will be invokes after redux dispatch
-   * bb: beforeCall function, will be invoked before redux dispatch
+   *    index 0: update/add-state, index 1: remove-state
+   * cb: callback function, will be invoked after redux dispatch
+   * bcb: beforeCallback function, will be invoked before redux dispatch
    * dpDelay: dispatch delay, give dp time until dispatch is called
-   *    NOTE: bb will be called immidiately, dispatch will wait dp to execute
+   *    NOTE: bcb will be called immidiately, dispatch will wait dp to execute
    */
-  syncUpdates(modelName: string, array: any, stateArray: Array<string>, cb?, bb?, dpDelay?: number) {
+  syncUpdates(modelName: string, array: any, stateArray: Array<string>, cb?, bcb?, dpDelay?: number) {
     /**
      * Syncs item creation/updates on 'model:save'
      */
@@ -56,15 +56,15 @@ export class SocketService {
       }
 
       // create beforCall observable and set the delay to specified time
-      const bbObserv = Observable.of(true).map(() => bb ? bb(item, index, event) : null).delay(dpDelay ? dpDelay : 0);
+      const bcbObs = Observable.of(true).map(() => bcb ? bcb(item, index, event) : null).delay(dpDelay ? dpDelay : 0);
       //create the normal socketio execution observable
-      const nowObserv = Observable.of(true).map(() => {
+      const nowObs = Observable.of(true).map(() => {
         this.ngRedux.dispatch({ type: stateArray[0], payload: { index: index, object: item, isNew: isNew } });
       });
       // create callback observable
-      const cbObserv = Observable.of(true).map(() => cb ? cb(item, index, event) : null);
+      const cbObs = Observable.of(true).map(() => cb ? cb(item, index, event) : null);
       // concatonate all observables in proper order and subscribe to execute
-      return Observable.concat(bbObserv, nowObserv, cbObserv).subscribe();
+      return Observable.concat(bcbObs, nowObs, cbObs).subscribe();
     });
 
     /**
