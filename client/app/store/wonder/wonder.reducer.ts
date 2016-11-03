@@ -6,7 +6,7 @@ import { INITIAL_STATE } from './wonder.initial-state';
 export function wonderReducer(state: IWonder = INITIAL_STATE, action: any) {
   switch (action.type) {
     case WonderActions.INITIALIZE_WONDERS:
-      return reimmutifyWonder(action.payload);
+      return state.mergeWith((prev, next) => next, reimmutifyWonder(action.payload));
     case WonderActions.CHANGE_WONDERS:
       return state
         .updateIn([action.payload.index, '_id'], val => action.payload.object._id)
