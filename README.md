@@ -40,7 +40,7 @@ $ git clone https://github.com/projectSHAI/mea2n-full-stack # or clone your own 
 $ cd mea2n-full-stack
 $ npm install -g gulp-cli typescript
 $ npm install
-$ # mongod run as a child process!
+$ # mongod runs as a child process!
 $ gulp
 ```
 
@@ -75,7 +75,7 @@ $ git clone https://github.com/projectSHAI/mea2n-full-stack # or clone your own 
 $ cd mea2n-full-stack
 $ npm install -g gulp-cli typescript
 $ npm install
-$ # mongod run as a child process!
+$ # mongod runs as a child process!
 $ gulp
 ```
 <!--
