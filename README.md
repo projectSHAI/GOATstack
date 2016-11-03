@@ -55,14 +55,14 @@ $ sudo apt-get install git
 ### 2) Install [NodeJS](https://nodejs.org/en/download/package-manager/)
 
 ```sh
-$ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
 ```
 
-  or 6.x
+  or 7.x
 
 ```sh
-$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+$ curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
 ```
 
