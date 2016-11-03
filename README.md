@@ -78,7 +78,7 @@ $ npm install
 $ # mongod in a different terminal
 $ gulp
 ```
-
+<!--
 # Deploying to Heroku
 
 Make sure you have [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
@@ -99,3 +99,4 @@ or
 - [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
 - [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
 - [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+-->
