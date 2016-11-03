@@ -36,7 +36,7 @@ GOAT includes the [Redux](http://redux.js.org/) architechture, [SocketIO](http:/
 ### 5) Clone and Run
 
 ```sh
-$ git clone https://github.com/projectSHAI/mea2n-full-stack # or clone your own fork
+$ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
 $ cd mea2n-full-stack
 $ npm install -g gulp-cli typescript
 $ npm install
@@ -71,7 +71,7 @@ $ sudo apt-get install -y nodejs
 ### 4) Clone and Run
 
 ```sh
-$ git clone https://github.com/projectSHAI/mea2n-full-stack # or clone your own fork
+$ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
 $ cd mea2n-full-stack
 $ npm install -g gulp-cli typescript
 $ npm install
