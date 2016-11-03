@@ -8,8 +8,8 @@
 GOAT includes the [Redux](http://redux.js.org/) architechture, [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
 
 # Documentation
-  * [Server-Side](https://github.com/JCThomas4214/Documentation/blob/master/test.md)
-  * [Client-Side](https://github.com/JCThomas4214/Documentation/blob/master/test.md)
+  * [Server-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/server-side.md)
+  * [Client-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/client-side.md)
 
 ## required technologies for your development environment
   * [gulp](http://gulpjs.com/) (standard privileges required)
