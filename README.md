@@ -37,7 +37,7 @@ GOAT includes the [Redux](http://redux.js.org/) architechture, [SocketIO](http:/
 
 ```sh
 $ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
-$ cd mea2n-full-stack
+$ cd GOAT-stack
 $ npm install -g gulp-cli typescript
 $ npm install
 $ # mongod runs as a child process!
@@ -72,7 +72,7 @@ $ sudo apt-get install -y nodejs
 
 ```sh
 $ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
-$ cd mea2n-full-stack
+$ cd GOAT-stack
 $ npm install -g gulp-cli typescript
 $ npm install
 $ # mongod runs as a child process!
