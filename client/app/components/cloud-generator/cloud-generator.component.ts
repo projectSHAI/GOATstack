@@ -46,6 +46,7 @@ export class CloudGeneratorComponent {
         // initialize store cloudStyle
         wonders.forEach((item, index) => this.cloudType(item.name.length, index));
         // initialize socketio listener with backCall and delay till callback
+        // For more information look inside the socketio.service
         this.socket.syncUpdates('Wonder', wonders, ['CHANGE_WONDERS'], null, (item, index) => {
 
           TweenMax.to(this.wonderSky.nativeElement.children[index], 1, {

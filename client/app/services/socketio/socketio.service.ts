@@ -29,9 +29,10 @@ export class SocketService {
    *    index 0: update-state, index 1: remove-state
    * cb: callback function, will be invokes after redux dispatch
    * bb: beforeCall function, will be invoked before redux dispatch
-   * bbDelay: dispatch delay, give bb time until dispatch is called
+   * dpDelay: dispatch delay, give dp time until dispatch is called
+   *    NOTE: bb will be called immidiately, dispatch will wait dp to execute
    */
-  syncUpdates(modelName: string, array: any, stateArray: any, cb?, bb?, dpDelay?: number) {
+  syncUpdates(modelName: string, array: any, stateArray: Array<string>, cb?, bb?, dpDelay?: number) {
     /**
      * Syncs item creation/updates on 'model:save'
      */
