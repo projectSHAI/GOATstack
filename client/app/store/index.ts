@@ -10,8 +10,7 @@ export class IAppState {
   error?: error.IError;
   user?: user.IUser;
   userForm?: userForm.IUserForm;
-  beforeWonder?: wonder.IWonder;
-  afterWonder?: wonder.IWonder;
+  wonder?: wonder.IWonder;
   cloudStyle?: cloud.ICloudStyle;
   animaArray?: cloud.IAnimaArray;
 };
@@ -20,8 +19,7 @@ export const rootReducer = combineReducers<IAppState>({
   error: error.errorHandlerReducer,
   user: user.userReducer,
   userForm: userForm.userFormReducer,
-  beforeWonder: wonder.beforeWonderReducer,
-  afterWonder: wonder.afterWonderReducer,
+  wonder: wonder.wonderReducer,
   cloudStyle: cloud.cloudReducer,
   animaArray: cloud.animaReducer
 });

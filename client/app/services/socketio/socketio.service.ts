@@ -22,46 +22,75 @@ export class SocketService {
    *
    * Takes the array we want to sync, the model name that socket updates are sent from,
    * and an optional callback function after new items are updated.
+   *
+   * modelName: The server model with atached socket listener
+   * array: model array from service subscription
+   * stateArray: Redux states that this syncUpdates instance will invoke
+   *    index 0: update-state, index 1: remove-state
+   * cb: callback function, will be invokes after redux dispatch
+   * bb: beforeCall function, will be invoked before redux dispatch
+   * bbDelay: dispatch delay, give bb time until dispatch is called
    */
-  syncUpdates(modelName: string, array: any, state: string, cb?) {
+  syncUpdates(modelName: string, array: any, stateArray: any, cb?, bb?, dpDelay?: number) {
     /**
      * Syncs item creation/updates on 'model:save'
      */
     this.socket.on(modelName + ':save', (item) => {
-      let oldItem = _.find(array, { _id: item._id });
-      let index = array.indexOf(oldItem);
-      let event = 'created';
+      const oldItem = _.find(array, { _id: item._id });
+      const index = array.indexOf(oldItem);
+
+      let event: string = 'created';
+      let isNew: boolean;
 
       // replace oldItem if it exists
       // otherwise just add item to the collection
       if (oldItem) {
         // Update store with new object
-        this.ngRedux.dispatch({ type: state, payload: { index: index, object: item, isnew: false } });
+        isNew = false;
         event = 'updated';
       } else {
         // Finds the model for the listener
         // and pushes a new object to store
-        this.ngRedux.dispatch({ type: state, payload: { object: item, isnew: true } });
+        isNew = true;
       }
 
-      return cb ? cb(item, index, array, event) : null;
+      // create beforCall observable and set the delay to specified time
+      const bbObserv = Observable.of(true).map(() => bb ? bb(item, index, event) : null).delay(dpDelay ? dpDelay : 0);
+      //create the normal socketio execution observable
+      const nowObserv = Observable.of(true).map(() => {
+        this.ngRedux.dispatch({ type: stateArray[0], payload: { index: index, object: item, isNew: isNew } });
+      });
+      // create callback observable
+      const cbObserv = Observable.of(true).map(() => cb ? cb(item, index, event) : null);
+      // concatonate all observables in proper order and subscribe to execute
+      return Observable.concat(bbObserv, nowObserv, cbObserv).subscribe();
     });
 
     /**
      * Syncs removed items on 'model:remove'
      */
     this.socket.on(modelName + ':remove', (item) => {
-      let event = 'deleted';
+      const event = 'deconsted';
+      const oldItem = _.find(array, { _id: item._id });
+      const index = array.indexOf(oldItem);
       _.remove(array, { _id: item._id });
-      cb(item, array, event);
+
+      const nowObserv = Observable.of(true).map(() => {
+        this.ngRedux.dispatch({ type: stateArray[1], payload: { index: index, object: item } });
+      });
+      const cbObserv = Observable.of(true).map(() => cb ? cb(item, index, event) : null);
+
+      return Observable.concat(nowObserv, cbObserv).subscribe();
     });
   }
 
   /**
    * Removes listeners for a models updates on the socket
    */
-  unsyncUpdates(modelName) {
+  unsyncUpdates(modelName: string) {
     this.socket.removeListener(modelName + ':save');
     this.socket.removeListener(modelName + ':remove');
   }
+
+
 }

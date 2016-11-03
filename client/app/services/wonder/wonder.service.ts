@@ -3,8 +3,6 @@ import { Http, Response } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
-// import { Wonder, mapWonders, mapWonder } from '../../models/models.namespace';
-
 @Injectable()
 export class WonderService {
   constructor(private http: Http) { }
