@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 
+
 import { WonderActions } from '../../actions/wonder/wonder.actions';
 import { WonderService } from '../../services/wonder/wonder.service';
 import { ClockService } from '../../services/clock/clock.service';

@@ -86,7 +86,7 @@ function init(app) {
 
   //fire's a get function when any directory is queried (* is a wildcard) by the client, sends back the index.html as a response. Angular then does the proper routing on client side
   app.get('*', function(req, res) {
-    res.sendFile(path.resolve(__dirname, '../dist/app/index.html'));
+    res.sendFile(path.resolve(__dirname, '../../dist/client/app/index.html'));
   });
 
   return app;

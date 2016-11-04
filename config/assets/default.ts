@@ -23,19 +23,19 @@ export const defaultAssets = {
       ]
     },
     scss: [
-      'client/styles.scss'
+      'app/styles.scss'
     ],
     css: [
-      'client/app/**/**/*.css'
+      'app/**/**/*.css'
     ],
     ts: [
       'client/app/*.ts',
       'client/app/**/**/*.ts'
     ],
     assets: [
-      'client/assets/*jpg',
-      'client/assets/*.png',
-      'client/assets/*.svg'
+      'app/assets/*jpg',
+      'app/assets/*.png',
+      'app/assets/*.svg'
     ],
     views: [
       'client/index.html',

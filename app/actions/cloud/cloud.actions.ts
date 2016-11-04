@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { NgRedux } from 'ng2-redux';
-import { IAppState } from '../../store';
+import { IAppState } from '../../store/index';
 
 @Injectable()
 export class CloudActions {

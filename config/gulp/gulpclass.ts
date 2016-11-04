@@ -11,6 +11,7 @@ let gulp = require('gulp');
 let sass = require('gulp-sass');
 let sassLint = require('gulp-sass-lint')
 let watch = require('gulp-watch');
+let Builder = require('systemjs-builder');
 let KarmaServer = require('karma').Server;
 let JasmineReporter = require('jasmine-spec-reporter');
 let ts = require('gulp-typescript');
@@ -55,10 +56,10 @@ export class Gulpfile {
   //start mongo db for development mode
   @Task()
   mongod_start(done, cb) {
-    exec('mongod --dbpath=/data', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
+    exec('mongod --dbpath=/data', function(err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+      cb(err);
     });
     done();
   }
@@ -71,9 +72,15 @@ export class Gulpfile {
 
   @Task()
   build_html(done) {
-    return gulp.src(defaultAssets.client.views)
+    return gulp.src('config/env/default/index.html')
       .pipe(gulp.dest('./dist/app'));
   }
+  @Task()
+  build_html_prod(done) {
+    return gulp.src('config/env/production/index.html')
+      .pipe(gulp.dest('./dist/app'));
+  }
+
   @Task()
   build_sass(done) {
     // Brute force fix for angular material import .css .scss error
@@ -109,32 +116,60 @@ export class Gulpfile {
   }
   @Task()
   build_systemConf() {
-    return gulp.src(defaultAssets.client.system)
+    return gulp.src('config/env/development/systemjs.config.js')
       .pipe(gulp.dest('./dist/app'));
   }
+
   @Task()
   build_index(done) {
-    return gulp.src(defaultAssets.server.system)
+    return gulp.src(['config/env/default/index.js', 'config/env/default/systemjs.server.js'])
       .pipe(gulp.dest('./dist'));
   }
   // Transpile client side TS files
   @Task()
   build_client(done) {
-    let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'app.js' });
-    let tsResult = gulp.src([`client/**/**/!(*.spec).ts`, `ngfactory/client/**/**/*.ts`])
+    let tsProject = ts.createProject('./tsconfig.json');
+    let tsResult = tsProject.src()
+      .pipe(embedTemplates())
+      .pipe(embedSass())
+      .pipe(tsProject());
+
+    return tsResult.js.pipe(gulp.dest('./dist'));
+  }
+  @Task()
+  build_client_prod(done) {
+    let tsProject = ts.createProject('./tsconfig.json');
+    let tsResult = gulp.src(`client/**/**/!(*.spec).ts`)
       .pipe(embedTemplates())
       .pipe(embedSass())
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./tmp'));
   }
+
   @Task()
   build_server() {
+    let tsProject = ts.createProject('./tsconfig.json');
+    let tsResult = tsProject.src()
+      .pipe(tsProject());
+
+    return tsResult.js.pipe(gulp.dest('./dist'));
+  }
+  @Task()
+  build_server_prod() {
     let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'server.js' });
     let tsResult = tsProject.src()
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./tmp'));
+  }
+
+  build_config() {
+    let tsProject = ts.createProject('./tsconfig.json');
+    let tsResult = gulp.src(`config/**/**/!(gulpclass).ts`)
+      .pipe(tsProject());
+
+    return tsResult.js.pipe(gulp.dest('./dist'));
   }
 
   // Transpile client test TS files
@@ -152,7 +187,7 @@ export class Gulpfile {
   @Task()
   server_test(done) {
     let tsProject = ts.createProject('./tsconfig.json');
-    let tsResult = tsProject.src() //`server/**/**/*.ts`
+    let tsResult = tsProject.src()
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./dist'));
@@ -177,11 +212,11 @@ export class Gulpfile {
     return [
       'build_client',
       'build_client_sequence',
-      'build_index',
-      'build_server',
-      'compress_client',
-      'compress_server',
-      'delete_tmp'
+      // 'build_index',
+      // 'build_server',
+      // 'compress_client',
+      // 'compress_server',
+      // 'delete_tmp'
     ];
   }
   @SequenceTask()
@@ -190,15 +225,26 @@ export class Gulpfile {
   }
 
   buildFile(file: any) {
-    let tsProject = ts.createProject('./tsconfig.json');
-    let tsResult = gulp.src([file.path])
+    console.log(file.path);
+    const tsProject = ts.createProject('tsconfig.json');
+
+    const ht = file.path.includes('html');
+    const sc = file.path.includes('scss');
+
+    if (ht || sc) {
+      ht ? file.path.replace('html', 'ts') : file.path.replace('scss', 'ts');
+    }
+
+    const tsResult = gulp.src(file.path)
+      .pipe(embedTemplates())
+      .pipe(embedSass())
       .pipe(tsProject());
 
     let fPath;
     if (file.path.includes('client')) {
       fPath = file.path.replace('client', 'dist');
     } else {
-      fPath = file.path.replace('server\\', 'dist\\');
+      fPath = file.path.replace('server', 'dist\\server');
     }
 
     fPath = fPath.substring(0, fPath.lastIndexOf('\\'));
@@ -284,7 +330,7 @@ export class Gulpfile {
   @Task()
   nodemon() {
     return plugins.nodemon({
-      script: 'dist/index.js',
+      script: 'dist/server/server.js',
       ext: 'js,html',
       watch: defaultAssets.server.allJS
     });
@@ -328,7 +374,7 @@ export class Gulpfile {
   @Task()
   client_karma_test(done) {
     return new KarmaServer({
-      configFile: __dirname + '/config/sys/karma.conf.js',
+      configFile: __dirname + '/config/env/test/karma.conf.js',
       singleRun: true
     }, done).start();
   }
@@ -353,23 +399,23 @@ export class Gulpfile {
     watch(serverts, file => runSequence('build_server', 'compress_server', 'delete_tmp'));
     watch(defaultAssets.server.allJS, plugins.livereload.changed);
     // Watch all TS files in client and compiles JS files in dist
-    watch(defaultAssets.client.ts, file => runSequence('build_client', 'compress_js', 'delete_tmp'));
-    watch(defaultAssets.client.dist.js, plugins.livereload.changed);
+    watch(defaultAssets.client.ts, file => this.buildFile(file));
     // Watch all scss files to build css is change
-    watch(defaultAssets.client.scss, file => runSequence('build_sass', 'compress_css'));
-    watch(['client/app/**/**/*.scss'], file => runSequence('build_client', 'compress_js', 'delete_tmp'));
-    watch(defaultAssets.client.dist.css, plugins.livereload.changed);
+    watch(defaultAssets.client.scss, file => this.buildFile(file));
     // Watch all html files to build them in dist
-    watch(defaultAssets.client.views, file => runSequence('build_html'));
-    watch(['client/app/**/**/*.html'], file => runSequence('build_client', 'compress_js', 'delete_tmp'));
-    watch(defaultAssets.client.dist.views, plugins.livereload.changed);
+    watch(defaultAssets.client.views, file => this.buildFile(file));
+    watch(defaultAssets.client.dist.js, plugins.livereload.changed);
+    // watch(['client/app/**/**/*.scss'], file => runSequence('build_client', 'compress_js', 'delete_tmp'));
+    // watch(defaultAssets.client.dist.css, plugins.livereload.changed);
+    // watch(['client/app/**/**/*.html'], file => runSequence('build_client', 'compress_js', 'delete_tmp'));
+    // watch(defaultAssets.client.dist.views, plugins.livereload.changed);
     // Watch all client assets to compress in dist
     watch(defaultAssets.client.assets, { events: ['add'] }, file => this.compressAsset(file));
     watch(defaultAssets.client.assets, { events: ['unlink'] }, file => this.deleteAsset(file));
     watch(defaultAssets.client.dist.assets, plugins.livereload.changed);
     // Watch if system.config files are changed
     watch(defaultAssets.client.system, file => runSequence('build_systemConf'));
-    watch(defaultAssets.server.system, file => runSequence('build_index'));
+    // watch(defaultAssets.server.system, file => runSequence('build_index'));
     watch(['dist/index.js', 'dist/app/systemjs.config.js'], plugins.livereload.changed);
   }
 
@@ -433,7 +479,7 @@ export class Gulpfile {
   default() {
     return [
       'env_dev',
-      // 'lint',
+      'lint',
       'mongod_start',
       'build_clean',
       'build_project',
@@ -460,7 +506,7 @@ export class Gulpfile {
       'lint',
       'mongod_start',
       'build_clean',
-      'build_project_test',
+      'build_project',
       'test_server',
       'test_client',
       'exit'
@@ -476,5 +522,19 @@ export class Gulpfile {
       'build_project',
       'protractor',
     ];
+  }
+
+  @Task()
+  demo_bundle(done) {
+    let builder = new Builder();
+
+    builder.loadConfig('config/sys/systemjs.config.js')
+      .then(() => {
+        return builder.buildStatic('client/app/main.js', 'dist/app/app.js', {
+          encodeNames: false,
+          mangle: false,
+          rollup: true
+        });
+      });
   }
 }

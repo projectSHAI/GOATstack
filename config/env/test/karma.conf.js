@@ -1,11 +1,11 @@
 // #docregion
 module.exports = function(config) {
 
-  var appBase    = 'client/app/';       // transpiled app JS and map files
+  var appBase    = 'app/';       // transpiled app JS and map files
   var appSrcBase = 'dist/app/';       // app source TS files
 
   config.set({
-    basePath: '../../',
+    basePath: '../../../',
     frameworks: ['jasmine'],
     plugins: [
       require('karma-jasmine'),
@@ -48,7 +48,7 @@ module.exports = function(config) {
       {pattern: 'node_modules/@angular/**/*.js', included: false, watched: false},
 
       // External Libraries
-      {pattern: 'node_modules/redux/**/*.js', included: false, watched: false},      
+      {pattern: 'node_modules/redux/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/ng2-redux/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/immutable/**/*.js', included: false, watched: false},
       {pattern: 'node_modules/ng2-cookies/**/*.js', included: false, watched: false},
@@ -56,9 +56,9 @@ module.exports = function(config) {
       {pattern: 'node_modules/socket.io-client/**/*.js', included: false, watched: false},
       {pattern: 'custom_modules/greensock/*.js', included: false, watched: false},
 
-      {pattern: 'config/sys/systemjs.config.js', included: false, watched: false},
-      {pattern: 'config/sys/systemjs.config.extras.js', included: false, watched: false},
-      'config/sys/karma-test-shim.js',
+      {pattern: 'config/env/development/systemjs.config.js', included: false, watched: false},
+      {pattern: 'config/env/test/systemjs.config.extras.js', included: false, watched: false},
+      'config/env/test/karma-test-shim.js',
 
       // transpiled application & spec code paths loaded via module imports
       {pattern: appSrcBase + '**/**/*.js', included: false, watched: true},

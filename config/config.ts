@@ -2,14 +2,14 @@ import * as _ from 'lodash';
 import * as glob from 'glob';
 
 import {defaultAssets} from './assets/default';
-import {defaultConfig} from './env/default';
+import {defaultConfig} from './env/default/default';
 
 import {devAssets} from './assets/development';
 import {prodAssets} from './assets/production';
 import {testAssets} from './assets/test';
-import {devEnv} from './env/development';
-import {prodEnv} from './env/production';
-import {testEnv} from './env/test';
+import {devEnv} from './env/development/development';
+import {prodEnv} from './env/production/production';
+import {testEnv} from './env/test/test';
 
 /**
  * Get files by glob patterns

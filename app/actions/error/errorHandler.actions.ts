@@ -1,6 +1,6 @@
 import { Injectable, ElementRef } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
-import { IAppState } from '../../store';
+import { IAppState } from '../../store/index';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;

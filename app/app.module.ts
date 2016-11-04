@@ -26,6 +26,7 @@ import { BrowserModule }             from '@angular/platform-browser';
 import { HttpModule, JsonpModule }   from '@angular/http';
 import { MaterialModule }            from '@angular/material';
 import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
+import { _NgRedux }                  from './actions/redux.sol';
 
 /*
 --------------------------------------------------
@@ -118,8 +119,8 @@ Redux Store Interface
 --------------------------------------------------
 //Declare import for redux store interface
 */
-import { IAppState, rootReducer, enhancers } from './store';
-import createLogger from 'redux-logger';
+import { IAppState, rootReducer, enhancers } from './store/index';
+let createLogger = require('redux-logger');
 
 /*
 --------------------------------------------------
@@ -171,6 +172,9 @@ NgModule
       useFactory: httpFactory,
       deps: [XHRBackend, RequestOptions]
     },
+    // ng2-rdux AoT workaround solution
+    { provide: NgRedux, useClass: _NgRedux },
+    /////////////////////////////////////
     ErrorHandlerActions,
     SocketService,
     Cookie,

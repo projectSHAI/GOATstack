@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { NgRedux } from 'ng2-redux';
-import { IAppState } from '../../store';
+import { IAppState } from '../../store/index';
 
 import { WonderService } from '../../services/wonder/wonder.service';
 import { ErrorHandlerActions } from '../error/errorHandler.actions';

@@ -11,6 +11,7 @@
         "noImplicitAny": false,
         "allowSyntheticDefaultImports": true,
         "suppressImplicitAnyIndexErrors": true,
+        "outDir": "dist",
         "typeRoots": [
             "./node_modules/@types"
         ]
@@ -21,8 +22,6 @@
       "./node_modules",
       "./custom_modules",
       "./scripts",
-      "./config/gulp",
-      "./client",
-      "./ngfactory"
+      "./config/gulp"
     ]
 }
