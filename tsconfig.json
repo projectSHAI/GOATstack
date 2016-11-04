@@ -13,21 +13,6 @@
         "suppressImplicitAnyIndexErrors": true,
         "typeRoots": [
             "./node_modules/@types"
-        ],
-        "types": [
-          "core-js",
-          "node",
-          "systemjs",
-          "socket.io",
-          "socket.io-client",
-          "lodash",
-          "glob",
-          "jsonwebtoken",
-          "jasmine",
-          "supertest",
-          "proxyquire",
-          "hammerjs",
-          "mongoose"
         ]
     },
     "compileOnSave": false,

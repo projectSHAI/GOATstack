@@ -121,6 +121,14 @@ Redux Store Interface
 import { IAppState, rootReducer, enhancers } from './store';
 import createLogger from 'redux-logger';
 
+/*
+--------------------------------------------------
+exported functions for AoT
+--------------------------------------------------
+*/
+export function httpFactory(backend: XHRBackend, defaultOptions: RequestOptions) {
+  return new HttpIntercept(backend, defaultOptions);
+}
 
 /*
 --------------------------------------------------
@@ -132,13 +140,13 @@ NgModule
 @NgModule({
   //imports: this object imports helper modules which are children in the module tree
   imports: [
+    NgReduxModule.forRoot(),
+    MaterialModule.forRoot(),
     BrowserModule,
     HttpModule,
     FormsModule,
     JsonpModule,
-    routing,
-    NgReduxModule.forRoot(),
-    MaterialModule.forRoot()
+    routing
   ],
   //declarations: this object imports all child components which are used in this module
   declarations: [
@@ -158,16 +166,13 @@ NgModule
   ],
   //providers: this object imports all necessary services into the module
   providers: [
-    ErrorHandlerActions,
-    SocketService,
     {
       provide: Http,
-      useFactory: (
-        backend: XHRBackend,
-        defaultOptions: RequestOptions) =>
-        new HttpIntercept(backend, defaultOptions),
+      useFactory: httpFactory,
       deps: [XHRBackend, RequestOptions]
     },
+    ErrorHandlerActions,
+    SocketService,
     Cookie,
     { provide: DevToolsExtension, useClass: DevToolsExtension },
     UserService,
