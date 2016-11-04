@@ -9,6 +9,9 @@ npm-debug.log
 dist
 tmp
 
+*.ngfactory*
+*.shim.ts
+
 # Docker
 Dockerfile
 docker-compose.yml

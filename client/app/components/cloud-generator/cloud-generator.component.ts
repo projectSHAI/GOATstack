@@ -25,11 +25,12 @@ export class CloudGeneratorComponent {
   @select('wonder') wonder$: Observable<any>;
   private animaArray: any;
   private width: number;
+  dream;
 
   @ViewChild('wonderSky') wonderSky;
 
   constructor(
-    private wonderActions: WonderActions,
+    public wonderActions: WonderActions,
     private wonderService: WonderService,
     private cloudActions: CloudActions,
     private socket: SocketService,

@@ -186,7 +186,7 @@ NgModule
 //we call AppModule in main.ts to bootstrap the application which points to the AppComponent defined in @NgModule
 export class AppModule {
   constructor(
-    private ngRedux: NgRedux<IAppState>,
+    private ngRedux: NgRedux<any>,
     private devTool: DevToolsExtension) {
 
     this.ngRedux.configureStore(rootReducer, {},

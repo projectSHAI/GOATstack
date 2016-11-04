@@ -65,7 +65,7 @@ export class Gulpfile {
 
   @Task()
   build_clean(done) {
-    del(['dist/**', '!dist']);
+    del(['dist/**', '!dist', 'ngfactory/**', 'client/**/**/*.js*', 'client/**/**/*.ngfactory*', 'client/**/**/*.shim*']);
     done();
   }
 
@@ -121,7 +121,7 @@ export class Gulpfile {
   @Task()
   build_client(done) {
     let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'app.js' });
-    let tsResult = gulp.src(`client/**/**/!(*.spec).ts`)
+    let tsResult = gulp.src([`client/**/**/!(*.spec).ts`, `ngfactory/client/**/**/*.ts`])
       .pipe(embedTemplates())
       .pipe(embedSass())
       .pipe(tsProject());
@@ -432,10 +432,9 @@ export class Gulpfile {
   @SequenceTask()
   default() {
     return [
-
       'env_dev',
+      // 'lint',
       'mongod_start',
-      'lint',
       'build_clean',
       'build_project',
       ['nodemon', 'watch']
@@ -446,8 +445,8 @@ export class Gulpfile {
   prod() {
     return [
       'env_prod',
-      'mongod_start',
       'lint',
+      'mongod_start',
       'build_clean',
       'build_project',
       ['nodemon', 'watch']
@@ -458,8 +457,8 @@ export class Gulpfile {
   test() {
     return [
       'env_test',
-      'mongod_start',
       'lint',
+      'mongod_start',
       'build_clean',
       'build_project_test',
       'test_server',
