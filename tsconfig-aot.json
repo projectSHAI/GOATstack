@@ -7,13 +7,14 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "removeComments": false,
-        "noImplicitAny": true,
+        "noImplicitAny": false,
+        "allowSyntheticDefaultImports": true,
         "suppressImplicitAnyIndexErrors": true
     },
 
     "files": [
-        "client/app/app.module.ts",
-        "client/app/main.ts"
+        "./client/app/app.module.ts",
+        "./client/app/main.ts"
     ],
 
     "angularCompilerOptions": {

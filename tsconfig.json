@@ -22,6 +22,7 @@
       "./custom_modules",
       "./scripts",
       "./config/gulp",
-      "./client"
+      "./client",
+      "./aot"
     ]
 }
