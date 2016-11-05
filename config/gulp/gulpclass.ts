@@ -72,7 +72,7 @@ export class Gulpfile {
 
   @Task()
   build_html(done) {
-    return gulp.src('config/env/default/index.html')
+    return gulp.src('config/env/development/index.html')
       .pipe(gulp.dest('./dist/app'));
   }
   @Task()
@@ -101,6 +101,10 @@ export class Gulpfile {
     });
   }
   compressAsset(file) {
+    console.log('\n Inserting ----> ' + chalk.green.bold(
+      file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
+      '\n');
+
     return imagemin([file.path], 'dist/app/assets', {
       plugins: [
         imageminJPEGOptim(),
@@ -110,9 +114,13 @@ export class Gulpfile {
     });
   }
   deleteAsset(file) {
-    let loc = file.path.replace('client', 'dist\\app');
-    del(loc);
-    console.log('DELETION OF ' + loc);
+    file.path = file.path.replace('app', 'dist\\app');
+
+    console.log('\n Deleting ----> ' + chalk.green.bold(
+      file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
+      '\n');
+
+    del(file.path);
   }
   @Task()
   build_systemConf() {
@@ -225,31 +233,30 @@ export class Gulpfile {
   }
 
   buildFile(file: any) {
-    console.log(file.path);
     const tsProject = ts.createProject('tsconfig.json');
 
     const ht = file.path.includes('html');
     const sc = file.path.includes('scss');
+    const app = file.path.includes('app');
+    const ser = file.path.includes('server');
 
-    if (ht || sc) {
-      ht ? file.path.replace('html', 'ts') : file.path.replace('scss', 'ts');
-    }
+    file.path = ht ? file.path.replace('html', 'ts') : sc ? file.path.replace('scss', 'ts') : file.path;
+
+    console.log('\n Compiling ----> ' + chalk.green.bold(
+      file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
+      '\n');
 
     const tsResult = gulp.src(file.path)
       .pipe(embedTemplates())
       .pipe(embedSass())
       .pipe(tsProject());
 
-    let fPath;
-    if (file.path.includes('client')) {
-      fPath = file.path.replace('client', 'dist');
-    } else {
-      fPath = file.path.replace('server', 'dist\\server');
-    }
+    file.path = app ? file.path.replace('app', 'dist\\app') : ser ?
+      file.path.replace('server', 'dist\\server') : file.path.replace('config', 'dist\\config');
 
-    fPath = fPath.substring(0, fPath.lastIndexOf('\\'));
+    file.path = file.path.substring(0, file.path.lastIndexOf('\\'));
 
-    return tsResult.js.pipe(gulp.dest(path.resolve(fPath)));
+    return tsResult.js.pipe(gulp.dest(path.resolve(file.path)));
   }
 
   @SequenceTask()
@@ -396,7 +403,7 @@ export class Gulpfile {
     // Start livereload
     plugins.livereload.listen();
     // Watch all server TS files to build JS
-    watch(serverts, file => runSequence('build_server', 'compress_server', 'delete_tmp'));
+    watch(serverts, file => this.buildFile(file));
     watch(defaultAssets.server.allJS, plugins.livereload.changed);
     // Watch all TS files in client and compiles JS files in dist
     watch(defaultAssets.client.ts, file => this.buildFile(file));
@@ -405,10 +412,6 @@ export class Gulpfile {
     // Watch all html files to build them in dist
     watch(defaultAssets.client.views, file => this.buildFile(file));
     watch(defaultAssets.client.dist.js, plugins.livereload.changed);
-    // watch(['client/app/**/**/*.scss'], file => runSequence('build_client', 'compress_js', 'delete_tmp'));
-    // watch(defaultAssets.client.dist.css, plugins.livereload.changed);
-    // watch(['client/app/**/**/*.html'], file => runSequence('build_client', 'compress_js', 'delete_tmp'));
-    // watch(defaultAssets.client.dist.views, plugins.livereload.changed);
     // Watch all client assets to compress in dist
     watch(defaultAssets.client.assets, { events: ['add'] }, file => this.compressAsset(file));
     watch(defaultAssets.client.assets, { events: ['unlink'] }, file => this.deleteAsset(file));
@@ -416,7 +419,7 @@ export class Gulpfile {
     // Watch if system.config files are changed
     watch(defaultAssets.client.system, file => runSequence('build_systemConf'));
     // watch(defaultAssets.server.system, file => runSequence('build_index'));
-    watch(['dist/index.js', 'dist/app/systemjs.config.js'], plugins.livereload.changed);
+    watch(['dist/app/systemjs.config.js'], plugins.livereload.changed);
   }
 
   // SASS linting task

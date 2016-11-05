@@ -8,7 +8,8 @@ export const defaultAssets = {
   client: {
     dist: {
       js: [
-        'dist/app/app.js'
+        'dist/app/*.js',
+        'dist/app/**/**/*.js'
       ],
       css: [
         'dist/styles.css',
@@ -23,14 +24,19 @@ export const defaultAssets = {
       ]
     },
     scss: [
-      'app/styles.scss'
+      'app/styles.scss',
+      'app/**/**/*.scss'
     ],
     css: [
       'app/**/**/*.css'
     ],
     ts: [
-      'client/app/*.ts',
-      'client/app/**/**/*.ts'
+      'app/*.ts',
+      'app/actions/**/*.ts',
+      'app/pipes/**/*.ts',
+      'app/services/**/*.ts',
+      'app/store/**/*.ts',
+      'app/components/**/*.ts'
     ],
     assets: [
       'app/assets/*jpg',
@@ -38,15 +44,16 @@ export const defaultAssets = {
       'app/assets/*.svg'
     ],
     views: [
-      'client/index.html',
+      'config/env/development/index.html',
+      'app/**/**/*.html'
     ],
     spec: [
-      'client/app/**/**/*.spec.ts'
+      'app/**/**/*.spec.ts'
     ],
     e2e: [
-      'client/e2e/**/*.e2e-spec.js'
+      'e2e/**/*.e2e-spec.js'
     ],
-    system: ['config/sys/systemjs.config.js']
+    system: ['config/env/development/systemjs.config.js']
   },
   server: {
     allTS: [
@@ -59,21 +66,26 @@ export const defaultAssets = {
       'server/auth/**/*.ts'
     ],
     allJS: [
-      'dist/server.js'
+      'dist/server/*.js',
+      'dist/server/api/**/*.controller.js',
+      'dist/server/api/**/*.events.js',
+      'dist/server/api/**/*.model.js',
+      'dist/server/api/**/*.router.js',
+      'dist/server/auth/*.js',
+      'dist/server/auth/**/*.js',
+      'dist/config/assets/*.js',
+      'dist/config/env/**/*.js',
+      'dist/config/lib/*.js'
     ],
     tests: {
       integration: 'dist/server/api/**/*.integration.js',
       unit: 'dist/server/api/**/*.spec.js'
-    },
-    system: [
-      'config/sys/index.js',
-      'config/sys/systemjs.server.js'
-    ]
+    }
   },
   config: {
     allTS: [
       'config/assets/*.ts',
-      'config/env/*.ts',
+      'config/env/**/*.ts',
       'config/lib/*.ts',
     ]
   }

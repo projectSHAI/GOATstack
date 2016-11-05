@@ -3,7 +3,7 @@
     "node_modules/codelyzer"
   ],
   "rules": {
-    "class-name": true,
+    "class-name": false,
     "eofline": true,
     "forin": false,
     "label-position": true,

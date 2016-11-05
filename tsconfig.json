@@ -11,6 +11,7 @@
         "noImplicitAny": false,
         "allowSyntheticDefaultImports": true,
         "suppressImplicitAnyIndexErrors": true,
+        "rootDir": "./",
         "outDir": "dist",
         "typeRoots": [
             "./node_modules/@types"
