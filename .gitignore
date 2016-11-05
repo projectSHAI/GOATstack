@@ -12,6 +12,7 @@ tmp
 ngc-aot
 *.ngfactory*
 *.shim.ts
+*.js.map
 
 # Docker
 Dockerfile
@@ -22,12 +23,11 @@ config/sslcerts
 
 # TypeScript transpiled files
 app/*.js
-app/*.js.map
 app/actions/**/*.js
-app/components/**/*.js.map
-app/pipes/**/*.js.map
-app/services/**/*.js.map
-app/store/**/*.js.map
+app/components/**/*.js
+app/pipes/**/*.js
+app/services/**/*.js
+app/store/**/*.js
 
 # CSS files
 app/*.css

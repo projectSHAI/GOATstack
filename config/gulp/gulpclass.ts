@@ -79,6 +79,9 @@ export class Gulpfile {
     done();
   }
 
+////////////////////////////////////////////////////////////////////////////////
+// REPLACEMENT TASKS: Used to replace strings in files depending on environment
+////////////////////////////////////////////////////////////////////////////////
   @Task()
   replace_process(done) {
     return gulp.src(['dist/app/app.module.js'])
@@ -87,6 +90,73 @@ export class Gulpfile {
       .pipe(gulp.dest('dist/app', { overwrite: true }));
   }
 
+  @SequenceTask()
+  replace_first_compile(done) {
+    return [
+      'replace_main_dev',
+      'replace_aot_pre'
+    ];
+  }
+  replace_second_compile(done) {
+    return [
+      'replace_main_prod',
+      'replace_aot_fin'
+    ];
+  }
+
+  @Task()
+  replace_main_prod(done) {
+    return gulp.src(['app/main.ts'])
+      .pipe(replace("import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'",
+        "import { platformBrowser } from '@angular/platform-browser'"))
+      .pipe(replace("import { AppModule } from './app.module';",
+        `import { AppModuleNgFactory } from '../ngc-aot/app/app.module.ngfactory';
+        import { enableProdMode } from '@angular/core';
+        enableProdMode();`))
+      .pipe(replace("platformBrowserDynamic().bootstrapModule(AppModule)",
+        "platformBrowser().bootstrapModuleFactory(AppModuleNgFactory)"))
+      .pipe(gulp.dest('app', { overwrite: true }));
+  }
+  @Task()
+  replace_main_dev(done) {
+    return gulp.src(['app/main.ts'])
+      .pipe(replace("import { platformBrowser } from '@angular/platform-browser'",
+        "import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'"))
+      .pipe(replace(
+        `import { AppModuleNgFactory } from '../ngc-aot/app/app.module.ngfactory';
+        import { enableProdMode } from '@angular/core';
+        enableProdMode();`,
+        "import { AppModule } from './app.module';"))
+      .pipe(replace("platformBrowser().bootstrapModuleFactory(AppModuleNgFactory)",
+        "platformBrowserDynamic().bootstrapModule(AppModule)"))
+      .pipe(gulp.dest('app', { overwrite: true }));
+  }
+  @Task()
+  replace_aot_pre(done) {
+    return gulp.src(['tsconfig-aot.json'])
+      .pipe(replace(
+        `/*Start of replacement fin*/ "experimentalDecorators": true, /*End of replacement fin*/`,
+        `/*Start of replacement pre*/ "experimentalDecorators": true,"outDir": "ngc-aot/tsc", /*End of replacement pre*/`))
+      .pipe(replace(
+        `/*Start of replacement fin*/ "genDir": "ngc-aot","skipMetadataEmit" : true /*End of replacement fin*/`,
+        `/*Start of replacement pre*/ "skipMetadataEmit" : true /*End of replacement pre*/`))
+      .pipe(gulp.dest('./', { overwrite: true }));
+  }
+  @Task()
+  replace_aot_fin(done) {
+    return gulp.src(['tsconfig-aot.json'])
+      .pipe(replace(
+        `/*Start of replacement pre*/ "experimentalDecorators": true,"outDir": "ngc-aot/tsc", /*End of replacement pre*/`,
+        `/*Start of replacement fin*/ "experimentalDecorators": true, /*End of replacement fin*/`))
+      .pipe(replace(
+        `/*Start of replacement pre*/ "skipMetadataEmit" : true /*End of replacement pre*/`,
+        `/*Start of replacement fin*/ "genDir": "ngc-aot","skipMetadataEmit" : true /*End of replacement fin*/`))
+      .pipe(gulp.dest('./', { overwrite: true }));
+  }
+
+////////////////////////////////////////////////////////////////////////////////
+// BUILD TASKS: Used build the app into the dist folder
+////////////////////////////////////////////////////////////////////////////////
   @Task()
   build_html(done) {
     return gulp.src('config/env/development/index.html')

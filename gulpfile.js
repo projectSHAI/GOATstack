@@ -2,15 +2,16 @@
 ==============================================================================================
 Gulfile js
 ==============================================================================================
-// The gulp compiler cannot read typescript files.
-// In order to overcome this the heart of our gulpfile has been outsourced into a typescript file
-// This .ts file can be found in root/conig/gulp/gulpclass.ts
-// we then transpile it into javascript and include it into this file in buildtime
-// this way the gulp compiler receives js code, and we can benefit from writing in typescript!
+// There are many benifits to using typescript and es6 so we've extended
+// gulpfile to typescript
+//
+// Although gulp cannot read typescript files, we are able to overcome this
+// by evaluating a typescript compile of the .ts version of the gulpfile
+// This .ts file can be found in config/gulp/gulpclass.ts
 */
 'use strict';
 
-eval(require("typescript")
-  .transpile(require("fs")
-  .readFileSync("./config/gulp/gulpclass.ts")
+eval(require('typescript')
+  .transpile(require('graceful-fs')
+  .readFileSync('./config/gulp/gulpclass.ts')
   .toString()));

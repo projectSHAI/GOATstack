@@ -194,6 +194,6 @@ export class AppModule {
 
     this.ngRedux.configureStore(rootReducer, {},
       process.env.NODE_ENV === 'production' ? [] : [createLogger({ collapsed: true })],
-      [...enhancers, devTool.isEnabled() ? devTool.enhancer() : f => f]);
+      [...enhancers, process.env.NODE_ENV === 'production' ? f => f : devTool.enhancer()]);
   }
 }
