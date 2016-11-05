@@ -1,10 +1,9 @@
 /**
- * Using Rails-like standard naming convention for endpoints.
  * GET     /api/user              ->  allUsers
- * POST    /api/user              ->  createUser
- * GET     /api/user/:id          ->  showUser
- * PUT     /api/user/:id          ->  updateUser
- * DELETE  /api/user/:id          ->  destroyUser
+ * POST    /api/user              ->  create
+ * GET     /api/user/:id          ->  show
+ * PUT     /api/user/:id/password ->  changePassword
+ * DELETE  /api/user/:id          ->  destroy
  */
 
 let express = require('express');

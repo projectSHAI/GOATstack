@@ -1,6 +1,10 @@
 import * as passport from 'passport';
 import {Strategy as LocalStrategy} from 'passport-local';
 
+// This is the authentication process that happens in passport before the
+// router callback function.
+// When done is called the items will be passed to the callback function in
+// local.router.ts
 function localAuthenticate(User, email, password, done) {
   User.findOne({
       email: email.toLowerCase()

@@ -6,6 +6,9 @@ import * as passport from 'passport';
 
 let router = express.Router();
 
+// Only one route is necessary
+// When local authentication is required the 'local' hook is known from setup
+// in .passport.ts file
 router.post('/', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     let error = err || info;
@@ -14,7 +17,7 @@ router.post('/', function(req, res, next) {
       return null;
     }
     if (!user) {
-      res.status(404).json({ message: 'Something went wrong, please try again.' });
+      res.status(404).json({ message: 'Something went wrong, please try again' });
       return null;
     }
 

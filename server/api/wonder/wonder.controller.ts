@@ -1,67 +1,7 @@
 import * as _ from 'lodash';
 import Wonder from './wonder.model';
 
-let counter = 0;
-
-function rndInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function updateWonder(res, wonder) {
-  return function(entity) {
-    if (entity) {
-      entity.name = wonder.name;
-      entity.created = new Date().toISOString();
-      entity.xcoor = rndInt(10, 90);
-      entity.ycoor = rndInt(10, 55);
-      entity.save((err, wonder) => {
-        if (err)
-          res.status(400).json(err.errors.name);
-
-        res.json(wonder);
-      });
-
-
-      counter++;
-      if (counter > 9) {
-        counter = 0;
-      }
-    }
-    return null;
-  };
-}
-
-function respondWithResult(res, statusCode = null) {
-  statusCode = statusCode || 200;
-  return function(entity) {
-    if (entity) {
-      res.status(statusCode).json(entity);
-      return null;
-    }
-  };
-}
-
-function saveUpdates(updates) {
-  return function(entity) {
-    let updated = _.merge(entity, updates);
-    return updated.save()
-      .then(update => {
-        return update;
-      });
-  };
-}
-
-function removeEntity(res) {
-  return function(entity) {
-    if (entity) {
-      return entity.remove()
-        .then(() => {
-          res.status(204).end();
-        });
-    }
-  };
-}
-
+// if the wonder object was not found
 function handleEntityNotFound(res) {
   return function(entity) {
     if (!entity) {
@@ -72,10 +12,72 @@ function handleEntityNotFound(res) {
   };
 }
 
+// if there was an error of any kind return approapriate status code
 function handleError(res, statusCode = null) {
   statusCode = statusCode || 500;
   return function(err) {
     res.status(statusCode).send(err);
+  };
+}
+
+function rndInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// When we update a wonder we are actually replacing an existing wonder
+function updateWonder(res, wonder) {
+  return function(entity) {
+    if (entity) {
+      // wonder = old wonder
+      entity.name = wonder.name;
+      entity.created = new Date().toISOString();
+      // find new indeger for the x and y coors
+      entity.xcoor = rndInt(10, 90);
+      entity.ycoor = rndInt(10, 55);
+      entity.save((err, wonder) => {
+        // if there's an error than send a 400 code with error message
+        if (err)
+          res.status(400).json(err.errors.name);
+        // send back 200 code with new wonder json
+        res.json(wonder);
+      });
+
+    }
+    return null;
+  };
+}
+
+// IF the response needs the wonder abject as well
+function respondWithResult(res, statusCode = null) {
+  statusCode = statusCode || 200;
+  return function(entity) {
+    if (entity) {
+      res.status(statusCode).json(entity);
+      return null;
+    }
+  };
+}
+
+// save new wonder endpoint: not replace
+function saveUpdates(updates) {
+  return function(entity) {
+    let updated = _.merge(entity, updates);
+    return updated.save()
+      .then(update => {
+        return update;
+      });
+  };
+}
+
+// remove wonder endpoint
+function removeEntity(res) {
+  return function(entity) {
+    if (entity) {
+      return entity.remove()
+        .then(() => {
+          res.status(204).end();
+        });
+    }
   };
 }
 

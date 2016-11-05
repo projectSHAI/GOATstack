@@ -5,11 +5,13 @@ import User from './user.model';
 
 let addr = app.get('address');
 
+// User Endpoint testing
 describe('User API:', function () {
   let user;
   let token;
 
-  // Clear users before testing
+  // users are cleared from DB seeding
+  // add a new testing user
   beforeAll(function () {
     user = new User({
       userName: 'MrFakie',
@@ -19,8 +21,10 @@ describe('User API:', function () {
     return user.save();
   });
 
+  // Encapsolate GET me enpoint
   describe('GET /api/users/me', function () {
 
+    // before every 'it' get new OAuth token representing the user
     beforeAll(function (done) {
       request(addr)
         .post('/auth/local')
@@ -40,6 +44,8 @@ describe('User API:', function () {
         });
     });
 
+    // If the token was properly set inside the header of the request
+    // it should respond with a 200 status code with the user json
     it('should respond with a user profile when authenticated', function (done) {
       request(addr)
         .get('/api/users/me')
@@ -60,6 +66,8 @@ describe('User API:', function () {
         });
     });
 
+    // If the token was improperly / not set to the header
+    // status code 401 should be thrown 
     it('should respond with a 401 when not authenticated', function (done) {
       request(addr)
         .get('/api/users/me')

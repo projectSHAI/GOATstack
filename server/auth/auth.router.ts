@@ -10,6 +10,9 @@ localSetup(User, config());
 
 let router = express.Router();
 
+// Import routes here
+// this will setup the passport configuration from the *.passport file
 router.use('/local', localRoutes);
 
+// export the es6 way
 export {router as authRoutes};

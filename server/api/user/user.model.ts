@@ -3,6 +3,8 @@ import * as mongoose from 'mongoose';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
+// Mongoose Model te typescript way
+// Interface is necessary to describe the type
 interface IUser extends mongoose.Document {
   created: Date;
   name: String;
@@ -22,6 +24,7 @@ interface IUser extends mongoose.Document {
   authenticate(password: string, callback?): any;
 }
 
+// Create mongoose schema like usual
 let UserSchema: mongoose.Schema = new mongoose.Schema({
   created: {
     type: Date,
@@ -62,10 +65,7 @@ let UserSchema: mongoose.Schema = new mongoose.Schema({
   salt: String,
   facebook: {},
   google: {},
-  github: {},
-  collections: [{
-    _id: mongoose.Schema.Types.ObjectId
-  }]
+  github: {}
 });
 
 /**
@@ -295,4 +295,5 @@ UserSchema.methods = {
   }
 };
 
+// Export default for es6 import
 export default mongoose.model<IUser>('User', UserSchema);

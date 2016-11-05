@@ -1,3 +1,11 @@
+/**
+ * GET     /api/wonder            ->  index
+ * POST    /api/wonder            ->  create
+ * GET     /api/wonder/:id        ->  show
+ * PUT     /api/wonder/:id        ->  update
+ * DELETE  /api/wonder/:id        ->  destroy
+ */
+
 let express = require('express');
 import * as controller from './wonder.controller';
 

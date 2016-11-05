@@ -71,6 +71,7 @@ init(function (app, db, con, server) {
       console.log(chalk.bold.cyan('\tDatabase:\t\t\t' + con.config.db.uri));
       console.log('');
 
+      // secure services condition to activate https
       if (!con.config.https_secure) {
         console.log(chalk.bold.magenta('\tHTTP Server'));
         console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'http://localhost:' + port));

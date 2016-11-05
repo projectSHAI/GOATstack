@@ -2,6 +2,7 @@ import proxyquire = require('proxyquire');
 let pq = proxyquire.noPreserveCache();
 import sinon = require('sinon');
 
+// userCtrlStub is used to mimic the router
 let userCtrlStub = {
   index: 'userCtrl.index',
   destroy: 'userCtrl.destroy',
@@ -11,6 +12,7 @@ let userCtrlStub = {
   create: 'userCtrl.create'
 };
 
+// mimic teh auth service
 let authServiceStub = {
   isAuthenticated() {
     return 'authService.isAuthenticated';
@@ -20,6 +22,7 @@ let authServiceStub = {
   }
 };
 
+// routerStub spys on http RESTFUL requests
 let routerStub = {
   get: sinon.spy(),
   put: sinon.spy(),
@@ -28,6 +31,8 @@ let routerStub = {
 };
 
 // require the index with our stubbed out modules
+// proxyquire simulates the request
+// initialize proxyquire
 let userIndex = pq('./user.router.js', {
   'express': {
     Router() {
@@ -40,12 +45,14 @@ let userIndex = pq('./user.router.js', {
 
 describe('User API Router:', function() {
 
+  // expects the prozyquire routes to equal the routes it was assigned to
   it('should return an express router instance', function() {
     expect(userIndex.userRoutes).toEqual(routerStub);
   });
 
   describe('GET /api/users', function() {
 
+    // expect with each request the approapriate endpoint was called
     it('should verify admin role and route to user.controller.index', function() {
       expect(routerStub.get.withArgs('/', 'authService.hasRole.admin', 'userCtrl.index').calledOnce)
         .toBe(true);

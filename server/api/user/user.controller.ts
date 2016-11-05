@@ -4,6 +4,8 @@ let con = config();
 
 import * as jwt from 'jsonwebtoken';
 
+// Handles status codes and error message json
+// specificity: validation
 function validationError(res, statusCode = null) {
   statusCode = statusCode || 422;
   return function(err) {
@@ -12,6 +14,8 @@ function validationError(res, statusCode = null) {
   };
 }
 
+// Handles status codes and error message json
+// specificity: error
 function handleError(res, statusCode = null) {
   statusCode = statusCode || 500;
   return function(err) {
@@ -21,7 +25,7 @@ function handleError(res, statusCode = null) {
 }
 
 /**
- * Change a users password
+ * Change a users password endpoint
  */
 export function changePassword(req, res, next) {
   let userId = req.user._id;
@@ -56,7 +60,7 @@ export function index(req, res) {
 }
 
 /**
- * Creates a new user
+ * Creates a new user endpoint
  */
 export function create(req, res, next) {
   let newUser = new User(req.body);
@@ -108,7 +112,7 @@ export function show(req, res, next) {
 }
 
 /**
- * Get my info
+ * Get my info: all user information
  */
 export function me(req, res, next) {
   let userId = req.user._id;
