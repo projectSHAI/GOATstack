@@ -5,7 +5,7 @@ import uglify from 'rollup-plugin-uglify';
 import replace from 'rollup-plugin-replace';
 
 export default {
-  entry: 'app/main-prod.js',
+  entry: 'app/main.js',
   dest: 'dist/app/app.js', // output a single application bundle
   format: 'iife',
   plugins: [

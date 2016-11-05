@@ -217,14 +217,29 @@ export class Gulpfile {
   @SequenceTask()
   build_client_prod() {
       return [
+        'replace_main_dev',
+        'replace_aot_pre',
         'compile_client_prod',
-        'build_clean_prod'
+        'replace_main_prod',
+        'replace_aot_fin',
+        'compile_client_prod',
+        'rollup_client',
+        'build_clean_prod',
+        // Bring of back now
+        'replace_main_dev',
+        'replace_aot_pre'
       ]
   }
+
   @Task()
   compile_client_prod(done) {
     return gulp.src('')
-      .pipe(shell(['npm run prod']));
+      .pipe(shell(['"node_modules/.bin/ngc" -p tsconfig-aot.json']));
+  }
+  @Task()
+  rollup_client(done) {
+    return gulp.src('')
+      .pipe(shell(['"node_modules/.bin/rollup" -c rollup-config.js']));
   }
 
   @Task()
@@ -279,6 +294,9 @@ export class Gulpfile {
   @SequenceTask()
   build_project() {
     return [
+      // Make sure the main.ts is back to dev
+      'replace_main_dev',
+      ///////////////////////////////////////
       'build',
       'build_sequence',
       'replace_process',
