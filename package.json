@@ -150,7 +150,6 @@
     "sass-lint": "^1.9.1",
     "sinon": "^1.17.6",
     "supertest": "^2.0.0",
-    "systemjs-builder": "^0.15.33",
     "tslint": "^3.15.1",
     "typings": "^1.4.0",
     "uglify-js": "^2.7.3",

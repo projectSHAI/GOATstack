@@ -1,5 +1,3 @@
-/// <reference path="../../node_modules/@types/node/index.d.ts" />
-
 import {Gulpclass, Task, SequenceTask} from "gulpclass/Decorators";
 
 let fs = require('graceful-fs');
@@ -9,9 +7,8 @@ let del = require('del');
 let path = require('path');
 let gulp = require('gulp');
 let sass = require('gulp-sass');
-let sassLint = require('gulp-sass-lint')
+let sassLint = require('gulp-sass-lint');
 let watch = require('gulp-watch');
-let Builder = require('systemjs-builder');
 let KarmaServer = require('karma').Server;
 let JasmineReporter = require('jasmine-spec-reporter');
 let ts = require('gulp-typescript');
@@ -53,20 +50,16 @@ export class Gulpfile {
     process.env.NODE_ENV = 'production';
     done();
   }
-  //start mongo db for development mode
-  @Task()
-  mongod_start(done, cb) {
-    exec('mongod --dbpath=/data', function(err, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
-      cb(err);
-    });
-    done();
-  }
 
   @Task()
   build_clean(done) {
-    del(['dist/**', '!dist', 'ngfactory/**', 'client/**/**/*.js*', 'client/**/**/*.ngfactory*', 'client/**/**/*.shim*']);
+    del([
+      'dist/**',
+      '!dist',
+      'client/**/**/*.js*',
+      'client/**/**/*.ngfactory*',
+      'client/**/**/*.shim*'
+    ]);
     done();
   }
 
@@ -122,20 +115,22 @@ export class Gulpfile {
 
     del(file.path);
   }
+
   @Task()
   build_systemConf() {
     return gulp.src('config/env/development/systemjs.config.js')
       .pipe(gulp.dest('./dist/app'));
   }
 
-  @Task()
-  build_index(done) {
-    return gulp.src(['config/env/default/index.js', 'config/env/default/systemjs.server.js'])
-      .pipe(gulp.dest('./dist'));
-  }
+  // @Task()
+  // build_index(done) {
+  //   return gulp.src(['config/env/default/index.js', 'config/env/default/systemjs.server.js'])
+  //     .pipe(gulp.dest('./dist'));
+  // }
+
   // Transpile client side TS files
   @Task()
-  build_client(done) {
+  build(done) {
     let tsProject = ts.createProject('./tsconfig.json');
     let tsResult = tsProject.src()
       .pipe(embedTemplates())
@@ -144,6 +139,7 @@ export class Gulpfile {
 
     return tsResult.js.pipe(gulp.dest('./dist'));
   }
+
   @Task()
   build_client_prod(done) {
     let tsProject = ts.createProject('./tsconfig.json');
@@ -154,15 +150,6 @@ export class Gulpfile {
 
     return tsResult.js.pipe(gulp.dest('./tmp'));
   }
-
-  @Task()
-  build_server() {
-    let tsProject = ts.createProject('./tsconfig.json');
-    let tsResult = tsProject.src()
-      .pipe(tsProject());
-
-    return tsResult.js.pipe(gulp.dest('./dist'));
-  }
   @Task()
   build_server_prod() {
     let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'server.js' });
@@ -172,66 +159,7 @@ export class Gulpfile {
     return tsResult.js.pipe(gulp.dest('./tmp'));
   }
 
-  build_config() {
-    let tsProject = ts.createProject('./tsconfig.json');
-    let tsResult = gulp.src(`config/**/**/!(gulpclass).ts`)
-      .pipe(tsProject());
-
-    return tsResult.js.pipe(gulp.dest('./dist'));
-  }
-
-  // Transpile client test TS files
-  @Task()
-  client_test(done) {
-    let tsProject = ts.createProject('./tsconfig.json', { module: 'system' });
-    let tsResult = gulp.src(`client/**/**/*.ts`)
-      .pipe(embedTemplates())
-      .pipe(embedSass())
-      .pipe(tsProject());
-
-    return tsResult.js.pipe(gulp.dest('./dist'));
-  }
-  // Transpile server test TS files
-  @Task()
-  server_test(done) {
-    let tsProject = ts.createProject('./tsconfig.json');
-    let tsResult = tsProject.src()
-      .pipe(tsProject());
-
-    return tsResult.js.pipe(gulp.dest('./dist'));
-  }
-
-  @SequenceTask()
-  build_client_test() {
-    return ['client_test', 'build_client_sequence'];
-  }
-  @SequenceTask()
-  build_server_test() {
-    return ['server_test'];
-  }
-
-  @SequenceTask()
-  build_client_sequence() {
-    return ['build_sass', 'build_html', 'build_assets', 'build_systemConf'];
-  }
-
-  @SequenceTask()
-  build_project() {
-    return [
-      'build_client',
-      'build_client_sequence',
-      // 'build_index',
-      // 'build_server',
-      // 'compress_client',
-      // 'compress_server',
-      // 'delete_tmp'
-    ];
-  }
-  @SequenceTask()
-  build_project_test() {
-    return ['client_test', 'build_client_sequence', 'build_server_test'];
-  }
-
+  // Transpile single TS file
   buildFile(file: any) {
     const tsProject = ts.createProject('tsconfig.json');
 
@@ -257,6 +185,21 @@ export class Gulpfile {
     file.path = file.path.substring(0, file.path.lastIndexOf('\\'));
 
     return tsResult.js.pipe(gulp.dest(path.resolve(file.path)));
+  }
+
+  // Essential assets for built project
+  @SequenceTask()
+  build_sequence() {
+    return ['build_sass', 'build_html', 'build_assets', 'build_systemConf'];
+  }
+
+  @SequenceTask()
+  build_project() {
+    return [
+      'build',
+      'build_sequence',
+      'compress_css'
+    ];
   }
 
   @SequenceTask()
@@ -328,6 +271,8 @@ export class Gulpfile {
       }))
       .pipe(gulp.dest('dist'));
   }
+
+  // Delete tmp folder
   @Task()
   delete_tmp() {
     return del('tmp/**');
@@ -342,9 +287,10 @@ export class Gulpfile {
       watch: defaultAssets.server.allJS
     });
   }
-  // Nodemon test task
+
+  // Nodemon production task
   @Task()
-  nodemon_test() {
+  nodemon_prod() {
     return plugins.nodemon({
       script: 'dist/server/server.js',
       ext: 'js,html',
@@ -418,7 +364,6 @@ export class Gulpfile {
     watch(defaultAssets.client.dist.assets, plugins.livereload.changed);
     // Watch if system.config files are changed
     watch(defaultAssets.client.system, file => runSequence('build_systemConf'));
-    // watch(defaultAssets.server.system, file => runSequence('build_index'));
     watch(['dist/app/systemjs.config.js'], plugins.livereload.changed);
   }
 
@@ -477,6 +422,17 @@ export class Gulpfile {
     done();
   }
 
+  //start mongo db for development mode
+  @Task()
+  mongod_start(done, cb) {
+    exec('mongod --dbpath=/data', function(err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+      cb(err);
+    });
+    done();
+  }
+
   // Run the project in development mode
   @SequenceTask()
   default() {
@@ -525,19 +481,5 @@ export class Gulpfile {
       'build_project',
       'protractor',
     ];
-  }
-
-  @Task()
-  demo_bundle(done) {
-    let builder = new Builder();
-
-    builder.loadConfig('config/sys/systemjs.config.js')
-      .then(() => {
-        return builder.buildStatic('client/app/main.js', 'dist/app/app.js', {
-          encodeNames: false,
-          mangle: false,
-          rollup: true
-        });
-      });
   }
 }
