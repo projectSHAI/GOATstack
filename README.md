@@ -4,9 +4,9 @@ Version 1.0.0
 ___
 # Technologies used to build the GOAT stack
 ## Main Technologies
-# [![MongoDB Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/mongo_logo_square.png?raw=true)](https://www.mongodb.com/)[![ExpressJS Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/expressjs.png?raw=true)](http://expressjs.com/)[![Angular2 Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/angularjs-logo-36eaa6e1dedf111b67ced19c73d21851.png?raw=true)](https://angular.io/)[![NodeJS Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/nodejs-logo.png?raw=true)](https://nodejs.org/en/)
+# [![MongoDB Logo][MongoDB]](https://www.mongodb.com/)[![ExpressJS Logo][ExpressJS]](http://expressjs.com/)[![Angular2 Logo][Angular2]](https://angular.io/)[![NodeJS Logo][NodeJS]](https://nodejs.org/en/)
 
-[MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps.
+[MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps with scalability, and efficiency in mind.
 
 #### MongoDB
 Explanation and resources
@@ -20,11 +20,27 @@ Explanation and resources
 
 
 ## Integrated Libraries and Modules
-[![Redux Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/logo-redux.png?raw=true)](http://redux.js.org/)[![IMMUTABLE Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Immutable%20logo.png?raw=true)](https://facebook.github.io/immutable-js/)
+[![Redux Logo][Redux]](http://redux.js.org/)[![Immutable Logo][Immutable]](https://facebook.github.io/immutable-js/)[![SocketIO Logo][SocketIO]](http://socket.io/)[![Mongoose Logo][Mongoose]](http://mongoosejs.com/)[![Passport Logo][Passport]](http://passportjs.org/)[![Jasmine Logo][Jasmine]](http://jasmine.github.io/)[![Karma Logo][Karma]](https://karma-runner.github.io/1.0/index.html)[![Protractor Logo][Protractor]](http://www.protractortest.org/#/)
 ___
+
+GOAT includes the [Redux](http://redux.js.org/) architechture, [Immutable](https://facebook.github.io/immutable-js/) data structuring, [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
+
 #### Redux
-#### IMMUTABLE
-GOAT includes the [Redux](http://redux.js.org/) architechture, [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
+Explanation and resources
+#### Immutable
+Explanation and resources
+#### SocketIO
+Explanation and resources
+#### Mongoose
+Explanation and resources
+#### Passport
+Explanation and resources
+#### Jasmine
+Explanation and resources
+#### Karma
+Explanation and resources
+#### Protractor
+Explanation and resources
 
 # Documentation
   * [Server-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/server-side.md)
@@ -119,3 +135,22 @@ or
 - [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
 - [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
 -->
+
+
+
+
+
+
+
+[MongoDB]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/mongo_logo_square.png?raw=true 
+[ExpressJS]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/expressjs.png?raw=true
+[Angular2]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/angularjs-logo-36eaa6e1dedf111b67ced19c73d21851.png?raw=true
+[NodeJS]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/nodejs-logo.png?raw=true 
+[Redux]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/logo-redux.png?raw=true 
+[Immutable]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Immutable%20logo.png?raw=true 
+[SocketIO]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/SOCKETIOICON.png?raw=true
+[Mongoose]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/mongoose.png?raw=true
+[Passport]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/passport.png?raw=true
+[Jasmine]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/jasmine.png?raw=true
+[Karma]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/karma.png?raw=true
+[Protractor]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/protractor-logo.png?raw=true
