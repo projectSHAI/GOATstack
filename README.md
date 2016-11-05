@@ -2,12 +2,28 @@
 
 Version 1.0.0
 ___
-# Main Technologies
-# [![MongoDB Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/mongo_logo_square.png?raw=true)](https://www.mongodb.com/)[![ExpressJS Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/expressjs.png?raw=true)](http://expressjs.com/)[![Angular2 Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/angularjs-logo-36eaa6e1dedf111b67ced19c73d21851.png?raw=true)](https://angular.io/)[![NodeJS Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/nodejs-logo.png?raw=true)](https://nodejs.org/en/)[![Redux Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/logo-redux.png?raw=true)](http://redux.js.org/)[![IMMUTABLE Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Immutable%20logo.png?raw=true)](https://facebook.github.io/immutable-js/)
+# Technologies used to build the GOAT stack
+## Main Technologies
+# [![MongoDB Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/mongo_logo_square.png?raw=true)](https://www.mongodb.com/)[![ExpressJS Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/expressjs.png?raw=true)](http://expressjs.com/)[![Angular2 Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/angularjs-logo-36eaa6e1dedf111b67ced19c73d21851.png?raw=true)](https://angular.io/)[![NodeJS Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/nodejs-logo.png?raw=true)](https://nodejs.org/en/)
+
+[MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps.
 
 #### MongoDB
-[MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps.
-#### Integrated Libraries and Modules
+Explanation and resources
+#### ExpressJS
+Explanation and resources
+#### Angular2
+Explanation and resources
+#### NodeJS
+Explanation and resources
+
+
+
+## Integrated Libraries and Modules
+[![Redux Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/logo-redux.png?raw=true)](http://redux.js.org/)[![IMMUTABLE Logo](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Immutable%20logo.png?raw=true)](https://facebook.github.io/immutable-js/)
+___
+#### Redux
+#### IMMUTABLE
 GOAT includes the [Redux](http://redux.js.org/) architechture, [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
 
 # Documentation
