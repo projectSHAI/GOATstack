@@ -84,10 +84,10 @@ export class Gulpfile {
 ////////////////////////////////////////////////////////////////////////////////
   @Task()
   replace_process(done) {
-    const env = process.env.NODE_ENV === 'development';
-
     return gulp.src(['dist/app/app.module.js'])
-      .pipe(env ? replace('process.env.NODE_ENV', "'development'") : replace('process.env.NODE_ENV', "'test'"))
+      .pipe(process.env.NODE_ENV === 'development' ?
+        replace('process.env.NODE_ENV', "'development'") :
+        replace('process.env.NODE_ENV', "'test'"))
       .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
       .pipe(gulp.dest('dist/app', { overwrite: true }));
   }
