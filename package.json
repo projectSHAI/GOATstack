@@ -7,7 +7,6 @@
   },
   "scripts": {
     "start": "node dist/index",
-    "postinstall": "cd client && typings install",
     "typings": "typings",
     "test": "./node_modules/.bin/mocha --reporter spec",
     "karma": "karma start config/sys/karma.conf.js",
