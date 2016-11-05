@@ -193,7 +193,7 @@ export class AppModule {
     private devTool: DevToolsExtension) {
 
     this.ngRedux.configureStore(rootReducer, {},
-      process.env.NODE_ENV === 'production' ? [] : [createLogger({ collapsed: true })],
-      [...enhancers, process.env.NODE_ENV === 'production' ? f => f : devTool.enhancer()]);
+      process.env.NODE_ENV === 'development' ? [createLogger({ collapsed: true })] : [],
+      process.env.NODE_ENV === 'development' ? [...enhancers, devTool.enhancer()] : []);
   }
 }

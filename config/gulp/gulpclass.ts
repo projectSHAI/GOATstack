@@ -84,8 +84,10 @@ export class Gulpfile {
 ////////////////////////////////////////////////////////////////////////////////
   @Task()
   replace_process(done) {
+    const env = process.env.NODE_ENV === 'development';
+
     return gulp.src(['dist/app/app.module.js'])
-      .pipe(replace('process.env.NODE_ENV', "'development'"))
+      .pipe(env ? replace('process.env.NODE_ENV', "'development'") : replace('process.env.NODE_ENV', "'test'"))
       .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
       .pipe(gulp.dest('dist/app', { overwrite: true }));
   }
@@ -186,28 +188,6 @@ export class Gulpfile {
         imageminSVGO()
       ]
     });
-  }
-  compressAsset(file) {
-    console.log('\n Inserting ----> ' + chalk.green.bold(
-      file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
-      '\n');
-
-    return imagemin([file.path], 'dist/app/assets', {
-      plugins: [
-        imageminJPEGOptim(),
-        imageminOptiPNG(),
-        imageminSVGO()
-      ]
-    });
-  }
-  deleteAsset(file) {
-    file.path = file.path.replace('app', 'dist\\app');
-
-    console.log('\n Deleting ----> ' + chalk.green.bold(
-      file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
-      '\n');
-
-    del(file.path);
   }
 
   @Task()
@@ -315,6 +295,29 @@ export class Gulpfile {
       'compress_css',
       'delete_tmp'
     ];
+  }
+
+  compressAsset(file) {
+    console.log('\n Inserting ----> ' + chalk.green.bold(
+      file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
+      '\n');
+
+    return imagemin([file.path], 'dist/app/assets', {
+      plugins: [
+        imageminJPEGOptim(),
+        imageminOptiPNG(),
+        imageminSVGO()
+      ]
+    });
+  }
+  deleteAsset(file) {
+    file.path = file.path.replace('app', 'dist\\app');
+
+    console.log('\n Deleting ----> ' + chalk.green.bold(
+      file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
+      '\n');
+
+    del(file.path);
   }
 
   @SequenceTask()
