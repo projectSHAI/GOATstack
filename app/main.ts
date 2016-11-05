@@ -7,7 +7,3 @@ import { AppModule } from './app.module';
 
 // Compile and launch the module
 platformBrowserDynamic().bootstrapModule(AppModule);
-
-// import { platformBrowser }    from '@angular/platform-browser';
-// import { AppModuleNgFactory } from './app.module.ngfactory';
-// platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);

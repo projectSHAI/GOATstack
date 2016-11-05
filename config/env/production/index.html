@@ -8,30 +8,19 @@
     <link rel="stylesheet" href="styles.css">
 
     <!-- 1. Load libraries -->
+    <!-- GSAP library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+
     <!-- Polyfill(s) for older browsers -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
     <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <!-- 2. Configure SystemJS -->
-    <script src="systemjs.config.js"></script>
-    <script src="app.js"></script>
-    <script>
-        'use strict'
-        System.import('main').catch(function(err) {
-            console.error(err);
-        });
-    </script>
+    <!-- 2. Configure App -->
 </head>
 <!-- 3. Display the application -->
 
 <body>
     <my-app>Loading...</my-app>
-    <!-- Livereload script rendered {{host}} -->
-    <script>
-        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
-            ':35729/livereload.js?snipver=1"></' + 'script>')
-    </script>
 </body>
 
+<script src="app.js"></script>
 </html>

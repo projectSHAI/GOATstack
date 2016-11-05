@@ -23,6 +23,7 @@
       "./node_modules",
       "./custom_modules",
       "./scripts",
-      "./config/gulp"
+      "./config/gulp",
+      "./app/main-prod.ts"
     ]
 }

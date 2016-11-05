@@ -111,7 +111,6 @@ Non NPM libraries
 //There are thousands of non NPM javascript libraries, why limit ourselves!!
 // ----- Note if possible also include a types definition file.
 */
-import 'gsap';
 
 /*
 --------------------------------------------------
@@ -120,7 +119,7 @@ Redux Store Interface
 //Declare import for redux store interface
 */
 import { IAppState, rootReducer, enhancers } from './store/index';
-let createLogger = require('redux-logger');
+import createLogger from 'redux-logger';
 
 /*
 --------------------------------------------------
@@ -194,7 +193,7 @@ export class AppModule {
     private devTool: DevToolsExtension) {
 
     this.ngRedux.configureStore(rootReducer, {},
-      [createLogger({ collapsed: true })],
+      process.env.NODE_ENV === 'production' ? [] : [createLogger({ collapsed: true })],
       [...enhancers, devTool.isEnabled() ? devTool.enhancer() : f => f]);
   }
 }

@@ -1,3 +1,8 @@
+/*
+  Angular Compiler-cli as of 2.1.2 looks for shim files inside app directory
+  regardles of genDir
+*/
+
 {
   "compilerOptions": {
     "declaration": false,
@@ -8,16 +13,16 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "outDir": "ngc-aot/tsc",
     "typeRoots": [
       "node_modules/@types"
     ]
   },
   "files": [
     "app/app.module.ts",
-    "app/main-prod.ts"
+    "app/main.ts"
   ],
    "angularCompilerOptions": {
-     "genDir": "ngc-aot",
      "skipMetadataEmit" : true
   }
 }

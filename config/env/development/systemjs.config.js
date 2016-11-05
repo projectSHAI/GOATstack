@@ -28,7 +28,6 @@
       'ng2-cookies':                        'npm:ng2-cookies',
       'socket.io-client':                   'npm:socket.io-client',
       'lodash':                             'npm:lodash',
-      'gsap':                               'custom_modules/greensock',
       'ng2-redux':                          'npm:ng2-redux/lib',
       'immutable':                          'npm:immutable/dist/immutable.min.js',
       'redux':                              'npm:redux/dist/redux.min.js',
@@ -54,10 +53,6 @@
       },
       lodash: {
         main: 'lodash.js',
-        defaultExtension: 'js'
-      },
-      gsap: {
-        main: 'TweenMax.min.js',
         defaultExtension: 'js'
       },
       'ng2-redux': {

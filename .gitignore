@@ -9,6 +9,7 @@ npm-debug.log
 dist
 tmp
 
+ngc-aot
 *.ngfactory*
 *.shim.ts
 
@@ -20,17 +21,20 @@ docker-compose.yml
 config/sslcerts
 
 # TypeScript transpiled files
-client/app/*.js
-client/app/*.js.map
-client/app/**/*.js
-client/app/**/*.js.map
+app/*.js
+app/*.js.map
+app/actions/**/*.js
+app/components/**/*.js.map
+app/pipes/**/*.js.map
+app/services/**/*.js.map
+app/store/**/*.js.map
 
 # CSS files
-client/*.css
-client/app/components/**/*.css
+app/*.css
+app/components/**/*.css
 
 # Typings folder
-client/typings
+typings
 
 # e2e test output
 config/sys/_test-output

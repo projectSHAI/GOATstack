@@ -9,6 +9,7 @@ let gulp = require('gulp');
 let sass = require('gulp-sass');
 let sassLint = require('gulp-sass-lint');
 let watch = require('gulp-watch');
+let replace = require('gulp-replace');
 let KarmaServer = require('karma').Server;
 let JasmineReporter = require('jasmine-spec-reporter');
 let ts = require('gulp-typescript');
@@ -56,11 +57,34 @@ export class Gulpfile {
     del([
       'dist/**',
       '!dist',
-      'client/**/**/*.js*',
-      'client/**/**/*.ngfactory*',
-      'client/**/**/*.shim*'
+      'ngc-aot/**',
+      'app/**/**/*.js*',
+      'app/**/**/*.ngfactory*',
+      'app/**/**/*.shim*',
+      '!app/**/*e2e-spec.js',
+      'tmp/**'
     ]);
     done();
+  }
+
+  @Task()
+  build_clean_prod(done) {
+    del([
+      'ngc-aot/**',
+      'app/**/**/*.js*',
+      'app/**/**/*.ngfactory*',
+      'app/**/**/*.shim*',
+      '!app/**/*e2e-spec.js'
+    ]);
+    done();
+  }
+
+  @Task()
+  replace_process(done) {
+    return gulp.src(['dist/app/app.module.js'])
+      .pipe(replace('process.env.NODE_ENV', "'development'"))
+      .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
+      .pipe(gulp.dest('dist/app', { overwrite: true }));
   }
 
   @Task()
@@ -79,7 +103,7 @@ export class Gulpfile {
     // Brute force fix for angular material import .css .scss error
     del('node_modules/@angular/material/core/overlay/overlay.css');
 
-    return gulp.src(defaultAssets.client.scss)
+    return gulp.src('app/styles.scss')
       .pipe(sass().on('error', sass.logError))
       .pipe(gulp.dest('./dist/app'));
   }
@@ -122,11 +146,11 @@ export class Gulpfile {
       .pipe(gulp.dest('./dist/app'));
   }
 
-  // @Task()
-  // build_index(done) {
-  //   return gulp.src(['config/env/default/index.js', 'config/env/default/systemjs.server.js'])
-  //     .pipe(gulp.dest('./dist'));
-  // }
+  @Task()
+  build_index(done) {
+    return gulp.src(['config/env/production/index.js', 'config/env/production/systemjs.server.js'])
+      .pipe(gulp.dest('./dist'));
+  }
 
   // Transpile client side TS files
   @Task()
@@ -140,20 +164,23 @@ export class Gulpfile {
     return tsResult.js.pipe(gulp.dest('./dist'));
   }
 
-  @Task()
-  build_client_prod(done) {
-    let tsProject = ts.createProject('./tsconfig.json');
-    let tsResult = gulp.src(`client/**/**/!(*.spec).ts`)
-      .pipe(embedTemplates())
-      .pipe(embedSass())
-      .pipe(tsProject());
-
-    return tsResult.js.pipe(gulp.dest('./tmp'));
+  @SequenceTask()
+  build_client_prod() {
+      return [
+        'compile_client_prod',
+        'build_clean_prod'
+      ]
   }
+  @Task()
+  compile_client_prod(done) {
+    return gulp.src('')
+      .pipe(shell(['npm run prod']));
+  }
+
   @Task()
   build_server_prod() {
     let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'server.js' });
-    let tsResult = tsProject.src()
+    let tsResult = gulp.src(`server/**/**/!(*.spec|*.integration).ts`)
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./tmp'));
@@ -170,9 +197,8 @@ export class Gulpfile {
 
     file.path = ht ? file.path.replace('html', 'ts') : sc ? file.path.replace('scss', 'ts') : file.path;
 
-    console.log('\n Compiling ----> ' + chalk.green.bold(
-      file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
-      '\n');
+    const fName = file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length);
+    console.log('\n Compiling ----> ' + chalk.green.bold(fName + '\n'));
 
     const tsResult = gulp.src(file.path)
       .pipe(embedTemplates())
@@ -184,7 +210,10 @@ export class Gulpfile {
 
     file.path = file.path.substring(0, file.path.lastIndexOf('\\'));
 
-    return tsResult.js.pipe(gulp.dest(path.resolve(file.path)));
+    return fName !== 'app.module.ts' ? tsResult.js.pipe(gulp.dest(path.resolve(file.path))) :
+      tsResult.js.pipe(replace('process.env.NODE_ENV', "'development'"))
+            .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
+            .pipe(gulp.dest(path.resolve(file.path)));
   }
 
   // Essential assets for built project
@@ -192,13 +221,29 @@ export class Gulpfile {
   build_sequence() {
     return ['build_sass', 'build_html', 'build_assets', 'build_systemConf'];
   }
+  @SequenceTask()
+  build_sequence_prod() {
+    return ['build_sass', 'build_html_prod', 'build_assets', 'build_index'];
+  }
 
   @SequenceTask()
   build_project() {
     return [
       'build',
       'build_sequence',
+      'replace_process',
       'compress_css'
+    ];
+  }
+  @SequenceTask()
+  build_project_prod() {
+    return [
+      'build_client_prod',
+      'build_sequence_prod',
+      'build_server_prod',
+      'compress_server',
+      'compress_css',
+      'delete_tmp'
     ];
   }
 
@@ -292,9 +337,8 @@ export class Gulpfile {
   @Task()
   nodemon_prod() {
     return plugins.nodemon({
-      script: 'dist/server/server.js',
-      ext: 'js,html',
-      watch: defaultAssets.server.allJS
+      script: 'dist/index.js',
+      ext: 'js,html'
     });
   }
 
@@ -445,16 +489,23 @@ export class Gulpfile {
       ['nodemon', 'watch']
     ];
   }
-  // Run the project in production mode
+  // Build the project for production and run
   @SequenceTask()
   prod() {
     return [
       'env_prod',
-      'lint',
       'mongod_start',
       'build_clean',
-      'build_project',
-      ['nodemon', 'watch']
+      'build_project_prod',
+      'nodemon_prod'
+    ];
+  }
+  // Build project for production only
+  @SequenceTask('build:prod')
+  build_prod() {
+    return [
+      'build_clean',
+      'build_project_prod',
     ];
   }
   // Run the project in test mode
