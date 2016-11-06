@@ -1,4 +1,4 @@
-![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true)
+![Houston we have a problem](MainBanner)
 
 > Version 1.0.0
 
@@ -25,15 +25,29 @@ ___
 <a name="whatsnew"></a>
 #What's new?
 
-
+ December 1st - This is launch day, the GOAT Stack is finally closing in on release!
+ 
+ The final items left on our todo list are polishing items, these incluede:
+ -Implementation of AOT(Ahead-of-Time) rendering.
+ -Finishing the Demonstration webapp.
+ -Making sure SEO and webcrawlers are optimized.
+ -making sure all the Goat's are well fed and happy!
+ 
 <a name="followtheGOAT"></a>
 #Follow the GOAT
 
-Facebook like button Facebook share button
+If you like our Fullstack make sure to stay informed and get involved! 
+
+Follow us on [Facebook page](https://www.facebook.com/goatstack/) to receive the latest news and updates!
+
+# [![Facebook Page][FacebookBanner]](https://www.facebook.com/goatstack/)
+
+If you don't like it, that's ok too, but drop by our [Reddit page](https://www.reddit.com/) and tell us why! We're always interested in new points of view, even the greatest can get better! 
+# [![Reddit Page][RedditBanner]](Reddit)
 
 ###Facebook, FAQ, Report bugs, Reddit
 
-![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
+![Houston we have a problem](HoustonBanner)
 
 <a name="problem"></a>
 #Problem
@@ -252,7 +266,11 @@ or
 
 
 
+<!-- banners -->
+[MainBanner]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true
+[HoustonBanner]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true
 
+<!-- logo tags -->
 [MongoDB]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/mongo_logo_square.png?raw=true
 [ExpressJS]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/expressjs.png?raw=true
 [Angular2]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/angular2-logo.png?raw=true
@@ -265,3 +283,9 @@ or
 [Jasmine]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/jasmine.png?raw=true
 [Karma]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/karma.png?raw=true
 [Protractor]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/protractor-logo.png?raw=true
+[FacebookBanner]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/facebook.png?raw=true
+[RedditBanner]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Reddit-Logo-Transparent.png?raw=true
+
+<!-- webpage links -->
+[Reddit]: https://www.reddit.com/
+[Facebook]: https://www.facebook.com/goatstack/
