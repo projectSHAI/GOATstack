@@ -79,9 +79,9 @@ export class Gulpfile {
     done();
   }
 
-////////////////////////////////////////////////////////////////////////////////
-// REPLACEMENT TASKS: Used to replace strings in files depending on environment
-////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////
+  // REPLACEMENT TASKS: Used to replace strings in files depending on environment
+  ////////////////////////////////////////////////////////////////////////////////
   @Task()
   replace_process(done) {
     return gulp.src(['dist/app/app.module.js'])
@@ -156,9 +156,9 @@ export class Gulpfile {
       .pipe(gulp.dest('./', { overwrite: true }));
   }
 
-////////////////////////////////////////////////////////////////////////////////
-// BUILD TASKS: Used build the app into the dist folder
-////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////
+  // BUILD TASKS: Used build the app into the dist folder
+  ////////////////////////////////////////////////////////////////////////////////
   @Task()
   build_html(done) {
     return gulp.src('config/env/development/index.html')
@@ -216,19 +216,19 @@ export class Gulpfile {
 
   @SequenceTask()
   build_client_prod() {
-      return [
-        'replace_main_dev',
-        'replace_aot_pre',
-        'compile_client_prod',
-        'replace_main_prod',
-        'replace_aot_fin',
-        'compile_client_prod',
-        'rollup_client',
-        'build_clean_prod',
-        // Bring of back now
-        'replace_main_dev',
-        'replace_aot_pre'
-      ]
+    return [
+      'replace_main_dev',
+      'replace_aot_pre',
+      'compile_client_prod',
+      'replace_main_prod',
+      'replace_aot_fin',
+      'compile_client_prod',
+      'rollup_client',
+      'build_clean_prod',
+      // Bring of back now
+      'replace_main_dev',
+      'replace_aot_pre'
+    ]
   }
 
   @Task()
@@ -260,25 +260,32 @@ export class Gulpfile {
     const app = file.path.includes('app');
     const ser = file.path.includes('server');
 
-    file.path = ht ? file.path.replace('html', 'ts') : sc ? file.path.replace('scss', 'ts') : file.path;
-
     const fName = file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length);
-    console.log('\n Compiling ----> ' + chalk.green.bold(fName + '\n'));
 
-    const tsResult = gulp.src(file.path)
-      .pipe(embedTemplates())
-      .pipe(embedSass())
-      .pipe(tsProject());
+    if (fName !== 'index.html') {
+      file.path = ht ? file.path.replace('html', 'ts') : sc ? file.path.replace('scss', 'ts') : file.path;
 
-    file.path = app ? file.path.replace('app', 'dist\\app') : ser ?
-      file.path.replace('server', 'dist\\server') : file.path.replace('config', 'dist\\config');
+      console.log('\n Compiling ----> ' + chalk.green.bold(fName + '\n'));
 
-    file.path = file.path.substring(0, file.path.lastIndexOf('\\'));
+      const tsResult = gulp.src(file.path)
+        .pipe(embedTemplates())
+        .pipe(embedSass())
+        .pipe(tsProject());
 
-    return fName !== 'app.module.ts' ? tsResult.js.pipe(gulp.dest(path.resolve(file.path))) :
-      tsResult.js.pipe(replace('process.env.NODE_ENV', "'development'"))
-            .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
-            .pipe(gulp.dest(path.resolve(file.path)));
+      file.path = app ? file.path.replace('app', 'dist\\app') : ser ?
+        file.path.replace('server', 'dist\\server') : file.path.replace('config', 'dist\\config');
+
+      file.path = file.path.substring(0, file.path.lastIndexOf('\\'));
+
+      return fName !== 'app.module.ts' ? tsResult.js.pipe(gulp.dest(path.resolve(file.path))) :
+        tsResult.js.pipe(replace('process.env.NODE_ENV', "'development'"))
+          .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
+          .pipe(gulp.dest(path.resolve(file.path)));
+    } else {
+      console.log('\n Moving ----> ' + chalk.green.bold(fName + '\n'));
+
+      return gulp.src('config/env/development/index.html').pipe(gulp.dest('dist/app'));
+    }
   }
 
   // Essential assets for built project
@@ -493,6 +500,7 @@ export class Gulpfile {
     // Watch all html files to build them in dist
     watch(defaultAssets.client.views, file => this.buildFile(file));
     watch(defaultAssets.client.dist.js, plugins.livereload.changed);
+    watch(['dist/app/index.html'], plugins.livereload.changed);
     // Watch all client assets to compress in dist
     watch(defaultAssets.client.assets, { events: ['add'] }, file => this.compressAsset(file));
     watch(defaultAssets.client.assets, { events: ['unlink'] }, file => this.deleteAsset(file));

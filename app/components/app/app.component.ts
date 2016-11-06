@@ -13,6 +13,7 @@ Bootstrapping component
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
+import { SEOActions } from '../../actions/seo/seo.actions';
 import { Observable } from 'rxjs/Observable';
 
 declare let TweenMax: any;
@@ -27,16 +28,31 @@ declare let TimelineMax: any;
 
 //class which is implemented once the AfterViewInit event in tha Angular event lifecycle has fired.
 //-- to learn more about Angular's event lifecycle read here: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   //this decorator is for NgRedux. you can read more about Redux here: https://github.com/angular-redux/ng2-redux
   @select('error') error$: Observable<any>;
   private timeline: any;
+
+  // An Object with the default SEO title, link, description, and keywords
+  private defaultSEO: any = {
+    title: 'GOAT-stack',
+    favicon: 'assets/dywlogo.png',
+    description: 'The Greatest Of All Time Stack!',
+    keywords: ['redux', 'node', 'mongo', 'express', 'angular2', 'ng2', 'jasmine', 'karma', 'protractor']
+  };
 
   //this decorator gabs the object associated with the #errorToast template variable assigned in the app.componnent.html file,
   //-- and assigns this object to the class variable errorToast
   @ViewChild('errorToast') errorToast: ElementRef;
 
-  constructor(private errorHandler: ErrorHandlerActions) { }
+  constructor(
+    private errorHandler: ErrorHandlerActions,
+    private seoHandler: SEOActions) {}
+
+  ngOnInit() {
+    // Set all the necessary tags to make site SEO ready
+    this.seoHandler.setAll(this.defaultSEO);
+  }
 
   ngAfterViewInit() {
     // initialize error handling animation timeline

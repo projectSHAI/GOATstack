@@ -5,7 +5,7 @@ import * as fs from 'graceful-fs';
 import * as http from 'http';
 import * as https from 'https';
 import {config} from '../config/config';
-let con = config();
+const con: any = config();
 
 import {socketInit} from '../config/lib/socketio';
 import {expressInit} from '../config/lib/express';
@@ -27,7 +27,7 @@ if (con.config.seedDB) {
 loadModels();
 
 let init = function init(callback) {
-  connect(function (db) {
+  connect(function(db) {
     // Initialize http server
     let server: any = http.createServer(app);
 
@@ -57,16 +57,15 @@ let init = function init(callback) {
   });
 };
 
-init(function (app, db, con, server) {
+init(function(app, db, con, server) {
 
-  server.listen(con.config.port, con.config.host, function () {
+  server.listen(con.config.port, con.config.host, function() {
     let host = server.address().address;
     let port = server.address().port;
 
     if (process.env.NODE_ENV !== 'test') {
       // Logging initialization
       console.log('');
-      console.log(chalk.bold.cyan('\tProject Name:\t\t\t' + con.config.app.title));
       console.log(chalk.bold.cyan('\tEnvironment:\t\t\t' + process.env.NODE_ENV));
       console.log(chalk.bold.cyan('\tDatabase:\t\t\t' + con.config.db.uri));
       console.log('');

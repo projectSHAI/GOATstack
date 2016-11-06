@@ -5,13 +5,6 @@ These configuration settings get called no matter what Node's process.env.NODE_E
 */
 
 export const defaultConfig = {
-  app: {
-    title: 'Discover Your Wonder',
-    description: 'A social art app',
-    repository: 'https://gitlab.com/projectSHAI/discoveryourwonder',
-    keywords: ['node', 'express', 'static'],
-    googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
-  },
   // Change to use https
   https_secure: false,
   // You will need to generate a self signed ssl certificate
@@ -39,32 +32,5 @@ export const defaultConfig = {
   // for obsecurity reasons
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
-  logo: 'modules/core/client/img/brand/logo.png',
-  favicon: 'modules/core/client/img/brand/republicanLogo.png',
-  userRoles: ['guest', 'user', 'admin'],
-  uploads: {
-    profileUpload: {
-      dest: './modules/users/client/img/profile/uploads/', // Profile upload destination path
-      limits: {
-        fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
-      }
-    },
-    missionUpload: {
-      dest: './modules/core/client/img/photos/tmp/', // Mission photo upload tmp destination
-      ftpdest: '/www/uploads/missions/',
-      limits: {
-        fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
-      }
-    },
-    galleryUpload: {
-      dest: './modules/core/client/img/photos/tmp/', // Gallery photo upload tmp destination
-      ftpdest: '/www/uploads/photo-gallery/',
-      limits: {
-        fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
-      }
-    }
-  },
-  dropboxAPI: {
-    access_token: 'HkqQF1z-TFAAAAAAAAAAZmGDirwwJrTBxYGxjXvjrhrvOXqbRizZJpjX7oVha7ub'
-  }
+  userRoles: ['guest', 'user', 'admin']
 };
