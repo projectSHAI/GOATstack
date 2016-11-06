@@ -28,8 +28,11 @@ ___
  December 1st - This is launch day, the GOAT Stack is finally closing in on release!
  
  The final items left on our todo list are polishing items, these incluede:
- - Implementation of AOT(Ahead-of-Time) rendering.
+ - ~~Implementation of AOT(Ahead-of-Time) rendering.~~
  - Finishing the Demonstration webapp.
+ - Creating thourough, and well structured documentation.
+ - Finishing our [Facebook page](https://www.facebook.com/goatstack/).
+ - Finishing our [Reddit page](https://www.reddit.com/r/GOATStack/).
  - Making sure SEO and webcrawlers are optimized.
  - making sure all the Goat's are well fed and happy!
  
