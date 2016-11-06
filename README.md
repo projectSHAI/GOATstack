@@ -9,7 +9,7 @@ ___
 2. [Follow the GOAT](#followtheGOAT)
 3. [Problem](#problem)
 4. [Solution](#solution)
-5. [Technologies used to build the GOAT stack](#alltech)
+5. [Technologies used to build the GOAT stack](#allTech)
   * [Main Technologies](#tech)
   * [Integrated Libraries and Modules](#libs)
 6. [Documentation](#docs)
@@ -128,23 +128,24 @@ Explanation and resources
 #### Protractor
 Explanation and resources
 
-# Documentation
 <a name="docs"></a>
+# Documentation
+
   * [Server-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/server-side.md)
   * [Client-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/client-side.md)
 
-# Required Technologies for your Development Environment
 <a name="reqs"></a>
+# Required Technologies for your Development Environment
+
   * [gulp](http://gulpjs.com/) (standard privileges required)
   * [typescript](https://www.typescriptlang.org/)
   * [nodejs](https://nodejs.org/en/)
   * [mongodb](https://docs.mongodb.com/)
 
-# Quick Start
 <a name="quickstart"></a>
-
-## Windows
+# Quick Start
 <a name="windows"></a>
+## Windows
 
 ### 1) Install [Git](https://git-scm.com/downloads)
   * Note: You may need to configure system PATH to appropriate git command
@@ -169,8 +170,8 @@ $ # mongod runs as a child process!
 $ gulp
 ```
 
-## Linux
 <a name="linux"></a>
+## Linux
 
 ### 1) Install Git
 
@@ -196,20 +197,20 @@ $ sudo apt-get install -y nodejs
 
 ### 4) Clone and Run
 
-#Support the GOAT
 <a name="supportGOAT"></a>
+#Support the GOAT
 
-#Made with GOAT Stack
 <a name="madewith"></a>
+#Made with GOAT Stack
+
 Goatstack.com
 
 
-
-#How to contribute
 <a name="contributing"></a>
+#How to contribute
 
-#Created By
 <a name="creators"></a>
+#Created By
 
 ##Jason Thomas
 
