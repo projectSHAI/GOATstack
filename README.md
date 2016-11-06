@@ -4,16 +4,27 @@ Version 1.0.0
 ___
 ###Table of Contents
 
-1. hello
-2. hello
-3. hello
-4. hello
-5. hello
-6. hello
-7. hello
-8. hello
-9. [Contributing](#contributing)
+1. [What's new?](#whatsnew)
+2. [Follow the GOAT](#followtheGOAT)
+3. [Problem](#problem)
+4. [Solution](#solution)
+5. [Main Technologies used to build the stack](#tech)
+6. [Integrated Libraries and Modules](#libs)
+7. [Documentation](#docs)
+8. [Required Technologies for your Development Environment](#reqs)
+9. [Quick Start](#quickstart)
+..* [Windows](#windows)
+..* [Linux](#linux)
+10. [Support The GOAT](#supportGOAT) 
+11. [Made with GOAT stack](#madewith)
+12. [Contributing](#contributing)
+13. [Creators](#creators)
+#What's new?
+<a name="whatsnew"></a>
 
+
+#Follow the GOAT
+<a name="followtheGOAT"></a>
 Facebook like button Facebook share button
 
 ###Facebook, FAQ, Report bugs, Reddit
@@ -22,6 +33,7 @@ Facebook like button Facebook share button
 
 
 #Problem
+<a name="problem"></a>
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/critical-space-ship.png?raw=true" align="right">
 ___
 ___
@@ -45,6 +57,7 @@ ___
 ___
 
 #Solution
+<a name="solution"></a>
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/optimized-space-ship.png?raw=true" align="right">
 ___
 ___
@@ -69,6 +82,7 @@ ___
 
 # Technologies used to build the GOAT stack
 ## Main Technologies
+<a name="tech"></a>
 # [![MongoDB Logo][MongoDB]](https://www.mongodb.com/)[![ExpressJS Logo][ExpressJS]](http://expressjs.com/)[![Angular2 Logo][Angular2]](https://angular.io/)[![NodeJS Logo][NodeJS]](https://nodejs.org/en/)
 
 [MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps with scalability, and efficiency in mind.
@@ -85,6 +99,7 @@ Explanation and resources
 
 
 ## Integrated Libraries and Modules
+<a name="libs"></a>
 [![Redux Logo][Redux]](http://redux.js.org/)[![Immutable Logo][Immutable]](https://facebook.github.io/immutable-js/)[![SocketIO Logo][SocketIO]](http://socket.io/)[![Mongoose Logo][Mongoose]](http://mongoosejs.com/)[![Passport Logo][Passport]](http://passportjs.org/)[![Jasmine Logo][Jasmine]](http://jasmine.github.io/)[![Karma Logo][Karma]](https://karma-runner.github.io/1.0/index.html)[![Protractor Logo][Protractor]](http://www.protractortest.org/#/)
 ___
 
@@ -108,18 +123,22 @@ Explanation and resources
 Explanation and resources
 
 # Documentation
+<a name="docs"></a>
   * [Server-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/server-side.md)
   * [Client-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/client-side.md)
 
-## required technologies for your development environment
+# Required Technologies for your Development Environment
+<a name="reqs"></a>
   * [gulp](http://gulpjs.com/) (standard privileges required)
   * [typescript](https://www.typescriptlang.org/)
   * [nodejs](https://nodejs.org/en/)
   * [mongodb](https://docs.mongodb.com/)
 
-# Getting-started
+# Quick Start
+<a name="quickstart"></a>
 
 ## Windows
+<a name="windows"></a>
 
 ### 1) Install [Git](https://git-scm.com/downloads)
   * Note: You may need to configure system PATH to appropriate git command
@@ -145,6 +164,7 @@ $ gulp
 ```
 
 ## Linux
+<a name="linux"></a>
 
 ### 1) Install Git
 
@@ -170,16 +190,20 @@ $ sudo apt-get install -y nodejs
 
 ### 4) Clone and Run
 
-#Support GOAT Stack
+#Support the GOAT
+<a name="supportGOAT"></a>
 
 #Made with GOAT Stack
-
+<a name="madewith"></a>
 Goatstack.com
+
+
 
 #How to contribute
 <a name="contributing"></a>
 
 #Created By
+<a name="creators"></a>
 
 ##Jason Thomas
 
