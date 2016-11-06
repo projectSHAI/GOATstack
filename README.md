@@ -2,11 +2,22 @@
 
 Version 1.0.0
 ___
-###Why GOAT stack?
+###Table of Contents
 
-###How to contribute
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+Facebook like button Facebook share button
 
 ###Facebook, FAQ, Report bugs, Reddit
+
 ![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
 
 
@@ -158,6 +169,20 @@ $ sudo apt-get install -y nodejs
 ### 3) Install [MongoDB](https://docs.mongodb.com/manual/administration/install-on-linux/)
 
 ### 4) Clone and Run
+
+#Support GOAT Stack
+
+#Made with GOAT Stack
+
+Goatstack.com
+
+#How to contribute
+
+#Created By
+
+##Jason Thomas
+
+##Christopher Haugen
 
 ```sh
 $ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
