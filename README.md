@@ -1,4 +1,4 @@
-![Houston we have a problem](MainBanner)
+![Main Banner](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true)
 
 > Version 1.0.0
 
@@ -43,11 +43,11 @@ Follow us on [Facebook page](https://www.facebook.com/goatstack/) to receive the
 # [![Facebook Page][FacebookBanner]](https://www.facebook.com/goatstack/)
 
 If you don't like it, that's ok too, but drop by our [Reddit page](https://www.reddit.com/) and tell us why! We're always interested in new points of view, even the greatest can get better! 
-# [![Reddit Page][RedditBanner]](Reddit)
+# [![Reddit Page][RedditBanner]](https://www.reddit.com/)
 
 ###Facebook, FAQ, Report bugs, Reddit
 
-![Houston we have a problem](HoustonBanner)
+![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
 
 <a name="problem"></a>
 #Problem
@@ -262,13 +262,6 @@ or
 -->
 
 
-
-
-
-
-<!-- banners -->
-[MainBanner]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true
-[HoustonBanner]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true
 
 <!-- logo tags -->
 [MongoDB]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/mongo_logo_square.png?raw=true
