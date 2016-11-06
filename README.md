@@ -1,7 +1,57 @@
-![GOAT Banner](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true)
+#GOAT stack
 
 Version 1.0.0
 ___
+
+![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
+
+
+#Problem
+<img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/critical-space-ship.png?raw=true" align="right">
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+
+#Solution
+<img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/optimized-space-ship.png?raw=true" align="right">
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+
 # Technologies used to build the GOAT stack
 ## Main Technologies
 # [![MongoDB Logo][MongoDB]](https://www.mongodb.com/)[![ExpressJS Logo][ExpressJS]](http://expressjs.com/)[![Angular2 Logo][Angular2]](https://angular.io/)[![NodeJS Logo][NodeJS]](https://nodejs.org/en/)
