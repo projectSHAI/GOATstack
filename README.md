@@ -1,8 +1,12 @@
-#GOAT stack
+![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true)
 
 Version 1.0.0
 ___
+###Why GOAT stack?
 
+###How to contribute
+
+###Facebook, FAQ, Report bugs, Reddit
 ![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
 
 
