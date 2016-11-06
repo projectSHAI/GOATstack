@@ -1,6 +1,7 @@
 ![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true)
 
-Version 1.0.0
+> Version 1.0.0
+
 ___
 ###Table of Contents
 
@@ -8,32 +9,35 @@ ___
 2. [Follow the GOAT](#followtheGOAT)
 3. [Problem](#problem)
 4. [Solution](#solution)
-5. [Main Technologies used to build the stack](#tech)
-6. [Integrated Libraries and Modules](#libs)
-7. [Documentation](#docs)
-8. [Required Technologies for your Development Environment](#reqs)
-9. [Quick Start](#quickstart)
+5. [Technologies used to build the GOAT stack](#alltech)
+ [Main Technologies](#tech)
+..* [Integrated Libraries and Modules](#libs)
+6. [Documentation](#docs)
+7. [Required Technologies for your Development Environment](#reqs)
+8. [Quick Start](#quickstart)
 ..* [Windows](#windows)
 ..* [Linux](#linux)
-10. [Support The GOAT](#supportGOAT) 
-11. [Made with GOAT stack](#madewith)
-12. [Contributing](#contributing)
-13. [Creators](#creators)
-#What's new?
+9. [Support The GOAT](#supportGOAT) 
+10. [Made with GOAT stack](#madewith)
+11. [Contributing](#contributing)
+12. [Creators](#creators)
+
 <a name="whatsnew"></a>
+#What's new?
 
 
-#Follow the GOAT
 <a name="followtheGOAT"></a>
+#Follow the GOAT
+
 Facebook like button Facebook share button
 
 ###Facebook, FAQ, Report bugs, Reddit
 
 ![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
 
-
-#Problem
 <a name="problem"></a>
+#Problem
+
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/critical-space-ship.png?raw=true" align="right">
 ___
 ___
@@ -56,8 +60,9 @@ ___
 ___
 ___
 
-#Solution
 <a name="solution"></a>
+#Solution
+
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/optimized-space-ship.png?raw=true" align="right">
 ___
 ___
@@ -80,9 +85,11 @@ ___
 ___
 ___
 
+<a name="allTech"></a>
 # Technologies used to build the GOAT stack
-## Main Technologies
 <a name="tech"></a>
+## Main Technologies
+
 # [![MongoDB Logo][MongoDB]](https://www.mongodb.com/)[![ExpressJS Logo][ExpressJS]](http://expressjs.com/)[![Angular2 Logo][Angular2]](https://angular.io/)[![NodeJS Logo][NodeJS]](https://nodejs.org/en/)
 
 [MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps with scalability, and efficiency in mind.
@@ -96,10 +103,9 @@ Explanation and resources
 #### NodeJS
 Explanation and resources
 
-
-
-## Integrated Libraries and Modules
 <a name="libs"></a>
+## Integrated Libraries and Modules
+
 [![Redux Logo][Redux]](http://redux.js.org/)[![Immutable Logo][Immutable]](https://facebook.github.io/immutable-js/)[![SocketIO Logo][SocketIO]](http://socket.io/)[![Mongoose Logo][Mongoose]](http://mongoosejs.com/)[![Passport Logo][Passport]](http://passportjs.org/)[![Jasmine Logo][Jasmine]](http://jasmine.github.io/)[![Karma Logo][Karma]](https://karma-runner.github.io/1.0/index.html)[![Protractor Logo][Protractor]](http://www.protractortest.org/#/)
 ___
 
