@@ -28,24 +28,23 @@ ___
  December 1st - This is launch day, the GOAT Stack is finally closing in on release!
  
  The final items left on our todo list are polishing items, these incluede:
- -Implementation of AOT(Ahead-of-Time) rendering.
- -Finishing the Demonstration webapp.
- -Making sure SEO and webcrawlers are optimized.
- -making sure all the Goat's are well fed and happy!
+ - Implementation of AOT(Ahead-of-Time) rendering.
+ - Finishing the Demonstration webapp.
+ - Making sure SEO and webcrawlers are optimized.
+ - making sure all the Goat's are well fed and happy!
  
 <a name="followtheGOAT"></a>
 #Follow the GOAT
 
-If you like our Fullstack make sure to stay informed and get involved! 
+If you like our Fullstack make sure to stay informed and [get involved!](#contributing) 
 
 Follow us on [Facebook page](https://www.facebook.com/goatstack/) to receive the latest news and updates!
 
 # [![Facebook Page][FacebookBanner]](https://www.facebook.com/goatstack/)
 
-If you don't like it, that's ok too, but drop by our [Reddit page](https://www.reddit.com/) and tell us why! We're always interested in new points of view, even the greatest can get better! 
-# [![Reddit Page][RedditBanner]](https://www.reddit.com/)
+If you don't end up not liking the GOAT Stack, that's ok too! Please drop by our [Reddit page](https://www.reddit.com/r/GOATStack/) and tell us why! We're always interested in new points of view, even the greatest can get better! 
+# [![Reddit Page][RedditBanner]](https://www.reddit.com/r/GOATStack/)
 
-###Facebook, FAQ, Report bugs, Reddit
 
 ![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
 
