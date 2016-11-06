@@ -210,6 +210,15 @@ $ sudo apt-get install -y nodejs
 
 ### 4) Clone and Run
 
+```sh
+$ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
+$ cd GOAT-stack
+$ npm install -g gulp-cli typescript
+$ npm install
+$ # mongod runs as a child process!
+$ gulp
+```
+
 <a name="supportGOAT"></a>
 #Support the GOAT
 
@@ -225,18 +234,10 @@ Goatstack.com
 <a name="creators"></a>
 #Created By
 
-##Jason Thomas
+##[Jason Thomas](https://github.com/JCThomas4214)
 
-##Christopher Haugen
+##[Christopher Haugen](https://github.com/projectSHAI)
 
-```sh
-$ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
-$ cd GOAT-stack
-$ npm install -g gulp-cli typescript
-$ npm install
-$ # mongod runs as a child process!
-$ gulp
-```
 <!--
 # Deploying to Heroku
 
