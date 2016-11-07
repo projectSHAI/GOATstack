@@ -9,8 +9,13 @@ import { ErrorHandlerActions } from '../error/errorHandler.actions';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 //////////////////////////////////////////////////////////////////////
-// User Actions: used to call dispatches to change the user object 
-//               in the store
+/* User Actions: used to call dispatches to change the user object 
+               in the store
+
+    LOGIN_USER    ->    updates the user object with user information
+    LOGOUT_USER   ->    clears the user object from the store
+    REGISTER_USER ->    updates the user object with user information
+*/
 //////////////////////////////////////////////////////////////////////
 @Injectable()
 export class UserActions {

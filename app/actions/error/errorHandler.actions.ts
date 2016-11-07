@@ -7,8 +7,12 @@ declare let TweenMax: any;
 declare let TimelineMax: any;
 
 /////////////////////////////////////////////////////////
-// ErrorHandler Actions: Used to call dispatches to change
-//      error object in the store
+/* ErrorHandler Actions: Used to call dispatches to change
+      error object in the store
+
+    SHOW_ERROR  ->  updates the error message to display
+    HIDE_ERROR  ->  removes error message string
+*/
 ////////////////////////////////////////////////////////
 @Injectable()
 export class ErrorHandlerActions {

@@ -7,8 +7,12 @@ import { WonderService } from '../../services/wonder/wonder.service';
 import { ErrorHandlerActions } from '../error/errorHandler.actions';
 
 /////////////////////////////////////////////////////////////////////
-// Wonder Actions: used to call dispatches to change the state of the
-//                 wonder object in the store
+/* Wonder Actions: used to call dispatches to change the state of the
+                   wonder object in the store
+
+    INITIALIZE_WONDERS  ->   initialize the wonders List with json array
+    CHANGE_WONDERS      ->   update wonder list at index with wonder obj
+*/
 /////////////////////////////////////////////////////////////////////
 @Injectable()
 export class WonderActions {

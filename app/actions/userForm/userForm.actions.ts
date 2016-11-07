@@ -7,8 +7,14 @@ import { IAppState } from '../../store/index';
 import { UserService } from '../../services/user/user.service';
 
 /////////////////////////////////////////////////////////////////////////
-// UserForm Actions: used to call dispatches to change the userForm
-//                   object in the store
+/* UserForm Actions: used to call dispatches to change the userForm
+                     object in the store
+  
+    LOGIN_FORM_IN       ->   Opens the login form (closes reg form)
+    LOGIN_FORM_OUT      ->   Closes the Login form
+    REGISTER_FORM_IN    ->   Opens the registration form (closes login form)
+    REGISTER_FORM_OUT   ->   Closes the registration form
+*/
 /////////////////////////////////////////////////////////////////////////
 @Injectable()
 export class UserFormActions {

@@ -5,8 +5,12 @@ import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../../store/index';
 
 //////////////////////////////////////////////////////////////////////
-// Cloud Actions: Used to call dispatches to the cloudStyles and
-//				  animaArray objects in the store
+/* Cloud Actions: Used to call dispatches to the cloudStyles and
+				  animaArray objects in the store
+
+	CHANGE_STYLES	->	updates cloudStyles with new style string
+	CHANGE_ANIMA	->	updates animaArray with a new gsap timeline
+*/
 //////////////////////////////////////////////////////////////////////
 @Injectable()
 export class CloudActions {
