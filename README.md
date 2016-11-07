@@ -5,6 +5,7 @@
 ___
 # Documentation Wiki
 
+  * [Home](https://github.com/projectSHAI/GOAT-stack/wiki)
   * [Dev-Tools](https://github.com/projectSHAI/GOAT-stack/wiki/Dev-Tools)
   * [Gulp Tasks](https://github.com/projectSHAI/GOAT-stack/wiki/Gulp-Tasks)  
   
