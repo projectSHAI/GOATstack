@@ -274,10 +274,11 @@ export class Gulpfile {
     const app = file.path.includes('app');
     const ser = file.path.includes('server');
 
-    const fName = file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length);
+    let fName = file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length);
 
     if (fName !== 'index.html') {
       file.path = ht ? file.path.replace('html', 'ts') : sc ? file.path.replace('scss', 'ts') : file.path;
+      fName = ht ? fName.replace('html', 'ts') : sc ? fName.replace('scss', 'ts') : fName;
 
       console.log('\n Compiling ----> ' + chalk.green.bold(fName + '\n'));
 
@@ -296,13 +297,13 @@ export class Gulpfile {
           .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
           .pipe(gulp.dest(path.resolve(file.path)));
     } else {
+      // if file was the index.html
       console.log('\n Moving ----> ' + chalk.green.bold(fName + '\n'));
-
       return gulp.src('config/env/development/index.html').pipe(gulp.dest('dist/app'));
     }
   }
 
-  // Essential assets for built project
+  // Essential sequences for built project
   @SequenceTask()
   build_sequence() {
     return ['build_sass', 'build_html', 'build_assets', 'build_systemConf'];

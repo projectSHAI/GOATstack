@@ -19,7 +19,7 @@ declare let Power0: any;
   styleUrls: ['./cloud-generator.component.scss']
 })
 
-export class CloudGeneratorComponent {
+export class CloudGeneratorComponent implements OnInit, OnDestroy {
   @select('cloudStyle') cloudStyle$: Observable<any>;
   @select('animaArray') animaArray$: Observable<any>;
   @select('wonder') wonder$: Observable<any>;

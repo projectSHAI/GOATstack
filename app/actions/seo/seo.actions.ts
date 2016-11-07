@@ -1,4 +1,4 @@
-import { Injectable, DOMRenderer } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 ////////////////////////////////////////////////////////////////////////
