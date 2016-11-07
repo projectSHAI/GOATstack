@@ -37,7 +37,7 @@ ___
  - Creating thourough, and well structured documentation.
  - Finishing our [Facebook page](https://www.facebook.com/goatstack/).
  - Finishing our [Reddit page](https://www.reddit.com/r/GOATStack/).
- - Making sure SEO and webcrawlers are optimized.
+ - ~~Making sure SEO and webcrawlers are optimized.~~
  - making sure all the Goat's are well fed and happy!
  
 <a name="followtheGOAT"></a>
