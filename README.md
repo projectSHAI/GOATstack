@@ -56,11 +56,24 @@ If you don't end up not liking the GOAT Stack, that's ok too! Please drop by our
 
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/critical-space-ship.png?raw=true" align="right">
 
-* Page load speed 
-..* test
-* Scaleability
-* User engagement
-* 
+1. Page load speed 
+ * 40% of users leave a webpage that takes more than 3 seconds to load
+2. Scaleability
+ * If resources are static a webapp will waste a lot of efficiency when load is low, or become crippled by a sudden surge of traffic 
+3. User engagement
+ * stuff
+
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
+___
 
 <a name="solution"></a>
 #Solution
@@ -97,13 +110,31 @@ ___
 [MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps with scalability, and efficiency in mind.
 
 #### MongoDB
-Explanation and resources
-#### ExpressJS
-Explanation and resources
+MongoDB is an open sourced database which uses a flexible document data model, similar to JSON. Instead of using tables and rows, MongoDB uses key-value pairs to achieve faster, more efficient querying capabilities than a relational database. This flexibility allows development teams to evolve the data model rapidly as their application requirements change. 
+
+> Read the [MongoDB documentaion](https://docs.mongodb.com/) in order to get a better understanding to how this scaleable database can benefit your team!
+
+#### Express.js
+Express.js is a web application framework for Node.js this framework comes with a robust set of HTTP utility's and middleware aimed at helping you develop stable, efficient, and predictable API's quickly, and easily. This framework takes the focus off of boilerplate code, and let's the developer focus on more important design aspects such as data flows.
+
+> Read the [Express.js documentation](http://expressjs.com/en/api.html)  in order to get a better understanding on how to responsibly manage, and direct data from one point to another in a secure, and efficient manner.
+
 #### Angular2
-Explanation and resources
+Angular2 is a frontend framework which aims to close the gap between native application and website. 
+
+> Read the [Angular2 documentation](https://angular.io/docs/ts/latest/) in order to get a better understanding on how to create a seamless user experience which feels more like a native app.
+
 #### NodeJS
-Explanation and resources
+Node.js is a javascript server that is runtime built and runs on [Chrome's V8 Javascript engine](https://developers.google.com/v8/)
+
+We chose Node.js for two reasons:
+
+1. Node.js uses something called the event-driven model, it is a non-blocking I/O model, which is depicted below.
+2. Node.js uses [npm](https://www.npmjs.com/). [npm](https://www.npmjs.com/) is the largest package ecosystem in the world, meaning there are countless open sourced libraries your team can capitaliize on to accomplish your goals and realize your visions.
+
+![The EventDriven model](http://image.slidesharecdn.com/nodejsslideshare-121104022408-phpapp01/95/nodejs-event-driven-concurrency-for-web-applications-51-638.jpg?cb=1351996088)
+
+> Read the [Node.js documentation](https://nodejs.org/en/docs/) in order to get a better understanding on how to utilize this server to make your website lightweight and efficient.
 
 <a name="libs"></a>
 ## Integrated Libraries and Modules
