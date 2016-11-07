@@ -157,27 +157,52 @@ ___
 GOAT includes the [Redux](http://redux.js.org/) architechture, [Immutable](https://facebook.github.io/immutable-js/) data structuring, [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
 
 ### Redux
-Explanation and resources
+__What it does:__
+
+__Why we use it:__
+
 ### Immutable
-Explanation and resources
+__What it does:__
+
+__Why we use it:__
+
 ### SocketIO
-Explanation and resources
+__What it does:__
+
+__Why we use it:__
+
 ### Mongoose
-Explanation and resources
+__What it does:__
+
+__Why we use it:__
+
 ### Passport
-Explanation and resources
+__What it does:__
+
+__Why we use it:__
+
 ### Jasmine
-Explanation and resources
+__What it does:__
+
+__Why we use it:__
+
 ### Karma
-Explanation and resources
+__What it does:__
+
+__Why we use it:__
+
 ### Protractor
-Explanation and resources
+__What it does:__
+
+__Why we use it:__
+
 
 <a name="docs"></a>
 # Documentation
 
   * [Server-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/server-side.md)
   * [Client-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/client-side.md)
+  * [Dev-Tools](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/dev-tools/dev-tools.md)  
 
 <a name="reqs"></a>
 # Required Technologies for your Development Environment
