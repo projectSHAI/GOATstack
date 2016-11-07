@@ -7,7 +7,9 @@ ___
 
   * [Home](https://github.com/projectSHAI/GOAT-stack/wiki)
   * [Dev-Tools](https://github.com/projectSHAI/GOAT-stack/wiki/Dev-Tools)
-  * [Gulp Tasks](https://github.com/projectSHAI/GOAT-stack/wiki/Gulp-Tasks)  
+  * [Gulp Tasks](https://github.com/projectSHAI/GOAT-stack/wiki/Gulp-Tasks)
+  * [Client Side Docs](https://github.com/projectSHAI/GOAT-stack/wiki/Client-Side-Docs)
+  * [Server Side Docs](https://github.com/projectSHAI/GOAT-stack/wiki/Server-Side-Docs)
   
 ###Table of Contents
 
