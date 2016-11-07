@@ -110,7 +110,7 @@ ___
 [MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps with scalability, and efficiency in mind.
 
 #### MongoDB
-MongoDB is an open sourced database which uses a flexible document data model, similar to JSON. Instead of using tables and rows, MongoDB uses key-value pairs to achieve faster, more efficient querying capabilities than a relational database. This flexibility allows development teams to evolve the data model rapidly as their application requirements change. 
+MongoDB is an open sourced database which uses a flexible document data model, similar to JSON. Instead of using tables and rows, MongoDB uses key-value pairs to achieve fast, and efficient querying capabilities. This flexibility allows development teams to evolve the data model rapidly as their application requirements change. 
 
 > Read the [MongoDB documentaion](https://docs.mongodb.com/) in order to get a better understanding to how this scaleable database can benefit your team!
 
