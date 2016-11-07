@@ -1,3 +1,4 @@
+
 <div #wonderSky>
     <li #wonderCloud *ngFor="let wonder of (wonder$ | async); let i = index" class="wonder" [style.left.px]="-350" [style.top.%]="wonder.ycoor">
         <img src="assets/{{ (cloudStyle$ | async).get(i) }}.svg">

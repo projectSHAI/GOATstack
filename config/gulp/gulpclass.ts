@@ -511,7 +511,7 @@ export class Gulpfile {
   // Watch Files For Changes
   @Task()
   watch() {
-    let serverts = _.union(
+    const serverts = _.union(
       defaultAssets.server.allTS,
       defaultAssets.config.allTS
     );
@@ -522,11 +522,11 @@ export class Gulpfile {
     watch(serverts, file => this.buildFile(file));
     watch(defaultAssets.server.allJS, plugins.livereload.changed);
     // Watch all TS files in client and compiles JS files in dist
-    watch(defaultAssets.client.ts, file => this.buildFile(file));
+    watch(defaultAssets.client.ts, { events: ['change'] }, file => this.buildFile(file));
     // Watch all scss files to build css is change
-    watch(defaultAssets.client.scss, file => this.buildFile(file));
+    watch(defaultAssets.client.scss, { events: ['change'] }, file => this.buildFile(file));
     // Watch all html files to build them in dist
-    watch(defaultAssets.client.views, file => this.buildFile(file));
+    watch(defaultAssets.client.views, { events: ['change'] }, file => this.buildFile(file));
     watch(defaultAssets.client.dist.js, plugins.livereload.changed);
     watch(['dist/app/index.html'], plugins.livereload.changed);
     // Watch all client assets to compress in dist
@@ -534,7 +534,7 @@ export class Gulpfile {
     watch(defaultAssets.client.assets, { events: ['unlink'] }, file => this.deleteAsset(file));
     watch(defaultAssets.client.dist.assets, plugins.livereload.changed);
     // Watch if system.config files are changed
-    watch(defaultAssets.client.system, file => runSequence('build_systemConf'));
+    watch(defaultAssets.client.system, { events: ['change'] }, file => runSequence('build_systemConf'));
     watch(['dist/app/systemjs.config.js'], plugins.livereload.changed);
   }
 
