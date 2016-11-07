@@ -130,7 +130,7 @@ Node.js is a javascript server that is runtime built and runs on [Chrome's V8 Ja
 We chose Node.js for two reasons:
 
 1. Node.js uses something called the event-driven model, it is a non-blocking I/O model, which is depicted below.
-2. Node.js uses [npm](https://www.npmjs.com/). [npm](https://www.npmjs.com/) is the largest package ecosystem in the world, meaning there are countless open sourced libraries your team can capitaliize on to accomplish your goals and realize your visions.
+2. Node.js uses [npm](https://www.npmjs.com/), which is the largest package ecosystem in the world. This means there are countless open sourced libraries your team can capitaliize on to accomplish your goals and realize your visions.
 
 ![The EventDriven model](http://image.slidesharecdn.com/nodejsslideshare-121104022408-phpapp01/95/nodejs-event-driven-concurrency-for-web-applications-51-638.jpg?cb=1351996088)
 
