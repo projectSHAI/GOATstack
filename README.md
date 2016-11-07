@@ -55,26 +55,12 @@ If you don't end up not liking the GOAT Stack, that's ok too! Please drop by our
 #Problem
 
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/critical-space-ship.png?raw=true" align="right">
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
+
+* Page load speed 
+..* test
+* Scaleability
+* User engagement
+* 
 
 <a name="solution"></a>
 #Solution
