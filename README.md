@@ -112,17 +112,28 @@ ___
 #### MongoDB
 MongoDB is an open sourced database which uses a flexible document data model, similar to JSON. Instead of using tables and rows, MongoDB uses key-value pairs to achieve fast, and efficient querying capabilities. This flexibility allows development teams to evolve the data model rapidly as their application requirements change. 
 
-> Read the [MongoDB documentaion](https://docs.mongodb.com/) in order to get a better understanding to how this scaleable database can benefit your team!
+Read the [MongoDB documentaion](https://docs.mongodb.com/) in order to get a better understanding to how this scaleable database can benefit your team!
+
+[![MongoDB Architecture][MongoDBArchitecture]](https://www.mongodb.com/mongodb-architecture)
+> The architecture, and core concepts behind MongoDB
 
 #### Express.js
 Express.js is a web application framework for Node.js this framework comes with a robust set of HTTP utility's and middleware aimed at helping you develop stable, efficient, and predictable API's quickly, and easily. This framework takes the focus off of boilerplate code, and let's the developer focus on more important design aspects such as data flows.
 
-> Read the [Express.js documentation](http://expressjs.com/en/api.html)  in order to get a better understanding on how to responsibly manage, and direct data from one point to another in a secure, and efficient manner.
+Read the [Express.js documentation](http://expressjs.com/en/api.html)  in order to get a better understanding on how to responsibly manage, and direct data from one point to another in a secure, and efficient manner.
+
+![Express Middleware Pattern](http://image.slidesharecdn.com/introtonode-140914093424-phpapp01/95/intro-to-nodejs-14-638.jpg?cb=1410687757)
+
+> Above is a visual representation of the HTTP dataflow which gets filtered, altered, and or sanitized before it reaches the main task created by you.
 
 #### Angular2
-Angular2 is a frontend framework which aims to close the gap between native application and website. 
+Angular2 is a frontend framework which aims to close the gap between native application and website.
 
-> Read the [Angular2 documentation](https://angular.io/docs/ts/latest/) in order to get a better understanding on how to create a seamless user experience which feels more like a native app.
+Read the [Angular2 documentation](https://angular.io/docs/ts/latest/) in order to get a better understanding on how to create a seamless user experience which feels more like a native app.
+
+[![Angular2 Architecture][Angular2Architecture]](https://angular.io/docs/ts/latest/guide/architecture.html)
+
+> Angular2 emphasizes on modularity, which increases stability and ease of testing. This is accomplished by their eight main building blocks which are defined in the above infographic, click on the image to learn more.
 
 #### NodeJS
 Node.js is a javascript server that is runtime built and runs on [Chrome's V8 Javascript engine](https://developers.google.com/v8/)
@@ -283,10 +294,12 @@ or
 
 
 
-<!-- logo tags -->
+<!-- image references -->
 [MongoDB]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/mongo_logo_square.png?raw=true
+[MongoDBArchitecture]: https://www.mongodb.com/assets/images/products/nexus-architecture.png
 [ExpressJS]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/expressjs.png?raw=true
 [Angular2]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/angular2-logo.png?raw=true
+[Angular2Architecture]: https://angular.io/resources/images/devguide/architecture/overview2.png
 [NodeJS]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/nodejs-logo.png?raw=true
 [Redux]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/logo-redux.png?raw=true 
 [Immutable]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Immutable-logo.png?raw=true 
