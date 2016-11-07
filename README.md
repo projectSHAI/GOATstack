@@ -3,6 +3,11 @@
 > Version 1.0.0
 
 ___
+# Documentation Wiki
+
+  * [Dev-Tools](https://github.com/projectSHAI/GOAT-stack/wiki/Dev-Tools)
+  * [Gulp Tasks](https://github.com/projectSHAI/GOAT-stack/wiki/Gulp-Tasks)  
+  
 ###Table of Contents
 
 1. [What's new?](#whatsnew)
@@ -12,7 +17,6 @@ ___
 5. [Technologies used to build the GOAT stack](#allTech)
   * [Main Technologies](#tech)
   * [Integrated Libraries and Modules](#libs)
-6. [Documentation](#docs)
 7. [Required Technologies for your Development Environment](#reqs)
 8. [Quick Start](#quickstart)
   * [Windows](#windows)
@@ -196,12 +200,6 @@ __What it does:__
 
 __Why we use it:__
 
-
-<a name="docs"></a>
-# Documentation
-
-  * [Dev-Tools](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/dev-tools/dev-tools.md)
-  * [Gulp Tasks](https://github.com/projectSHAI/GOAT-stack/wiki/Gulp-Tasks)  
 
 <a name="reqs"></a>
 # Required Technologies for your Development Environment
