@@ -200,9 +200,8 @@ __Why we use it:__
 <a name="docs"></a>
 # Documentation
 
-  * [Server-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/server-side.md)
-  * [Client-Side](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/client-side.md)
-  * [Dev-Tools](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/dev-tools/dev-tools.md)  
+  * [Dev-Tools](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/dev-tools/dev-tools.md)
+  * [Gulp Tasks](https://github.com/projectSHAI/GOAT-stack/wiki/Gulp-Tasks)  
 
 <a name="reqs"></a>
 # Required Technologies for your Development Environment
