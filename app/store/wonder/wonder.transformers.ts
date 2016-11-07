@@ -1,6 +1,8 @@
 import { IWonder, IWonderItem, WonderRecord } from './wonder.types';
 import { List } from 'immutable';
 
+// functions to change the state of the data
+// either immutable -> mutable or mutable -> immutable
 export function deimmutifyWonder(state: IWonder): Object[] {
   return state.toJS();
 }

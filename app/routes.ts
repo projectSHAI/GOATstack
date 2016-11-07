@@ -13,11 +13,8 @@ export const appRoutes: Routes = [
         //path: the relative href queried by the client
         path: '',
         //component: the component which will be loaded into the view when the above path is queried by the client
-        component: HomeComponent,
-        //data: any metadata we wish to use when this view is loaded, can be used for SEO enhancement
-        data: {
-            title: 'Home'
-        }
+        component: HomeComponent
+        // You can add a data object with 'title', 'description', 'keywords', etc... for static seo
     },
     {
         path: 'profile',

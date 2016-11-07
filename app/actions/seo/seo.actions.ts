@@ -1,6 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, DOMRenderer } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
+////////////////////////////////////////////////////////////////////////
+// SEO Actions: used to get or change the title, icon link, meta tags
+//              in the heaa of the index.html
+////////////////////////////////////////////////////////////////////////
 @Injectable()
 export class SEOActions {
   private headElement: any;

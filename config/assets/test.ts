@@ -7,8 +7,5 @@ Used when process.env.NODE_ENV is equal to 'test'
 */
 
 export const testAssets = {
-  tests: {
-  	client: [],
-  	server: []
-  }
+  // Tests assets
 };

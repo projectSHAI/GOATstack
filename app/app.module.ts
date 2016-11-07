@@ -194,6 +194,7 @@ export class AppModule {
     private ngRedux: NgRedux<IAppState>,
     private devTool: DevToolsExtension) {
 
+    // configure the store here, this is where the enhancers are set
     this.ngRedux.configureStore(rootReducer, {},
       process.env.NODE_ENV === 'development' ? [createLogger({ collapsed: true })] : [],
       process.env.NODE_ENV === 'development' ? [...enhancers, devTool.enhancer()] : []);

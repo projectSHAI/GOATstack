@@ -242,7 +242,7 @@ export class Gulpfile {
       // Bring of back now
       'replace_main_dev',
       'replace_aot_pre'
-    ]
+    ];
   }
 
   @Task()
@@ -336,6 +336,9 @@ export class Gulpfile {
     ];
   }
 
+  ////////////////////////////////////////////////////////////////////////////////
+  // COMPRESS TASKS: Used to compress compiled files for space, and speed efficiency
+  ////////////////////////////////////////////////////////////////////////////////
   compressAsset(file) {
     console.log('\n Inserting ----> ' + chalk.green.bold(
       file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
@@ -435,6 +438,9 @@ export class Gulpfile {
     return del('tmp/**');
   }
 
+  ////////////////////////////////////////////////////////////////////////////////
+  // NODEMON TASKS: Used to start the server for dev and prod
+  ////////////////////////////////////////////////////////////////////////////////
   // Nodemon task
   @Task()
   nodemon() {
@@ -454,6 +460,9 @@ export class Gulpfile {
     });
   }
 
+  ////////////////////////////////////////////////////////////////////////////////
+  // TESTING TASKS: Used to test the server, client, and e2e
+  ////////////////////////////////////////////////////////////////////////////////
   @SequenceTask()
   test_server() {
     return ['server_jasmine_unit', 'server_jasmine_integration'];
@@ -494,6 +503,10 @@ export class Gulpfile {
       .pipe(shell(['npm run e2e']));
   }
 
+  ////////////////////////////////////////////////////////////////////////////////
+  // WATCH TASK: Used for dev environment to watch for file changes to update the 
+  //             running application (single file compilation)
+  ////////////////////////////////////////////////////////////////////////////////
   // Watch Files For Changes
   @Task()
   watch() {
@@ -524,6 +537,9 @@ export class Gulpfile {
     watch(['dist/app/systemjs.config.js'], plugins.livereload.changed);
   }
 
+  ////////////////////////////////////////////////////////////////////////////////
+  // LINTING TASKS: Used to lint the projects SCSS and TS files before building
+  ////////////////////////////////////////////////////////////////////////////////
   // SASS linting task
   @Task()
   scsslint(done) {
@@ -579,7 +595,9 @@ export class Gulpfile {
     done();
   }
 
-  //start mongo db for development mode
+  ////////////////////////////////////////////////////////////////////////////////
+  // MONGO TASKS: Used to start mongod as a child process in dev mode
+  ////////////////////////////////////////////////////////////////////////////////
   @Task()
   mongod_start(done, cb) {
     exec('mongod --dbpath=/data', function(err, stdout, stderr) {
@@ -590,6 +608,14 @@ export class Gulpfile {
     done();
   }
 
+  ////////////////////////////////////////////////////////////////////////////////
+  // GULP TASKS: Tasks used to execute project initialization, testing, etc...
+  //     gulp             ->         start project compilation in dev environment
+  //     gulp prod        ->         start the poject compilation in prod environment
+  //     gulp build:prod  ->         only build the project in production mode (not run)
+  //     gulp test        ->         start project compilaiton and test server and client
+  //     gulp test:e2e    ->         start project compilation and test e2e
+  ////////////////////////////////////////////////////////////////////////////////
   // Run the project in development mode
   @SequenceTask()
   default() {

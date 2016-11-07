@@ -3,7 +3,9 @@ import { IUser } from './user.types';
 import { reimmutifyUser } from './user.transformers';
 import { INITIAL_STATE } from './user.initial-state';
 
+// Define the reducer that will initiate state changes for user
 export function userReducer(state: IUser = INITIAL_STATE, action: any) {
+  // will determine proper state change based off the type
   switch (action.type) {
     case UserActions.LOGIN_USER:
     case UserActions.REGISTER_USER:

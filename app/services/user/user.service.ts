@@ -35,7 +35,9 @@ export class UserService {
     return Observable.throw(errMsg.message);
   }
 
-  // Public functions that components may call
+  // This is called when there is a cookie OAuth token
+  // present in the browser so the user will automatically
+  // sign in
   getMe(): Observable<any> {
     return this.http.get(this.userUrl + '/me')
       .map(res => res.json())

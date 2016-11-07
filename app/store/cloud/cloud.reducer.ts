@@ -2,6 +2,8 @@ import { CloudActions } from '../../actions/cloud/cloud.actions';
 import { ICloudStyle, IAnimaArray } from './cloud.types';
 import { STYLE_INITIAL_STATE, ANIMA_INITIAL_STATE } from './cloud.initial-state';
 
+// Since cloud actions requires two of the app attributes, bunlde both reducers here
+
 export function cloudReducer(state: ICloudStyle = STYLE_INITIAL_STATE, action: any) {
   switch (action.type) {
     case CloudActions.CHANGE_STYLES:

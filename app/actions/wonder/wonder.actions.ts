@@ -6,6 +6,10 @@ import { IAppState } from '../../store/index';
 import { WonderService } from '../../services/wonder/wonder.service';
 import { ErrorHandlerActions } from '../error/errorHandler.actions';
 
+/////////////////////////////////////////////////////////////////////
+// Wonder Actions: used to call dispatches to change the state of the
+//                 wonder object in the store
+/////////////////////////////////////////////////////////////////////
 @Injectable()
 export class WonderActions {
   constructor(

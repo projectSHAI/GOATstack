@@ -82,6 +82,9 @@ function init() {
   let environmentAssets;
   let environmentConfig;
 
+  // Depending on the environment we will merge
+  // the default assets and config to corresponding
+  // environment files
   if (process.env.NODE_ENV === 'development') {
     environmentAssets = devAssets;
     environmentConfig = devEnv;

@@ -1,3 +1,12 @@
+////////////////////////////////////////////////////////////////////////
+/* SystemJS server-side modules file
+    This file works in conjunction with index.js to feed approapriate
+    resources to specific imports in the server file
+
+    This is relatively the same as "map" but deals with the
+    node file extention format compatability issues
+*/
+////////////////////////////////////////////////////////////////////////
 'use strict';
 
 var mongoose = require('mongoose');

@@ -18,6 +18,7 @@ export class WonderService {
     return Observable.throw(errMsg);
   }
 
+  // get all wonders and map the object to the get a json
   getWonders(): Observable<any> {
     return this.http.get(this.url)
       .map(res => res.json())

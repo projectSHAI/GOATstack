@@ -1,4 +1,4 @@
-
+// importing modules the es6 way
 import {routes} from '../../server/routes';
 import {config} from '../config';
 let con = config();
@@ -7,6 +7,7 @@ import * as mongoose from 'mongoose';
 import * as path from 'path';
 import * as passport from 'passport';
 
+// Some modules still need to be imported via node
 let express = require('express'),
   chalk = require('chalk'),
   morgan = require('morgan'),
@@ -16,6 +17,9 @@ let express = require('express'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session);
 
+// Using morgan to monatore express request traffic
+// token method intercepts logs before they happen
+// you can use this to augment the log
 morgan.token('method', function(req, res) {
   let method = req.method;
   switch (method) {
@@ -26,10 +30,12 @@ morgan.token('method', function(req, res) {
   }
 });
 
+// Used to customize the look of the log
 morgan.token('url', function(req, res) {
   return chalk.magenta(req.originalUrl);
 });
 
+// function to initialize the express app
 function init(app) {
 
   //aditional app Initializations

@@ -4,6 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../../store/index';
 
+//////////////////////////////////////////////////////////////////////
+// Cloud Actions: Used to call dispatches to the cloudStyles and
+//				  animaArray objects in the store
+//////////////////////////////////////////////////////////////////////
 @Injectable()
 export class CloudActions {
   constructor(private ngRedux: NgRedux<IAppState>) { }

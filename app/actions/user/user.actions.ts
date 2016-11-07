@@ -8,6 +8,10 @@ import { UserService } from '../../services/user/user.service';
 import { ErrorHandlerActions } from '../error/errorHandler.actions';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
+//////////////////////////////////////////////////////////////////////
+// User Actions: used to call dispatches to change the user object 
+//               in the store
+//////////////////////////////////////////////////////////////////////
 @Injectable()
 export class UserActions {
   constructor(

@@ -6,6 +6,10 @@ import { IAppState } from '../../store/index';
 
 import { UserService } from '../../services/user/user.service';
 
+/////////////////////////////////////////////////////////////////////////
+// UserForm Actions: used to call dispatches to change the userForm
+//                   object in the store
+/////////////////////////////////////////////////////////////////////////
 @Injectable()
 export class UserFormActions {
   private userSigning: boolean = false;

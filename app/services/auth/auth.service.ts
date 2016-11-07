@@ -5,6 +5,9 @@ import { Observable } from 'rxjs/Rx';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import * as _ from 'lodash';
 
+// Extending the Http class so connect a OAuth token if present in the cookies
+// When the request is recieved on the server authenticated endpoints will 
+// have varification that give them the ability to execute
 @Injectable()
 export class HttpIntercept extends Http {
     constructor(backend: ConnectionBackend, defaultOptions: RequestOptions) {
@@ -31,6 +34,7 @@ export class HttpIntercept extends Http {
         return super.delete(url, this.getRequestOptionArgs(false, options));
     }
 
+    // appends the Bearer token to the header
     getRequestOptionArgs(sendJSON: boolean, options?: RequestOptionsArgs): RequestOptionsArgs {
         let token = Cookie.get('token');
 

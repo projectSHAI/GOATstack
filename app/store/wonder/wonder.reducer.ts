@@ -3,7 +3,9 @@ import { IWonder } from './wonder.types';
 import { reimmutifyWonder } from './wonder.transformers';
 import { INITIAL_STATE } from './wonder.initial-state';
 
+// Define the reducer that will initiate state change for the wonder object
 export function wonderReducer(state: IWonder = INITIAL_STATE, action: any) {
+  // will determine the proper state change based off the type
   switch (action.type) {
     case WonderActions.INITIALIZE_WONDERS:
       return state.mergeWith((prev, next) => next, reimmutifyWonder(action.payload));
