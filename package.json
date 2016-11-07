@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A MEAN stack boilerplate using Angular 2",
   "engines": {
-    "node": "6.8.1"
+    "node": "6.9.1"
   },
   "scripts": {
     "start": "node dist/index",
@@ -43,7 +43,6 @@
     "core-js": "^2.4.1",
     "crypto": "0.0.3",
     "ejs": "2.5.2",
-    "errorhandler": "^1.4.3",
     "express": "^4.14.0",
     "express-jwt": "^5.0.0",
     "express-session": "^1.14.1",

@@ -11,10 +11,10 @@ export const prodEnv = {
   // Binding to 127.0.0.1 is safer in production.
   host: process.env.HOST || '0.0.0.0',
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/dreams-prod',
+    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://ds145997.mlab.com:45997/test_prod',
     options: {
-      user: '',
-      pass: ''
+      user: 'testUser',
+      pass: 'flight1855'
     },
     // Enable mongoose debug mode
     debug: process.env.MONGODB_DEBUG || false

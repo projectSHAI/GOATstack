@@ -5,6 +5,12 @@ These configuration settings get called no matter what Node's process.env.NODE_E
 */
 
 export const defaultConfig = {
+  app: {
+    title: 'GOAT-stack',
+    favicon: 'assets/dywlogo.png',
+    description: 'The Greatest of All Time Stack!',
+    keywords: 'redux, node, mongo, express, angular2, ng2, jasmine, karma, protractor'
+  },
   // Change to use https
   https_secure: false,
   // You will need to generate a self signed ssl certificate

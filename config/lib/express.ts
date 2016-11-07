@@ -11,7 +11,6 @@ let express = require('express'),
   chalk = require('chalk'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
-  errorHandler = require('errorHandler'),
   methodOverride = require('method-override'),
   cookieParser = require('cookie-parser'),
   session = require('express-session'),
@@ -82,8 +81,6 @@ function init(app) {
   app.use('*', express.static('node_modules'));
   app.use('*', express.static('custom_modules'));
   app.use('*', express.static('dist/app'));
-
-  app.use(errorHandler());
 
   //fire's a get function when any directory is queried (* is a wildcard) by the client, sends back the index.html as a response. Angular then does the proper routing on client side
   app.get('*', function(req, res) {

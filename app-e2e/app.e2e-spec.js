@@ -14,6 +14,12 @@ describe('GOAT-stack E2E Tests', function () {
    * Simply tests for the text of the header and logout
    * SVG object
    */
+  describe('SEO E2E Tests', function () {
+    it('should contain correct title tag', function () {
+      expect(element(by.tagName('title')).getText()).toEqual('GOAT-stack');
+    });
+  });
+
   describe('Header E2E Tests', function () {
 
     var title = 'GOAT Stack';
