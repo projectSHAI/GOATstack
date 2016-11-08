@@ -51,9 +51,9 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
         // For more information look inside the socketio.service
         this.socket.syncUpdates('Wonder', wonders, ['CHANGE_WONDERS'], null, (item, index) => {
 
-          // before the socket update the wonders store List fade out the
+          // before the socket update the wonders store List, fade out the
           // cloud that will be changing with the upcoming wonder so the user
-          // does not see the cloud change, but only the fade
+          // does not see the text change, only the fade
           TweenMax.to(this.wonderSky.nativeElement.children[index], 1, {
             opacity: 0,
             callbackScope: this,
