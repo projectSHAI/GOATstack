@@ -24,48 +24,83 @@ export class UserActions {
     private errorHandler: ErrorHandlerActions,
     private userService: UserService) { }
 
+  static FETCH_USER: string = 'FETCH_USER';
+  static INVALIDATE_USER: string = 'INVALIDATE_USER';
   static LOGIN_USER: string = 'LOGIN_USER';
   static LOGOUT_USER: string = 'LOGOUT_USER';
   static REGISTER_USER: string = 'REGISTER_USER';
 
   getMe() {
+    // We will only execute if there's a token present
     if (Cookie.get('token'))
+      // First change the state to fetching
+      this.ngRedux.dispatch({ type: UserActions.FETCH_USER });
+      // subscribe to the service and wait for a response
       this.userService.getMe().subscribe(user => {
+        // once a response comes change the state to reflect user info
         this.ngRedux.dispatch({
           type: UserActions.LOGIN_USER,
           payload: user
         });
-      });
+      }, err => this.ngRedux.dispatch({  // if an error happens change state to reflect
+        type: UserActions.INVALIDATE_USER,
+        payload: err // pass in the json object made in userService.handleError
+      }));
   }
 
   login(lf: FormGroup) {
+    // only if the login form is filled
     if (lf.valid) {
+      // First change the state to fetching
+      this.ngRedux.dispatch({ type: UserActions.FETCH_USER });
+      // subscribe to the service and wait for a response
       this.userService.login(lf.value.login_email, lf.value.login_password)
         .subscribe(user => {
+          // once a response comes change the state to reflect user info
           this.ngRedux.dispatch({
             type: UserActions.LOGIN_USER,
             payload: user
           });
-        }, err => this.errorHandler.showError(err));
+        }, err => {
+          this.ngRedux.dispatch({ // if an error happens change state to reflect
+            type: UserActions.INVALIDATE_USER,
+            payload: err // pass in the json object made in userService.handleError
+          });
+          this.errorHandler.showError(err.message);
+        });
     }
   }
 
   logout() {
+    // simply delete the cached token
     Cookie.delete('token');
+    // and delete the user object in the state
     this.ngRedux.dispatch({ type: UserActions.LOGOUT_USER });
   }
 
   register(rf: FormGroup) {
+    // only if the form is filled and passwords equal the same
     if (rf.valid && (rf.value.signup_password === rf.value.signup_re_password)) {
+      // First change the state to fetching
+      this.ngRedux.dispatch({ type: UserActions.FETCH_USER });
+      // subscribe to the service and wait for a response
       this.userService.signup(rf.value.signup_username, rf.value.signup_email, rf.value.signup_password)
         .subscribe(user => {
+          // once a response comes change the state to reflect user info
           this.ngRedux.dispatch({
             type: UserActions.REGISTER_USER,
             payload: user
           });
-        }, err => this.errorHandler.showError(err));
+        }, err => { // if an error happens change state to reflect
+          this.ngRedux.dispatch({ 
+            type: UserActions.INVALIDATE_USER,
+            payload: err // pass in the json object made in userService.handleError
+          });
+          this.errorHandler.showError(err.message);
+        });
     }
     else if (rf.value.signup_password !== rf.value.signup_re_password)
+      // if the passwords are not the same, simply display the message 
       this.errorHandler.showError('Inputted passwords are not the same!');
   }
 

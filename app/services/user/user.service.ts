@@ -24,6 +24,7 @@ export class UserService {
     // We'd also dig deeper into the error to get a better message
     let body = JSON.parse(error._body);
     let errMsg;
+    console.log(error);
 
     if (body.errors) {
       errMsg = body.errors.userName ? body.errors.userName : body.errors.email;
@@ -32,7 +33,12 @@ export class UserService {
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     }
 
-    return Observable.throw(errMsg.message);
+    return Observable.throw({
+      status: error.status,
+      statusText: error.statusText,
+      url: error.url,
+      message: errMsg.message
+    });
   }
 
   // This is called when there is a cookie OAuth token

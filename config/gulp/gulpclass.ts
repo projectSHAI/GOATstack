@@ -505,6 +505,11 @@ export class Gulpfile {
     return gulp.src('')
       .pipe(shell(['npm run e2e']));
   }
+  @Task()
+  protractor_prod(done) {
+    return gulp.src('')
+      .pipe(shell(['npm run e2e_prod']));
+  }
 
   ////////////////////////////////////////////////////////////////////////////////
   // WATCH TASK: Used for dev environment to watch for file changes to update the
@@ -673,6 +678,17 @@ export class Gulpfile {
       'build_clean',
       'build_project',
       'protractor',
+    ];
+  }
+  // Run all e2e tests in production
+  @SequenceTask('test:e2e:prod')
+  test_e2e_prod() {
+    return [
+      'env_test',
+      'mongod_start',
+      'build_clean',
+      'build_project_prod',
+      'protractor_prod',
     ];
   }
 }

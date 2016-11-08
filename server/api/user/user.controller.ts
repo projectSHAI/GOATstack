@@ -123,7 +123,7 @@ export function me(req, res, next) {
   }, '-salt -password').exec()
     .then(user => { // don't ever give out the password or salt
       if (!user) {
-        return res.status(401).end();
+        return res.status(401).json({ message: 'User does not exist' });
       }
 
       if (token) res.json({ token, user });

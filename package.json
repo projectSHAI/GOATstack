@@ -11,6 +11,7 @@
     "karma": "karma start config/sys/karma.conf.js",
     "pree2e": "npm run webdriver:update",
     "e2e": "concurrently \"node dist/server/server.js -s\" \"protractor config/env/test/protractor.config.js\" --kill-others --success first",
+    "e2e_prod": "concurrently \"node dist/index.js -s\" \"protractor config/env/test/protractor.config.js\" --kill-others --success first",
     "webdriver:update": "webdriver-manager update"
   },
   "dependencies": {
