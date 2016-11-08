@@ -59,8 +59,9 @@ import { FooterComponent }            from './components/footer/footer.component
 import { Four0FourComponent }         from './components/404/four0four.component';
 import { UserProfileComponent }       from './components/user-profile/user-profile.component';
 import { SkyComponent }               from './components/sky/sky.component';
+import { WhaleComponent }             from './components/whale/whale.component';
 import { MountainRangeComponent }     from './components/mountain-range/mountain-range.component';
-import { MountainGoatComponent }              from './components/mountain-goat/mountain-goat.component';
+import { MountainGoatComponent }      from './components/mountain-goat/mountain-goat.component';
 import { CloudGeneratorComponent }    from './components/cloud-generator/cloud-generator.component';
 
 //Angular and 3rd party components
@@ -160,6 +161,7 @@ NgModule
     AppComponent,
     NavbarComponent,
     SkyComponent,
+    WhaleComponent,
     MountainRangeComponent,
     MountainGoatComponent,
     CloudGeneratorComponent,
