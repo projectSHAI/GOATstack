@@ -66,7 +66,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // detach socket listening when component is destroyed
+    // detach socket listener when component is destroyed
     this.socket.unsyncUpdates('Wonder');
   }
 
@@ -77,8 +77,8 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
 
   private speed(pos: number, min: number, max: number, factor: number): number {
     // find the speed by dividing the percentage left till off the screen
-    // by the amount of %/second you want all clound to travel at
-    // and you will get the second necessary to travel the remaining
+    // by the amount of %/second you want all clouds to travel at
+    // and you will get the seconds necessary to travel the remaining
     // distance. Add a random number to get a virtual speed diff 
     const speed = (100 - pos + this.rndInt(min, max))/factor;
     // make sure the time doesn't fall bellow a minimum threshold
