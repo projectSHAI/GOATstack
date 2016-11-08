@@ -34,14 +34,14 @@ ___
 
  December 1st - This is launch day, the GOAT Stack is finally closing in on release!
  
- The final items left on our todo list are polishing items, these incluede:
+ The final items left on our todo list are polishing items, which include:
  - ~~Implementation of AOT(Ahead-of-Time) rendering.~~
  - Finishing the Demonstration webapp.
- - Creating thourough, and well structured documentation.
+ - Creating thorough, and well structured documentation.
  - Finishing our [Facebook page](https://www.facebook.com/goatstack/).
  - Finishing our [Reddit page](https://www.reddit.com/r/GOATStack/).
  - ~~Making sure SEO and webcrawlers are optimized.~~
- - making sure all the Goat's are well fed and happy!
+ - Making sure all the Goats are well fed and happy!
  
 <a name="followtheGOAT"></a>
 #Follow the GOAT
@@ -52,7 +52,7 @@ Follow us on [Facebook page](https://www.facebook.com/goatstack/) to receive the
 
 # [![Facebook Page][FacebookBanner]](https://www.facebook.com/goatstack/)
 
-If you don't end up not liking the GOAT Stack, that's ok too! Please drop by our [Reddit page](https://www.reddit.com/r/GOATStack/) and tell us why! We're always interested in new points of view, even the greatest can get better! 
+If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Reddit page](https://www.reddit.com/r/GOATStack/) and tell us why! We're always interested in new points of view, even the greatest can get better! 
 # [![Reddit Page][RedditBanner]](https://www.reddit.com/r/GOATStack/)
 
 
@@ -114,7 +114,7 @@ ___
 
 [![MongoDB Logo][MongoDB]](https://www.mongodb.com/)[![ExpressJS Logo][ExpressJS]](http://expressjs.com/)[![Angular2 Logo][Angular2]](https://angular.io/)[![NodeJS Logo][NodeJS]](https://nodejs.org/en/)
 
-[MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps with scalability, and efficiency in mind.
+[MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [Angular2](https://angular.io/), and [Node.js](http://www.nodejs.org/) are the primary technologies utilized in this purpose built stack. Inspired by [MeanJS](https://github.com/meanjs/mean) and [AngularFullstack](https://github.com/angular-fullstack/generator-angular-fullstack), GOAT has been built to give you an organized and efficient way to start developing secure MEAN web apps with scalability and efficiency in mind.
 
 ### MongoDB
 MongoDB is an open sourced database which uses a flexible document data model, similar to JSON. Instead of using tables and rows, MongoDB uses key-value pairs to achieve fast, and efficient querying capabilities. This flexibility allows development teams to evolve the data model rapidly as their application requirements change. 
@@ -127,12 +127,12 @@ Read the [MongoDB documentaion](https://docs.mongodb.com/) in order to get a bet
 > The architecture, and core concepts behind MongoDB
 
 ### Express.js
-Express.js is a web application framework for Node.js this framework comes with a robust set of HTTP utility's and middleware aimed at helping you develop stable, efficient, and predictable API's quickly, and easily. This framework takes the focus off of boilerplate code, and let's the developer focus on more important design aspects such as data flows.
+Express.js is a web application framework for NodeJS. This framework comes with a robust set of HTTP utility's and middleware aimed at helping you develop stable, efficient, and predictable API's quickly and easily. This framework takes the focus off of boilerplate code, and let's the developer focus on more important design aspects such as data flows.
 
-Read the [Express.js documentation](http://expressjs.com/en/api.html)  in order to get a better understanding on how to responsibly manage, and direct data from one point to another in a secure, and efficient manner.
+Read the [Express.js documentation](http://expressjs.com/en/api.html)  in order to get a better understanding on how to responsibly manage and direct data from one point to another in a secure and efficient manner.
 
 <img alt="Express Middleware Pattern" src="http://image.slidesharecdn.com/introtonode-140914093424-phpapp01/95/intro-to-nodejs-14-638.jpg?cb=1410687757" width="100%">
-> Above is a visual representation of the HTTP dataflow which gets filtered, altered, and or sanitized before it reaches the main task created by you.
+> Above is a visual representation of the HTTP dataflow which gets filtered, altered, and/or sanitized before it reaches the main task created by you.
 
 ### Angular2
 Angular2 is a frontend framework which aims to close the gap between native application and website.
@@ -142,14 +142,14 @@ Read the [Angular2 documentation](https://angular.io/docs/ts/latest/) in order t
 <a href="https://angular.io/docs/ts/latest/guide/architecture.html">
   <img alt="Angular2 Architecture" src="https://angular.io/resources/images/devguide/architecture/overview2.png" width="100%">
 </a>
-> Angular2 emphasizes on modularity, which increases stability and ease of testing. This is accomplished by their eight main building blocks which are defined in the above infographic, click on the image to learn more.
+> Angular2 emphasizes on modularity, which increases stability and ease of testing. This is accomplished by their eight main building blocks which are defined in the above infographic; click on the image to learn more.
 
 ### NodeJS
 Node.js is a javascript server that is runtime built and runs on [Chrome's V8 Javascript engine](https://developers.google.com/v8/)
 
 We chose Node.js for two reasons:
 
-1. Node.js uses something called the event-driven model, it is a non-blocking I/O model, which is depicted below.
+1. Node.js uses something called the event-driven model; it is a non-blocking I/O model, which is depicted below.
 2. Node.js uses [npm](https://www.npmjs.com/), which is the largest package ecosystem in the world. This means there are countless open sourced libraries your team can capitaliize on to accomplish your goals and realize your visions.
 
   <img alt="The EventDriven model" src="http://image.slidesharecdn.com/nodejsslideshare-121104022408-phpapp01/95/nodejs-event-driven-concurrency-for-web-applications-51-638.jpg?cb=1351996088" width="100%">
