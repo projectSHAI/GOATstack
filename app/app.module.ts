@@ -60,7 +60,7 @@ import { Four0FourComponent }         from './components/404/four0four.component
 import { UserProfileComponent }       from './components/user-profile/user-profile.component';
 import { SkyComponent }               from './components/sky/sky.component';
 import { MountainRangeComponent }     from './components/mountain-range/mountain-range.component';
-import { GOATComponent }              from './components/GOAT/GOAT.component';
+import { MountainGoatComponent }              from './components/mountain-goat/mountain-goat.component';
 import { CloudGeneratorComponent }    from './components/cloud-generator/cloud-generator.component';
 
 //Angular and 3rd party components
@@ -161,7 +161,7 @@ NgModule
     NavbarComponent,
     SkyComponent,
     MountainRangeComponent,
-    GOATComponent,
+    MountainGoatComponent,
     CloudGeneratorComponent,
     NgForHookPipe
   ],

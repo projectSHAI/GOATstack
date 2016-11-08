@@ -291,11 +291,10 @@ export class Gulpfile {
         file.path.replace('server', 'dist\\server') : file.path.replace('config', 'dist\\config');
 
       file.path = file.path.substring(0, file.path.lastIndexOf('\\'));
-
-      return fName !== 'app.module.ts' ? tsResult.js.pipe(gulp.dest(path.resolve(file.path))) :
+      return fName !== 'app.module.ts' ? tsResult.js.pipe(gulp.dest(file.path)) :
         tsResult.js.pipe(replace('process.env.NODE_ENV', "'development'"))
           .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
-          .pipe(gulp.dest(path.resolve(file.path)));
+          .pipe(gulp.dest(file.path));
     } else {
       // if file was the index.html
       console.log('\n Moving ----> ' + chalk.green.bold(fName + '\n'));
@@ -505,7 +504,7 @@ export class Gulpfile {
   }
 
   ////////////////////////////////////////////////////////////////////////////////
-  // WATCH TASK: Used for dev environment to watch for file changes to update the 
+  // WATCH TASK: Used for dev environment to watch for file changes to update the
   //             running application (single file compilation)
   ////////////////////////////////////////////////////////////////////////////////
   // Watch Files For Changes
