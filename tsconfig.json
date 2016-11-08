@@ -21,9 +21,6 @@
     "exclude": [
       "./dist",
       "./node_modules",
-      "./custom_modules",
-      "./scripts",
-      "./config/gulp",
-      "./app/main-prod.ts"
+      "./config/gulp"
     ]
 }

@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 
 import { WonderActions } from '../../actions/wonder/wonder.actions';
+import { CloudActions } from '../../actions/cloud/cloud.actions';
 import { WonderService } from '../../services/wonder/wonder.service';
 import { ClockService } from '../../services/clock/clock.service';
 import { SocketService } from '../../services/socketio/socketio.service';
-import { CloudActions } from '../../actions/cloud/cloud.actions';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
@@ -51,6 +51,9 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
         // For more information look inside the socketio.service
         this.socket.syncUpdates('Wonder', wonders, ['CHANGE_WONDERS'], null, (item, index) => {
 
+          // before the socket update the wonders store List fade out the
+          // cloud that will be changing with the upcoming wonder so the user
+          // does not see the cloud change, but only the fade
           TweenMax.to(this.wonderSky.nativeElement.children[index], 1, {
             opacity: 0,
             callbackScope: this,
@@ -67,6 +70,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
     this.socket.unsyncUpdates('Wonder');
   }
 
+  // Called when cloud reach the end of the screen
   private loopAnima(index: number): void {
     this.animaArray.get(index).play('loop');
   }
@@ -79,6 +83,10 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
     const speed = (100 - pos + this.rndInt(min, max))/factor;
     // make sure the time doesn't fall bellow a minimum threshold
     return speed > 8 ? speed : 8;
+  }
+
+  private rndInt(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   cloudAnima(value: string, el: ElementRef, object: any, index: number): string {
@@ -116,6 +124,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
   }
 
   cloudType(wonderLength: number, index: number): void {
+    // every cloud size has three types
     let randomInt = this.rndInt(1, 3);
 
     if (wonderLength <= 4) {
@@ -158,10 +167,6 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
       }
     }
 
-  }
-
-  rndInt(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   timeOfDayCss() {
