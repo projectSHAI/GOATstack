@@ -507,7 +507,7 @@ export class Gulpfile {
   }
 
   ////////////////////////////////////////////////////////////////////////////////
-  // WATCH TASK: Used for dev environment to watch for file changes to update the 
+  // WATCH TASK: Used for dev environment to watch for file changes to update the
   //             running application (single file compilation)
   ////////////////////////////////////////////////////////////////////////////////
   // Watch Files For Changes

@@ -2,10 +2,9 @@
     position: relative;
     display: block;
     width: 100%;
-    overflow: hidden;
 }
 
-the-goat {
+mountain-goat {
     position: absolute;
     width: 200px;
     height: 200px;
@@ -18,7 +17,6 @@ mountain-range {
     bottom: -400px;
     left: 0;
     right: 0;
-    display: none;
 }
 
 mountain-range img {
