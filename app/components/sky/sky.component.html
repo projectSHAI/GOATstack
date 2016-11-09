@@ -1,4 +1,7 @@
+<img src="assets/sky.svg" />
+
 <div #sunMoon class="sun-moon" [style.box-shadow]="sunMoonGlow" [style.transform]="safeTransform" [style.borderColor]="safeRGBA" [style.left.px]="centerX" [style.top.px]="centerY">
   <h2 class="clock">{{clock | async | date: 'mediumTime'}}</h2>
 </div>
+
 <cloud-generator></cloud-generator>

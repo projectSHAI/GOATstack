@@ -29,6 +29,7 @@ export class SkyComponent {
   sunMoonY: number;
   sunMoonAngle: number;
   radius: number;
+  skyColor: "red";
 
 
   constructor(public clockService: ClockService, private sanitizer: DomSanitizer, private hostRef: ElementRef) {

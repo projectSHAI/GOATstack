@@ -6,6 +6,4 @@ import{ Component } from '@angular/core';
   styleUrls: ['./whale.component.scss']
 })
 
-export class WhaleComponent {
-  
-}
+export class WhaleComponent { }
