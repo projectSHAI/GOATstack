@@ -9,8 +9,10 @@ import { ErrorHandlerActions } from '../error/errorHandler.actions';
 /////////////////////////////////////////////////////////////////////
 /* Wonder Actions: used to call dispatches to change the state of the
                    wonder object in the store
-
+    INVALIDATE_WONDER   ->   if api error give error information
+    FETCH_WONDER        ->   indicate when wonders are being fetched
     INITIALIZE_WONDERS  ->   initialize the wonders List with json array
+    SEND_WONDER         ->   indicate when a wonder has been sent
     CHANGE_WONDERS      ->   update wonder list at index with wonder obj
 */
 /////////////////////////////////////////////////////////////////////

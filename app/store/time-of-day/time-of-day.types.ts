@@ -4,7 +4,7 @@ import { Map } from 'immutable';
 // the corresponding reducer will need
 // to manipulate (immutably)
 export interface ITimeOfDayItems {
-  styles: any
+  styles: any;
 };
 
 // Export the type so the reducer and store will understand
