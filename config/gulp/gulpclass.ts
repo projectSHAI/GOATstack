@@ -267,34 +267,36 @@ export class Gulpfile {
 
   // Transpile single TS file
   buildFile(file: any) {
+    let relativePath = file.relative.concat(''); // make copy of relative path
     const tsProject = ts.createProject('tsconfig.json');
 
-    const ht = file.path.includes('html');
-    const sc = file.path.includes('scss');
-    const app = file.path.includes('app');
-    const ser = file.path.includes('server');
+    const ht = relativePath.includes('html');
+    const sc = relativePath.includes('scss');
+    const app = relativePath.includes('app');
+    const ser = relativePath.includes('server');
 
-    let fName = file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length);
+    let fName = relativePath.substring(relativePath.lastIndexOf('\\') + 1, relativePath.length);
 
     if (fName !== 'index.html') {
-      file.path = ht ? file.path.replace('html', 'ts') : sc ? file.path.replace('scss', 'ts') : file.path;
+      relativePath = ht ? relativePath.replace('html', 'ts') : sc ? relativePath.replace('scss', 'ts') : relativePath;
       fName = ht ? fName.replace('html', 'ts') : sc ? fName.replace('scss', 'ts') : fName;
 
       console.log('\n Compiling ----> ' + chalk.green.bold(fName + '\n'));
 
-      const tsResult = gulp.src(file.path)
+      const tsResult = gulp.src(relativePath)
         .pipe(embedTemplates())
         .pipe(embedSass())
         .pipe(tsProject());
 
-      file.path = app ? file.path.replace('app', 'dist\\app') : ser ?
-        file.path.replace('server', 'dist\\server') : file.path.replace('config', 'dist\\config');
+      relativePath = app ? relativePath.replace('app', 'dist\\app') : ser ?
+        relativePath.replace('server', 'dist\\server') : relativePath.replace('config', 'dist\\config');
 
-      file.path = file.path.substring(0, file.path.lastIndexOf('\\'));
-      return fName !== 'app.module.ts' ? tsResult.js.pipe(gulp.dest(file.path)) :
+      relativePath = relativePath.substring(0, relativePath.lastIndexOf('\\'));
+
+      return fName !== 'app.module.ts' ? tsResult.js.pipe(gulp.dest(relativePath)) :
         tsResult.js.pipe(replace('process.env.NODE_ENV', "'development'"))
           .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
-          .pipe(gulp.dest(file.path));
+          .pipe(gulp.dest(relativePath));
     } else {
       // if file was the index.html
       console.log('\n Moving ----> ' + chalk.green.bold(fName + '\n'));
@@ -340,11 +342,12 @@ export class Gulpfile {
   // COMPRESS TASKS: Used to compress compiled files for space, and speed efficiency
   ////////////////////////////////////////////////////////////////////////////////
   compressAsset(file) {
+    const relativePath = file.relative.concat('');
     console.log('\n Inserting ----> ' + chalk.green.bold(
-      file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
+      relativePath.substring(relativePath.lastIndexOf('\\') + 1, relativePath.length)) +
       '\n');
 
-    return imagemin([file.path], 'dist/app/assets', {
+    return imagemin([relativePath], 'dist/app/assets', {
       plugins: [
         imageminJPEGOptim(),
         imageminOptiPNG(),
@@ -352,14 +355,14 @@ export class Gulpfile {
       ]
     });
   }
-  deleteAsset(file) {
-    file.path = file.path.replace('app', 'dist\\app');
+  deleteAsset(file) {   
+    const relativePath = file.relative.concat('').replace('app', 'dist\\app'); // make copy of relative path
 
     console.log('\n Deleting ----> ' + chalk.green.bold(
-      file.path.substring(file.path.lastIndexOf('\\') + 1, file.path.length)) +
+      relativePath.substring(relativePath.lastIndexOf('\\') + 1, relativePath.length)) +
       '\n');
 
-    del(file.path);
+    del(relativePath);
   }
 
   @SequenceTask()
@@ -502,6 +505,11 @@ export class Gulpfile {
     return gulp.src('')
       .pipe(shell(['npm run e2e']));
   }
+  @Task()
+  protractor_prod(done) {
+    return gulp.src('')
+      .pipe(shell(['npm run e2e_prod']));
+  }
 
   ////////////////////////////////////////////////////////////////////////////////
   // WATCH TASK: Used for dev environment to watch for file changes to update the
@@ -565,7 +573,7 @@ export class Gulpfile {
         }
       }))
       .pipe(sassLint.format())
-      .pipe(sassLint.failOnError())
+      .pipe(sassLint.failOnError());
   }
   // Typescript linting task
   @Task()
@@ -670,6 +678,17 @@ export class Gulpfile {
       'build_clean',
       'build_project',
       'protractor',
+    ];
+  }
+  // Run all e2e tests in production
+  @SequenceTask('test:e2e:prod')
+  test_e2e_prod() {
+    return [
+      'env_test',
+      'mongod_start',
+      'build_clean',
+      'build_project_prod',
+      'protractor_prod',
     ];
   }
 }

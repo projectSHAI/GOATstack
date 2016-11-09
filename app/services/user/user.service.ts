@@ -22,7 +22,7 @@ export class UserService {
   private handleError(error: any) {
     // In a real world app, we might use a remote logging infrastructure
     // We'd also dig deeper into the error to get a better message
-    let body = JSON.parse(error._body);
+    const body = JSON.parse(error._body);
     let errMsg;
 
     if (body.errors) {
@@ -32,7 +32,12 @@ export class UserService {
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     }
 
-    return Observable.throw(errMsg.message);
+    return Observable.throw({
+      status: error.status,
+      statusText: error.statusText,
+      url: error.url,
+      message: errMsg.message
+    });
   }
 
   // This is called when there is a cookie OAuth token

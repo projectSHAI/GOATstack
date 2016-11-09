@@ -32,8 +32,8 @@ function updateWonder(res, wonder) {
       entity.name = wonder.name;
       entity.created = new Date().toISOString();
       // find new indeger for the x and y coors
-      entity.xcoor = rndInt(10, 90);
-      entity.ycoor = rndInt(10, 55);
+      entity.xcoor = rndInt(5, 80);
+      entity.ycoor = rndInt(10, 70);
       entity.save((err, wonder) => {
         // if there's an error than send a 400 code with error message
         if (err)

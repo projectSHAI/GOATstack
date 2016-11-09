@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 
 import { WonderActions } from '../../actions/wonder/wonder.actions';
+import { CloudActions } from '../../actions/cloud/cloud.actions';
 import { WonderService } from '../../services/wonder/wonder.service';
 import { ClockService } from '../../services/clock/clock.service';
 import { SocketService } from '../../services/socketio/socketio.service';
-import { CloudActions } from '../../actions/cloud/cloud.actions';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
@@ -41,6 +41,8 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
     this.width = window.innerWidth;
     this.clockService.currentTime.subscribe(time => this.timeOfDayCss());
     this.animaArray$.subscribe(anima => this.animaArray = anima);
+    // Change the state to indicate wonders are being fetched
+    this.wonderActions.fetchWonders();
     this.wonderService.getWonders()
       .subscribe(wonders => {
         // initialize store wonders
@@ -51,6 +53,9 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
         // For more information look inside the socketio.service
         this.socket.syncUpdates('Wonder', wonders, ['CHANGE_WONDERS'], null, (item, index) => {
 
+          // before the socket update the wonders store List, fade out the
+          // cloud that will be changing with the upcoming wonder so the user
+          // does not see the text change, only the fade
           TweenMax.to(this.wonderSky.nativeElement.children[index], 1, {
             opacity: 0,
             callbackScope: this,
@@ -58,32 +63,62 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
             onCompleteParams: [item.name.length, index, true]
           });
 
-        }, 1000);
+        }, 1250); // Give a little more time to render the new cloud style
       });
   }
 
   ngOnDestroy() {
-    // detach socket listening when component is destroyed
+    // detach socket listener when component is destroyed
     this.socket.unsyncUpdates('Wonder');
   }
 
+  // Called when cloud reach the end of the screen
   private loopAnima(index: number): void {
-    this.animaArray.get(index).restart();
+    this.animaArray.get(index).play('loop');
+  }
+
+  private speed(pos: number, min: number, max: number, factor: number): number {
+    // find the speed by dividing the percentage left till off the screen
+    // by the amount of %/second you want all clouds to travel at
+    // and you will get the seconds necessary to travel the remaining
+    // distance. Add a random number to get a virtual speed diff 
+    const speed = (100 - pos + this.rndInt(min, max))/factor;
+    // make sure the time doesn't fall bellow a minimum threshold
+    return speed > 8 ? speed : 8;
+  }
+
+  private rndInt(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   cloudAnima(value: string, el: ElementRef, object: any, index: number): string {
+    // This function will be called every time a new wonder arrives
+    // after initial start of the app this should always fire
     if (this.animaArray.size === 10)
       this.animaArray.get(index).kill();
+    // the travel finds the amount of pixels left the cloud
+    // must travel to get to the end of the screen from the % xcoor
+    const travel = this.width - (this.width * (object.xcoor/100));
+    // Since we want all the cloud to move accross the screen at the
+    // same speed we need a constant factor to divide the delta
+    const factor = 2.5;
+    // rf values are for random factor to simulate speed difference
+    // relative to the constant speed
+    const rfMin = -15;
+    const rfMax = 15;
 
+    // Create the gsap timeline to loop
     const anima = new TimelineMax({
       callbackScope: this,
       onComplete: this.loopAnima,
       onCompleteParams: [index]
     });
 
-    // TODO: find a way to get the initial element position to subtract from innerWidth
-    anima.to(el, 0, { ease: Power0.easeNone, left: '-350px', x: '0', y: '0' })
-      .to(el, this.rndInt(30, 85), { ease: Power0.easeNone, x: this.width + 350, y: this.rndInt(-200, 200) });
+    anima.to(el, this.rndInt(1,3), { opacity: 1 })
+      .to(el, this.speed(object.xcoor,rfMin,rfMax,factor), { ease: Power0.easeNone, x: travel, y: this.rndInt(-100, 100) }, 0)
+      .addLabel('loop', '+=0')
+      .to(el, 0, { ease: Power0.easeNone, left: '-350px', x: '0', y: '0' })
+      .to(el, this.speed(-10,rfMin,rfMax,factor), { ease: Power0.easeNone, x: this.width + 350, y: this.rndInt(-100, 100) });
 
     // Push new gsap timeline to animaArray List
     this.cloudActions.changeAnima(anima, index);
@@ -91,6 +126,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
   }
 
   cloudType(wonderLength: number, index: number): void {
+    // every cloud size has three types
     let randomInt = this.rndInt(1, 3);
 
     if (wonderLength <= 4) {
@@ -133,10 +169,6 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
       }
     }
 
-  }
-
-  rndInt(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   timeOfDayCss() {

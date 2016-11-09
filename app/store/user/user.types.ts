@@ -10,6 +10,17 @@ export interface IUserItem {
   email: string;
   role: string;
 }
+export interface IInvalidateItem {
+	status: number;
+	statusText: string;
+	url: string;
+	message: string;
+}
+export interface IUserBaseItem {
+	fetching: boolean;
+	didInvalidate: Map<IInvalidateItem, IInvalidateItem>;
+	userItem: Map<IUserItem, IUserItem>;
+}
 
 // Export the type so the reducer and store will understand
-export type IUser = Map<IUserItem, IUserItem>;
+export type IUser = Map<IUserBaseItem, IUserBaseItem>;

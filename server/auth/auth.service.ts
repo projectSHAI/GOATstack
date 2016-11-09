@@ -28,10 +28,10 @@ export function isAuthenticated() {
     })
     // Attach user to request
     .use((req, res, next) => {
-      return User.findById(req.user._id).exec()
+      return User.findById(req.user._id)
         .then(user => {
           if (!user) {
-            return res.status(401).end();
+            return res.status(401).json({ message: 'Invalid Token' });
           }
           req.user = user;
           next();

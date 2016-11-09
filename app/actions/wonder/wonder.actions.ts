@@ -21,11 +21,22 @@ export class WonderActions {
     private errorHandler: ErrorHandlerActions,
     private wonderService: WonderService) {  }
 
+  static INVALIDATE_WONDER: string = 'INVALIDATE_WONDER';
+  static FETCH_WONDERS: string = 'FETCH_WONDERS';
   static INITIALIZE_WONDERS: string = 'INITIALIZE_WONDERS';
+  static SEND_WONDER: string ='SEND_WONDER';
   static CHANGE_WONDERS: string = 'CHANGE_WONDERS';
+
+  fetchWonders(): void {
+    this.ngRedux.dispatch({ type: WonderActions.FETCH_WONDERS });
+  }
 
   initWonders(wonders: any) {
     this.ngRedux.dispatch({ type: WonderActions.INITIALIZE_WONDERS, payload: wonders });
+  }
+
+  sendWonder(): void {
+    this.ngRedux.dispatch({ type: WonderActions.SEND_WONDER });
   }
 
   changeWonder(item: any, index: number) {
@@ -33,6 +44,11 @@ export class WonderActions {
   }
 
   saveWonder(wonder: string) {
-    this.wonderService.saveWonder(wonder).subscribe(wonder => { }, error => this.errorHandler.showError(error));
+    // change the state to reflect a wonder is being sent
+    this.sendWonder();
+    this.wonderService.saveWonder(wonder).subscribe(wonder => { }, error => {
+      this.ngRedux.dispatch({ type: WonderActions.INVALIDATE_WONDER, payload: error });
+      this.errorHandler.showError(error.message);
+    });
   }
 }
