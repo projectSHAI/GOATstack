@@ -22,9 +22,8 @@ export class UserService {
   private handleError(error: any) {
     // In a real world app, we might use a remote logging infrastructure
     // We'd also dig deeper into the error to get a better message
-    let body = JSON.parse(error._body);
+    const body = JSON.parse(error._body);
     let errMsg;
-    console.log(error);
 
     if (body.errors) {
       errMsg = body.errors.userName ? body.errors.userName : body.errors.email;

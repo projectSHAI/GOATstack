@@ -41,6 +41,8 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
     this.width = window.innerWidth;
     this.clockService.currentTime.subscribe(time => this.timeOfDayCss());
     this.animaArray$.subscribe(anima => this.animaArray = anima);
+    // Change the state to indicate wonders are being fetched
+    this.wonderActions.fetchWonders();
     this.wonderService.getWonders()
       .subscribe(wonders => {
         // initialize store wonders
