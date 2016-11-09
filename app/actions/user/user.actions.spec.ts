@@ -17,6 +17,13 @@ const testUser = {
   role: 'testRole'
 };
 
+const error = {
+  status: 400,
+  statusText: 'Bad Request',
+  url: 'test:7001',
+  message: 'this is a test error message'
+};
+
 class MockRedux extends NgRedux<any> {
   constructor() {
     super(null);
@@ -59,6 +66,9 @@ describe('User Actions Creator', () => {
   it('should dispatch LOGIN_USER action when getMe() called', () => {
     Cookie.set('token', 'testCookie');
 
+    const expectedActionPre = {
+      type: UserActions.FETCH_USER
+    };
     const expectedAction = {
       type: UserActions.LOGIN_USER,
       payload: testUser
@@ -68,10 +78,14 @@ describe('User Actions Creator', () => {
     actions.getMe();
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
+    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedActionPre);
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
-  it('should dispatch LOGIN_USER action', () => {
+  it('should dispatch LOGIN_USER action', () => {]
+    const expectedActionPre = {
+      type: UserActions.FETCH_USER
+    };
     const expectedAction = {
       type: UserActions.LOGIN_USER,
       payload: testUser
@@ -86,10 +100,14 @@ describe('User Actions Creator', () => {
     actions.login(form);
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
+    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedActionPre);
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
-  it('should dispatch REGISTER_USER action', () => {
+  it('should dispatch REGISTER_USER action', () => {    
+    const expectedActionPre = {
+      type: UserActions.FETCH_USER
+    };
     const expectedAction = {
       type: UserActions.REGISTER_USER,
       payload: testUser
@@ -106,6 +124,7 @@ describe('User Actions Creator', () => {
     actions.register(form);
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
+    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedActionPre);
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
   });
 

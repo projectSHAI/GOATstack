@@ -68,6 +68,13 @@ const wonderList = [{
     ycoor: 15
   }];
 
+  const error = {
+    status: 400,
+    statusText: 'Bad Request',
+    url: 'test:7001',
+    message: 'this is a test error message'
+  };
+
   class MockRedux extends NgRedux<any> {
     constructor() {
       super(null);
@@ -107,6 +114,19 @@ describe('Wonder Actions Creator', () => {
     actions = new WonderActions(mockRedux, errorActions, wonderService);
   });
 
+  it('should dispatch INVALIDATE_WONDER action', () => {
+    const expectedAction = {
+      type: WonderActions.INVALIDATE_WONDER,
+      payload: error
+    };
+
+    spyOn(mockRedux, 'dispatch');
+    actions.invalidateWonder(error);
+
+    expect(mockRedux.dispatch).toHaveBeenCalled();
+    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
+  });
+
   it('should dispatch INITIALIZE_WONDERS action', () => {
     const expectedAction = {
       type: WonderActions.INITIALIZE_WONDERS,
@@ -115,6 +135,30 @@ describe('Wonder Actions Creator', () => {
 
     spyOn(mockRedux, 'dispatch');
     actions.initWonders(wonderList);
+
+    expect(mockRedux.dispatch).toHaveBeenCalled();
+    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
+  });
+
+  it('should dispatch FETCH_WONDERS action', () => {
+    const expectedAction = {
+      type: WonderActions.FETCH_WONDERS
+    };
+
+    spyOn(mockRedux, 'dispatch');
+    actions.fetchWonders();
+
+    expect(mockRedux.dispatch).toHaveBeenCalled();
+    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
+  });
+
+  it('should dispatch SEND_WONDER action', () => {
+    const expectedAction = {
+      type: WonderActions.SEND_WONDER
+    };
+
+    spyOn(mockRedux, 'dispatch');
+    actions.sendWonder();
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);

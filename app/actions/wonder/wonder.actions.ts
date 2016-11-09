@@ -29,6 +29,10 @@ export class WonderActions {
   static SEND_WONDER: string ='SEND_WONDER';
   static CHANGE_WONDERS: string = 'CHANGE_WONDERS';
 
+  invalidateWonder(error: Object): void {
+    this.ngRedux.dispatch({ type: WonderActions.INVALIDATE_WONDER, payload: error });
+  }
+
   fetchWonders(): void {
     this.ngRedux.dispatch({ type: WonderActions.FETCH_WONDERS });
   }
@@ -49,7 +53,7 @@ export class WonderActions {
     // change the state to reflect a wonder is being sent
     this.sendWonder();
     this.wonderService.saveWonder(wonder).subscribe(wonder => { }, error => {
-      this.ngRedux.dispatch({ type: WonderActions.INVALIDATE_WONDER, payload: error });
+      this.invalidateWonder(error);
       this.errorHandler.showError(error.message);
     });
   }
