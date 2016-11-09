@@ -82,7 +82,7 @@ describe('User Actions Creator', () => {
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
-  it('should dispatch LOGIN_USER action', () => {]
+  it('should dispatch LOGIN_USER action', () => {
     const expectedActionPre = {
       type: UserActions.FETCH_USER
     };
