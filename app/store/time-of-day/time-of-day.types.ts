@@ -4,7 +4,16 @@ import { Map } from 'immutable';
 // the corresponding reducer will need
 // to manipulate (immutably)
 export interface ITimeOfDayItems {
-  styles: any;
+  cloudBrightness: string;
+  skySvg: string;
+
+  goatSvg: string;
+  mountainSvg: string;
+  islandSvg: string;
+  treeSvg: string;
+
+  oceanSvg: string;
+  whaleSvg: string;
 };
 
 // Export the type so the reducer and store will understand

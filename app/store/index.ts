@@ -5,6 +5,7 @@ import * as userForm from './userForm/index';
 import * as user from './user/index';
 import * as cloud from './cloud/index';
 import * as wonder from './wonder/index';
+import * as timeOfDay from './time-of-day/index';
 
 // IAppState is the applications store where all persistant data
 // should be stored
@@ -15,6 +16,7 @@ export class IAppState {
   wonder?: wonder.IWonder;
   cloudStyle?: cloud.ICloudStyle;
   animaArray?: cloud.IAnimaArray;
+  timeOfDay?: timeOfDay.ITimeOfDay;
 };
 
 // Each reducer is connected to a coresponding store attribute
@@ -26,7 +28,8 @@ export const rootReducer = combineReducers<IAppState>({
   userForm: userForm.userFormReducer,
   wonder: wonder.wonderReducer,
   cloudStyle: cloud.cloudReducer,
-  animaArray: cloud.animaReducer
+  animaArray: cloud.animaReducer,
+  timeOfDay: timeOfDay.timeOfDayReducer,
 });
 
 // Redux plugins/enhancers go here

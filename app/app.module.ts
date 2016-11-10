@@ -87,6 +87,7 @@ Services
 //user created services
 import { ErrorHandlerActions }        from './actions/error/errorHandler.actions';
 import { SEOActions }                 from './actions/seo/seo.actions';
+import { TimeOfDayActions }            from './actions/time-of-day/time-of-day.actions';
 import { SocketService }              from './services/socketio/socketio.service';
 import { HttpIntercept }              from './services/auth/auth.service';
 import { UserService }                from './services/user/user.service';
@@ -185,7 +186,8 @@ NgModule
     Cookie,
     { provide: DevToolsExtension, useClass: DevToolsExtension },
     UserService,
-    WonderService
+    WonderService,
+    TimeOfDayActions
   ],
   //bootstrap: identifies which component is supposed to be bootstrapped
   bootstrap: [AppComponent]

@@ -6,7 +6,6 @@ import { select } from 'ng2-redux';
 import { WonderActions } from '../../actions/wonder/wonder.actions';
 import { CloudActions } from '../../actions/cloud/cloud.actions';
 import { WonderService } from '../../services/wonder/wonder.service';
-import { ClockService } from '../../services/clock/clock.service';
 import { SocketService } from '../../services/socketio/socketio.service';
 
 declare let TweenMax: any;
@@ -24,6 +23,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
   @select('cloudStyle') cloudStyle$: Observable<any>;
   @select('animaArray') animaArray$: Observable<any>;
   @select('wonder') wonder$: Observable<any>;
+  @select('timeOfDay') toda$: Observable<any>;
   private animaArray: any;
   private width: number;
   dream;
@@ -34,12 +34,10 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
     public wonderActions: WonderActions,
     private wonderService: WonderService,
     private cloudActions: CloudActions,
-    private socket: SocketService,
-    private clockService: ClockService) { }
+    private socket: SocketService) { }
 
   ngOnInit() {
     this.width = window.innerWidth;
-    this.clockService.currentTime.subscribe(time => this.timeOfDayCss());
     this.animaArray$.subscribe(anima => this.animaArray = anima);
     // Change the state to indicate wonders are being fetched
     this.wonderActions.fetchWonders();
@@ -81,7 +79,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
     // find the speed by dividing the percentage left till off the screen
     // by the amount of %/second you want all clouds to travel at
     // and you will get the seconds necessary to travel the remaining
-    // distance. Add a random number to get a virtual speed diff 
+    // distance. Add a random number to get a virtual speed diff
     const speed = (100 - pos + this.rndInt(min, max))/factor;
     // make sure the time doesn't fall bellow a minimum threshold
     return speed > 8 ? speed : 8;
@@ -169,24 +167,6 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
       }
     }
 
-  }
-
-  timeOfDayCss() {
-    if(this.clockService.sunRise) {
-      this.wonderSky.nativeElement.style.filter = "brightness(70%)";
-    }
-    else if(this.clockService.dayTime) {
-      this.wonderSky.nativeElement.style.filter = "brightness(100%)";
-    }
-    else if(this.clockService.sunSet) {
-      this.wonderSky.nativeElement.style.filter = "brightness(70%)";
-    }
-    else if(this.clockService.nightTime) {
-      this.wonderSky.nativeElement.style.filter = "brightness(30%)";
-    }
-    else{
-      console.log('time of day not valid check sky.component.ts');
-    }
   }
 
 }
