@@ -14,6 +14,9 @@ export interface ITimeOfDayItems {
 
   oceanSvg: string;
   whaleSvg: string;
+
+  sunMoonGlow: string;
+  sunMoonBorder: string;
 };
 
 // Export the type so the reducer and store will understand

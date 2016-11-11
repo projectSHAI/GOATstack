@@ -4,12 +4,12 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="10733.016px" height="13660.833px" viewBox="0 0 10733.016 13660.833" enable-background="new 0 0 10733.016 13660.833"
 	 xml:space="preserve">
-<radialGradient id="SVGID_1_" cx="5366.5669" cy="6830.2959" r="6142.228" gradientTransform="matrix(0.5 -0.866 6.9282 4 -44638.3945 -15843.3047)" gradientUnits="userSpaceOnUse">
-	<stop  offset="0" style="stop-color:#0041BF"/>
-	<stop  offset="0.4694" style="stop-color:#006AE9"/>
-	<stop  offset="0.6684" style="stop-color:#3F8CFF"/>
-	<stop  offset="0.8214" style="stop-color:#1586FF"/>
-	<stop  offset="1" style="stop-color:#0089FF"/>
+<radialGradient id="SVGID_1_" cx="5366.5669" cy="6830.2959" r="6142.228" gradientTransform="matrix(-0.2588 -0.9659 7.7274 -2.0706 -46024.9375 26156.4863)" gradientUnits="userSpaceOnUse">
+	<stop  offset="0" style="stop-color:#18002A"/>
+	<stop  offset="0.2" style="stop-color:#000000"/>
+	<stop  offset="0.3673" style="stop-color:#000000"/>
+	<stop  offset="0.6429" style="stop-color:#12002A"/>
+	<stop  offset="1" style="stop-color:#0A002A"/>
 </radialGradient>
 <path fill="url(#SVGID_1_)" d="M262.674,13660.683c123.255,0,183.253-23.283,246.774-47.938
 	c64.3-24.954,130.788-50.758,261.841-50.758c131.05,0,197.537,25.804,261.835,50.758c63.521,24.654,123.519,47.938,246.774,47.938

@@ -1,5 +1,4 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
-import { DomSanitizer } from "@angular/platform-browser";
 
 import { TimeOfDayActions } from '../../actions/time-of-day/time-of-day.actions';
 import { select } from 'ng2-redux';
@@ -15,72 +14,34 @@ export class SkyComponent {
   @select('timeOfDay') toda$: Observable<any>;
   @ViewChild('sunMoon') sunMoon: ElementRef;
 
-  //declare time variables
-  sunMoonGlow: string;
+  private sunMoonGlow: string;
+  private yPos: number = 10;
+  private windowHeight: number = window.innerHeight;
 
-  //declare css values used in one way data binding to template properties
-  safeTransform;
-  safeRGBA;
-
-  //declare sun and moon trig values
-  centerX: number;
-  centerY: number;
-  sunMoonX: number;
-  sunMoonY: number;
-  sunMoonAngle: number;
-  radius: number;
-  skyColor: "red";
-
-
-  constructor(public toda: TimeOfDayActions, private sanitizer: DomSanitizer, private hostRef: ElementRef) { }
+  constructor(public toda: TimeOfDayActions, private hostRef: ElementRef) { }
 
 
   ngAfterViewInit() {
-    //logic to set the position of the sun and moon
-    this.sunMoonPos();
 
-    this.toda.getCurrentTime().subscribe(time => {
+    this.toda$.subscribe(x => {
+      this.hostRef.nativeElement.children[0].src = x.get('skySvg');
+      this.hostRef.nativeElement.children[1].style.boxShadow = x.get('sunMoonGlow');
+      this.hostRef.nativeElement.children[1].style.borderColor = x.get('sunMoonBorder');
+    });
 
-      this.sunMoonAngle = (Math.floor((((time.getHours() + 6) % 12) * 60 + time.getMinutes()) * 0.25)) + 180;
+    //set the height of the sun and moon whenever the time changes
+    this.toda.getCurrentTime().subscribe(x => {
 
-      this.plotSunOnArc(this.sunMoonAngle, this.radius, this.centerX, this.centerY);
-      this.safeTransform = this.sanitizer.bypassSecurityTrustStyle(`translate( ${this.sunMoonX}px, ${this.sunMoonY}px )`);
+      this.yPos = this.windowHeight - (this.windowHeight * (((x.getHours() % 12) * 60 + x.getMinutes()) / 780 ));
+
+      this.hostRef.nativeElement.children[1].style.transform = `translateY(${this.yPos}px)`;
     });
   }
 
+  //listens for windowHeight
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    //logic to set the position of the sun and moon
-    this.sunMoonPos();
-
-    this.plotSunOnArc(this.sunMoonAngle, this.radius, this.centerX, this.centerY);
-    this.safeTransform = this.sanitizer.bypassSecurityTrustStyle(`translate( ${this.sunMoonX}px, ${this.sunMoonY}px )`);
+    this.windowHeight = event.target.innerHeight;
   }
 
-
-  plotSunOnArc(angle, radius, centerX, centerY) {
-    this.sunMoonX = radius * Math.cos(this.toRadians(angle));
-    this.sunMoonY = radius * Math.sin(this.toRadians(angle));
-  }
-
-  toRadians(angle) {
-    return angle * (Math.PI / 180);
-  }
-
-  sunMoonPos() {
-    this.centerX = this.hostRef.nativeElement.offsetWidth / 2 - (this.sunMoon.nativeElement.offsetWidth / 2);
-    this.centerY = this.hostRef.nativeElement.offsetHeight;
-
-    if(this.hostRef.nativeElement.offsetHeight < this.hostRef.nativeElement.offsetWidth) {
-      if(this.hostRef.nativeElement.offsetHeight < this.hostRef.nativeElement.offsetWidth / 2) {
-        this.radius = this.hostRef.nativeElement.offsetHeight;
-      }
-      else{
-        this.radius = this.hostRef.nativeElement.offsetWidth / 2 - this.sunMoon.nativeElement.offsetWidth;
-      }
-    }
-    else{
-      this.radius = this.hostRef.nativeElement.offsetWidth / 2 - this.sunMoon.nativeElement.offsetWidth;
-    }
-  }
 }

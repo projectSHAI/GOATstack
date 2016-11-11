@@ -11,40 +11,48 @@ export function timeOfDayReducer(state: ITimeOfDay = INITIAL_STATE, action: any)
   switch(action.type) {
     case TimeOfDayActions.SUN_RISE:
       return state
-              .updateIn(['cloudBrightness'], val => 'brightness(50%)')
-              .updateIn(['skySvg'], val => '../assets/day-sky.svg')
-              .updateIn(['mountainSvg'], val => '../assets/day-mountain.svg')
-              .updateIn(['islandSvg'], val => '../assets/day-island.svg')
-              .updateIn(['treeSvg'], val => '../assets/day-trees.svg')
-              .updateIn(['oceanSvg'], val => '../assets/day-ocean.svg');
+              .updateIn(['cloudBrightness'], val => 'brightness(70%)')
+              .updateIn(['skySvg'], val => '../assets/morning-sky.svg')
+              .updateIn(['mountainSvg'], val => '../assets/morning-mountain.svg')
+              .updateIn(['islandSvg'], val => '../assets/morning-island.svg')
+              .updateIn(['treeSvg'], val => '../assets/morning-trees.svg')
+              .updateIn(['oceanSvg'], val => '../assets/morning-ocean.svg')
+              .updateIn(['sunMoonGlow'], val => '0px 0px 100px 12px orange')
+              .updateIn(['sunMoonBorder'], val => 'rgba(255,129,0, 0.3)');
     case TimeOfDayActions.DAY_TIME:
-      return state
-              .updateIn(['cloudBrightness'], val => 'brightness(10%)')
-              .updateIn(['skySvg'], val => '../assets/day-sky.svg')
-              .updateIn(['goatSvg'], val => '../assets/awake-goat.svg')
-              .updateIn(['mountainSvg'], val => '../assets/day-mountain.svg')
-              .updateIn(['islandSvg'], val => '../assets/day-island.svg')
-              .updateIn(['treeSvg'], val => '../assets/day-trees.svg')
-              .updateIn(['oceanSvg'], val => '../assets/day-ocean.svg')
-              .updateIn(['whaleSvg'], val => '../assets/day-whale.svg');
-    case TimeOfDayActions.SUN_SET:
       return state
               .updateIn(['cloudBrightness'], val => 'brightness(100%)')
               .updateIn(['skySvg'], val => '../assets/day-sky.svg')
-              .updateIn(['mountainSvg'], val => '../assets/day-mountain.svg')
-              .updateIn(['islandSvg'], val => '../assets/day-island.svg')
-              .updateIn(['treeSvg'], val => '../assets/day-trees.svg')
-              .updateIn(['oceanSvg'], val => '../assets/day-ocean.svg');
-    case TimeOfDayActions.NIGHT_TIME:
-      return state
-              .updateIn(['cloudBrightness'], val => 'brightness(30%)')
-              .updateIn(['skySvg'], val => '../assets/day-sky.svg')
               .updateIn(['goatSvg'], val => '../assets/awake-goat.svg')
               .updateIn(['mountainSvg'], val => '../assets/day-mountain.svg')
               .updateIn(['islandSvg'], val => '../assets/day-island.svg')
               .updateIn(['treeSvg'], val => '../assets/day-trees.svg')
               .updateIn(['oceanSvg'], val => '../assets/day-ocean.svg')
-              .updateIn(['whaleSvg'], val => '../assets/day-whale.svg');
+              .updateIn(['whaleSvg'], val => '../assets/day-whale.svg')
+              .updateIn(['sunMoonGlow'], val => '0px 0px 100px 12px yellow')
+              .updateIn(['sunMoonBorder'], val => 'rgba(255,255,0, 0.3)');
+    case TimeOfDayActions.SUN_SET:
+      return state
+              .updateIn(['cloudBrightness'], val => 'brightness(70%)')
+              .updateIn(['skySvg'], val => '../assets/evening-sky.svg')
+              .updateIn(['mountainSvg'], val => '../assets/evening-mountain.svg')
+              .updateIn(['islandSvg'], val => '../assets/evening-island.svg')
+              .updateIn(['treeSvg'], val => '../assets/evening-trees.svg')
+              .updateIn(['oceanSvg'], val => '../assets/evening-ocean.svg')
+              .updateIn(['sunMoonGlow'], val => '0px 0px 100px 12px orange')
+              .updateIn(['sunMoonBorder'], val => 'rgba(255,129,0, 0.3)');
+    case TimeOfDayActions.NIGHT_TIME:
+      return state
+              .updateIn(['cloudBrightness'], val => 'brightness(30%)')
+              .updateIn(['skySvg'], val => '../assets/night-sky.svg')
+              .updateIn(['goatSvg'], val => '../assets/sleeping-goat.svg')
+              .updateIn(['mountainSvg'], val => '../assets/night-mountain.svg')
+              .updateIn(['islandSvg'], val => '../assets/night-island.svg')
+              .updateIn(['treeSvg'], val => '../assets/night-trees.svg')
+              .updateIn(['oceanSvg'], val => '../assets/night-ocean.svg')
+              .updateIn(['whaleSvg'], val => '../assets/night-whale.svg')
+              .updateIn(['sunMoonGlow'], val => '0px 0px 100px 12px purple')
+              .updateIn(['sunMoonBorder'], val => 'rgba(102,51,153, 0.3)');
     default:
       return state;
   }
