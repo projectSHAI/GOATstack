@@ -9,6 +9,7 @@
   + yo goat-stack:store-item [?name]
   + yo goat-stack:endpoint [?name]
   
+___
 
 ![Main Banner](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true)
 
