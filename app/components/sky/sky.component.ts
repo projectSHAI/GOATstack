@@ -12,7 +12,6 @@ import{ Observable } from 'rxjs/Observable';
 
 export class SkyComponent {
   @select('timeOfDay') toda$: Observable<any>;
-  @ViewChild('sunMoon') sunMoon: ElementRef;
 
   private sunMoonGlow: string;
   private yPos: number = 10;
