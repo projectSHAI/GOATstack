@@ -1,3 +1,15 @@
+## Yo Generator Project underway [here](https://github.com/JCThomas4214/GOAT-yeoman)
+
+  + ~~yo goat-stack [?name]~~
+  + ~~yo goat-stack:component [?name]~~
+  + yo goat-stack:service [?name]
+  + yo goat-stack:directive [?name]
+  + yo goat-stack:pipe [?name]
+  + yo goat-stack:action [?name]
+  + yo goat-stack:store-item [?name]
+  + yo goat-stack:endpoint [?name]
+  
+
 ![Main Banner](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true)
 
 > Version 1.0.0
