@@ -26,7 +26,6 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
   @select('timeOfDay') toda$: Observable<any>;
   private animaArray: any;
   private width: number;
-  dream;
 
   @ViewChild('wonderSky') wonderSky;
 

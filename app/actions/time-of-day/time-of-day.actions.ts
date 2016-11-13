@@ -30,32 +30,18 @@ export class TimeOfDayActions {
       return this.currentTime;
     }
 
-    static SUN_RISE: string = 'SUN_RISE';
-    static SUN_SET: string = 'SUN_SET';
-    static DAY_TIME: string = 'DAY_TIME';
     static NIGHT_TIME: string = 'NIGHT_TIME';
+    static DAY_TIME: string = 'DAY_TIME';
 
     timeOfDay(time: any): any {
 
-      if ((time > 4 && time <= 6) && !(this.holdHour > 4 && this.holdHour <= 6)) {
-        this.ngRedux.dispatch({
-          type: TimeOfDayActions.SUN_RISE
-        });
-        this.holdHour = time;
-      }
-      else if ((time < 18 && time > 6) && !(this.holdHour < 18 && this.holdHour > 6)) {
+      if ((time > 6 && time <= 18) && !(this.holdHour > 6 && this.holdHour <= 18)) {
         this.ngRedux.dispatch({
           type: TimeOfDayActions.DAY_TIME
         });
         this.holdHour = time;
       }
-      else if ((time >= 18 && time < 20) && !(this.holdHour >= 18 && this.holdHour < 20)) {
-        this.ngRedux.dispatch({
-          type: TimeOfDayActions.SUN_SET
-        });
-        this.holdHour = time;
-      }
-      else if ((time >= 20 || time <= 4) && !(this.holdHour >= 20 || this.holdHour <= 4)) {
+      else if ((time >= 19 || time <= 6) && !(this.holdHour >= 19 || this.holdHour <= 6)) {
         this.ngRedux.dispatch({
           type: TimeOfDayActions.NIGHT_TIME
         });

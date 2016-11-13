@@ -6,9 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent {
-
-  sunXPos: number = 24;
-  sunYPos = 1;
-
-}
+export class HomeComponent { }
