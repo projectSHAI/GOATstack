@@ -6,7 +6,7 @@
   + yo goat-stack:directive [?name]
   + yo goat-stack:pipe [?name]
   + ~~yo goat-stack:actions [?name]~~
-  + yo goat-stack:store-item [?name]
+  + ~~yo goat-stack:store-item [?name]~~
   + yo goat-stack:endpoint [?name]
   
 ___
