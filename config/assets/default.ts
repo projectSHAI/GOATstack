@@ -36,7 +36,8 @@ export const defaultAssets = {
       'app/pipes/**/*.ts',
       'app/services/**/*.ts',
       'app/store/**/*.ts',
-      'app/components/**/*.ts'
+      'app/components/**/*.ts',
+      'app/directives/**/*.ts'
     ],
     assets: [
       'app/assets/*jpg',

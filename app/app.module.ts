@@ -76,7 +76,7 @@ Directives
 //Declare directives here
 */
 //user created directives
-
+import { ZoomDirective } from './directives/zoom.directive';
 //Angular and 3rd party directives
 
 /*
@@ -172,7 +172,8 @@ NgModule
     IslandComponent,
     MountainGoatComponent,
     CloudGeneratorComponent,
-    NgForHookPipe
+    NgForHookPipe,
+    ZoomDirective
   ],
   //providers: this object imports all necessary services into the module
   providers: [
