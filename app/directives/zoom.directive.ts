@@ -6,13 +6,28 @@ import { Directive, ElementRef, Input, Renderer, HostListener } from '@angular/c
 
 export class ZoomDirective {
 
-    constructor(el: ElementRef, renderer: Renderer) {
+	
+
+    constructor(private el: ElementRef, private renderer: Renderer) {
        
     }
 
-    @HostListener('window:scroll', ['$event']) 
-    doSomething(event) {
-      console.debug("Scroll Event", document.body.scrollTop);
+    @HostListener('window:wheel', ['$event']) 
+    scroll(event) {
+
+    	if(event.deltaY < 0 && this.el.nativeElement.style.transform !== `scale(1)`) {
+    		this.zoom(1);
+    		console.log(1);
+    	}
+    	if(event.deltaY > 0 && this.el.nativeElement.style.transform !== `scale(0.23)`) {
+    		this.zoom(0.23);
+    		console.log(0.23);
+    	}
+    	console.log(event.deltaY);
+    }
+
+    private zoom(scale) {
+    	this.renderer.setElementStyle(this.el.nativeElement, 'transform', `scale(${scale})`);
     }
 
 }
