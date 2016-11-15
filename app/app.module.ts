@@ -183,12 +183,12 @@ NgModule
     /////////////////////////////////////
     ErrorHandlerActions,
     SEOActions,
+    TimeOfDayActions,
     SocketService,
-    Cookie,
-    { provide: DevToolsExtension, useClass: DevToolsExtension },
     UserService,
     WonderService,
-    TimeOfDayActions
+    Cookie,
+    { provide: DevToolsExtension, useClass: DevToolsExtension }
   ],
   //bootstrap: identifies which component is supposed to be bootstrapped
   bootstrap: [AppComponent]

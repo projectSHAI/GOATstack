@@ -19,32 +19,28 @@ export class TimeOfDayActions {
   private currentTime: any;
   private holdHour: number;
 
-    constructor(private ngRedux: NgRedux<IAppState>) {
-      //define the clock observable with a one second interval
-      this.currentTime = Observable.interval(1000).map(()=> new Date());
-      //subscribe to the time observable and fire the timeOfDate function every time it updates
-      this.currentTime.subscribe(time => this.timeOfDay(time.getHours()));
+  static NIGHT_TIME: string = 'NIGHT_TIME';
+  static DAY_TIME: string = 'DAY_TIME';
+
+  constructor(private ngRedux: NgRedux<IAppState>) {
+    //define the clock observable with a one second interval
+    this.currentTime = Observable.interval(1000).map(()=> new Date());
+    //subscribe to the time observable and fire the timeOfDate function every time it updates
+    this.currentTime.subscribe(time => this.timeOfDay(time.getHours()));
+  }
+
+  getCurrentTime(): Observable<any>{
+    return this.currentTime;
+  }
+
+  timeOfDay(time: any): any {
+    if ((time > 6 && time <= 18) && !(this.holdHour > 6 && this.holdHour <= 18)) {
+      this.ngRedux.dispatch({ type: TimeOfDayActions.DAY_TIME });
+      this.holdHour = time;
     }
-
-    getCurrentTime(): Observable<any>{
-      return this.currentTime;
+    else if (!(this.holdHour >= 19 || this.holdHour <= 6)) {
+      this.ngRedux.dispatch({ type: TimeOfDayActions.NIGHT_TIME });
+      this.holdHour = time;
     }
-
-    static NIGHT_TIME: string = 'NIGHT_TIME';
-    static DAY_TIME: string = 'DAY_TIME';
-
-    timeOfDay(time: any): any {
-
-      if ((time > 6 && time <= 18) && !(this.holdHour > 6 && this.holdHour <= 18)) {
-        this.ngRedux.dispatch({
-          type: TimeOfDayActions.DAY_TIME
-        });
-        this.holdHour = time;
-      }
-      else if ((time >= 19 || time <= 6) && !(this.holdHour >= 19 || this.holdHour <= 6)) {
-        this.ngRedux.dispatch({
-          type: TimeOfDayActions.NIGHT_TIME
-        });
-      }
-    }
+  }
   }

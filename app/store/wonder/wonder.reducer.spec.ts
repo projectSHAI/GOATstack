@@ -4,12 +4,12 @@ import { INITIAL_STATE } from './wonder.initial-state';
 import { WonderActions } from '../../actions/wonder/wonder.actions';
 
 const wonderList = [{
-  _id: '1',
-  created: '1',
-  name: 'SocketIO',
-  xcoor: 20,
-  ycoor: 25
-}, {
+    _id: '1',
+    created: '1',
+    name: 'SocketIO',
+    xcoor: 20,
+    ycoor: 25
+  }, {
     _id: '2',
     created: '2',
     name: 'MongoDB',

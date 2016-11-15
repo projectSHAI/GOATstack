@@ -629,7 +629,7 @@ export class Gulpfile {
   default() {
     return [
       'env_dev',
-      'lint',
+      // 'lint',
       'mongod_start',
       'build_clean',
       'build_project',
