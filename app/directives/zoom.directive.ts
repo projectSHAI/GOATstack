@@ -17,13 +17,10 @@ export class ZoomDirective {
 
     	if(event.deltaY < 0 && this.el.nativeElement.style.transform !== `scale(1)`) {
     		this.zoom(1);
-    		console.log(1);
     	}
     	if(event.deltaY > 0 && this.el.nativeElement.style.transform !== `scale(0.23)`) {
     		this.zoom(0.23);
-    		console.log(0.23);
     	}
-    	console.log(event.deltaY);
     }
 
     private zoom(scale) {

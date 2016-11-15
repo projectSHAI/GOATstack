@@ -1,5 +1,16 @@
 blue-whale {
     position: absolute;
-    top: -1885px;
-    left: 1180px;
+    top: 0;
+    left: 200px;
+    transform-origin: top center;
 } 
+.ocean,
+.ocean-overlay{
+	width: 100%;
+	margin-top: 558px;
+}
+.ocean-overlay {
+    position: absolute;
+    top:0;
+    left: 0;
+}

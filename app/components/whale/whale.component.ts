@@ -17,7 +17,7 @@ export class WhaleComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.toda$.subscribe(x => {
-      this.hostRef.nativeElement.children[0].src = x.get('whaleSvg');
+      this.hostRef.nativeElement.children[1].src = x.get('whaleSvg');
     });
   }
 
