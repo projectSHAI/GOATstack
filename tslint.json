@@ -4,7 +4,7 @@
   ],
   "rules": {
     "class-name": false,
-    "eofline": true,
+    "eofline": false,
     "forin": false,
     "label-position": true,
     "label-undefined": true,
