@@ -13,8 +13,10 @@ the-sky{
 the-ocean {
     position: relative;
     top: 0;
+    left: 900px;
+    margin-top: 350px;
     display: block;
     width:100%;
     transform-origin: top center;
-    transform: scale(1);
+    transform: scale(3.5);
 }
