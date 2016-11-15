@@ -1,8 +1,11 @@
-import { Pipe, PipeTransform, ElementRef } from '@angular/core';
+import { PipeTransform, Pipe, ElementRef } from '@angular/core';
 
 // created as a universal ngFor pipe so get the element when it's made 
 // can be used for animation or callbacks
-@Pipe({name: 'ngForHook'})
+@Pipe({
+	name: 'ngForHook'
+})
+
 export class NgForHookPipe implements PipeTransform {
 
   transform(value: string, el: ElementRef, object: any, index: number, scope: any): any {

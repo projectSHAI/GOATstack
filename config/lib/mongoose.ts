@@ -4,7 +4,7 @@ mongoose.Promise = require('bluebird');
 import * as chalk from 'chalk';
 import * as path from 'path';
 import {config} from '../config';
-let con = config();
+let con: any = config();
 let db;
 
 // Load the mongoose models
