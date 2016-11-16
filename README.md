@@ -180,7 +180,7 @@ ___
 GOAT includes the [Redux](http://redux.js.org/) architechture, [Immutable](https://facebook.github.io/immutable-js/) data structuring, [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
 
 ### Redux
-__What it does:__
+__What it does:__ 
 
 __Why we use it:__
 
@@ -215,9 +215,8 @@ __What it does:__
 __Why we use it:__
 
 ### Protractor
-__What it does:__
-
-__Why we use it:__
+__What it does:__ "Protractor is an end-to-end test framework for AngularJS applications. Protractor runs tests against your application running in a real browser, interacting with it as a user would." -[Protractor](http://www.protractortest.org/#/)
+__Why we use it:__ We chose Protractor for E2E testing because it allows the developer to test Angular-specific elements in an efficient manner out of the box. Less set-up work and more concise code means more concentration on developing and testing what matters, and less time wasted on tedious boilerplate code.
 
 
 <a name="reqs"></a>
