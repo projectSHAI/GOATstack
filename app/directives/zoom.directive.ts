@@ -7,7 +7,7 @@ import { Directive, ElementRef, Input, Renderer, HostListener } from '@angular/c
 export class ZoomDirective {
 
     maxZoom: number = 3.5;
-    leftPos: any = 900 - (this.scrollTop);
+    leftPos: any = -(900 * (this.scrollTop / 900));
     topPos: any = (this.scrollTop);
 	scrollTop: number = 0;
     scrollMultiplier: any = 3.5 - (this.scrollTop / 900 * 2.5);
@@ -21,7 +21,7 @@ export class ZoomDirective {
 
         this.scrollTop = document.body.scrollTop;
         this.scrollMultiplier = 3.5 - (this.scrollTop / 900 * 2.5);
-        this.leftPos = 900 - (this.scrollTop);
+        this.leftPos = -(900 * (this.scrollTop / 900));
         this.topPos = (this.scrollTop);
         console.log(this.scrollMultiplier);
     	if(this.scrollMultiplier > 1) {
@@ -33,9 +33,7 @@ export class ZoomDirective {
     }
 
     private zoom(scale, x, y) {
-        this.renderer.setElementStyle(this.el.nativeElement, 'top', `${y}px`);
-        this.renderer.setElementStyle(this.el.nativeElement, 'left', `${x}px`);
-    	this.renderer.setElementStyle(this.el.nativeElement, 'transform', `scale(${scale})`);
+    	this.renderer.setElementStyle(this.el.nativeElement, 'transform', `scale(${scale}) translate(0px, ${y}px)`);
     }
 
 }
