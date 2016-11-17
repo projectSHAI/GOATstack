@@ -79,24 +79,24 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/critical-space-ship.png?raw=true" align="right">
 
-1. Page load speed 
+### 1. Initial page load speed 
  * 40% of users leave a webpage that takes more than 3 seconds to load
-2. Scaleability
- * If resources are static a webapp will waste a lot of efficiency when load is low, or become crippled by a sudden surge of traffic 
-3. User engagement
- * stuff
+ 
+### 2. Scaleable resources
+ * If an App's resources cannot scale with real time user traffic will crash during traffic spikes, and be wasteful when there is low user activity
 
+### 3. Scaleable Architecture
+ * If a program's codebase, and data-flow is not structured conicously a once easily managed program made of 10,000 lines of code becomes read-only once it becomes 100,000 lines of code. data flows become unruley and nested, or unintended dependencies occur in the application tree making the removal of a seemingly harmless line of code a detrimental task. This waste both time and causes frustration in maintainability.
+
+### 4. User to User real time interaction
+ * User interaction is a key success factor in regards to having a community adopt, and grow wih your projet. The more seamless user interaction with your website, and with each other, the better chance the project has at success.
+ 
 ___
 ___
 ___
 ___
 ___
-___
-___
-___
-___
-___
-___
+
 
 <a name="solution"></a>
 #Solution
