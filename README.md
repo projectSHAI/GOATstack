@@ -90,38 +90,24 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 
 ### 4. User to User real time interaction
  * User interaction is a key success factor in regards to having a community adopt, and grow wih your projet. The more seamless user interaction with your website, and with each other, the better chance the project has at success.
- 
-___
-___
-___
-___
-___
 
 
 <a name="solution"></a>
 #Solution
 
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/optimized-space-ship.png?raw=true" align="right">
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
+
+### 1. Initial page load speed 
+ * The GOAT stack capitilizes on Angular2's [Ahead-of-Time](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html) server side rendering. Having the server do the heavy lifting at build time allows us to serve a pre-rendered file to the client. Instantly serving the client a visual while capturing user events which are then que'd up to execute as soon as the app becomes functional further closes the gap between the web and native applications.
+ 
+### 2. Scaleable resources
+ * MongoDB fits the developer paradigm very well. with proper [indexing](https://docs.mongodb.com/manual/indexes/) and [schema design](https://docs.mongodb.com/v3.2/core/data-model-design/) daabase response times will be linear, or consant. Also, the apability of [sharding](https://docs.mongodb.com/manual/sharding/) removes the bottle-neck of datasize. 
+
+### 3. Scaleable Architecture
+ * [Immmutability](https://en.wikipedia.org/wiki/Immutable_object) makes app data predictable at any scale, and [redux](http://redux.js.org/docs/introduction/) makes dataflow manageble by eliminating many-to-many relationships, this completely eliminates tangled nests of components, making them more modular. Redux places the entire app's [state tree](http://redux.js.org/docs/Glossary.html#state) in one focal area which is the [store](http://redux.js.org/docs/api/Store.html). 
+
+### 4. User to User real time interaction
+ * Angular2's [two way data binding](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#two-way) and [Socket.io](http://socket.io/) is an effective combination. Two way data binding allows real time interaction between the website and a single client without the need for that user to ever reload a page. Socket.io takes this one step further and automatically updates any one user's changes on every other connected device in real time without anyone ever needing to refrsh their browser. 
 
 <a name="allTech"></a>
 # Technologies used to build the GOAT stack
