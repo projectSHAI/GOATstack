@@ -205,20 +205,20 @@ __What it does:__
 __Why we use it:__
 
 ### Jasmine
-__What it does:__
+__What it does:__ "Jasmine is a behavior-driven development framework for testing JavaScript code. It does not depend on any other JavaScript frameworks. It does not require a DOM. And it has a clean, obvious syntax so that you can easily write tests." - [Jasmine](https://jasmine.github.io/)
 
-__Why we use it:__
+__Why we use it:__ Jasmine is fast, and has no third party dependencies. This means there is less varience between stack implementations when compared to a framework like Mocha which could utilize any assertion library. The increased predictability of a static assertion library without compromise to performance or functionality made Jasmine more stable in our eyes.
 
 ### Karma
-__What it does:__
+__What it does:__ Karma is a test runner used for unit testing. Created by the Angular team it is "essentially a tool which spawns a web server that executes source code against test code for each of the browsers connected. The results of each test against each browser are examined and displayed via the command line to the developer such that they can see which browsers and tests passed or failed." -[Karma](https://karma-runner.github.io/1.0/intro/how-it-works.html)
 
-__Why we use it:__
+__Why we use it:__ Karma was developed by the Angular team specifically for Angular unit testing. Karma also seamelessly integrates with the Jasmine testing framework. Since both Karma and Protractor use Jasmine this lets us test the whole stack with a single framework, making the developer's  workflow more consistent.
 
 ### Protractor
 
 __What it does:__ "Protractor is an end-to-end test framework for AngularJS applications. Protractor runs tests against your application running in a real browser, interacting with it as a user would." -[Protractor](http://www.protractortest.org/#/)
 
-__Why we use it:__ We chose Protractor for E2E testing because it allows the developer to test Angular-specific elements in an efficient manner out of the box. Less set-up work and more concise code means more concentration on developing and testing what matters, and less time wasted on tedious boilerplate code.
+__Why we use it:__ We chose Protractor for E2E testing because it allows the developer to test Angular-specific elements in an efficient manner out of the box. Less set-up work and more concise code means more concentration on developing and testing what matters, and less time wasted on tedious boilerplate code. On a side note both Protractor and Karma use Jasmine this lets us test the whole stack with a single framework, making the developer's  workflow more consistent.
 
 
 <a name="reqs"></a>
