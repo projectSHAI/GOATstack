@@ -228,6 +228,9 @@ __Why we use it:__ We chose Protractor for E2E testing because it allows the dev
   * [typescript](https://www.typescriptlang.org/)
   * [nodejs](https://nodejs.org/en/)
   * [mongodb](https://docs.mongodb.com/)
+  * Your favorite browser
+  * [Redux DevTools for Google Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+   * If you would like to develop on a browser which is not Chrome, then disable Redux DevTools, otherwise the app will fail to compile. In your project folder navigate to `app/app.module.ts`, then delete the argument `devTool.enhancer()` inside of the `this.ngRedux.configureStore()` method located in the constructor.
 
 <a name="quickstart"></a>
 # Quick Start
