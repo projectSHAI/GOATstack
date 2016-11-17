@@ -83,10 +83,10 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
  * 40% of users leave a webpage that takes more than 3 seconds to load
  
 ### 2. Scaleable resources
- * If an App's resources cannot scale with real time user traffic will crash during traffic spikes, and be wasteful when there is low user activity
+ * If an App's resources cannot scale with real time user traffic it will crash during traffic spikes, and be wasteful when there is low user activity
 
 ### 3. Scaleable Architecture
- * If a program's codebase, and data-flow is not structured conicously a once easily managed program made of 10,000 lines of code becomes read-only once it becomes 100,000 lines of code. data flows become unruley and nested, or unintended dependencies occur in the application tree making the removal of a seemingly harmless line of code a detrimental task. This waste both time and causes frustration in maintainability.
+ * If a program's dataflow is not structured conicously a once easily managed program made of 10,000 lines of code becomes read-only once it reaches 100,000 lines of code. data flows become unruley and nested, and unintended dependencies occur in the application tree. This makes maintainability a mess, and refactoring a nightmare.
 
 ### 4. User to User real time interaction
  * User interaction is a key success factor in regards to having a community adopt, and grow wih your projet. The more seamless user interaction with your website, and with each other, the better chance the project has at success.
