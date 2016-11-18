@@ -79,49 +79,35 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/critical-space-ship.png?raw=true" align="right">
 
-1. Page load speed 
+### 1. Initial page load speed 
  * 40% of users leave a webpage that takes more than 3 seconds to load
-2. Scaleability
- * If resources are static a webapp will waste a lot of efficiency when load is low, or become crippled by a sudden surge of traffic 
-3. User engagement
- * stuff
+ 
+### 2. Scaleable resources
+ * If an App's resources cannot scale with real time user traffic it will crash during traffic spikes, and be wasteful when there is low user activity
 
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
+### 3. Scaleable Architecture
+ * If a program's dataflow is not structured conicously a once easily managed program made of 10,000 lines of code becomes read-only once it reaches 100,000 lines of code. data flows become unruley and nested, and unintended dependencies occur in the application tree. This makes maintainability a mess, and refactoring a nightmare.
+
+### 4. User to User real time interaction
+ * User interaction is a key success factor in regards to having a community adopt, and grow wih your projet. The more seamless user interaction with your website, and with each other, the better chance the project has at success.
+
 
 <a name="solution"></a>
 #Solution
 
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/optimized-space-ship.png?raw=true" align="right">
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
-___
+
+### 1. Initial page load speed 
+ * The GOAT stack capitilizes on Angular2's [Ahead-of-Time](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html) server side rendering. Having the server do the heavy lifting at build time allows us to serve a pre-rendered file to the client. Instantly serving the client a visual while capturing user events which are then que'd up to execute as soon as the app becomes functional further closes the gap between the web and native applications.
+ 
+### 2. Scaleable resources
+ * MongoDB fits the developer paradigm very well. with proper [indexing](https://docs.mongodb.com/manual/indexes/) and [schema design](https://docs.mongodb.com/v3.2/core/data-model-design/) daabase response times will be linear, or consant. Also, the apability of [sharding](https://docs.mongodb.com/manual/sharding/) removes the bottle-neck of datasize. 
+
+### 3. Scaleable Architecture
+ * [Immmutability](https://en.wikipedia.org/wiki/Immutable_object) makes app data predictable at any scale, and [redux](http://redux.js.org/docs/introduction/) makes dataflow manageble by eliminating many-to-many relationships, this completely eliminates tangled nests of components, making them more modular. Redux places the entire app's [state tree](http://redux.js.org/docs/Glossary.html#state) in one focal area which is the [store](http://redux.js.org/docs/api/Store.html). 
+
+### 4. User to User real time interaction
+ * Angular2's [two way data binding](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#two-way) and [Socket.io](http://socket.io/) is an effective combination. Two way data binding allows real time interaction between the website and a single client without the need for that user to ever reload a page. Socket.io takes this one step further and automatically updates any one user's changes on every other connected device in real time without anyone ever needing to refrsh their browser. 
 
 <a name="allTech"></a>
 # Technologies used to build the GOAT stack
@@ -205,20 +191,20 @@ __What it does:__
 __Why we use it:__
 
 ### Jasmine
-__What it does:__
+__What it does:__ "Jasmine is a behavior-driven development framework for testing JavaScript code. It does not depend on any other JavaScript frameworks. It does not require a DOM. And it has a clean, obvious syntax so that you can easily write tests." - [Jasmine](https://jasmine.github.io/)
 
-__Why we use it:__
+__Why we use it:__ Jasmine is fast, and has no third party dependencies. This means there is less varience between stack implementations when compared to a framework like Mocha which could utilize any assertion library. The increased predictability of a static assertion library without compromise to performance or functionality made Jasmine more stable in our eyes.
 
 ### Karma
-__What it does:__
+__What it does:__ Karma is a test runner used for unit testing. Created by the Angular team it is "essentially a tool which spawns a web server that executes source code against test code for each of the browsers connected. The results of each test against each browser are examined and displayed via the command line to the developer such that they can see which browsers and tests passed or failed." -[Karma](https://karma-runner.github.io/1.0/intro/how-it-works.html)
 
-__Why we use it:__
+__Why we use it:__ Karma was developed by the Angular team specifically for Angular unit testing. Karma also seamelessly integrates with the Jasmine testing framework. Since both Karma and Protractor use Jasmine this lets us test the whole stack with a single framework, making the developer's  workflow more consistent.
 
 ### Protractor
 
 __What it does:__ "Protractor is an end-to-end test framework for AngularJS applications. Protractor runs tests against your application running in a real browser, interacting with it as a user would." -[Protractor](http://www.protractortest.org/#/)
 
-__Why we use it:__ We chose Protractor for E2E testing because it allows the developer to test Angular-specific elements in an efficient manner out of the box. Less set-up work and more concise code means more concentration on developing and testing what matters, and less time wasted on tedious boilerplate code.
+__Why we use it:__ We chose Protractor for E2E testing because it allows the developer to test Angular-specific elements in an efficient manner out of the box. Less set-up work and more concise code means more concentration on developing and testing what matters, and less time wasted on tedious boilerplate code. On a side note both Protractor and Karma use Jasmine this lets us test the whole stack with a single framework, making the developer's  workflow more consistent.
 
 
 <a name="reqs"></a>
@@ -228,6 +214,9 @@ __Why we use it:__ We chose Protractor for E2E testing because it allows the dev
   * [typescript](https://www.typescriptlang.org/)
   * [nodejs](https://nodejs.org/en/)
   * [mongodb](https://docs.mongodb.com/)
+  * Your favorite browser
+  * [Redux DevTools for Google Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+   * If you would like to develop on a browser which is not Chrome, then disable Redux DevTools, otherwise the app will fail to compile. In your project folder navigate to `app/app.module.ts`, then delete the argument `devTool.enhancer()` inside of the `this.ngRedux.configureStore()` method located in the constructor.
 
 <a name="quickstart"></a>
 # Quick Start
