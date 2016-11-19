@@ -19,6 +19,7 @@ ___
 # Documentation Wiki
 
   * [Home](https://github.com/projectSHAI/GOAT-stack/wiki)
+  * [FAQ](https://github.com/projectSHAI/GOAT-stack/wiki/FAQ)
   * [Dev-Tools](https://github.com/projectSHAI/GOAT-stack/wiki/Dev-Tools)
   * [Gulp Tasks](https://github.com/projectSHAI/GOAT-stack/wiki/Gulp-Tasks)
   * [Client Side Docs](https://github.com/projectSHAI/GOAT-stack/wiki/Client-Side-Docs)
