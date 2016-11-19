@@ -13,12 +13,11 @@ the-sky{
 the-ocean {
     position: relative;
     top: 0;
-    left: 20vw;
-    margin-top: 0vh;
+    left: 0;
     display: block;
     width:100%;
     transform-origin: top center;
-    transform: scale(5);
+    transform: scale(5) translateX(5%);
 }
 @media screen and (max-aspect-ratio: 10/10) { 
 
@@ -26,42 +25,6 @@ the-ocean {
         margin-top: -145vh;
         transform: scale(13);
         left: 145vw;
-    }
-
-}
-@media screen and (min-aspect-ratio: 15/10) { 
-
-    the-ocean{
-        margin-top: 0vh;
-        transform: scale(5);
-        left: 20vw;
-    }
-
-}
-@media screen and (min-aspect-ratio: 20/10) { 
-
-    the-ocean{
-        margin-top: 20vh;
-        transform: scale(5);
-        left: 20vw;
-    }
-
-}
-@media screen and (min-aspect-ratio: 25/10) { 
-
-    the-ocean{
-        margin-top: 30vh;
-        transform: scale(5);
-        left: 20vw;
-    }
-
-}
-@media screen and (min-aspect-ratio: 30/10) { 
-
-    the-ocean{
-        margin-top: 50vh;
-        transform: scale(5);
-        left: 20vw;
     }
 
 }
