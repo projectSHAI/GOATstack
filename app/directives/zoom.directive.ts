@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, Renderer, HostListener, AfterViewInit } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer, HostListener, OnInit } from '@angular/core';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
@@ -11,32 +11,66 @@ declare let Power0: any;
 export class ZoomDirective {
 
     maxZoom: number = 5;
-    windowHeight: number = window.innerHeight;
     windowWidth: number = window.innerWidth;
+    windowHeight: number = window.innerHeight;
+    scrollTop: number = document.body.scrollTop;
+
+    scrollPercentage: number = (this.scrollTop / this.windowHeight);
+    //expected screen ratio greater than 1 = landscape less than 1 equals portrait
+    aspectRatio: number = this.windowWidth/this.windowHeight;
 
     top: number;
     left: number;
 
 
-    // aspectRatio: number = this.windowWidth/this.windowHeight;
-    // scrollPercentage: number = (this.scrollTop / this.windowHeight);
+    
+    
 
     // leftPos: any = (this.scrollPercentage) * -20;
-    // topPos: any = (this.scrollPercentage) * 100;
+    topPos: any = (this.scrollPercentage) * 100;
     // scrollMultiplier: any = 5 - (this.scrollPercentage * 4);
 
     eleNode: any = this.el.nativeElement;
-    tl: any = new TimelineMax;
+    landscapeTl: any = new TimelineMax({paused: true});
+    portraitTl: any = new TimelineMax({paused: true});
 
-    constructor(private el: ElementRef, private renderer: Renderer) { }
+    constructor(private el: ElementRef, private renderer: Renderer) { 
+        
+    }
 
-    @HostListener('window:scroll', ['$event'])
+    ngOnInit() {
+
+        this.landscapeTl.to(this.eleNode, 2, {scale: 1, x: 0, y: this.windowHeight});
+
+        this.portraitTl.to(this.eleNode, 2, {scale: 1, x: 0, y: this.windowHeight});
+
+    }
+
     @HostListener('window:resize', ['$event'])  
+    @HostListener('window:scroll', ['$event'])
     scroll(event) {
 
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
+    this.scrollTop = document.body.scrollTop;
 
-        this.tl.to(this.eleNode, 2, {scale: 1, x: 0, y: 0});
+    if(this.windowHeight >= this.scrollTop){
+        this.scrollPercentage = (this.scrollTop / this.windowHeight);
+    }
+    else{
+        this.scrollPercentage = 1;
+    }
+        
+    this.aspectRatio = this.windowWidth/this.windowHeight;
 
+    if(this.aspectRatio > 1) { 
+        this.landscapeTl.progress(this.scrollPercentage);
+    } else {
+        this.portraitTl.progress(this.scrollPercentage);
+    }
+    console.log(this.scrollTop);
+    console.log(this.windowHeight);
+    console.log(this.scrollPercentage);
     }
 
 
@@ -106,7 +140,7 @@ export class ZoomDirective {
 //         }
 //     }
 
-// }
+   }
 
 
 //trigger the zoom function on resize as well
