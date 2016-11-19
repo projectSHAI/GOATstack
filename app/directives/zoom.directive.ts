@@ -41,9 +41,9 @@ export class ZoomDirective {
 
     ngOnInit() {
 
-        this.landscapeTl.to(this.eleNode, 1, {scale: 1, x: 0, y: this.windowHeight});
+        this.landscapeTl.to(this.eleNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2});
 
-        this.portraitTl.to(this.eleNode, 1, {scale: 1, x: 0, y: this.windowHeight});
+        this.portraitTl.to(this.eleNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2});
 
     }
 
@@ -65,11 +65,11 @@ export class ZoomDirective {
     this.aspectRatio = this.windowWidth/this.windowHeight;
 
     if(this.aspectRatio > 1) { 
-        this.landscapeTl.tweenFromTo(this.previousPercentage ,this.scrollPercentage);
+        this.scrollTop !== 0 ? this.landscapeTl.play() : this.landscapeTl.reverse(0);
     } else {
-        this.portraitTl.tweenFromTo(this.previousPercentage ,this.scrollPercentage);
+        this.scrollTop !== 0 ? this.portraitTl.play() : this.portraitTl.reverse(0);
     }
-
+    console.log(event);
     this.previousPercentage = this.scrollPercentage;
     }
 
