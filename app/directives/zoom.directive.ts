@@ -16,6 +16,7 @@ export class ZoomDirective {
     scrollTop: number = document.body.scrollTop;
 
     scrollPercentage: number = (this.scrollTop / this.windowHeight);
+    previousPercentage: number = this.scrollPercentage;
     //expected screen ratio greater than 1 = landscape less than 1 equals portrait
     aspectRatio: number = this.windowWidth/this.windowHeight;
 
@@ -40,9 +41,9 @@ export class ZoomDirective {
 
     ngOnInit() {
 
-        this.landscapeTl.to(this.eleNode, 2, {scale: 1, x: 0, y: this.windowHeight});
+        this.landscapeTl.to(this.eleNode, 1, {scale: 1, x: 0, y: this.windowHeight});
 
-        this.portraitTl.to(this.eleNode, 2, {scale: 1, x: 0, y: this.windowHeight});
+        this.portraitTl.to(this.eleNode, 1, {scale: 1, x: 0, y: this.windowHeight});
 
     }
 
@@ -64,13 +65,12 @@ export class ZoomDirective {
     this.aspectRatio = this.windowWidth/this.windowHeight;
 
     if(this.aspectRatio > 1) { 
-        this.landscapeTl.progress(this.scrollPercentage);
+        this.landscapeTl.tweenFromTo(this.previousPercentage ,this.scrollPercentage);
     } else {
-        this.portraitTl.progress(this.scrollPercentage);
+        this.portraitTl.tweenFromTo(this.previousPercentage ,this.scrollPercentage);
     }
-    console.log(this.scrollTop);
-    console.log(this.windowHeight);
-    console.log(this.scrollPercentage);
+
+    this.previousPercentage = this.scrollPercentage;
     }
 
 
