@@ -1,13 +1,16 @@
 ## Yo Generator Project underway [here](https://github.com/JCThomas4214/GOAT-yeoman)
+### Possible generators
 
-  + ~~yo goat-stack [?name]~~
-  + ~~yo goat-stack:component [?name]~~
+  + yo goat-stack [?name]
+  + yo goat-stack:component [?name]
   + yo goat-stack:service [?name]
   + yo goat-stack:directive [?name]
   + yo goat-stack:pipe [?name]
-  + ~~yo goat-stack:actions [?name]~~
-  + ~~yo goat-stack:store-item [?name]~~
-  + ~~yo goat-stack:endpoint [?name]~~
+  + yo goat-stack:actions [?name]
+  + yo goat-stack:store-item [?name]
+  + yo goat-stack:endpoint [?name]
+  
+### All generators finished (11/19) merge of GOAT-stack & GOAT-yeoman underway...
   
 ___
 
