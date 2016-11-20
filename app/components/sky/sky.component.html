@@ -1,6 +1,6 @@
-<img class ="sky-color" src="assets/day-sky.svg" />
+<img class ="sky-color" [src]="skySvg" />
 
-<div class="sun-moon">
+<div class="sun-moon" [style.boxShadow]="sunMoonGlow" [style.borderColor]="sunMoonBorder" [style.transform]="yPos">
   <h2 class="clock">{{toda.getCurrentTime() | async | date: 'mediumTime'}}</h2>
 </div>
 

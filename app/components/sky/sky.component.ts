@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
+import { Component, AfterViewInit, HostListener } from '@angular/core';
 
 import { TimeOfDayActions } from '../../actions/time-of-day/time-of-day.actions';
 import { select } from 'ng2-redux';
@@ -10,30 +10,32 @@ import{ Observable } from 'rxjs/Observable';
   styleUrls: ['./sky.component.scss']
 })
 
-export class SkyComponent {
+export class SkyComponent implements AfterViewInit{
   @select('timeOfDay') toda$: Observable<any>;
 
-  private sunMoonGlow: string;
-  private yPos: number = 10;
+  skySvg: string;
+  sunMoonGlow: string;
+  sunMoonBorder: string;
+
+  yPos: string = 'translateY(10px)';
   private windowHeight: number = window.innerHeight;
 
-  constructor(public toda: TimeOfDayActions, private hostRef: ElementRef) { }
+  constructor(public toda: TimeOfDayActions) { }
 
 
   ngAfterViewInit() {
 
     this.toda$.subscribe(x => {
-      this.hostRef.nativeElement.children[0].src = x.get('skySvg');
-      this.hostRef.nativeElement.children[1].style.boxShadow = x.get('sunMoonGlow');
-      this.hostRef.nativeElement.children[1].style.borderColor = x.get('sunMoonBorder');
+      this.skySvg = x.get('skySvg');
+      this.sunMoonGlow = x.get('sunMoonGlow');
+      this.sunMoonBorder = x.get('sunMoonBorder');
     });
 
     //set the height of the sun and moon whenever the time changes
     this.toda.getCurrentTime().subscribe(x => {
 
-      this.yPos = this.windowHeight - (this.windowHeight * (((x.getHours() % 12) * 60 + x.getMinutes()) / 780 ));
+      this.yPos = `translateY(${this.windowHeight - (this.windowHeight * (((x.getHours() % 12) * 60 + x.getMinutes()) / 780 ))}px)`;
 
-      this.hostRef.nativeElement.children[1].style.transform = `translateY(${this.yPos}px)`;
     });
   }
 

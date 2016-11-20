@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -9,15 +9,17 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./mountain-goat.component.scss']
 })
 
-export class MountainGoatComponent implements AfterViewInit{
+export class MountainGoatComponent implements OnInit{
 
   @select('timeOfDay') toda$: Observable<any>;
 
-  constructor(private hostRef: ElementRef){ }
+  goatSvg: string;
 
-  ngAfterViewInit() {
+  constructor(){ }
+
+  ngOnInit() {
     this.toda$.subscribe(x => {
-      this.hostRef.nativeElement.children[0].src = x.get('mountainGoatSvg');
+      this.goatSvg = x.get('mountainGoatSvg');
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -12,17 +12,18 @@ import { WonderActions } from '../../actions/wonder/wonder.actions';
   styleUrls: ['./island.component.scss']
 })
 
-export class IslandComponent implements AfterViewInit {
+export class IslandComponent implements OnInit {
 
   @select('timeOfDay') toda$: Observable<any>;
 
   dream: string;
+  islandSvg: string;
 
-  constructor(private hostRef: ElementRef, public wonderActions: WonderActions){ }
+  constructor(public wonderActions: WonderActions){ }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.toda$.subscribe(x => {
-      this.hostRef.nativeElement.children[0].src = x.get('oceanFrontSvg');
+      this.islandSvg = x.get('islandSvg');
     });
   }
 

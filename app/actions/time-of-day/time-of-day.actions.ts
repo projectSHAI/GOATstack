@@ -37,10 +37,11 @@ export class TimeOfDayActions {
     if ((time > 6 && time <= 18) && !(this.holdHour > 6 && this.holdHour <= 18)) {
       this.ngRedux.dispatch({ type: TimeOfDayActions.DAY_TIME });
       this.holdHour = time;
+
     }
-    else if (!(this.holdHour >= 19 || this.holdHour <= 6 && this.holdHour > 0)) {
+    else if (time <= 6 || time > 18 && !(this.holdHour <= 6 || this.holdHour > 18)) {
       this.ngRedux.dispatch({ type: TimeOfDayActions.NIGHT_TIME });
       this.holdHour = time;
     }
   }
-  }
+}

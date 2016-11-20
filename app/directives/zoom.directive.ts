@@ -19,7 +19,6 @@ export class ZoomDirective {
 
 
     eleNode: any = this.el.nativeElement;
-    inputEle: any = this.eleNode.children[1];
     landscapeTl: any = new TimelineMax({paused: true});
     portraitTl: any = new TimelineMax({paused: true});
 
@@ -28,11 +27,9 @@ export class ZoomDirective {
     }
 
     ngOnInit() {
-        console.log(this.inputEle);
-        this.landscapeTl.to(this.eleNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2}).to(this.inputEle, 0.5, {opacity: 0}, 0);
+        this.landscapeTl.to(this.eleNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2});
 
-        this.portraitTl.to(this.eleNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2}).to(this.inputEle, 0.5, {opacity: 0}, 0);
-        console.log(this.eleNode);
+        this.portraitTl.to(this.eleNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2});
     }
 
     @HostListener('window:resize', ['$event'])  
