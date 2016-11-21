@@ -17,7 +17,7 @@ import{ Observable } from 'rxjs/Observable';
 export class TimeOfDayActions {
 
   private currentTime: any;
-  private holdHour: number = 0;
+  private holdHour: number;
 
   static NIGHT_TIME: string = 'NIGHT_TIME';
   static DAY_TIME: string = 'DAY_TIME';
@@ -29,7 +29,7 @@ export class TimeOfDayActions {
     this.currentTime.subscribe(time => this.timeOfDay(time.getHours()));
   }
 
-  getCurrentTime(): Observable<any>{
+  getCurrentTime(): Observable<any> {
     return this.currentTime;
   }
 
@@ -39,7 +39,7 @@ export class TimeOfDayActions {
       this.holdHour = time;
 
     }
-    else if (time <= 6 || time > 18 && !(this.holdHour <= 6 || this.holdHour > 18)) {
+    else if (!(this.holdHour <= 6 || this.holdHour > 18)) {
       this.ngRedux.dispatch({ type: TimeOfDayActions.NIGHT_TIME });
       this.holdHour = time;
     }
