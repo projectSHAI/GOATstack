@@ -18,9 +18,7 @@ export class MountainGoatComponent implements OnInit{
   constructor(){ }
 
   ngOnInit() {
-    this.toda$.subscribe(x => {
-      this.goatSvg = x.get('mountainGoatSvg');
-    });
+    this.toda$.subscribe(x => this.goatSvg = x.get('mountainGoatSvg'));
   }
 
 }

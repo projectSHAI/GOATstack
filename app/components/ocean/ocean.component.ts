@@ -17,9 +17,7 @@ export class OceanComponent implements OnInit{
 
 
 	ngOnInit() {
-		this.toda$.subscribe(x => {
-			this.oceanOverlaySvg = x.get('oceanOverlaySvg');
-		});
+		this.toda$.subscribe(x => this.oceanOverlaySvg = x.get('oceanOverlaySvg'));
 	}
 
 }

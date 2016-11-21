@@ -30,13 +30,8 @@ export class IslandComponent implements OnInit {
     ){ }
 
   ngOnInit() {
-    this.toda$.subscribe(x => {
-      this.islandSvg = x.get('islandSvg');
-    });
-
-    this.zoom$.subscribe(x => {
-      this.showInput = x.get('showHide');
-    });
+    this.toda$.subscribe(x => this.islandSvg = x.get('islandSvg'));
+    this.zoom$.subscribe(x => this.showInput = x.get('showHide'));
   }
 
 }
