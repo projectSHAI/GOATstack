@@ -190,9 +190,9 @@ __What it does:__
 __Why we use it:__
 
 ### Passport
-__What it does:__
+__What it does:__ "Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more." -  [Passport](http://passportjs.org/)
 
-__Why we use it:__
+__Why we use it:__ We decided to use Passport due to its modular architecture its sole purpose is authentication, and it seperates all other concerns delegating them to the application. This makes Passport maintainable, and keeps code clean. Also, passport has a variety of over 300 different authentication strategies, meaning developers will not be limited on how they authenticate their users.
 
 ### Jasmine
 __What it does:__ "Jasmine is a behavior-driven development framework for testing JavaScript code. It does not depend on any other JavaScript frameworks. It does not require a DOM. And it has a clean, obvious syntax so that you can easily write tests." - [Jasmine](https://jasmine.github.io/)
