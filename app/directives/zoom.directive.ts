@@ -25,6 +25,7 @@ export class ZoomDirective {
     homeNode: any = this.oceanNode.parentNode;
     landscapeTl: any = new TimelineMax({paused: true});
     portraitTl: any = new TimelineMax({paused: true});
+    hello: any;
 
     constructor(
         private el: ElementRef, 
@@ -34,9 +35,9 @@ export class ZoomDirective {
     }
 
     ngOnInit() {
-        this.landscapeTl.to(this.oceanNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2}).to(this.homeNode, 0, {height: 'auto'}, 0);
+        this.hello = this.landscapeTl.to(this.oceanNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2}).to(this.homeNode, 0, {height: 'auto'});
 
-        this.portraitTl.to(this.oceanNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2}).to(this.homeNode, 0, {height: 'auto'}, 0);
+        this.portraitTl.to(this.oceanNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2}).to(this.homeNode, 0, {height: 'auto'});
     }
   
     @HostListener('window:scroll', ['$event'])
@@ -47,7 +48,7 @@ export class ZoomDirective {
         this.scrollTop = document.body.scrollTop;
 
         if(this.scrollTop === 0 && this.aspectRatio > 1) {
-            this.landscapeTl.reverse(0);
+            this.hello.reverse(0);
             this.zoomActions.updateShowHide();
         }
         else if(this.scrollTop === 0 && this.aspectRatio < 1) {
@@ -72,7 +73,7 @@ export class ZoomDirective {
     zoomOut() {
         console.log(this.homeNode);
         if(this.aspectRatio > 1) {
-            this.landscapeTl.play(0);
+            this.hello.play(0);
             this.zoomActions.updateShowHide();
         }
         else if(this.aspectRatio < 1) {
