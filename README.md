@@ -185,9 +185,9 @@ __What it does:__
 __Why we use it:__
 
 ### Mongoose
-__What it does:__
+__What it does:__ "Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box." - [Mongoose](http://mongoosejs.com/)
 
-__Why we use it:__
+__Why we use it:__ Mongoose is a framework that makes modeling MongoDB Documents a breeze. Mongoose handles a majority of the boilerplate needed in schema design letting the developer concentrate on more important concepts.
 
 ### Passport
 __What it does:__ "Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more." -  [Passport](http://passportjs.org/)
