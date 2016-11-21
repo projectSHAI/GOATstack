@@ -1,7 +1,20 @@
 #island{
 	width: 50.8%;
 }
-
+button{
+    background-image: url(http://rdthairsalon.com/blog/wp-content/plugins/wp-app-maker/asset-studio/res/clipart/icons/down_arrow.svg);
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 14%;
+    left: 26.8%;
+    width: 3%;
+    height: 21%;
+    text-align: center;
+    transform: scale(0.28571);
+    cursor: pointer;
+}
 mountain-goat {
     position: absolute;
     width: 1.3%;
