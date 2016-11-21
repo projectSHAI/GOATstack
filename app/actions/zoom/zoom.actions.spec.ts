@@ -22,19 +22,6 @@ describe('Zoom Actions Creator', () => {
     actions = new ZoomActions(mockRedux);
   });
 
-  it('should dispatch UPDATE_TIMELINES action', () => {
-    const expectedAction = {
-      type: ZoomActions.UPDATE_TIMELINES,
-      payload: testPayload
-    };
-
-    spyOn(mockRedux, 'dispatch');
-    actions.updateTimelines(testPayload);
-
-    expect(mockRedux.dispatch).toHaveBeenCalled();
-    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
-  });
-
   it('should dispatch UPDATE_SHOW_HIDE action', () => {
     const expectedAction = {
       type: ZoomActions.UPDATE_SHOW_HIDE

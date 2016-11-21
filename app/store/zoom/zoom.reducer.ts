@@ -9,15 +9,9 @@ export function zoomReducer(state: IZoom = INITIAL_STATE, action: any) {
 
   // Depending on the incoming state 'type' execute corresponding state change
   switch(action.type) {
-    case ZoomActions.UPDATE_TIMELINES:
-      return state
-              .updateIn(['portraitTl'], val => action.payload.portraitTl)
-              .updateIn(['landscapeTl'], val => action.payload.landscapeTl);
-
     case ZoomActions.UPDATE_SHOW_HIDE:
       return state
-              .updateIn(['showHide'], val => !state.getIn(['showHide']));
-          
+              .updateIn(['showHide'], val => !state.getIn(['showHide']));          
     default:
       return state;
   }

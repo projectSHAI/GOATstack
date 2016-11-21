@@ -17,25 +17,6 @@ describe('Zoom Reducer', () => {
     expect(Map.isMap(initialState)).toBe(true);
   });
 
-  it('should update the timelines appropriatly', () => {
-    const previousState = initialState;
-    const nextState     = zoomReducer(previousState, {
-      type: ZoomActions.UPDATE_TIMELINES,
-      payload: {
-        portraitTl: 'this is portrait',
-        landscapeTl: 'this is landscape'
-    }});
-
-    expect(previousState.getIn(['showHide'])).toBe(true);
-    expect(previousState.getIn(['portraitTl'])).toBe(null);
-    expect(previousState.getIn(['landscapeTl'])).toBe(null);
-
-    expect(nextState.getIn(['showHide'])).toBe(true);
-    expect(nextState.getIn(['portraitTl'])).toBe('this is portrait');
-    expect(nextState.getIn(['landscapeTl'])).toBe('this is landscape');
-
-  });
-
   it('should be true or false', () => {
     const previousState = initialState;
     const nextState     = zoomReducer(previousState, {
