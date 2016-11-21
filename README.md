@@ -180,9 +180,10 @@ __What it does:__
 __Why we use it:__
 
 ### SocketIO
-__What it does:__
+__What it does:__ "Socket.IO enables real-time bidirectional event-based communication.
+It works on every platform, browser or device, focusing equally on reliability and speed." - [Socket IO](http://socket.io/)
 
-__Why we use it:__
+__Why we use it:__ Socket IO takes the web one step closer to the territory of native applications. It gives our users the capability of seeing update information on the website without the need to reload the page. It also gives users the ability to interact with other users in real time, utilizing technologies like live chat.
 
 ### Mongoose
 __What it does:__ "Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box." - [Mongoose](http://mongoosejs.com/)
