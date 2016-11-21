@@ -64,8 +64,10 @@ export class ZoomDirective {
         this.windowHeight = window.innerHeight;
         this.aspectRatio = this.windowWidth/this.windowHeight;
 
-        this.landscapeTl.to(this.oceanNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2}).to(this.homeNode, 0, {height: 'auto'});
+        this.landscapeTl.clear();
+        this.portraitTl.clear();
 
+        this.landscapeTl.to(this.oceanNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2}).to(this.homeNode, 0, {height: 'auto'});
         this.portraitTl.to(this.oceanNode, 1, {scale: 1, x: 0, y: this.windowHeight / 2}).to(this.homeNode, 0, {height: 'auto'});
 
     }
