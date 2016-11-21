@@ -18,10 +18,7 @@ export class WhaleComponent implements OnInit {
   constructor(){ }
 
   ngOnInit() {
-    this.toda$.subscribe(x => {
-      this.whaleSvg = x.get('whaleSvg');
-    });
-    console.log(this.whaleSvg);
+    this.toda$.subscribe(x => this.whaleSvg = x.get('whaleSvg'));
   }
 
 }

@@ -38,10 +38,10 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.width = window.innerWidth;
     this.animaArray$.subscribe(anima => this.animaArray = anima);
+    this.toda$.subscribe(x => this.wonderSky.nativeElement.style.filter = x.get('cloudBrightness')); 
     // Change the state to indicate wonders are being fetched
     this.wonderActions.fetchWonders();
-    this.wonderService.getWonders()
-      .subscribe(wonders => {
+    this.wonderService.getWonders().subscribe(wonders => {
         // initialize store wonders
         this.wonderActions.initWonders(wonders);
         // initialize store cloudStyle
@@ -61,13 +61,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
           });
 
         }, 1250); // Give a little more time to render the new cloud style
-      });
-
-      this.toda$.subscribe(x => {
-        this.wonderSky.nativeElement.style.filter = x.get('cloudBrightness');
-      } );
-
-      
+      });     
   }
 
   ngOnDestroy() {
