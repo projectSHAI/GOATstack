@@ -170,14 +170,14 @@ ___
 GOAT includes the [Redux](http://redux.js.org/) architechture, [Immutable](https://facebook.github.io/immutable-js/) data structuring, [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
 
 ### Redux
+__What it does:__ "Redux is a state management library with minimal API but completely predictable behavior, so it is possible to implement logging, hot reloading, time travel, universal apps, record and replay, without any buy-in from the developer." - [Redux](http://redux.js.org/) 
+
+__Why we use it:__ Redux is an invaluable tool which makes client components scale seamlessly in Angular2. Redux accomplishes this by restructuring the flow of data in Angular2 applications; Instead of Angular2's [many-to-many](https://en.wikipedia.org/wiki/Many-to-many_(data_model)) component relationships Redux creates a focal point (the store) which changes the flow of data to [many-to-one](https://en.wikipedia.org/wiki/One-to-many_(data_model)) and then [one-to-many](https://en.wikipedia.org/wiki/One-to-many_(data_model)). Instead of data flowing from parent to child, grand-child, and great-grand-child components and vice-versa through hard coded `@input` and `@output` decorators which make it hard to reuse comoponents Redux acts as a middleman. All components that nee to consume data will now receive this data from the store. Any Components which update data will now send this updated data to the store as well. 
+
+### Immutable
 __What it does:__ "Immutable data cannot be changed once created, leading to much simpler application development, no defensive copying, and enabling advanced memoization and change detection techniques with simple logic. Persistent data presents a mutative API which does not update the data in-place, but instead always yields new updated data." - [Immutable](https://facebook.github.io/immutable-js/)
 
 __Why we use it:__ With Immutable data we can be confident in the behavior of our application. Predictability leads to better modelling, and less unintentional hard to identify bugs. With Immutibility we can also take better control over data leaks, and have an easier time managing the [heap](http://apmblog.dynatrace.com/2015/11/04/understanding-garbage-collection-and-hunting-memory-leaks-in-node-js/)
-
-### Immutable
-__What it does:__
-
-__Why we use it:__ Mutibility requires a developer to track how data in memory is overwritten as 
 
 ### SocketIO
 __What it does:__ "Socket.IO enables real-time bidirectional event-based communication.
