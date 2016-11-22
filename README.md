@@ -61,7 +61,7 @@ ___
  - Finishing our [Facebook page](https://www.facebook.com/goatstack/).
  - Finishing our [Reddit page](https://www.reddit.com/r/GOATStack/).
  - ~~Making sure SEO and webcrawlers are optimized.~~
- - Making sure all the Goats are well fed and happy!
+ - ~~Making sure all the Goats are well fed and happy!~~
  
 <a name="followtheGOAT"></a>
 #Follow the GOAT
