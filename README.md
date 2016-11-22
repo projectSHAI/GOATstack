@@ -170,14 +170,14 @@ ___
 GOAT includes the [Redux](http://redux.js.org/) architechture, [Immutable](https://facebook.github.io/immutable-js/) data structuring, [SocketIO](http://socket.io/), [Mongoose](http://mongoosejs.com/), [Passport](http://passportjs.org/), [Jasmine](http://jasmine.github.io/), [Karma](https://karma-runner.github.io/1.0/index.html), and [Protractor](http://www.protractortest.org/#/) out of the box. These extra libraries have been added to address common boilerplate needs; such as server and client testing, user login, authentication, and communication between client and server, etc.
 
 ### Redux
-__What it does:__ 
+__What it does:__ "Immutable data cannot be changed once created, leading to much simpler application development, no defensive copying, and enabling advanced memoization and change detection techniques with simple logic. Persistent data presents a mutative API which does not update the data in-place, but instead always yields new updated data." - [Immutable](https://facebook.github.io/immutable-js/)
 
-__Why we use it:__
+__Why we use it:__ With Immutable data we can be confident in the behavior of our application. Predictability leads to better modelling, and less unintentional hard to identify bugs. With Immutibility we can also take better control over data leaks, and have an easier time managing the [heap](http://apmblog.dynatrace.com/2015/11/04/understanding-garbage-collection-and-hunting-memory-leaks-in-node-js/)
 
 ### Immutable
 __What it does:__
 
-__Why we use it:__
+__Why we use it:__ Mutibility requires a developer to track how data in memory is overwritten as 
 
 ### SocketIO
 __What it does:__ "Socket.IO enables real-time bidirectional event-based communication.
