@@ -1,5 +1,5 @@
 import { NgRedux } from 'ng2-redux';
-import { ZoomActions } from './zoom.actions';
+import { SkyPositionActions } from './sky-position.actions';
 
 class MockRedux extends NgRedux<any> {
   constructor() {
@@ -8,22 +8,22 @@ class MockRedux extends NgRedux<any> {
   dispatch: () => {};
 }
 
-describe('Zoom Actions Creator', () => {
-  let actions: ZoomActions;
+describe('Sky Position Actions Creator', () => {
+  let actions: SkyPositionActions;
   let mockRedux: NgRedux<any>;
 
   beforeEach(() => {
     mockRedux = new MockRedux();
-    actions = new ZoomActions(mockRedux);
+    actions = new SkyPositionActions(mockRedux);
   });
 
   it('should dispatch UPDATE_SHOW_HIDE action', () => {
     const expectedAction = {
-      type: ZoomActions.UPDATE_SHOW_HIDE
+      type: SkyPositionActions.UPDATE_SKY_POSITION
     };
 
     spyOn(mockRedux, 'dispatch');
-    actions.updateShowHide();
+    actions.updateSkyPosition();
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);

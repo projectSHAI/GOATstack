@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -26,12 +26,22 @@ export class IslandComponent implements OnInit {
   constructor(
     public wonderActions: WonderActions,
     public zoomActions: ZoomActions,
-    public zoomDirective: ZoomDirective
+    public zoomDirective: ZoomDirective,
+    public el: ElementRef,
     ){ }
 
   ngOnInit() {
     this.toda$.subscribe(x => this.islandSvg = x.get('islandSvg'));
-    this.zoom$.subscribe(x => this.showInput = x.get('showHide'));
+    this.zoom$.subscribe(x => {
+      this.showInput = x.get('showHide');
+      if(this.showInput === true) {
+        this.el.nativeElement.style.pointerEvents = 'all';
+      }
+      else {
+        this.el.nativeElement.style.pointerEvents = 'none';
+      }
+
+    });
   }
 
 }

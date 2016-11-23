@@ -24,12 +24,8 @@ describe('Zoom Reducer', () => {
     });
 
     expect(previousState.getIn(['showHide'])).toBe(true);
-    expect(previousState.getIn(['portraitTl'])).toBe(null);
-    expect(previousState.getIn(['landscapeTl'])).toBe(null);
 
     expect(nextState.getIn(['showHide'])).toBe(false);
-    expect(nextState.getIn(['portraitTl'])).toBe(null);
-    expect(nextState.getIn(['landscapeTl'])).toBe(null);
 
 
   });

@@ -59,6 +59,8 @@ import { FooterComponent }            from './components/footer/footer.component
 import { Four0FourComponent }         from './components/404/four0four.component';
 import { UserProfileComponent }       from './components/user-profile/user-profile.component';
 import { SkyComponent }               from './components/sky/sky.component';
+import { StratosphereComponent }      from './components/stratosphere/stratosphere.component';
+import { TroposphereComponent }      from './components/troposphere/troposphere.component';
 import { OceanComponent }             from './components/ocean/ocean.component';
 import { WhaleComponent }             from './components/whale/whale.component';
 import { IslandComponent }            from './components/island/island.component';
@@ -163,6 +165,8 @@ NgModule
     AppComponent,
     NavbarComponent,
     SkyComponent,
+    StratosphereComponent,
+    TroposphereComponent,
     OceanComponent,
     WhaleComponent,
     IslandComponent,
