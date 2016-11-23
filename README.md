@@ -286,8 +286,9 @@ $ cd GOAT-stack
 $ npm install -g gulp-cli typescript
 $ npm install
 $ # mongod runs as a child process!
-$ gulp
+$ sudo gulp
 ```
+> Note: gulp needs to be elevated with `sudo`, otherwise the mongod process which is executed in the gulp task runner will throw an error stating the port is already in use, even if it is free. This happens even when running mongod in its own terminal.
 
 <a name="supportGOAT"></a>
 #Support the GOAT
