@@ -64,6 +64,8 @@ import { TroposphereComponent }       from './components/troposphere/troposphere
 import { OceanComponent }             from './components/ocean/ocean.component';
 import { EpipelagicZoneComponent }    from './components/epipelagic-zone/epipelagic-zone.component';
 import { MesopelagicZoneComponent }   from './components/mesopelagic-zone/mesopelagic-zone.component';
+import { OceanFloorComponent }        from './components/ocean-floor/ocean-floor.component';
+import { ShipWreckComponent }         from './components/ship-wreck/ship-wreck.component';
 import { WhaleComponent }             from './components/whale/whale.component';
 import { IslandComponent }            from './components/island/island.component';
 import { MountainGoatComponent }      from './components/mountain-goat/mountain-goat.component';
@@ -172,6 +174,8 @@ NgModule
     OceanComponent,
     EpipelagicZoneComponent,
     MesopelagicZoneComponent,
+    ShipWreckComponent,
+    OceanFloorComponent,
     WhaleComponent,
     IslandComponent,
     MountainGoatComponent,
