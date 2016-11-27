@@ -17,7 +17,13 @@ the-island {
 button {
     position: absolute;
     top: -20%;
-    left: 83%;
-    width: 9%;
-    height: 5%;
+    left: 85%;
+    width: 5%;
+    height: 9%;
+    background-image: url(http://rdthairsalon.com/blog/wp-content/plugins/wp-app-maker/asset-studio/res/clipart/icons/down_arrow.svg);
+    background-size: contain;
+    background-color: transparent;
+    border: none;    
+    cursor: pointer;
+    transform: rotate(180deg);
 }

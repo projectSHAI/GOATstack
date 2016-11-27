@@ -18,7 +18,7 @@ export class SkyComponent {
 
   ngOnInit() {
     
-    this.toda$.subscribe(x => this.el.nativeElement.style.backgroundColor = x.get('skyColor'));
+    this.toda$.subscribe(x => this.el.nativeElement.style.background = x.get('skyColor'));
     this.skyPosition$.subscribe(x => {
     	if(x.get('toSkyIsland') === true) {
     		this.el.nativeElement.style.top = 0;

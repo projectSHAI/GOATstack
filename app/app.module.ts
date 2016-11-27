@@ -20,13 +20,13 @@ Modules
 --------------------------------------------------
 //other necessary modules for this app
 */
-import { NgModule }                  from '@angular/core';
-import { FormsModule }               from '@angular/forms';
-import { BrowserModule }             from '@angular/platform-browser';
-import { HttpModule, JsonpModule }   from '@angular/http';
-import { MaterialModule }            from '@angular/material';
+import { NgModule }                                  from '@angular/core';
+import { FormsModule }                               from '@angular/forms';
+import { BrowserModule }                             from '@angular/platform-browser';
+import { HttpModule, JsonpModule }                   from '@angular/http';
+import { MaterialModule }                            from '@angular/material';
 import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
-import { _NgRedux }                  from './actions/redux.sol';
+import { _NgRedux }                                  from './actions/redux.sol';
 
 /*
 --------------------------------------------------
@@ -60,8 +60,10 @@ import { Four0FourComponent }         from './components/404/four0four.component
 import { UserProfileComponent }       from './components/user-profile/user-profile.component';
 import { SkyComponent }               from './components/sky/sky.component';
 import { StratosphereComponent }      from './components/stratosphere/stratosphere.component';
-import { TroposphereComponent }      from './components/troposphere/troposphere.component';
+import { TroposphereComponent }       from './components/troposphere/troposphere.component';
 import { OceanComponent }             from './components/ocean/ocean.component';
+import { EpipelagicZoneComponent }    from './components/epipelagic-zone/epipelagic-zone.component';
+import { MesopelagicZoneComponent }   from './components/mesopelagic-zone/mesopelagic-zone.component';
 import { WhaleComponent }             from './components/whale/whale.component';
 import { IslandComponent }            from './components/island/island.component';
 import { MountainGoatComponent }      from './components/mountain-goat/mountain-goat.component';
@@ -168,6 +170,8 @@ NgModule
     StratosphereComponent,
     TroposphereComponent,
     OceanComponent,
+    EpipelagicZoneComponent,
+    MesopelagicZoneComponent,
     WhaleComponent,
     IslandComponent,
     MountainGoatComponent,
