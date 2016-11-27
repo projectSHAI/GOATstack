@@ -7,7 +7,7 @@ describe('App E2E Tests', function () {
       .toString()));
 
   beforeAll(function () {
-    // Important to have this line
+    // Important to have this line because the javascript will load after the index.html
     browser.ignoreSynchronization = true;
     browser.get('');
   });
