@@ -34,12 +34,12 @@ export class TimeOfDayActions {
   }
 
   timeOfDay(time: any): any {
-    if ((time > 6 && time <= 18) && !(this.holdHour > 6 && this.holdHour <= 18)) {
+    if ((time > 6 && time <= 17) && !(this.holdHour > 6 && this.holdHour <= 17)) {
       this.ngRedux.dispatch({ type: TimeOfDayActions.DAY_TIME });
       this.holdHour = time;
 
     }
-    else if (!(this.holdHour <= 6 || this.holdHour > 18)) {
+    else if (!this.holdHour) {
       this.ngRedux.dispatch({ type: TimeOfDayActions.NIGHT_TIME });
       this.holdHour = time;
     }
