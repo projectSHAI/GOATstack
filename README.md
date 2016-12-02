@@ -58,8 +58,8 @@ ___
  - ~~Implementation of AOT(Ahead-of-Time) rendering.~~
  - Finishing the Demonstration webapp.
  - Creating thorough, and well structured documentation.
- - Finishing our [Facebook page](https://www.facebook.com/goatstack/).
- - Finishing our [Reddit page](https://www.reddit.com/r/GOATStack/).
+ - ~~Finishing our [Facebook page](https://www.facebook.com/goatstack/).~~
+ - ~~Finishing our [Reddit page](https://www.reddit.com/r/GOATStack/).~~
  - ~~Making sure SEO and webcrawlers are optimized.~~
  - ~~Making sure all the Goats are well fed and happy!~~
  
