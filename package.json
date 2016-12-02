@@ -78,7 +78,7 @@
     "socketio-jwt": "4.5.0",
     "systemjs": "0.19.40",
     "typescript": "2.1.1",
-    "uglify-js": "^2.7.4",
+    "uglify-js": "2.7.4",
     "zone.js": "0.6.26"
   },
   "devDependencies": {
@@ -142,7 +142,7 @@
     "karma-mocha-reporter": "2.2.0",
     "karma-remap-istanbul": "0.2.1",
     "livereload": "0.5.0",
-    "node-sass": "^3.10.1",
+    "node-sass": "3.10.1",
     "protractor": "4.0.9",
     "proxyquire": "1.7.10",
     "rollup": "0.36.3",
@@ -156,7 +156,6 @@
     "supertest": "2.0.0",
     "tslint": "3.15.1",
     "typings": "1.4.0",
-    "uglify-js": "2.7.3",
     "uglifycss": "0.0.22"
   },
   "repository": {
