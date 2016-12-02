@@ -45,7 +45,7 @@
     "jsonwebtoken": "7.1.9",
     "lodash": "4.17.2",
     "method-override": "2.3.7",
-    "mongodb": "2.2.10",
+    "mongodb": "2.2.12",
     "mongoose": "4.7.0",
     "morgan": "1.7.0",
     "ng2-cookies": "1.0.3",
