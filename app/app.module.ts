@@ -43,7 +43,6 @@ HTTP Requests
 //imports to handle http events to send and receive data from api's
 */
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
-
 /*
 --------------------------------------------------
 Components

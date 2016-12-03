@@ -267,7 +267,8 @@ export class Gulpfile {
 
   // Transpile single TS file
   buildFile(file: any) {
-    let relativePath = file.relative.concat(''); // make copy of relative path
+    let relativePath = file.path.replace(file.cwd + '\\', ''); // copy of relative path
+
     const tsProject = ts.createProject('tsconfig.json');
 
     const ht = relativePath.includes('html');
@@ -295,7 +296,7 @@ export class Gulpfile {
 
       return fName !== 'app.module.ts' ? tsResult.js.pipe(gulp.dest(relativePath)) :
         tsResult.js.pipe(replace('process.env.NODE_ENV', "'development'"))
-          .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
+          .pipe(replace('redux_logger_1.default', 'redux_logger_1')) // workaround
           .pipe(gulp.dest(relativePath));
     } else {
       // if file was the index.html
