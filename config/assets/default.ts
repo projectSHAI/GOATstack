@@ -12,7 +12,7 @@ export const defaultAssets = {
         'dist/app/**/**/*.js'
       ],
       css: [
-        'dist/styles.css',
+        'dist/app/styles.css',
       ],
       assets: [
         'dist/app/assets/*jpg',
