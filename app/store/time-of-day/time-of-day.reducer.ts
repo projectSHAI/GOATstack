@@ -12,7 +12,7 @@ export function timeOfDayReducer(state: ITimeOfDay = INITIAL_STATE, action: any)
     case TimeOfDayActions.DAY_TIME:
       return state
               .updateIn(['cloudBrightness'], val => 'brightness(100%)')
-              .updateIn(['skyColor'], val => '#6abfeb')
+              .updateIn(['skyColor'], val => 'linear-gradient(to bottom, #ffffff 0%,#6abfeb 100%)')
               .updateIn(['mountainGoatSvg'], val => 'assets/day-mountain-goat.svg')
               .updateIn(['islandSvg'], val => 'assets/day-island.svg')
               .updateIn(['oceanOverlaySvg'], val => 'assets/day-ocean-overlay.svg')
@@ -22,7 +22,7 @@ export function timeOfDayReducer(state: ITimeOfDay = INITIAL_STATE, action: any)
     case TimeOfDayActions.NIGHT_TIME:
       return state
               .updateIn(['cloudBrightness'], val => 'brightness(30%)')
-              .updateIn(['skyColor'], val => '#140f28')
+              .updateIn(['skyColor'], val => 'linear-gradient(to bottom, #000000 0%,#140f28 100%)')
               .updateIn(['mountainGoatSvg'], val => 'assets/night-mountain-goat.svg')
               .updateIn(['islandSvg'], val => 'assets/night-island.svg')
               .updateIn(['oceanOverlaySvg'], val => 'assets/night-ocean-overlay.svg')
@@ -33,3 +33,6 @@ export function timeOfDayReducer(state: ITimeOfDay = INITIAL_STATE, action: any)
       return state;
   }
 }
+// background: -moz-linear-gradient(top,  #000000 0%, #000000 6%, #000000 6%, #0c0919 44%, #0c0919 44%, #140f28 100%); /* FF3.6-15 */
+// background: -webkit-linear-gradient(top,  #000000 0%,#000000 6%,#000000 6%,#0c0919 44%,#0c0919 44%,#140f28 100%); /* Chrome10-25,Safari5.1-6 */
+// background: ; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */

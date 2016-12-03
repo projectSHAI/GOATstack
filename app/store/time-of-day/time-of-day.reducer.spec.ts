@@ -27,7 +27,7 @@ describe('TimeOfDay Reducer', () => {
 
     expect(previousState).toBe(initialState);
     expect(nextState.getIn(['cloudBrightness'])).toBe('brightness(100%)');
-    expect(nextState.getIn(['skySvg'])).toBe('assets/day-sky.svg');
+    expect(nextState.getIn(['skyColor'])).toBe('linear-gradient(to bottom, #ffffff 0%,#6abfeb 100%)');
     expect(nextState.getIn(['mountainGoatSvg'])).toBe('assets/day-mountain-goat.svg');
     expect(nextState.getIn(['islandSvg'])).toBe('assets/day-island.svg');
     expect(nextState.getIn(['oceanOverlaySvg'])).toBe('assets/day-ocean-overlay.svg');
@@ -46,7 +46,7 @@ describe('TimeOfDay Reducer', () => {
 
     expect(previousState).toBe(initialState);
     expect(nextState.getIn(['cloudBrightness'])).toBe('brightness(30%)');
-    expect(nextState.getIn(['skySvg'])).toBe('assets/night-sky.svg');
+    expect(nextState.getIn(['skyColor'])).toBe('linear-gradient(to bottom, #000000 0%,#140f28 100%)');
     expect(nextState.getIn(['mountainGoatSvg'])).toBe('assets/night-mountain-goat.svg');
     expect(nextState.getIn(['islandSvg'])).toBe('assets/night-island.svg');
     expect(nextState.getIn(['oceanOverlaySvg'])).toBe('assets/night-ocean-overlay.svg');

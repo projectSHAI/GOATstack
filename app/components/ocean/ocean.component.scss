@@ -1,16 +1,31 @@
-blue-whale {
-    position: absolute;
-    top: 20vh;
-    left: 20%;
-    width: 60%;
-}
+
 .ocean,
 .ocean-overlay{
 	width: 100%;
 	margin-top: 20vh;
+	position: absolute;
+	top:0;
+	left: 0;
 }
 .ocean-overlay {
-    position: absolute;
-    top:0;
+}
+epipelagic-zone{
+	position: relative;
     left: 0;
+    display:block;
+    top: 20vh;
+    width: 100%;
+    height:200vh;
+}
+mesopelagic-zone {
+    position: relative;
+    left: 0;
+    display: block;
+    top: 0vh;
+    width: 100%;
+    height: 200vh;
+}
+ocean-floor{
+	height:20px;
+	background: brown;
 }
