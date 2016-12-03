@@ -1,9 +1,9 @@
 <div class="user-sign">
   <div>
-    <h3 id="welcomeUser" *ngIf="(user$ | async).has('userItem')">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</h3>
-    <button md-raised-button *ngIf="!(user$ | async).has('userItem') && !(userForm$ | async).get('userSigning') && !(userForm$ | async).get('userSignup')" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
-    <button md-raised-button *ngIf="!(user$ | async).has('userItem') && !(userForm$ | async).get('userSigning') && !(userForm$ | async).get('userSignup')" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
-    <button md-raised-button *ngIf="(user$ | async).has('userItem')" type="button"
+    <button md-raised-button id="welcome-user" *ngIf="(user$ | async).has('userItem')" color="accent">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</button>
+    <button md-raised-button id="sign-up-btn" *ngIf="!(user$ | async).has('userItem') && !(userForm$ | async).get('userSigning') && !(userForm$ | async).get('userSignup')" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
+    <button md-raised-button id="sign-in-btn" *ngIf="!(user$ | async).has('userItem') && !(userForm$ | async).get('userSigning') && !(userForm$ | async).get('userSignup')" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
+    <button md-raised-button id="sign-out-btn" *ngIf="(user$ | async).has('userItem')" type="button"
       (click)="userActions.logout()" color="primary">SIGN OUT</button>
   </div>
   <md-card class="reg-card" *ngIf="(userForm$ | async).get('userSigning')">

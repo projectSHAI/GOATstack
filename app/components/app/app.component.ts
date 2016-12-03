@@ -10,7 +10,7 @@ Bootstrapping component
 
 
 //main imports
-import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
 import { SEOActions } from '../../actions/seo/seo.actions';
@@ -28,9 +28,11 @@ declare let TimelineMax: any;
 
 //class which is implemented once the AfterViewInit event in tha Angular event lifecycle has fired.
 //-- to learn more about Angular's event lifecycle read here: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   //this decorator is for NgRedux. you can read more about Redux here: https://github.com/angular-redux/ng2-redux
   @select('error') error$: Observable<any>;
+  @select('timeOfDay') toda$: Observable<any>;
+
   private timeline: any;
 
   //this decorator gabs the object associated with the #errorToast template variable assigned in the app.componnent.html file,
@@ -38,7 +40,21 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('errorToast') errorToast: ElementRef;
 
   constructor(
-    private errorHandler: ErrorHandlerActions) {}
+    private errorHandler: ErrorHandlerActions,
+    private ele: ElementRef
+    ) {}
+
+  ngOnInit() {
+    this.toda$.subscribe( x => {
+      if(x.get('nightTime') === true) {
+        this.ele.nativeElement.className = 'night-time';
+      }
+      else{
+        this.ele.nativeElement.className = 'day-time';        
+      }
+      
+    });
+  }
 
   ngAfterViewInit() {
     // initialize error handling animation timeline

@@ -13,16 +13,15 @@ header {
 .app-title {
     width: 300px;
     display: block;
-    margin: 0 auto;
+    margin: 23px 2.5%;
 }
 
 .app-title h1 {
-    font-family: cursive;
     padding: 10px;
     text-align: center;
     vertical-align: top;
     font-size: 32px;
-    color: white;
+    color: black;
     display: inline-block;
 }
 
@@ -30,5 +29,9 @@ header {
     display: inline-block;
     opacity: 0.8;
     width: 75px;
-    height: 50px;
+    height: 75px;
+    margin-top: -10px;
+}
+.app-title h1.night-time {
+    color: white;
 }

@@ -22,7 +22,7 @@ export class IAppState {
 };
 
 // Each reducer is connected to a coresponding store attribute
-// conbineReducers() creates a root reducer while maintaining
+// combineReducers() creates a root reducer while maintaining
 // this one-2-one relationship
 export const rootReducer = combineReducers<IAppState>({
   error: error.errorHandlerReducer,

@@ -2,16 +2,11 @@
     width: 50.8%;
 }
 button{
-    background-image: url(http://rdthairsalon.com/blog/wp-content/plugins/wp-app-maker/asset-studio/res/clipart/icons/down_arrow.svg);
-    background-size: contain;
-    background-color: transparent;
-    border: none;
     position: absolute;
     top: 14%;
     left: 26.8%;
     width: 3%;
     height: 21%;
-    text-align: center;
     transform: scale(0.28571);
     cursor: pointer;
 }
@@ -23,15 +18,35 @@ mountain-goat {
 }
 md-input#testWonder {
     position: absolute;
-    top: 10%;
-    left: 17%;
-    width: 11%;
+    top: 8%;
+    left: 16.8%;
+    width: 12%;
     height: 15%;
     transform: scale(0.2857142857142857);
 }
-/deep/ .md-input-placeholder,
-/deep/ .md-input-element,
-/deep/ .md-input-underline {
-    color: white;
-    border-color: white;
+@media (max-width: 1750px) {
+    md-input#testWonder {
+        font-size: 14px;
+    }
+}
+@media (max-width: 1550px) {
+    md-input#testWonder {
+        font-size: 12px;
+    }
+}
+@media (max-width: 1350px) {
+    md-input#testWonder {
+        font-size: 10px;
+        left: 15.2%;
+        width: 15%;
+        height: 15%;
+    }
+}
+@media (max-width: 1101px) {
+    md-input#testWonder {
+        font-size: 10px;
+        left: 15.2%;
+        width: 15%;
+        height: 15%;
+    }
 }

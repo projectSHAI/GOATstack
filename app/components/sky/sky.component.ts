@@ -37,7 +37,7 @@ export class SkyComponent implements OnInit, AfterViewInit {
     //set the height of the sun and moon whenever the time changes
     this.toda.getCurrentTime().subscribe(x => {
 
-      this.yPos = `translateY(-${150 + this.windowHeight - (this.windowHeight * (((x.getHours() % 12) * 60 + x.getMinutes()) / 780 ))}px)`;
+      this.yPos = `translateY(-${150 + this.windowHeight - (this.windowHeight * (((x.getHours() % 12) * 60 + x.getMinutes()) / 780 )) - 150}px)`;
 
     });
   }  
