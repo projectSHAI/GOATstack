@@ -1,2 +1,5 @@
-<the-stratosphere></the-stratosphere>
-<the-troposphere></the-troposphere>
+<div class="sun-moon" [style.boxShadow]="sunMoonGlow" [style.borderColor]="sunMoonBorder" [style.transform]="yPos">
+  <h2 class="clock">{{toda.getCurrentTime() | async | date: 'mediumTime'}}</h2>
+</div>
+
+<cloud-generator></cloud-generator>
