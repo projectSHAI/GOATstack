@@ -1,29 +1,24 @@
 #whale-wrapper{
-	width: 100%;
+    width: 100%;
 }
 
 #whale{
-	margin-top: -21.6%;
-	width: 100%;
+    margin-top: -21.6%;
+    width: 100%;
 }
 
 the-island {
     position: absolute;
     width: 100%;
-    top: -20.7%;
+    top: -19.7%;
     left: 8.3%;
 } 
 
-button {
-    position: absolute;
+.tail-action {
+    left: 81%;
     top: -20%;
-    left: 85%;
-    width: 5%;
-    height: 9%;
-    background-image: url(http://rdthairsalon.com/blog/wp-content/plugins/wp-app-maker/asset-studio/res/clipart/icons/down_arrow.svg);
-    background-size: contain;
-    background-color: transparent;
-    border: none;    
-    cursor: pointer;
-    transform: rotate(180deg);
+    font-size: 24px;
+    display: block;
+    position: absolute;
+    color: white;
 }

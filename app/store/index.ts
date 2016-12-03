@@ -7,7 +7,6 @@ import * as cloud from './cloud/index';
 import * as wonder from './wonder/index';
 import * as timeOfDay from './time-of-day/index';
 import * as zoom from './zoom/index';
-import * as skyPosition from './sky-position/index';
 
 // IAppState is the applications store where all persistant data
 // should be stored
@@ -20,7 +19,6 @@ export class IAppState {
   animaArray?: cloud.IAnimaArray;
   timeOfDay?: timeOfDay.ITimeOfDay;
   zoom?: zoom.IZoom;
-  skyPosition?: skyPosition.ISkyPosition;
 };
 
 // Each reducer is connected to a coresponding store attribute
@@ -34,8 +32,7 @@ export const rootReducer = combineReducers<IAppState>({
   cloudStyle: cloud.cloudReducer,
   animaArray: cloud.animaReducer,
   timeOfDay: timeOfDay.timeOfDayReducer,
-  zoom: zoom.zoomReducer,
-  skyPosition: skyPosition.skyPositionReducer,
+  zoom: zoom.zoomReducer
 });
 
 // Redux plugins/enhancers go here

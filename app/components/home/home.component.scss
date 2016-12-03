@@ -5,16 +5,13 @@
     overflow: hidden;
     height: 100vh;
 }
-the-stratosphere {
-
-}
 the-sky{
     position: fixed;
     transition-duration: 2s;
-    top:-200vh;
-    left:0;
+    top: 0;
+    left: 0;
     right: 0;
-    bottom:0;
+    bottom: 0;
     will-change: auto;
 }
 the-ocean {
