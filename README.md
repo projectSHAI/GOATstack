@@ -52,16 +52,15 @@ ___
 <a name="whatsnew"></a>
 #What's new?
 
- December 1st - This is launch day, the GOAT Stack is finally closing in on release!
+ Version 1.0.0 is finally here! 
  
- The final items left on our todo list are polishing items, which include:
- - ~~Implementation of AOT(Ahead-of-Time) rendering.~~
- - Finishing the Demonstration webapp.
- - Creating thorough, and well structured documentation.
- - ~~Finishing our [Facebook page](https://www.facebook.com/goatstack/).~~
- - ~~Finishing our [Reddit page](https://www.reddit.com/r/GOATStack/).~~
- - ~~Making sure SEO and webcrawlers are optimized.~~
- - ~~Making sure all the Goats are well fed and happy!~~
+ Things to look forward too in version 1.1.0:
+* Demo site
+ * Portrait styling
+ * Sky islands
+ * Ocean life
+* Actual stack features
+ * Production compiling
  
 <a name="followtheGOAT"></a>
 #Follow the GOAT
