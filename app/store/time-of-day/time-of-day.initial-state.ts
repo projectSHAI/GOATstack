@@ -8,6 +8,6 @@ export const INITIAL_STATE = reimmutifyTimeOfDay({
     islandSvg: 'assets/night-island.svg',
     oceanFrontSvg: 'assets/day-ocean.svg',
     whaleSvg: 'assets/night-whale.svg',
-    sunMoonGlow: '0px 0px 100px 12px purple',
+    sunMoonGlow: '0px 0px 100px 12px #7c4dff',
     sunMoonBorder: 'rgba(102,51,153, 0.3)'
 });

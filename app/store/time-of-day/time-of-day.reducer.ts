@@ -27,7 +27,7 @@ export function timeOfDayReducer(state: ITimeOfDay = INITIAL_STATE, action: any)
               .updateIn(['islandSvg'], val => 'assets/night-island.svg')
               .updateIn(['oceanOverlaySvg'], val => 'assets/night-ocean-overlay.svg')
               .updateIn(['whaleSvg'], val => 'assets/night-whale.svg')
-              .updateIn(['sunMoonGlow'], val => '0px 0px 100px 12px purple')
+              .updateIn(['sunMoonGlow'], val => '0px 0px 100px 12px #7c4dff')
               .updateIn(['sunMoonBorder'], val => 'rgba(102,51,153, 0.3)');
     default:
       return state;

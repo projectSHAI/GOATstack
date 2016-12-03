@@ -1,4 +1,4 @@
 <mountain-goat></mountain-goat>
-<input *ngIf="showInput" id="testWonder" [(ngModel)]="dream" (keyup.enter)="wonderActions.saveWonder(dream)" placeholder="Do you wonder?" class="dreams-input" />
+<md-input *ngIf="showInput" id="testWonder" [(ngModel)]="dream" (keyup.enter)="wonderActions.saveWonder(dream)" placeholder="Do you wonder?" class="dreams-input" dividerColor="primary"></md-input>
 <button *ngIf="showInput" (click)="zoomDirective.zoomOut()"></button>
 <img id="island" [src]="islandSvg" />
