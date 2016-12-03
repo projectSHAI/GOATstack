@@ -60,7 +60,7 @@ import { Four0FourComponent }         from './components/404/four0four.component
 import { UserProfileComponent }       from './components/user-profile/user-profile.component';
 import { SkyComponent }               from './components/sky/sky.component';
 import { StratosphereComponent }      from './components/stratosphere/stratosphere.component';
-import { TroposphereComponent }      from './components/troposphere/troposphere.component';
+import { TroposphereComponent }       from './components/troposphere/troposphere.component';
 import { OceanComponent }             from './components/ocean/ocean.component';
 import { WhaleComponent }             from './components/whale/whale.component';
 import { IslandComponent }            from './components/island/island.component';
@@ -89,7 +89,7 @@ Services
 //user created services
 import { ErrorHandlerActions }        from './actions/error/errorHandler.actions';
 import { SEOActions }                 from './actions/seo/seo.actions';
-import { TimeOfDayActions }            from './actions/time-of-day/time-of-day.actions';
+import { TimeOfDayActions }           from './actions/time-of-day/time-of-day.actions';
 import { SocketService }              from './services/socketio/socketio.service';
 import { HttpIntercept }              from './services/auth/auth.service';
 import { UserService }                from './services/user/user.service';

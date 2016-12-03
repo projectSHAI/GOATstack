@@ -7,6 +7,8 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
     /*Start of replacement fin*/ "experimentalDecorators": true, /*End of replacement fin*/
     "typeRoots": [
       "node_modules/@types"
