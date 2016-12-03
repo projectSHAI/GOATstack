@@ -20,7 +20,7 @@ export class IAppState {
   animaArray?: cloud.IAnimaArray;
   timeOfDay?: timeOfDay.ITimeOfDay;
   zoom?: zoom.IZoom;
-  skyPosition: skyPosition.ISkyPosition;
+  skyPosition?: skyPosition.ISkyPosition;
 };
 
 // Each reducer is connected to a coresponding store attribute

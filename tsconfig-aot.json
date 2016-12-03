@@ -7,7 +7,7 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
-    /*Start of replacement pre*/ "experimentalDecorators": true,"outDir": "ngc-aot/tsc", /*End of replacement pre*/
+    /*Start of replacement fin*/ "experimentalDecorators": true, /*End of replacement fin*/
     "typeRoots": [
       "node_modules/@types"
     ]
@@ -17,6 +17,6 @@
     "app/main.ts"
   ],
   "angularCompilerOptions": {
-    /*Start of replacement pre*/ "skipMetadataEmit" : true /*End of replacement pre*/
+    /*Start of replacement fin*/ "genDir": "ngc-aot","skipMetadataEmit" : true /*End of replacement fin*/
   }
 }
