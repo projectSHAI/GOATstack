@@ -43,7 +43,7 @@ export class UserActions {
 
   getMe(): void {
     // We will only execute if there's a token present
-    if (Cookie.get('token'))
+    if (Cookie.get('token')) {
       // First change the state to fetching
       this.fetchUser();
       // subscribe to the service and wait for a response
@@ -54,6 +54,7 @@ export class UserActions {
           payload: user
         });
       }, err => this.invalidateUser(err));
+    }
   }
 
   login(lf: FormGroup): void {
