@@ -16,6 +16,7 @@ $ gulp
 
 
 # Documentation Wiki
+## **For more information about the stack click [here](https://github.com/projectSHAI/GOAT-stack/wiki)**
 
   * [Home](https://github.com/projectSHAI/GOAT-stack/wiki)
   * [FAQ](https://github.com/projectSHAI/GOAT-stack/wiki/FAQ)
