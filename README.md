@@ -13,8 +13,7 @@ $ gulp
 ```
 
 ## Yo Generator Project [here](https://github.com/JCThomas4214/GOAT-yeoman)
-  
-___
+
 
 # Documentation Wiki
 
