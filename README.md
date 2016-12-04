@@ -12,8 +12,6 @@ $ # mongod runs as a child process!
 $ gulp
 ```
 
-## Yo Generator Project [here](https://github.com/JCThomas4214/GOAT-yeoman)
-
 # What's new?
 
  Version 1.0.0 is finally here! 
@@ -162,18 +160,12 @@ $ mkdir GOAT-stack && cd GOAT-stack
 $ yo goat-stack [name?]
 $ npm install
 $ # mongod runs as a child process!
-$ gulp
+$ sudo gulp
 ```
 > Note: gulp needs to be elevated with `sudo`, otherwise the mongod process which is executed in the gulp task runner will throw an error stating the port is already in use, even if it is free. This happens even when running mongod in its own terminal.
 
-#Support the GOAT
 
-#Made with GOAT Stack
-
-Goatstack.com
-
-
-#How to contribute
+## Yo Generator Project [here](https://github.com/JCThomas4214/GOAT-yeoman)
 
 ## Created By
  + [Jason Thomas](https://github.com/JCThomas4214)
