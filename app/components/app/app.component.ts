@@ -31,7 +31,6 @@ declare let TimelineMax: any;
 export class AppComponent implements OnInit, AfterViewInit {
   //this decorator is for NgRedux. you can read more about Redux here: https://github.com/angular-redux/ng2-redux
   @select('error') error$: Observable<any>;
-  @select('timeOfDay') toda$: Observable<any>;
 
   private timeline: any;
 
@@ -40,20 +39,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('errorToast') errorToast: ElementRef;
 
   constructor(
-    private errorHandler: ErrorHandlerActions,
-    private ele: ElementRef
+    private errorHandler: ErrorHandlerActions
     ) {}
 
   ngOnInit() {
-    this.toda$.subscribe( x => {
-      if(x.get('nightTime') === true) {
-        this.ele.nativeElement.className = 'night-time';
-      }
-      else{
-        this.ele.nativeElement.className = 'day-time';        
-      }
-      
-    });
+
   }
 
   ngAfterViewInit() {

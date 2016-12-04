@@ -57,12 +57,6 @@ import { HomeComponent }              from './components/home/home.component';
 import { FooterComponent }            from './components/footer/footer.component';
 import { Four0FourComponent }         from './components/404/four0four.component';
 import { UserProfileComponent }       from './components/user-profile/user-profile.component';
-import { SkyComponent }               from './components/sky/sky.component';
-import { OceanComponent }             from './components/ocean/ocean.component';
-import { WhaleComponent }             from './components/whale/whale.component';
-import { IslandComponent }            from './components/island/island.component';
-import { MountainGoatComponent }      from './components/mountain-goat/mountain-goat.component';
-import { CloudGeneratorComponent }    from './components/cloud-generator/cloud-generator.component';
 
 //Angular and 3rd party components
 
@@ -73,7 +67,7 @@ Directives
 //Declare directives here
 */
 //user created directives
-import { ZoomDirective } from './directives/zoom.directive';
+
 //Angular and 3rd party directives
 
 /*
@@ -86,11 +80,9 @@ Services
 //user created services
 import { ErrorHandlerActions }        from './actions/error/errorHandler.actions';
 import { SEOActions }                 from './actions/seo/seo.actions';
-import { TimeOfDayActions }           from './actions/time-of-day/time-of-day.actions';
 import { SocketService }              from './services/socketio/socketio.service';
 import { HttpIntercept }              from './services/auth/auth.service';
 import { UserService }                from './services/user/user.service';
-import { WonderService }              from './services/wonder/wonder.service';
 
 //Angular and 3rd party serices
 import { Cookie }                     from 'ng2-cookies/ng2-cookies';
@@ -102,7 +94,6 @@ Pipes
 //Declare pipes here
 */
 //User created pipes
-import { NgForHookPipe }              from './pipes/ngFor-hook.pipe';
 
 //Angular and 3rd party pipes
 
@@ -160,15 +151,7 @@ NgModule
     HeaderComponent,
     HomeComponent,
     AppComponent,
-    NavbarComponent,
-    SkyComponent,
-    OceanComponent,
-    WhaleComponent,
-    IslandComponent,
-    MountainGoatComponent,
-    CloudGeneratorComponent,
-    NgForHookPipe,
-    ZoomDirective
+    NavbarComponent
   ],
   //providers: this object imports all necessary services into the module
   providers: [
@@ -182,10 +165,8 @@ NgModule
     /////////////////////////////////////
     ErrorHandlerActions,
     SEOActions,
-    TimeOfDayActions,
     SocketService,
     UserService,
-    WonderService,
     Cookie,
     { provide: DevToolsExtension, useClass: DevToolsExtension }
   ],
