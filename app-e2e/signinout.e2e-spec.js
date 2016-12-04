@@ -59,10 +59,10 @@ describe('Signinout E2E Tests', function () {
     element(by.id('login_password-input')).sendKeys('test');
     element(by.cssContainingText('button', 'LOGIN')).click();
 
-    browser.wait(EC.presenceOf(element(by.id('welcomeUser'))), 2000);
+    browser.wait(EC.presenceOf(element(by.id('welcome-user'))), 2000);
 
-    expect(element(by.id('welcomeUser')).isPresent()).toBeTruthy();
-    expect(element(by.id('welcomeUser')).getText()).toEqual('Welcome, test');
+    expect(element(by.id('welcome-user')).isPresent()).toBeTruthy();
+    expect(element(by.id('welcome-user')).getText()).toEqual('Welcome, test');
     element(by.cssContainingText('button', 'SIGN OUT')).click();
     done();
   });
@@ -126,10 +126,10 @@ describe('Signinout E2E Tests', function () {
     element(by.id('signup_re_password-input')).sendKeys('password');
 
     element(by.cssContainingText('button', 'REGISTER')).click();
-    browser.wait(EC.presenceOf(element(by.id('welcomeUser'))), 2000);
+    browser.wait(EC.presenceOf(element(by.id('welcome-user'))), 2000);
 
-    expect(element(by.id('welcomeUser')).isPresent()).toBeTruthy();
-    expect(element(by.id('welcomeUser')).getText()).toEqual('Welcome, testUserName');
+    expect(element(by.id('welcome-user')).isPresent()).toBeTruthy();
+    expect(element(by.id('welcome-user')).getText()).toEqual('Welcome, testUserName');
     element(by.cssContainingText('button', 'SIGN OUT')).click();
     done();
   });
