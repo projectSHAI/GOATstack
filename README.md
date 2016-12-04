@@ -1,16 +1,15 @@
-## Yo Generator Project underway [here](https://github.com/JCThomas4214/GOAT-yeoman)
-### Possible generators
+# Quick Start 
 
-  + yo goat-stack [?name]
-  + yo goat-stack:component [?name]
-  + yo goat-stack:service [?name]
-  + yo goat-stack:directive [?name]
-  + yo goat-stack:pipe [?name]
-  + yo goat-stack:actions [?name]
-  + yo goat-stack:store-item [?name]
-  + yo goat-stack:endpoint [?name]
-  
-### All generators finished (11/19) merge of GOAT-stack & GOAT-yeoman underway...
+```sh
+$ npm install -g yo generator-goat-stack
+$ mkdir [dirName] && cd [dirName]
+$ yo goat-stack [name?]
+$ npm install
+$ # mongod runs as a child process!
+$ gulp
+```
+
+## Yo Generator Project [here](https://github.com/JCThomas4214/GOAT-yeoman)
   
 ___
 
@@ -41,7 +40,7 @@ ___
   * [Main Technologies](#tech)
   * [Integrated Libraries and Modules](#libs)
 7. [Required Technologies for your Development Environment](#reqs)
-8. [Quick Start](#quickstart)
+8. [Installation](#installation)
   * [Windows](#windows)
   * [Linux](#linux)
 9. [Support The GOAT](#supportGOAT) 
@@ -222,8 +221,8 @@ __Why we use it:__ We chose Protractor for E2E testing because it allows the dev
   * [Redux DevTools for Google Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
    * If you would like to develop on a browser which is not Chrome, then disable Redux DevTools, otherwise the app will fail to compile. In your project folder navigate to `app/app.module.ts`, then delete the argument `devTool.enhancer()` inside of the `this.ngRedux.configureStore()` method located in the constructor.
 
-<a name="quickstart"></a>
-# Quick Start
+<a name="installation"></a>
+# Installation
 <a name="windows"></a>
 ## Windows
 
