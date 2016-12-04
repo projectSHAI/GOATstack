@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.toda$.subscribe( x => {
-      if(x.get('nightTime') === true) {
+      if(x.get('nightTime') !== false) {
         this.ele.nativeElement.className = 'night-time';
       }
       else{
