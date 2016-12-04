@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node dist/index",
-    "pretest": "mongod --shutdown",
+    "pretest": "sudo mongod --shutdown",
     "test": "gulp test",
     "karma": "karma start config/sys/karma.conf.js",
     "pree2e": "npm run webdriver:update",
