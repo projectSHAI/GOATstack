@@ -16,7 +16,6 @@ $ gulp
 
 
 # Documentation Wiki
-## **For more information about the stack click [here](https://github.com/projectSHAI/GOAT-stack/wiki)**
 
   * [Home](https://github.com/projectSHAI/GOAT-stack/wiki)
   * [FAQ](https://github.com/projectSHAI/GOAT-stack/wiki/FAQ)
@@ -28,6 +27,7 @@ $ gulp
   * [Client Side Testing](https://github.com/projectSHAI/GOAT-stack/wiki/Client-Side-Testing)
   * [Server Side Testin](https://github.com/projectSHAI/GOAT-stack/wiki/Server-Side-Testing)
  
+## **For more information about the stack click [here](https://github.com/projectSHAI/GOAT-stack/wiki)**
 
 ![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
 
