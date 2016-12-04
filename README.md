@@ -4,7 +4,7 @@
 # Quick Start 
 
 ```sh
-$ npm install -g yo generator-goat-stack
+$ npm install -g yo generator-goat-stack gulp-cli typescript
 $ mkdir [dirName] && cd [dirName]
 $ yo goat-stack [name?]
 $ npm install
@@ -14,6 +14,17 @@ $ gulp
 
 ## Yo Generator Project [here](https://github.com/JCThomas4214/GOAT-yeoman)
 
+# What's new?
+
+ Version 1.0.0 is finally here! 
+ 
+ Things to look forward too in version 1.1.0:
+* Demo site
+ * Portrait styling
+ * Sky islands
+ * Ocean life
+* Actual stack features
+ * Production compiling
 
 # Documentation Wiki
 
@@ -111,9 +122,9 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 ### 5) Clone and Run
 
 ```sh
-$ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
-$ cd GOAT-stack
-$ npm install -g gulp-cli typescript
+$ npm install -g yo generator-goat-stack gulp-cli typescript
+$ mkdir GOAT-stack && cd GOAT-stack
+$ yo goat-stack [name?]
 $ npm install
 $ # mongod runs as a child process!
 $ gulp
@@ -146,12 +157,12 @@ $ sudo apt-get install -y nodejs
 ### 4) Clone and Run
 
 ```sh
-$ git clone https://github.com/projectSHAI/GOAT-stack # or clone your own fork
-$ cd GOAT-stack
-$ npm install -g gulp-cli typescript
+$ npm install -g yo generator-goat-stack gulp-cli typescript
+$ mkdir GOAT-stack && cd GOAT-stack 
+$ yo goat-stack [name?]
 $ npm install
 $ # mongod runs as a child process!
-$ sudo gulp
+$ gulp
 ```
 > Note: gulp needs to be elevated with `sudo`, otherwise the mongod process which is executed in the gulp task runner will throw an error stating the port is already in use, even if it is free. This happens even when running mongod in its own terminal.
 
