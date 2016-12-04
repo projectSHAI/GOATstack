@@ -1,6 +1,5 @@
 
-![Build Status](https://img.shields.io/circleci/project/projectSHAI/GOAT-stack/master.svg)
-[![npm version](https://img.shields.io/npm/v/generator-goat-stack.svg)](https://www.npmjs.com/package/generator-goat-stack)
+[![npm version](https://img.shields.io/npm/v/goat-stack.svg)](https://www.npmjs.com/package/goat-stack)
 [![Dependency Status](https://img.shields.io/david/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack.svg)
 [![Dev-Dependency Status](https://img.shields.io/david/dev/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack.svg#info=devDependencies)
 
