@@ -7,8 +7,7 @@
   },
   "scripts": {
     "start": "node dist/index",
-    "pretest": "sudo mongod --shutdown",
-    "test": "sudo gulp test",
+    "test": "gulp test",
     "karma": "karma start config/sys/karma.conf.js",
     "pree2e": "npm run webdriver:update",
     "e2e": "concurrently \"node dist/server/server.js -s\" \"protractor config/env/test/protractor.config.js\" --kill-others --success first",

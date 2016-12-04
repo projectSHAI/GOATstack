@@ -55,7 +55,7 @@ describe('TimeOfDay Reducer', () => {
     expect(nextState.getIn(['islandSvg'])).toBe('assets/night-island.svg');
     expect(nextState.getIn(['oceanOverlaySvg'])).toBe('assets/night-ocean-overlay.svg');
     expect(nextState.getIn(['whaleSvg'])).toBe('assets/night-whale.svg');
-    expect(nextState.getIn(['sunMoonGlow'])).toBe('0px 0px 100px 12px purple');
+    expect(nextState.getIn(['sunMoonGlow'])).toBe('0px 0px 100px 12px #7c4dff');
     expect(nextState.getIn(['sunMoonBorder'])).toBe('rgba(102,51,153, 0.3)');
   });
 });
