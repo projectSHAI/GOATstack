@@ -1,5 +1,5 @@
 {
-  "name": "GOAT-stack",
+  "name": "goat-stack",
   "version": "1.0.0",
   "description": "A MEAN stack boilerplate using Angular 2",
   "engines": {
