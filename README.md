@@ -94,10 +94,11 @@ If you like our Fullstack make sure to stay informed and [get involved!](#contri
 
 Follow us on [Facebook page](https://www.facebook.com/goatstack/) to receive the latest news and updates!
 
-## [![Facebook Page][FacebookBanner]](https://www.facebook.com/goatstack/)
+[![Facebook Page][FacebookBanner]](https://www.facebook.com/goatstack/)
 
 If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Reddit page](https://www.reddit.com/r/GOATStack/) and tell us why! We're always interested in new points of view, even the greatest can get better! 
-## [![Reddit Page][RedditBanner]](https://www.reddit.com/r/GOATStack/)
+
+[![Reddit Page][RedditBanner]](https://www.reddit.com/r/GOATStack/)
 
 
 <a name="reqs"></a>
