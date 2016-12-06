@@ -72,8 +72,7 @@ module.exports = function(config) {
 
       // Assets
       {pattern: appSrcBase + 'assets/*.jpg', included: false, watched: false},
-      {pattern: appSrcBase + 'assets/*.png', included: false, watched: false},
-      {pattern: appSrcBase + 'assets/*.svg', included: false, watched: false}
+      {pattern: appSrcBase + 'assets/*.png', included: false, watched: false}
     ],
 
     // Proxied base paths for loading assets
