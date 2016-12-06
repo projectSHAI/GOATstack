@@ -42,9 +42,7 @@ exports.config = {
   // resultJsonOutputFile: "foo.json",
 
   onPrepare: function () {
-    // Clear current reporters
-    jasmine.getEnv().clearReporters();
-    //// SpecReporter
+    // SpecReporter
     var SpecReporter = require('jasmine-spec-reporter');
     jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
 

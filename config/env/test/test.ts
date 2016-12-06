@@ -9,10 +9,10 @@ Used when process.env.NODE_ENV is equal to 'test'
 export const testEnv = {
 	port: process.env.PORT || 7001,
 	db: {
-		uri: 'mongodb://testUser:flight1855@ds119748.mlab.com:19748/test-test',
-		options: {
-	      user: 'testUser',
-	      pass: 'flight1855'
+	    uri: 'mongodb://localhost/dreams-test',
+	    options: {
+	      user: '',
+	      pass: ''
 	    },
 	    // Enable mongoose debug mode
 	    debug: process.env.MONGODB_DEBUG || false
