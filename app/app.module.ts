@@ -57,6 +57,7 @@ import { HomeComponent }              from './components/home/home.component';
 import { FooterComponent }            from './components/footer/footer.component';
 import { Four0FourComponent }         from './components/404/four0four.component';
 import { UserProfileComponent }       from './components/user-profile/user-profile.component';
+// DO NOT REMOVE: template app.module imports
 
 //Angular and 3rd party components
 
@@ -151,7 +152,8 @@ NgModule
     HeaderComponent,
     HomeComponent,
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    // DO NOT REMOVE: template declarations
   ],
   //providers: this object imports all necessary services into the module
   providers: [
