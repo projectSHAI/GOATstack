@@ -13,20 +13,20 @@ have to load a single css file for Angular Material in your app.*/
 /*Define the palettes for your theme using the Material Design palettes available in palette.scss
 (imported above). For each palette, you can optionally specify a default, lighter, and darker
 hue.*/
-$night-primary: md-palette($md-deep-purple, A200);
-$night-accent:  md-palette($md-blue, 500);
+$day-primary: md-palette($md-blue, 500);
+$day-accent:  md-palette($md-green, 500);
 
 /*The warn palette is optional (defaults to red).*/
-$night-warn:    md-palette($md-red);
+$day-warn:    md-palette($md-red);
 
 /*Create the theme object (a Sass map containing all of the palettes).*/
-$night-theme: md-dark-theme($night-primary, $night-accent, $night-warn);
+$day-theme: md-light-theme($day-primary, $day-accent, $day-warn);
 
 /*Include theme styles for core and each component used in your app.
 Alternatively, you can import and @include the theme mixins for each component
 that you are using.*/
 
-@include angular-material-theme($night-theme);
+@include angular-material-theme($day-theme);
 
 /*
 ---------------------------------------------

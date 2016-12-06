@@ -4,7 +4,7 @@
 import {config} from '../config';
 let con = config();
 
-import {wonderRegister} from '../../server/api/wonder/wonder.socket';
+// Socket imports go here
 
 // When the user disconnects.. perform this
 function onDisconnect(socket) {
@@ -18,7 +18,6 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
-  wonderRegister(socket);
 
 }
 

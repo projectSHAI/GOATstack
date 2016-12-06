@@ -614,15 +614,15 @@ export class Gulpfile {
   ////////////////////////////////////////////////////////////////////////////////
   // MONGO TASKS: Used to start mongod as a child process in dev mode
   ////////////////////////////////////////////////////////////////////////////////
-  @Task()
-  mongod_start(done, cb) {
-    exec('mongod --dbpath=/data', function(err, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
-      cb(err);
-    });
-    done();
-  }
+  // @Task()
+  // mongod_start(done, cb) {
+  //   exec('mongod --dbpath=/data', function(err, stdout, stderr) {
+  //     console.log(stdout);
+  //     console.log(stderr);
+  //     cb(err);
+  //   });
+  //   done();
+  // }
 
   ////////////////////////////////////////////////////////////////////////////////
   // GULP TASKS: Tasks used to execute project initialization, testing, etc...
@@ -638,7 +638,6 @@ export class Gulpfile {
     return [
       'env_dev',
       'lint',
-      'mongod_start',
       'build_clean',
       'build_project',
       ['nodemon', 'watch']
@@ -649,7 +648,6 @@ export class Gulpfile {
   prod() {
     return [
       'env_prod',
-      'mongod_start',
       'build_clean',
       'build_project_prod',
       'nodemon_prod'
@@ -669,7 +667,6 @@ export class Gulpfile {
     return [
       'env_test',
       'lint',
-      'mongod_start',
       'build_clean',
       'build_project',
       'test_server',
@@ -682,7 +679,6 @@ export class Gulpfile {
   test_e2e() {
     return [
       'env_test',
-      'mongod_start',
       'build_clean',
       'build_project',
       'protractor',
@@ -693,7 +689,6 @@ export class Gulpfile {
   test_e2e_prod() {
     return [
       'env_test',
-      'mongod_start',
       'build_clean',
       'build_project_prod',
       'protractor_prod',
