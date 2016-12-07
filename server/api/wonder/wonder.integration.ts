@@ -9,7 +9,7 @@ describe('Wonder API:', function() {
   let wonders;
 
   // constant wonder array for testing purposes
-  const inputs = [1, 43, 2, 35, 65, 36, 10, 57, 32, 45, 90, 79, 32];
+  const inputs = [1, 43, 2, 35, 65, 36, 10, 57, 32, 45];
 
   // Testing the POST api endpoint
   describe('POST /api/wonders', function() {
@@ -19,20 +19,19 @@ describe('Wonder API:', function() {
         // set up beforeAll's for every possible wonder that will be inputed
         // all will execute and POST necessary wonders to test
         return beforeAll((done) => {
-          request(addr)
+          setTimeout(() => request(addr)
             .post('/api/wonders')
             .send({
               name: 'wonder: ' + input
             })
             .expect(200)
-            .expect('Content-Type', /json/)
             .end((err, res) => {
               if (err) {
                 done.fail(err);
               }
               expect(res.body.name).toBe('wonder: ' + input);
               done();
-            });
+            }), 500);
         });
       })(inputs[counter]);
     }
@@ -71,7 +70,7 @@ describe('Wonder API:', function() {
       for (let i = 0; i < 10; i++) {
         (function (input, counter) {
           return expect(wonders[counter].name).toBe('wonder: ' + input);
-        })(inputs[i + 3], (i + 3) % 10);
+        })(inputs[i], (i) % 10);
       }
     });
   });

@@ -29,14 +29,13 @@ describe('User API:', function () {
 
     // before every 'it' get new OAuth token representing the user
     beforeAll(function (done) {
-      request(addr)
+      setTimeout(() => request(addr)
         .post('/auth/local')
         .send({
           email: 'Fakie@mrfake.com',
           password: 'mrfakie'
         })
         .expect(200)
-        .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             done.fail(err);
@@ -44,13 +43,13 @@ describe('User API:', function () {
             token = res.body.token;
             done();
           }
-        });
+        }), 1000);
     });
 
     // If the token was properly set inside the header of the request
     // it should respond with a 200 status code with the user json
     it('should respond with a user profile when authenticated', function (done) {
-      request(addr)
+      setTimeout(() => request(addr)
         .get('/api/users/me')
         .set('authorization', 'Bearer ' + token)
         .expect(200)
@@ -66,13 +65,13 @@ describe('User API:', function () {
             expect(res.body.email).toEqual(user.email);
             done();
           }
-        });
+        }), 1000);
     });
 
     // If the token was improperly / not set to the header
     // status code 401 should be thrown 
     it('should respond with a 401 when not authenticated', function (done) {
-      request(addr)
+      setTimeout(() => request(addr)
         .get('/api/users/me')
         .expect(401)
         .end((err, res) => {
@@ -81,7 +80,7 @@ describe('User API:', function () {
           } else {
             done();
           }
-        });
+        }), 1000);
     });
   });
 });
