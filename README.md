@@ -1,7 +1,7 @@
 
 ![build](https://circleci.com/gh/JCThomas4214/GOAT-stack/tree/helloGOAT.svg?style=shield)
-[![Dependency Status](https://img.shields.io/david/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/helloGOAT.svg)
-[![Dev-Dependency Status](https://img.shields.io/david/dev/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/helloGOAT.svg#info=devDependencies)
+[![Dependency Status](https://img.shields.io/david/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/helloGOAT.svg)
+[![Dev-Dependency Status](https://img.shields.io/david/dev/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/helloGOAT.svg#info=devDependencies)
 
 ![Main Banner](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true)
 
@@ -30,8 +30,6 @@ Things to look forward too in version 1.1.0:
  * Portrait styling
  * Sky islands
  * Ocean life
-* Actual stack features
- * Production compiling
 
 
 # Documentation Wiki
