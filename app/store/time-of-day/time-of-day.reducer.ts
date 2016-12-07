@@ -12,7 +12,7 @@ export function timeOfDayReducer(state: ITimeOfDay = INITIAL_STATE, action: any)
     case TimeOfDayActions.DAY_TIME:
       return state
               .updateIn(['titleColor'], val => 'black')
-              .updateIn(['nightTime'], val => 'false')
+              .updateIn(['nightTime'], val => false)
               .updateIn(['cloudBrightness'], val => 'brightness(100%)')
               .updateIn(['skyColor'], val => 'linear-gradient(to bottom, #ffffff 0%,#6abfeb 100%)')
               .updateIn(['mountainGoatSvg'], val => 'assets/day-mountain-goat.svg')
@@ -24,7 +24,7 @@ export function timeOfDayReducer(state: ITimeOfDay = INITIAL_STATE, action: any)
     case TimeOfDayActions.NIGHT_TIME:
       return state
               .updateIn(['nightTime'], val => 'white')
-              .updateIn(['nightTime'], val => 'true')
+              .updateIn(['nightTime'], val => true)
               .updateIn(['cloudBrightness'], val => 'brightness(30%)')
               .updateIn(['skyColor'], val => 'linear-gradient(to bottom, #000000 0%,#140f28 100%)')
               .updateIn(['mountainGoatSvg'], val => 'assets/night-mountain-goat.svg')

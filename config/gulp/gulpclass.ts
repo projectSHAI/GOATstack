@@ -638,7 +638,7 @@ export class Gulpfile {
     return [
       'env_dev',
       'lint',
-      'mongod_start',
+      // 'mongod_start',
       'build_clean',
       'build_project',
       ['nodemon', 'watch']
@@ -649,7 +649,7 @@ export class Gulpfile {
   prod() {
     return [
       'env_prod',
-      'mongod_start',
+      // 'mongod_start',
       'build_clean',
       'build_project_prod',
       'nodemon_prod'
@@ -669,7 +669,7 @@ export class Gulpfile {
     return [
       'env_test',
       'lint',
-      'mongod_start',
+      // 'mongod_start',
       'build_clean',
       'build_project',
       'test_server',
@@ -682,7 +682,7 @@ export class Gulpfile {
   test_e2e() {
     return [
       'env_test',
-      'mongod_start',
+      // 'mongod_start',
       'build_clean',
       'build_project',
       'protractor',
@@ -693,7 +693,7 @@ export class Gulpfile {
   test_e2e_prod() {
     return [
       'env_test',
-      'mongod_start',
+      // 'mongod_start',
       'build_clean',
       'build_project_prod',
       'protractor_prod',

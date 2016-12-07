@@ -63,6 +63,7 @@ import { WhaleComponent }             from './components/whale/whale.component';
 import { IslandComponent }            from './components/island/island.component';
 import { MountainGoatComponent }      from './components/mountain-goat/mountain-goat.component';
 import { CloudGeneratorComponent }    from './components/cloud-generator/cloud-generator.component';
+// DO NOT REMOVE: template app.module imports
 
 //Angular and 3rd party components
 
@@ -168,7 +169,8 @@ NgModule
     MountainGoatComponent,
     CloudGeneratorComponent,
     NgForHookPipe,
-    ZoomDirective
+    ZoomDirective,
+    // DO NOT REMOVE: template declarations
   ],
   //providers: this object imports all necessary services into the module
   providers: [

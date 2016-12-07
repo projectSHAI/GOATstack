@@ -1,6 +1,5 @@
 
-![Build Status](https://img.shields.io/circleci/project/projectSHAI/GOAT-stack/master.svg)
-[![npm version](https://img.shields.io/npm/v/generator-goat-stack.svg)](https://www.npmjs.com/package/generator-goat-stack)
+[![npm version](https://img.shields.io/npm/v/goat-stack.svg)](https://www.npmjs.com/package/goat-stack)
 [![Dependency Status](https://img.shields.io/david/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack.svg)
 [![Dev-Dependency Status](https://img.shields.io/david/dev/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack.svg#info=devDependencies)
 
@@ -13,21 +12,26 @@ $ npm install -g yo generator-goat-stack gulp-cli typescript
 $ mkdir [dirName] && cd [dirName]
 $ yo goat-stack [name?]
 $ npm install
-$ # mongod runs as a child process!
+$ # mongod in another terminal!
 $ gulp
 ```
 
 # What's new?
 
- Version 1.0.0 is finally here! 
+Version 1.0.0 is finally here! 
  
- Things to look forward too in version 1.1.0:
+CURRENT BUGS!
+* AoT compilation currently decommitioned
+  * angular-compiler 2.2.4 not creating ngFactory files for the main application
+ 
+Things to look forward too in version 1.1.0:
 * Demo site
  * Portrait styling
  * Sky islands
  * Ocean life
 * Actual stack features
  * Production compiling
+
 
 # Documentation Wiki
 
@@ -41,12 +45,15 @@ $ gulp
   * [Client Side Testing](https://github.com/projectSHAI/GOAT-stack/wiki/Client-Side-Testing)
   * [Server Side Testin](https://github.com/projectSHAI/GOAT-stack/wiki/Server-Side-Testing)
  
-## **For more information about the stack click [here](https://github.com/projectSHAI/GOAT-stack/wiki)**
+### **For more information about the stack click [here](https://github.com/projectSHAI/GOAT-stack/wiki)**
+___
+
+# Why GOAT-stack?
 
 ![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
 
 <a name="problem"></a>
-#Problem
+## Problem
 
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/critical-space-ship.png?raw=true" align="right">
 
@@ -64,7 +71,7 @@ $ gulp
 
 
 <a name="solution"></a>
-#Solution
+## Solution
 
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/optimized-space-ship.png?raw=true" align="right">
 
@@ -81,16 +88,17 @@ $ gulp
  * Angular2's [two way data binding](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#two-way) and [Socket.io](http://socket.io/) is an effective combination. Two way data binding allows real time interaction between the website and a single client without the need for that user to ever reload a page. Socket.io takes this one step further and automatically updates any one user's changes on every other connected device in real time without anyone ever needing to refresh their browser. 
  
 
-#Follow the GOAT
+# Follow the GOAT
 
 If you like our Fullstack make sure to stay informed and [get involved!](#contributing) 
 
 Follow us on [Facebook page](https://www.facebook.com/goatstack/) to receive the latest news and updates!
 
-# [![Facebook Page][FacebookBanner]](https://www.facebook.com/goatstack/)
+[![Facebook Page][FacebookBanner]](https://www.facebook.com/goatstack/)
 
 If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Reddit page](https://www.reddit.com/r/GOATStack/) and tell us why! We're always interested in new points of view, even the greatest can get better! 
-# [![Reddit Page][RedditBanner]](https://www.reddit.com/r/GOATStack/)
+
+[![Reddit Page][RedditBanner]](https://www.reddit.com/r/GOATStack/)
 
 
 <a name="reqs"></a>
@@ -129,7 +137,7 @@ $ npm install -g yo generator-goat-stack gulp-cli typescript
 $ mkdir GOAT-stack && cd GOAT-stack
 $ yo goat-stack [name?]
 $ npm install
-$ # mongod runs as a child process!
+$ # mongod in another terminal!
 $ gulp
 ```
 
@@ -164,7 +172,7 @@ $ npm install -g yo generator-goat-stack gulp-cli typescript
 $ mkdir GOAT-stack && cd GOAT-stack 
 $ yo goat-stack [name?]
 $ npm install
-$ # mongod runs as a child process!
+$ # mongod in another terminal!
 $ sudo gulp
 ```
 > Note: gulp needs to be elevated with `sudo`, otherwise the mongod process which is executed in the gulp task runner will throw an error stating the port is already in use, even if it is free. This happens even when running mongod in its own terminal.

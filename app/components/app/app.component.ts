@@ -45,15 +45,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     ) {}
 
   ngOnInit() {
-    this.toda$.subscribe( x => {
-      if(x.get('nightTime') === true) {
-        this.ele.nativeElement.className = 'night-time';
-      }
-      else{
-        this.ele.nativeElement.className = 'day-time';        
-      }
-      
-    });
+    // Initially chamge theme reflecting time of day
+    this.toda$.subscribe( x => this.ele.nativeElement.className = x.get('nightTime') ? 'night-time' : 'day-time');
   }
 
   ngAfterViewInit() {
