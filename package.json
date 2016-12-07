@@ -158,6 +158,5 @@
     "mongodb",
     "OAuth",
     "GOAT-stack"
-  ],
-  "license": "Located in license.html"
+  ]
 }
