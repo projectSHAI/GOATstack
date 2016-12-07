@@ -79,7 +79,11 @@ export const defaultAssets = {
       'dist/config/lib/*.js'
     ],
     tests: {
-      integration: ['dist/server/api/user/user.integration.js', 'dist/server/api/**/*.integration.js'],
+      integration: [
+        'dist/server/api/user/user.integration.js', 
+        'dist/server/api/wonder/wonder.integration.js',
+        'dist/server/api/**/*.integration.js'
+      ],
       unit: 'dist/server/api/**/*.spec.js'
     }
   },

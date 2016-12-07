@@ -1,7 +1,7 @@
 import app from '../../server';
 import request = require('supertest');
 
-let addr = app.get('address');
+const addr = app.get('address');
 
 // Wonder endpoint Testing
 describe('Wonder API:', function() {

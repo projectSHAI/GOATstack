@@ -3,7 +3,7 @@ import request = require('supertest');
 
 import User from './user.model';
 
-let addr = app.get('address');
+const addr = app.get('address');
 
 // User Endpoint testing
 describe('User API:', function () {
@@ -13,12 +13,15 @@ describe('User API:', function () {
   // users are cleared from DB seeding
   // add a new testing user
   beforeAll(function () {
-    user = new User({
-      userName: 'MrFakie',
-      email: 'Fakie@mrfake.com',
-      password: 'mrfakie'
+    return User.remove({}).then(function () {
+      user = new User({
+        userName: 'MrFakie',
+        email: 'Fakie@mrfake.com',
+        password: 'mrfakie'
+      });
+
+      return user.save();
     });
-    return user.save();
   });
 
   // Encapsolate GET me enpoint
