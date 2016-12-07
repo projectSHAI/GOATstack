@@ -24,6 +24,7 @@ Version 1.0.0 is finally here!
 CURRENT BUGS!
 * AoT compilation currently decommitioned
   * angular-compiler 2.2.4 not creating ngFactory files for the main application
+  * angular rollback to last working version 2.1.2
  
 Things to look forward too in version 1.1.0:
 * Demo site
