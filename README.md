@@ -1,4 +1,4 @@
-
+# Check out the [Demo App](https://goat-stack.herokuapp.com/)!
 
 ![build](https://circleci.com/gh/JCThomas4214/GOAT-stack/tree/master.svg?style=shield)
 [![Dependency Status](https://img.shields.io/david/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/master.svg)
@@ -177,36 +177,27 @@ $ sudo gulp
 ```
 > Note: gulp needs to be elevated with `sudo`, otherwise the mongod process which is executed in the gulp task runner will throw an error stating the port is already in use, even if it is free. This happens even when running mongod in its own terminal.
 
+# Deploying to Heroku
+
+Make sure you have [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+
+### 1) Login with your Heroku credentials
+
+```sh
+$ heroku login
+```
+
+### 2) Run the gulp task
+
+```sh
+$ gulp deploy:heroku
+```
 
 ## Yo Generator Project [here](https://github.com/JCThomas4214/GOAT-yeoman)
 
 ## Created By
  + [Jason Thomas](https://github.com/JCThomas4214)
  + [Christopher Haugen](https://github.com/projectSHAI)
-
-<!--
-# Deploying to Heroku
-
-Make sure you have [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
-
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-or
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## Heroku Documentation
-
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
--->
-
 
 
 <!-- image references -->
