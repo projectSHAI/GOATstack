@@ -1,6 +1,7 @@
 # Check out the [Demo App](https://goat-stack.herokuapp.com/)!
 
 ![build](https://circleci.com/gh/JCThomas4214/GOAT-stack/tree/master.svg?style=shield)
+[![npm version](https://img.shields.io/npm/v/goat-stack.svg)](https://www.npmjs.com/package/goat-stack)
 [![Dependency Status](https://img.shields.io/david/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/master.svg)
 [![Dev-Dependency Status](https://img.shields.io/david/dev/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/master.svg#info=devDependencies)
 
@@ -19,18 +20,17 @@ $ gulp
 
 # What's new?
 
-Version 1.0.0 is finally here! 
- 
-CURRENT BUGS!
-* AoT compilation currently decommitioned
-  * angular-compiler 2.2.4 not creating ngFactory files for the main application
-  * angular rollback to last working version 2.1.2
- 
-Things to look forward too in version 1.1.0:
-* Demo site
- * Portrait styling
- * Sky islands
- * Ocean life
+New Deploy:Heroku task!
+* gulp deploy:heroku
+
+# CURRENT ISSUES!
+
+* Production AoT compilation
+  * angular-compiler 2.3.0 not creating ngFactory files for main application
+    * typescript 2.1 changed certain flags and functions that angular-compiler replied on
+    * angular-compiler 2.3.0 will not work with typescript 2.0.10
+    * angular issues [#12966](https://github.com/angular/angular/issues/12966) [#13204](https://github.com/angular/angular/issues/13204) [#13294](https://github.com/angular/angular/pull/13294) explain the current situation
+  * GOAT-stack will use angular 2.2.4 until further notice 
 
 
 # Documentation Wiki
