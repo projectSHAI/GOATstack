@@ -684,6 +684,7 @@ export class Gulpfile {
             }], function(answers) {
               return gulp.src('')
                 .pipe(shell([
+                  fs.existsSync('dist') ? '' : 'mkdir dist',
                   'cd dist && git init',
                   'cd dist && gulp build:heroku',
                   'cd dist && git add .',
@@ -714,6 +715,7 @@ export class Gulpfile {
             }], function(answers) {
               return gulp.src('')
                 .pipe(shell([
+                  fs.existsSync('dist') ? '' : 'mkdir dist',
                   'cd dist && git init',
                   'cd dist && heroku create ' + answers.appname,
                   'cd dist && heroku config:set DB_URI=' + answers.db_uri + ' DB_USER=' + answers.db_user + ' DB_PW=' + answers.db_pw,
