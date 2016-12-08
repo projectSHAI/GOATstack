@@ -34,7 +34,7 @@ export class TimeOfDayActions {
   }
 
   timeOfDay(time: any): any {
-    if ((time > 6 && time <= 17) && !(this.holdHour > 6 && this.holdHour <= 17)) {
+    if ((time >= 6 && time < 18) && !(this.holdHour >= 6 && this.holdHour < 18)) {
       this.ngRedux.dispatch({ type: TimeOfDayActions.DAY_TIME });
       this.holdHour = time;
 
