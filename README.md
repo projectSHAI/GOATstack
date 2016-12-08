@@ -23,7 +23,7 @@ $ gulp
 New Deploy:Heroku task!
 * gulp deploy:heroku
 
-# CURRENT ISSUES!
+## CURRENT ISSUES!
 
 * Production AoT compilation
   * angular-compiler 2.3.0 not creating ngFactory files for main application
