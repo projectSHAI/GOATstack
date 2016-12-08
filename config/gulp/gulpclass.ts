@@ -23,6 +23,7 @@ let imageminJPEGOptim = require('imagemin-jpegoptim');
 let imageminOptiPNG = require('imagemin-optipng');
 let imageminSVGO = require('imagemin-svgo');
 let exec = require('child_process').exec;
+let prompt = require('gulp-prompt');
 
 // tslint:disable-next-line
 let defaultAssets = eval(require("typescript")
@@ -85,9 +86,24 @@ export class Gulpfile {
     done();
   }
 
+  @Task()
+  build_clean_heroku(done) {
+    del([
+      'dist/.git'
+    ]);
+    done();
+  }
+
   ////////////////////////////////////////////////////////////////////////////////
   // REPLACEMENT TASKS: Used to replace strings in files depending on environment
   ////////////////////////////////////////////////////////////////////////////////
+  @Task()
+  replace_lodash() {
+    return gulp.src(['app/services/socketio/socketio.service.js'])
+      .pipe(replace("* as _", "_"))
+      .pipe(gulp.dest('app/services/socketio'));
+  }
+
   @Task()
   replace_process(done) {
     return gulp.src(['dist/app/app.module.js'])
@@ -216,6 +232,13 @@ export class Gulpfile {
       .pipe(gulp.dest('./dist'));
   }
 
+  @Task()
+  build_package_heroku(done) {
+    return gulp.src(['package.json'])
+      .pipe(replace('"start": "node dist/index"', '"start": "node index"'))
+      .pipe(gulp.dest('./dist'));
+  }
+
   // Transpile client side TS files
   @Task()
   build(done) {
@@ -237,6 +260,9 @@ export class Gulpfile {
       'replace_main_prod',
       'replace_aot_fin',
       'compile_client_prod',
+      // Work around fix task
+      'replace_lodash',
+      ///////////////////////
       'rollup_client',
       'build_clean_prod',
       // Bring of back now
@@ -263,6 +289,19 @@ export class Gulpfile {
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./tmp'));
+  }
+  @Task()
+  build_server_heroku() {
+    let tsProject = ts.createProject('./tsconfig.json', { module: 'system', outFile: 'server.js' });
+    let tsResult = gulp.src(`server/**/**/!(*.spec|*.integration).ts`)
+      .pipe(tsProject());
+
+    return tsResult.js
+      .pipe(replace("app.use(express.static('dist/app'))", "app.use(express.static('app'))"))
+      .pipe(replace("app.use('*', express.static('dist/app'))", "app.use('*', express.static('app'))"))
+      .pipe(replace("res.sendFile(path.resolve(__dirname, 'dist/app/index.html'))", 
+        "res.sendFile(path.resolve(__dirname, 'app/index.html'))"))
+      .pipe(gulp.dest('./tmp'));
   }
 
   // Transpile single TS file
@@ -320,6 +359,10 @@ export class Gulpfile {
   build_sequence_prod() {
     return ['build_sass', 'build_html_prod', 'build_assets', 'build_index'];
   }
+  @SequenceTask()
+  build_sequence_heroku() {
+    return ['build_sass', 'build_html_prod', 'build_assets', 'build_index', 'build_package_heroku'];
+  }
 
   @SequenceTask()
   build_project() {
@@ -339,6 +382,17 @@ export class Gulpfile {
       'build_client_prod',
       'build_sequence_prod',
       'build_server_prod',
+      'compress_server',
+      'compress_css',
+      'delete_tmp'
+    ];
+  }
+  @SequenceTask()
+  build_project_heroku() {
+    return [
+      'build_client_prod',
+      'build_sequence_heroku',
+      'build_server_heroku',
       'compress_server',
       'compress_css',
       'delete_tmp'
@@ -611,18 +665,81 @@ export class Gulpfile {
     done();
   }
 
+  @Task()
+  heroku_prompt() {
+    return gulp.src('')
+      .pipe(prompt.prompt([{
+        type:     'list',
+        name:     'heroku_choice',
+        message:  'What action would you like to do?',
+        choices:  ['push to existing repo', 'create new heroku app'],
+        default:  0
+      }], function(answers) {
+        if (answers.heroku_choice === 'push to existing repo') {
+          return gulp.src('')
+            .pipe(prompt.prompt([{
+              type:     'input',
+              name:     'appname',
+              message:  'The name of the heroku applicaiton?'
+            }], function(answers) {
+              return gulp.src('')
+                .pipe(shell([
+                  'cd dist && git init',
+                  'cd dist && gulp build:heroku',
+                  'cd dist && git add .',
+                  'cd dist && git commit -m "goat-stack deploy"',
+                  'cd dist && git remote add heroku https://git.heroku.com/' + answers.appname + '.git',
+                  'cd dist && git push --force heroku master',
+                  'cd dist && heroku open --app ' + answers.appname
+                ]));
+            }));
+        } else {
+          return gulp.src('')
+            .pipe(prompt.prompt([{
+              type:     'input',
+              name:     'appname',
+              message:  'What name would like the app to have?'
+            }, {
+              type:      'input',
+              name:      'db_uri',
+              message:   'What is the database URI?'
+            }, {
+              type:      'input',
+              name:      'db_user',
+              message:   'What is the username for the database?'
+            }, {
+              type:      'input',
+              name:      'db_pw',
+              message:   'What is the password for this user?'
+            }], function(answers) {
+              return gulp.src('')
+                .pipe(shell([
+                  'cd dist && git init',
+                  'cd dist && heroku create ' + answers.appname,
+                  'cd dist && heroku config:set DB_URI=' + answers.db_uri + ' DB_USER=' + answers.db_user + ' DB_PW=' + answers.db_pw,
+                  'cd dist && gulp build:heroku',
+                  'cd dist && git add .',
+                  'cd dist && git commit -m "goat-stack deploy"',
+                  'cd dist && git push --force heroku master',
+                  'cd dist && heroku open --app ' + answers.appname
+                ]));
+            }));
+        }
+      }));
+  }
+
   ////////////////////////////////////////////////////////////////////////////////
   // MONGO TASKS: Used to start mongod as a child process in dev mode
   ////////////////////////////////////////////////////////////////////////////////
-  @Task()
-  mongod_start(done, cb) {
-    exec('mongod --dbpath=/data', function(err, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
-      cb(err);
-    });
-    done();
-  }
+  // @Task()
+  // mongod_start(done, cb) {
+  //   exec('mongod --dbpath=/data', function(err, stdout, stderr) {
+  //     console.log(stdout);
+  //     console.log(stderr);
+  //     cb(err);
+  //   });
+  //   done();
+  // }
 
   ////////////////////////////////////////////////////////////////////////////////
   // GULP TASKS: Tasks used to execute project initialization, testing, etc...
@@ -638,7 +755,6 @@ export class Gulpfile {
     return [
       'env_dev',
       'lint',
-      // 'mongod_start',
       'build_clean',
       'build_project',
       ['nodemon', 'watch']
@@ -649,7 +765,6 @@ export class Gulpfile {
   prod() {
     return [
       'env_prod',
-      // 'mongod_start',
       'build_clean',
       'build_project_prod',
       'nodemon_prod'
@@ -669,7 +784,6 @@ export class Gulpfile {
     return [
       'env_test',
       'lint',
-      // 'mongod_start',
       'build_clean',
       'build_project',
       'test_server',
@@ -682,7 +796,6 @@ export class Gulpfile {
   test_e2e() {
     return [
       'env_test',
-      // 'mongod_start',
       'build_clean',
       'build_project',
       'protractor',
@@ -693,10 +806,26 @@ export class Gulpfile {
   test_e2e_prod() {
     return [
       'env_test',
-      // 'mongod_start',
       'build_clean',
       'build_project_prod',
       'protractor_prod',
+    ];
+  }
+
+  // Build project for production:heroku only
+  @SequenceTask('build:heroku')
+  build_heroku() {
+    return [
+      'build_clean',
+      'build_project_heroku',
+    ];
+  }
+  // Prompt for heroku repo options
+  @SequenceTask('deploy:heroku')
+  deploy_heroku() {
+    return [
+      'build_clean_heroku',
+      'heroku_prompt'
     ];
   }
 }
