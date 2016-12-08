@@ -671,16 +671,16 @@ export class Gulpfile {
       .pipe(prompt.prompt([{
         type:     'list',
         name:     'heroku_choice',
-        message:  'What action would you like to do?',
-        choices:  ['push to existing repo', 'create new heroku app'],
+        message:  'What action would you like to do? (on your account)',
+        choices:  ['1) Push to existing repo', '2) Create new heroku app'],
         default:  0
       }], function(answers) {
-        if (answers.heroku_choice === 'push to existing repo') {
+        if (answers.heroku_choice === '1) Push to existing repo') {
           return gulp.src('')
             .pipe(prompt.prompt([{
               type:     'input',
               name:     'appname',
-              message:  'The name of the heroku applicaiton?'
+              message:  'The name of the heroku application?'
             }], function(answers) {
               return gulp.src('')
                 .pipe(shell([
@@ -697,9 +697,9 @@ export class Gulpfile {
         } else {
           return gulp.src('')
             .pipe(prompt.prompt([{
-              type:     'input',
-              name:     'appname',
-              message:  'What name would like the app to have?'
+              type:      'input',
+              name:      'appname',
+              message:   'What name would like the app to have?'
             }, {
               type:      'input',
               name:      'db_uri',
