@@ -7,7 +7,7 @@ import { TimeOfDayActions } from '../../actions/time-of-day/time-of-day.actions'
 @Component({
   selector: 'the-sky',
   templateUrl: './sky.component.html',
-  styleUrls: ['./sky.component.scss']
+  styleUrls: ['./sky.component.css']
 })
 
 export class SkyComponent implements OnInit, AfterViewInit {

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'mountain-goat',
   templateUrl: './mountain-goat.component.html',
-  styleUrls: ['./mountain-goat.component.scss']
+  styleUrls: ['./mountain-goat.component.css']
 })
 
 export class MountainGoatComponent implements OnInit{

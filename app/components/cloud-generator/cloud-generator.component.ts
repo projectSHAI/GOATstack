@@ -16,7 +16,7 @@ declare let Power0: any;
   selector: 'cloud-generator',
   providers: [WonderActions, CloudActions],
   templateUrl: './cloud-generator.component.html',
-  styleUrls: ['./cloud-generator.component.scss']
+  styleUrls: ['./cloud-generator.component.css']
 })
 
 export class CloudGeneratorComponent implements OnInit, OnDestroy {

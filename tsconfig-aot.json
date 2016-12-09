@@ -9,16 +9,18 @@
     "emitDecoratorMetadata": true,
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
-    /*Start of replacement pre*/ "experimentalDecorators": true,"outDir": "ngc-aot/tsc", /*End of replacement pre*/
+    "experimentalDecorators": true,
     "typeRoots": [
       "node_modules/@types"
     ]
   },
   "files": [
     "app/app.module.ts",
-    "app/main.ts"
+    "app/main.ts",
+    "app/main-aot.ts"
   ],
   "angularCompilerOptions": {
-    /*Start of replacement pre*/ "skipMetadataEmit" : true /*End of replacement pre*/
+    "genDir": "ngc-aot",
+    "skipMetadataEmit" : true
   }
 }

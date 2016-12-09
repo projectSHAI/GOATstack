@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'the-ocean',
   templateUrl: './ocean.component.html',
-  styleUrls: ['./ocean.component.scss']
+  styleUrls: ['./ocean.component.css']
 })
 
 export class OceanComponent implements OnInit{ 

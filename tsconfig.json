@@ -21,6 +21,7 @@
     "exclude": [
       "./dist",
       "./node_modules",
-      "./config/gulp"
+      "./config/gulp",
+      "app/main-aot.ts"
     ]
 }

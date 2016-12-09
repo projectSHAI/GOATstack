@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'header-section',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.css']
 })
 
 export class HeaderComponent {

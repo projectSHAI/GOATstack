@@ -5,7 +5,7 @@ import uglify from 'rollup-plugin-uglify';
 import replace from 'rollup-plugin-replace';
 
 export default {
-  entry: 'app/main.js',
+  entry: 'app/main-aot.js',
   dest: 'dist/app/app.js', // output a single application bundle
   format: 'iife',
   plugins: [
@@ -25,7 +25,8 @@ export default {
         // of a module in node_modules
         'node_modules/ng2-cookies/ng2-cookies.js': ['Cookie'],
         'node_modules/immutable/dist/immutable.js': ['Map', 'List', 'Record'],
-        'node_modules/redux-logger/dist/index.js': ['createLogger']
+        'node_modules/redux-logger/dist/index.js': ['createLogger'],
+        'node_modules/lodash/lodash.js': ['find', 'remove']
       }
     }),
     uglify()

@@ -11,7 +11,7 @@ import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
   selector: 'signinout',
   providers: [UserActions, UserFormActions],
   templateUrl: './signinout.component.html',
-  styleUrls: ['./signinout.component.scss']
+  styleUrls: ['./signinout.component.css']
 })
 export class SignInOutComponent implements OnInit {
   @select('user') user$: Observable<any>;

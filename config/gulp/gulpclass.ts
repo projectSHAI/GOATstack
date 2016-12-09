@@ -68,6 +68,7 @@ export class Gulpfile {
       'app/**/**/*.js*',
       'app/**/**/*.ngfactory*',
       'app/**/**/*.shim*',
+      'app/**/**/*.css',
       '!app/**/*e2e-spec.js',
       'tmp/**'
     ]);
@@ -81,6 +82,7 @@ export class Gulpfile {
       'app/**/**/*.js*',
       'app/**/**/*.ngfactory*',
       'app/**/**/*.shim*',
+      'app/**/**/*.css',
       '!app/**/*e2e-spec.js'
     ]);
     done();
@@ -98,13 +100,6 @@ export class Gulpfile {
   // REPLACEMENT TASKS: Used to replace strings in files depending on environment
   ////////////////////////////////////////////////////////////////////////////////
   @Task()
-  replace_lodash() {
-    return gulp.src(['app/services/socketio/socketio.service.js'])
-      .pipe(replace("* as _", "_"))
-      .pipe(gulp.dest('app/services/socketio'));
-  }
-
-  @Task()
   replace_process(done) {
     return gulp.src(['dist/app/app.module.js'])
       .pipe(process.env.NODE_ENV === 'development' ?
@@ -112,70 +107,6 @@ export class Gulpfile {
         replace('process.env.NODE_ENV', "'test'"))
       .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
       .pipe(gulp.dest('dist/app', { overwrite: true }));
-  }
-
-  @SequenceTask()
-  replace_first_compile(done) {
-    return [
-      'replace_main_dev',
-      'replace_aot_pre'
-    ];
-  }
-  replace_second_compile(done) {
-    return [
-      'replace_main_prod',
-      'replace_aot_fin'
-    ];
-  }
-
-  @Task()
-  replace_main_prod(done) {
-    return gulp.src(['app/main.ts'])
-      .pipe(replace("import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'",
-        "import { platformBrowser } from '@angular/platform-browser'"))
-      .pipe(replace("import { AppModule } from './app.module';",
-        `import { AppModuleNgFactory } from '../ngc-aot/app/app.module.ngfactory';
-        import { enableProdMode } from '@angular/core';
-        enableProdMode();`))
-      .pipe(replace("platformBrowserDynamic().bootstrapModule(AppModule)",
-        "platformBrowser().bootstrapModuleFactory(AppModuleNgFactory)"))
-      .pipe(gulp.dest('app', { overwrite: true }));
-  }
-  @Task()
-  replace_main_dev(done) {
-    return gulp.src(['app/main.ts'])
-      .pipe(replace("import { platformBrowser } from '@angular/platform-browser'",
-        "import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'"))
-      .pipe(replace(
-        `import { AppModuleNgFactory } from '../ngc-aot/app/app.module.ngfactory';
-        import { enableProdMode } from '@angular/core';
-        enableProdMode();`,
-        "import { AppModule } from './app.module';"))
-      .pipe(replace("platformBrowser().bootstrapModuleFactory(AppModuleNgFactory)",
-        "platformBrowserDynamic().bootstrapModule(AppModule)"))
-      .pipe(gulp.dest('app', { overwrite: true }));
-  }
-  @Task()
-  replace_aot_pre(done) {
-    return gulp.src(['tsconfig-aot.json'])
-      .pipe(replace(
-        `/*Start of replacement fin*/ "experimentalDecorators": true, /*End of replacement fin*/`,
-        `/*Start of replacement pre*/ "experimentalDecorators": true,"outDir": "ngc-aot/tsc", /*End of replacement pre*/`))
-      .pipe(replace(
-        `/*Start of replacement fin*/ "genDir": "ngc-aot","skipMetadataEmit" : true /*End of replacement fin*/`,
-        `/*Start of replacement pre*/ "skipMetadataEmit" : true /*End of replacement pre*/`))
-      .pipe(gulp.dest('./', { overwrite: true }));
-  }
-  @Task()
-  replace_aot_fin(done) {
-    return gulp.src(['tsconfig-aot.json'])
-      .pipe(replace(
-        `/*Start of replacement pre*/ "experimentalDecorators": true,"outDir": "ngc-aot/tsc", /*End of replacement pre*/`,
-        `/*Start of replacement fin*/ "experimentalDecorators": true, /*End of replacement fin*/`))
-      .pipe(replace(
-        `/*Start of replacement pre*/ "skipMetadataEmit" : true /*End of replacement pre*/`,
-        `/*Start of replacement fin*/ "genDir": "ngc-aot","skipMetadataEmit" : true /*End of replacement fin*/`))
-      .pipe(gulp.dest('./', { overwrite: true }));
   }
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -205,10 +136,17 @@ export class Gulpfile {
     // Brute force fix for angular material import .css .scss error
     del('node_modules/@angular/material/core/overlay/overlay.css');
 
-    return gulp.src('app/styles.scss')
+    return gulp.src('app/**/**/*.scss')
       .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest('./app'));
+  }
+
+  @Task()
+  move_styles() {
+    return gulp.src('app/styles.css')
       .pipe(gulp.dest('./dist/app'));
   }
+
   @Task()
   build_assets(done) {
     return imagemin(defaultAssets.client.assets, 'dist/app/assets', {
@@ -254,20 +192,9 @@ export class Gulpfile {
   @SequenceTask()
   build_client_prod() {
     return [
-      'replace_main_dev',
-      'replace_aot_pre',
       'compile_client_prod',
-      'replace_main_prod',
-      'replace_aot_fin',
-      'compile_client_prod',
-      // Work around fix task
-      'replace_lodash',
-      ///////////////////////
       'rollup_client',
       'build_clean_prod',
-      // Bring of back now
-      'replace_main_dev',
-      'replace_aot_pre'
     ];
   }
 
@@ -353,25 +280,22 @@ export class Gulpfile {
   // Essential sequences for built project
   @SequenceTask()
   build_sequence() {
-    return ['build_sass', 'build_html', 'build_assets', 'build_systemConf'];
+    return ['build_sass', 'move_styles', 'build_html', 'build_assets', 'build_systemConf'];
   }
   @SequenceTask()
   build_sequence_prod() {
-    return ['build_sass', 'build_html_prod', 'build_assets', 'build_index'];
+    return ['build_sass', 'move_styles', 'build_html_prod', 'build_assets', 'build_index'];
   }
   @SequenceTask()
   build_sequence_heroku() {
-    return ['build_sass', 'build_html_prod', 'build_assets', 'build_index', 'build_package_heroku'];
+    return ['build_sass', 'move_styles', 'build_html_prod', 'build_assets', 'build_index', 'build_package_heroku'];
   }
 
   @SequenceTask()
   build_project() {
     return [
-      // Make sure the main.ts is back to dev
-      'replace_main_dev',
-      ///////////////////////////////////////
-      'build',
       'build_sequence',
+      'build',
       'replace_process',
       'compress_css'
     ];
@@ -379,8 +303,8 @@ export class Gulpfile {
   @SequenceTask()
   build_project_prod() {
     return [
-      'build_client_prod',
       'build_sequence_prod',
+      'build_client_prod',
       'build_server_prod',
       'compress_server',
       'compress_css',
@@ -390,8 +314,8 @@ export class Gulpfile {
   @SequenceTask()
   build_project_heroku() {
     return [
-      'build_client_prod',
       'build_sequence_heroku',
+      'build_client_prod',
       'build_server_heroku',
       'compress_server',
       'compress_css',
@@ -605,6 +529,14 @@ export class Gulpfile {
     // Watch if system.config files are changed
     watch(defaultAssets.client.system, { events: ['change'] }, file => runSequence('build_systemConf'));
     watch(['dist/app/systemjs.config.js'], plugins.livereload.changed);
+  }
+
+  @Task()
+  watch_ngc() {
+    return watch(['ngc-aot'], { events: ['add'] }, () => {
+      return gulp.src('ngc-aot/app/**/**/*.shim.ts')
+        .pipe(gulp.dest('app'));
+    });
   }
 
   ////////////////////////////////////////////////////////////////////////////////

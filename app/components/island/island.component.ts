@@ -11,7 +11,7 @@ import { ZoomDirective } from '../../directives/zoom.directive';
   selector: 'the-island',
   providers: [WonderActions],
   templateUrl: './island.component.html',
-  styleUrls: ['./island.component.scss']
+  styleUrls: ['./island.component.css']
 })
 
 export class IslandComponent implements OnInit {

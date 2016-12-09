@@ -23,7 +23,7 @@ declare let TimelineMax: any;
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
 
 //class which is implemented once the AfterViewInit event in tha Angular event lifecycle has fired.

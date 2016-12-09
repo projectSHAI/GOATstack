@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'blue-whale',
   templateUrl: './whale.component.html',
-  styleUrls: ['./whale.component.scss']
+  styleUrls: ['./whale.component.css']
 })
 
 export class WhaleComponent implements OnInit { 
