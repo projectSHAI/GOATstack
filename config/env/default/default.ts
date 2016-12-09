@@ -8,7 +8,7 @@ export const defaultConfig = {
   // DEFAULT SEO configuration
   app: {
     title: 'GOAT-stack',
-    favicon: 'assets/dywlogo.png',
+    favicon: 'assets/favicon.png',
     description: 'The Greatest of All Time Stack!',
     keywords: 'redux, node, mongo, express, angular2, ng2, jasmine, karma, protractor'
   },
