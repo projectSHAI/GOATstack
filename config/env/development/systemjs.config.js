@@ -31,7 +31,7 @@
       // other libraries
       'rxjs':                               'npm:rxjs',
       'ng2-cookies':                        'npm:ng2-cookies',
-      'socket.io-client':                   'npm:socket.io-client',
+      'socket.io-client':                   'npm:socket.io-client/dist',
       'lodash':                             'npm:lodash',
       'ng2-redux':                          'npm:ng2-redux/lib',
       'immutable':                          'npm:immutable/dist/immutable.min.js',
@@ -53,7 +53,7 @@
         defaultExtension: 'js'
       },
       'socket.io-client': {
-        main: 'socket.io.js',
+        main: 'socket.io.min.js',
         defaultExtension: 'js'
       },
       lodash: {
