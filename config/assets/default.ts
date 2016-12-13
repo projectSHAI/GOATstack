@@ -40,9 +40,9 @@ export const defaultAssets = {
       'app/directives/**/*.ts'
     ],
     assets: [
-      'app/assets/*jpg',
-      'app/assets/*.png',
-      'app/assets/*.svg'
+      'public/assets/*jpg',
+      'public/assets/*.png',
+      'public/assets/*.svg'
     ],
     views: [
       'config/env/development/index.html',

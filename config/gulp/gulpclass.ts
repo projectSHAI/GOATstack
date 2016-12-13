@@ -149,7 +149,7 @@ export class Gulpfile {
 
   @Task()
   build_assets(done) {
-    return imagemin(defaultAssets.client.assets, 'dist/app/assets', {
+    return imagemin(defaultAssets.client.assets, 'dist/public/assets', {
       plugins: [
         imageminJPEGOptim(),
         imageminOptiPNG(),

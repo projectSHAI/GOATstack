@@ -82,11 +82,13 @@ function init(app) {
   app.use('/node_modules', express.static('node_modules'));
   app.use('/custom_modules', express.static('custom_modules'));
   app.use(express.static('dist/app'));
+  app.use(express.static('public'));
 
   //exposes the client and node_modules folders to the client for file serving when client queries anything, * is a wildcard
   app.use('*', express.static('node_modules'));
   app.use('*', express.static('custom_modules'));
   app.use('*', express.static('dist/app'));
+  app.use('*', express.static('public'));
 
   //fire's a get function when any directory is queried (* is a wildcard) by the client, sends back the index.html as a response. Angular then does the proper routing on client side
   app.get('*', function(req, res) {
