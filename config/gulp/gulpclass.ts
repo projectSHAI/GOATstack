@@ -556,7 +556,6 @@ export class Gulpfile {
     return gulp.src(['client/styles.scss', 'client/**/components/**/*.scss'])
       .pipe(sassLint({
         rules: {
-          'no-css-comments': 0,
           'single-line-per-selector': 0,
           'space-after-colon': 0,
           'space-before-brace': 0,
@@ -566,6 +565,8 @@ export class Gulpfile {
           'empty-line-between-blocks': 0,
           'force-pseudo-nesting': 0,
           'pseudo-element': 0,
+          'no-css-comments': 0,
+          'no-empty-rulesets': 0,
           'no-vendor-prefixes': 0,
           'no-color-literals': 0,
           'no-color-keywords': 0,
