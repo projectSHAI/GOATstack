@@ -197,7 +197,7 @@ NgModule
 
 //by convention the root module is called AppModule as stated in the Angular2 docs
 //we call AppModule in main.ts to bootstrap the application which points to the AppComponent defined in @NgModule
-export class AppModule {
+export class MainModule {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private devTool: DevToolsExtension) {

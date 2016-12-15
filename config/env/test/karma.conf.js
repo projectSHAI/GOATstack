@@ -1,8 +1,8 @@
 // #docregion
 module.exports = function(config) {
 
-  var appBase    = 'app/';       // transpiled app JS and map files
-  var appSrcBase = 'dist/app/';       // app source TS files
+  var appBase    = 'client/';       // transpiled app JS and map files
+  var appSrcBase = 'dist/client/';       // app source TS files
 
   config.set({
     basePath: '../../../',
@@ -60,26 +60,26 @@ module.exports = function(config) {
       'config/env/test/karma-test-shim.js',
 
       // transpiled application & spec code paths loaded via module imports
-      {pattern: appSrcBase + '**/**/*.js', included: false, watched: true},
+      {pattern: appSrcBase + '**/**/**/*.js', included: false, watched: true},
 
       // Asset (HTML & CSS) paths loaded via Angular's component compiler
       // (these paths need to be rewritten, see proxies section)
-      {pattern: appSrcBase + '**/**/*.html', included: false, watched: true},
-      {pattern: appSrcBase + '**/**/*.css', included: false, watched: true},
+      {pattern: appSrcBase + '**/**/**/*.html', included: false, watched: true},
+      {pattern: appSrcBase + '**/**/**/*.css', included: false, watched: true},
 
       // Paths for debugging with source maps in dev tools
-      {pattern: appBase + '**/**/*.ts', included: false, watched: false},
+      {pattern: appBase + '**/**/**/*.ts', included: false, watched: false},
 
       // Assets
-      {pattern: appSrcBase + 'assets/*.jpg', included: false, watched: false},
-      {pattern: appSrcBase + 'assets/*.png', included: false, watched: false},
-      {pattern: appSrcBase + 'assets/*.svg', included: false, watched: false}
+      {pattern: 'dist/public/assets/*.jpg', included: false, watched: false},
+      {pattern: 'dist/public/assets/*.png', included: false, watched: false},
+      {pattern: 'dist/public/assets/*.svg', included: false, watched: false}
     ],
 
     // Proxied base paths for loading assets
     proxies: {
       // required for component assets fetched by Angular's compiler
-      '/assets/': '/base/dist/app/assets/',
+      '/assets/': '/base/dist/public/assets/',
       '/api/': 'http://localhost:7001/api/'
     },
 
