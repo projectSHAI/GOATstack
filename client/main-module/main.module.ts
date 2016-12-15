@@ -75,7 +75,7 @@ Directives
 //Declare directives here
 */
 //user created directives
-import { ZoomDirective } from './directives/zoom.directive';
+import { ZoomDirective }                             from './directives/zoom.directive';
 //Angular and 3rd party directives
 
 /*
