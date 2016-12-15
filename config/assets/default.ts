@@ -8,48 +8,48 @@ export const defaultAssets = {
   client: {
     dist: {
       js: [
-        'dist/app/*.js',
-        'dist/app/**/**/*.js'
+        'dist/client/**/*.js',
+        'dist/client/**/**/**/*.js'
       ],
       css: [
-        'dist/app/styles.css',
+        'dist/client/styles.css',
       ],
       assets: [
-        'dist/app/assets/*jpg',
-        'dist/app/assets/*.png',
-        'dist/app/assets/*.svg'
+        'dist/public/assets/*jpg',
+        'dist/public/assets/*.png',
+        'dist/public/assets/*.svg'
       ],
       views: [
-        'dist/app/index.html',
+        'dist/client/index.html',
       ]
     },
     scss: [
-      'app/styles.scss',
-      'app/**/**/*.scss'
+      'client/styles.scss',
+      'client/**/**/**/*.scss'
     ],
     css: [
-      'app/**/**/*.css'
+      'client/**/**/**/*.css'
     ],
     ts: [
-      'app/*.ts',
-      'app/actions/**/*.ts',
-      'app/pipes/**/*.ts',
-      'app/services/**/*.ts',
-      'app/store/**/*.ts',
-      'app/components/**/*.ts',
-      'app/directives/**/*.ts'
+      'client/**/*.ts',
+      'client/**/actions/**/*.ts',
+      'client/**/pipes/**/*.ts',
+      'client/**/services/**/*.ts',
+      'client/**/store/**/*.ts',
+      'client/**/components/**/*.ts',
+      'client/**/directives/**/*.ts'
     ],
     assets: [
-      'app/assets/*jpg',
-      'app/assets/*.png',
-      'app/assets/*.svg'
+      'public/assets/*jpg',
+      'public/assets/*.png',
+      'public/assets/*.svg'
     ],
     views: [
       'config/env/development/index.html',
-      'app/**/**/*.html'
+      'client/**/**/**/*.html'
     ],
     spec: [
-      'app/**/**/*.spec.ts'
+      'client/**/**/**/*.spec.ts'
     ],
     e2e: [
       'e2e/**/*.e2e-spec.js'

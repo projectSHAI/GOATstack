@@ -32,6 +32,16 @@ New Deploy:Heroku task!
     * angular issues [#12966](https://github.com/angular/angular/issues/12966) [#13204](https://github.com/angular/angular/issues/13204) [#13294](https://github.com/angular/angular/pull/13294) explain the current situation
   * GOAT-stack will use angular 2.2.4 until further notice 
 
+# Coming soon, v1.3.0
+
+* new yo generator: goat-stack:module
+  * will create a new module for the project to work in conjunction with the root module
+  * prior generators conditional prompt to ask what module you'll like the generator to genorate to
+    * on the condition that there is more modules than the root module in the project
+* structural changes
+  * environment compilation changes for new structural implimentation (for modules)
+  * new public folder in project root that will be exposed to the client for assests and external js libraries
+    
 
 # Documentation Wiki
 

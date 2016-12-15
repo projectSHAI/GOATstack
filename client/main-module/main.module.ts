@@ -12,7 +12,7 @@ Main component which gets bootstrapped
 --------------------------------------------------
 //Named AppComponent in compliance with Angular best practices
 */
-import { AppComponent }  from './components/app/app.component';
+import { AppComponent }                              from './components/app/app.component';
 
 /*
 --------------------------------------------------
@@ -27,6 +27,7 @@ import { HttpModule, JsonpModule }                   from '@angular/http';
 import { MaterialModule }                            from '@angular/material';
 import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 import { _NgRedux }                                  from './actions/redux.sol';
+// DO NOT REMOVE: template module imports
 
 /*
 --------------------------------------------------
@@ -34,7 +35,7 @@ Routing
 --------------------------------------------------
 //enables navigation capabilities capitilizing on the browsers history stack
 */
-import { routing }                  from './routes';
+import { routing }                                   from './routes';
 
 /*
 --------------------------------------------------
@@ -42,28 +43,28 @@ HTTP Requests
 --------------------------------------------------
 //imports to handle http events to send and receive data from api's
 */
-import { Http, XHRBackend, RequestOptions } from '@angular/http';
+import { Http, XHRBackend, RequestOptions }          from '@angular/http';
 /*
 --------------------------------------------------
 Components
 --------------------------------------------------
 //Declare components here
 */
-//user created components
-import { HeaderComponent }            from './components/header/header.component';
-import { NavbarComponent }            from './components/navbar/navbar.component';
-import { SignInOutComponent }         from './components/signinout/signinout.component';
-import { HomeComponent }              from './components/home/home.component';
-import { FooterComponent }            from './components/footer/footer.component';
-import { Four0FourComponent }         from './components/404/four0four.component';
-import { UserProfileComponent }       from './components/user-profile/user-profile.component';
-import { SkyComponent }               from './components/sky/sky.component';
-import { OceanComponent }             from './components/ocean/ocean.component';
-import { WhaleComponent }             from './components/whale/whale.component';
-import { IslandComponent }            from './components/island/island.component';
-import { MountainGoatComponent }      from './components/mountain-goat/mountain-goat.component';
-import { CloudGeneratorComponent }    from './components/cloud-generator/cloud-generator.component';
-// DO NOT REMOVE: template app.module imports
+//user created components                
+import { HeaderComponent }                           from './components/header/header.component';
+import { NavbarComponent }                           from './components/navbar/navbar.component';
+import { SignInOutComponent }                        from './components/signinout/signinout.component';
+import { HomeComponent }                             from './components/home/home.component';
+import { FooterComponent }                           from './components/footer/footer.component';
+import { Four0FourComponent }                        from './components/404/four0four.component';
+import { UserProfileComponent }                      from './components/user-profile/user-profile.component';
+import { SkyComponent }                              from './components/sky/sky.component';
+import { OceanComponent }                            from './components/ocean/ocean.component';
+import { WhaleComponent }                            from './components/whale/whale.component';
+import { IslandComponent }                           from './components/island/island.component';
+import { MountainGoatComponent }                     from './components/mountain-goat/mountain-goat.component';
+import { CloudGeneratorComponent }                   from './components/cloud-generator/cloud-generator.component';
+// DO NOT REMOVE: template main.module imports
 
 //Angular and 3rd party components
 
@@ -82,19 +83,18 @@ import { ZoomDirective } from './directives/zoom.directive';
 Services
 --------------------------------------------------
 //Declare services that need to be singletons here
-// import { SocketService }              from './services/socketio/socketio.service';
 */
 //user created services
-import { ErrorHandlerActions }        from './actions/error/errorHandler.actions';
-import { SEOActions }                 from './actions/seo/seo.actions';
-import { TimeOfDayActions }           from './actions/time-of-day/time-of-day.actions';
-import { SocketService }              from './services/socketio/socketio.service';
-import { HttpIntercept }              from './services/auth/auth.service';
-import { UserService }                from './services/user/user.service';
-import { WonderService }              from './services/wonder/wonder.service';
+import { ErrorHandlerActions }                       from './actions/error/errorHandler.actions';
+import { SEOActions }                                from './actions/seo/seo.actions';
+import { TimeOfDayActions }                          from './actions/time-of-day/time-of-day.actions';
+import { SocketService }                             from './services/socketio/socketio.service';
+import { HttpIntercept }                             from './services/auth/auth.service';
+import { UserService }                               from './services/user/user.service';
+import { WonderService }                             from './services/wonder/wonder.service';
 
 //Angular and 3rd party serices
-import { Cookie }                     from 'ng2-cookies/ng2-cookies';
+import { Cookie }                                    from 'ng2-cookies/ng2-cookies';
 
 /*
 --------------------------------------------------
@@ -103,7 +103,7 @@ Pipes
 //Declare pipes here
 */
 //User created pipes
-import { NgForHookPipe }              from './pipes/ngFor-hook.pipe';
+import { NgForHookPipe }                             from './pipes/ngFor-hook.pipe';
 
 //Angular and 3rd party pipes
 
@@ -122,7 +122,7 @@ Redux Store Interface
 --------------------------------------------------
 //Declare import for redux store interface
 */
-import { IAppState, rootReducer, enhancers } from './store/index';
+import { IAppState, rootReducer, enhancers }         from './store/index';
 import createLogger from 'redux-logger';
 
 /*
@@ -150,7 +150,8 @@ NgModule
     HttpModule,
     FormsModule,
     JsonpModule,
-    routing
+    routing,
+    // DO NOT REMOVE: template module declarations
   ],
   //declarations: this object imports all child components which are used in this module
   declarations: [
@@ -197,7 +198,7 @@ NgModule
 
 //by convention the root module is called AppModule as stated in the Angular2 docs
 //we call AppModule in main.ts to bootstrap the application which points to the AppComponent defined in @NgModule
-export class AppModule {
+export class MainModule {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private devTool: DevToolsExtension) {

@@ -5,8 +5,8 @@ import uglify from 'rollup-plugin-uglify';
 import replace from 'rollup-plugin-replace';
 
 export default {
-  entry: 'app/main-aot.js',
-  dest: 'dist/app/app.js', // output a single application bundle
+  entry: 'client/main-aot.js',
+  dest: 'dist/client/app.js', // output a single application bundle
   format: 'iife',
   plugins: [
     nodeResolve({

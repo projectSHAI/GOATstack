@@ -65,11 +65,11 @@ export class Gulpfile {
       'dist/**',
       '!dist',
       'ngc-aot/**',
-      'app/**/**/*.js*',
-      'app/**/**/*.ngfactory*',
-      'app/**/**/*.shim*',
-      'app/**/**/*.css',
-      '!app/**/*e2e-spec.js',
+      'client/**/**/**/*.js*',
+      'client/**/**/**/*.ngfactory*',
+      'client/**/**/**/*.shim*',
+      'client/**/**/**/*.css',
+      '!client/**/**/*e2e-spec.js',
       'tmp/**'
     ]);
     done();
@@ -77,23 +77,28 @@ export class Gulpfile {
 
   @Task()
   build_clean_prod(done) {
-    del([
+    return del([
       'ngc-aot/**',
-      'app/**/**/*.js*',
-      'app/**/**/*.ngfactory*',
-      'app/**/**/*.shim*',
-      'app/**/**/*.css',
-      '!app/**/*e2e-spec.js'
-    ]);
-    done();
+      'client/**/**/**/*.js*',
+      'client/**/**/**/*.ngfactory*',
+      'client/**/**/**/*.shim*',
+      'client/**/**/**/*.css',
+      '!client/**/**/*e2e-spec.js'
+    ], done);
   }
 
   @Task()
   build_clean_heroku(done) {
-    del([
+    return del([
       'dist/.git'
-    ]);
-    done();
+    ], done);
+  }
+
+  @Task()
+  build_clean_css(done) {
+    return del([
+      'client/**/**/**/*.css'
+    ], done);
   }
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -101,12 +106,12 @@ export class Gulpfile {
   ////////////////////////////////////////////////////////////////////////////////
   @Task()
   replace_process(done) {
-    return gulp.src(['dist/app/app.module.js'])
+    return gulp.src(['dist/client/main-module/main.module.js'])
       .pipe(process.env.NODE_ENV === 'development' ?
         replace('process.env.NODE_ENV', "'development'") :
         replace('process.env.NODE_ENV', "'test'"))
       .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
-      .pipe(gulp.dest('dist/app', { overwrite: true }));
+      .pipe(gulp.dest('dist/client/main-module', { overwrite: true }));
   }
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +124,7 @@ export class Gulpfile {
       .pipe(replace('<!-- <link rel="icon"> -->', '<link id="favicon" rel="icon" href="'+ defaultConfig.app.favicon +'">'))
       .pipe(replace('<!-- <meta name="description"> -->', '<meta name="description" content="'+ defaultConfig.app.description +'">'))
       .pipe(replace('<!-- <meta name="keywords"> -->', '<meta name="keywords" content="'+ defaultConfig.app.keywords +'">'))
-      .pipe(gulp.dest('./dist/app'));
+      .pipe(gulp.dest('./dist/client'));
   }
   @Task()
   build_html_prod(done) {
@@ -128,7 +133,7 @@ export class Gulpfile {
       .pipe(replace('<!-- <link rel="icon"> -->', '<link id="favicon" rel="icon" href="'+ defaultConfig.app.favicon +'">'))
       .pipe(replace('<!-- <meta name="description"> -->', '<meta name="description" content="'+ defaultConfig.app.description +'">'))
       .pipe(replace('<!-- <meta name="keywords"> -->', '<meta name="keywords" content="'+ defaultConfig.app.keywords +'">'))
-      .pipe(gulp.dest('./dist/app'));
+      .pipe(gulp.dest('./dist/client'));
   }
 
   @Task()
@@ -136,20 +141,20 @@ export class Gulpfile {
     // Brute force fix for angular material import .css .scss error
     del('node_modules/@angular/material/core/overlay/overlay.css');
 
-    return gulp.src('app/**/**/*.scss')
+    return gulp.src('client/**/**/**/*.scss')
       .pipe(sass().on('error', sass.logError))
-      .pipe(gulp.dest('./app'));
+      .pipe(gulp.dest('./client'));
   }
 
   @Task()
   move_styles() {
-    return gulp.src('app/styles.css')
-      .pipe(gulp.dest('./dist/app'));
+    return gulp.src('client/styles.css')
+      .pipe(gulp.dest('./dist/client'));
   }
 
   @Task()
   build_assets(done) {
-    return imagemin(defaultAssets.client.assets, 'dist/app/assets', {
+    return imagemin(defaultAssets.client.assets, 'dist/public/assets', {
       plugins: [
         imageminJPEGOptim(),
         imageminOptiPNG(),
@@ -161,7 +166,7 @@ export class Gulpfile {
   @Task()
   build_systemConf() {
     return gulp.src('config/env/development/systemjs.config.js')
-      .pipe(gulp.dest('./dist/app'));
+      .pipe(gulp.dest('./dist/client'));
   }
 
   @Task()
@@ -224,10 +229,10 @@ export class Gulpfile {
       .pipe(tsProject());
 
     return tsResult.js
-      .pipe(replace("app.use(express.static('dist/app'))", "app.use(express.static('app'))"))
-      .pipe(replace("app.use('*', express.static('dist/app'))", "app.use('*', express.static('app'))"))
-      .pipe(replace("res.sendFile(path.resolve(__dirname, 'dist/app/index.html'))", 
-        "res.sendFile(path.resolve(__dirname, 'app/index.html'))"))
+      .pipe(replace("app.use(express.static('dist/client'))", "app.use(express.static('client'))"))
+      .pipe(replace("app.use('*', express.static('dist/client'))", "app.use('*', express.static('client'))"))
+      .pipe(replace("res.sendFile(path.resolve(__dirname, 'dist/client/index.html'))", 
+        "res.sendFile(path.resolve(__dirname, 'client/index.html'))"))
       .pipe(gulp.dest('./tmp'));
   }
 
@@ -255,7 +260,7 @@ export class Gulpfile {
         .pipe(embedSass())
         .pipe(tsProject());
 
-      relativePath = app ? relativePath.replace('app', 'dist\\app') : ser ?
+      relativePath = app ? relativePath.replace('client', 'dist\\client') : ser ?
         relativePath.replace('server', 'dist\\server') : relativePath.replace('config', 'dist\\config');
 
       relativePath = relativePath.substring(0, relativePath.lastIndexOf('\\'));
@@ -267,13 +272,13 @@ export class Gulpfile {
     } else if (fName === 'index.html') {
       // if file was the index.html
       console.log('\n Moving ----> ' + chalk.green.bold(fName + '\n'));
-      return gulp.src('config/env/development/index.html').pipe(gulp.dest('dist/app'));
+      return gulp.src('config/env/development/index.html').pipe(gulp.dest('dist/client'));
     } else {
       // if file was the styles.scss
       console.log('\n Compiling ----> ' + chalk.green.bold(fName + '\n'));
-      return gulp.src('app/styles.scss')
+      return gulp.src('client/styles.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./dist/app'));
+        .pipe(gulp.dest('./dist/client'));
     }
   }
 
@@ -296,6 +301,7 @@ export class Gulpfile {
     return [
       'build_sequence',
       'build',
+      'build_clean_css',
       'replace_process',
       'compress_css'
     ];
@@ -308,6 +314,7 @@ export class Gulpfile {
       'build_server_prod',
       'compress_server',
       'compress_css',
+      'build_clean_css',
       'delete_tmp'
     ];
   }
@@ -319,6 +326,7 @@ export class Gulpfile {
       'build_server_heroku',
       'compress_server',
       'compress_css',
+      'build_clean_css',
       'delete_tmp'
     ];
   }
@@ -332,7 +340,7 @@ export class Gulpfile {
       relativePath.substring(relativePath.lastIndexOf('\\') + 1, relativePath.length)) +
       '\n');
 
-    return imagemin([relativePath], 'dist/app/assets', {
+    return imagemin([relativePath], 'dist/public/assets', {
       plugins: [
         imageminJPEGOptim(),
         imageminOptiPNG(),
@@ -341,7 +349,7 @@ export class Gulpfile {
     });
   }
   deleteAsset(file) {   
-    const relativePath = file.relative.concat('').replace('app', 'dist\\app'); // make copy of relative path
+    const relativePath = file.relative.concat('').replace('public', 'dist\\public'); // make copy of relative path
 
     console.log('\n Deleting ----> ' + chalk.green.bold(
       relativePath.substring(relativePath.lastIndexOf('\\') + 1, relativePath.length)) +
@@ -380,17 +388,17 @@ export class Gulpfile {
           side_effects: true,  // drop side-effect-free statements
         }
       }))
-      .pipe(gulp.dest('dist/app'));
+      .pipe(gulp.dest('dist/client'));
   }
 
   // Compress css
   @Task()
   compress_css() {
-    return gulp.src('dist/app/styles.css')
+    return gulp.src('dist/client/styles.css')
       .pipe(plugins.uglifycss({
         "maxLineLen": 80
       }))
-      .pipe(gulp.dest('dist/app'));
+      .pipe(gulp.dest('dist/client'));
   }
 
   @Task()
@@ -521,21 +529,21 @@ export class Gulpfile {
     // Watch all html files to build them in dist
     watch(defaultAssets.client.views, { events: ['change'] }, file => this.buildFile(file));
     watch(defaultAssets.client.dist.js, plugins.livereload.changed);
-    watch(['dist/app/index.html'], plugins.livereload.changed);
+    watch(['dist/client/index.html'], plugins.livereload.changed);
     // Watch all client assets to compress in dist
     watch(defaultAssets.client.assets, { events: ['add'] }, file => this.compressAsset(file));
     watch(defaultAssets.client.assets, { events: ['unlink'] }, file => this.deleteAsset(file));
     watch(defaultAssets.client.dist.assets, plugins.livereload.changed);
     // Watch if system.config files are changed
     watch(defaultAssets.client.system, { events: ['change'] }, file => runSequence('build_systemConf'));
-    watch(['dist/app/systemjs.config.js'], plugins.livereload.changed);
+    watch(['dist/client/systemjs.config.js'], plugins.livereload.changed);
   }
 
   @Task()
   watch_ngc() {
     return watch(['ngc-aot'], { events: ['add'] }, () => {
-      return gulp.src('ngc-aot/app/**/**/*.shim.ts')
-        .pipe(gulp.dest('app'));
+      return gulp.src('ngc-aot/client/**/**/**/*.shim.ts')
+        .pipe(gulp.dest('client'));
     });
   }
 
@@ -545,11 +553,13 @@ export class Gulpfile {
   // SASS linting task
   @Task()
   scsslint(done) {
-    return gulp.src(['client/styles.scss', 'client/app/components/**/*.scss'])
+    return gulp.src(['client/styles.scss', 'client/**/components/**/*.scss'])
       .pipe(sassLint({
         rules: {
           'no-css-comments': 0,
           'single-line-per-selector': 0,
+          'space-after-colon': 0,
+          'space-before-brace': 0,
           'property-sort-order': 0,
           'empty-args': 0,
           'indentation': 0,
@@ -559,11 +569,15 @@ export class Gulpfile {
           'no-vendor-prefixes': 0,
           'no-color-literals': 0,
           'no-color-keywords': 0,
+          'no-qualifying-elements': 0,
+          'no-trailing-whitespace': 0,
           'quotes': 0,
+          'final-newline': 0,
           'force-element-nesting': 0,
           'no-ids': 0,
           'leading-zero': 0,
-          'space-after-comma': 0
+          'space-after-comma': 0,
+          'space-around-operator': 0
         }
       }))
       .pipe(sassLint.format())

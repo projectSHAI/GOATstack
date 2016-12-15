@@ -15,9 +15,10 @@
     ]
   },
   "files": [
-    "app/app.module.ts",
-    "app/main.ts",
-    "app/main-aot.ts"
+    "client/main-module/main.module.ts",
+    // DO NOT REMOVE: template module tsconfig import
+    "client/main.ts",
+    "client/main-aot.ts"
   ],
   "angularCompilerOptions": {
     "genDir": "ngc-aot",
