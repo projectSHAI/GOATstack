@@ -561,6 +561,7 @@ export class Gulpfile {
           'pseudo-element': 0,
           'no-css-comments': 0,
           'no-empty-rulesets': 0,
+          'no-important': 0,
           'no-vendor-prefixes': 0,
           'no-color-literals': 0,
           'no-color-keywords': 0,
@@ -572,7 +573,8 @@ export class Gulpfile {
           'no-ids': 0,
           'leading-zero': 0,
           'space-after-comma': 0,
-          'space-around-operator': 0
+          'space-around-operator': 0,
+          'space-before-bang': 0
         }
       }))
       .pipe(sassLint.format())
