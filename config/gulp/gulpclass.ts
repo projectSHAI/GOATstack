@@ -106,12 +106,9 @@ export class Gulpfile {
   ////////////////////////////////////////////////////////////////////////////////
   @Task()
   replace_process(done) {
-    return gulp.src(['dist/client/main-module/main.module.js'])
-      .pipe(process.env.NODE_ENV === 'development' ?
-        replace('process.env.NODE_ENV', "'development'") :
-        replace('process.env.NODE_ENV', "'test'"))
+    return gulp.src(['dist/client/**/*.module.js'])
       .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
-      .pipe(gulp.dest('dist/client/main-module', { overwrite: true }));
+      .pipe(gulp.dest('dist/client', { overwrite: true }));
   }
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -138,9 +135,6 @@ export class Gulpfile {
 
   @Task()
   build_sass(done) {
-    // Brute force fix for angular material import .css .scss error
-    del('node_modules/@angular/material/core/overlay/overlay.css');
-
     return gulp.src('client/**/**/**/*.scss')
       .pipe(sass().on('error', sass.logError))
       .pipe(gulp.dest('./client'));
@@ -302,8 +296,8 @@ export class Gulpfile {
       'build_sequence',
       'build',
       'build_clean_css',
-      'replace_process',
-      'compress_css'
+      'compress_css',
+      'brute_force_fixes'
     ];
   }
   @SequenceTask()
@@ -678,17 +672,14 @@ export class Gulpfile {
   }
 
   ////////////////////////////////////////////////////////////////////////////////
-  // MONGO TASKS: Used to start mongod as a child process in dev mode
+  // FIXES TASK: When a problem that cannot be solved by conventional means
   ////////////////////////////////////////////////////////////////////////////////
-  // @Task()
-  // mongod_start(done, cb) {
-  //   exec('mongod --dbpath=/data', function(err, stdout, stderr) {
-  //     console.log(stdout);
-  //     console.log(stderr);
-  //     cb(err);
-  //   });
-  //   done();
-  // }
+  @SequenceTask()
+  brute_force_fixes() {
+    return [
+      'replace_process'
+    ];
+  }
 
   ////////////////////////////////////////////////////////////////////////////////
   // GULP TASKS: Tasks used to execute project initialization, testing, etc...

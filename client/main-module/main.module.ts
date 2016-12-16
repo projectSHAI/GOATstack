@@ -20,7 +20,7 @@ Modules
 --------------------------------------------------
 //other necessary modules for this app
 */
-import { NgModule }                                  from '@angular/core';
+import { NgModule, isDevMode }                       from '@angular/core';
 import { FormsModule }                               from '@angular/forms';
 import { BrowserModule }                             from '@angular/platform-browser';
 import { HttpModule, JsonpModule }                   from '@angular/http';
@@ -205,7 +205,7 @@ export class MainModule {
 
     // configure the store here, this is where the enhancers are set
     this.ngRedux.configureStore(rootReducer, {},
-      process.env.NODE_ENV === 'development' ? [createLogger({ collapsed: true })] : [],
-      process.env.NODE_ENV === 'development' ? [...enhancers, devTool.enhancer()] : []);
+      isDevMode() ? [createLogger({ collapsed: true })] : [],
+      isDevMode() && devTool.isEnabled() ? [...enhancers, devTool.enhancer()] : [...enhancers]);
   }
 }

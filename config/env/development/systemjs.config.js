@@ -34,8 +34,8 @@
       'socket.io-client':                   'npm:socket.io-client/dist',
       'lodash':                             'npm:lodash',
       'ng2-redux':                          'npm:ng2-redux/lib',
-      'immutable':                          'npm:immutable/dist/immutable.min.js',
-      'redux':                              'npm:redux/dist/redux.min.js',
+      'immutable':                          'npm:immutable/dist',
+      'redux':                              'npm:redux/dist',
 
       'redux-logger':                       'npm:redux-logger/dist',
       'redux-localstorage':                 'npm:redux-localstorage/lib'
@@ -58,6 +58,14 @@
       },
       lodash: {
         main: 'lodash.js',
+        defaultExtension: 'js'
+      },
+      immutable: {
+        main: 'immutable.min.js',
+        defaultExtension: 'js'
+      },
+      redux: {
+        main: 'redux.min.js',
         defaultExtension: 'js'
       },
       'ng2-redux': {
