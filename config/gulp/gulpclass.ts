@@ -106,7 +106,7 @@ export class Gulpfile {
   ////////////////////////////////////////////////////////////////////////////////
   @Task()
   replace_process(done) {
-    return gulp.src(['dist/client/**/*.module.js'])
+    return gulp.src(['dist/client/*.module.js'])
       .pipe(replace('redux_logger_1.default', 'redux_logger_1'))
       .pipe(gulp.dest('dist/client', { overwrite: true }));
   }
@@ -200,7 +200,7 @@ export class Gulpfile {
   @Task()
   compile_client_prod(done) {
     return gulp.src('')
-      .pipe(shell(['"node_modules/.bin/ngc" -p tsconfig-aot.json']));
+      .pipe(shell(['"node_modules/.bin/ngc" -p tsconfig-aot.json --exclude client/**/**/**/*.spec.ts']));
   }
   @Task()
   rollup_client(done) {

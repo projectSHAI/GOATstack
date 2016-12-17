@@ -4,7 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 // enableProdMode();
 //imports the MainModule which is the root module that bootstraps app.component.ts
-import { MainModule } from './main-module/main.module';
+import { MainModule } from './main.module';
 
 // Compile and launch the module
 platformBrowserDynamic().bootstrapModule(MainModule);

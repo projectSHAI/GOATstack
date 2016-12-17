@@ -34,12 +34,13 @@ New Deploy:Heroku task!
 
 # Coming soon, v1.3.0
 
-* new yo generator: goat-stack:module
-  * will create a new module for the project to work in conjunction with the root module
-  * prior generators conditional prompt to ask what module you'll like the generator to genorate to
-    * on the condition that there is more modules than the root module in the project
+* new yo generator: goat-stack:segment
+  * because of the redux mentality, modules conflict with the single store concept
+  * will create a new segment folder to organize application sections
+  * prior generators conditional prompt to ask what segment you'll like the generator to genorate to
+    * on the condition that there is more segments than the main-segment in the project
 * structural changes
-  * environment compilation changes for new structural implimentation (for modules)
+  * environment compilation changes for new structural implimentation (for segments)
   * new public folder in project root that will be exposed to the client for assests and external js libraries
     
 

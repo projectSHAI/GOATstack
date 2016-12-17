@@ -3,7 +3,7 @@
 import { platformBrowser } from '@angular/platform-browser';
 
 //imports the AppModule which is the root module that bootstraps app.component.ts
-import { MainModuleNgFactory } from '../ngc-aot/client/main-module/main.module.ngfactory';
+import { MainModuleNgFactory } from '../ngc-aot/client/main.module.ngfactory';
 import { enableProdMode } from '@angular/core';
 enableProdMode();
 
