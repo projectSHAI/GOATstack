@@ -34,7 +34,7 @@ $ gulp
 
 * Production AoT compilation
   * angular-compiler 2.3.0 not creating ngFactory files for main application
-    * typescript 2.1 changed certain flags and functions that angular-compiler replied on
+    * typescript 2.1 changed certain flags and functions that angular-compiler relied on
     * angular-compiler 2.3.0 will not work with typescript 2.0.10 because of ng2-redux
     * angular issues [#12966](https://github.com/angular/angular/issues/12966) [#13204](https://github.com/angular/angular/issues/13204) [#13294](https://github.com/angular/angular/pull/13294) explain the current situation with TS
     * ng2-redux issue [#282](https://github.com/angular-redux/ng2-redux/issues/282) is resolving the ng2-redux problem
@@ -73,10 +73,10 @@ ___
  * If an App's resources cannot scale with real time user traffic it will crash during traffic spikes, and be wasteful when there is low user activity
 
 ### 3. Scaleable Architecture
- * If a program's dataflow is not structured conicously a once easily managed program made of 10,000 lines of code becomes read-only once it reaches 100,000 lines of code. data flows become unruley and nested, and unintended dependencies occur in the application tree. This makes maintainability a mess, and refactoring a nightmare.
+ * If a program's dataflow is not structured conicously a once easily managed program made of 10,000 lines of code becomes a hinderance once it reaches 100,000 lines of code. Data flows become unruley and nested, and unintended dependencies occur in the application tree. This makes maintainability a mess, and refactoring a nightmare.
 
 ### 4. User to User real time interaction
- * User interaction is a key success factor in regards to having a community adopt, and grow wih your projet. The more seamless user interaction with your website, and with each other, the better chance the project has at success.
+ * User interaction is a key success factor in regards to having a community adopt, and grow with your projet. The more seamless user interaction is with your website, and with each other, the better chance the project has at success.
 
 
 <a name="solution"></a>
@@ -85,16 +85,16 @@ ___
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/optimized-space-ship.png?raw=true" align="right">
 
 ### 1. Initial page load speed 
- * The GOAT stack capitilizes on Angular2's [Ahead-of-Time](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html) server side rendering. Having the server do the heavy lifting at build time allows us to serve a pre-rendered file to the client. Instantly serving the client a visual while capturing user events which are then que'd up to execute as soon as the app becomes functional further closes the gap between the web and native applications.
+ * The GOAT stack capitilizes on Angular2's [Ahead-of-Time](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html) server side rendering. Having the server do the heavy lifting at build time allows us to serve pre-rendered views to the client. This dramatically decreases initial load time.
  
 ### 2. Scaleable resources
- * MongoDB fits the developer paradigm very well. with proper [indexing](https://docs.mongodb.com/manual/indexes/) and [schema design](https://docs.mongodb.com/v3.2/core/data-model-design/) daabase response times will be linear, or consant. Also, the apability of [sharding](https://docs.mongodb.com/manual/sharding/) removes the bottle-neck of datasize. 
+ * MongoDB fits the developer paradigm very well. with proper [indexing](https://docs.mongodb.com/manual/indexes/) and [schema design](https://docs.mongodb.com/v3.2/core/data-model-design/) daabase response times will be linear, or consant. Also, the capability of [sharding](https://docs.mongodb.com/manual/sharding/) removes the bottle-neck of datasize. 
 
 ### 3. Scaleable Architecture
- * [Immmutability](https://en.wikipedia.org/wiki/Immutable_object) makes app data predictable at any scale, and [redux](http://redux.js.org/docs/introduction/) makes dataflow manageble by eliminating many-to-many relationships, this completely eliminates tangled nests of components, making them more modular. Redux places the entire app's [state tree](http://redux.js.org/docs/Glossary.html#state) in one focal area which is the [store](http://redux.js.org/docs/api/Store.html). 
+ * [Immmutable](https://en.wikipedia.org/wiki/Immutable_object) makes app data predictable at any scale, and [redux](http://redux.js.org/docs/introduction/) makes dataflow manageble by eliminating many-to-many relationships, this completely removes tangled nests of components, making them more modular. Redux places the entire app's [state tree](http://redux.js.org/docs/Glossary.html#state) in one focal area which is the [store](http://redux.js.org/docs/api/Store.html). 
 
 ### 4. User to User real time interaction
- * Angular2's [two way data binding](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#two-way) and [Socket.io](http://socket.io/) is an effective combination. Two way data binding allows real time interaction between the website and a single client without the need for that user to ever reload a page. Socket.io takes this one step further and automatically updates any one user's changes on every other connected device in real time without anyone ever needing to refresh their browser. 
+ * Angular2's [two way data binding](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#two-way) and [Socket.io](http://socket.io/) is an effective combination. Two way data binding allows real time interaction between website and client without the need to reload pages. Socket.io takes this one step further and automatically updates changes on every connected device in real time without the need to refresh the browser. This feature can be narrowed or widened.
  
 
 # Follow the GOAT
@@ -117,9 +117,8 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
   * [typescript](https://www.typescriptlang.org/)
   * [nodejs](https://nodejs.org/en/)
   * [mongodb](https://docs.mongodb.com/)
-  * Your favorite browser
+  * Your favorite browser (Chrome is prefered because of Devtools)
   * [Redux DevTools for Google Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
-   * If you would like to develop on a browser which is not Chrome, then disable Redux DevTools, otherwise the app will fail to compile. In your project folder navigate to `app/app.module.ts`, then delete the argument `devTool.enhancer()` inside of the `this.ngRedux.configureStore()` method located in the constructor.
 
 # Installation
 
