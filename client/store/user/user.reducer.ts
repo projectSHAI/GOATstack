@@ -1,4 +1,4 @@
-import { UserActions } from '../../main-segment/actions/user/user.actions';
+import { UserActions } from '../../header-segment/actions/user/user.actions';
 import { IUser } from './user.types';
 import { reimmutifyUser,  } from './user.transformers';
 import { INITIAL_STATE } from './user.initial-state';

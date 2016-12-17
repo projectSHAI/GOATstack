@@ -1,0 +1,40 @@
+.active {
+    color: orange;
+}
+
+:host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 23px 2.5%;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.app-title {
+    width: 300px;
+    display: block;
+}
+
+.app-title h1 {
+    padding: 10px;
+    text-align: center;
+    vertical-align: top;
+    font-size: 32px;
+    color: black;
+    display: inline-block;
+}
+
+#logo {
+    display: inline-block;
+    opacity: 0.8;
+    width: 75px;
+    height: 75px;
+    margin-top: -10px;
+}
+.app-title h1.night-time {
+    color: white;
+}

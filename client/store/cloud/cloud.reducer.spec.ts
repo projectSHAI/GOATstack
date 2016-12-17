@@ -1,7 +1,7 @@
 import { List } from 'immutable';
 import { cloudReducer, animaReducer } from './cloud.reducer';
 import { STYLE_INITIAL_STATE, ANIMA_INITIAL_STATE } from './cloud.initial-state';
-import { CloudActions } from '../../main-segment/actions/cloud/cloud.actions';
+import { CloudActions } from '../../sky-segment/actions/cloud/cloud.actions';
 
 describe('Cloud Reducer', () => {
   let cloudInitialState = STYLE_INITIAL_STATE;

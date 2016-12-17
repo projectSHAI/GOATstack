@@ -1,7 +1,7 @@
 import { List, Map } from 'immutable';
 import { wonderReducer } from './wonder.reducer';
 import { INITIAL_STATE } from './wonder.initial-state';
-import { WonderActions } from '../../main-segment/actions/wonder/wonder.actions';
+import { WonderActions } from '../../sky-segment/actions/wonder/wonder.actions';
 
 const wonderList = [{
     _id: '1',

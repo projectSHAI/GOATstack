@@ -1,4 +1,4 @@
-import { ZoomActions } from '../../main-segment/actions/zoom/zoom.actions';
+import { ZoomActions } from '../../island-segment/actions/zoom/zoom.actions';
 import { reimmutifyZoom } from './zoom.transformers';
 import { IZoom } from './zoom.types';
 

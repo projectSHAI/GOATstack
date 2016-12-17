@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import { userFormReducer } from './userForm.reducer';
 import { INITIAL_STATE } from './userForm.initial-state';
-import { UserFormActions } from '../../main-segment/actions/userForm/userForm.actions';
+import { UserFormActions } from '../../header-segment/actions/userForm/userForm.actions';
 
 describe('UserForm Reducer', () => {
   let initialState = INITIAL_STATE;

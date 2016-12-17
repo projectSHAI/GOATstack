@@ -50,19 +50,19 @@ Components
 //Declare components here
 */
 //user created components                
-import { HeaderComponent }                           from './main-segment/components/header/header.component';
-import { NavbarComponent }                           from './main-segment/components/navbar/navbar.component';
-import { SignInOutComponent }                        from './main-segment/components/signinout/signinout.component';
+import { HeaderComponent }                           from './header-segment/components/header/header.component';
+import { NavBarComponent }                           from './header-segment/components/nav-bar/nav-bar.component';
+import { SignInOutComponent }                        from './header-segment/components/signinout/signinout.component';
 import { HomeComponent }                             from './main-segment/components/home/home.component';
-import { FooterComponent }                           from './main-segment/components/footer/footer.component';
 import { Four0FourComponent }                        from './main-segment/components/404/four0four.component';
 import { UserProfileComponent }                      from './main-segment/components/user-profile/user-profile.component';
-import { SkyComponent }                              from './main-segment/components/sky/sky.component';
-import { OceanComponent }                            from './main-segment/components/ocean/ocean.component';
-import { WhaleComponent }                            from './main-segment/components/whale/whale.component';
-import { IslandComponent }                           from './main-segment/components/island/island.component';
-import { MountainGoatComponent }                     from './main-segment/components/mountain-goat/mountain-goat.component';
-import { CloudGeneratorComponent }                   from './main-segment/components/cloud-generator/cloud-generator.component';
+import { OceanComponent }                            from './ocean-segment/components/ocean/ocean.component';
+import { WhaleComponent }                            from './island-segment/components/whale/whale.component';
+import { IslandComponent }                           from './island-segment/components/island/island.component';
+import { MountainGoatComponent }                     from './island-segment/components/mountain-goat/mountain-goat.component';
+import { SkyComponent }                              from './sky-segment/components/sky/sky.component';
+import { CloudGeneratorComponent }                   from './sky-segment/components/cloud-generator/cloud-generator.component';
+import { FooterComponent }                           from './footer-segment/components/footer/footer.component';
 // DO NOT REMOVE: template main.module imports
 
 //Angular and 3rd party components
@@ -74,7 +74,7 @@ Directives
 //Declare directives here
 */
 //user created directives
-import { ZoomDirective }                             from './main-segment/directives/zoom.directive';
+import { ZoomDirective }                             from './island-segment/directives/zoom.directive';
 //Angular and 3rd party directives
 
 /*
@@ -89,8 +89,8 @@ import { SEOActions }                                from './main-segment/action
 import { TimeOfDayActions }                          from './main-segment/actions/time-of-day/time-of-day.actions';
 import { SocketService }                             from './main-segment/services/socketio/socketio.service';
 import { HttpIntercept }                             from './main-segment/services/auth/auth.service';
-import { UserService }                               from './main-segment/services/user/user.service';
-import { WonderService }                             from './main-segment/services/wonder/wonder.service';
+import { UserService }                               from './header-segment/services/user/user.service';
+import { WonderService }                             from './sky-segment/services/wonder/wonder.service';
 
 //Angular and 3rd party serices
 import { Cookie }                                    from 'ng2-cookies/ng2-cookies';
@@ -160,7 +160,7 @@ NgModule
     HeaderComponent,
     HomeComponent,
     AppComponent,
-    NavbarComponent,
+    NavBarComponent,
     SkyComponent,
     OceanComponent,
     WhaleComponent,

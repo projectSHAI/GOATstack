@@ -238,7 +238,7 @@ export class Gulpfile {
 
     const ht = relativePath.includes('html');
     const sc = relativePath.includes('scss');
-    const app = relativePath.includes('app');
+    const cli = relativePath.includes('client');
     const ser = relativePath.includes('server');
 
     let fName = relativePath.substring(relativePath.lastIndexOf('\\') + 1, relativePath.length);
@@ -254,14 +254,13 @@ export class Gulpfile {
         .pipe(embedSass())
         .pipe(tsProject());
 
-      relativePath = app ? relativePath.replace('client', 'dist\\client') : ser ?
+      relativePath = cli ? relativePath.replace('client', 'dist\\client') : ser ?
         relativePath.replace('server', 'dist\\server') : relativePath.replace('config', 'dist\\config');
 
       relativePath = relativePath.substring(0, relativePath.lastIndexOf('\\'));
 
-      return fName !== 'app.module.ts' ? tsResult.js.pipe(gulp.dest(relativePath)) :
-        tsResult.js.pipe(replace('process.env.NODE_ENV', "'development'"))
-          .pipe(replace('redux_logger_1.default', 'redux_logger_1')) // workaround
+      return fName !== 'main.module.ts' ? tsResult.js.pipe(gulp.dest(relativePath)) :
+        tsResult.js.pipe(replace('redux_logger_1.default', 'redux_logger_1')) // workaround
           .pipe(gulp.dest(relativePath));
     } else if (fName === 'index.html') {
       // if file was the index.html
