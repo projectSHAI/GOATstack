@@ -18,21 +18,7 @@ $ # mongod in another terminal!
 $ gulp
 ```
 
-# What's new?
-
-New Deploy:Heroku task!
-* gulp deploy:heroku
-
-## CURRENT ISSUES!
-
-* Production AoT compilation
-  * angular-compiler 2.3.0 not creating ngFactory files for main application
-    * typescript 2.1 changed certain flags and functions that angular-compiler replied on
-    * angular-compiler 2.3.0 will not work with typescript 2.0.10
-    * angular issues [#12966](https://github.com/angular/angular/issues/12966) [#13204](https://github.com/angular/angular/issues/13204) [#13294](https://github.com/angular/angular/pull/13294) explain the current situation
-  * GOAT-stack will use angular 2.2.4 until further notice 
-
-# Coming soon, v1.3.0
+# What's new? v1.3.0
 
 * new yo generator: goat-stack:segment
   * because of the redux mentality, modules conflict with the single store concept
@@ -42,6 +28,18 @@ New Deploy:Heroku task!
 * structural changes
   * environment compilation changes for new structural implimentation (for segments)
   * new public folder in project root that will be exposed to the client for assests and external js libraries
+
+
+## CURRENT ISSUES!
+
+* Production AoT compilation
+  * angular-compiler 2.3.0 not creating ngFactory files for main application
+    * typescript 2.1 changed certain flags and functions that angular-compiler replied on
+    * angular-compiler 2.3.0 will not work with typescript 2.0.10 because of ng2-redux
+    * angular issues [#12966](https://github.com/angular/angular/issues/12966) [#13204](https://github.com/angular/angular/issues/13204) [#13294](https://github.com/angular/angular/pull/13294) explain the current situation with TS
+    * ng2-redux issue [#282](https://github.com/angular-redux/ng2-redux/issues/282) is resolving the ng2-redux problem
+  * GOAT-stack will use angular 2.2.4 until further notice 
+
     
 
 # Documentation Wiki
