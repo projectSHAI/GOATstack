@@ -27,7 +27,6 @@ import { HttpModule, JsonpModule }                   from '@angular/http';
 import { MaterialModule }                            from '@angular/material';
 import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 import { _NgRedux }                                  from './main-segment/actions/redux.sol';
-// DO NOT REMOVE: template module imports
 
 /*
 --------------------------------------------------
@@ -150,8 +149,7 @@ NgModule
     HttpModule,
     FormsModule,
     JsonpModule,
-    routing,
-    // DO NOT REMOVE: template module declarations
+    routing
   ],
   //declarations: this object imports all child components which are used in this module
   declarations: [
