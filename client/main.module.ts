@@ -52,7 +52,7 @@ Components
 //user created components                
 import { HeaderComponent }                           from './header-segment/components/header/header.component';
 import { NavBarComponent }                           from './header-segment/components/nav-bar/nav-bar.component';
-import { SignInOutComponent }                        from './header-segment/components/signinout/signinout.component';
+import { SignInOutComponent }                        from './header-segment/components/sign-in-out/sign-in-out.component';
 import { HomeComponent }                             from './main-segment/components/home/home.component';
 import { Four0FourComponent }                        from './main-segment/components/404/four0four.component';
 import { UserProfileComponent }                      from './main-segment/components/user-profile/user-profile.component';

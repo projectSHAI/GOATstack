@@ -15,7 +15,8 @@ export default {
       browser: true
     }),
     replace({
-      'process.env.NODE_ENV': JSON.stringify( 'production' )
+      'process.env.NODE_ENV': JSON.stringify( 'production' ),
+      'moduleId: module.id,': ''
     }),
     commonjs({
       include: 'node_modules/**',

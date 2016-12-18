@@ -4,6 +4,7 @@ import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
+  moduleId: module.id,
   selector: 'the-ocean',
   templateUrl: './ocean.component.html',
   styleUrls: ['./ocean.component.css']

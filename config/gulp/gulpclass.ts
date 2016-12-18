@@ -61,7 +61,7 @@ export class Gulpfile {
 
   @Task()
   build_clean(done) {
-    del([
+    return del([
       'dist/**',
       '!dist',
       'ngc-aot/**',
@@ -71,8 +71,7 @@ export class Gulpfile {
       'client/**/**/**/*.css',
       '!client/**/**/*e2e-spec.js',
       'tmp/**'
-    ]);
-    done();
+    ], done);
   }
 
   @Task()
@@ -116,7 +115,7 @@ export class Gulpfile {
   ////////////////////////////////////////////////////////////////////////////////
   @Task()
   build_html(done) {
-    return gulp.src('config/env/development/index.html')
+    return gulp.src(['config/env/development/index.html', 'client/**/**/**/*.html'])
       .pipe(replace("<!-- <title></title> -->", "<title>"+ defaultConfig.app.title +"</title>"))
       .pipe(replace('<!-- <link rel="icon"> -->', '<link id="favicon" rel="icon" href="'+ defaultConfig.app.favicon +'">'))
       .pipe(replace('<!-- <meta name="description"> -->', '<meta name="description" content="'+ defaultConfig.app.description +'">'))
@@ -133,11 +132,42 @@ export class Gulpfile {
       .pipe(gulp.dest('./dist/client'));
   }
 
+  build_html_file(file) {
+    const relativePath = file.path.replace(file.cwd + '\\', '');
+    const relPathDest = relativePath.substring(0, relativePath.lastIndexOf('\\'));
+
+    console.log('\n Moving ----> ' + chalk.green.bold(
+      relativePath.substring(relativePath.lastIndexOf('\\') + 1, relativePath.length)) +
+      '\n');
+
+    return gulp.src(relativePath)
+      .pipe(gulp.dest(relPathDest.replace('client', 'dist\\client')));
+  }
+
   @Task()
   build_sass(done) {
     return gulp.src('client/**/**/**/*.scss')
       .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest('./dist/client'));
+  }
+  @Task()
+  build_sass_prod(done) {
+    return gulp.src('client/**/**/**/*.scss')
+      .pipe(sass().on('error', sass.logError))
       .pipe(gulp.dest('./client'));
+  }
+
+  build_sass_file(file) {    
+    const relativePath = file.path.replace(file.cwd + '\\', '');
+    const relPathDest = relativePath.substring(0, relativePath.lastIndexOf('\\'));
+
+    console.log('\n Compiling ----> ' + chalk.green.bold(
+      relativePath.substring(relativePath.lastIndexOf('\\') + 1, relativePath.length)) +
+      '\n');
+
+    return gulp.src(relativePath)
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest(relPathDest.replace('client', 'dist\\client')));
   }
 
   @Task()
@@ -181,8 +211,6 @@ export class Gulpfile {
   build(done) {
     let tsProject = ts.createProject('./tsconfig.json');
     let tsResult = tsProject.src()
-      .pipe(embedTemplates())
-      .pipe(embedSass())
       .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest('./dist'));
@@ -236,22 +264,15 @@ export class Gulpfile {
 
     const tsProject = ts.createProject('tsconfig.json');
 
-    const ht = relativePath.includes('html');
-    const sc = relativePath.includes('scss');
     const cli = relativePath.includes('client');
     const ser = relativePath.includes('server');
 
     let fName = relativePath.substring(relativePath.lastIndexOf('\\') + 1, relativePath.length);
 
     if (fName !== 'index.html' && fName !== 'styles.scss') {
-      relativePath = ht ? relativePath.replace('html', 'ts') : sc ? relativePath.replace('scss', 'ts') : relativePath;
-      fName = ht ? fName.replace('html', 'ts') : sc ? fName.replace('scss', 'ts') : fName;
-
       console.log('\n Compiling ----> ' + chalk.green.bold(fName + '\n'));
 
       const tsResult = gulp.src(relativePath)
-        .pipe(embedTemplates())
-        .pipe(embedSass())
         .pipe(tsProject());
 
       relativePath = cli ? relativePath.replace('client', 'dist\\client') : ser ?
@@ -282,11 +303,11 @@ export class Gulpfile {
   }
   @SequenceTask()
   build_sequence_prod() {
-    return ['build_sass', 'move_styles', 'build_html_prod', 'build_assets', 'build_index'];
+    return ['build_sass_prod', 'move_styles', 'build_html_prod', 'build_assets', 'build_index'];
   }
   @SequenceTask()
   build_sequence_heroku() {
-    return ['build_sass', 'move_styles', 'build_html_prod', 'build_assets', 'build_index', 'build_package_heroku'];
+    return ['build_sass_prod', 'move_styles', 'build_html_prod', 'build_assets', 'build_index', 'build_package_heroku'];
   }
 
   @SequenceTask()
@@ -510,19 +531,21 @@ export class Gulpfile {
     );
 
     // Start livereload
-    plugins.livereload.listen();
+    plugins.livereload.listen({
+      reloadPage: process.cwd() + 'dist/client/index.html'
+    });
     // Watch all server TS files to build JS
     watch(serverts, file => this.buildFile(file));
-    watch(defaultAssets.server.allJS, plugins.livereload.changed);
+    // watch(defaultAssets.server.allJS, plugins.livereload.changed);
     // Watch all TS files in client and compiles JS files in dist
     watch(defaultAssets.client.ts, { events: ['change'] }, file => this.buildFile(file));
-    // Watch all scss files to build css is change
-    watch(defaultAssets.client.scss, { events: ['change'] }, file => this.buildFile(file));
-    watch(defaultAssets.client.dist.css, plugins.livereload.changed);
-    // Watch all html files to build them in dist
-    watch(defaultAssets.client.views, { events: ['change'] }, file => this.buildFile(file));
     watch(defaultAssets.client.dist.js, plugins.livereload.changed);
-    watch(['dist/client/index.html'], plugins.livereload.changed);
+    // Watch all scss files to build css is change
+    watch(defaultAssets.client.scss, { events: ['change'] }, file => this.build_sass_file(file));
+    watch(defaultAssets.client.dist.css, file => plugins.livereload.reload());
+    // Watch all html files to build them in dist
+    watch(defaultAssets.client.views, { events: ['change'] }, file => this.build_html_file(file));
+    watch(defaultAssets.client.dist.views, plugins.livereload.changed);
     // Watch all client assets to compress in dist
     watch(defaultAssets.client.assets, { events: ['add'] }, file => this.compressAsset(file));
     watch(defaultAssets.client.assets, { events: ['unlink'] }, file => this.deleteAsset(file));

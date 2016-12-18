@@ -8,6 +8,7 @@ import { ZoomActions } from '../../actions/zoom/zoom.actions';
 import { ZoomDirective } from '../../directives/zoom.directive';
 
 @Component({
+  moduleId: module.id,
   selector: 'the-island',
   providers: [WonderActions],
   templateUrl: './island.component.html',

@@ -4,6 +4,7 @@ import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
+  moduleId: module.id,
   selector: 'blue-whale',
   templateUrl: './whale.component.html',
   styleUrls: ['./whale.component.css']

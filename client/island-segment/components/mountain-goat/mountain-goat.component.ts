@@ -4,6 +4,7 @@ import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
+  moduleId: module.id,
   selector: 'mountain-goat',
   templateUrl: './mountain-goat.component.html',
   styleUrls: ['./mountain-goat.component.css']

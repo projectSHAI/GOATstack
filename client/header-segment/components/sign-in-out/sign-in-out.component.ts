@@ -8,10 +8,11 @@ import { UserFormActions } from '../../actions/userForm/userForm.actions';
 import { ErrorHandlerActions } from '../../../main-segment/actions/error/errorHandler.actions';
 
 @Component({
-  selector: 'signinout',
+  moduleId: module.id,
+  selector: 'sign-in-out',
   providers: [UserActions, UserFormActions],
-  templateUrl: './signinout.component.html',
-  styleUrls: ['./signinout.component.css']
+  templateUrl: './sign-in-out.component.html',
+  styleUrls: ['./sign-in-out.component.css']
 })
 export class SignInOutComponent implements OnInit {
   @select('user') user$: Observable<any>;
