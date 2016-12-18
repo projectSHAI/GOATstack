@@ -10,7 +10,8 @@ export const defaultConfig = {
     title: 'GOAT-stack',
     favicon: 'assets/favicon.png',
     description: 'The Greatest of All Time Stack!',
-    keywords: 'redux, node, mongo, express, angular2, ng2, jasmine, karma, protractor'
+    keywords: 'redux, node, mongo, express, angular2, ng2, jasmine, karma, protractor',
+    g_analytics: ''
   },
   // Change to use https
   https_secure: false,
