@@ -120,6 +120,8 @@ export class Gulpfile {
       .pipe(replace('<!-- <link rel="icon"> -->', '<link id="favicon" rel="icon" href="'+ defaultConfig.app.favicon +'">'))
       .pipe(replace('<!-- <meta name="description"> -->', '<meta name="description" content="'+ defaultConfig.app.description +'">'))
       .pipe(replace('<!-- <meta name="keywords"> -->', '<meta name="keywords" content="'+ defaultConfig.app.keywords +'">'))
+      .pipe(defaultConfig.app.g_analytics !== '' ? replace('<!-- <script>Google Analytics</script> -->', defaultConfig.app.g_analytics) :
+        replace('<!-- <script>Google Analytics</script> -->', ''))
       .pipe(gulp.dest('./dist/client'));
   }
   @Task()
@@ -129,6 +131,8 @@ export class Gulpfile {
       .pipe(replace('<!-- <link rel="icon"> -->', '<link id="favicon" rel="icon" href="'+ defaultConfig.app.favicon +'">'))
       .pipe(replace('<!-- <meta name="description"> -->', '<meta name="description" content="'+ defaultConfig.app.description +'">'))
       .pipe(replace('<!-- <meta name="keywords"> -->', '<meta name="keywords" content="'+ defaultConfig.app.keywords +'">'))
+      .pipe(defaultConfig.app.g_analytics !== '' ? replace('<!-- <script>Google Analytics</script> -->', defaultConfig.app.g_analytics) :
+        replace('<!-- <script>Google Analytics</script> -->', ''))
       .pipe(gulp.dest('./dist/client'));
   }
 
