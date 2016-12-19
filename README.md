@@ -20,6 +20,10 @@ $ gulp
 
 # What's new? v1.3.0
 
+* URL protocol and Google Analytics prompts
+  * on initial stack generation prompt will ask if you want http vs https
+  * on initial stack generation a prompt will ask if you would like to inject google analytics
+    * text editor will appear to paste the script (include script tags and save/exit)
 * new yo generator: goat-stack:segment
   * because of the redux mentality, modules conflict with the single store concept
   * will create a new segment folder to organize application sections
