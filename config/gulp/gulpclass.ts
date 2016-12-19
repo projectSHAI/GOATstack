@@ -636,6 +636,12 @@ export class Gulpfile {
 
   @Task()
   heroku_prompt() {
+
+    if (defaultConfig.https_secure)
+      console.log('\n\n' + chalk.red.bold('You are about to deploy to Heroku with GOAT configured for HTTPS!!\n\n' +
+        'The deployed applicaiton WILL FAIL unless you configure the\ncertificates in Heroku correctly!!\n\n') +
+        chalk.green.bold('We suggest setting https_secure: false in "config/env/default"\nuntil you are prepared.\n\n'));
+
     return gulp.src('')
       .pipe(prompt.prompt([{
         type:     'list',

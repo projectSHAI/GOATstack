@@ -17,6 +17,7 @@ export const defaultConfig = {
   https_secure: true,
   // You will need to generate a self signed ssl certificate
   // using the generator in ./scripts or use a trusted certificate
+  // on build they will be copied over to the dist folder
   cert_loc: './config/sslcerts/cert.pem',
   key_loc: './config/sslcerts/key.pem',
 
