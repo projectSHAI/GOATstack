@@ -17,8 +17,11 @@ describe('App E2E Tests', function () {
   });
 
   it('should contain correct favicon', function () {
+
+    const url = defaultConfig.https_secure ? 'https://localhost:7001/' :'http://localhost:7001/'
+
     expect(element(by.id('favicon')).getAttribute('href'))
-      .toEqual('http://localhost:7001/' + defaultConfig.app.favicon);
+      .toEqual(url + defaultConfig.app.favicon);
   });
 
   it('should contain correct meta description', function () {

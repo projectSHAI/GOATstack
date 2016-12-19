@@ -3,8 +3,6 @@ import request = require('supertest');
 
 import User from './user.model';
 
-const addr = app.get('address');
-
 // User Endpoint testing
 describe('User API:', function () {
   let user;
@@ -29,7 +27,7 @@ describe('User API:', function () {
 
     // before every 'it' get new OAuth token representing the user
     beforeAll(function (done) {
-      setTimeout(() => request(addr)
+      setTimeout(() => request(app)
         .post('/auth/local')
         .send({
           email: 'Fakie@mrfake.com',
@@ -43,13 +41,13 @@ describe('User API:', function () {
             token = res.body.token;
             done();
           }
-        }), 1000);
+        }), 2000);
     });
 
     // If the token was properly set inside the header of the request
     // it should respond with a 200 status code with the user json
     it('should respond with a user profile when authenticated', function (done) {
-      setTimeout(() => request(addr)
+      request(app)
         .get('/api/users/me')
         .set('authorization', 'Bearer ' + token)
         .expect(200)
@@ -65,13 +63,13 @@ describe('User API:', function () {
             expect(res.body.email).toEqual(user.email);
             done();
           }
-        }), 1000);
+        });
     });
 
     // If the token was improperly / not set to the header
     // status code 401 should be thrown 
     it('should respond with a 401 when not authenticated', function (done) {
-      setTimeout(() => request(addr)
+      request(app)
         .get('/api/users/me')
         .expect(401)
         .end((err, res) => {
@@ -80,7 +78,7 @@ describe('User API:', function () {
           } else {
             done();
           }
-        }), 1000);
+        });
     });
   });
 });

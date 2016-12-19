@@ -1,7 +1,7 @@
 import app from '../../server';
 import request = require('supertest');
 
-const addr = app.get('address');
+// let app = init();
 
 // Wonder endpoint Testing
 describe('Wonder API:', function() {
@@ -19,7 +19,7 @@ describe('Wonder API:', function() {
         // set up beforeAll's for every possible wonder that will be inputed
         // all will execute and POST necessary wonders to test
         return beforeAll((done) => {
-          setTimeout(() => request(addr)
+          request(app)
             .post('/api/wonders')
             .send({
               name: 'wonder: ' + input
@@ -31,7 +31,7 @@ describe('Wonder API:', function() {
               }
               expect(res.body.name).toBe('wonder: ' + input);
               done();
-            }), 500);
+            });
         });
       })(inputs[counter]);
     }
@@ -46,7 +46,7 @@ describe('Wonder API:', function() {
   describe('GET /api/wonders', function() {
     // beforeAll GET all wonders from the DB
     beforeAll(function(done) {
-      request(addr)
+      request(app)
         .get('/api/wonders')
         .expect(200)
         .expect('Content-Type', /json/)

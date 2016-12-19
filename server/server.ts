@@ -19,14 +19,14 @@ let app = express();
 
 //seed db
 if (con.config.seedDB) {
-  if (process.env.NODE_ENV === 'production') { seedProd(); }
-  else { seed(); }
+  process.env.NODE_ENV === 'production' ? seedProd() : seed();
 }
 
 // Initialize models
 loadModels();
 
-let init = function init(callback) {
+function init(): any {
+
   connect(function(db) {
     // Initialize http server
     let server: any = http.createServer(app);
@@ -52,43 +52,39 @@ let init = function init(callback) {
     // Initialize express features
     expressInit(app);
 
-    return callback ? callback(app, db, con, server) : app;
+    // Start the server on port / host
+    server.listen(con.config.port, con.config.host, () => {
+      let host = server.address().address;
+      let port = server.address().port;
+
+      if (process.env.NODE_ENV !== 'test') {
+        // Logging initialization
+        console.log('');
+        console.log(chalk.bold.cyan('\tEnvironment:\t\t\t' + process.env.NODE_ENV));
+        console.log(chalk.bold.cyan('\tDatabase:\t\t\t' + con.config.db.uri));
+        console.log('');
+
+        // secure services condition to activate https
+        if (!con.config.https_secure) {
+          console.log(chalk.bold.magenta('\tHTTP Server'));
+          console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'http://localhost:' + port));
+        } else {
+          console.log(chalk.bold.magenta('\tHTTPS Server'));
+          console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'https://localhost:' + port));
+        }
+
+        console.log(chalk.bold.gray('\tPort:\t\t\t\t' + port));
+        console.log(chalk.bold.gray('\tHost:\t\t\t\t' + host));
+        console.log('');
+      }
+    });
+
+    return app;
 
   });
 };
 
-init(function(app, db, con, server) {
+init();
 
-  server.listen(con.config.port, con.config.host, function() {
-    let host = server.address().address;
-    let port = server.address().port;
-
-    if (process.env.NODE_ENV !== 'test') {
-      // Logging initialization
-      console.log('');
-      console.log(chalk.bold.cyan('\tEnvironment:\t\t\t' + process.env.NODE_ENV));
-      console.log(chalk.bold.cyan('\tDatabase:\t\t\t' + con.config.db.uri));
-      console.log('');
-
-      // secure services condition to activate https
-      if (!con.config.https_secure) {
-        console.log(chalk.bold.magenta('\tHTTP Server'));
-        console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'http://localhost:' + port));
-      } else {
-        console.log(chalk.bold.magenta('\tHTTPS Server'));
-        console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'https://localhost:' + port));
-      }
-
-      console.log(chalk.bold.gray('\tPort:\t\t\t\t' + port));
-      console.log(chalk.bold.gray('\tHost:\t\t\t\t' + host));
-      console.log('');
-    }
-  });
-});
-
-// Set address for jasmine supertest
-// There was problems with just 'app'
-app.set('address', 'http://localhost:' + con.config.port);
-
-// export app for testing
+// export express app for testing
 export default app;
