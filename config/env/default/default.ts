@@ -14,7 +14,7 @@ export const defaultConfig = {
     g_analytics: ''
   },
   // Change to use https
-  https_secure: false,
+  https_secure: true,
   // You will need to generate a self signed ssl certificate
   // using the generator in ./scripts or use a trusted certificate
   cert_loc: './config/sslcerts/cert.pem',

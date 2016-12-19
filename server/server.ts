@@ -32,7 +32,7 @@ function init(): any {
     let server: any = http.createServer(app);
 
     // If specified in the default assets, https will be used
-    if (con.config.https_secure) {
+    if (con.config.https_secure && process.env.NODE_ENV !== 'test') {
       let credentials = {
         key: fs.readFileSync(con.config.key_loc, 'utf8'),
         cert: fs.readFileSync(con.config.cert_loc, 'utf8')

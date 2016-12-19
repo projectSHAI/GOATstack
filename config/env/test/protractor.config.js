@@ -13,10 +13,6 @@
 var fs = require('graceful-fs');
 var path = require('canonical-path');
 var _ = require('lodash');
-var defaultConfig = eval(require('typescript')
-  .transpile(require('graceful-fs')
-    .readFileSync('./config/env/default/default.ts')
-    .toString()));
 
 
 exports.config = {
@@ -26,7 +22,7 @@ exports.config = {
   useAllAngular2AppRoots: true,
 
   // Base URL for application server
-  baseUrl: defaultConfig.https_secure ? 'https://localhost:7001' : 'http://localhost:7001',
+  baseUrl: 'http://localhost:7001',
 
   // The address of a running selenium server.
   // seleniumAddress: 'http://localhost:4444/wd/hub',
