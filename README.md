@@ -18,7 +18,7 @@ $ # mongod in another terminal!
 $ gulp
 ```
 
-# What's new? v1.3.0
+# What's new? v1.3
 
 * URL protocol and Google Analytics prompts
   * on initial stack generation prompt will ask if you want http vs https
@@ -44,7 +44,15 @@ $ gulp
     * ng2-redux issue [#282](https://github.com/angular-redux/ng2-redux/issues/282) is resolving the ng2-redux problem
   * GOAT-stack will use angular 2.2.4 until further notice 
 
-    
+# Coming Soon! v2.0
+
+* SystemJS => Webpack
+  * client-side and server-side bundling with Webpack
+  * simplify gulp tasks/possibly move to npm scripts
+  * simplify config folder structure
+* Expand the GOAT universe (client-side demo)
+  * explore the depths of the ocean and the vastness of space to learn more about the stack
+  
 
 # Documentation Wiki
 
