@@ -37,7 +37,10 @@ function init(): any {
     }
 
     // Initialize the socketio with the respective server
-    let socketio = require('socket.io')(server);
+    let socketio = require('socket.io')(server, {
+      // serveClient: process.env.NODE_ENV !== 'production',
+      path: '/io-client'
+    });
 
     // Start configure the socketio
     socketInit(socketio);

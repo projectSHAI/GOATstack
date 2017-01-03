@@ -14,7 +14,7 @@ export class SocketService {
 
   constructor(private ngRedux: NgRedux<IAppState>) {
     // socket.io now auto-configures its connection when we ommit a connection url
-    this.socket = io.connect(window.location.host);
+    this.socket = io.connect({ path: '/io-client' });
   }
 
   /**
@@ -37,7 +37,6 @@ export class SocketService {
      * Syncs item creation/updates on 'model:save'
      */
     this.socket.on(modelName + ':save', (item) => {
-      console.log('saved');
       const oldItem = _.find(array, { _id: item._id });
       const index = array.indexOf(oldItem);
 
