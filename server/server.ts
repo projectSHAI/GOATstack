@@ -4,26 +4,21 @@ import * as chalk from 'chalk';
 import * as fs from 'graceful-fs';
 import * as http from 'http';
 import * as https from 'https';
-import {config} from '../config/config';
-const con: any = config();
+import config from '../config';
 
-import {socketInit} from '../config/lib/socketio';
-import {expressInit} from '../config/lib/express';
-import {loadModels, connect, disconnect} from '../config/lib/mongoose';
+import socketInit from './socketio';
+import expressInit from './express';
+import {connect, disconnect} from './mongoose';
 
-import {seed} from '../config/lib/seed';
-import {seedProd} from '../config/lib/seed.prod';
+import seed from './seed';
 
 // Initialize express
 let app = express();
 
 //seed db
-if (con.config.seedDB) {
-  process.env.NODE_ENV === 'production' ? seedProd() : seed();
+if (config.seedDB) {
+  process.env.NODE_ENV === 'production' ? seed('prod') : seed();
 }
-
-// Initialize models
-loadModels();
 
 function init(): any {
 
@@ -32,50 +27,42 @@ function init(): any {
     let server: any = http.createServer(app);
 
     // If specified in the default assets, https will be used
-    if (con.config.https_secure && process.env.NODE_ENV !== 'test') {
+    if (config.https_secure && process.env.NODE_ENV !== 'test') {
       let credentials = {
-        key: fs.readFileSync(con.config.key_loc, 'utf8'),
-        cert: fs.readFileSync(con.config.cert_loc, 'utf8')
+        key: fs.readFileSync(config.key_loc, 'utf8'),
+        cert: fs.readFileSync(config.cert_loc, 'utf8')
       };
 
       server = https.createServer(credentials, app);
     }
 
     // Initialize the socketio with the respective server
-    let socketio = require('socket.io')(server, {
-      // serveClient: process.env.NODE_ENV !== 'production',
-      path: '/socket.io-client'
-    });
+    let socketio = require('socket.io')(server);
 
     // Start configure the socketio
     socketInit(socketio);
     // Initialize express features
     expressInit(app);
 
+
     // Start the server on port / host
-    server.listen(con.config.port, con.config.host, () => {
+    server.listen(config.port, config.host, () => {
       let host = server.address().address;
       let port = server.address().port;
 
       if (process.env.NODE_ENV !== 'test') {
-        // Logging initialization
-        console.log('');
-        console.log(chalk.bold.cyan('\tEnvironment:\t\t\t' + process.env.NODE_ENV));
-        console.log(chalk.bold.cyan('\tDatabase:\t\t\t' + con.config.db.uri));
-        console.log('');
+        // Logging initialization\
+        console.log(chalk.bold.cyan(`\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }`));
+        console.log(chalk.bold.cyan(`\tDatabase:\t\t\t ${ config.db.uri }`));
 
         // secure services condition to activate https
-        if (!con.config.https_secure) {
-          console.log(chalk.bold.magenta('\tHTTP Server'));
-          console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'http://localhost:' + port));
+        if (!config.https_secure) {
+          console.log(chalk.bold.magenta('\n\tHTTP Server'));
+          console.log(chalk.bold.gray(`\tServer Address:\t\t\t http://localhost:${ port }`));
         } else {
           console.log(chalk.bold.magenta('\tHTTPS Server'));
-          console.log(chalk.bold.gray('\tAddress:\t\t\t' + 'https://localhost:' + port));
+          console.log(chalk.bold.gray(`\tServer Address:\t\t\t https://localhost:${ port }`));
         }
-
-        console.log(chalk.bold.gray('\tPort:\t\t\t\t' + port));
-        console.log(chalk.bold.gray('\tHost:\t\t\t\t' + host));
-        console.log('');
       }
     });
 

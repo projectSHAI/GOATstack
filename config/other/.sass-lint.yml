@@ -1,0 +1,26 @@
+rules:
+  single-line-per-selector: 0
+  space-after-colon: 0
+  space-before-brace: 0
+  property-sort-order: 0
+  empty-args: 0
+  indentation: 0
+  empty-line-between-blocks: 0
+  force-pseudo-nesting: 0
+  pseudo-element: 0
+  no-css-comments: 0
+  no-empty-rulesets: 0
+  no-important: 0
+  no-vendor-prefixes: 0
+  no-color-literals: 0
+  no-color-keywords: 0
+  no-qualifying-elements: 0
+  no-trailing-whitespace: 0
+  quotes: 0
+  final-newline: 0
+  force-element-nesting: 0
+  no-ids: 0
+  leading-zero: 0
+  space-after-comma: 0
+  space-around-operator: 0
+  space-before-bang: 0

@@ -1,6 +1,5 @@
 import User from './user.model';
-import {config} from '../../../config/config';
-let con = config();
+import config from '../../../config';
 
 import * as jwt from 'jsonwebtoken';
 
@@ -70,7 +69,7 @@ export function create(req, res, next) {
     .then(user => {
       let token = jwt.sign(
         { _id: user._id },
-        con.config.sessionSecret,
+        config.sessionSecret,
         { expiresIn: 60 * 60 * 5 }
       );
 

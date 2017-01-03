@@ -19,19 +19,14 @@ Dockerfile
 docker-compose.yml
 
 # certificates
-config/sslcerts
+server/sslcerts
 
 # TypeScript transpiled files
-app/*.js
-app/actions/**/*.js
-app/components/**/*.js
-app/pipes/**/*.js
-app/services/**/*.js
-app/store/**/*.js
+client/**/**/**/*.js
 
 # CSS files
-app/*.css
-app/components/**/*.css
+**/*.css
+client/**/**/**/*.css
 
 # Typings folder
 typings

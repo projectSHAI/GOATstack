@@ -8,7 +8,6 @@ import { UserFormActions } from '../../actions/userForm/userForm.actions';
 import { ErrorHandlerActions } from '../../../main-segment/actions/error/errorHandler.actions';
 
 @Component({
-  moduleId: module.id,
   selector: 'sign-in-out',
   providers: [UserActions, UserFormActions],
   templateUrl: './sign-in-out.component.html',

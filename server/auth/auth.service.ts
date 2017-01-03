@@ -1,7 +1,6 @@
 import User from '../api/user/user.model';
 
-import {config} from '../../config/config';
-let con = config();
+import config from '../../config';
 
 import * as jwt from 'jsonwebtoken';
 
@@ -9,7 +8,7 @@ let expressJwt = require('express-jwt');
 let compose = require('composable-middleware');
 
 let validateJwt = expressJwt({
-  secret: con.config.sessionSecret
+  secret: config.sessionSecret
 });
 
 /**
@@ -53,8 +52,8 @@ export function hasRole(roleRequired) {
   return compose()
     .use(isAuthenticated())
     .use(function meetsRequirements(req, res, next) {
-      if (con.config.userRoles.indexOf(req.user.role) >=
-        con.config.userRoles.indexOf(roleRequired)) {
+      if (config.userRoles.indexOf(req.user.role) >=
+        config.userRoles.indexOf(roleRequired)) {
         next();
       } else {
         res.status(403).send('Forbidden');
@@ -69,7 +68,7 @@ export function signToken(id, role) {
   return jwt.sign({
     _id: id,
     role: role
-  }, con.config.sessionSecret, {
+  }, config.sessionSecret, {
     expiresIn: 60 * 60 * 5
   });
 }

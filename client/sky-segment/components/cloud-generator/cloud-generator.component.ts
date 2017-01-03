@@ -13,7 +13,6 @@ declare let TimelineMax: any;
 declare let Power0: any;
 
 @Component({
-  moduleId: module.id,
   selector: 'cloud-generator',
   providers: [WonderActions, CloudActions],
   templateUrl: './cloud-generator.component.html',

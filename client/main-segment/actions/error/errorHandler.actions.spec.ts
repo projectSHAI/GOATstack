@@ -3,7 +3,7 @@ import { ErrorHandlerActions } from './errorHandler.actions';
 
 class MockRedux extends NgRedux<any> {
   constructor() {
-    super(null);
+    super();
   }
   dispatch: () => {};
 }

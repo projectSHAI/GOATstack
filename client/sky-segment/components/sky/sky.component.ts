@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import { TimeOfDayActions } from '../../../main-segment/actions/time-of-day/time-of-day.actions';
 
 @Component({
-  moduleId: module.id,
   selector: 'the-sky',
   templateUrl: './sky.component.html',
   styleUrls: ['./sky.component.css']
