@@ -6,7 +6,9 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var commonConfig = require('./webpack.common.js');
 var chalk = require('chalk');
 
-var helpers = require('../helpers');
+const helpers = require('../helpers');
+
+const cmd = require('../scripts').cmd;
 
 const generalConfig = {
 
@@ -39,7 +41,7 @@ const generalConfig = {
 
   devServer: {
     dev: {
-      proxy: { 
+      proxy: {
         '*': 'http://localhost:5000'
       },
       stats: {
@@ -70,7 +72,7 @@ module.exports = function(options) {
     plugins: options.env === 'dev' ? [
       new ExtractTextPlugin('styles.css'),
       new WebpackShellPlugin({
-        onBuildEnd:['"node_modules\\.bin\\webpack" --env server:dev --hide-modules true --watch']
+        onBuildEnd:[`${cmd.webpack} --env server:dev --hide-modules true --watch`]
       })
     ] : options.env === 'test' ? [
       new ExtractTextPlugin('styles.css')
@@ -84,7 +86,7 @@ module.exports = function(options) {
       }),
       new ExtractTextPlugin('styles.css'),
       new WebpackShellPlugin({
-        onBuildEnd:[`"node_modules\\.bin\\webpack" --hide-modules true --env server:prod${ options.e2e ? ':e2e' : '' }`]
+        onBuildEnd:[`${cmd.webpack} --hide-modules true --env server:prod${ options.e2e ? ':e2e' : '' }`]
       }),
       new CopyWebpackPlugin([
         { 

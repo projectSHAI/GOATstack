@@ -1,7 +1,8 @@
 import app from '../../server';
 import request = require('supertest');
+import Wonder from './wonder.model';
 
-// let app = init();
+Wonder.find({}).remove();
 
 // Wonder endpoint Testing
 describe('Wonder API:', function() {

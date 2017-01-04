@@ -14,17 +14,24 @@ var fs = require('graceful-fs'),
 	helpers = require('./helpers'),
 	loader;
 
+function windowsCheck(command) {
+	return /^win/.test(process.platform) ? command.replace(/\//g, '\\') : command;
+}
+
 // Base commands
 var cmd = {
-	concurrently: '"node_modules\\.bin\\concurrently"',
-	node_sass: '"node_modules\\.bin\\node-sass"',
-	webpack: '"node_modules\\.bin\\webpack"',
-	webpackDevServer: '"node_modules\\.bin\\webpack-dev-server"',
-	karma: '"node_modules\\.bin\\karma"',
-	protractor: '"node_modules\\.bin\\protractor"',
-	webdriverManager: '"node_modules\\.bin\\webdriver-manager"',
-	ngc: '"node_modules\\.bin\\ngc"'
+	concurrently: windowsCheck('"node_modules/.bin/concurrently"'),
+	node_sass: windowsCheck('"node_modules/.bin/node-sass"'),
+	nodemon: windowsCheck('"node_modules/.bin/nodemon"'),
+	webpack: windowsCheck('"node_modules/.bin/webpack"'),
+	webpackDevServer: windowsCheck('"node_modules/.bin/webpack-dev-server"'),
+	karma: windowsCheck('"node_modules/.bin/karma"'),
+	protractor: windowsCheck('"node_modules/.bin/protractor"'),
+	webdriverManager: windowsCheck('"node_modules/.bin/webdriver-manager"'),
+	ngc: windowsCheck('"node_modules/.bin/ngc"')
 };
+
+exports.cmd = cmd;
 
 // Script Commands
 var ngc = `${cmd.ngc} -p tsconfig-aot.json --exclude client/**/**/**/*.spec.ts`;
@@ -267,7 +274,13 @@ exports.startProd = function startProd(serve = false) {
  *	Prompt developer to push dist to heroku
  */
 exports.herokuPrompt = function herokuPrompt() {
-	inquirer.prompt([{
+
+	if (config.https_secure)
+	  console.log('\n' + chalk.red.bold('\tWARNING:\n\n\tYou are about to deploy to Heroku with GOAT configured for HTTPS!!\n\n' +
+	    '\tThe deployed applicaiton WILL FAIL unless you configure the\n\tcertificates in Heroku correctly!!\n\n') +
+	    chalk.green.bold('\tWe suggest setting https_secure: false in "config/env/default"\n\tuntil your heroku repo is prepped for custom certificates.\n\n'));
+
+	return inquirer.prompt([{
 		type:     'list',
 		name:     'heroku_choice',
 		message:  'What action would you like to do? (on your account)',
@@ -285,7 +298,7 @@ exports.herokuPrompt = function herokuPrompt() {
 	            	prepare();
 	            	startLoader('compiling with ngc...');
 
-	            	return exec(`${ngc}`, (err, stdout, stderr) => {
+	            	return exec(ngc, (err, stdout, stderr) => {
 	            		if (err) {
 	            			console.log(stdout);
 	            			console.log(err);

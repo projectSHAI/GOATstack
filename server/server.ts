@@ -12,6 +12,8 @@ import {connect, disconnect} from './mongoose';
 
 import seed from './seed';
 
+const isSecure = config.https_secure && (process.env.NODE_ENV === 'production' || !process.env.NODE_ENV);
+
 // Initialize express
 let app = express();
 
@@ -27,7 +29,7 @@ function init(): any {
     let server: any = http.createServer(app);
 
     // If specified in the default assets, https will be used
-    if (config.https_secure && process.env.NODE_ENV !== 'test') {
+    if (isSecure) {
       let credentials = {
         key: fs.readFileSync(config.key_loc, 'utf8'),
         cert: fs.readFileSync(config.cert_loc, 'utf8')
@@ -58,14 +60,9 @@ function init(): any {
         console.log(chalk.bold.cyan(`\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }`));
         console.log(chalk.bold.cyan(`\tDatabase:\t\t\t ${ config.db.uri }`));
 
-        // secure services condition to activate https
-        if (!config.https_secure) {
-          console.log(chalk.bold.magenta('\n\tHTTP Server'));
-          console.log(chalk.bold.gray(`\tServer Address:\t\t\t http://localhost:${ port }`));
-        } else {
-          console.log(chalk.bold.magenta('\tHTTPS Server'));
-          console.log(chalk.bold.gray(`\tServer Address:\t\t\t https://localhost:${ port }`));
-        }
+        console.log(chalk.bold.magenta(`\n\t${isSecure ? 'HTTPS': 'HTTP'} Server`));
+        console.log(chalk.bold.gray(`\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:${ port }`));
+
       }
     });
 

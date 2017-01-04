@@ -1,8 +1,9 @@
 var webpack = require('webpack');
 var nodeExternals = require('webpack-node-externals');
 var WebpackShellPlugin = require('webpack-shell-plugin');
-var helpers = require('../helpers');
 
+const helpers = require('../helpers');
+const cmd = require('../scripts').cmd;
 
 module.exports = function(options) {
 
@@ -48,7 +49,7 @@ module.exports = function(options) {
         }
       }),
       new WebpackShellPlugin({
-        onBuildEnd:['node dist']
+        onBuildEnd:[`${cmd.nodemon} dist --watch dist`]
       })
     ] : options.env === 'test' ? [
       // Test Plugins
