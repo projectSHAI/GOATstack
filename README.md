@@ -10,12 +10,12 @@
 # Quick Start 
 
 ```sh
-$ npm install -g yo generator-goat-stack gulp-cli typescript
+$ npm install -g yo generator-goat-stack
 $ mkdir [dirName] && cd [dirName]
 $ yo goat-stack [name?]
 $ npm install
 $ # mongod in another terminal!
-$ gulp
+$ npm start
 ```
 
 # What's new? v2.0
@@ -33,6 +33,9 @@ $ gulp
 * Production AoT compilation
   * angular compiler-cli 2.4.x not resolving metadata from .d.ts file (mongodb)
   * GOAT-stack will use angular 2.3.1 until further notice 
+* SASS compilation
+  * node-sass is compiing scss files in the project in all environments.
+  * css files are required for AoT compiltion to work properly
 
     
 
@@ -135,12 +138,12 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 ### 5) Clone and Run
 
 ```sh
-$ npm install -g yo generator-goat-stack gulp-cli typescript
+$ npm install -g yo generator-goat-stack
 $ mkdir GOAT-stack && cd GOAT-stack
 $ yo goat-stack [name?]
 $ npm install
 $ # mongod in another terminal!
-$ gulp
+$ npm start
 ```
 
 ## Linux
@@ -170,16 +173,17 @@ $ sudo apt-get install -y nodejs
 ### 4) Clone and Run
 
 ```sh
-$ npm install -g yo generator-goat-stack gulp-cli typescript
+$ npm install -g yo generator-goat-stack
 $ mkdir GOAT-stack && cd GOAT-stack 
 $ yo goat-stack [name?]
 $ npm install
 $ # mongod in another terminal!
-$ sudo gulp
+$ npm start
 ```
 > Note: gulp needs to be elevated with `sudo`, otherwise the mongod process which is executed in the gulp task runner will throw an error stating the port is already in use, even if it is free. This happens even when running mongod in its own terminal.
 
 # Deploying to Heroku
+![Deployment Banner](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/goat-deploy-banner.png)
 
 Make sure you have [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
@@ -192,7 +196,7 @@ $ heroku login
 ### 2) Run the gulp task
 
 ```sh
-$ gulp deploy:heroku
+$ npm run deploy:heroku
 ```
 
 ## Yo Generator Project [here](https://github.com/JCThomas4214/GOAT-yeoman)
