@@ -2,6 +2,7 @@ var fs = require('graceful-fs'),
   	exec = require('child_process').exec,
   	execSync = require('child_process').execSync,
   	spawn = require('child_process').spawn,
+  	spawnSync = require('child_process').spawnSync,
   	chalk = require('chalk'),
   	stevedore = require('stevedore'),
   	inquirer = require('inquirer'),
@@ -20,15 +21,15 @@ function windowsCheck(command) {
 
 // Base commands
 var cmd = {
-	concurrently: windowsCheck('"node_modules/.bin/concurrently"'),
-	node_sass: windowsCheck('"node_modules/.bin/node-sass"'),
-	nodemon: windowsCheck('"node_modules/.bin/nodemon"'),
-	webpack: windowsCheck('"node_modules/.bin/webpack"'),
-	webpackDevServer: windowsCheck('"node_modules/.bin/webpack-dev-server"'),
-	karma: windowsCheck('"node_modules/.bin/karma"'),
-	protractor: windowsCheck('"node_modules/.bin/protractor"'),
-	webdriverManager: windowsCheck('"node_modules/.bin/webdriver-manager"'),
-	ngc: windowsCheck('"node_modules/.bin/ngc"')
+	concurrently: windowsCheck('node_modules/.bin/concurrently'),
+	node_sass: windowsCheck('node_modules/.bin/node-sass'),
+	nodemon: windowsCheck('node_modules/.bin/nodemon'),
+	webpack: windowsCheck('node_modules/.bin/webpack'),
+	webpackDevServer: windowsCheck('node_modules/.bin/webpack-dev-server'),
+	karma: windowsCheck('node_modules/.bin/karma'),
+	protractor: windowsCheck('node_modules/.bin/protractor'),
+	webdriverManager: windowsCheck('node_modules/.bin/webdriver-manager'),
+	ngc: windowsCheck('node_modules/.bin/ngc')
 };
 
 exports.cmd = cmd;
@@ -113,6 +114,7 @@ exports.startE2E = function startE2E() {
 	return exec(e2e, (err, stdout, stderr) => {
 		stopLoader();
 		process.stdout.clearLine();
+		helpers.cleanup();
 		if (stdout) console.log(stdout);
 		if (err) console.log(err);
 	});
@@ -224,7 +226,7 @@ exports.startProd = function startProd(serve = false) {
 		// If the platform is windows .cmd will need to be appended
 		const command = cmd.webpack.replace(/\"/g, '') + (/^win/.test(process.platform) ? '.cmd' : '');
 		// spawn a new process to start building
-		const serv = spawn(command, ['--hide-modules','true','--env','prod'].concat(serve ? ['&&',`node`,'dist'] : []), {cwd:process.cwd()});
+		const serv = spawn(command, ['--env','prod'], {cwd:process.cwd()});
 
 		serv.stdout.on('data', (data) => {
 			if (!config.show_console_detail) {
@@ -256,7 +258,8 @@ exports.startProd = function startProd(serve = false) {
 			}
 		});
 		serv.on('close', (code) => {
-		  console.log(`Make sure you have mongod running!`);
+		  if (code !== 0)
+		  	console.log(`Make sure you have mongod running!`);
 		});
 		serv.on('error', (err) => {
 		  stopLoader();

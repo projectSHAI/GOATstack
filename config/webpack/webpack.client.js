@@ -72,7 +72,7 @@ module.exports = function(options) {
     plugins: options.env === 'dev' ? [
       new ExtractTextPlugin('styles.css'),
       new WebpackShellPlugin({
-        onBuildEnd:[`${cmd.webpack} --env server:dev --hide-modules true --watch`]
+        onBuildEnd:[`${cmd.webpack} --env server:dev --watch`]
       })
     ] : options.env === 'test' ? [
       new ExtractTextPlugin('styles.css')

@@ -19,5 +19,5 @@ export const prodEnv = {
     // Enable mongoose debug mode
     debug: process.env.MONGODB_DEBUG || false
   },
-  seedDB: false
+  seedDB: true
 };

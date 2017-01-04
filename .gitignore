@@ -38,3 +38,5 @@ visualProject.njsproj
 .vs
 
 debug.log
+.com*
+.org*

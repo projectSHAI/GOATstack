@@ -12,6 +12,8 @@ var client = [
 	'client/client',
 	'client/node_modules',
 	'ngc-aot/**',
+	'.com*/**',
+	'.org*/**'
 ];
 
 var all = client.concat([

@@ -5,7 +5,7 @@
 import User from './api/user/user.model';
 import Wonder from './api/wonder/wonder.model';
 
-function seed(env?: string): void {
+export default function seed(env?: string): void {
   
   Wonder.find({}).remove().then(() => {
     Wonder.create(
@@ -78,5 +78,3 @@ function seed(env?: string): void {
   }
 
 }
-
-export default seed;

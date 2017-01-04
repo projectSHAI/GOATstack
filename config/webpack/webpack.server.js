@@ -66,6 +66,9 @@ module.exports = function(options) {
         mangle: {
           keep_fnames: true
         }
+      }),
+      new WebpackShellPlugin({
+        onBuildEnd:[`node dist`]
       })
     ] : [
       new webpack.optimize.UglifyJsPlugin({
