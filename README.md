@@ -18,41 +18,23 @@ $ # mongod in another terminal!
 $ gulp
 ```
 
-# What's new? v1.3
+# What's new? v2.0
 
-* URL protocol and Google Analytics prompts
-  * on initial stack generation prompt will ask if you want http vs https
-  * on initial stack generation a prompt will ask if you would like to inject google analytics
-    * text editor will appear to paste the script (include script tags and save/exit)
-* new yo generator: goat-stack:segment
-  * because of the redux mentality, modules conflict with the single store concept
-  * will create a new segment folder to organize application sections
-  * prior generators conditional prompt to ask what segment you'll like the generator to genorate to
-    * on the condition that there is more segments than the main-segment in the project
-* structural changes
-  * environment compilation changes for new structural implimentation (for segments)
-  * new public folder in project root that will be exposed to the client for assests and external js libraries
+* ~~SystemJS~~ => Webpack
+  * client-side and server-side bundling with Webpack
+  * removal of gulp task runner / moved to npm scripts
+  * simplified config folder structure
+* Expanded the GOAT universe (client-side demo)
+  * explore the depths of the ocean and the vastness of space to learn more about the stack
 
 
 ## CURRENT ISSUES!
 
 * Production AoT compilation
-  * angular-compiler 2.3.0 not creating ngFactory files for main application
-    * typescript 2.1 changed certain flags and functions that angular-compiler relied on
-    * angular-compiler 2.3.0 will not work with typescript 2.0.10 because of ng2-redux
-    * angular issues [#12966](https://github.com/angular/angular/issues/12966) [#13204](https://github.com/angular/angular/issues/13204) [#13294](https://github.com/angular/angular/pull/13294) explain the current situation with TS
-    * ng2-redux issue [#282](https://github.com/angular-redux/ng2-redux/issues/282) is resolving the ng2-redux problem
-  * GOAT-stack will use angular 2.2.4 until further notice 
+  * angular compiler-cli 2.4.x not resolving metadata from .d.ts file (mongodb)
+  * GOAT-stack will use angular 2.3.1 until further notice 
 
-# Coming Soon! v2.0
-
-* SystemJS => Webpack
-  * client-side and server-side bundling with Webpack
-  * simplify gulp tasks/possibly move to npm scripts
-  * simplify config folder structure
-* Expand the GOAT universe (client-side demo)
-  * explore the depths of the ocean and the vastness of space to learn more about the stack
-  
+    
 
 # Documentation Wiki
 
