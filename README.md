@@ -34,7 +34,7 @@ $ npm start
   * angular compiler-cli 2.4.x not resolving metadata from .d.ts file (mongodb)
   * GOAT-stack will use angular 2.3.1 until further notice 
 * SASS compilation
-  * node-sass is compiing scss files in the project in all environments.
+  * node-sass is compiling scss files in the project in all environments.
   * css files are required for AoT compiltion to work properly
 
     
