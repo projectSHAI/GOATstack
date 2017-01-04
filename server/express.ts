@@ -17,9 +17,9 @@ let express = require('express'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session);
 
-let webpack = require('webpack');
-let webpackConfig = require('../webpack.config')('dev');
-let compiler = webpack(webpackConfig);
+// let webpack = require('webpack');
+// let webpackConfig = require('../webpack.config')('dev');
+// let compiler = webpack(webpackConfig);
 
 // Using morgan to monatore express request traffic
 // token method intercepts logs before they happen
@@ -42,14 +42,14 @@ morgan.token('url', function(req, res) {
 // function to initialize the express app
 function expressInit(app) {
 
-  if (process.env.NODE_ENV === 'development') {
-    app.use(require('webpack-dev-middleware')(compiler, {
-      noInfo: true,
-      publicPath: webpackConfig.output.publicPath
-    }));
+  // if (process.env.NODE_ENV === 'development') {
+  //   app.use(require('webpack-dev-middleware')(compiler, {
+  //     noInfo: true,
+  //     publicPath: webpackConfig.output.publicPath
+  //   }));
   
-    app.use(require('webpack-hot-middleware')(compiler));
-  }
+  //   app.use(require('webpack-hot-middleware')(compiler));
+  // }
 
   //aditional app Initializations
   app.use(bodyParser.urlencoded({

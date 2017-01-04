@@ -25,7 +25,6 @@ function emitEvent(event) {
   return function(doc) {
     WonderEvents.emit(event + ':' + doc._id, doc);
     WonderEvents.emit(event, doc);
-    console.log('testing emit');
   };
 }
 

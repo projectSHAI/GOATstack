@@ -20,7 +20,7 @@ const generalConfig = {
   output: {
     dev: {
       path: helpers.root('dist/client'),
-      publicPath: 'http://localhost:5000/',
+      publicPath: 'http://localhost:8080/',
       filename: '[name].js',
       chunkFilename: '[id].chunk.js'
     },
@@ -39,21 +39,21 @@ const generalConfig = {
 
   devServer: {
     dev: {
-      // proxy: { 
-      //   '*': 'http://localhost:5000'
-      // },
-      // stats: {
-      //   warnings: false,
-      //   chunks: false
-      // }
+      proxy: { 
+        '*': 'http://localhost:5000'
+      },
+      stats: {
+        warnings: false,
+        chunks: false
+      }
     },
     prod: {},
     test: {}
   },
 
   stats: {
-    dev: 'none',
-    prod: 'none',
+    dev: {},
+    prod: {},
     test: 'none'
   }
 };
@@ -70,7 +70,7 @@ module.exports = function(options) {
     plugins: options.env === 'dev' ? [
       new ExtractTextPlugin('styles.css'),
       new WebpackShellPlugin({
-        // onBuildEnd:['"node_modules\\.bin\\webpack" --env server:dev --hide-modules true --watch']
+        onBuildEnd:['"node_modules\\.bin\\webpack" --env server:dev --hide-modules true --watch']
       })
     ] : options.env === 'test' ? [
       new ExtractTextPlugin('styles.css')

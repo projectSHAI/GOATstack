@@ -142,7 +142,7 @@ exports.startDev = function startDev() {
 	// If the platform is windows .cmd will need to be appended
 	const command = cmd.webpackDevServer.replace(/\"/g, '') + (/^win/.test(process.platform) ? '.cmd' : '');
 	// spawn a new process to start building
-	const serv = spawn(command, ['--quiet','--inline','--port','8080','--env','dev'], {cwd:process.cwd()});
+	const serv = spawn(command, ['--inline','--port','8080','--env','dev'], {cwd:process.cwd()});
 
 	serv.stdout.on('data', (data) => {
 		if (!config.show_console_detail) {

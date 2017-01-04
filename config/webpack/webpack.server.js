@@ -38,17 +38,15 @@ module.exports = function(options) {
       extensions: ['.ts', '.js']
     },
 
-    stats: 'none',
-
     plugins: options.env === 'dev' ? [
       // Dev Plugins
-      // new webpack.DefinePlugin({
-      //   'ENV': JSON.stringify(METADATA.ENV),
-      //   'process.env': {
-      //     'ENV': JSON.stringify(METADATA.ENV),
-      //     'NODE_ENV': JSON.stringify(METADATA.ENV)
-      //   }
-      // }),
+      new webpack.DefinePlugin({
+        'ENV': JSON.stringify(METADATA.ENV),
+        'process.env': {
+          'ENV': JSON.stringify(METADATA.ENV),
+          'NODE_ENV': JSON.stringify(METADATA.ENV)
+        }
+      }),
       new WebpackShellPlugin({
         onBuildEnd:['node dist']
       })

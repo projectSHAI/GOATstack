@@ -7,7 +7,7 @@ import WonderEvents from './wonder.events';
 // Model events to emit
 let events = ['save', 'remove'];
 
-function register(socket) {
+function wonderRegister(socket) {
   // Bind model events to socket events
   for (let i = 0, eventsLength = events.length; i < eventsLength; i++) {
     let event = events[i];
@@ -37,4 +37,4 @@ function removeListener(event, listener) {
 }
 
 // export the es6 way 
-export {register as wonderRegister};
+export default wonderRegister;
