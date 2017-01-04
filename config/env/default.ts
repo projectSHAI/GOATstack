@@ -14,7 +14,7 @@ export const defaultConfig = {
     g_analytics: ''
   },
   // When building show the actual console prints of webpack and the server
-  show_console_detail: false,
+  show_console_detail: true,
   // Change to use https
   https_secure: false,
   // You will need to generate a self signed ssl certificate

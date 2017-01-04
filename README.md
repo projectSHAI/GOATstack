@@ -13,7 +13,6 @@
 $ npm install -g yo generator-goat-stack
 $ mkdir [dirName] && cd [dirName]
 $ yo goat-stack [name?]
-$ npm install
 $ # mongod in another terminal!
 $ npm start
 ```
@@ -32,10 +31,7 @@ $ npm start
 
 * Production AoT compilation
   * angular compiler-cli 2.4.x not resolving metadata from .d.ts file (mongodb)
-  * GOAT-stack will use angular 2.3.1 until further notice 
-* SASS compilation
-  * node-sass is compiling scss files in the project in all environments.
-  * css files are required for AoT compiltion to work properly
+  * GOAT-stack will use angular 2.3.1 until further notice
 
     
 
@@ -141,7 +137,6 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 $ npm install -g yo generator-goat-stack
 $ mkdir GOAT-stack && cd GOAT-stack
 $ yo goat-stack [name?]
-$ npm install
 $ # mongod in another terminal!
 $ npm start
 ```
@@ -176,7 +171,6 @@ $ sudo apt-get install -y nodejs
 $ npm install -g yo generator-goat-stack
 $ mkdir GOAT-stack && cd GOAT-stack 
 $ yo goat-stack [name?]
-$ npm install
 $ # mongod in another terminal!
 $ npm start
 ```

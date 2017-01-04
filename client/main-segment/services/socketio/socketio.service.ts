@@ -14,7 +14,7 @@ export class SocketService {
 
   constructor(private ngRedux: NgRedux<IAppState>) {
     // socket.io now auto-configures its connection when we ommit a connection url
-    this.socket = io.connect({ path: '/io-client' });
+    this.socket = io.connect({ path: '/socket.io-client' });
   }
 
   /**

@@ -24,7 +24,7 @@ export class TimeOfDayActions {
 
   constructor(private ngRedux: NgRedux<IAppState>) {
     //define the clock observable with a one second interval
-    this.currentTime = Observable.interval(1000).map(()=> new Date());
+    this.currentTime = Observable.interval(1000).map(() => new Date());
     //subscribe to the time observable and fire the timeOfDay function every time it updates
     this.currentTime.subscribe(time => this.timeOfDay(time.getHours()));
   }
@@ -39,7 +39,7 @@ export class TimeOfDayActions {
       this.holdHour = time;
 
     }
-    else if (!this.holdHour) {
+    else if (!this.holdHour && this.holdHour !== 0) {
       this.ngRedux.dispatch({ type: TimeOfDayActions.NIGHT_TIME });
       this.holdHour = time;
     }

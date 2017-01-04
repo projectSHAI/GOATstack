@@ -5,11 +5,13 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('../helpers');
 
 module.exports = function(options) {
+  const prod = options.env === 'prod';
+
   var config = {
     entry: {
       'polyfills': './client/polyfills.ts',
       'vendor': './client/vendor.ts',
-      'main': options.env === 'prod' ? './client/main-aot.ts' : './client/main.ts'
+      'main': prod ? './client/main-aot.ts' : './client/main.ts'
     },
 
     module: {
@@ -29,7 +31,10 @@ module.exports = function(options) {
         {
           test: /\.css$/,
           exclude: helpers.root('client'),
-          loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
+          loader: ExtractTextPlugin.extract({ 
+            fallbackLoader: 'style-loader', 
+            loader: 'css-loader?sourceMap'
+          })
         },
         {
           test: /\.css$/,
@@ -40,7 +45,7 @@ module.exports = function(options) {
     },
 
     resolve: {
-      extensions: [".ts", ".js"]
+      extensions: ['.ts', '.js']
     },
 
     plugins: [
@@ -53,6 +58,32 @@ module.exports = function(options) {
       })
     ]
   };
+
+  if (!prod) {
+    config.module.rules[3] = {
+      test: /\.scss/,
+      exclude: helpers.root('client'),
+      loader: ExtractTextPlugin.extract({ 
+        fallbackLoader: 'style-loader', 
+        loader: 'css-loader?sourceMap!sass-loader?sourceMap'
+      })
+    };
+
+    config.module.rules[4] = {
+      test: /\.scss/,
+      exclude: helpers.root('public'),
+      loader: 'to-string-loader!css-loader?sourceMap!sass-loader?sourceMap'
+    };
+
+    config.module.rules.splice(0,0, {
+      test: /component\.ts/,
+      loader: 'string-replace-loader',
+      query: {
+        search: '.css',
+        replace: '.scss'
+      }
+    });
+  }
 
   if (options.env === 'karma') {
     delete config.entry;

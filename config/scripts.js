@@ -82,9 +82,9 @@ function stopLoader() {
 };
 
 // Script Functions
-function prepare() {
+function prepare(dev) {
 	helpers.cleanup();
-	return execSync(nodeSass);
+	return dev ? execSync(`${cmd.node_sass} -q public -o public`) : execSync(nodeSass);
 };
 
 /*
@@ -92,7 +92,7 @@ function prepare() {
  */
 exports.startTest = function startTest() {
 	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
-	prepare();
+	prepare(true);
 	startLoader('building Dev => running server/client tests...');
 
 	return exec(server_test, (err, stdout, stderr) => {
@@ -107,7 +107,7 @@ exports.startTest = function startTest() {
  */
 exports.startE2E = function startE2E() {
 	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
-	prepare();
+	prepare(true);
 	startLoader('update webdriver => building Dev => running E2E tests...');
 
 	return exec(e2e, (err, stdout, stderr) => {
@@ -141,7 +141,7 @@ exports.startProdE2E = function startProdE2E() {
  */
 exports.startDev = function startDev() {
 	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
-	prepare();
+	prepare(true);
 	startLoader();
 
 	var waiting = false;
@@ -229,7 +229,7 @@ exports.startProd = function startProd(serve = false) {
 		serv.stdout.on('data', (data) => {
 			if (!config.show_console_detail) {
 				if (data.includes('Server Address:')) {
-					stopLoader();				
+					stopLoader();
 					helpers.cleanup('client');
 					console.log(chalk.green.bold('\tProduction serving on') + chalk.yellow.bold(' http://localhost:8443\n\n'));			
 					return;
@@ -250,6 +250,7 @@ exports.startProd = function startProd(serve = false) {
 				console.log(`${data}`);
 				if (data.includes('Server Address:')) {
 					loader.stop();
+					helpers.cleanup('client');
 					process.stdout.clearLine();
 				}
 			}
