@@ -7,10 +7,6 @@ These configuration settings get called no matter what Node's process.env.NODE_E
 export const defaultConfig = {
   // DEFAULT SEO configuration
   app: {
-    title: 'GOAT-stack',
-    favicon: 'public/assets/favicon.png',
-    description: 'The Greatest of All Time Stack!',
-    keywords: 'redux, node, mongo, express, angular2, ng2, jasmine, karma, protractor',
     g_analytics: ''
   },
   // When building show the actual console prints of webpack and the server
