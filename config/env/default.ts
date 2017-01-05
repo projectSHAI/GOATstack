@@ -5,10 +5,6 @@ These configuration settings get called no matter what Node's process.env.NODE_E
 */
 
 export const defaultConfig = {
-  // DEFAULT SEO configuration
-  app: {
-    g_analytics: ''
-  },
   // When building show the actual console prints of webpack and the server
   show_console_detail: false,
   // Change to use https
