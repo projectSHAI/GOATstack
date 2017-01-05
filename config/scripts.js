@@ -1,4 +1,5 @@
 var fs = require('graceful-fs'),
+	readline = require('readline'),
   	exec = require('child_process').exec,
   	execSync = require('child_process').execSync,
   	spawn = require('child_process').spawn,
@@ -42,16 +43,6 @@ var protractor = `${cmd.concurrently} --raw \"node dist -s\" \"${cmd.protractor}
 var e2e = `${cmd.webdriverManager} update && ${cmd.webpack} --hide-modules true --env test && ${cmd.webpack} --hide-modules true --env server:test && ${protractor}`;
 var prod_e2e = `${cmd.webdriverManager} update && ${ngc} && ${cmd.webpack} --hide-modules true --env prod:e2e && ${protractor}`;
 
-var sass_watch = `${cmd.concurrently} --raw "${cmd.node_sass} -w client -o client" "${cmd.node_sass} -w public -o public"`;
-
-exports.sassWatch = function sassWatch() {
-	exec(sass_watch, {cwd:process.cwd(), env:process.env}, (err, stdout, stderr) => {
-		if (stdout) console.log(stdout);
-		if (stderr) console.log(stderr);
-		if (err) console.log(err);
-	});
-};
-
 // Helpers
 function startLoader(str = 'compiling => tree-shaking => bundling...') {
 	return loader = stevedore({
@@ -94,13 +85,9 @@ function prepare(dev) {
 exports.startTest = function startTest() {
 	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
 	prepare(true);
-	startLoader('building Dev => running server/client tests...');
+	// startLoader('building Dev => running server/client tests...');
 
-	return exec(server_test, (err, stdout, stderr) => {
-		stopLoader();
-		if (stdout) console.log(stdout);
-		if (err) console.log(err);
-	});
+	return spawn(server_test, {stdio: 'inherit', shell: true});
 };
 
 /*
@@ -148,10 +135,8 @@ exports.startDev = function startDev() {
 
 	var waiting = false;
 
-	// If the platform is windows .cmd will need to be appended
-	const command = cmd.webpackDevServer.replace(/\"/g, '') + (/^win/.test(process.platform) ? '.cmd' : '');
 	// spawn a new process to start building
-	const serv = spawn(command, ['--inline','--port','8080','--env','dev'], {cwd:process.cwd()});
+	const serv = spawn(`${cmd.webpackDevServer} --inline --port 8080 --env dev`, {shell: true});
 
 	serv.stdout.on('data', (data) => {
 		if (!config.show_console_detail) {
@@ -201,6 +186,12 @@ exports.startDev = function startDev() {
 		}
 		
 	});
+	serv.stderr.on('data', (data) => {
+		if (/!keywords/.test(data.toString())) {
+			process.stdout.clearLine();
+			console.log(`${data}`);
+		}
+	});
 	serv.on('close', (code) => {
 	  console.log(`child process exited with code ${code}`);
 	});
@@ -214,7 +205,7 @@ exports.startDev = function startDev() {
 /*
  *	Build server and client => start the express server in production
  */
-exports.startProd = function startProd(serve = false) {
+exports.startProd = function startProd() {
 	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
 	prepare();
 	startLoader('compiling client with ngc...');
@@ -223,10 +214,8 @@ exports.startProd = function startProd(serve = false) {
 	exec(ngc, {cwd:process.cwd()}, (err, stdout, stderr) => {
 		loaderMessage('tree-shaking => bundling...');
 
-		// If the platform is windows .cmd will need to be appended
-		const command = cmd.webpack.replace(/\"/g, '') + (/^win/.test(process.platform) ? '.cmd' : '');
 		// spawn a new process to start building
-		const serv = spawn(command, ['--env','prod'], {cwd:process.cwd()});
+		const serv = spawn(`${cmd.webpack} --env prod && node dist`, {cwd: process.cwd(), shell: true});
 
 		serv.stdout.on('data', (data) => {
 			if (!config.show_console_detail) {
@@ -255,6 +244,12 @@ exports.startProd = function startProd(serve = false) {
 					helpers.cleanup('client');
 					process.stdout.clearLine();
 				}
+			}
+		});
+		serv.stderr.on('data', (data) => {
+			if (/!keywords/.test(data.toString())) {
+				process.stdout.clearLine();
+				console.log(`${data}`);
 			}
 		});
 		serv.on('close', (code) => {
@@ -309,11 +304,18 @@ exports.herokuPrompt = function herokuPrompt() {
 	            		}
 	            		loaderMessage('tree-shaking => bundling => deploying to heroku...');
 
-	            		const comm = `--hide-modules true --env prod && cd dist && git init && git add . && git commit -m "goat-stack:deploy" && git remote add heroku https://git.heroku.com/${answers.appname}.git && git push --force heroku master && heroku open --app ${answers.appname}`;
+	            		const command = [
+			            	`${cmd.webpack} --env prod`,
+			            	'cd dist',
+			            	'git init',
+			            	'git add .',
+			            	'git commit -m "goat-stack:deploy"',
+			            	`git remote add heroku https://git.heroku.com/${answers.appname}.git`,
+			            	'git push --force heroku master',
+			            	`heroku open --app ${answers.appname}`
+	            		];
 
-	            		const command = cmd.webpack.replace(/\"/g, '') + (/^win/.test(process.platform) ? '.cmd' : '');
-
-	            		const serv = spawn(command, comm.split(` `), {cwd:process.cwd()});
+	            		const serv = spawn(command.join(' && '), {shell: true});
 
 	            		serv.stdout.on('data', (data) => {
 	            			if (config.show_console_detail) {
@@ -371,18 +373,32 @@ exports.herokuPrompt = function herokuPrompt() {
 	            		prepare();
 	            		startLoader('compiling with ngc...');
 
-	            		return exec(`cd dist && git init && heroku create ${answers.appname} && heroku config:set --app ${answers.appname} DB_URI=${answers.db_uri} DB_USER=${answers.db_user} DB_PW=${answers.db_pw} && cd .. && ${ngc}`, (err, stdout, stderr) => {
+	            		const command = [
+	            			'cd dist',
+	            			'git init',
+	            			`heroku create ${answers.appname}`,
+	            			`heroku config:set --app ${answers.appname} DB_URI=${answers.db_uri} DB_USER=${answers.db_user} DB_PW=${answers.db_pw}`,
+	            			'cd ..',
+	            			`${ngc}`
+	            		];
+
+	            		return exec(command.join(' && '), (err, stdout, stderr) => {
 	            			if (err) {
 	            				console.log(stdout);
 	            				console.log(err);
 	            			}
 	            			loaderMessage('tree-shaking => bundling => deploying to heroku...');
 
-	            			const comm = `--hide-modules true --env prod && cd dist && git add . && git commit -m "goat-stack:deploy" && git push --force heroku master && heroku open --app ${answers.appname}`;
+	            			const command = [
+	            				`${cmd.webpack} --env prod`,
+	            				'cd dist',
+	            				'git add .',
+	            				'git commit -m "goat-stack:deploy"',
+	            				'git push --force heroku master',
+	            				`heroku open --app ${answers.appname}`
+	            			];
 
-	            			const command = cmd.webpack.replace(/\"/g, '') + (/^win/.test(process.platform) ? '.cmd' : '');
-
-	            			const serv = spawn(command, comm.split(` `), {cwd:process.cwd()});
+	            			const serv = spawn(command.join(' && '), {shell: true});
 
 	            			serv.stdout.on('data', (data) => {
 	            				if (config.show_console_detail) {

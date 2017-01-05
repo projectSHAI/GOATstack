@@ -9,7 +9,7 @@
     "start": "npm run dev",
     "test": "node -e \"require('./config/scripts').startTest()\"",
     "dev": "node -e \"require('./config/scripts').startDev()\"",
-    "prod": "node -e \"require('./config/scripts').startProd(true)\"",
+    "prod": "node -e \"require('./config/scripts').startProd()\"",
     "e2e": "node -e \"require('./config/scripts').startE2E()\"",
     "e2e:prod": "node -e \"require('./config/scripts').startProdE2E()\"",
     "deploy:heroku": "node -e \"require('./config/scripts').herokuPrompt()\"",
