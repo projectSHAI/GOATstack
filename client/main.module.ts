@@ -56,6 +56,11 @@ import { HomeComponent }                             from './main-segment/compon
 import { Four0FourComponent }                        from './main-segment/components/404/four0four.component';
 import { UserProfileComponent }                      from './main-segment/components/user-profile/user-profile.component';
 import { OceanComponent }                            from './ocean-segment/components/ocean/ocean.component';
+import { AbyssopelagicZoneComponent }                from './ocean-segment/components/abyssopelagic-zone/abyssopelagic-zone.component';
+import { BathypelagicZoneComponent }                 from './ocean-segment/components/bathypelagic-zone/bathypelagic-zone.component';
+import { EpipelagicZoneComponent }                   from './ocean-segment/components/epipelagic-zone/epipelagic-zone.component';
+import { MesopelagicZoneComponent }                  from './ocean-segment/components/mesopelagic-zone/mesopelagic-zone.component';
+import { OceanFloorComponent }                       from './ocean-segment/components/ocean-floor/ocean-floor.component';
 import { WhaleComponent }                            from './whale-segment/components/whale/whale.component';
 import { IslandComponent }                           from './whale-segment/components/island/island.component';
 import { MountainGoatComponent }                     from './whale-segment/components/mountain-goat/mountain-goat.component';
@@ -162,6 +167,11 @@ NgModule
     NavBarComponent,
     SkyComponent,
     OceanComponent,
+    AbyssopelagicZoneComponent,
+    BathypelagicZoneComponent,
+    EpipelagicZoneComponent,
+    MesopelagicZoneComponent,
+    OceanFloorComponent,  
     WhaleComponent,
     IslandComponent,
     MountainGoatComponent,
