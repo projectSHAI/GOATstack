@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import { zoomReducer } from './zoom.reducer';
 import { INITIAL_STATE } from './zoom.initial-state';
-import { ZoomActions } from '../../island-segment/actions/zoom/zoom.actions';
+import { ZoomActions } from '../../whale-segment/actions/zoom/zoom.actions';
 
 // Testing for the errorHandler reducer
 describe('Zoom Reducer', () => {
