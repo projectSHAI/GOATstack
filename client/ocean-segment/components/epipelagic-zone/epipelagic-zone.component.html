@@ -1,4 +1,6 @@
-<img class="epipelagic-water" src="/public/assets/ocean.svg" />
+<div class="epipelagic-water">
+	<img class="epipelagic-cap" src="/public/assets/epipelagic-cap.svg" />
+</div>
 
 <blue-whale></blue-whale>
 
@@ -6,4 +8,10 @@
   <img src="/public/assets/seaturtle.svg" />
 </object>
 
-<img class="epipelagic-overlay" [src]="oceanOverlaySvg" />
+<object class ="shark" data="/public/assets/shark.svg" type="image/svg+xml">
+  <img src="/public/assets/shark.svg" />
+</object>
+
+<div class="epipelagic-water-overlay" [style.backgroundColor]="epipelagicColor">
+	<img class="epipelagic-cap-overlay" [src]="epipelagicCapOverlaySvg" />
+</div>

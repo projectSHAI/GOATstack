@@ -10,7 +10,6 @@ export interface ITimeOfDayItems {
   skyColor:        string;
   mountainGoatSvg: string;
   islandSvg:       string;
-  oceanFrontSvg:   string;
   whaleSvg:        string;
   sunMoonGlow:     string;
   sunMoonBorder:   string;

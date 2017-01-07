@@ -13,13 +13,23 @@ export class EpipelagicZoneComponent implements OnInit{
 
 	@select('timeOfDay') toda$: Observable<any>;
 
-	oceanOverlaySvg: string;
+	epipelagicCapOverlaySvg: string;
+	epipelagicColor: string = 'rgba(19,15,39,0.4)';;
 
 	constructor(private el:ElementRef) {}
 
 	ngOnInit() {
 
-		this.toda$.subscribe(x => this.oceanOverlaySvg = x.get('oceanOverlaySvg'));
+		this.toda$.subscribe((x) => {
+			if(x.get('nightTime') == true) {
+				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-night.svg';
+				this.epipelagicColor         = 'rgba(19,15,39,0.4)';
+			} else {
+				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-day.svg';
+				this.epipelagicColor         = 'rgba(19,135,193,0.4)';
+			}
+			
+		});
 
 	}
 
