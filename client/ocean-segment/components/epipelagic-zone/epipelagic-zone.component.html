@@ -1,6 +1,5 @@
-<div class="epipelagic-water">
-	<img class="epipelagic-cap" src="/public/assets/epipelagic-cap.svg" />
-</div>
+<img #oceanCap class="epipelagic-cap" src="/public/assets/epipelagic-cap.svg" />
+<div class="epipelagic-water"></div>
 
 <blue-whale></blue-whale>
 
@@ -12,6 +11,5 @@
   <img src="/public/assets/shark.svg" />
 </object>
 
-<div class="epipelagic-water-overlay" [style.backgroundColor]="epipelagicColor">
-	<img class="epipelagic-cap-overlay" [src]="epipelagicCapOverlaySvg" />
-</div>
+<img class="epipelagic-cap-overlay" [src]="epipelagicCapOverlaySvg" />
+<div class="epipelagic-water-overlay" [style.backgroundColor]="epipelagicColor" [style.marginTop]="overlayMargin"></div>
