@@ -14,24 +14,77 @@ blue-whale {
 	height: 100%;
     width: 100%;
 }
+
 .epipelagic-water {
 	background-color: #1387C1; 
 }
+
 .epipelagic-cap-overlay,
 .epipelagic-water-overlay {
     position: absolute;
     top:0;
     left: 0;
 }
-.turtle{
+
+object {
 	position: absolute;
+}
+
+.school1 .fish1:nth-of-type(1) {
+	left: 10%;
+	width: 10%;
+	top: 45vh;
+}
+
+.school1 .fish1:nth-of-type(2) {
+	left: 17%;
+	width: 5%;
+	top: 46vh;
+}
+
+.school1 .fish1:nth-of-type(3) {
+	left: 20%;
+	width: 3%;
+	top: 40vh;
+}
+
+.school1 .fish1:nth-of-type(4) {
+	left: 17%;
+	width: 4%;
+	top: 55vh;
+}
+
+.school2 .fish2:nth-of-type(1) {
+	right: 5%;
+	width: 3%;
+	top: 80vh;
+}
+
+.school2 .fish2:nth-of-type(2) {
+	right: 10%;
+	width: 6%;
+	top: 79vh;
+}
+
+.school2 .fish2:nth-of-type(3) {
+	right: 20%;
+	width: 2%;
+	top: 83vh;
+}
+
+.school2 .fish2:nth-of-type(4) {
+	right: 17%;
+	width: 4%;
+	top: 85vh;
+}
+
+.turtle {
 	left: 10%;
 	width: 10%;
 	top: 125vh;
 }
-.shark{
-	position: absolute;
-	left: 10%;
+.shark {
+	right: 10%;
 	width: 10%;
 	top: 175vh;
 }

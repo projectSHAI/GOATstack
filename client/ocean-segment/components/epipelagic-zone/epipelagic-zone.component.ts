@@ -26,7 +26,7 @@ export class EpipelagicZoneComponent implements OnInit{
 		this.toda$.subscribe((x) => {
 			if(x.get('nightTime') === true) {
 				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-night.svg';
-				this.epipelagicColor         = 'rgba(19,15,39,0.4)';
+				this.epipelagicColor         = 'rgba(19,15,39,0.7)';
 			} else {
 				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-day.svg';
 				this.epipelagicColor         = 'rgba(19,135,193,0.4)';
