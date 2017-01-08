@@ -1,0 +1,32 @@
+object {
+	position: absolute;
+}
+.small {
+	width: 10%;
+}
+.medium {
+	width: 15%;
+}
+.large {
+	width: 35%;
+}
+object:nth-of-type(1) {
+	left: 14%;
+	top: 50vh;
+}
+object:nth-of-type(2) {
+	left: 56%;
+	top: 120vh;
+}
+object:nth-of-type(3) {
+	left: 20%;
+	top: 250vh;
+}
+object:nth-of-type(4) {
+	left: 60%;
+	top: 300vh;
+}
+object:nth-of-type(5) {
+	left: 45%;
+	top: 330vh;
+}
