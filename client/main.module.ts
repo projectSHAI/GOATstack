@@ -79,7 +79,7 @@ Directives
 //Declare directives here
 */
 //user created directives
-import { ZoomDirective }                             from './whale-segment/directives/zoom.directive';
+import { ZoomDirective }                             from './main-segment/directives/zoom.directive';
 //Angular and 3rd party directives
 
 /*
