@@ -3,7 +3,7 @@ import { UserFormActions } from './userForm.actions';
 
 class MockRedux extends NgRedux<any> {
   constructor() {
-    super();
+    super(null);
   }
   dispatch: () => {};
 }
