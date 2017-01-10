@@ -1,13 +1,13 @@
 object {
 	position: absolute;
 }
-.small {
+.small-squid {
 	width: 10%;
 }
-.medium {
+.medium-squid {
 	width: 15%;
 }
-.large {
+.large-squid {
 	width: 35%;
 }
 object:nth-of-type(1) {
@@ -29,4 +29,38 @@ object:nth-of-type(4) {
 object:nth-of-type(5) {
 	left: 45%;
 	top: 330vh;
+}
+
+.small-jelly {
+	width: 3%;
+}
+.medium-jelly {
+	width: 5%;
+}
+.large-jelly {
+	width: 8%;
+}
+object:nth-of-type(6) {
+	left: 18%;
+	top: 70vh;
+}
+object:nth-of-type(7) {
+	left: 80%;
+	top: 140vh;
+}
+object:nth-of-type(8) {
+	left: 30%;
+	top: 200vh;
+}
+object:nth-of-type(9) {
+	left: 55%;
+	top: 210vh;
+}
+object:nth-of-type(10) {
+	left: 10%;
+	top: 325vh;
+}
+object:nth-of-type(11) {
+	left: 75%;
+	top: 350vh;
 }

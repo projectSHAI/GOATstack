@@ -14,9 +14,9 @@ the-sky{
     bottom: 0;
     will-change: auto;
 }
-the-ocean {
+#ocean-wrapper {
     position: relative;
-    top: 0;
+    top: 100vh;
     left: 0;
     display: block;
     width:100%;
@@ -24,6 +24,54 @@ the-ocean {
     transform: scale(5) translateX(5%);
     will-change: auto;
 }
+the-ocean {
+    display: block;
+    background: rgba(19,135,193,1);
+    background: -moz-linear-gradient(top, rgba(19,135,193,1) 0%, rgba(0,0,0,1) 92%, rgba(0,0,0,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(19,135,193,1)), color-stop(92%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,1)));
+    background: -webkit-linear-gradient(top, rgba(19,135,193,1) 0%, rgba(0,0,0,1) 92%, rgba(0,0,0,1) 100%);
+    background: -o-linear-gradient(top, rgba(19,135,193,1) 0%, rgba(0,0,0,1) 92%, rgba(0,0,0,1) 100%);
+    background: -ms-linear-gradient(top, rgba(19,135,193,1) 0%, rgba(0,0,0,1) 92%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(19,135,193,1) 0%, rgba(0,0,0,1) 92%, rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1387c1', endColorstr='#000000', GradientType=0 );
+}
+.dayTime {
+    background: rgba(19,135,193,0.4);
+    background: -moz-linear-gradient(top, rgba(19,135,193,0.4) 0%, rgba(0,0,0,0.1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(19,135,193,0.4)), color-stop(100%, rgba(0,0,0,0.1)));
+    background: -webkit-linear-gradient(top, rgba(19,135,193,0.4) 0%, rgba(0,0,0,0.1) 100%);
+    background: -o-linear-gradient(top, rgba(19,135,193,0.4) 0%, rgba(0,0,0,0.1) 100%);
+    background: -ms-linear-gradient(top, rgba(19,135,193,0.4) 0%, rgba(0,0,0,0.1) 100%);
+    background: linear-gradient(to bottom, rgba(19,135,193,0.4) 0%, rgba(0,0,0,0.1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1387c1', endColorstr='#000000', GradientType=0 );
+}
+.nightTime {
+    background: rgba(22,18,40,0.7);
+    background: -moz-linear-gradient(top, rgba(22,18,40,0.7) 0%, rgba(0,0,0,0.1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(22,18,40,0.7)), color-stop(100%, rgba(0,0,0,0.1)));
+    background: -webkit-linear-gradient(top, rgba(22,18,40,0.7) 0%, rgba(0,0,0,0.1) 100%);
+    background: -o-linear-gradient(top, rgba(22,18,40,0.7) 0%, rgba(0,0,0,0.1) 100%);
+    background: -ms-linear-gradient(top, rgba(22,18,40,0.7) 0%, rgba(0,0,0,0.1) 100%);
+    background: linear-gradient(to bottom, rgba(22,18,40,0.7) 0%, rgba(0,0,0,0.1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#161228', endColorstr='#000000', GradientType=0 ); 
+}
+.epipelagic-cap,
+.epipelagic-cap-overlay {
+    display: block;
+}
+
+.epipelagic-water-overlay{
+    height: 100%;
+    width: 100%;
+}
+
+.epipelagic-cap-overlay,
+.epipelagic-water-overlay {
+    position: absolute;
+    top:0;
+    left: 0;
+}
+
 @media screen and (max-aspect-ratio: 10/10) { 
 
     the-ocean{

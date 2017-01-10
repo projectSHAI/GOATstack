@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
+
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'home-section',
@@ -6,4 +9,38 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent { }
+export class HomeComponent { 
+
+	@ViewChild('oceanCap') oceanCap: ElementRef;
+	@select('timeOfDay') toda$: Observable<any>;
+	@select('zoom') zoom$: Observable<any>;
+
+	overlayMargin: string;
+	epipelagicCapOverlaySvg: string;
+	nightTime: boolean = true;
+
+	ngOnInit() {
+		this.toda$.subscribe((x) => {
+			if(x.get('nightTime') === true) {
+				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-night.svg';
+				this.nightTime               = true;
+			} else {
+				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-day.svg';
+				this.nightTime               = false;
+			}
+			
+		});
+
+		this.zoom$.subscribe((x) => {
+			if(x.get('showHide') === false) {
+				this.overlayMargin = this.oceanCap.nativeElement.offsetHeight + 'px';
+			}
+		});
+	}
+
+	@HostListener('window:resize', ['$event'])
+	onResize(event) {
+		this.overlayMargin = this.oceanCap.nativeElement.offsetHeight + 'px';
+	}
+
+}
