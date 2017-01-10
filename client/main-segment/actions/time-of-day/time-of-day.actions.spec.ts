@@ -3,7 +3,7 @@ import { TimeOfDayActions } from './time-of-day.actions';
 
 class MockRedux extends NgRedux<any> {
   constructor() {
-    super();
+    super(null);
   }
   dispatch: () => {};
 }

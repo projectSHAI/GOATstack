@@ -5,8 +5,7 @@ var glob = require('glob');
 
 var Jasmine = require('jasmine');
 var jasmine = new Jasmine();
-var JasmineReporter = require('jasmine-spec-reporter');
-var jasmineReporter = new JasmineReporter();
+var JasmineReporter = require('jasmine-spec-reporter').SpecReporter;
 
 process.env.NODE_ENV = 'test';
 
@@ -24,7 +23,7 @@ glob('server/api/**', function(er, files) {
 		});
 
 		jasmine.env.clearReporters();
-		jasmine.addReporter(jasmineReporter);
+		jasmine.addReporter(new JasmineReporter());
 
 		jasmine.execute();
 

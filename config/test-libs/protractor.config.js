@@ -42,7 +42,7 @@ exports.config = {
     browser.get('');
     
     // SpecReporter
-    var SpecReporter = require('jasmine-spec-reporter');
+    var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
     jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
   },
 

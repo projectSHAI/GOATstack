@@ -78,7 +78,6 @@ module.exports = function(options) {
       new ExtractTextPlugin('styles.css')
     ] : [
       new webpack.NoErrorsPlugin(),
-      new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin({
         mangle: {
           keep_fnames: true
