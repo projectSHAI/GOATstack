@@ -26,13 +26,6 @@ $ [sudo] npm start
 * Expanded the GOAT universe (client-side demo)
   * explore the depths of the ocean and the vastness of space to learn more about the stack
 
-
-## CURRENT ISSUES!
-
-* Production AoT compilation
-  * angular compiler-cli 2.4.x not resolving metadata from .d.ts file (mongodb)
-  * GOAT-stack will use angular 2.3.1 until further notice
-
     
 
 # Documentation Wiki
