@@ -129,3 +129,25 @@ button.zoom-out span.md-button-wrapper {
 * End Reset browser default
 --------------------------------------------------------------------------
 */
+
+/*
+--------------------------------------------------------------------------
+* Doc formats
+--------------------------------------------------------------------------
+*/
+.docs {
+    font-size: 24x;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    border: 10px solid black;
+    padding: 10px;
+    max-width: 50%;
+    margin: 0 auto;
+}
+.doc-title {
+    font-size: 32px;
+    text-align: center;
+}
+.doc-title {
+    font-size: 24px;
+}

@@ -1,39 +1,60 @@
 <blue-whale></blue-whale>
-
 <section class="school1">
-	<object class ="fish1 large" data="/public/assets/fish1.svg" type="image/svg+xml">
-  		<img src="/public/assets/fish1.svg" />
-	</object>
-	<object class ="fish1 small" data="/public/assets/fish1.svg" type="image/svg+xml">
-  		<img src="/public/assets/fish1.svg" />
-	</object>
-	<object class ="fish1 small" data="/public/assets/fish1.svg" type="image/svg+xml">
-  		<img src="/public/assets/fish1.svg" />
-	</object>
-	<object class ="fish1 small" data="/public/assets/fish1.svg" type="image/svg+xml">
-  		<img src="/public/assets/fish1.svg" />
-	</object>			
+    <object class="fish1 large" data="/public/assets/fish1.svg" type="image/svg+xml">
+        <img src="/public/assets/fish1.svg" />
+    </object>
+    <object class="fish1 small" data="/public/assets/fish1.svg" type="image/svg+xml">
+        <img src="/public/assets/fish1.svg" />
+    </object>
+    <object class="fish1 small" data="/public/assets/fish1.svg" type="image/svg+xml">
+        <img src="/public/assets/fish1.svg" />
+    </object>
+    <object class="fish1 small" data="/public/assets/fish1.svg" type="image/svg+xml">
+        <img src="/public/assets/fish1.svg" />
+    </object>
 </section>
-
 <section class="school2">
-	<object class ="fish2 large" data="/public/assets/fish2.svg" type="image/svg+xml">
-  		<img src="/public/assets/fish2.svg" />
-	</object>
-	<object class ="fish2 small" data="/public/assets/fish2.svg" type="image/svg+xml">
-  		<img src="/public/assets/fish2.svg" />
-	</object>
-	<object class ="fish2 small" data="/public/assets/fish2.svg" type="image/svg+xml">
-  		<img src="/public/assets/fish2.svg" />
-	</object>
-	<object class ="fish2 small" data="/public/assets/fish2.svg" type="image/svg+xml">
-  		<img src="/public/assets/fish2.svg" />
-	</object>			
+    <object class="fish2 large" data="/public/assets/fish2.svg" type="image/svg+xml">
+        <img src="/public/assets/fish2.svg" />
+    </object>
+    <object class="fish2 small" data="/public/assets/fish2.svg" type="image/svg+xml">
+        <img src="/public/assets/fish2.svg" />
+    </object>
+    <object class="fish2 small" data="/public/assets/fish2.svg" type="image/svg+xml">
+        <img src="/public/assets/fish2.svg" />
+    </object>
+    <object class="fish2 small" data="/public/assets/fish2.svg" type="image/svg+xml">
+        <img src="/public/assets/fish2.svg" />
+    </object>
 </section>
-
-<object class ="turtle" data="/public/assets/seaturtle.svg" type="image/svg+xml">
-  <img src="/public/assets/seaturtle.svg" />
+<object class="turtle" data="/public/assets/seaturtle.svg" type="image/svg+xml">
+    <img src="/public/assets/seaturtle.svg" />
 </object>
-
-<object class ="shark" data="/public/assets/shark.svg" type="image/svg+xml">
-  <img src="/public/assets/shark.svg" />
+<object class="shark" data="/public/assets/shark.svg" type="image/svg+xml">
+    <img src="/public/assets/shark.svg" />
 </object>
+<section id="problem-solution">
+    <div id="problem" class="docs">
+        <h1 class="doc-title">Problem</h1>
+        <p class="doc-block">
+            1. Initial page load speed</p>
+        <p class="doc-block">40% of users leave a webpage that takes more than 3 seconds to load</p>
+        <p class="doc-block">2. Scaleable resources</p>
+        <p class="doc-block">If an App's resources cannot scale with real time user traffic it will crash during traffic spikes, and be wasteful when there is low user activity</p>
+        <p class="doc-block">3. Scaleable Architecture</p>
+        <p class="doc-block">If a program's dataflow is not structured conicously a once easily managed program made of 10,000 lines of code becomes a hinderance once it reaches 100,000 lines of code. Data flows become unruley and nested, and unintended dependencies occur in the application tree. This makes maintainability a mess, and refactoring a nightmare.</p>
+        <p class="doc-block">4. User to User real time interaction</p>
+        <p class="doc-block">User interaction is a key success factor in regards to having a community adopt, and grow with your projet. The more seamless user interaction is with your website, and with each other, the better chance the project has at success.</p>
+    </div>
+    <div id="solution" class="docs">
+        <h1 class="doc-title">Solution</h1>
+        <p class="doc-block">1. Initial page load speed</p>
+        <p class="doc-block">The GOAT stack capitilizes on Angular2's Ahead-of-Time server side rendering. Having the server do the heavy lifting at build time allows us to serve pre-rendered views to the client. This dramatically decreases initial load time.</p>
+        <p class="doc-block">2. Scaleable resources</p>
+        <p class="doc-block">MongoDB fits the developer paradigm very well. with proper indexing and schema design daabase response times will be linear, or consant. Also, the capability of sharding removes the bottle-neck of datasize.</p>
+        <p class="doc-block">3. Scaleable Architecture</p>
+        <p class="doc-block">Immmutable makes app data predictable at any scale, and redux makes dataflow manageble by eliminating many-to-many relationships, this completely removes tangled nests of components, making them more modular. Redux places the entire app's state tree in one focal area which is the store.</p>
+        <p class="doc-block">4. User to User real time interaction</p>
+        <p class="doc-block">Angular2's two way data binding and Socket.io is an effective combination. Two way data binding allows real time interaction between website and client without the need to reload pages. Socket.io takes this one step further and automatically updates changes on every connected device in real time without the need to refresh the browser. This feature can be narrowed or widened.</p>
+    </div>
+</section>

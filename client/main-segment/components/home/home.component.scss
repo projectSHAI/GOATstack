@@ -58,11 +58,13 @@ the-ocean {
 .epipelagic-cap,
 .epipelagic-cap-overlay {
     display: block;
+    margin-bottom: -1px;
 }
 
 .epipelagic-water-overlay{
     height: 100%;
     width: 100%;
+    pointer-events: none;
 }
 
 .epipelagic-cap-overlay,

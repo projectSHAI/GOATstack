@@ -2,3 +2,15 @@
 <md-input *ngIf="showInput" id="testWonder" [(ngModel)]="dream" (keyup.enter)="wonderActions.saveWonder(dream)" placeholder="Do you wonder?" class="dreams-input" dividerColor="accent"></md-input>
 <button class="zoom-out" md-fab color="primary" *ngIf="showInput" (click)="zoomDirective.zoomOut()">&#9660;</button>
 <img id="island" [src]="islandSvg" />
+
+<section *ngIf="showInput" id="quickstart" class="docs">
+	<h1 class="doc-title">Quick Start</h1> 
+
+
+	<p class="doc-block">$ [sudo] npm install -g yo generator-goat-stack</p>
+	<p class="doc-block">$ mkdir [dirName] && cd [dirName]</p>
+	<p class="doc-block">$ [sudo] yo goat-stack [name?]</p>
+	<p class="doc-block">$ # [sudo] mongod in another terminal!</p>
+	<p class="doc-block">$ [sudo] npm start</p>
+
+</section>

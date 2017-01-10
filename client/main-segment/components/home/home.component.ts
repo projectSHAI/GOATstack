@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 
 export class HomeComponent { 
 
-	@ViewChild('oceanCap') oceanCap: ElementRef;
+	@ViewChild('oceanCapOverlay') oceanCapOverlay: ElementRef;
 	@select('timeOfDay') toda$: Observable<any>;
 	@select('zoom') zoom$: Observable<any>;
 
@@ -22,7 +22,7 @@ export class HomeComponent {
 	ngOnInit() {
 		this.toda$.subscribe((x) => {
 			if(x.get('nightTime') === true) {
-				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-night.svg';
+				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-night2.svg';
 				this.nightTime               = true;
 			} else {
 				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-day.svg';
@@ -33,14 +33,14 @@ export class HomeComponent {
 
 		this.zoom$.subscribe((x) => {
 			if(x.get('showHide') === false) {
-				this.overlayMargin = this.oceanCap.nativeElement.offsetHeight + 'px';
+				this.overlayMargin = this.oceanCapOverlay.nativeElement.offsetHeight + 'px';
 			}
 		});
 	}
 
 	@HostListener('window:resize', ['$event'])
 	onResize(event) {
-		this.overlayMargin = this.oceanCap.nativeElement.offsetHeight + 'px';
+		this.overlayMargin = this.oceanCapOverlay.nativeElement.offsetHeight + 'px';
 	}
 
 }

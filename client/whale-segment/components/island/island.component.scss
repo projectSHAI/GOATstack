@@ -24,6 +24,24 @@ md-input#testWonder {
     height: 15%;
     transform: scale(0.2857142857142857);
 }
+
+#quickstart {
+    position: absolute;
+    top:0;
+    left: 33%;
+    font-size: 12px;
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 10px;
+}
+#quickstart h1 {
+    font-size: 15px;
+}
+#quickstart p {
+    font-size: 4px;
+}
+
+
 @media (max-width: 1750px) {
     md-input#testWonder {
         font-size: 14px;

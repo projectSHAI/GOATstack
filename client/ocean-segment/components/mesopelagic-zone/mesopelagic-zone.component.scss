@@ -1,60 +1,86 @@
 object {
-	position: absolute;
+    position: absolute;
 }
+
+#reqs {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50vh;
+}
+
+#reqs li {
+    list-style: circle;
+}
+
 .small {
-	width: 3%;
+    width: 3%;
 }
+
 .medium {
-	width: 5%;
+    width: 5%;
 }
+
 .large {
-	width: 7%;
+    width: 7%;
 }
+
 .octo-chibi:nth-of-type(1) {
-	left: 10%;
-	top: 10vh;
+    left: 10%;
+    top: 10vh;
 }
+
 .octo-chibi:nth-of-type(2) {
-	left: 25%;
-	top: 50vh;
+    left: 25%;
+    top: 50vh;
 }
+
 .octo-chibi:nth-of-type(3) {
-	left: 80%;
-	top: 27vh;
+    left: 80%;
+    top: 27vh;
 }
+
 .octo-chibi:nth-of-type(4) {
-	left: 44%;
-	top: 75vh;
+    left: 44%;
+    top: 75vh;
 }
+
 .octo-chibi:nth-of-type(5) {
-	left: 13%;
-	top: 105vh;
+    left: 13%;
+    top: 105vh;
 }
+
 .octo-chibi:nth-of-type(6) {
-	left: 56%;
-	top: 225vh;
+    left: 56%;
+    top: 225vh;
 }
+
 .octo-chibi:nth-of-type(7) {
-	left: 75%;
-	top: 285vh;
+    left: 75%;
+    top: 285vh;
 }
+
 .octo-chibi:nth-of-type(8) {
-	left: 33%;
-	top: 325vh;
+    left: 33%;
+    top: 325vh;
 }
+
 .octo-chibi:nth-of-type(9) {
-	left: 62%;
-	top: 350vh;
+    left: 62%;
+    top: 350vh;
 }
+
 .octo-chibi:nth-of-type(10) {
-	left: 79%;
-	top: 150vh;
+    left: 79%;
+    top: 150vh;
 }
+
 .octo-chibi:nth-of-type(11) {
-	left: 66%;
-	top: 180vh;
+    left: 66%;
+    top: 180vh;
 }
+
 .octo-chibi:nth-of-type(12) {
-	left: 4%;
-	top: 73vh;
+    left: 4%;
+    top: 73vh;
 }

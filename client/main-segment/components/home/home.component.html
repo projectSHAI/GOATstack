@@ -1,10 +1,10 @@
 <the-sky></the-sky>
 
 <section id="ocean-wrapper" zoomNotScroll>
-	<img #oceanCap class="epipelagic-cap" src="/public/assets/epipelagic-cap.svg" />
+	<img class="epipelagic-cap" src="/public/assets/epipelagic-cap.svg" />
 
 	<the-ocean #ocean></the-ocean>
 
-	<img class="epipelagic-cap-overlay" [src]="epipelagicCapOverlaySvg" />
+	<img #oceanCapOverlay class="epipelagic-cap-overlay" [src]="epipelagicCapOverlaySvg" />
 	<div class="epipelagic-water-overlay" [ngClass]="{'nightTime': nightTime, 'dayTime': !nightTime }" [style.backgroundColor]="epipelagicColor" [style.marginTop]="overlayMargin"></div>
 </section>
