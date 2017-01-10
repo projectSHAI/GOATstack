@@ -26,14 +26,13 @@ $ [sudo] npm start
 * Expanded the GOAT universe (client-side demo)
   * explore the depths of the ocean and the vastness of space to learn more about the stack
 
-    
 
 # Documentation Wiki
 
   * [Home](https://github.com/projectSHAI/GOAT-stack/wiki)
   * [FAQ](https://github.com/projectSHAI/GOAT-stack/wiki/FAQ)
   * [Dev-Tools](https://github.com/projectSHAI/GOAT-stack/wiki/Dev-Tools)
-  * [NPM Scripts](https://github.com/projectSHAI/GOAT-stack/wiki/Gulp-Tasks)
+  * [NPM Scripts](https://github.com/projectSHAI/GOAT-stack/wiki/NPM-Scripts)
   * [Client Side Docs](https://github.com/projectSHAI/GOAT-stack/wiki/Client-Side-Docs)
   * [Server Side Docs](https://github.com/projectSHAI/GOAT-stack/wiki/Server-Side-Docs)
   * [End to End Testing](https://github.com/projectSHAI/GOAT-stack/wiki/End-to-End-Testing)
