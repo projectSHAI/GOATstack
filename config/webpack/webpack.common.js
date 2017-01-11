@@ -34,7 +34,7 @@ module.exports = function(options) {
         },
         {
           test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot|ico)$/,
-          loader: 'file-loader'
+          loader: 'file-loader?name=assets/[name].[ext]'
         },
         {
           test: /\.scss/,

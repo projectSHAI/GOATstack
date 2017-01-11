@@ -58,8 +58,12 @@ const generalConfig = {
   },
 
   stats: {
-    dev: {},
-    prod: {},
+    dev: {
+      warnings: false
+    },
+    prod: {
+      warnings: false
+    },
     test: 'none'
   }
 };
@@ -93,14 +97,15 @@ module.exports = function(options) {
       }),
       new CopyWebpackPlugin([
         { 
-          from: helpers.root('public'), 
-          to: helpers.root('dist/public') 
-        }, { 
           from: helpers.root('package.json'), 
           to: helpers.root('dist'),
           transform: (content, path) => {
             return content.toString().replace(/npm run dev/, 'node index');
           }
+        },
+        {
+          from: helpers.root('public'),
+          to: helpers.root('dist/public')
         }
       ])
     ]
