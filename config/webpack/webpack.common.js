@@ -11,11 +11,19 @@ module.exports = function(options) {
     entry: {
       'polyfills': './client/polyfills.ts',
       'vendor': './client/vendor.ts',
-      'main': prod ? './client/main-aot.ts' : './client/main.ts'
+      'main': './client/main.ts'
     },
 
     module: {
       rules: [
+        {
+          test: /component\.ts/,
+          loader: 'string-replace-loader',
+          query: {
+            search: '.css',
+            replace: '.scss'
+          }
+        },
         {
           test: /\.ts$/,
           use: ['awesome-typescript-loader', 'angular2-template-loader']
@@ -29,23 +37,23 @@ module.exports = function(options) {
           loader: 'file-loader'
         },
         {
-          test: /\.css$/,
-          exclude: helpers.root('client'),
+          test: /\.scss/,
+          include: helpers.root('client/styles.scss'),
           loader: ExtractTextPlugin.extract({ 
             fallbackLoader: 'style-loader', 
-            loader: 'css-loader?sourceMap'
+            loader: 'css-loader?sourceMap!sass-loader?sourceMap'
           })
         },
         {
-          test: /\.css$/,
-          exclude: helpers.root('public'),
-          loader: 'raw-loader'
-        }
+          test: /\.scss/,
+          exclude: helpers.root('client/styles.scss'),
+          loader: 'to-string-loader!css-loader?sourceMap!sass-loader?sourceMap'
+        },
       ]
     },
 
     resolve: {
-      extensions: ['.ts', '.js']
+      extensions: ['.ts', '.js', '.scss']
     },
 
     plugins: [
@@ -59,30 +67,16 @@ module.exports = function(options) {
     ]
   };
 
-  if (!prod) {
-    config.module.rules[3] = {
-      test: /\.scss/,
-      exclude: helpers.root('client'),
-      loader: ExtractTextPlugin.extract({ 
-        fallbackLoader: 'style-loader', 
-        loader: 'css-loader?sourceMap!sass-loader?sourceMap'
-      })
+  if (prod) {
+    config.entry.main = './client/main-aot.ts'; 
+
+    config.module.rules[5] = {
+      test: /\.css$/,
+      exclude: helpers.root('client/styles.css'),
+      loader: 'raw-loader'
     };
 
-    config.module.rules[4] = {
-      test: /\.scss/,
-      exclude: helpers.root('public'),
-      loader: 'to-string-loader!css-loader?sourceMap!sass-loader?sourceMap'
-    };
-
-    config.module.rules.splice(0,0, {
-      test: /component\.ts/,
-      loader: 'string-replace-loader',
-      query: {
-        search: '.css',
-        replace: '.scss'
-      }
-    });
+    config.module.rules.splice(0,1);
   }
 
   if (options.env === 'karma') {

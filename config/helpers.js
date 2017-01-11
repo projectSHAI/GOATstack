@@ -19,7 +19,6 @@ var client = [
 var all = client.concat([
 	'dist/**',
 	'!dist',
-	'public/*.css',
 	'dist/.git/**'
 ]);
 

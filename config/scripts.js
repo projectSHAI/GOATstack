@@ -37,7 +37,7 @@ exports.cmd = cmd;
 
 // Script Commands
 var ngc = `${cmd.ngc} -p tsconfig-aot.json --exclude client/**/**/**/*.spec.ts`;
-var nodeSass = `${cmd.concurrently} --raw "${cmd.node_sass} -q client -o client" "${cmd.node_sass} -q public -o public"`;
+var nodeSass = `${cmd.node_sass} -q client -o client`;
 var server_test = `node config/test-libs/server.test && ${cmd.karma} start config/test-libs/karma.config.js`;
 var protractor = `${cmd.concurrently} --raw \"node dist -s\" \"${cmd.protractor} config/test-libs/protractor.config.js\" --kill-others --success first`;
 var e2e = `${cmd.webdriverManager} update && ${cmd.webpack} --hide-modules true --env test && ${cmd.webpack} --hide-modules true --env server:test && ${protractor}`;
@@ -76,7 +76,7 @@ function stopLoader() {
 // Script Functions
 function prepare(dev) {
 	helpers.cleanup();
-	return dev ? execSync(`${cmd.node_sass} -q public -o public`) : execSync(nodeSass);
+	return dev ? null : execSync(nodeSass);
 };
 
 /*
@@ -136,7 +136,7 @@ exports.startDev = function startDev() {
 	var waiting = false;
 
 	// spawn a new process to start building
-	const serv = spawn(`${cmd.webpackDevServer} --inline --port 8080 --env dev`, {shell: true});
+	const serv = spawn(`${cmd.webpackDevServer} --inline --env dev`, {shell: true});
 
 	serv.stdout.on('data', (data) => {
 		if (!config.show_console_detail) {
@@ -146,7 +146,7 @@ exports.startDev = function startDev() {
 				if (!waiting) {
 					// Remember when the server is waiting or changes
 					waiting = true;
-					console.log(chalk.green.bold('\tDevelopment server serving on') + chalk.yellow.bold('\thttp://localhost:8080'));
+					console.log(chalk.green.bold('\tDevelopment server serving on') + chalk.yellow.bold('\thttp://localhost:1701'));
 					console.log(chalk.magenta.bold('\tProxying to Express Server on') + chalk.yellow.bold('\thttp://localhost:5000\n\n'));
 				} else {
 					// Reposition the cursor so the next print will be aligned

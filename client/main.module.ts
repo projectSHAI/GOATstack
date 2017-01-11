@@ -13,6 +13,7 @@ Main component which gets bootstrapped
 //Named AppComponent in compliance with Angular best practices
 */
 import { AppComponent }                              from './main-segment/components/app/app.component';
+require('./styles');
 
 /*
 --------------------------------------------------
