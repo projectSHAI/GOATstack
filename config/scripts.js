@@ -317,22 +317,22 @@ exports.herokuPrompt = function herokuPrompt() {
 
 	            		const serv = spawn(command.join(' && '), {shell: true});
 
-	            		serv.stdout.on('data', (data) => {
-	            			if (config.show_console_detail) {
+
+	            		if (config.show_console_detail) {
+		            		serv.stdout.on('data', (data) => {
+	            				process.stdout.clearLine();
+	            				process.stdout.moveCursor(0,-1);
+	            				process.stdout.clearLine();				
+	            				console.log(`${data}`);		 
+		            		});
+		            		serv.stderr.on('data', (data) => {
 	            				process.stdout.clearLine();
 	            				process.stdout.moveCursor(0,-1);
 	            				process.stdout.clearLine();				
 	            				console.log(`${data}`);
-	            			}
-	            		});
-	            		serv.stderr.on('data', (data) => {
-	            			if (config.show_console_detail) {
-	            				process.stdout.clearLine();
-	            				process.stdout.moveCursor(0,-1);
-	            				process.stdout.clearLine();				
-	            				console.log(`${data}`);
-	            			}
-	            		});
+		            		});
+	            		}
+
 	            		serv.on('close', (code) => {
 	            			stopLoader();
 	            			helpers.cleanup('client');
@@ -400,22 +400,21 @@ exports.herokuPrompt = function herokuPrompt() {
 
 	            			const serv = spawn(command.join(' && '), {shell: true});
 
-	            			serv.stdout.on('data', (data) => {
-	            				if (config.show_console_detail) {
-	            					process.stdout.clearLine();
-	            					process.stdout.moveCursor(0,-1);
-	            					process.stdout.clearLine();				
-	            					console.log(`${data}`);
-	            				}
-	            			});
-	            			serv.stderr.on('data', (data) => {
-	            				if (config.show_console_detail) {
-	            					process.stdout.clearLine();
-	            					process.stdout.moveCursor(0,-1);
-	            					process.stdout.clearLine();				
-	            					console.log(`${data}`);
-	            				}
-	            			});
+		            		if (config.show_console_detail) {
+			            		serv.stdout.on('data', (data) => {
+		            				process.stdout.clearLine();
+		            				process.stdout.moveCursor(0,-1);
+		            				process.stdout.clearLine();				
+		            				console.log(`${data}`);			 
+			            		});
+			            		serv.stderr.on('data', (data) => {
+		            				process.stdout.clearLine();
+		            				process.stdout.moveCursor(0,-1);
+		            				process.stdout.clearLine();				
+		            				console.log(`${data}`);
+			            		});
+		            		}
+
 	            			serv.on('close', (code) => {
 	            				stopLoader();
 	            				helpers.cleanup('client');

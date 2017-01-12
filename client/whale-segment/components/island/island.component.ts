@@ -44,4 +44,8 @@ export class IslandComponent implements OnInit {
     });
   }
 
+  submitWonder(dream: string) {
+    this.wonderActions.saveWonder(dream);
+    return this.dream = '';
+  }
 }
