@@ -22,7 +22,7 @@ const generalConfig = {
   output: {
     dev: {
       path: helpers.root('dist/client'),
-      publicPath: 'http://localhost:8080/',
+      publicPath: 'http://localhost:1701/',
       filename: '[name].js',
       chunkFilename: '[id].chunk.js'
     },
@@ -41,6 +41,10 @@ const generalConfig = {
 
   devServer: {
     dev: {
+      port: 1701,
+      historyApiFallback: {
+        index: 'http://localhost:1701/index.html'
+      },
       proxy: {
         '*': 'http://localhost:5000'
       },
@@ -54,8 +58,12 @@ const generalConfig = {
   },
 
   stats: {
-    dev: {},
-    prod: {},
+    dev: {
+      warnings: false
+    },
+    prod: {
+      warnings: false
+    },
     test: 'none'
   }
 };
@@ -89,18 +97,17 @@ module.exports = function(options) {
       }),
       new CopyWebpackPlugin([
         { 
-          from: helpers.root('public'), 
-          to: helpers.root('dist/public') 
-        }, { 
           from: helpers.root('package.json'), 
           to: helpers.root('dist'),
           transform: (content, path) => {
             return content.toString().replace(/npm run dev/, 'node index');
           }
+        },
+        {
+          from: helpers.root('public'),
+          to: helpers.root('dist/public')
         }
-      ], { 
-        ignore: ['*.scss'] 
-      })
+      ])
     ]
   });
 }
