@@ -81,12 +81,13 @@ module.exports = function(options) {
 
   if (options.env === 'karma') {
     delete config.entry;
+    // delete config.entry.polyfills;
     delete config.plugins;
     config.devtool = 'inline-source-map';
     config.stats = { warnings: false };
 
-    config.module.rules[2].loader = 'null-loader';
     config.module.rules[3].loader = 'null-loader';
+    config.module.rules[4].loader = 'null-loader';
   }
 
   return config;
