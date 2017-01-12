@@ -29,18 +29,26 @@ md-input#testWonder {
     position: absolute;
     top:0;
     left: 33%;
-    font-size: 12px;
+    font-size: 10px;
     border-radius: 10px;
     border: 2px solid black;
-    padding: 10px;
+    padding: 5px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 #quickstart h1 {
-    font-size: 15px;
+    font-size: 10px;
+    width: 100%;
+    margin: 0;
+    border: none;
 }
-#quickstart p {
-    font-size: 4px;
+#quickstart p.doc-block {
+    font-size: 3px;
+    padding: 2px;
 }
-
+.code {
+    width: 100%;
+}
 
 @media (max-width: 1750px) {
     md-input#testWonder {

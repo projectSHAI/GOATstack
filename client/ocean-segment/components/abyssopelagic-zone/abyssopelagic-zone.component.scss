@@ -1,14 +1,24 @@
+object,
 #deploy {
-	position: absolute;
-	top: 50vh;
-	left: 0;
-	right: 0;
+    position: absolute;
 }
+
+#deploy {
+    top: 50vh;
+    left: 0;
+    right: 0;
+}
+
+.angler {
+    left: 27%;
+    width: 15%;
+    top: 239vh;
+}
+
 .davy-jones-locker {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-	width: 25%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 25%;
 }
