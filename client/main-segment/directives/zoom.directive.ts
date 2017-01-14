@@ -37,9 +37,13 @@ export class ZoomDirective {
     }
 
     ngOnInit() {
-        this.landscapeTl.to(this.oceanNode, 1, {scale: 1, x: 0, y: -this.windowHeight / 2, marginBottom: this.windowHeight / 2}).to(this.homeNode, 0, {height: 'auto'});
+        this.landscapeTl
+            .to(this.oceanNode, 1, {scale: 1, x: 0, y: -this.windowHeight / 2, marginBottom: this.windowHeight / 2})
+            .to(this.homeNode, 0, {height: 'auto'});
 
-        this.portraitTl.to(this.oceanNode, 1, {scale: 1, x: 0, y: -this.windowHeight / 2, marginBottom: this.windowHeight / 2}).to(this.homeNode, 0, {height: 'auto'});
+        this.portraitTl
+            .to(this.oceanNode, 1, {scale: 1, x: 0, y: -this.windowHeight / 2, marginBottom: this.windowHeight / 2})
+            .to(this.homeNode, 0, {height: 'auto'});
     }
   
     @HostListener('window:scroll', ['$event'])
@@ -84,7 +88,6 @@ export class ZoomDirective {
     }
 
     zoomOut() {
-        console.log(this.homeNode);
         if(this.aspectRatio > 1) {
             this.landscapeTl.play(0);
             this.zoomActions.updateShowHide();
