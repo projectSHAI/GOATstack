@@ -38,12 +38,12 @@ export class ZoomDirective {
 
     ngOnInit() {
         this.landscapeTl
-            .to(this.oceanNode, 1, {scale: 1, x: 0, y: -this.windowHeight / 2, marginBottom: this.windowHeight / 2})
-            .to(this.homeNode, 0, {height: 'auto'});
+            .to(this.oceanNode, 1, {scale: 1, x: 0, y: -this.windowHeight / 2, marginBottom: this.windowHeight / 2, z: 0.01})
+            .to(this.homeNode, 1, {height: 'auto'});
 
         this.portraitTl
-            .to(this.oceanNode, 1, {scale: 1, x: 0, y: -this.windowHeight / 2, marginBottom: this.windowHeight / 2})
-            .to(this.homeNode, 0, {height: 'auto'});
+            .to(this.oceanNode, 1, {scale: 1, x: 0, y: -this.windowHeight / 2, marginBottom: this.windowHeight / 2, z: 0.01})
+            .to(this.homeNode, 1, {height: 'auto'});
     }
   
     @HostListener('window:scroll', ['$event'])
