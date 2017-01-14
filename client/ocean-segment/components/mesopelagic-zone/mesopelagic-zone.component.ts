@@ -14,7 +14,7 @@ export class MesopelagicZoneComponent implements OnInit{
 	octoOrange: string = 'public/assets/octo-chibi-orange.svg';
 	octoPurple: string = 'public/assets/octo-chibi-purple.svg';
 	octoRed: string = 'public/assets/octo-chibi-red.svg';
-	offset: number = 400;
+	offset: number = 1080;
 
 	images: Array<string> = [
 		this.octoBlue,

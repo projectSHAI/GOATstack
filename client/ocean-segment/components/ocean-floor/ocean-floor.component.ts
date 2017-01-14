@@ -15,7 +15,7 @@ export class OceanFloorComponent implements OnInit{
 	@select('zoom') zoom$: Observable<any>;
 
 	lockerMargin: number;
-	offset: number = 400;
+	offset: number = 1080;
 
 	images: Array<string> = [
 		'public/assets/ocean-floor.svg',

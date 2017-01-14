@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 
 export class EpipelagicZoneComponent { 
 
-	offset:number = 400;
+	offset:number = 1080;
 
 	images1: Array<string> = [
 		'public/assets/fish1.svg',
