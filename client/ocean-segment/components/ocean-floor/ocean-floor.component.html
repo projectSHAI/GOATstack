@@ -1,2 +1,2 @@
-<img #floor class="ocean-floor" [lazyLoad]="images[0]" [offset]="offset">
-<img class="davy-jones-locker" [lazyLoad]="images[1]" [offset]="offset">
+<img #floor class="ocean-floor" src="{{images[0]}}">
+<img class="davy-jones-locker" [style.marginBottom.px]="lockerMargin" [lazyLoad]="images[1]" [offset]="offset">

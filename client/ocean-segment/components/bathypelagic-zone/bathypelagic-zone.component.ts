@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class BathypelagicZoneComponent implements OnInit{ 
 
-	offset: number = 400;
+	offset: number = 1080;
 
 	images: Array<string> = [
 		'public/assets/squid2-pink.svg',
