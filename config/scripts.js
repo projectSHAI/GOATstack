@@ -136,7 +136,7 @@ exports.startDev = function startDev() {
 	var waiting = false;
 
 	// spawn a new process to start building
-	const serv = spawn(`${cmd.webpackDevServer} --inline --env dev`, {shell: true});
+	const serv = spawn(`${cmd.webpack} --env server:dev --watch `, {shell: true});
 
 	serv.stdout.on('data', (data) => {
 		if (!config.show_console_detail) {

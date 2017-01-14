@@ -49,7 +49,7 @@ module.exports = function(options) {
         }
       }),
       new WebpackShellPlugin({
-        onBuildEnd:[`${cmd.nodemon} dist --watch dist`]
+        onBuildEnd:[`${cmd.webpackDevServer} --inline --env dev`]
       })
     ] : options.env === 'test' ? [
       // Test Plugins
