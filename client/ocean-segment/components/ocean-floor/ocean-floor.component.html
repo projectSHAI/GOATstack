@@ -1,4 +1,2 @@
-<!-- <img class="ocean-floor" [src]="default" [lazyLoad]="seabed" [offset]="offset" /> -->
-<!-- <img class="davy-jones-locker" [src]="default" [lazyLoad]="locker" [offset]="offset" /> -->
-
-<img *ngFor="let image of images; let i=index" [class]="styles[i]" [lazyLoad]="image" [offset]="offset">
+<img #floor class="ocean-floor" [lazyLoad]="images[0]" [offset]="offset">
+<img class="davy-jones-locker" [lazyLoad]="images[1]" [offset]="offset">
