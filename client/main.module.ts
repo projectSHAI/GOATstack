@@ -27,6 +27,8 @@ import { BrowserModule }                             from '@angular/platform-bro
 import { HttpModule, JsonpModule }                   from '@angular/http';
 import { MaterialModule }                            from '@angular/material';
 import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
+import { LazyLoadImageModule }                       from 'ng2-lazyload-image';
+
 
 /*
 --------------------------------------------------
@@ -149,36 +151,37 @@ NgModule
 @NgModule({
   //imports: this object imports helper modules which are children in the module tree
   imports: [
-    NgReduxModule,
-    MaterialModule.forRoot(),
     BrowserModule,
+    LazyLoadImageModule,
     HttpModule,
     FormsModule,
     JsonpModule,
+    NgReduxModule,
+    MaterialModule.forRoot(),
     routing
   ],
   //declarations: this object imports all child components which are used in this module
   declarations: [
-    Four0FourComponent,
-    UserProfileComponent,
-    FooterComponent,
-    SignInOutComponent,
-    HeaderComponent,
-    HomeComponent,
     AppComponent,
+    HeaderComponent,
     NavBarComponent,
+    FooterComponent,
+    HomeComponent,
     SkyComponent,
-    StratosphereComponent, 
+    CloudGeneratorComponent,
+    IslandComponent,
+    MountainGoatComponent, 
+    WhaleComponent,
     OceanComponent,
+    SignInOutComponent,
+    StratosphereComponent, 
     AbyssopelagicZoneComponent,
     BathypelagicZoneComponent,
     EpipelagicZoneComponent,
     MesopelagicZoneComponent,
-    OceanFloorComponent,  
-    WhaleComponent,
-    IslandComponent,
-    MountainGoatComponent,
-    CloudGeneratorComponent,
+    OceanFloorComponent,
+    Four0FourComponent,
+    UserProfileComponent,
     NgForHookPipe,
     ZoomDirective,
     // DO NOT REMOVE: template declarations

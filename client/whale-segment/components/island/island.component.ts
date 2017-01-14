@@ -35,10 +35,10 @@ export class IslandComponent implements OnInit {
     this.zoom$.subscribe(x => {
       this.showInput = x.get('showHide');
       if(this.showInput === true) {
-        this.el.nativeElement.style.pointerEvents = 'all';
+        // this.el.nativeElement.style.pointerEvents = 'all';
       }
       else {
-        this.el.nativeElement.style.pointerEvents = 'none';
+        // this.el.nativeElement.style.pointerEvents = 'none';
       }
 
     });

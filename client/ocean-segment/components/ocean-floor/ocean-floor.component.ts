@@ -15,6 +15,17 @@ export class OceanFloorComponent implements OnInit{
 	@select('zoom') zoom$: Observable<any>;
 
 	lockerMargin: number;
+	offset: number = 400;
+
+	images: Array<string> = [
+		'public/assets/ocean-floor.svg',
+		'public/assets/davy-jones-locker.svg'
+	];
+
+	styles: Array<string> = [
+		'ocean-floor',
+		'davy-jones-locker'
+	];
 
 	constructor() {}
 

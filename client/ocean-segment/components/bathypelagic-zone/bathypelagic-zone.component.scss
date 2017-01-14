@@ -1,6 +1,12 @@
-object {
-	position: absolute;
+img {
+	position:absolute;
+    transition: opacity 1s;
+    opacity: 0;
 }
+img.ng2-lazyloaded {
+    opacity: 1;
+}
+
 #install {
 	position: absolute;
 	left: 0;
@@ -20,23 +26,23 @@ object {
 .large-squid {
 	width: 35%;
 }
-object:nth-of-type(1) {
+.squid:nth-of-type(1) {
 	left: 14%;
 	top: 50vh;
 }
-object:nth-of-type(2) {
+.squid:nth-of-type(2) {
 	left: 56%;
 	top: 120vh;
 }
-object:nth-of-type(3) {
+.squid:nth-of-type(3) {
 	left: 10%;
 	top: 250vh;
 }
-object:nth-of-type(4) {
+.squid:nth-of-type(4) {
 	left: 60%;
 	top: 300vh;
 }
-object:nth-of-type(5) {
+.squid:nth-of-type(5) {
 	left: 28%;
 	top: 330vh;
 }
@@ -50,27 +56,27 @@ object:nth-of-type(5) {
 .large-jelly {
 	width: 8%;
 }
-object:nth-of-type(6) {
+.jellyfish:nth-of-type(6) {
 	left: 18%;
 	top: 70vh;
 }
-object:nth-of-type(7) {
+.jellyfish:nth-of-type(7) {
 	left: 80%;
 	top: 140vh;
 }
-object:nth-of-type(8) {
+.jellyfish:nth-of-type(8) {
 	left: 30%;
 	top: 200vh;
 }
-object:nth-of-type(9) {
+.jellyfish:nth-of-type(9) {
 	left: 55%;
 	top: 210vh;
 }
-object:nth-of-type(10) {
+.jellyfish:nth-of-type(10) {
 	left: 10%;
 	top: 325vh;
 }
-object:nth-of-type(11) {
+.jellyfish:nth-of-type(11) {
 	left: 75%;
 	top: 350vh;
 }

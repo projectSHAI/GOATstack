@@ -1,6 +1,14 @@
-object,
 #deploy {
     position: absolute;
+}
+
+img {
+	position:absolute;
+    transition: opacity 1s;
+    opacity: 0;
+}
+img.ng2-lazyloaded {
+    opacity: 1;
 }
 
 #deploy {

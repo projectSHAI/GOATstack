@@ -2,6 +2,14 @@ object {
     position: absolute;
 }
 
+img {
+    transition: opacity 1s;
+    opacity: 0;
+}
+img.ng2-lazyloaded {
+    opacity: 1;
+}
+
 #reqs {
     position: absolute;
     left: 0;
@@ -15,14 +23,17 @@ object {
 
 .small {
     width: 3%;
+    position: absolute;
 }
 
 .medium {
     width: 5%;
+    position: absolute;
 }
 
 .large {
     width: 7%;
+    position: absolute;
 }
 
 .octo-chibi:nth-of-type(1) {

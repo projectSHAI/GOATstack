@@ -24,7 +24,7 @@ const generalConfig = {
       path: helpers.root('dist/client'),
       publicPath: 'http://localhost:1701/',
       filename: '[name].js',
-      chunkFilename: '[id].chunk.js'
+      // chunkFilename: '[id].chunk.js'
     },
     prod: {
       path: helpers.root('dist/client'),
@@ -43,10 +43,10 @@ const generalConfig = {
     dev: {
       port: 1701,
       historyApiFallback: {
-        index: 'http://localhost:1701/index.html'
+        index: 'http://localhost:1701/index.html/'
       },
       proxy: {
-        '*': 'http://localhost:5000'
+        '*': 'http://localhost:5000/'
       },
       stats: {
         warnings: false,

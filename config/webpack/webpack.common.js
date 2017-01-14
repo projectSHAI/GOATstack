@@ -30,11 +30,18 @@ module.exports = function(options) {
         },
         {
           test: /\.html$/,
-          loader: 'html-loader'
+          loader: 'html-loader?-attrs',
+          // query: {
+          //   ignoreCustomFragments: [/\{\{.*?}}/],
+          //   attrs: []
+          // }
         },
         {
-          test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot|ico)$/,
-          loader: 'file-loader?name=assets/[name].[ext]'
+          test: /\.(png|svg|jpg)$/,
+          loader: 'file-loader',
+          query: {
+            'name': 'public/assets/[name].[ext]'
+          }
         },
         {
           test: /\.scss/,

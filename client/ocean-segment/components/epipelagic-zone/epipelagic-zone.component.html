@@ -1,38 +1,13 @@
 <blue-whale></blue-whale>
 <section class="school1">
-    <object class="fish1 large" data="/public/assets/fish1.svg" type="image/svg+xml">
-        <img src="/public/assets/fish1.svg" />
-    </object>
-    <object class="fish1 small" data="/public/assets/fish1.svg" type="image/svg+xml">
-        <img src="/public/assets/fish1.svg" />
-    </object>
-    <object class="fish1 small" data="/public/assets/fish1.svg" type="image/svg+xml">
-        <img src="/public/assets/fish1.svg" />
-    </object>
-    <object class="fish1 small" data="/public/assets/fish1.svg" type="image/svg+xml">
-        <img src="/public/assets/fish1.svg" />
-    </object>
+    <img *ngFor="let image of images1; let i=index" [class]="styles1[i]" [lazyLoad]="image" [offset]="offset">
 </section>
 <section class="school2">
-    <object class="fish2 large" data="/public/assets/fish2.svg" type="image/svg+xml">
-        <img src="/public/assets/fish2.svg" />
-    </object>
-    <object class="fish2 small" data="/public/assets/fish2.svg" type="image/svg+xml">
-        <img src="/public/assets/fish2.svg" />
-    </object>
-    <object class="fish2 small" data="/public/assets/fish2.svg" type="image/svg+xml">
-        <img src="/public/assets/fish2.svg" />
-    </object>
-    <object class="fish2 small" data="/public/assets/fish2.svg" type="image/svg+xml">
-        <img src="/public/assets/fish2.svg" />
-    </object>
+    <img *ngFor="let image of images2; let i=index" [class]="styles2[i]" [lazyLoad]="image" [offset]="offset">
 </section>
-<object class="turtle" data="/public/assets/seaturtle.svg" type="image/svg+xml">
-    <img src="/public/assets/seaturtle.svg" />
-</object>
-<object class="shark" data="/public/assets/shark.svg" type="image/svg+xml">
-    <img src="/public/assets/shark.svg" />
-</object>
+
+<img *ngFor="let image of images3; let i=index" [class]="styles3[i]" [lazyLoad]="image" [offset]="offset">
+
 <section id="problem-solution">
     <div id="problem" class="docs">
         <h1 class="doc-title">Problem</h1>

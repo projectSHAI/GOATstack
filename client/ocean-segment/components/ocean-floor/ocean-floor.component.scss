@@ -2,11 +2,12 @@ object {
 	position: absolute;
 }
 .davy-jones-locker {
-    bottom: 25px;
+	position: absolute;
+    bottom: 125px;
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 25%;
+    width: 20%;
 }
 .ocean-floor {
 	position: absolute;
@@ -16,4 +17,12 @@ object {
 	max-width: 100%;
 	width: 100%;
 	pointer-events: none;
+}
+
+img {
+    transition: opacity 1s;
+    opacity: 0;
+}
+img.ng2-lazyloaded {
+    opacity: 1;
 }
