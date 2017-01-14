@@ -1,5 +1,6 @@
 import { Directive, ElementRef, Input, Renderer, HostListener, OnInit } from '@angular/core';
 import { ZoomActions } from '../actions/zoom/zoom.actions';
+import { CloudActions } from '../../sky-segment/actions/cloud/cloud.actions';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
@@ -7,7 +8,7 @@ declare let Power0: any;
 
 @Directive({ 
 	selector: '[zoomNotScroll]',
-    providers: [ZoomActions] 
+    providers: [ZoomActions, CloudActions] 
 })
 
 export class ZoomDirective {
@@ -16,6 +17,7 @@ export class ZoomDirective {
     windowHeight: number = window.innerHeight;
     scrollTop: number = document.body.scrollTop;
     prevScrollTop: number = this.scrollTop;
+    pause: boolean = false;
 
     //expected screen ratio greater than 1 = landscape less than 1 equals portrait
     aspectRatio: number = this.windowWidth/this.windowHeight;
@@ -29,7 +31,8 @@ export class ZoomDirective {
     constructor(
         private el: ElementRef, 
         private renderer: Renderer,
-        private zoomActions: ZoomActions) { 
+        private zoomActions: ZoomActions,
+        private cloudActions: CloudActions) { 
         
     }
 
@@ -53,6 +56,15 @@ export class ZoomDirective {
         else if(this.scrollTop === 0 && this.aspectRatio < 1) {
             this.portraitTl.reverse(0);
             this.zoomActions.updateShowHide(); 
+        }
+
+        if(this.scrollTop <= 1080 && this.pause === true) {
+            this.cloudActions.resumeAnima();
+            this.pause = false;
+        }
+        if(this.scrollTop >= 1080 && this.pause === false) {
+            this.cloudActions.pauseAnima();
+            this.pause = true;
         }
 
     }

@@ -4,12 +4,13 @@ import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
 import { WonderActions } from '../../../sky-segment/actions/wonder/wonder.actions';
+import { CloudActions } from '../../../sky-segment/actions/cloud/cloud.actions';
 import { ZoomActions } from '../../../main-segment/actions/zoom/zoom.actions';
 import { ZoomDirective } from '../../../main-segment/directives/zoom.directive';
 
 @Component({
   selector: 'the-island',
-  providers: [WonderActions],
+  providers: [WonderActions, CloudActions],
   templateUrl: './island.component.html',
   styleUrls: ['./island.component.css']
 })
@@ -25,6 +26,7 @@ export class IslandComponent implements OnInit {
 
   constructor(
     public wonderActions: WonderActions,
+    public cloudActions: CloudActions,
     public zoomActions: ZoomActions,
     public zoomDirective: ZoomDirective,
     public el: ElementRef,

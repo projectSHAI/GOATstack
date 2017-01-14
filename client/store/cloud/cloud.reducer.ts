@@ -19,6 +19,16 @@ export function animaReducer(state: IAnimaArray = ANIMA_INITIAL_STATE, action: a
     case CloudActions.CHANGE_ANIMA:
       return state.size < 10 ? state.push(action.payload.timeline) :
         state.updateIn([action.payload.index], val => action.payload.timeline);
+    case CloudActions.PAUSE_ANIMA:
+      state.toArray().forEach((anima) => {
+        anima.paused(true);
+      });
+      return state;
+    case CloudActions.RESUME_ANIMA:
+      state.toArray().forEach((anima) => {
+        anima.paused(false);
+      });
+      return state;
     default:
       return state;
   }
