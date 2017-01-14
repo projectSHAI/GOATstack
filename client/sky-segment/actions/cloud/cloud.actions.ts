@@ -18,9 +18,19 @@ export class CloudActions {
 
   static CHANGE_STYLES: string = 'CHANGE_STYLES';
   static CHANGE_ANIMA: string = 'CHANGE_ANIMA';
+  static PAUSE_ANIMA: string = 'PAUSE_ANIMA';
+  static RESUME_ANIMA: string = 'RESUME_ANIMA';
 
   changeAnima(anima: any, index: number) {
     this.ngRedux.dispatch({ type: CloudActions.CHANGE_ANIMA, payload: { index: index, timeline: anima } });
+  }
+
+  pauseAnima() {
+    this.ngRedux.dispatch({ type: CloudActions.PAUSE_ANIMA });
+  }
+
+  resumeAnima() {
+    this.ngRedux.dispatch({ type: CloudActions.RESUME_ANIMA });
   }
 
   changeStyle(asset: string, index: number) {
