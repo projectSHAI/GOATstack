@@ -240,6 +240,7 @@ exports.startProd = function startProd() {
 				if (data.includes('Server Address:')) {
 					loader.stop();
 					process.stdout.clearLine();
+					helpers.cleanup('client');
 					console.log(chalk.green.bold('\n\tProduction serving on') + chalk.yellow.bold('\thttp://localhost:8443\n'));
 				} else if (!data.includes('MongoError')) {			
 					console.log(`${data}`);
