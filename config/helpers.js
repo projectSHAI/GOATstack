@@ -8,18 +8,13 @@ var client = [
 	'client/**/**/**/*.ngfactory.ts',
 	'client/**/**/**/*.ngstyle.ts',
 	'client/**/**/**/*.ngsummary.json',
-	'!client/**/**/*e2e-spec.js',
-	'client/client',
-	'client/node_modules',
-	'ngc-aot/**',
+	'ngc-aot',
 	'.com*/**',
 	'.org*/**'
 ];
 
 var all = client.concat([
-	'dist/**',
-	'!dist',
-	'dist/.git/**'
+	'dist',
 ]);
 
 var _root = path.resolve(process.cwd());

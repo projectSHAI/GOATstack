@@ -75,7 +75,7 @@ module.exports = function(options) {
 
     config.module.rules[5] = {
       test: /\.css$/,
-      exclude: helpers.root('client/styles.css'),
+      exclude: [helpers.root('client/styles.css'), helpers.root('client/loader.css')],
       loader: 'raw-loader'
     };
 

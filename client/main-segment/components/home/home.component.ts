@@ -22,10 +22,10 @@ export class HomeComponent {
 	ngOnInit() {
 		this.toda$.subscribe((x) => {
 			if(x.get('nightTime') === true) {
-				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-night.svg';
+				this.epipelagicCapOverlaySvg = 'public/assets/epipelagic-cap-overlay-night.svg';
 				this.nightTime               = true;
 			} else {
-				this.epipelagicCapOverlaySvg = '/public/assets/epipelagic-cap-overlay-day.svg';
+				this.epipelagicCapOverlaySvg = 'public/assets/epipelagic-cap-overlay-day.svg';
 				this.nightTime               = false;
 			}
 			

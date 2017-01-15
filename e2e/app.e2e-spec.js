@@ -7,7 +7,7 @@ describe('App E2E Tests', function () {
       .toString()));
 
   it('should contain correct title tag', function () {
-    expect(browser.getTitle()).toEqual("GOAT-stack");
+    expect(browser.getTitle()).toEqual("GOATstack");
   });
 
   it('should contain correct favicon', function () {

@@ -1,3 +1,12 @@
+/* latin */
+@font-face {
+  font-family: 'Fredoka One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Fredoka One'), local('FredokaOne-Regular'), url('/public/fonts/Fredoka_One.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
 /*
 ================================================
 * Angular Material 2
@@ -236,8 +245,12 @@ button.zoom-out span.md-button-wrapper {
 --------------------------------------------------------------------------
 */
 
+.comment {
+    color: #98e698;
+}
+
 .docs {
-    font-size: 24px;
+    font-size: 20px;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     color: white;
@@ -284,7 +297,7 @@ li.doc-block {
 	color: #beff00;
 }
 .doc-block > p {
-    margin-left: 14%;
+    margin-left: 15.5%;
 }
 .doc-block {
     padding: 5px;
