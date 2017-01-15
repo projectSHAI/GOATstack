@@ -6,6 +6,8 @@
     width: 100px;
     background-color: white;
     border-radius: 50%;
+    transition-duration: 6s;
+    will-change: transform;
     border: 3px solid;
 }
 

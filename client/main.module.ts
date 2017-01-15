@@ -14,6 +14,7 @@ Main component which gets bootstrapped
 */
 import { AppComponent }                              from './main-segment/components/app/app.component';
 require('./styles');
+require('./loader');
 
 /*
 --------------------------------------------------
