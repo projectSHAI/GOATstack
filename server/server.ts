@@ -57,17 +57,16 @@ function init(): any {
 
       if (process.env.NODE_ENV !== 'test') {
         // Logging initialization\
-        console.log(chalk.bold.cyan(`\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }`));
-        console.log(chalk.bold.cyan(`\tDatabase:\t\t\t ${ config.db.uri }`));
+        console.log(chalk.bold.cyan(
+          `\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }`) +
+          chalk.bold.cyan(`\n\tDatabase:\t\t\t ${ config.db.uri }`) +
 
-        console.log(chalk.bold.magenta(`\n\t${isSecure ? 'HTTPS': 'HTTP'} Server`));
-        console.log(chalk.bold.gray(`\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:${ port }`));
-
+          chalk.bold.magenta(`\n\n\t${isSecure ? 'HTTPS': 'HTTP'} Server`) +
+          chalk.bold.gray(`\n\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:${ port }`));
       }
     });
 
     return app;
-
   });
 };
 

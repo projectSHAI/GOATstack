@@ -30,11 +30,7 @@ module.exports = function(options) {
         },
         {
           test: /\.html$/,
-          loader: 'html-loader?-attrs',
-          // query: {
-          //   ignoreCustomFragments: [/\{\{.*?}}/],
-          //   attrs: []
-          // }
+          loader: 'html-loader?-attrs'
         },
         {
           test: /\.(png|svg|jpg)$/,
@@ -75,7 +71,7 @@ module.exports = function(options) {
   };
 
   if (prod) {
-    config.entry.main = './client/main-aot.ts'; 
+    config.entry.main = './client/main-aot.ts';
 
     config.module.rules[5] = {
       test: /\.css$/,

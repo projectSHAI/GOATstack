@@ -1,4 +1,4 @@
-# Check out the [Demo App](https://goat-stack.herokuapp.com/)!
+# Check out the [Demo App](www.goatstack.com)!
 
 ![build](https://circleci.com/gh/JCThomas4214/GOAT-stack/tree/master.svg?style=shield)
 [![npm version](https://img.shields.io/npm/v/generator-goat-stack.svg)](https://www.npmjs.com/package/generator-goat-stack)

@@ -152,53 +152,58 @@ exports.startDev = function startDev() {
 					// Reposition the cursor so the next print will be aligned
 					process.stdout.moveCursor(0, 2);
 				}
-				return;
 			}
 			// Print RESTFUL responces in the console
 			else if (/GET|POST|PUT|DELETE/.test(data.toString())) {
 				process.stdout.moveCursor(0, -1);
 				console.log(`${data}`);
-				return;
 			}
 			// After the server is started indicate if changes are made
 			else if (waiting && data.includes('webpack: bundle is now INVALID.')) {
 				startLoader('building new additions...');
-				return;
 			}
 			// If nodemon does not restart the server secondary hook to turn off loader
 			else if (waiting && data.includes('webpack: bundle is now VALID.')) {
 				loader.stop();
 				process.stdout.clearLine();
-				return;
 			}
-			else if (/Could not connect to MongoDB!/.test(data.toString())) {
+			// Nodemon logs errors on the stdout thread
+			else if (/Could not connect to MongoDB/.test(data.toString())) {
 				stopLoader();
-				console.log(chalk.red.bold('\tCould not connect to MongoDB!'));
+				console.log(chalk.red.bold('\tCould not connect to MongoDB!\n'));
 			}
 		} else {
 			process.stdout.clearLine();
-			process.stdout.moveCursor(0,-1);				
-			console.log(`${data}`);
-			if (data.includes('Server Address:')) {
+			process.stdout.moveCursor(0,-1);
+			// Nodemon logs errors on the stdout thread
+			if (/Could not connect to MongoDB/.test(data.toString())) {
 				loader.stop();
 				process.stdout.clearLine();
+				console.log(chalk.red.bold('\n\tCould not connect to MongoDB!\n\n'));
+			}
+			else if (data.includes('Server Address:')) {
+				loader.stop();
+				process.stdout.clearLine();
+				console.log(chalk.green.bold('\n\tDevelopment server serving on') + chalk.yellow.bold('\thttp://localhost:1701'));
+				console.log(chalk.magenta.bold('\tProxying to Express Server on') + chalk.yellow.bold('\thttp://localhost:5000\n\n'));
+			} else {				
+				console.log(`${data}`);
 			}
 		}
 		
+		return;
 	});
 	serv.stderr.on('data', (data) => {
-		if (/!keywords/.test(data.toString())) {
-			process.stdout.clearLine();
-			console.log(`${data}`);
-		}
+		process.stdout.clearLine();
+		console.log(`${data}`);
 	});
 	serv.on('close', (code) => {
-	  console.log(`child process exited with code ${code}`);
+		console.log(`child process exited with code ${code}`);
 	});
 	serv.on('error', (err) => {
-	  stopLoader();
-	  console.log('Failed to start child process.');
-	  console.log(`${err}`);
+		stopLoader();
+		console.log('Failed to start child process.');
+		console.log(`${err}`);
 	});
 };
 
@@ -222,44 +227,46 @@ exports.startProd = function startProd() {
 				if (data.includes('Server Address:')) {
 					stopLoader();
 					helpers.cleanup('client');
-					console.log(chalk.green.bold('\tProduction serving on') + chalk.yellow.bold(' http://localhost:8443\n\n'));			
-					return;
+					console.log(chalk.green.bold('\tProduction serving on') + chalk.yellow.bold(' http://localhost:8443\n\n'));
 				}
 				// Print RESTFUL responces in the console
 				else if (/GET|POST|PUT|DELETE/.test(data.toString())) {
 					process.stdout.moveCursor(0, -1);
 					console.log(`${data}`);
-					return;
-				}
-				else if (/Could not connect to MongoDB!/.test(data.toString())) {
-					stopLoader();
-					console.log(chalk.red.bold('\tCould not connect to MongoDB!'));
 				}
 			} else {
 				process.stdout.clearLine();
-				process.stdout.moveCursor(0,-1);				
-				console.log(`${data}`);
+				process.stdout.moveCursor(0,-1);
 				if (data.includes('Server Address:')) {
 					loader.stop();
-					helpers.cleanup('client');
 					process.stdout.clearLine();
+					console.log(chalk.green.bold('\n\tProduction serving on') + chalk.yellow.bold('\thttp://localhost:8443\n'));
+				} else if (!data.includes('MongoError')) {			
+					console.log(`${data}`);
 				}
 			}
+
+			return;
 		});
 		serv.stderr.on('data', (data) => {
-			if (/!keywords/.test(data.toString())) {
+			if (/Could not connect to MongoDB/.test(data.toString())) {
+				stopLoader();
+				process.stdout.moveCursor(0, 1);
+				process.stdout.clearLine();				
+				console.log(chalk.red.bold('\tCould not connect to MongoDB!\n\n'));
+			} else if (!data.includes('MongoError')) {
 				process.stdout.clearLine();
 				console.log(`${data}`);
 			}
 		});
 		serv.on('close', (code) => {
-		  if (code !== 0)
-		  	console.log(`Make sure you have mongod running!`);
+			if (code !== 0)
+				console.log(`Make sure you have mongod running!`);
 		});
 		serv.on('error', (err) => {
-		  stopLoader();
-		  console.log('Failed to start child process.');
-		  console.log(`${err}`);
+		    loader.stop();
+			process.stdout.clearLine();
+			console.log(`${err}`);
 		});
 
 		if (err) {
