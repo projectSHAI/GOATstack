@@ -6,22 +6,25 @@
     <base href="/">
     <!--  For dynamic SEO within the app refer
               to the SEOActions in client/main-segment/actions/seo -->
-    <title>GOAT-stack</title>
+    <title>GOATstack</title>
     <link id="favicon" rel="icon" href="public/assets/favicon.png">
     <meta name="description" content="The Greatest of All Time Stack!">
     <meta name="keywords" content="redux, node, mongo, express, angular2, ng2, jasmine, karma, protractor">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+    
     <!-- Google Analytics -->
     <!-- <script></script> -->
+
     <!-- 1. Load libraries -->
     <!-- GSAP library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
     <!-- loading animation -->
     <script>
     window.onload = function() {
-        document.getElementById('app').style.opacity = "1";
+        setTimeout(() => {
+            document.getElementById('app').style.opacity = "1";
+        }, 1000);
     }
     </script>
 </head>
@@ -30,7 +33,7 @@
     <!-- loader -->
     <section id="load-screen">
         <div id="spinner">
-            <h1 id="title">GOAT-stack</h1>
+            <h1 id="title">GOATstack</h1>
             <div id="border">
                 <div class="square"></div>
                 <div class="square"></div>
@@ -45,24 +48,42 @@
                         <img id="fire-2" src="public/assets/loader/fire-2.png" />
                         <img src="public/assets/loader/space-goat.png" />
                     </div>
-                    <i class="star star1">
-                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-              </i>
+<!--                     <i class="star star1">
+                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+                    </i>
                     <i class="star star2">
-                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-              </i>
+                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+                    </i>
                     <i class="star star3">
-                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-              </i>
+                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+                    </i>
                     <i class="star star4">
-                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-              </i>
+                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+                    </i>
                     <i class="star star5">
-                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-              </i>
+                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+                    </i>
                     <i class="star star6">
-                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-              </i>
+                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+                    </i> -->
+                    <i class="star star1">
+                        <img class="star" src="public/assets/loader/star.svg" />
+                    </i>
+                    <i class="star star2">
+                        <img class="star" src="public/assets/loader/star.svg" />
+                    </i>
+                    <i class="star star3">
+                        <img class="star" src="public/assets/loader/star.svg" />
+                    </i>
+                    <i class="star star4">
+                        <img class="star" src="public/assets/loader/star.svg" />
+                    </i>
+                    <i class="star star5">
+                        <img class="star" src="public/assets/loader/star.svg" />
+                    </i>
+                    <i class="star star6">
+                        <img class="star" src="public/assets/loader/star.svg" />
+                    </i>
                 </div>
             </div>
             <h2 id="loading">Loading<span class="dot dot1">.</span><span class="dot dot2">.</span><span class="dot dot3">.</span></h2>
