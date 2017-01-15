@@ -237,7 +237,7 @@ button.zoom-out span.md-button-wrapper {
 */
 
 .docs {
-    font-size: 24px;
+    font-size: 24x;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     color: white;
@@ -252,7 +252,7 @@ button.zoom-out span.md-button-wrapper {
     font-size: 40px;
     width: 75%;
     margin: 15px auto;
-    border-bottom: 5px white solid;
+    border-bottom: 5px black solid;
 }
 
 .code {
@@ -273,8 +273,7 @@ button.zoom-out span.md-button-wrapper {
     border-radius: 0 0 3px 3px;
 }
 li.doc-block {
-    padding-top: 15px;
-    padding-bottom: 15px;
+		padding-bottom: 20px;
 }
 .doc-block a {
 	color: #a2da00;
@@ -282,9 +281,6 @@ li.doc-block {
 }
 .doc-block a:hover {
 	color: #beff00;
-}
-.doc-block > p {
-    margin-left: 14%;
 }
 .doc-block {
     padding: 5px;
@@ -298,8 +294,10 @@ li.doc-block {
 }
 span.note {
     border-left: 6px solid grey;
+    line-height: 30px;
+    height: 30px;
     position: relative;
     padding-left: 5px;
-    margin-left: 3%;
-    float: left;
+    margin-left: 5%;
+    display: inline-block;
 }

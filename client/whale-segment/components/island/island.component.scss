@@ -1,6 +1,9 @@
 #island{
     width: 50.8%;
 }
+.fade {
+    transition: opacity 0.5s;
+}
 button{
     position: absolute;
     top: 14%;

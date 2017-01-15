@@ -1,40 +1,76 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- base href="/" is used for angular2 routing -->
-        <base href="/">
-        <!--  For dynamic SEO within the app refer
+
+<head>
+    <!-- base href="/" is used for angular2 routing -->
+    <base href="/">
+    <!--  For dynamic SEO within the app refer
               to the SEOActions in client/main-segment/actions/seo -->
-        <title>GOAT-stack</title>   
-        <link id="favicon" rel="icon" href="public/assets/favicon.png">
-        <meta name="description" content="The Greatest of All Time Stack!">
-        <meta name="keywords" content="redux, node, mongo, express, angular2, ng2, jasmine, karma, protractor">
+    <title>GOAT-stack</title>
+    <link id="favicon" rel="icon" href="public/assets/favicon.png">
+    <meta name="description" content="The Greatest of All Time Stack!">
+    <meta name="keywords" content="redux, node, mongo, express, angular2, ng2, jasmine, karma, protractor">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+    <!-- Google Analytics -->
+    <!-- <script></script> -->
+    <!-- 1. Load libraries -->
+    <!-- GSAP library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+    <!-- loading animation -->
+    <script>
+    window.onload = function() {
+        document.getElementById('app').style.opacity = "1";
+    }
+    </script>
+</head>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+<body>
+    <!-- loader -->
+    <section id="load-screen">
+        <div id="spinner">
+            <h1 id="title">GOAT-stack</h1>
+            <div id="border">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+            </div>
+            <div id="container">
+                <div id="overflow">
+                    <div id="space-goat">
+                        <img id="fire-1" src="public/assets/loader/fire-1.png" />
+                        <img id="fire-2" src="public/assets/loader/fire-2.png" />
+                        <img src="public/assets/loader/space-goat.png" />
+                    </div>
+                    <i class="star star1">
+                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+              </i>
+                    <i class="star star2">
+                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+              </i>
+                    <i class="star star3">
+                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+              </i>
+                    <i class="star star4">
+                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+              </i>
+                    <i class="star star5">
+                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+              </i>
+                    <i class="star star6">
+                <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
+              </i>
+                </div>
+            </div>
+            <h2 id="loading">Loading<span class="dot dot1">.</span><span class="dot dot2">.</span><span class="dot dot3">.</span></h2>
+        </div>
+    </section>
 
-        <!-- Google Analytics -->
-        <!-- <script></script> -->
+    <!-- Angular app -->
+    <my-app id="app"></my-app>
+</body>
 
-        <!-- 1. Load libraries -->
-        <!-- GSAP library -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
-        <!-- loading animation -->
-        <script>
-            // window.onload = function() {
-            //     document.getElementById('loading').style.opacity = "1";
-            // }
-        </script>
-
-    </head>
-
-    <body>
-        <section id="load-screen">
-            <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-               <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-            </svg>
-        </section>
-        <my-app id="loading">Loading...</my-app>
-    </body>
 </html>

@@ -1,8 +1,8 @@
 <mountain-goat></mountain-goat>
-<md-input *ngIf="showInput" id="testWonder" [(ngModel)]="dream" (keyup.enter)="submitWonder(dream)" placeholder="Type a wonder!" class="dreams-input" dividerColor="accent"></md-input>
-<button class="zoom-out" md-fab color="primary" *ngIf="showInput" (click)="zoomDirective.zoomOut()">&#9660;</button>
+<md-input [style.opacity]="(showInput == false) ? '0' : '1' " id="testWonder" [(ngModel)]="dream" (keyup.enter)="submitWonder(dream)" placeholder="Type a wonder!" class="dreams-input fade" dividerColor="accent"></md-input>
+<button class="zoom-out fade" md-fab color="primary" [style.opacity]="(showInput == false) ? '0' : '1' " (click)="zoomDirective.zoomOut()">&#9660;</button>
 <img id="island" class="fade" [src]="islandSvg" />
-<section *ngIf="showInput" id="quickstart" class="docs">
+<section [style.opacity]="(showInput == false) ? '0' : '1' " id="quickstart" class="docs fade">
     <h1 class="doc-title">Quick Start</h1>
     <div class="code">
         <p class="doc-block">$ [sudo] npm install -g yo generator-goat-stack</p>

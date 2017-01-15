@@ -1,3 +1,295 @@
-.loader {
-	
+/*
+--------------------------------------------------------------------------
+* loading screen
+--------------------------------------------------------------------------
+*/
+
+#load-screen {
+    background-color: #1a1a1a;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+#app {
+    transition: opacity 0.5s;
+    opacity: 0;
+}
+
+
+/* spinner */
+
+#title {
+    text-align: center;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    font-size: 86px;
+    font-family: 'Fredoka One', cursive;
+    right: 0;
+    color: white;
+}
+
+#title a:hover {
+    color: #4a4a4a;
+    transition: 1s;
+}
+
+#loading {
+    color: white;
+    text-align: center;
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    font-size: 36px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.dot {
+    opacity: 0;
+    animation: 3s linear 0s normal none infinite running dots;
+    display: inline-block;
+}
+
+.dot2 {
+    -webkit-animation-delay: 1s;
+    /* Safari 4.0 - 8.0 */
+    animation-delay: 1s;
+}
+
+.dot3 {
+    -webkit-animation-delay: 2s;
+    /* Safari 4.0 - 8.0 */
+    animation-delay: 2s;
+}
+
+$n: 5; // has to match number of DOM nodes
+@mixin center($width, $height) {
+    width: $width;
+    height: $height;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-left: -$width / 2;
+    margin-top: -$height / 2;
+}
+
+body {
+    background: black;
+}
+
+#container {
+    transform: rotate(45deg);
+}
+
+#space-goat {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    z-index: 100;
+    top: 40px;
+    left: 45px;
+    animation: 5s linear 0s normal none infinite running moveGoat;
+    animation-delay: 0.55s;
+}
+
+#space-goat img {
+    position: absolute;
+}
+
+#fire-1 {
+    opacity: 0;
+    animation: 3s linear 0s normal none infinite running fadeIn;
+}
+
+#fire-2 {
+    animation: 3s linear 0s normal none infinite running fadeOut;
+}
+
+#spinner {
+    height: 400px;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -200px;
+    position: absolute;
+    top: 50%;
+    width: 500px;
+}
+
+
+/***** BORDER *****/
+
+#border {
+    @include center(200px, 200px);
+    animation: borderSpin linear infinite 6s;
+    .square {
+        width: 150px;
+        height: 150px;
+        background: white;
+        position: absolute;
+        border-radius: 5px;
+        top: 50%;
+        left: 50%;
+        margin-left: -75px;
+        margin-top: -75px;
+        @for $i from 0 to $n {
+            &:nth-child(#{$i + 1}) {
+                transform: rotate($i*360deg/$n);
+            }
+        }
+    }
+}
+
+
+/***** CONTAINER *****/
+
+#container {
+    @include center(165px, 165px);
+    background-image: repeating-linear-gradient(to bottom, rgb(22, 22, 22) 0px, rgb(22, 22, 22) 8px, rgb(50, 50, 50) 8px, rgb(50, 50, 50) 10px);
+    overflow: hidden;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.star {
+    display: inline-block;
+}
+
+.star1 {
+    animation: 4s linear 0s normal none infinite running moveStar;
+    animation-delay: 0.25s;
+    color: white;
+    left: 30px;
+    opacity: 0.7;
+    position: relative;
+    top: -15px;
+    width: 12px;
+}
+
+.star2 {
+    animation: 20s linear 0s normal none infinite running moveStar;
+    color: white;
+    left: 80px;
+    opacity: 0.3;
+    position: relative;
+    top: -15px;
+    width: 3px;
+}
+
+.star3 {
+    animation: 10s linear 0s normal none infinite running moveStar;
+    animation-delay: 0.7s;
+    color: white;
+    left: 100px;
+    opacity: 0.5;
+    position: relative;
+    top: -15px;
+    width: 6px;
+}
+
+.star4 {
+    animation: 7s linear 0s normal none infinite running moveStar;
+    animation-delay: 1s;
+    color: white;
+    left: 20px;
+    opacity: 0.6;
+    position: relative;
+    top: -15px;
+    width: 9px;
+}
+
+.star5 {
+    animation: 20s linear 0s normal none infinite running moveStar;
+    animation-delay: 1s;
+    color: white;
+    left: -30px;
+    opacity: 0.3;
+    position: relative;
+    top: -15px;
+    width: 3px;
+}
+
+.star6 {
+    animation: 5s linear 0s normal none infinite running moveStar;
+    animation-delay: 0.55s;
+    color: white;
+    left: 80px;
+    opacity: 0.7;
+    position: relative;
+    top: -15px;
+    width: 12px
+}
+
+
+/***** ANIMATE *****/
+
+@keyframes borderSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes moveStar {
+    0% {}
+    100% {
+        transform: translateY(200px);
+    }
+}
+
+@keyframes moveGoat {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(-3px, -10px);
+    }
+    50% {
+        transform: translate(0, 0);
+    }
+    75% {
+        transform: translate(3px, 10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes dots {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
 }
