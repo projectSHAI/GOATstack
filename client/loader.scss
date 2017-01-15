@@ -97,6 +97,10 @@ body {
     animation-delay: 0.55s;
 }
 
+div.zoom {
+    animation: 1.5s linear 0s normal none running zoom!important;
+}
+
 #space-goat img {
     position: absolute;
 }
@@ -258,6 +262,12 @@ body {
     }
     100% {
         transform: translate(0, 0);
+    }
+}
+
+@keyframes zoom {
+    100% {
+        transform: translate(10px, -250px);
     }
 }
 

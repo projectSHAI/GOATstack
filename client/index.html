@@ -12,18 +12,20 @@
     <meta name="keywords" content="redux, node, mongo, express, angular2, ng2, jasmine, karma, protractor">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <!-- Google Analytics -->
     <!-- <script></script> -->
-
     <!-- 1. Load libraries -->
     <!-- GSAP library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
     <!-- loading animation -->
     <script>
     window.onload = function() {
+        document.getElementById('space-goat').className = "zoom";
         setTimeout(() => {
             document.getElementById('app').style.opacity = "1";
+            setTimeout(() => {
+                document.getElementById('load-screen').remove();
+            }, 100);
         }, 1000);
     }
     </script>
@@ -48,24 +50,6 @@
                         <img id="fire-2" src="public/assets/loader/fire-2.png" />
                         <img src="public/assets/loader/space-goat.png" />
                     </div>
-<!--                     <i class="star star1">
-                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-                    </i>
-                    <i class="star star2">
-                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-                    </i>
-                    <i class="star star3">
-                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-                    </i>
-                    <i class="star star4">
-                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-                    </i>
-                    <i class="star star5">
-                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-                    </i>
-                    <i class="star star6">
-                        <object class="star" type="image/svg+xml" data="public/assets/loader/star.svg">Your browser does not support SVGs</object>
-                    </i> -->
                     <i class="star star1">
                         <img class="star" src="public/assets/loader/star.svg" />
                     </i>
@@ -89,7 +73,6 @@
             <h2 id="loading">Loading<span class="dot dot1">.</span><span class="dot dot2">.</span><span class="dot dot3">.</span></h2>
         </div>
     </section>
-
     <!-- Angular app -->
     <my-app id="app"></my-app>
 </body>
