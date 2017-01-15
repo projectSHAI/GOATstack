@@ -18,7 +18,7 @@ export class OceanFloorComponent implements OnInit{
 	offset: number = 1080;
 
 	images: Array<string> = [
-		'public/assets/ocean-floor.svg',
+		'public/assets/ocean-floor.png',
 		'public/assets/davy-jones-locker.svg'
 	];
 

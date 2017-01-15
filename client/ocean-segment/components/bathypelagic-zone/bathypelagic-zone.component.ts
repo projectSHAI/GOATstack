@@ -16,12 +16,12 @@ export class BathypelagicZoneComponent implements OnInit{
 		'public/assets/squid2-red.svg',
 		'public/assets/squid3-blue.svg',
 		'public/assets/squid3-orange.svg',
-		'public/assets/jellyfish-blue.svg',
-		'public/assets/jellyfish-blue.svg',
-		'public/assets/jellyfish-orange.svg',
-		'public/assets/jellyfish-orange.svg',
-		'public/assets/jellyfish-purple.svg',
-		'public/assets/jellyfish-purple.svg'
+		'public/assets/jellyfish-blue.png',
+		'public/assets/jellyfish-blue.png',
+		'public/assets/jellyfish-orange.png',
+		'public/assets/jellyfish-orange.png',
+		'public/assets/jellyfish-purple.png',
+		'public/assets/jellyfish-purple.png'
 	];
 
 	styles: Array<string> = [

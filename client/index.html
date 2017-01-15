@@ -20,9 +20,21 @@
         <!-- 1. Load libraries -->
         <!-- GSAP library -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+        <!-- loading animation -->
+        <script>
+            // window.onload = function() {
+            //     document.getElementById('loading').style.opacity = "1";
+            // }
+        </script>
 
     </head>
+
     <body>
-        <my-app>Loading...</my-app>
+        <section id="load-screen">
+            <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+               <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+            </svg>
+        </section>
+        <my-app id="loading">Loading...</my-app>
     </body>
 </html>

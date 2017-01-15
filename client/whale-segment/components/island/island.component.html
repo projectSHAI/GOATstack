@@ -1,7 +1,7 @@
 <mountain-goat></mountain-goat>
 <md-input *ngIf="showInput" id="testWonder" [(ngModel)]="dream" (keyup.enter)="submitWonder(dream)" placeholder="Type a wonder!" class="dreams-input" dividerColor="accent"></md-input>
 <button class="zoom-out" md-fab color="primary" *ngIf="showInput" (click)="zoomDirective.zoomOut()">&#9660;</button>
-<img id="island" [src]="islandSvg" />
+<img id="island" class="fade" [src]="islandSvg" />
 <section *ngIf="showInput" id="quickstart" class="docs">
     <h1 class="doc-title">Quick Start</h1>
     <div class="code">

@@ -303,3 +303,23 @@ span.note {
     margin-left: 3%;
     float: left;
 }
+
+/*
+--------------------------------------------------------------------------
+* loading screen
+--------------------------------------------------------------------------
+*/
+#load-screen {
+    background-color: orange;
+    position:fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+#loading {
+    transition: opacity 0.5s;
+    opacity: 0;
+}
+
+/* spinner */
