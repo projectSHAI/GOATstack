@@ -29,6 +29,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
   private width: number;
   private pause: boolean = false;
   private scrollTop: number;
+  dream: string;
 
   @ViewChild('wonderSky') wonderSky;
 
