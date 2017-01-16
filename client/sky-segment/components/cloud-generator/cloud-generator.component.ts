@@ -1,5 +1,5 @@
 
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 
@@ -27,6 +27,8 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
   private animaArray: any;
   private cloudStyle: any;
   private width: number;
+  private pause: boolean = false;
+  private scrollTop: number;
 
   @ViewChild('wonderSky') wonderSky;
 
@@ -172,6 +174,21 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
   submitWonder(dream: string) {
     this.wonderActions.saveWonder(dream);
     return dream = '';
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  scroll(event) {
+      this.scrollTop = document.body.scrollTop;
+
+      if(this.scrollTop <= 1080 && this.pause === true) {
+          this.cloudActions.resumeAnima();
+          this.pause = false;
+      }
+      if(this.scrollTop >= 1080 && this.pause === false) {
+          this.cloudActions.pauseAnima();
+          this.pause = true;
+      }
+
   }
 
 }
