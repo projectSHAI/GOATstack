@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -17,7 +17,6 @@ export class OceanFloorComponent{
 	offset: number = 1080;
 
 	images: Array<string> = [
-		'public/assets/ocean-floor.png',
 		'public/assets/davy-jones-locker.svg'
 	];
 
