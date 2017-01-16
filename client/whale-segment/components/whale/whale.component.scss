@@ -1,24 +1,40 @@
+@import '../node_modules/@angular/material/core/theming/all-theme';
+
+@mixin ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+    .tail-action {
+       color: md-color($primary); 
+    }
+}
+
 #whale-wrapper{
     width: 100%;
 }
 
 #whale{
-    margin-top: -26.3%;
+    margin-top: -25.3%;
     width: 100%;
 }
 
 the-island {
     position: absolute;
     width: 100%;
-    top: -32.5%;
+    top: -30%;
     left: 8.3%;
+    pointer-events: none;
 } 
 
 .tail-action {
-    left: 82%;
-    top: -31%;
-    font-size: 24px;
+    font-size: 2vw;
+    left: 80.5%;
+    top: -29%;
     display: block;
     position: absolute;
+    
+    text-decoration: none;
+    transition: 0.5s all
+}
+.tail-action:hover {
     color: white;
 }

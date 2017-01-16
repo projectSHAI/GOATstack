@@ -12,16 +12,40 @@
     left: 45%;
     color: black;
 }
-
-.dreams-input {
+md-input#testWonder {
     position: absolute;
-    left: 45%;
-    top: 55%;
-    text-align: center;
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 245px;
     display: block;
     z-index: 1000;
+    font-size: 32px;
+    color: white;
 }
 
 img {
   opacity: 0.8;
+}
+
+@media (max-width: 1750px) {
+    md-input#testWonder {
+        font-size: 32px;
+    }
+}
+@media (max-width: 1550px) {
+    md-input#testWonder {
+        font-size: 32px;
+    }
+}
+@media (max-width: 1350px) {
+    md-input#testWonder {
+        font-size: 32px;
+    }
+}
+@media (max-width: 1101px) {
+    md-input#testWonder {
+        font-size: 32px;
+    }
 }

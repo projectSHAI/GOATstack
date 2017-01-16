@@ -169,4 +169,9 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
 
   }
 
+  submitWonder(dream: string) {
+    this.wonderActions.saveWonder(dream);
+    return dream = '';
+  }
+
 }

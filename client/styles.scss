@@ -12,7 +12,7 @@
 * Angular Material 2
 ================================================
 */
-
+@import './whale-segment/components/whale/whale.component';
 //imports all the main angular material assets and predefined theming variables
 @import '../node_modules/@angular/material/core/theming/all-theme';
 
@@ -25,33 +25,33 @@ have to load a single css file for Angular Material in your app.*/
 (imported above). For each palette, you can optionally specify a default, lighter, and darker
 hue.*/
 
-$night-primary: md-palette($md-deep-purple, A200);
-$night-accent: md-palette($md-blue, 500);
+$primary: md-palette($md-deep-purple, A200);
+$accent: md-palette($md-blue, 500);
 
 /*The warn palette is optional (defaults to red).*/
 
-$night-warn: md-palette($md-red);
+$warn: md-palette($md-red);
 
 /*Create the theme object (a Sass map containing all of the palettes).*/
 
-$night-theme: md-dark-theme($night-primary, $night-accent, $night-warn);
+$theme: md-dark-theme($primary, $accent, $warn);
 
 /*Include theme styles for core and each component used in your app.
 Alternatively, you can import and @include the theme mixins for each component
 that you are using.*/
 
-@include angular-material-theme($night-theme);
+@include angular-material-theme($theme);
 .day-time {
-    $day-primary: md-palette($md-blue, 500);
-    $day-accent: md-palette($md-green, 500);
+    $primary: md-palette($md-blue, 500);
+    $accent: md-palette($md-green, 500);
     /*The warn palette is optional (defaults to red).*/
-    $day-warn: md-palette($md-red);
+    $warn: md-palette($md-red);
     /*Create the theme object (a Sass map containing all of the palettes).*/
-    $day-theme: md-light-theme($day-primary, $day-accent, $day-warn);
-    @include angular-material-theme($day-theme);
+    $theme: md-light-theme($primary, $accent, $warn);
+    @include angular-material-theme($theme);
 }
 
-
+@include fuck($theme);
 /*
 ---------------------------------------------
 * End Angular Material 2

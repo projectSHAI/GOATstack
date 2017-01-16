@@ -9,10 +9,9 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./ocean-floor.component.css']
 })
 
-export class OceanFloorComponent implements OnInit{ 
+export class OceanFloorComponent{ 
 
 	@ViewChild('floor') floor: ElementRef;
-	@select('zoom') zoom$: Observable<any>;
 
 	lockerMargin: number;
 	offset: number = 1080;
@@ -29,18 +28,6 @@ export class OceanFloorComponent implements OnInit{
 
 	constructor() {}
 
-	ngOnInit() {
-		this.zoom$.subscribe((x) => {
-			if(x.get('showHide') === false) {
-				this.lockerMargin = this.floor.nativeElement.offsetHeight * 0.4;
-			}
-		});
-		
-	}
 
-	@HostListener('window:resize', ['$event'])
-	onResize(event) {
-		this.lockerMargin = this.floor.nativeElement.offsetHeight * 0.4;
-	}
 
 }

@@ -1,5 +1,12 @@
-<epipelagic-zone class="ocean-zone"></epipelagic-zone>
-<mesopelagic-zone class="ocean-zone"></mesopelagic-zone>
-<bathypelagic-zone class="ocean-zone"></bathypelagic-zone>
-<abyssopelagic-zone class="ocean-zone"></abyssopelagic-zone>
-<ocean-floor></ocean-floor>
+<img class="epipelagic-cap" src="public/assets/epipelagic-cap.svg" />
+<section class="ocean-wrapper">
+	<epipelagic-zone class="ocean-zone"></epipelagic-zone>
+	<mesopelagic-zone class="ocean-zone"></mesopelagic-zone>
+	<bathypelagic-zone class="ocean-zone"></bathypelagic-zone>
+	<abyssopelagic-zone class="ocean-zone"></abyssopelagic-zone>
+	<ocean-floor></ocean-floor>
+</section>
+<div #capOverlay class="overlay-wrapper">
+	<img class="epipelagic-cap-overlay" [src]="epipelagicCapOverlaySvg" />
+</div>
+<div class="epipelagic-water-overlay" style.marginTop.px="{{ 10 | marginPipe:capOverlay}}" [ngClass]="{'nightTime': nightTime, 'dayTime': !nightTime }"></div>

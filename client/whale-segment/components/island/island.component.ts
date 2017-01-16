@@ -1,16 +1,10 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
-import { WonderActions } from '../../../sky-segment/actions/wonder/wonder.actions';
-import { CloudActions } from '../../../sky-segment/actions/cloud/cloud.actions';
-import { ZoomActions } from '../../../main-segment/actions/zoom/zoom.actions';
-import { ZoomDirective } from '../../../main-segment/directives/zoom.directive';
-
 @Component({
   selector: 'the-island',
-  providers: [WonderActions, CloudActions],
   templateUrl: './island.component.html',
   styleUrls: ['./island.component.css']
 })
@@ -18,36 +12,11 @@ import { ZoomDirective } from '../../../main-segment/directives/zoom.directive';
 export class IslandComponent implements OnInit {
 
   @select('timeOfDay') toda$: Observable<any>;
-  @select('zoom') zoom$: Observable<any>;
 
-  dream: string;
   islandSvg: string;
-  showInput: boolean;
-
-  constructor(
-    public wonderActions: WonderActions,
-    public cloudActions: CloudActions,
-    public zoomActions: ZoomActions,
-    public zoomDirective: ZoomDirective,
-    public el: ElementRef,
-    ){ }
 
   ngOnInit() {
     this.toda$.subscribe(x => this.islandSvg = x.get('islandSvg'));
-    this.zoom$.subscribe(x => {
-      this.showInput = x.get('showHide');
-      if(this.showInput === true) {
-        this.el.nativeElement.style.pointerEvents = 'all';
-      }
-      else {
-        this.el.nativeElement.style.pointerEvents = 'none';
-      }
-
-    });
   }
 
-  submitWonder(dream: string) {
-    this.wonderActions.saveWonder(dream);
-    return this.dream = '';
-  }
 }

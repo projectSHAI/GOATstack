@@ -83,7 +83,6 @@ Directives
 //Declare directives here
 */
 //user created directives
-import { ZoomDirective }                             from './main-segment/directives/zoom.directive';
 //Angular and 3rd party directives
 
 /*
@@ -112,6 +111,7 @@ Pipes
 */
 //User created pipes
 import { NgForHookPipe }                             from './main-segment/pipes/ngFor-hook.pipe';
+import { MarginPipe }                                from './main-segment/pipes/margin.pipe';
 
 //Angular and 3rd party pipes
 
@@ -184,7 +184,7 @@ NgModule
     Four0FourComponent,
     UserProfileComponent,
     NgForHookPipe,
-    ZoomDirective,
+    MarginPipe,
     // DO NOT REMOVE: template declarations
   ],
   //providers: this object imports all necessary services into the module
