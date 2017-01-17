@@ -22,3 +22,15 @@ img.ng2-lazyloaded {
     width: 15%;
     top: 239vh;
 }
+
+@media screen and ( max-width: 800px ){
+    .angler {
+        width: 25%;
+    }
+}
+
+@media screen and ( max-width: 500px ){
+    .angler {
+        width: 45%;
+    }
+}

@@ -81,3 +81,24 @@ img.ng2-lazyloaded {
 	left: 75%;
 	top: 350vh;
 }
+
+@media screen and ( max-width: 800px ){
+	.small-squid {
+		width: 20%;
+	}
+	.medium-squid {
+		width: 35%;
+	}
+	.large-squid {
+		width: 60%;
+	}
+	.small-jelly {
+		width: 5%;
+	}
+	.medium-jelly {
+		width: 8%;
+	}
+	.large-jelly {
+		width: 13%;
+	}	
+}

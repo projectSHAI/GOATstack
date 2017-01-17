@@ -27,47 +27,10 @@ the-island {
     top: -29%;
     display: block;
     position: absolute;
-    
+    pointer-events: all;
     text-decoration: none;
     transition: 0.5s all
 }
 .tail-action:hover {
     color: white;
-}
-
-blue-whale .docs {
-    width: 22%;
-}
-#quickstart {
-    position: absolute;
-    top: 10vh;
-    left: 47vw;
-    font-size: 1.6vh;
-    border-radius: 10px;
-    border: 6px solid black;
-    padding: 0;
-    color: black;
-}
-#quickstart h1 {
-    width: 100%;
-    font-size: 5vh;
-    margin: 0;
-    color: white;
-    border: none;
-}
-#quickstart p.doc-block {
-    padding: 2px;
-}
-.code {
-    width: 100%;
-}
-#quickstart div.code p.doc-block {
-    width: 100%;
-    padding: 10px 0 10px 0;
-}
-.code span {
-    padding: 0 5px 0 5px;
-}
-.code p.comment span {
-    padding: 0 0 0 5px;
 }
