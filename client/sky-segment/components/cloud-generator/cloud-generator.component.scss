@@ -4,13 +4,20 @@
     position: absolute;
     list-style: none;
     opacity: 0;
+    width: 15vw;
+    text-align: center;
+}
+.wonder img {    
+    width: 100%;
+    opacity: 0.8;
 }
 
 .wonder p {
     position: absolute;
     top: 40%;
-    left: 45%;
+    width: 100%;
     color: black;
+    font-size: 100%;
 }
 .dreams-input {
     position: absolute;
@@ -25,27 +32,33 @@
     color: white;
 }
 
-img {
-  opacity: 0.8;
+
+@media (max-width: 1950px) {
+    .dreams-input {
+        font-size: 32px;
+    }
+}
+@media (max-width: 1450px) {
+    .dreams-input {
+        font-size: 32px;
+    }
+}
+@media (max-width: 1050px) {
+    .dreams-input {
+        font-size: 32px;
+    }
+}
+@media (max-width: 800px) {
+    .wonder {
+        width: 20vw;
+    }
+    .dreams-input {
+        font-size: 32px;
+    }
 }
 
-@media (max-width: 1750px) {
-    md-input#testWonder {
-        font-size: 32px;
-    }
-}
-@media (max-width: 1550px) {
-    md-input#testWonder {
-        font-size: 32px;
-    }
-}
-@media (max-width: 1350px) {
-    md-input#testWonder {
-        font-size: 32px;
-    }
-}
-@media (max-width: 1101px) {
-    md-input#testWonder {
-        font-size: 32px;
+@media (max-aspect-ratio: 1/1) {
+    .wonder {
+        width: 20vh;
     }
 }
