@@ -31,11 +31,11 @@ export class HomeComponent implements OnInit {
   scroll(event) {
       this.scrollTop = document.body.scrollTop;
 
-      if(this.scrollTop <= this.winHeight && this.past === true) {
+      if(this.scrollTop <= (this.winHeight * 1.5) && this.past === true) {
       	  this.cloudActions.resumeAnima();
           this.past = false;
       }
-      if(this.scrollTop >= this.winHeight && this.past === false) {
+      if(this.scrollTop >= (this.winHeight * 1.5) && this.past === false) {
       	  this.cloudActions.pauseAnima();
           this.past = true;
       }

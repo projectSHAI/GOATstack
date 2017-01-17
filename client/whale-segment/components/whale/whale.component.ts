@@ -21,4 +21,9 @@ export class WhaleComponent implements OnInit {
     this.toda$.subscribe(x => this.whaleSvg = x.get('whaleSvg'));
   }
 
+  getStarted() {
+  	console.log("https://github.com/projectSHAI/GOAT-stack");
+  	window.location.href = "https://github.com/projectSHAI/GOAT-stack";
+  }
+
 }
