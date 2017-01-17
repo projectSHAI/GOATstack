@@ -32,6 +32,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
   dream: string;
 
   @ViewChild('wonderSky') wonderSky;
+  @ViewChild('test') el;
 
   constructor(
     public wonderActions: WonderActions,
@@ -100,6 +101,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
     // the travel finds the amount of pixels left the cloud
     // must travel to get to the end of the screen from the % xcoor
     const travel = this.width - (this.width * (object.xcoor/100));
+    const start = (this.width * (object.xcoor/100));
     // Since we want all the cloud to move accross the screen at the
     // same speed we need a constant factor to divide the delta
     const factor = 2.5;
@@ -118,8 +120,9 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
     anima.to(el, this.rndInt(1,3), { opacity: 1 })
       .to(el, this.speed(object.xcoor,rfMin,rfMax,factor), { ease: Power0.easeNone, x: travel, y: this.rndInt(-100, 100) }, 0)
       .addLabel('loop', '+=0')
-      .to(el, 0, { ease: Power0.easeNone, left: '-350px', x: '0', y: '0' })
-      .to(el, this.speed(-10,rfMin,rfMax,factor), { ease: Power0.easeNone, x: this.width + 350, y: this.rndInt(-100, 100) });
+      .to(el, 0, { ease: Power0.easeNone, x: -start-350, y: '0' })
+      .to(el, this.speed(-10,rfMin,rfMax,factor), { ease: Power0.easeNone, x: travel, y: this.rndInt(-100, 100) });
+      // .to(el, this.speed(object.xcoor,rfMin,rfMax,factor), { ease: Power0.easeNone, x: travel, y: this.rndInt(-100, 100) }, 0)
 
     // Push new gsap timeline to animaArray List
     this.cloudActions.changeAnima(anima, index);
@@ -172,9 +175,10 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
 
   }
 
-  submitWonder(dream: string) {
-    this.wonderActions.saveWonder(dream);
-    return dream = '';
+  testing(test) {
+    console.log(this.el);
+    this.el._focused = false;
+    // console.log(test);
   }
 
 }

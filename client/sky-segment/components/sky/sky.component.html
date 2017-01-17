@@ -1,5 +1,5 @@
 <div class="sun-moon" [style.boxShadow]="sunMoonGlow" [style.borderColor]="sunMoonBorder" [style.transform]="yPos">
-  <h2 class="clock">{{toda.getCurrentTime() | async | date: 'mediumTime'}}</h2>
+  <h2 class="clock">{{toda.getCurrentTime() | async | date: 'shortTime'}}</h2>
 </div>
 
 <cloud-generator></cloud-generator>
