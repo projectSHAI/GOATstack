@@ -54,8 +54,11 @@ export class AppComponent {
     // initialize error handling animation timeline
     this.timeline = new TimelineMax({ paused: true });
 
-    this.timeline.to(this.errorToast.nativeElement.children[0], 1, { opacity: 1 })
+    this.timeline
+      .to(this.errorToast.nativeElement.children[0], 0, { display: 'block' })
+      .to(this.errorToast.nativeElement.children[0], 1, { opacity: 1 })
       .to(this.errorToast.nativeElement.children[0], 1, { opacity: 0 }, "+=3")
+      .to(this.errorToast.nativeElement.children[0], 1, { display: 'none' })
       .add(() => this.errorHandler.hideError());
 
     // Let the component be in charge of triggering the animation

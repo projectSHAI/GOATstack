@@ -2,16 +2,19 @@
     position: relative;
     display: block;
     overflow-y: hidden;
+    overflow-x: hidden;
+
 }
 
 .error-card {
+    display: none;
     opacity: 0;
     z-index: 1000;
     width: 20%;
     padding: 0;
     position: fixed;
-    bottom: 60px;
-    right: 40px;
+    bottom: 10%;
+    left: 5%;
 }
 
 .error-content {
