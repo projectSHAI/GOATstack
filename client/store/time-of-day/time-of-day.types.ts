@@ -5,7 +5,7 @@ import { Map } from 'immutable';
 // to manipulate (immutably)
 export interface ITimeOfDayItems {
   titleColor:      string;
-  nightTime:       boolean;
+  time:		       string;
   cloudBrightness: string;
   skyColor:        string;
   mountainGoatSvg: string;

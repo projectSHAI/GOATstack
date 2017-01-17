@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -13,7 +13,7 @@ import { TimeOfDayActions } from '../../../main-segment/actions/time-of-day/time
 export class SkyComponent implements OnInit, AfterViewInit {
 
   @select('timeOfDay') toda$: Observable<any>;
-  
+
   sunMoonGlow: string;
   sunMoonBorder: string;
 
@@ -23,13 +23,12 @@ export class SkyComponent implements OnInit, AfterViewInit {
   yPos: string = 'translateY(10px)';
   private windowHeight: number = window.innerHeight;  
 
-  constructor(private el: ElementRef, public toda: TimeOfDayActions) { }
+  constructor(public toda: TimeOfDayActions) { }
   ngOnInit() {}
   ngAfterViewInit() {
     this.toda$.subscribe(x => {
       this.sunMoonGlow = x.get('sunMoonGlow');
       this.sunMoonBorder = x.get('sunMoonBorder');
-      this.el.nativeElement.style.background = x.get('skyColor');
     });
 
     // Set the height of the sun and moon whenever the time changes

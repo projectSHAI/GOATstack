@@ -7,6 +7,6 @@
 	<ocean-floor></ocean-floor>
 </section>
 <div #capOverlay class="overlay-wrapper">
-	<img class="epipelagic-cap-overlay" [src]="epipelagicCapOverlaySvg" />
+	<img class="epipelagic-cap-overlay" [src]="(toda$ | async).get('capSvg')" />
 </div>
-<div class="epipelagic-water-overlay" style.marginTop.px="{{ 10 | marginPipe:capOverlay}}" [ngClass]="{'nightTime': nightTime, 'dayTime': !nightTime }"></div>
+<div id="epipelagic-water-overlay" [class]="(toda$ | async).get('time')" style.marginTop.px="{{ 10 | marginPipe:capOverlay}}"></div>

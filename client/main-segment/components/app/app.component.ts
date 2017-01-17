@@ -10,7 +10,7 @@ Bootstrapping component
 
 
 //main imports
-import { Component, ViewChild, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit, ElementRef, Renderer } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
 import { SEOActions } from '../../actions/seo/seo.actions';
@@ -28,7 +28,7 @@ declare let TimelineMax: any;
 
 //class which is implemented once the AfterViewInit event in tha Angular event lifecycle has fired.
 //-- to learn more about Angular's event lifecycle read here: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent {
   //this decorator is for NgRedux. you can read more about Redux here: https://github.com/angular-redux/ng2-redux
   @select('error') error$: Observable<any>;
   @select('timeOfDay') toda$: Observable<any>;
@@ -41,12 +41,13 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(
     private errorHandler: ErrorHandlerActions,
-    private ele: ElementRef
+    private el: ElementRef,
+    private renderer: Renderer
     ) {}
 
   ngOnInit() {
     // Initially chamge theme reflecting time of day
-    this.toda$.subscribe( x => this.ele.nativeElement.className = x.get('nightTime') ? 'night-time' : 'day-time');
+    this.toda$.subscribe( x => this.el.nativeElement.className = x.get('time'));
   }
 
   ngAfterViewInit() {

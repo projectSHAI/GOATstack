@@ -3,23 +3,7 @@
     display: block;
     width: 100%;
 }
-the-sky{
-    position: fixed;
-    transition-duration: 2s;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    will-change: auto;
-}
 
-the-ocean {
-    display: block;
-    position: relative;
-    top: 93vh;
-    margin-bottom: 93vh;
-    left: 0;
-    display: block;
-    width:100%;
-    will-change: auto;
+.hold {
+    display: none;
 }

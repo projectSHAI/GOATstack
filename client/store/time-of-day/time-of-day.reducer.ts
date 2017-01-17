@@ -12,23 +12,25 @@ export function timeOfDayReducer(state: ITimeOfDay = INITIAL_STATE, action: any)
     case TimeOfDayActions.DAY_TIME:
       return state
               .updateIn(['titleColor'], val => 'black')
-              .updateIn(['nightTime'], val => false)
+              .updateIn(['time'], val => 'day-time')
               .updateIn(['cloudBrightness'], val => 'brightness(100%)')
-              .updateIn(['skyColor'], val => 'linear-gradient(to bottom, #ffffff 0%,#6abfeb 100%)')
+              .updateIn(['skyColor'], val => 'rgb(157, 211, 250)')
               .updateIn(['mountainGoatSvg'], val => 'public/assets/day-mountain-goat.png')
               .updateIn(['islandSvg'], val => 'public/assets/day-island.png')
               .updateIn(['whaleSvg'], val => 'public/assets/day-whale.png')
+              .updateIn(['capSvg'], val => 'public/assets/epipelagic-cap-overlay-day.svg')
               .updateIn(['sunMoonGlow'], val => '0px 0px 100px 12px yellow')
               .updateIn(['sunMoonBorder'], val => 'rgba(255,255,0, 0.3)');
     case TimeOfDayActions.NIGHT_TIME:
       return state
-              .updateIn(['nightTime'], val => 'white')
-              .updateIn(['nightTime'], val => true)
+              .updateIn(['titleColor'], val => 'white')
+              .updateIn(['time'], val => 'night-time')
               .updateIn(['cloudBrightness'], val => 'brightness(30%)')
-              .updateIn(['skyColor'], val => 'linear-gradient(to bottom, #000000 0%,#140f28 100%)')
+              .updateIn(['skyColor'], val => 'rgb(15, 12, 30)')
               .updateIn(['mountainGoatSvg'], val => 'public/assets/night-mountain-goat.svg')
               .updateIn(['islandSvg'], val => 'public/assets/night-island.png')
               .updateIn(['whaleSvg'], val => 'public/assets/night-whale.png')
+              .updateIn(['capSvg'], val => 'public/assets/epipelagic-cap-overlay-night.svg')
               .updateIn(['sunMoonGlow'], val => '0px 0px 100px 12px #7c4dff')
               .updateIn(['sunMoonBorder'], val => 'rgba(102,51,153, 0.3)');
     default:

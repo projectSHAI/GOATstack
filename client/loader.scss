@@ -78,10 +78,6 @@ $n: 5; // has to match number of DOM nodes
     margin-top: -$height / 2;
 }
 
-body {
-    background: black;
-}
-
 #container {
     transform: rotate(45deg);
 }
