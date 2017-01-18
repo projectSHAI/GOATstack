@@ -25,3 +25,40 @@
     font-size: medium;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.user-sign button:hover {
+    cursor: pointer;
+}
+
+.reg-card {
+    display: none;
+    position: fixed;
+    margin-left: -200px;
+    top: 185px;
+    left: 50vw;
+    z-index: 1000;
+    padding: 0;
+    opacity: 0;
+}
+
+.reg-card table,
+.reg-card md-input {
+    width: 100%;
+} 
+
+.reg-content {
+    padding: 10px;
+}
+
+.form-button {
+    margin-right: 2px;
+}
+
+td {
+    padding: 2px;
+}
+
+.submit-col {
+    text-align: right;
+}
+

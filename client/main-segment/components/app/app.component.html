@@ -7,6 +7,42 @@ App component
 <header-section></header-section>
 <router-outlet></router-outlet>
 <footer-section></footer-section>
+
+<div #formToast class="user-form">
+	<md-card class="reg-card">
+	  <md-toolbar color="primary">Sign In</md-toolbar>
+	  <md-card-content class="reg-content">
+	    <form #loginForm="ngForm" (ngSubmit)="userActions.login(loginForm) || userFormActions.loginForm(false)">
+	      <table cellspacing="0"><tr>
+	        <td><md-input id="login_email" name="login_email" ngModel required placeholder="Email" class="user-signin-input"></md-input></td>
+	        <td><md-input id="login_password" type="password" name="login_password" ngModel required placeholder="Password" class="user-signin-input"></md-input></td>
+	      </tr><tr>
+	        <td><button md-raised-button type="button" (click)="userFormActions.loginForm(false)" color="primary" class="form-button">BACK</button>
+	        <button md-raised-button type="button" (click)="userFormActions.registerForm(true)" color="primary" class="form-button pos-right">SIGN UP</button></td>
+	        <td class="submit-col"><button md-raised-button color="accent">LOGIN</button></td>
+	      </tr></table>
+	    </form>
+	  </md-card-content>
+	</md-card>
+	<md-card class="reg-card">
+	  <md-toolbar color="primary">Create New User</md-toolbar>
+	  <md-card-content class="reg-content">
+	    <form #registerForm="ngForm" (ngSubmit)="userActions.register(registerForm) || userFormActions.registerForm(false)">
+	      <table cellspacing="0"><tr>
+	        <td><md-input id="signup_username" name="signup_username" ngModel required placeholder="Username" class="user-signup-input" autoComplete="off"></md-input></td>
+	        <td><md-input id="signup_email" name="signup_email" ngModel required placeholder="Email" class="user-signup-input" autoComplete="off"></md-input></td>
+	      </tr><tr>
+	        <td><md-input id="signup_password" type="password" name="signup_password" ngModel required placeholder="Password" class="user-signup-input" autoComplete="off"></md-input></td>
+	        <td><md-input id="signup_re_password" type="password" name="signup_re_password" ngModel required placeholder="Password Again" class="user-signup-input" autoComplete="off"></md-input></td>
+	      </tr><tr>
+	        <td><button md-raised-button type="button" (click)="userFormActions.registerForm(false)" color="primary" class="form-button">BACK</button></td>
+	        <td class="submit-col"><button md-raised-button color="accent">REGISTER</button></td>
+	      </tr></table>
+	    </form>
+	  </md-card-content>
+	</md-card>
+</div>
+
 <div #errorToast class="error-card"><md-card>
   <md-toolbar color="accent">Error Message</md-toolbar>
   <md-card-content class="error-content">
@@ -15,3 +51,5 @@ App component
       </tr></table>
   </md-card-content>
 </md-card></div>
+
+

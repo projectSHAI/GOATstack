@@ -57,7 +57,8 @@ export class UserActions {
     }
   }
 
-  login(lf: FormGroup): void {
+  login(lf: FormGroup, event: Event): void {
+    event.preventDefault();
     // only if the login form is filled
     if (lf.valid) {
       // First change the state to fetching

@@ -97,7 +97,7 @@ describe('User Actions Creator', () => {
     });
 
     spyOn(mockRedux, 'dispatch');
-    actions.login(form);
+    actions.login(form, null);
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedActionPre);
