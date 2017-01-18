@@ -111,7 +111,7 @@ div.zoom {
 }
 
 #spinner {
-    height: 400px;
+    height: 500px;
     left: 50%;
     margin-left: -250px;
     margin-top: -200px;
@@ -297,5 +297,13 @@ div.zoom {
     }
     50% {
         opacity: 1;
+    }
+}
+
+/*****responsive*****/
+@media screen and ( max-width: 500px ){
+    #title {
+        font-size: 17vw;
+        top: 5%;
     }
 }

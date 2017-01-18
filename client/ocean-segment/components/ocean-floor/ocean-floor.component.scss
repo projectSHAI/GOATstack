@@ -26,3 +26,9 @@ object {
 img.ng2-lazyloaded {
     opacity: 1;
 }
+
+@media screen and ( max-width: 600px ){
+    .davy-jones-locker {
+        width: 70%;
+    }
+}   

@@ -34,3 +34,16 @@ the-island {
 .tail-action:hover {
     color: white;
 }
+
+@media screen and ( max-width: 1000px ){
+    .tail-action {
+        font-size: 1.6vw;
+    }
+}
+@media screen and ( max-width: 800px ){
+    .tail-action {
+        font-size: 3vw;
+        left: 50%;
+        top: 21%;
+    }
+}
