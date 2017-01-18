@@ -1,8 +1,5 @@
-<div class="user-sign">
-  <button routerLink='/profile' routerLinkActive='active' md-raised-button id="welcome-user" [ngClass]="{'hidden': !(user$ | async).has('userItem')}" color="accent">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</button>
-  <div class="user-sign-buttons">
-    <button md-raised-button id="sign-up-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
-    <button md-raised-button id="sign-in-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
-    <button md-raised-button id="sign-out-btn" [ngClass]="{'hidden': !(user$ | async).has('userItem')}" type="button" (click)="userActions.logout()" color="primary">SIGN OUT</button>
-  </div>
+<div class="user-sign-buttons">
+  <button md-raised-button id="sign-up-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
+  <button md-raised-button id="sign-in-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
+  <button md-raised-button id="sign-out-btn" [ngClass]="{'hidden': !(user$ | async).has('userItem')}" type="button" (click)="userActions.logout()" color="primary">SIGN OUT</button>
 </div>

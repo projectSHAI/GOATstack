@@ -34,12 +34,16 @@
     display: none;
     position: fixed;
     margin-left: -200px;
-    top: 185px;
-    left: 50vw;
-    z-index: 1000;
+    top: 20%;
+    left: 50%;
+    z-index: 10000;
     padding: 0;
     opacity: 0;
 }
+
+.reg-card#reg {
+    top: 15%;
+} 
 
 .reg-card table,
 .reg-card md-input {

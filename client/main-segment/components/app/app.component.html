@@ -24,7 +24,7 @@ App component
 	    </form>
 	  </md-card-content>
 	</md-card>
-	<md-card class="reg-card">
+	<md-card id="reg" class="reg-card">
 	  <md-toolbar color="primary">Create New User</md-toolbar>
 	  <md-card-content class="reg-content">
 	    <form #registerForm="ngForm" (ngSubmit)="userActions.register(registerForm) || userFormActions.registerForm(false)">

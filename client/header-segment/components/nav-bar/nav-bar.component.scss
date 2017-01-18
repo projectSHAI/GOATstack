@@ -38,7 +38,6 @@ a:hover {
 }
 
 .menu-container.menu-mobile {
-    display: none;
     position: absolute;
     right: 0;
     top: 80%;
@@ -54,6 +53,7 @@ a:hover {
 }
 
 .router-links {
+    display: none;
     float: left;
 }
 
@@ -66,6 +66,12 @@ a:hover {
 }
 .app-title h1.night-time {
     color: white;
+}
+
+#welcome-user {
+    float: right;
+    margin-right: 2%;
+    top: 11px;
 }
 
 
@@ -178,5 +184,14 @@ body {
     }
     .app-title h1 {
         display: none;
+    }
+    #welcome-user {
+
+    }
+}
+
+@media (max-width: 550px) {
+    :host.signinout-mobile > div > button {
+        right: 215%;    
     }
 }

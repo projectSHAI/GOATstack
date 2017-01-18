@@ -15,6 +15,7 @@ export class NavBarComponent implements AfterViewInit {
 
 	@ViewChild('menu') m: ElementRef;
 
+  	@select('user') user$: Observable<any>;
 	@select('timeOfDay') toda$: Observable<any>;
 	menuHide: boolean = false;
 	menuOpen: boolean = false;
@@ -60,10 +61,11 @@ export class NavBarComponent implements AfterViewInit {
 		this.timeline = new TimelineMax({ paused: true });
 
 		const links = this.m.nativeElement.children[0].children;
-		const signinout = this.m.nativeElement.children[1].children[0].children[1].children; 
+		const signinout = this.m.nativeElement.children[1].children[0].children; 
 
 		this.timeline		  
-		  .to(this.m.nativeElement, 0, { display: 'block' })
+		  .to(this.m.nativeElement.children[0], 0, { display: 'block' })
+		  .to(this.m.nativeElement.children[1].children[0], 0, { display: 'inherit' })
 		  .to(links[0], 0, { x: 150 })
 		  .to(links[1], 0, { x: 150 })
 		  .to(signinout[2], 0, { x: 150 })
