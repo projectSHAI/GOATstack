@@ -2,13 +2,24 @@
     float: right;
 }
 
+:host.signinout-mobile > div > button {
+	position: absolute;
+	right: 240%;
+	top: -48px;
+}
+
 :host.signinout-mobile > div > div > button {
     display: block;
     margin-top: 5px;
 }
 
-:host.signinout-mobile .reg-card {
-    position: absolute;
-    top: 4%;
-    left: -465%;
+:host.signinout-mobile > div > .hidden,
+:host.signinout-mobile > div > div > .hidden {
+    display: none;
+}
+
+@media (max-width: 550px) {
+	:host.signinout-mobile > div > button {
+		right: 215%;	
+	}
 }

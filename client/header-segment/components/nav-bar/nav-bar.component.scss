@@ -38,8 +38,9 @@ a:hover {
 }
 
 .menu-container.menu-mobile {
+    display: none;
     position: absolute;
-    right: -125px;
+    right: 0;
     top: 80%;
     width: auto;
 }
@@ -101,6 +102,7 @@ body {
   vertical-align: middle;
   padding: 10px;
   margin: 0;
+  margin-top: 4px;
   cursor: pointer;
   &:focus {
     outline: 0;
@@ -168,4 +170,13 @@ body {
       }
     }
   }
+}
+
+@media (max-width: 550px) {
+    .app-title {
+        width: auto;
+    }
+    .app-title h1 {
+        display: none;
+    }
 }

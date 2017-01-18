@@ -16,7 +16,7 @@ export class NavBarComponent implements AfterViewInit {
 	@ViewChild('menu') m: ElementRef;
 
 	@select('timeOfDay') toda$: Observable<any>;
-	menuHide: boolean = true;
+	menuHide: boolean = false;
 	menuOpen: boolean = false;
 
 	linkWidth: number;
@@ -28,9 +28,9 @@ export class NavBarComponent implements AfterViewInit {
 	constructor(private renderer: Renderer, private el: ElementRef) {}
 
 	ngAfterViewInit() {
-		this.linkWidth = this.m.nativeElement.children[0].clientWidth;
-		this.sioWidth = this.m.nativeElement.children[1].clientWidth;
-		this.checkMenuWidth();
+		// this.linkWidth = this.m.nativeElement.children[0].clientWidth;
+		// this.sioWidth = this.m.nativeElement.children[1].clientWidth;
+		// this.checkMenuWidth();
 
 		this.initMenuAnima();
 	}
@@ -42,11 +42,6 @@ export class NavBarComponent implements AfterViewInit {
 		} else {
 			this.timeline.reverse();
 		}
-	}
-
-	@HostListener('window:resize', ['$event'])
-	resize(event) {
-		this.checkMenuWidth();
 	}
 
 	checkMenuWidth(): boolean {
@@ -65,13 +60,62 @@ export class NavBarComponent implements AfterViewInit {
 		this.timeline = new TimelineMax({ paused: true });
 
 		const links = this.m.nativeElement.children[0].children;
-		const signinout = this.m.nativeElement.children[1].children[0].children[0].children; 
+		const signinout = this.m.nativeElement.children[1].children[0].children[1].children; 
 
-		this.timeline
-		  .to(links[0], 1, { x: -125 })
-		  .to(links[1], 1, { x: -125 }, '-=0.8')
-		  .to(signinout[0], 1, { x: -125 }, '-=0.8')
-		  .to(signinout[1], 1, { x: -125 }, '-=0.8')
+		this.timeline		  
+		  .to(this.m.nativeElement, 0, { display: 'block' })
+		  .to(links[0], 0, { x: 150 })
+		  .to(links[1], 0, { x: 150 })
+		  .to(signinout[2], 0, { x: 150 })
+		  .to(signinout[0], 0, { x: 150 })
+		  .to(signinout[1], 0, { x: 150 })
+		  .to(links[0], 0.6, { x: 0 })
+		  .to(links[1], 0.6, { x: 0 }, '-=0.4')
+		  .to(signinout[2], 0.6, { x: 0 }, '-=0.4')
+		  .to(signinout[0], 0.6, { x: 0 }, '-=0.6')
+		  .to(signinout[1], 0.6, { x: 0 }, '-=0.4')
+	}
+
+
+	@HostListener('window:resize', ['$event'])
+	resize(event) {
+		// this.checkMenuWidth();
+	}
+
+	@HostListener('document:click', ['$event'])
+	body(event) {
+		let clicked = event.target;
+		let inside = false;
+		do {
+		    if (clicked === this.m.nativeElement || clicked === this.el.nativeElement.children[2]) {
+		        inside = true;
+		    }
+		    clicked = clicked.parentNode;
+		} while (clicked);
+		if(inside){
+
+		}else{
+		    if (this.menuOpen) {
+		    	this.menuOpen = false;
+		    	this.timeline.reverse();
+		    }
+		}
+	}
+
+	@HostListener('window:click', ['$event'])
+	menu(event) {
+		let clicked = event.target;
+		let inside = false;
+		do {
+		    if (clicked === this.m.nativeElement) {
+		        inside = true;
+		    }
+		    clicked = clicked.parentNode;
+		} while (clicked);
+		if(inside){
+	       this.menuOpen = false;
+	       this.timeline.reverse();
+		}
 	}
 
 }

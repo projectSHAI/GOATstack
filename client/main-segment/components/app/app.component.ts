@@ -10,7 +10,7 @@ Bootstrapping component
 
 
 //main imports
-import { Component, ViewChild, OnInit, AfterViewInit, ElementRef, Renderer } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit, ElementRef, HostListener } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
 import { UserFormActions } from '../../actions/userForm/userForm.actions';
@@ -37,9 +37,14 @@ export class AppComponent {
   @select('timeOfDay') toda$: Observable<any>;
   @select('userForm') userForm$: Observable<any>;
 
+  userSigning: boolean = false;
+  userSignup: boolean = false;
+
   private errorTimeline: any;
   private formTimeline: any;
   private formTimeline2: any;
+
+  private menuView: ElementRef;
 
   //this decorator gabs the object associated with the #errorToast template variable assigned in the app.componnent.html file,
   //-- and assigns this object to the class variable errorToast
@@ -50,8 +55,7 @@ export class AppComponent {
     private errorHandler: ErrorHandlerActions,
     private userFormActions: UserFormActions,
     private userActions: UserActions,
-    private el: ElementRef,
-    private renderer: Renderer
+    private el: ElementRef
     ) {}
 
   ngOnInit() {
@@ -60,6 +64,9 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
+    this.menuView = this.el.nativeElement.children[0].children[0].children[0].children[1];
+
+    // Signin and Signup form timelones
     this.formTimeline = new TimelineMax({ paused: true });
     this.formTimeline
       .to(this.formToast.nativeElement.children[0], 0, {display: 'block'})
@@ -71,6 +78,8 @@ export class AppComponent {
       .to(this.formToast.nativeElement.children[1], 1, {opacity: 1});
 
     this.userForm$.subscribe(uf => {
+      this.userSigning = uf.get('userSigning');
+      this.userSignup = uf.get('userSignup');
       uf.get('userSigning') ? this.formTimeline.play(): this.formTimeline.reverse();
       uf.get('userSignup') ? this.formTimeline2.play(): this.formTimeline2.reverse();
     });
@@ -87,6 +96,26 @@ export class AppComponent {
 
     // Let the component be in charge of triggering the animation
     this.error$.subscribe(error => error.get('message') ? this.errorTimeline.play(0) : null);
+  }
+
+  @HostListener('document:click', ['$event'])
+  body(event) {
+    let clicked = event.target;
+    let inside = false;
+    do {
+        if (clicked === this.formToast.nativeElement || clicked == this.menuView) {
+            inside = true;
+        }
+        clicked = clicked.parentNode;
+    } while (clicked);
+    if(inside){
+
+    }else{
+      if (this.userSigning) 
+        this.userFormActions.loginForm(false);
+      if (this.userSignup)
+        this.userFormActions.registerForm(false);
+    }
   }
 
 }
