@@ -114,9 +114,8 @@ div.zoom {
     height: 500px;
     left: 50%;
     margin-left: -250px;
-    margin-top: -200px;
     position: absolute;
-    top: 50%;
+    top: 5%;
     width: 500px;
 }
 
@@ -303,7 +302,24 @@ div.zoom {
 /*****responsive*****/
 @media screen and ( max-width: 500px ){
     #title {
-        font-size: 17vw;
-        top: 5%;
+        font-size: 50px;
+        top: 17%;
+    }
+    #loading {
+        bottom: 20%;
+        font-size: 30px;
+    }
+}
+@media screen and ( max-height: 650px ){
+    #spinner {
+        top: calc(1% - 90px);
+    }
+    #loading {
+        bottom: 20%;
+        font-size: 30px;
+    }
+    #title {
+        font-size: 50px;
+        top: 17%;
     }
 }

@@ -25,6 +25,4 @@ export class OceanFloorComponent{
 		'davy-jones-locker'
 	];
 
-	constructor() {}
-
 }

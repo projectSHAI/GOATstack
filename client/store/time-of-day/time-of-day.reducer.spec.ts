@@ -51,7 +51,7 @@ describe('TimeOfDay Reducer', () => {
     expect(nextState.getIn(['time'])).toBe('night-time');
     expect(nextState.getIn(['cloudBrightness'])).toBe('brightness(30%)');
     expect(nextState.getIn(['skyColor'])).toBe('rgb(15, 12, 30)');
-    expect(nextState.getIn(['mountainGoatSvg'])).toBe('public/assets/night-mountain-goat.svg');
+    expect(nextState.getIn(['mountainGoatSvg'])).toBe('public/assets/night-mountain-goat.png');
     expect(nextState.getIn(['islandSvg'])).toBe('public/assets/night-island.png');
     expect(nextState.getIn(['whaleSvg'])).toBe('public/assets/night-whale.png');
     expect(nextState.getIn(['capSvg'])).toBe('public/assets/epipelagic-cap-overlay-night.svg');
