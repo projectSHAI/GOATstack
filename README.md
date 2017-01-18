@@ -38,7 +38,7 @@ $ # dev environment served to http://localhost:1701
   * [Server Side Docs](https://github.com/projectSHAI/GOAT-stack/wiki/Server-Side-Docs)
   * [End to End Testing](https://github.com/projectSHAI/GOAT-stack/wiki/End-to-End-Testing)
   * [Client Side Testing](https://github.com/projectSHAI/GOAT-stack/wiki/Client-Side-Testing)
-  * [Server Side Testin](https://github.com/projectSHAI/GOAT-stack/wiki/Server-Side-Testing)
+  * [Server Side Testing](https://github.com/projectSHAI/GOAT-stack/wiki/Server-Side-Testing)
  
 ### **For more information about the stack click [here](https://github.com/projectSHAI/GOAT-stack/wiki)**
 ___

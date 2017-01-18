@@ -27,6 +27,4 @@ export class OceanFloorComponent{
 
 	constructor() {}
 
-
-
 }

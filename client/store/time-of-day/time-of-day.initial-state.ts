@@ -2,7 +2,7 @@ import { reimmutifyTimeOfDay } from './time-of-day.transformers';
 
 // Define the TIME_OF_DAY for the cloudStyle Object
 export const INITIAL_STATE = reimmutifyTimeOfDay({
-	titleColor:      'white',
+	titleColor:       '',
 	time:             '',
     cloudBrightness: 'brightness(30%)',
     skyColor:        'rgb(15, 12, 30)',

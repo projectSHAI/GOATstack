@@ -15,8 +15,9 @@ a:hover {
 }
 
 .app-title {
-    width: 300px;
-    display: block;
+    width: 275px;
+    height: 60px;
+    float: left;
 }
 
 .app-title h1 {
@@ -28,6 +29,23 @@ a:hover {
     display: inline-block;
 }
 
+.menu-container {
+    width: -webkit-calc(100% - 275px);
+    width:    -moz-calc(100% - 275px);
+    width:         calc(100% - 275px);
+    float: left;
+    margin-top: 11px;
+}
+
+.menu-container.menu-mobile {
+    position: absolute;
+    margin-top: -300px;
+}
+
+.router-links {
+    float: left;
+}
+
 #logo {
     display: inline-block;
     opacity: 0.8;
@@ -37,4 +55,107 @@ a:hover {
 }
 .app-title h1.night-time {
     color: white;
+}
+
+
+// Menu button
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;  
+}
+
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  background: #434A54;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Nav Trigger */
+.nav-trigger {
+  float: right;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  background: transparent;
+  border: none;
+  vertical-align: middle;
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    span,
+    span:before,
+    span:after {
+        background: #AC92EC;
+    }
+  }
+  &:before {
+    content: '';
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+  }
+  span {
+    display: block;
+    position: relative;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+    }
+    &:before {
+      top: -8px;
+    }
+    &:after {
+      bottom: -8px;
+    }
+  }
+  span,
+  span:before,
+  span:after {
+    width: 100%;
+    height: 4px;
+    background: #967ADC;
+    transition: all 0.4s ease;
+  }
+  &.is-active {
+    &:before {
+      opacity: 1;
+      width: 50px;
+      height: 50px;
+      background: #fff;
+    }
+    span {
+      background: transparent;
+      &:before {
+        top: 0;
+        transform: rotate(225deg);
+      }
+      &:after {
+        bottom: 0;
+        transform: rotate(-225deg);
+      }
+    }
+  }
 }

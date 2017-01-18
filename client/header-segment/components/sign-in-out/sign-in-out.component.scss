@@ -1,8 +1,5 @@
-.user-sign {
-    position: absolute;
-    top: 0;
-    right: 0;
-    line-height: 55px;
+:host {
+    float: right;
 }
 
 .user-sign button:hover {

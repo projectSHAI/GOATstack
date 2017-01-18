@@ -1,5 +1,17 @@
-<sign-in-out></sign-in-out>
-<div class='app-title'>
+<div class='app-title' [ngClass]="{'mobile-title': !menuHide}">
     <img id="logo" src="public/assets/goatlogo.svg" />
-    <h1 [style.color]="titleColor">GOATstack</h1>
+    <h1 [style.color]="(toda$ | async).get('titleColor')">GOATstack</h1>
 </div>
+<div #menu class="menu-container" [ngClass]="{'menuOpen': menuOpen, 'menu-mobile': !menuHide}">
+	<div class="router-links">
+		<!-- Add your router links here -->
+		<a md-raised-button color="primary" routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">Home</a>
+		<a md-raised-button color="primary" routerLink='/profile' routerLinkActive='active'>Profile</a>
+		<a md-raised-button color="primary" routerLink='/yoloswaq69404blazeit' routerLinkActive='active'>404</a>
+	</div>
+	<sign-in-out></sign-in-out>
+</div>
+<button class="nav-trigger" [ngClass]="{'is-active': menuOpen, 'hidden': menuHide}" (click)="openMenu()" type="button">
+	<span></span>
+</button>
+
