@@ -1,20 +1,16 @@
 import { Component } from '@angular/core';
 
-import { UserActions }  from '../../../header-segment/actions/user/user.actions';
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'user-profile',
-  providers: [UserActions],
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
 
 export class UserProfileComponent {
 
-  firstName = "Chris";
-  lastName = "Haugen";
-  userName = this.firstName + " " + this.lastName;
-  bgImg = "#";
-  userImg = "#";
+  @select('user') user$: Observable<any>;
 
 }
