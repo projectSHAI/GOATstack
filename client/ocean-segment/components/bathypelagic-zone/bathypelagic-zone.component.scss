@@ -37,7 +37,7 @@ img.ng2-lazyloaded {
 }
 .squid:nth-of-type(3) {
 	left: 10%;
-	top: 250vh;
+	top: 390vh;
 }
 .squid:nth-of-type(4) {
 	left: 60%;
@@ -80,4 +80,25 @@ img.ng2-lazyloaded {
 .jellyfish:nth-of-type(11) {
 	left: 75%;
 	top: 350vh;
+}
+
+@media screen and ( max-width: 800px ){
+	.small-squid {
+		width: 20%;
+	}
+	.medium-squid {
+		width: 35%;
+	}
+	.large-squid {
+		width: 75%;
+	}
+	.small-jelly {
+		width: 5%;
+	}
+	.medium-jelly {
+		width: 8%;
+	}
+	.large-jelly {
+		width: 13%;
+	}	
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'abyssopelagic-zone',
@@ -6,17 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./abyssopelagic-zone.component.css']
 })
 
-export class AbyssopelagicZoneComponent implements OnInit{ 
+export class AbyssopelagicZoneComponent{ 
 
 	offset: number = 1080;
-	angler: string = 'public/assets/angler.png';
 
-	constructor() {}
+	images: Array<string> = [
+		'public/assets/jellyfish-blue.png',
+		'public/assets/jellyfish-orange.png',
+		'public/assets/jellyfish-purple.png',
+		'public/assets/angler.png'
+	];
 
-	ngOnInit() {
-
-
-
-	}
+	styles: Array<string> = [
+		'jellyfish small-jelly',
+		'jellyfish medium-jelly',
+		'jellyfish large-jelly',
+		'angler'
+	];
 
 }

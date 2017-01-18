@@ -11,4 +11,4 @@
     </div>
 </section>
 
-<img class="angler" [lazyLoad]="angler" [offset]="offset">
+<img *ngFor="let image of images; let i=index" [class]="styles[i]" [lazyLoad]="image" [offset]="offset">
