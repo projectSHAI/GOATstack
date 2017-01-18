@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, Renderer } from '@angular/core';
 import { CloudActions } from '../../../sky-segment/actions/cloud/cloud.actions';
-import { select } from 'ng2-redux';
 
+import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

@@ -1,4 +1,4 @@
-import { UserFormActions } from '../../header-segment/actions/userForm/userForm.actions';
+import { UserFormActions } from '../../main-segment/actions/userForm/userForm.actions';
 import { reimmutifyUserForm } from './userForm.transformers';
 import { IUserForm } from './userForm.types';
 import { INITIAL_STATE } from './userForm.initial-state';

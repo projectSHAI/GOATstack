@@ -97,7 +97,7 @@ import { SEOActions }                                from './main-segment/action
 import { TimeOfDayActions }                          from './main-segment/actions/time-of-day/time-of-day.actions';
 import { SocketService }                             from './main-segment/services/socketio/socketio.service';
 import { HttpIntercept }                             from './main-segment/services/auth/auth.service';
-import { UserService }                               from './header-segment/services/user/user.service';
+import { UserService }                               from './main-segment/services/user/user.service';
 import { WonderService }                             from './sky-segment/services/wonder/wonder.service';
 
 //Angular and 3rd party serices

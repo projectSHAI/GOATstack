@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import { userReducer } from './user.reducer';
 import { INITIAL_STATE } from './user.initial-state';
-import { UserActions } from '../../header-segment/actions/user/user.actions';
+import { UserActions } from '../../main-segment/actions/user/user.actions';
 
 const testUser = {
   _id: '1234',

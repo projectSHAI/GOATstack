@@ -13,8 +13,8 @@ Bootstrapping component
 import { Component, ViewChild, OnInit, AfterViewInit, ElementRef, Renderer } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
-import { UserFormActions } from '../../../header-segment/actions/userForm/userForm.actions';
-import { UserActions } from '../../../header-segment/actions/user/user.actions';
+import { UserFormActions } from '../../actions/userForm/userForm.actions';
+import { UserActions } from '../../actions/user/user.actions';
 import { SEOActions } from '../../actions/seo/seo.actions';
 import { Observable } from 'rxjs/Observable';
 

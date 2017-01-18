@@ -1,8 +1,8 @@
 <div class="user-sign">
   <div class="user-sign-buttons">
+    <button routerLink='/profile' routerLinkActive='active' md-raised-button id="welcome-user" *ngIf="(user$ | async).has('userItem')" color="accent">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</button>
     <button md-raised-button id="sign-up-btn" *ngIf="!(user$ | async).has('userItem')" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
     <button md-raised-button id="sign-in-btn" *ngIf="!(user$ | async).has('userItem')" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
-    <button md-raised-button id="welcome-user" *ngIf="(user$ | async).has('userItem')" color="accent">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</button>
     <button md-raised-button id="sign-out-btn" *ngIf="(user$ | async).has('userItem')" type="button" (click)="userActions.logout()" color="primary">SIGN OUT</button>
   </div>
 </div>

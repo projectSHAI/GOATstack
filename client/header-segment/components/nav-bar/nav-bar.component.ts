@@ -70,7 +70,6 @@ export class NavBarComponent implements AfterViewInit {
 		this.timeline
 		  .to(links[0], 1, { x: -125 })
 		  .to(links[1], 1, { x: -125 }, '-=0.8')
-		  .to(links[2], 1, { x: -125 }, '-=0.8')
 		  .to(signinout[0], 1, { x: -125 }, '-=0.8')
 		  .to(signinout[1], 1, { x: -125 }, '-=0.8')
 	}

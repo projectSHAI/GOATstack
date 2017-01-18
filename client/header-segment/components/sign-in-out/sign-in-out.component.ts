@@ -3,13 +3,12 @@ import { Observable } from 'rxjs/Observable';
 
 import { select } from 'ng2-redux';
 
-import { UserActions }  from '../../actions/user/user.actions';
-import { UserFormActions } from '../../actions/userForm/userForm.actions';
+import { UserActions }  from '../../../main-segment/actions/user/user.actions';
+import { UserFormActions } from '../../../main-segment/actions/userForm/userForm.actions';
 import { ErrorHandlerActions } from '../../../main-segment/actions/error/errorHandler.actions';
 
 @Component({
   selector: 'sign-in-out',
-  providers: [UserActions, UserFormActions],
   templateUrl: './sign-in-out.component.html',
   styleUrls: ['./sign-in-out.component.css']
 })
