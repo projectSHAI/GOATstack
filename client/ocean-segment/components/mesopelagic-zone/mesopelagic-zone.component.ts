@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'mesopelagic-zone',
@@ -7,24 +7,24 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.Default
 })
 
-export class MesopelagicZoneComponent implements OnInit{ 
+export class MesopelagicZoneComponent{ 
 
-	octoBlue: string = 'public/assets/octo-chibi-blue.svg';
-	octoGreen: string = 'public/assets/octo-chibi-green.svg';
-	octoOrange: string = 'public/assets/octo-chibi-orange.svg';
-	octoPurple: string = 'public/assets/octo-chibi-purple.svg';
-	octoRed: string = 'public/assets/octo-chibi-red.svg';
+	octoBlue: string = 'public/assets/octochibi-blue.svg';
+	octoGreen: string = 'public/assets/octochibi-green.svg';
+	octoYellow: string = 'public/assets/octochibi-yellow.svg';
+	octoPurple: string = 'public/assets/octochibi-purple.svg';
+	octoRed: string = 'public/assets/octochibi-red.svg';
 	offset: number = 1080;
 
 	images: Array<string> = [
 		this.octoBlue,
 		this.octoGreen,
-		this.octoOrange,
+		this.octoYellow,
 		this.octoPurple,
 		this.octoRed,
 		this.octoBlue,
 		this.octoGreen,
-		this.octoOrange,
+		this.octoYellow,
 		this.octoPurple,
 		this.octoBlue,
 		this.octoPurple,
@@ -32,24 +32,18 @@ export class MesopelagicZoneComponent implements OnInit{
 	];
 
 	styles: Array<string> = [
-		'octo-chibi small',
-		'octo-chibi medium',
-		'octo-chibi small',
-		'octo-chibi medium',
-		'octo-chibi large',
-		'octo-chibi small',
-		'octo-chibi medium',
-		'octo-chibi large',
-		'octo-chibi small',
-		'octo-chibi small',
-		'octo-chibi medium',
-		'octo-chibi small'
+		'octochibi small',
+		'octochibi medium',
+		'octochibi small',
+		'octochibi medium',
+		'octochibi large',
+		'octochibi small',
+		'octochibi medium',
+		'octochibi large',
+		'octochibi small',
+		'octochibi small',
+		'octochibi medium',
+		'octochibi small'
 	];
-
-	constructor() {}
-
-	ngOnInit() {
-		
-	}
 
 }
