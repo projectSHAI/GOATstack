@@ -26,3 +26,14 @@ td {
 .submit-col {
     text-align: right;
 }
+
+:host.signinout-mobile > div > div > button {
+    display: block;
+    margin-top: 5px;
+}
+
+:host.signinout-mobile .reg-card {
+    position: absolute;
+    top: 4%;
+    left: -465%;
+}

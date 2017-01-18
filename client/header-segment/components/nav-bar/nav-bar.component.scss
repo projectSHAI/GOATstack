@@ -39,7 +39,17 @@ a:hover {
 
 .menu-container.menu-mobile {
     position: absolute;
-    margin-top: -300px;
+    right: -125px;
+    top: 80%;
+    width: auto;
+}
+.menu-container.menu-mobile > .router-links {
+    float: none;
+}
+
+.menu-container.menu-mobile > .router-links > a {
+    display: block;
+    margin-top: 5px;
 }
 
 .router-links {

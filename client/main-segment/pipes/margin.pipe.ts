@@ -12,8 +12,7 @@ import { Observable } from 'rxjs/Observable';
 export class MarginPipe implements PipeTransform {
 
   transform(value: number, el: any): any {
-  	console.log('hello');
-		return el.offsetHeight;
+	return el.offsetHeight;
   }
 
 }

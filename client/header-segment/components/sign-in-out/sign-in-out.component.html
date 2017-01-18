@@ -1,5 +1,5 @@
 <div class="user-sign">
-  <div>
+  <div class="user-sign-buttons">
     <button md-raised-button id="welcome-user" *ngIf="(user$ | async).has('userItem')" color="accent">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</button>
     <button md-raised-button id="sign-up-btn" *ngIf="!(user$ | async).has('userItem') && !(userForm$ | async).get('userSigning') && !(userForm$ | async).get('userSignup')" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
     <button md-raised-button id="sign-in-btn" *ngIf="!(user$ | async).has('userItem') && !(userForm$ | async).get('userSigning') && !(userForm$ | async).get('userSignup')" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>

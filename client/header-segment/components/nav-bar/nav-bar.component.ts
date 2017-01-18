@@ -2,6 +2,9 @@ import { Component, AfterViewInit, Renderer, ViewChild, ElementRef, HostListener
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
+declare let TweenMax: any;
+declare let TimelineMax: any;
+
 @Component({
   selector: 'nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -13,17 +16,32 @@ export class NavBarComponent implements AfterViewInit {
 	@ViewChild('menu') m: ElementRef;
 
 	@select('timeOfDay') toda$: Observable<any>;
-	menuHide: boolean = false;
+	menuHide: boolean = true;
 	menuOpen: boolean = false;
+
+	linkWidth: number;
+	sioWidth: number;
+	savedWidth: number;
+
+	private timeline: any;
 
 	constructor(private renderer: Renderer, private el: ElementRef) {}
 
 	ngAfterViewInit() {
+		this.linkWidth = this.m.nativeElement.children[0].clientWidth;
+		this.sioWidth = this.m.nativeElement.children[1].clientWidth;
 		this.checkMenuWidth();
+
+		this.initMenuAnima();
 	}
 
 	openMenu() {
 		this.menuOpen = !this.menuOpen;
+		if (this.menuOpen) {
+			this.timeline.play();
+		} else {
+			this.timeline.reverse();
+		}
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -31,16 +49,30 @@ export class NavBarComponent implements AfterViewInit {
 		this.checkMenuWidth();
 	}
 
-	checkMenuWidth() {
+	checkMenuWidth(): boolean {
 		const width = this.m.nativeElement.clientWidth;
-		const child1w = this.m.nativeElement.children[0].clientWidth;
-		const child2w = this.m.nativeElement.children[1].clientWidth;
 
-		if (width - child1w - child2w < 1 && this.menuHide) {
-			this.menuHide = false;
-		} else if (width - child1w - child2w > 1 && !this.menuHide) {
-			this.menuHide = true;
+		if (width - this.linkWidth - this.sioWidth < 1 && this.menuHide) {
+			this.savedWidth = window.innerWidth + 50;
+			return this.menuHide = false;
+		} else if (window.innerWidth > this.savedWidth && !this.menuHide) {
+			return this.menuHide = true;
 		}
+	}
+
+	initMenuAnima() {
+		// initialize menu handling animation timeline
+		this.timeline = new TimelineMax({ paused: true });
+
+		const links = this.m.nativeElement.children[0].children;
+		const signinout = this.m.nativeElement.children[1].children[0].children[0].children; 
+
+		this.timeline
+		  .to(links[0], 1, { x: -125 })
+		  .to(links[1], 1, { x: -125 }, '-=0.8')
+		  .to(links[2], 1, { x: -125 }, '-=0.8')
+		  .to(signinout[0], 1, { x: -125 }, '-=0.8')
+		  .to(signinout[1], 1, { x: -125 }, '-=0.8')
 	}
 
 }

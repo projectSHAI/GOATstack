@@ -1,4 +1,4 @@
-<div class='app-title' [ngClass]="{'mobile-title': !menuHide}">
+<div class='app-title'>
     <img id="logo" src="public/assets/goatlogo.svg" />
     <h1 [style.color]="(toda$ | async).get('titleColor')">GOATstack</h1>
 </div>
@@ -9,7 +9,7 @@
 		<a md-raised-button color="primary" routerLink='/profile' routerLinkActive='active'>Profile</a>
 		<a md-raised-button color="primary" routerLink='/yoloswaq69404blazeit' routerLinkActive='active'>404</a>
 	</div>
-	<sign-in-out></sign-in-out>
+	<sign-in-out [ngClass]="{'signinout-mobile': !menuHide}"></sign-in-out>
 </div>
 <button class="nav-trigger" [ngClass]="{'is-active': menuOpen, 'hidden': menuHide}" (click)="openMenu()" type="button">
 	<span></span>
