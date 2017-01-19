@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -9,16 +9,8 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./mountain-goat.component.css']
 })
 
-export class MountainGoatComponent implements OnInit{
+export class MountainGoatComponent {
 
   @select('timeOfDay') toda$: Observable<any>;
-
-  goatSvg: string;
-
-  constructor(){ }
-
-  ngOnInit() {
-    this.toda$.subscribe(x => this.goatSvg = x.get('mountainGoatSvg'));
-  }
 
 }

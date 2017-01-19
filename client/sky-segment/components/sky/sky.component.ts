@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
+import { Component, AfterViewInit, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -7,29 +7,23 @@ import { TimeOfDayActions } from '../../../main-segment/actions/time-of-day/time
 @Component({
   selector: 'the-sky',
   templateUrl: './sky.component.html',
-  styleUrls: ['./sky.component.css']
+  styleUrls: ['./sky.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class SkyComponent implements OnInit, AfterViewInit {
-
+export class SkyComponent implements AfterViewInit {
+  //using the select decorator to retrieve the timeOfDay object from the redux store. Then assigning it to variable toda$ in the component for use
   @select('timeOfDay') toda$: Observable<any>;
-
-  sunMoonGlow: string;
-  sunMoonBorder: string;
-
+  //The values for the time
   currMinutes: number;
   currHours: number;
-
+  //the position of the sun, we use translate in order to avoid DOM painting
   yPos: string = 'translateY(10px)';
   private windowHeight: number = window.innerHeight;  
+  //DI for the toda action to subscribe to the date object, and ref for activating change detection in the subscriptions.
+  constructor(public toda: TimeOfDayActions, private ref: ChangeDetectorRef) { }
 
-  constructor(public toda: TimeOfDayActions) { }
-  ngOnInit() {}
   ngAfterViewInit() {
-    this.toda$.subscribe(x => {
-      this.sunMoonGlow = x.get('sunMoonGlow');
-      this.sunMoonBorder = x.get('sunMoonBorder');
-    });
 
     // Set the height of the sun and moon whenever the time changes
     this.toda.getCurrentTime().subscribe(x => {
@@ -48,11 +42,12 @@ export class SkyComponent implements OnInit, AfterViewInit {
         // Between 12AM and 6AM the moon will travel down
         this.yPos = `translateY(-${this.windowHeight - ((this.windowHeight / (6*60)) * (((x.getHours() % 6)*60) + (x.getMinutes())))}px)`;
       }
-
+      //tell the ChangeDetectorRef to mark this component and all parents in the component tree to be checked in the next change detection.
+      this.ref.markForCheck();
     });
   }  
 
-  //listens for windowHeight
+  //listens for windowHeight in order to make sure the yPos stays responsive.
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.windowHeight = event.target.innerHeight;

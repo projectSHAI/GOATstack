@@ -1,4 +1,4 @@
-import{ Component, OnInit } from '@angular/core';
+import{ Component } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -9,20 +9,11 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./whale.component.css']
 })
 
-export class WhaleComponent implements OnInit { 
+export class WhaleComponent { 
 
   @select('timeOfDay') toda$: Observable<any>;
 
-  whaleSvg: string;
-
-  constructor(){ }
-
-  ngOnInit() {
-    this.toda$.subscribe(x => this.whaleSvg = x.get('whaleSvg'));
-  }
-
   getStarted() {
-  	console.log("https://github.com/projectSHAI/GOAT-stack");
   	window.location.href = "https://github.com/projectSHAI/GOAT-stack";
   }
 

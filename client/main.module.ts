@@ -69,7 +69,6 @@ import { WhaleComponent }                            from './whale-segment/compo
 import { IslandComponent }                           from './whale-segment/components/island/island.component';
 import { MountainGoatComponent }                     from './whale-segment/components/mountain-goat/mountain-goat.component';
 import { SkyComponent }                              from './sky-segment/components/sky/sky.component';
-import { StratosphereComponent }                     from './sky-segment/components/stratosphere/stratosphere.component';
 import { CloudGeneratorComponent }                   from './sky-segment/components/cloud-generator/cloud-generator.component';
 import { FooterComponent }                           from './footer-segment/components/footer/footer.component';
 // DO NOT REMOVE: template main.module imports
@@ -174,8 +173,7 @@ NgModule
     MountainGoatComponent, 
     WhaleComponent,
     OceanComponent,
-    SignInOutComponent,
-    StratosphereComponent, 
+    SignInOutComponent, 
     AbyssopelagicZoneComponent,
     BathypelagicZoneComponent,
     EpipelagicZoneComponent,

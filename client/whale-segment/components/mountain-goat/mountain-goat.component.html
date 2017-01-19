@@ -1,1 +1,1 @@
-<img id="mountain-goat" class="fade" [src]="goatSvg" />
+<img id="mountain-goat" class="fade" [src]="(toda$ | async).get('mountainGoatSvg')" />

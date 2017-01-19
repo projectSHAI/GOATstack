@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Renderer, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
@@ -26,7 +26,7 @@ export class NavBarComponent implements AfterViewInit {
 
 	private timeline: any;
 
-	constructor(private renderer: Renderer, private el: ElementRef) {}
+	constructor(private el: ElementRef) {}
 
 	ngAfterViewInit() {
 		// this.linkWidth = this.m.nativeElement.children[0].clientWidth;

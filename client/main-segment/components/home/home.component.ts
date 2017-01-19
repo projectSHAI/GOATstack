@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CloudActions } from '../../../sky-segment/actions/cloud/cloud.actions';
 
 import { select } from 'ng2-redux';
@@ -11,21 +11,15 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent implements OnInit { 
+export class HomeComponent { 
 
   @select('timeOfDay') toda$: Observable<any>;
 
   scrollTop: number;
-  winHeight: number = window.innerHeight; 
-  past: boolean = false;
+  winHeight: number  = window.innerHeight; 
+  past:      boolean = false;
 
-  constructor(private el: ElementRef, 
-  	private renderer: Renderer,
-  	private cloudActions: CloudActions) { }
-
-  ngOnInit() {
-  	this.toda$.subscribe(x => this.renderer.setElementStyle(this.el.nativeElement, 'background', x.get('skyColor')));
-  }
+  constructor(private cloudActions: CloudActions) { }
 
   @HostListener('window:scroll', ['$event'])
   scroll(event) {
