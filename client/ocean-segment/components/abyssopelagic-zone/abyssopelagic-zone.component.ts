@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'abyssopelagic-zone',
   templateUrl: './abyssopelagic-zone.component.html',
-  styleUrls: ['./abyssopelagic-zone.component.css']
+  styleUrls: ['./abyssopelagic-zone.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AbyssopelagicZoneComponent{ 

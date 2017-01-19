@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'epipelagic-zone',
   templateUrl: './epipelagic-zone.component.html',
-  styleUrls: ['./epipelagic-zone.component.css']
+  styleUrls: ['./epipelagic-zone.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class EpipelagicZoneComponent { 

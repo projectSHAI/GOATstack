@@ -1,4 +1,4 @@
-import{ Component } from '@angular/core';
+import{ Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -6,7 +6,8 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'blue-whale',
   templateUrl: './whale.component.html',
-  styleUrls: ['./whale.component.css']
+  styleUrls: ['./whale.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class WhaleComponent { 

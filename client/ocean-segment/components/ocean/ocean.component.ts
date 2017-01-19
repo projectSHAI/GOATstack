@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -6,7 +6,8 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'the-ocean',
   templateUrl: './ocean.component.html',
-  styleUrls: ['./ocean.component.css']
+  styleUrls: ['./ocean.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class OceanComponent{ 

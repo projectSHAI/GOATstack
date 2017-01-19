@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'ocean-floor',
   templateUrl: './ocean-floor.component.html',
-  styleUrls: ['./ocean-floor.component.css']
+  styleUrls: ['./ocean-floor.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class OceanFloorComponent{ 
