@@ -9,12 +9,16 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 export class MesopelagicZoneComponent{ 
 
+	//All the below is defined mutably only because we are certain they will never be changed. Any data which changes should be immutable and handled by the redux store
+
+	//offset variable to let lazyload know when to begin loading assets. in this case, 1080px below the viewport.
+	offset: number = 1080;
+	//images and styles arrays to set html attributes. This makes the html template more concise, and readable.
 	octoBlue: string = 'public/assets/octochibi-blue.svg';
 	octoGreen: string = 'public/assets/octochibi-green.svg';
 	octoYellow: string = 'public/assets/octochibi-yellow.svg';
 	octoPurple: string = 'public/assets/octochibi-purple.svg';
 	octoRed: string = 'public/assets/octochibi-red.svg';
-	offset: number = 1080;
 
 	images: Array<string> = [
 		this.octoBlue,

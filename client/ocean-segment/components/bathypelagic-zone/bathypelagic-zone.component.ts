@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'bathypelagic-zone',
@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bathypelagic-zone.component.css']
 })
 
-export class BathypelagicZoneComponent implements OnInit{ 
+export class BathypelagicZoneComponent{ 
 
+	//All the below is defined mutably only because we are certain they will never be changed. Any data which changes should be immutable and handled by the redux store
+
+	//offset variable to let lazyload know when to begin loading assets. in this case, 1080px below the viewport.
 	offset: number = 1080;
-
+	//images and styles arrays to set html attributes. This makes the html template more concise, and readable.
 	images: Array<string> = [
 		'public/assets/squid2-pink.svg',
 		'public/assets/squid2-purple.svg',
@@ -37,8 +40,5 @@ export class BathypelagicZoneComponent implements OnInit{
 		'jellyfish medium-jelly',
 		'jellyfish large-jelly',
 	];
-
-	constructor() { }
-	ngOnInit() { }
 
 }
