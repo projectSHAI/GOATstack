@@ -1,5 +1,0 @@
-<div class="user-sign-buttons">
-  <button md-raised-button id="sign-up-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
-  <button md-raised-button id="sign-in-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
-  <button md-raised-button id="sign-out-btn" [ngClass]="{'hidden': !(user$ | async).has('userItem')}" type="button" (click)="userActions.logout()" color="primary">SIGN OUT</button>
-</div>

@@ -57,7 +57,8 @@ export class UserActions {
     }
   }
 
-  login(lf?: FormGroup, event?: Event): void {
+  // Setting lf to type FormGroup causes issues
+  login(lf: any): void {
     // only if the login form is filled
     if (lf.valid) {
       // First change the state to fetching
@@ -84,7 +85,8 @@ export class UserActions {
     this.ngRedux.dispatch({ type: UserActions.LOGOUT_USER });
   }
 
-  register(rf: FormGroup): void {
+  // Setting lf to type FormGroup causes issues
+  register(rf: any): void {
     // only if the form is filled and passwords equal the same
     if (rf.valid && (rf.value.signup_password === rf.value.signup_re_password)) {
       // First change the state to fetching

@@ -20,6 +20,7 @@ import { Observable } from 'rxjs/Observable';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
+declare let Power0: any;
 
 //decorator
 @Component({
@@ -53,8 +54,8 @@ export class AppComponent {
 
   constructor(
     private errorHandler: ErrorHandlerActions,
-    private userFormActions: UserFormActions,
-    private userActions: UserActions,
+    public userFormActions: UserFormActions,
+    public userActions: UserActions,
     private el: ElementRef
     ) {}
 
@@ -64,18 +65,18 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
-    this.menuView = this.el.nativeElement.children[0].children[0].children[0].children[1];
+    this.menuView = this.el.nativeElement.children[0].children[0].children[1];
 
-    // Signin and Signup form timelones
+    // Signin and Signup form timelines
     this.formTimeline = new TimelineMax({ paused: true });
     this.formTimeline
-      .to(this.formToast.nativeElement.children[0], 0, {display: 'block'})
-      .to(this.formToast.nativeElement.children[0], 1, {opacity: 1});
+      .to(this.formToast.nativeElement.children[0], 0, {ease: Power0.easeNone, display: 'block'})
+      .fromTo(this.formToast.nativeElement.children[0], 1, {y:-500}, {y: 0});
 
     this.formTimeline2 = new TimelineMax({ paused: true });
     this.formTimeline2
-      .to(this.formToast.nativeElement.children[1], 0, {display: 'block'})
-      .to(this.formToast.nativeElement.children[1], 1, {opacity: 1});
+      .to(this.formToast.nativeElement.children[1], 0, {ease: Power0.easeNone, display: 'block'})
+      .fromTo(this.formToast.nativeElement.children[1], 1, {y:-500}, {y: 0});
 
     this.userForm$.subscribe(uf => {
       this.userSigning = uf.get('userSigning');
@@ -86,12 +87,11 @@ export class AppComponent {
 
 
     // initialize error handling animation timeline
-    this.errorTimeline = new TimelineMax({ paused: true });
+    this.errorTimeline = new TimelineMax({ paused: true, yoyo: true });
     this.errorTimeline
-      .to(this.errorToast.nativeElement, 0, { display: 'block' })
-      .to(this.errorToast.nativeElement, 1, { opacity: 1 })
-      .to(this.errorToast.nativeElement, 1, { opacity: 0 }, "+=3")
-      .to(this.errorToast.nativeElement, 1, { display: 'none' })
+      .to(this.errorToast.nativeElement, 0, {display:'block',y:400})
+      .to(this.errorToast.nativeElement, 1, {y:0})
+      .to(this.errorToast.nativeElement, 1, {y:400, display:'none'}, "+=3")
       .add(() => this.errorHandler.hideError());
 
     // Let the component be in charge of triggering the animation

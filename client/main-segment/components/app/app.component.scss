@@ -6,17 +6,25 @@
 
 }
 
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+}
+
 .error-card {
     display: none;
-    opacity: 0;
     position: fixed;
     bottom: 10%;
     left: 5%;
-    width: 20%;
+    width: 350px;
+    transform: translateY(-400px);  
 }
 
 .error-card > md-card {
-    z-index: 1000;
+    z-index: 10000;
     padding: 0;
 }
 
@@ -31,21 +39,21 @@
 }
 
 .reg-card {
+    will-change: transform;
     display: none;
     position: fixed;
+    width: 400px;
     margin-left: -200px;
     top: 20%;
     left: 50%;
     z-index: 10000;
     padding: 0;
-    opacity: 0;
 }
 
 .reg-card#reg {
     top: 15%;
 } 
 
-.reg-card table,
 .reg-card md-input {
     width: 100%;
 } 
@@ -54,15 +62,32 @@
     padding: 10px;
 }
 
-.form-button {
+.reg-content button {
     margin-right: 2px;
 }
-
-td {
-    padding: 2px;
+.reg-content #submit {
+    float: right;
 }
 
-.submit-col {
-    text-align: right;
-}
 
+
+@media (max-width: 800px) {
+    .error-card {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        transform: translateY(-400px);  
+    }
+
+    .reg-card {
+        width: auto;
+        margin: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    .reg-card#reg {
+        top: 0;
+    }
+}
