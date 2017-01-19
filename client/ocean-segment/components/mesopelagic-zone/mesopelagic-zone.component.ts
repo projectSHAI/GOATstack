@@ -4,7 +4,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   selector: 'mesopelagic-zone',
   templateUrl: './mesopelagic-zone.component.html',
   styleUrls: ['./mesopelagic-zone.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MesopelagicZoneComponent{ 

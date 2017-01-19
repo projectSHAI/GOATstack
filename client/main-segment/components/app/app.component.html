@@ -21,9 +21,9 @@ App component
 			    	<md-input id="login_password" type="password" name="login_password" ngModel required placeholder="Password"></md-input>	    		
 		    	</div>
 		        <div>
-		        	<button md-raised-button type="button" (click)="userFormActions.loginForm(false)" color="primary">BACK</button>
-		        	<button md-raised-button type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
-		        	<button md-raised-button color="accent" id="submit">LOGIN</button>
+		        	<button md-raised-button id="back-btn" type="button" (click)="userFormActions.loginForm(false)" color="primary">BACK</button>
+		        	<button md-raised-button id="signup-btn" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
+		        	<button md-raised-button id="login-btn" color="accent" id="submit">LOGIN</button>
 		        </div>
 		    </form>
 		  </md-card-content>
@@ -39,9 +39,9 @@ App component
 			        <md-input id="signup_re_password" type="password" name="signup_re_password" ngModel required placeholder="Password Again" autoComplete="off"></md-input>
 		    	</div>
 		    	<div>	    		
-		    		<button md-raised-button type="button" (click)="userFormActions.registerForm(false)" color="primary">BACK</button>
-		        	<button md-raised-button type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
-		    		<button md-raised-button color="accent" id="submit">REGISTER</button>
+		    		<button md-raised-button id="back-btn2" type="button" (click)="userFormActions.registerForm(false)" color="primary">BACK</button>
+		        	<button md-raised-button id="signin-btn" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
+		    		<button md-raised-button id="reg-btn" color="accent" id="submit">REGISTER</button>
 		    	</div>
 		    </form>
 		  </md-card-content>

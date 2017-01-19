@@ -54,11 +54,11 @@ export class AppComponent {
   @ViewChild('formToast') formToast: ElementRef;
 
   constructor(
-    private errorHandler:    ErrorHandlerActions,
+    private errorHandler: ErrorHandlerActions,
     public userFormActions: UserFormActions,
-    public userActions:     UserActions,
-    private el:              ElementRef,
-    private ref:             ChangeDetectorRef
+    public userActions: UserActions,
+    private el: ElementRef,
+    private ref: ChangeDetectorRef
     ) {}
 
   ngAfterViewInit() {
@@ -80,7 +80,6 @@ export class AppComponent {
       this.userSignup = uf.get('userSignup');
       uf.get('userSigning') ? this.formTimeline.play(): this.formTimeline.reverse();
       uf.get('userSignup') ? this.formTimeline2.play(): this.formTimeline2.reverse();
-      this.ref.markForCheck();
     });
 
 
@@ -93,10 +92,7 @@ export class AppComponent {
       .add(() => this.errorHandler.hideError());
 
     // Let the component be in charge of triggering the animation
-    this.error$.subscribe((error) => {
-      error.get('message') ? this.errorTimeline.play(0) : null;
-      this.ref.markForCheck();
-    });
+    this.error$.subscribe((error) => error.get('message') ? this.errorTimeline.play(0) : null);
   }
 
   @HostListener('document:click', ['$event'])

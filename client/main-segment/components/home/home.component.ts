@@ -32,12 +32,15 @@ export class HomeComponent {
       if(this.scrollTop <= (this.winHeight * 1.5) && this.past === true) {
       	  this.cloudActions.resumeAnima();
           this.past = false;
+
+          this.ref.markForCheck();
       }
       if(this.scrollTop >= (this.winHeight * 1.5) && this.past === false) {
       	  this.cloudActions.pauseAnima();
           this.past = true;
+
+          this.ref.markForCheck();
       }
-      this.ref.markForCheck();
   }
 
 }

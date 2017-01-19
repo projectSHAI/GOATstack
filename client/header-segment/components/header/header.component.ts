@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
@@ -11,7 +11,8 @@ declare let TimelineMax: any;
 @Component({
   selector: 'header-section',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class HeaderComponent {
@@ -33,7 +34,9 @@ export class HeaderComponent {
 	constructor(
 		private el: ElementRef,
 		public userActions: UserActions,
-		public userFormActions: UserFormActions) {}
+		public userFormActions: UserFormActions,
+    	private ref: ChangeDetectorRef
+		) {}
 
 	ngOnInit() {		
 	    this.userActions.getMe();
@@ -54,16 +57,21 @@ export class HeaderComponent {
 		} else {
 			this.timeline.reverse();
 		}
+		this.ref.markForCheck();
 	}
 
-	checkMenuWidth(): boolean {
+	checkMenuWidth(): void {
 		const width = this.m.nativeElement.clientWidth;
 
 		if (width - this.linkWidth - this.sioWidth < 1 && this.menuHide) {
 			this.savedWidth = window.innerWidth + 50;
-			return this.menuHide = false;
+			this.menuHide = false;
+
+			this.ref.markForCheck();
 		} else if (window.innerWidth > this.savedWidth && !this.menuHide) {
-			return this.menuHide = true;
+			this.menuHide = true;
+
+			this.ref.markForCheck();
 		}
 	}
 
@@ -102,8 +110,7 @@ export class HeaderComponent {
 
 		}else{
 		    if (this.menuOpen) {
-		    	this.menuOpen = false;
-		    	this.timeline.reverse();
+		    	this.openMenu();
 		    }
 		}
 	}
@@ -119,8 +126,7 @@ export class HeaderComponent {
 		    clicked = clicked.parentNode;
 		} while (clicked);
 		if(inside){
-	       this.menuOpen = false;
-	       this.timeline.reverse();
+	       this.openMenu();
 		}
 	}
 }

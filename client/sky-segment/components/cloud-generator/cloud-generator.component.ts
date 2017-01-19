@@ -1,5 +1,5 @@
 
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, Renderer } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ChangeDetectionStrategy, Renderer } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 
@@ -45,20 +45,13 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
     private wonderService: WonderService,
     private cloudActions:  CloudActions,
     private socket:        SocketService,
-    private ref:           ChangeDetectorRef,
     private renderer:      Renderer
     ) { }
   
   ngOnInit() {
     this.width = window.innerWidth;
-    this.animaArray$.subscribe((anima) => {
-      this.animaArray = anima;
-      this.ref.markForCheck();
-    });
-    this.toda$.subscribe((x) => {
-      this.renderer.setElementStyle(this.wonderSky.nativeElement, 'filter', x.get('cloudBrightness'));
-      this.ref.markForCheck();
-    }); 
+    this.animaArray$.subscribe((anima) => this.animaArray = anima);
+    this.toda$.subscribe((x) => this.renderer.setElementStyle(this.wonderSky.nativeElement, 'filter', x.get('cloudBrightness'))); 
     // Change the state to indicate wonders are being fetched
     this.wonderActions.fetchWonders();
     this.wonderService.getWonders().subscribe(wonders => {
@@ -81,7 +74,6 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
           });
 
         }, 1250); // Give a little more time to render the new cloud style
-        this.ref.markForCheck();
       });     
   }
 
@@ -190,11 +182,4 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
     }
 
   }
-
-  testing(test) {
-    console.log(this.el);
-    this.el._focused = false;
-    // console.log(test);
-  }
-
 }
