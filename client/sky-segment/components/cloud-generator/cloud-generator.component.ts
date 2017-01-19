@@ -1,5 +1,5 @@
 
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, Renderer } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 
@@ -16,34 +16,49 @@ declare let Power0: any;
   selector: 'cloud-generator',
   providers: [WonderActions, CloudActions],
   templateUrl: './cloud-generator.component.html',
-  styleUrls: ['./cloud-generator.component.css']
+  styleUrls: ['./cloud-generator.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CloudGeneratorComponent implements OnInit, OnDestroy {
+  //defining all the immutable objects from the redux store in component variables
   @select('cloudStyle') cloudStyle$: Observable<any>;
   @select('animaArray') animaArray$: Observable<any>;
   @select('wonder') wonder$: Observable<any>;
   @select('timeOfDay') toda$: Observable<any>;
+  //defining all class specific variables
   private animaArray: any;
   private cloudStyle: any;
   private width: number;
   private pause: boolean = false;
   private scrollTop: number;
+  //public variable
   dream: string;
 
+  //defining the elements we need to access from the HTML template
   @ViewChild('wonderSky') wonderSky;
   @ViewChild('test') el;
 
+  //defining our DI
   constructor(
-    public wonderActions: WonderActions,
+    public  wonderActions: WonderActions,
     private wonderService: WonderService,
-    private cloudActions: CloudActions,
-    private socket: SocketService) { }
+    private cloudActions:  CloudActions,
+    private socket:        SocketService,
+    private ref:           ChangeDetectorRef,
+    private renderer:      Renderer
+    ) { }
   
   ngOnInit() {
     this.width = window.innerWidth;
-    this.animaArray$.subscribe(anima => this.animaArray = anima);
-    this.toda$.subscribe(x => this.wonderSky.nativeElement.style.filter = x.get('cloudBrightness')); 
+    this.animaArray$.subscribe((anima) => {
+      this.animaArray = anima;
+      this.ref.markForCheck();
+    });
+    this.toda$.subscribe((x) => {
+      this.renderer.setElementStyle(this.wonderSky.nativeElement, 'filter', x.get('cloudBrightness'));
+      this.ref.markForCheck();
+    }); 
     // Change the state to indicate wonders are being fetched
     this.wonderActions.fetchWonders();
     this.wonderService.getWonders().subscribe(wonders => {
@@ -66,6 +81,7 @@ export class CloudGeneratorComponent implements OnInit, OnDestroy {
           });
 
         }, 1250); // Give a little more time to render the new cloud style
+        this.ref.markForCheck();
       });     
   }
 

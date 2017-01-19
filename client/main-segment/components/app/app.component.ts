@@ -10,7 +10,7 @@ Bootstrapping component
 
 
 //main imports
-import { Component, ViewChild, OnInit, AfterViewInit, ElementRef, HostListener } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
 import { UserFormActions } from '../../actions/userForm/userForm.actions';
@@ -27,7 +27,8 @@ declare let Power0: any;
   selector: 'my-app',
   providers: [UserActions, UserFormActions],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 //class which is implemented once the AfterViewInit event in tha Angular event lifecycle has fired.
@@ -53,19 +54,15 @@ export class AppComponent {
   @ViewChild('formToast') formToast: ElementRef;
 
   constructor(
-    private errorHandler: ErrorHandlerActions,
+    private errorHandler:    ErrorHandlerActions,
     public userFormActions: UserFormActions,
-    public userActions: UserActions,
-    private el: ElementRef
+    public userActions:     UserActions,
+    private el:              ElementRef,
+    private ref:             ChangeDetectorRef
     ) {}
 
-  ngOnInit() {
-    // Initially chamge theme reflecting time of day
-    this.toda$.subscribe( x => this.el.nativeElement.className = x.get('time'));
-  }
-
   ngAfterViewInit() {
-    this.menuView = this.el.nativeElement.children[0].children[0].children[1];
+    this.menuView = this.el.nativeElement.children[0].children[0].children[0].children[1];
 
     // Signin and Signup form timelines
     this.formTimeline = new TimelineMax({ paused: true });
@@ -83,6 +80,7 @@ export class AppComponent {
       this.userSignup = uf.get('userSignup');
       uf.get('userSigning') ? this.formTimeline.play(): this.formTimeline.reverse();
       uf.get('userSignup') ? this.formTimeline2.play(): this.formTimeline2.reverse();
+      this.ref.markForCheck();
     });
 
 
@@ -95,7 +93,10 @@ export class AppComponent {
       .add(() => this.errorHandler.hideError());
 
     // Let the component be in charge of triggering the animation
-    this.error$.subscribe(error => error.get('message') ? this.errorTimeline.play(0) : null);
+    this.error$.subscribe((error) => {
+      error.get('message') ? this.errorTimeline.play(0) : null;
+      this.ref.markForCheck();
+    });
   }
 
   @HostListener('document:click', ['$event'])

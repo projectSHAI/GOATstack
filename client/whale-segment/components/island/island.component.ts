@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -6,17 +6,12 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'the-island',
   templateUrl: './island.component.html',
-  styleUrls: ['./island.component.css']
+  styleUrls: ['./island.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class IslandComponent implements OnInit {
-
+export class IslandComponent {
+  //decorator used to declare the time of day store item for use in the HTML template
   @select('timeOfDay') toda$: Observable<any>;
-
-  islandSvg: string;
-
-  ngOnInit() {
-    this.toda$.subscribe(x => this.islandSvg = x.get('islandSvg'));
-  }
 
 }

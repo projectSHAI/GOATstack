@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer } from '@angular/core';
+import { Component, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CloudActions } from '../../../sky-segment/actions/cloud/cloud.actions';
 
 import { select } from 'ng2-redux';
@@ -8,24 +8,22 @@ import { Observable } from 'rxjs/Observable';
   selector: 'home-section',
   providers: [CloudActions],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HomeComponent implements OnInit { 
+export class HomeComponent { 
 
   @select('timeOfDay') toda$: Observable<any>;
 
   scrollTop: number;
-  winHeight: number = window.innerHeight; 
-  past: boolean = false;
+  winHeight: number  = window.innerHeight; 
+  past:      boolean = false;
 
-  constructor(private el: ElementRef, 
-  	private renderer: Renderer,
-  	private cloudActions: CloudActions) { }
-
-  ngOnInit() {
-  	this.toda$.subscribe(x => this.renderer.setElementStyle(this.el.nativeElement, 'background', x.get('skyColor')));
-  }
+  constructor(
+    private cloudActions: CloudActions,
+    private ref:          ChangeDetectorRef
+    ) { }
 
   @HostListener('window:scroll', ['$event'])
   scroll(event) {
@@ -39,7 +37,7 @@ export class HomeComponent implements OnInit {
       	  this.cloudActions.pauseAnima();
           this.past = true;
       }
-
+      this.ref.markForCheck();
   }
 
 }

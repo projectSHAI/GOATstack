@@ -1,2 +1,2 @@
-<the-sky [ngClass]="{'hold': past}"></the-sky>
+<the-sky [style.background]="(toda$ | async).get('skyColor')"></the-sky>
 <the-ocean></the-ocean>
