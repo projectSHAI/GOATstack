@@ -23,16 +23,18 @@
     //     console.log('test');
     // });
 
-    window.onload = function() {
-        console.log('testing');
-        document.getElementById('space-goat').className = "zoom";
-        setTimeout(() => {
-            document.getElementById('app').style.opacity = "1";
+    window.onload = loaded; 
+
+    function loaded() {
+            console.log('testing');
+            document.getElementById('space-goat').className = "zoom";
             setTimeout(() => {
-                document.getElementById('load-screen').remove();
-            }, 100);
-        }, 1000);
-    };
+                document.getElementById('app').style.opacity = "1";
+                setTimeout(() => {
+                    document.getElementById('load-screen').remove();
+                }, 100);
+            }, 1000);
+        }
     </script>
 </head>
 

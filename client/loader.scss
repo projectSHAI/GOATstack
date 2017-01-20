@@ -27,7 +27,7 @@
     margin: 0 auto;
     left: 0;
     font-size: 86px;
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', Arial;
     right: 0;
     color: white;
 }
@@ -46,12 +46,12 @@
     right: 0;
     margin: 0 auto;
     font-size: 36px;
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', Arial;
 }
 
 .dot {
     opacity: 0;
-    animation: 3s linear 0s normal none infinite running dots;
+    animation: 3s linear 0s infinite dots;
     display: inline-block;
 }
 
@@ -84,30 +84,32 @@ $n: 5; // has to match number of DOM nodes
 
 #space-goat {
     position: absolute;
-    width: 150px;
-    height: 150px;
+    width: 63px;
+    height: 63px;
     z-index: 100;
     top: 40px;
     left: 45px;
-    animation: 5s linear 0s normal none infinite running moveGoat;
+    animation: 5s linear 0s infinite moveGoat;
     animation-delay: 0.55s;
 }
 
 div.zoom {
-    animation: 1.5s linear 0s normal none running zoom!important;
+    animation: 1.5s linear 0s zoom!important;
 }
 
 #space-goat img {
     position: absolute;
+    width: 100%;
+    height: auto;
 }
 
 #fire-1 {
     opacity: 0;
-    animation: 3s linear 0s normal none infinite running fadeIn;
+    animation: 3s linear 0s infinite fadeIn;
 }
 
 #fire-2 {
-    animation: 3s linear 0s normal none infinite running fadeOut;
+    animation: 3s linear 0s infinite fadeOut;
 }
 
 #spinner {
@@ -159,7 +161,7 @@ div.zoom {
 }
 
 .star1 {
-    animation: 4s linear 0s normal none infinite running moveStar;
+    animation: 4s linear 0s infinite moveStar;
     animation-delay: 0.25s;
     color: white;
     left: 30px;
@@ -170,7 +172,7 @@ div.zoom {
 }
 
 .star2 {
-    animation: 20s linear 0s normal none infinite running moveStar;
+    animation: 20s linear 0s infinite moveStar;
     color: white;
     left: 80px;
     opacity: 0.3;
@@ -180,7 +182,7 @@ div.zoom {
 }
 
 .star3 {
-    animation: 10s linear 0s normal none infinite running moveStar;
+    animation: 10s linear 0s infinite moveStar;
     animation-delay: 0.7s;
     color: white;
     left: 100px;
@@ -191,7 +193,7 @@ div.zoom {
 }
 
 .star4 {
-    animation: 7s linear 0s normal none infinite running moveStar;
+    animation: 7s linear 0s infinite moveStar;
     animation-delay: 1s;
     color: white;
     left: 20px;
@@ -202,7 +204,7 @@ div.zoom {
 }
 
 .star5 {
-    animation: 20s linear 0s normal none infinite running moveStar;
+    animation: 20s linear 0s infinite moveStar;
     animation-delay: 1s;
     color: white;
     left: -30px;
@@ -213,7 +215,7 @@ div.zoom {
 }
 
 .star6 {
-    animation: 5s linear 0s normal none infinite running moveStar;
+    animation: 5s linear 0s infinite moveStar;
     animation-delay: 0.55s;
     color: white;
     left: 80px;
