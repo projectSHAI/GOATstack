@@ -19,7 +19,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
     <!-- loading animation -->
     <script>
+    // document.addEventListener('readystatechange', function(){
+    //     console.log('test');
+    // });
+
     window.onload = function() {
+        console.log('testing');
         document.getElementById('space-goat').className = "zoom";
         setTimeout(() => {
             document.getElementById('app').style.opacity = "1";
@@ -27,7 +32,7 @@
                 document.getElementById('load-screen').remove();
             }, 100);
         }, 1000);
-    }
+    };
     </script>
 </head>
 

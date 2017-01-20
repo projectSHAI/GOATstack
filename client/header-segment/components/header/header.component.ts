@@ -83,11 +83,11 @@ export class HeaderComponent {
 
 		this.timeline		  
 		  .to(this.m.nativeElement.children[0], 0, { display: 'block' })
-		  .fromTo(links[0], 0.6, { x: 150 }, { x: 0 })
-		  .fromTo(links[1], 0.6, { x: 150 }, { x: 0 }, '-=0.4')
-		  .fromTo(links[4], 0.6, { x: 150 }, { x: 0 }, '-=0.4')
-		  .fromTo(links[2], 0.6, { x: 150 }, { x: 0 }, '-=0.6')
-		  .fromTo(links[3], 0.6, { x: 150 }, { x: 0 }, '-=0.4')
+		  .fromTo(links[0], 0.5, { x: 150 }, { x: 0 })
+		  .fromTo(links[1], 0.5, { x: 150 }, { x: 0 }, '-=0.3')
+		  .fromTo(links[4], 0.5, { x: 150 }, { x: 0 }, '-=0.3')
+		  .fromTo(links[2], 0.5, { x: 150 }, { x: 0 }, '-=0.5')
+		  .fromTo(links[3], 0.5, { x: 150 }, { x: 0 }, '-=0.3')
 	}
 
 

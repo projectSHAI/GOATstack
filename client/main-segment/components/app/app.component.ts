@@ -84,7 +84,7 @@ export class AppComponent {
 
 
     // initialize error handling animation timeline
-    this.errorTimeline = new TimelineMax({ paused: true, yoyo: true });
+    this.errorTimeline = new TimelineMax({ paused: true });
     this.errorTimeline
       .to(this.errorToast.nativeElement, 0, {display:'block',y:400})
       .to(this.errorToast.nativeElement, 1, {y:0})

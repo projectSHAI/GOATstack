@@ -44,15 +44,16 @@ a:hover {
 }
 
 .router-links {
-    display: none;
     float: left;
 }
 
-.router-links button {    
-    display: none;
+.router-links button {  
+    float: right;
 }
 
+
 .menu-container.menu-mobile > .router-links {
+    display: none;
     float: none;
 }
 .menu-container.menu-mobile > .router-links > .hidden {
@@ -60,6 +61,7 @@ a:hover {
 }
 .menu-container.menu-mobile > .router-links > a,
 .menu-container.menu-mobile > .router-links > button {
+    float: none;
     display: block;
     margin-top: 5px;
 }

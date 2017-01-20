@@ -9,7 +9,7 @@ describe('Header E2E Tests', function () {
   var EC = protractor.ExpectedConditions;
 
   it('should not display: Welcome, "userName"', function (done) {
-    browser.wait(EC.invisibilityOf(element(by.id('#load-screen'))), 10000);
+    browser.wait(EC.invisibilityOf(element(by.id('#load-screen'))), 6000); 
     expect(element(by.css('#welcome-user.hidden')).isPresent()).toBeTruthy();
     done();
   });
@@ -28,124 +28,148 @@ describe('Header E2E Tests', function () {
   });
 
   it('should display login form on click', function (done) {
-    browser.wait(EC.elementToBeClickable(element(by.css('.nav-trigger'))), 5000); 
+    browser.wait(EC.elementToBeClickable(element(by.css('.nav-trigger'))), 2000); 
     element(by.css('.nav-trigger')).click();
-
-    setTimeout(() => {
-      browser.wait(EC.elementToBeClickable(element(by.css('#sign-in-btn'))), 5000); 
-      element(by.css('#sign-in-btn')).click();
-      expect(element(by.css('#login-btn')).isPresent()).toBeTruthy();
-      expect(element(by.css('#signup-btn')).isPresent()).toBeTruthy();
-      expect(element(by.css('#back-btn')).isPresent()).toBeTruthy();
-    }, 1000);
+    browser.sleep(1050); 
+    element(by.css('#sign-in-btn')).click();
+    browser.sleep(1050);
+    expect(element(by.css('#login_email')).isPresent()).toBeTruthy();
+    expect(element(by.css('#login_password')).isPresent()).toBeTruthy();
+    expect(element(by.css('#login-btn')).isPresent()).toBeTruthy();
+    expect(element(by.css('#signup-btn')).isPresent()).toBeTruthy();
+    expect(element(by.css('#back-btn')).isPresent()).toBeTruthy();
 
     done();
   });
 
   it('should throw "email is not registered" login error', function (done) {
-    // setTimeout(() => {
-      browser.wait(EC.elementToBeClickable(element(by.id('login_email'))), 5000); 
-      element(by.css('#login_email')).sendKeys('test@test.co');
-      element(by.css('#login_password')).sendKeys('test');
+    element(by.css('#login_email-input')).clear().sendKeys('test@test.co');
+    element(by.css('#login_password-input')).clear().sendKeys('test');
+    element(by.css('#login-btn')).click();
 
-      element(by.css('#login-btn')).click();
-      browser.wait(EC.presenceOf(element(by.id('errorText'))), 2000);
-      expect(element(by.id('errorText')).getText()).toEqual('This email is not registered!');
-    // }, 1000);
+    browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
+    browser.sleep(500);
+    expect(element(by.css('#error-text')).getText()).toEqual('This email is not registered!');
     
     done();
   });
 
-  // it('should throw "password is not correct" login error', function (done) {
-  //   element(by.cssContainingText('button', 'SIGN IN')).click();
-  //   element(by.id('login_email-input')).sendKeys('test@test.com');
-  //   element(by.id('login_password-input')).sendKeys('test1234');
+  it('should throw "password is not correct" login error', function (done) { 
+    element(by.css('.nav-trigger')).click();
+    browser.sleep(1050); 
+    element(by.css('#sign-in-btn')).click();
+    browser.sleep(1050);
+    element(by.css('#login_email-input')).clear().sendKeys('test@test.com');
+    element(by.css('#login_password-input')).clear().sendKeys('tes');
+    element(by.css('#login-btn')).click();
 
-  //   element(by.cssContainingText('button', 'LOGIN')).click();
-  //   browser.wait(EC.presenceOf(element(by.id('errorText'))), 2000);
-  //   expect(element(by.id('errorText')).getText()).toEqual('This password is not correct!');
-  //   done();
-  // });
+    browser.sleep(500);
+    expect(element(by.css('#error-text')).getText()).toEqual('This password is not correct!');
+    done();
+  });
 
-  // it('should login without errors', function (done) {
-  //   element(by.cssContainingText('button', 'SIGN IN')).click();
-  //   element(by.id('login_email-input')).sendKeys('test@test.com');
-  //   element(by.id('login_password-input')).sendKeys('test');
-  //   element(by.cssContainingText('button', 'LOGIN')).click();
+  it('should login without errors', function (done) {
+    element(by.css('.nav-trigger')).click();
+    browser.sleep(1050); 
+    element(by.css('#sign-in-btn')).click();
+    browser.sleep(1050);
+    element(by.css('#login_email-input')).clear().sendKeys('test@test.com');
+    element(by.css('#login_password-input')).clear().sendKeys('test');
+    element(by.css('#login-btn')).click();
 
-  //   browser.wait(EC.presenceOf(element(by.id('welcome-user'))), 2000);
+    browser.sleep(500);
 
-  //   expect(element(by.id('welcome-user')).isPresent()).toBeTruthy();
-  //   expect(element(by.id('welcome-user')).getText()).toEqual('Welcome, test');
-  //   element(by.cssContainingText('button', 'SIGN OUT')).click();
-  //   done();
-  // });
+    expect(element(by.css('#welcome-user')).isPresent()).toBeTruthy();
+    expect(element(by.css('#welcome-user')).getText()).toEqual('Welcome, test');
+    element(by.css('.nav-trigger')).click();
+    browser.sleep(1050); 
+    element(by.css('#sign-out-btn')).click();
+    done();
+  });
 
-  // it('should display register form when clicked', function (done) {
-  //   element(by.cssContainingText('button', 'SIGN UP')).click();
-  //   expect(element(by.cssContainingText('button', 'SIGN UP')).isPresent()).toBeFalsy();
-  //   expect(element(by.cssContainingText('button', 'REGISTER')).isPresent()).toBeTruthy();
-  //   expect(element(by.cssContainingText('button', 'BACK')).isPresent()).toBeTruthy();
+  it('should display register form when clicked', function (done) {
+    browser.sleep(1000);
+    element(by.css('.nav-trigger')).click();
+    browser.sleep(1050); 
+    element(by.css('#sign-up-btn')).click();
+    browser.sleep(1050);
+    expect(element(by.css('#back-btn2')).isPresent()).toBeTruthy();
+    expect(element(by.css('#signin-btn')).isPresent()).toBeTruthy();
+    expect(element(by.css('#reg-btn')).isPresent()).toBeTruthy();
 
-  //   expect(element(by.id('signup_username')).isPresent()).toBeTruthy();
-  //   expect(element(by.id('signup_email')).isPresent()).toBeTruthy();
-  //   expect(element(by.id('signup_password')).isPresent()).toBeTruthy();
-  //   expect(element(by.id('signup_re_password')).isPresent()).toBeTruthy();
-  //   done();
-  // });
+    expect(element(by.css('#signup_username')).isPresent()).toBeTruthy();
+    expect(element(by.css('#signup_email')).isPresent()).toBeTruthy();
+    expect(element(by.css('#signup_password')).isPresent()).toBeTruthy();
+    expect(element(by.css('#signup_re_password')).isPresent()).toBeTruthy();
+    done();
+  });
 
-  // it('should display "username is already in use" register error', function (done) {
-  //   element(by.id('signup_username-input')).sendKeys('test');
-  //   element(by.id('signup_email-input')).sendKeys('thisisatest@test.com');
-  //   element(by.id('signup_password-input')).sendKeys('password');
-  //   element(by.id('signup_re_password-input')).sendKeys('password');
+  it('should display "username is already in use" register error', function (done) {
+    element(by.id('signup_username-input')).clear().sendKeys('test');
+    element(by.id('signup_email-input')).clear().sendKeys('thisisatest@test.com');
+    element(by.id('signup_password-input')).clear().sendKeys('password');
+    element(by.id('signup_re_password-input')).clear().sendKeys('password');
 
-  //   element(by.cssContainingText('button', 'REGISTER')).click();
-  //   browser.wait(EC.presenceOf(element(by.id('errorText'))), 2000);
-  //   expect(element(by.id('errorText')).getText()).toEqual('This username is already in use!');
-  //   done();
-  // });
+    element(by.css('#reg-btn')).click();
+    browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
+    browser.sleep(500);
+    expect(element(by.css('#error-text')).getText()).toEqual('This username is already in use!');
+    done();
+  });
 
-  // it('should display "email address is already in use" register error', function (done) {
-  //   element(by.cssContainingText('button', 'SIGN UP')).click();
-  //   element(by.id('signup_username-input')).sendKeys('testUserName');
-  //   element(by.id('signup_email-input')).sendKeys('test@test.com');
-  //   element(by.id('signup_password-input')).sendKeys('password');
-  //   element(by.id('signup_re_password-input')).sendKeys('password');
+  it('should display "email address is already in use" register error', function (done) {
+    element(by.css('.nav-trigger')).click();
+    browser.sleep(1050); 
+    element(by.css('#sign-up-btn')).click();
+    browser.sleep(1050);
+    element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
+    element(by.css('#signup_email-input')).clear().sendKeys('test@test.com');
+    element(by.css('#signup_password-input')).clear().sendKeys('password');
+    element(by.css('#signup_re_password-input')).clear().sendKeys('password');
 
-  //   element(by.cssContainingText('button', 'REGISTER')).click();
-  //   browser.wait(EC.presenceOf(element(by.id('errorText'))), 2000);
-  //   expect(element(by.id('errorText')).getText()).toEqual('This email address is already in use!');
-  //   done();
-  // });
+    element(by.css('#reg-btn')).click();
+    browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
+    browser.sleep(500);
+    expect(element(by.css('#error-text')).getText()).toEqual('This email address is already in use!');
+    done();
+  });
 
-  // it('should display "passwords are not the same" register error', function (done) {
-  //   element(by.cssContainingText('button', 'SIGN UP')).click();
-  //   element(by.id('signup_username-input')).sendKeys('testUserName');
-  //   element(by.id('signup_email-input')).sendKeys('thisisatest@test.com');
-  //   element(by.id('signup_password-input')).sendKeys('password');
-  //   element(by.id('signup_re_password-input')).sendKeys('password123');
+  it('should display "passwords are not the same" register error', function (done) {
+    element(by.css('.nav-trigger')).click();
+    browser.sleep(1050); 
+    element(by.css('#sign-up-btn')).click();
+    browser.sleep(1050);
+    element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
+    element(by.css('#signup_email-input')).clear().sendKeys('thisisatest@test.com');
+    element(by.css('#signup_password-input')).clear().sendKeys('password');
+    element(by.css('#signup_re_password-input')).clear().sendKeys('password123');
 
-  //   element(by.cssContainingText('button', 'REGISTER')).click();
-  //   browser.wait(EC.presenceOf(element(by.id('errorText'))), 2000);
-  //   expect(element(by.id('errorText')).getText()).toEqual('Inputted passwords are not the same!');
-  //   done();
-  // });
+    element(by.css('#reg-btn')).click();
+    browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
+    browser.sleep(500);
+    expect(element(by.css('#error-text')).getText()).toEqual('Inputted passwords are not the same!');
+    done();
+  });
 
-  // it('should login as newly registered user', function (done) {
-  //   element(by.cssContainingText('button', 'SIGN UP')).click();
-  //   element(by.id('signup_username-input')).sendKeys('testUserName');
-  //   element(by.id('signup_email-input')).sendKeys('thisisatest@test.com');
-  //   element(by.id('signup_password-input')).sendKeys('password');
-  //   element(by.id('signup_re_password-input')).sendKeys('password');
+  it('should login as newly registered user', function (done) {
+    element(by.css('.nav-trigger')).click();
+    browser.sleep(1050); 
+    element(by.css('#sign-up-btn')).click();
+    browser.sleep(1050);
+    element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
+    element(by.css('#signup_email-input')).clear().sendKeys('thisisatest@test.com');
+    element(by.css('#signup_password-input')).clear().sendKeys('password');
+    element(by.css('#signup_re_password-input')).clear().sendKeys('password');
 
-  //   element(by.cssContainingText('button', 'REGISTER')).click();
-  //   browser.wait(EC.presenceOf(element(by.id('welcome-user'))), 2000);
+    element(by.css('#reg-btn')).click();
+    browser.wait(EC.presenceOf(element(by.css('#welcome-user'))), 2000);
 
-  //   expect(element(by.id('welcome-user')).isPresent()).toBeTruthy();
-  //   expect(element(by.id('welcome-user')).getText()).toEqual('Welcome, testUserName');
-  //   element(by.cssContainingText('button', 'SIGN OUT')).click();
-  //   done();
-  // });
+    expect(element(by.css('#welcome-user')).isPresent()).toBeTruthy();
+    expect(element(by.css('#welcome-user')).getText()).toEqual('Welcome, testUserName');
+    element(by.css('.nav-trigger')).click();
+    browser.sleep(1050); 
+    element(by.css('#sign-out-btn')).click();
+    done();
+  });
 
 });
