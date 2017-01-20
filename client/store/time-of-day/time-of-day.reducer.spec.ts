@@ -27,7 +27,7 @@ describe('TimeOfDay Reducer', () => {
 
     expect(previousState).toBe(initialState);
     expect(nextState.getIn(['titleColor'])).toBe('black');
-    expect(nextState.getIn(['time'])).toBe('day-time');
+    expect(nextState.getIn(['theme'])).toBe('day-time');
     expect(nextState.getIn(['cloudBrightness'])).toBe('brightness(100%)');
     expect(nextState.getIn(['skyColor'])).toBe('rgb(157, 211, 250)');
     expect(nextState.getIn(['mountainGoatSvg'])).toBe('public/assets/day-mountain-goat.png');
@@ -48,7 +48,7 @@ describe('TimeOfDay Reducer', () => {
 
     expect(previousState).toBe(initialState);
     expect(nextState.getIn(['titleColor'])).toBe('white');
-    expect(nextState.getIn(['time'])).toBe('night-time');
+    expect(nextState.getIn(['theme'])).toBe('night-time');
     expect(nextState.getIn(['cloudBrightness'])).toBe('brightness(30%)');
     expect(nextState.getIn(['skyColor'])).toBe('rgb(15, 12, 30)');
     expect(nextState.getIn(['mountainGoatSvg'])).toBe('public/assets/night-mountain-goat.png');

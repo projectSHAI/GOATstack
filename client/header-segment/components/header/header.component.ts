@@ -7,6 +7,7 @@ import { UserFormActions } from '../../../main-segment/actions/userForm/userForm
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
+declare let Power0: any;
 
 @Component({
   selector: 'header-section',
@@ -82,7 +83,7 @@ export class HeaderComponent {
 		const links = this.m.nativeElement.children[0].children; 
 
 		this.timeline		  
-		  .to(this.m.nativeElement.children[0], 0, { display: 'block' })
+		  .to(this.m.nativeElement.children[0], 0, { ease: Power0.easeNone, display: 'block' })
 		  .fromTo(links[0], 0.5, { x: 150 }, { x: 0 })
 		  .fromTo(links[1], 0.5, { x: 150 }, { x: 0 }, '-=0.3')
 		  .fromTo(links[4], 0.5, { x: 150 }, { x: 0 }, '-=0.3')
