@@ -18,14 +18,19 @@ $ [sudo] npm start
 $ # dev environment served to http://localhost:1701
 ```
 
-# What's new? v2.0
+# What's new? v2.x
 
 * ~~SystemJS~~ => Webpack
   * client-side and server-side bundling with Webpack
   * removal of gulp task runner / moved to npm scripts
   * simplified config folder structure
 * Expanded the GOAT universe (client-side demo)
-  * explore the depths of the ocean and the vastness of space to learn more about the stack
+  * explore the depths of the ocean to learn more about the stack
+  * mobile compatable
+
+# Future updates
+
+* Server-side render with Angular2 Universal
 
 
 # Documentation Wiki

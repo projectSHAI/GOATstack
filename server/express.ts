@@ -21,24 +21,6 @@ let express = require('express'),
 // let webpackConfig = require('../webpack.config')('dev');
 // let compiler = webpack(webpackConfig);
 
-// Using morgan to monatore express request traffic
-// token method intercepts logs before they happen
-// you can use this to augment the log
-morgan.token('method', function(req, res) {
-  let method = req.method;
-  switch (method) {
-    case 'GET':
-      return '[' + chalk.cyan(method) + ']';
-    default:
-      return '[' + chalk.bold.green(method) + ']';
-  }
-});
-
-// Used to customize the look of the log
-morgan.token('url', function(req, res) {
-  return chalk.magenta(req.originalUrl);
-});
-
 // function to initialize the express app
 function expressInit(app) {
 
@@ -65,16 +47,7 @@ function expressInit(app) {
   // NOTE: all node and custom module requests
   if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('dev', {
-      skip: function(req, res) {
-        let url = req.originalUrl;
-
-        if (url.indexOf('node') !== -1)
-          return true;
-        if (url.indexOf('custom') !== -1)
-          return true;
-        if (url.length === 1)
-          return true;
-      }
+      skip: function (req, res) { return res.statusCode < 400 }
     }));
   }
 
