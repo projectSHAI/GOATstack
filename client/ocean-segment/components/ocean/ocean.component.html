@@ -9,4 +9,4 @@
 <div #capOverlay class="overlay-wrapper">
 	<img class="epipelagic-cap-overlay" [src]="(toda$ | async).get('capSvg')" />
 </div>
-<div id="epipelagic-water-overlay" [class]="(toda$ | async).get('time')" style.marginTop.px="{{ 10 | marginPipe:capOverlay}}"></div>
+<div id="epipelagic-water-overlay" [class]="(toda$ | async).get('theme')" style.marginTop.px="{{ 10 | marginPipe:capOverlay}}"></div>
