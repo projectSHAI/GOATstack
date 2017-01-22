@@ -10,9 +10,9 @@
 # Quick Start 
 
 ```sh
-$ [sudo] npm install -g yo generator-goat-stack
+$ [sudo] npm install -g yo generator-goatstack
 $ mkdir [dirName] && cd [dirName]
-$ [sudo] yo goat-stack [name?]
+$ [sudo] yo goatstack [name?]
 $ # [sudo] mongod in another terminal!
 $ [sudo] npm start
 $ # dev environment served to http://localhost:1701
