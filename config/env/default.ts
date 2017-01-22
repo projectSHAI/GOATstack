@@ -5,8 +5,6 @@ These configuration settings get called no matter what Node's process.env.NODE_E
 */
 
 export const defaultConfig = {
-  // When building show the actual console prints of webpack and the server
-  show_console_detail: true,
   // Change to use https
   https_secure: false,
   // You will need to generate a self signed ssl certificate
