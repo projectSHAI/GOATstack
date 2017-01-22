@@ -8,13 +8,14 @@ var client = [
 	'client/**/**/**/*.ngfactory.ts',
 	'client/**/**/**/*.ngstyle.ts',
 	'client/**/**/**/*.ngsummary.json',
-	'ngc-aot',
+	'ngc-aot/**',
 	'.com*/**',
 	'.org*/**'
 ];
 
 var all = client.concat([
-	'dist',
+	'dist/**',
+	'dist/.git/**'
 ]);
 
 var _root = path.resolve(process.cwd());

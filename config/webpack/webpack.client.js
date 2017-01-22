@@ -24,7 +24,7 @@ const generalConfig = {
       path: helpers.root('dist/client'),
       publicPath: 'http://localhost:1701/',
       filename: '[name].js',
-      // chunkFilename: '[id].chunk.js'
+      chunkFilename: '[id].chunk.js'
     },
     prod: {
       path: helpers.root('dist/client'),
@@ -80,6 +80,7 @@ module.exports = function(options) {
     plugins: options.env === 'dev' ? [
       new ExtractTextPlugin('styles.css'),
       new WebpackShellPlugin({
+        onBuildStart:[`${cmd.webpack} --hide-modules true --env server:dev --watch`],
         onBuildEnd:[`${cmd.nodemon} dist --watch dist`]
       })
     ] : options.env === 'test' ? [
@@ -93,7 +94,7 @@ module.exports = function(options) {
       }),
       new ExtractTextPlugin('styles.css'),
       new WebpackShellPlugin({
-        onBuildEnd:[`${cmd.webpack} --hide-modules true --env server:prod${ options.e2e ? ':e2e' : '' }`]
+        onBuildStart:[`${cmd.webpack} --hide-modules true --env server:prod${ options.e2e ? ':e2e' : '' }`]
       }),
       new CopyWebpackPlugin([
         { 
