@@ -16,7 +16,7 @@ declare let Power0: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, AfterViewInit {
 	
 	@ViewChild('menu') m: ElementRef;
 
@@ -96,7 +96,7 @@ export class HeaderComponent {
 		  .to(links[1], 0.5, { x: 0 }, '-=0.3')
 		  .to(links[4], 0.5, { x: 0 }, '-=0.3')
 		  .to(links[2], 0.5, { x: 0 }, '-=0.5')
-		  .to(links[3], 0.5, { x: 0 }, '-=0.3')
+		  .to(links[3], 0.5, { x: 0 }, '-=0.3');
 	}
 
 
