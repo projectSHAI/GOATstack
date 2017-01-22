@@ -13,7 +13,7 @@
 		<button md-raised-button id="sign-out-btn" [ngClass]="{'hidden': !(user$ | async).has('userItem')}" type="button" (click)="userActions.logout()" color="primary">SIGN OUT</button>
 	</div>
 </div>
-<button class="nav-trigger" [ngClass]="{'is-active': menuOpen, 'hidden': menuHide}" (click)="openMenu()" type="button">
+<button class="nav-trigger" *ngIf="!menuHide" [ngClass]="{'is-active': menuOpen}" (click)="openMenu()" type="button">
 	<span></span>
 </button>
-<button routerLink='/profile' routerLinkActive='active' md-raised-button id="welcome-user" [ngClass]="{'hidden': !(user$ | async).has('userItem'), 'user-mobile': !menuHide}" color="accent">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</button>
+<button routerLink='/profile' routerLinkActive='active' md-raised-button id="welcome-user" *ngIf="(user$ | async).has('userItem')" [ngClass]="{'user-mobile': !menuHide}" color="accent">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</button>
