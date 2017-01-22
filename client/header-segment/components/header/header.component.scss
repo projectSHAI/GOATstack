@@ -44,14 +44,16 @@ a:hover {
 }
 
 .router-links {
-    float: left;
 }
 
 .router-links button {  
-    float: right;
+    float: right;    
+    margin-left: 5px;
 }
 
-
+.menu-container.menu-mobile > .router-links.show {
+  display: block;
+}
 .menu-container.menu-mobile > .router-links {
     display: none;
     float: none;
@@ -64,6 +66,7 @@ a:hover {
     float: none;
     display: block;
     margin-top: 5px;
+    margin-left: 0;
 }
 
 #logo {
@@ -78,9 +81,17 @@ a:hover {
 }
 
 #welcome-user {
+    position: absolute;
+    top: 11px;
+    right: 103px;
+}
+
+.user-mobile#welcome-user {
+    position: relative;
     float: right;
     margin-right: 2%;
-    top: 11px;
+    top: 11px;    
+    right: 0;
 }
 
 

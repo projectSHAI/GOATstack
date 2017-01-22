@@ -16,4 +16,4 @@
 <button class="nav-trigger" [ngClass]="{'is-active': menuOpen, 'hidden': menuHide}" (click)="openMenu()" type="button">
 	<span></span>
 </button>
-<button routerLink='/profile' routerLinkActive='active' md-raised-button id="welcome-user" [ngClass]="{'hidden': !(user$ | async).has('userItem')}" color="accent">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</button>
+<button routerLink='/profile' routerLinkActive='active' md-raised-button id="welcome-user" [ngClass]="{'hidden': !(user$ | async).has('userItem'), 'user-mobile': !menuHide}" color="accent">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</button>
