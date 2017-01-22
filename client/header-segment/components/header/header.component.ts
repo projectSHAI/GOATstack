@@ -23,7 +23,7 @@ export class HeaderComponent {
   	@select('user') user$: Observable<any>;
   	@select('userForm') userForm$: Observable<any>;
 	@select('timeOfDay') toda$: Observable<any>;
-	menuHide: boolean = true;
+	menuHide: boolean = false;
 	menuOpen: boolean = false;
 
 	linkWidth: number;
@@ -45,10 +45,10 @@ export class HeaderComponent {
 	}
 
 	ngAfterViewInit() {
-		this.linkWidth = this.m.nativeElement.clientWidth;
-		this.buttonWidth = this.m.nativeElement.children[0].children[0].clientWidth;
-		this.bQuant = this.m.nativeElement.children[0].children.length - 1;
-		this.checkMenuWidth();
+		// this.linkWidth = this.m.nativeElement.clientWidth;
+		// this.buttonWidth = this.m.nativeElement.children[0].children[0].clientWidth;
+		// this.bQuant = this.m.nativeElement.children[0].children.length - 1;
+		// this.checkMenuWidth();
 
 		this.initMenuAnima();
 	}
@@ -102,7 +102,7 @@ export class HeaderComponent {
 
 	@HostListener('window:resize', ['$event'])
 	resize(event) {
-		this.checkMenuWidth();
+		// this.checkMenuWidth();
 	}
 
 	@HostListener('document:click', ['$event'])
