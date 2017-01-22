@@ -76,7 +76,7 @@ ___
 <img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/optimized-space-ship.png?raw=true" align="right">
 
 ### 1. Initial page load speed 
- * The GOAT stack capitilizes on Angular2's [Ahead-of-Time](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html) server side rendering. Having the server do the heavy lifting at build time allows us to serve pre-rendered views to the client. This dramatically decreases initial load time.
+ * The GOAT stack capitilizes on Angular2's [Ahead-of-Time](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html) server-side compilation. Having the server do the heavy lifting at build time allows us to serve pre-compiled views for the client to load. This dramatically decreases initial load time.
  
 ### 2. Scaleable resources
  * MongoDB fits the developer paradigm very well. with proper [indexing](https://docs.mongodb.com/manual/indexes/) and [schema design](https://docs.mongodb.com/v3.2/core/data-model-design/) database response times will be linear, or consant. Also, the capability of [sharding](https://docs.mongodb.com/manual/sharding/) removes the bottle-neck of datasize. 
@@ -131,9 +131,9 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 ### 5) Clone and Run
 
 ```sh
-$ npm install -g yo generator-goat-stack
-$ mkdir GOAT-stack && cd GOAT-stack
-$ yo goat-stack [name?]
+$ npm install -g yo generator-goatstack
+$ mkdir GOATstack && cd GOATstack
+$ yo goatstack [name?]
 $ # mongod in another terminal!
 $ npm start
 $ # dev environment served to http://localhost:1701
@@ -166,9 +166,9 @@ $ sudo apt-get install -y nodejs
 ### 4) Clone and Run
 
 ```sh
-$ sudo npm install -g yo generator-goat-stack
-$ mkdir GOAT-stack && cd GOAT-stack 
-$ sudo yo goat-stack [name?]
+$ sudo npm install -g yo generator-goatstack
+$ mkdir GOATstack && cd GOATstack 
+$ sudo yo goatstack [name?]
 $ # sudo mongod in another terminal!
 $ sudo npm start
 $ # dev environment served to http://localhost:1701
