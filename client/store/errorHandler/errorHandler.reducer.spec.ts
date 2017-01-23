@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import { errorHandlerReducer } from './errorHandler.reducer';
 import { INITIAL_STATE } from './errorHandler.initial-state';
-import { ErrorHandlerActions } from '../../main-segment/actions/error/errorHandler.actions';
+import { ErrorHandlerActions } from '../../actions/error/errorHandler.actions';
 
 // Testing for the errorHandler reducer
 describe('ErrorHandler Reducer', () => {

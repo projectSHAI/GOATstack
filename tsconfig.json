@@ -22,6 +22,6 @@
       "./dist",
       "./node_modules",
       "./config/gulp",
-      "client/main-aot.ts"
+      "client/app-aot.ts"
     ]
 }

@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import { timeOfDayReducer } from './time-of-day.reducer';
 import { INITIAL_STATE } from './time-of-day.initial-state';
-import { TimeOfDayActions } from '../../main-segment/actions/time-of-day/time-of-day.actions';
+import { TimeOfDayActions } from '../../actions/time-of-day/time-of-day.actions';
 
 // Testing for the timeOfDay reducer
 describe('TimeOfDay Reducer', () => {
