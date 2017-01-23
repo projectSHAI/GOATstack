@@ -1,9 +1,9 @@
 # Check out the [Demo App](http://www.goatstack.com/)!
 
 ![build](https://circleci.com/gh/JCThomas4214/GOAT-stack/tree/master.svg?style=shield)
-[![npm version](https://img.shields.io/npm/v/generator-goat-stack.svg)](https://www.npmjs.com/package/generator-goat-stack)
-[![Dependency Status](https://img.shields.io/david/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/master.svg)
-[![Dev-Dependency Status](https://img.shields.io/david/dev/projectSHAI/GOAT-stack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/master.svg#info=devDependencies)
+[![npm version](https://img.shields.io/npm/v/generator-goatstack.svg)](https://www.npmjs.com/package/generator-goatstack)
+[![Dependency Status](https://img.shields.io/david/projectSHAI/GOATstack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/master.svg)
+[![Dev-Dependency Status](https://img.shields.io/david/dev/projectSHAI/GOATstack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/master.svg#info=devDependencies)
 
 ![Main Banner](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true)
 
