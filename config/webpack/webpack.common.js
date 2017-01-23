@@ -12,7 +12,7 @@ module.exports = function(options) {
     entry: {
       'polyfills': './client/polyfills.ts',
       'vendor': './client/vendor.ts',
-      'main': './client/main.ts'
+      'app': './client/app.ts'
     },
 
     module: {
@@ -62,7 +62,7 @@ module.exports = function(options) {
 
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
-        name: ['main', 'vendor', 'polyfills']
+        name: ['app', 'vendor', 'polyfills']
       }),
 
       new HtmlWebpackPlugin({
@@ -72,7 +72,7 @@ module.exports = function(options) {
   };
 
   if (prod) {
-    config.entry.main = './client/main-aot.ts';
+    config.entry.app = './client/app-aot.ts';
 
     config.module.rules[5] = {
       test: /\.css$/,

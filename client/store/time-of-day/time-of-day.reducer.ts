@@ -1,4 +1,4 @@
-import { TimeOfDayActions } from '../../main-segment/actions/time-of-day/time-of-day.actions';
+import { TimeOfDayActions } from '../../actions/time-of-day/time-of-day.actions';
 import { reimmutifyTimeOfDay } from './time-of-day.transformers';
 import { ITimeOfDay } from './time-of-day.types';
 

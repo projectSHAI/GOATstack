@@ -1,4 +1,4 @@
-import { WonderActions } from '../../sky-segment/actions/wonder/wonder.actions';
+import { WonderActions } from '../../actions/wonder/wonder.actions';
 import { IWonder } from './wonder.types';
 import { reimmutifyWonder } from './wonder.transformers';
 import { INITIAL_STATE } from './wonder.initial-state';
