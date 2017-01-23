@@ -33,7 +33,7 @@ declare let Power0: any;
 
 //class which is implemented once the AfterViewInit event in tha Angular event lifecycle has fired.
 //-- to learn more about Angular's event lifecycle read here: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   //this decorator is for NgRedux. you can read more about Redux here: https://github.com/angular-redux/ng2-redux
   @select('error') error$: Observable<any>;
   @select('timeOfDay') toda$: Observable<any>;
