@@ -1,5 +1,6 @@
-import { NgModule }                              from '@angular/core';
+import { NgModule, isDevMode }                   from '@angular/core';
 import { HttpModule, JsonpModule }               from '@angular/http';
+import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 import { SharedModule }                          from '../shared/shared.module';
 import { CoreRoutingModule }                     from './core-routing.module';
 
@@ -24,12 +25,15 @@ import { WonderService }                         from './services/wonder/wonder.
 //Angular and 3rd party serices
 import { Cookie }                                from 'ng2-cookies/ng2-cookies';
 
+import { IAppState, rootReducer, enhancers }     from '../store/index';
+let createLogger = require('redux-logger');
+
 export function httpFactory(backend: XHRBackend, defaultOptions: RequestOptions) {
   return new HttpIntercept(backend, defaultOptions);
 }
 
 @NgModule({
-  imports:      [ SharedModule, CoreRoutingModule ],
+  imports:      [ SharedModule, CoreRoutingModule, NgReduxModule ],
   declarations: [ CoreComponent, HeaderComponent, FooterComponent ],
   exports:      [ CoreRoutingModule, HttpModule, CoreComponent, HeaderComponent, FooterComponent ],
   providers: 	[
@@ -49,9 +53,18 @@ export function httpFactory(backend: XHRBackend, defaultOptions: RequestOptions)
     UserService,
     WonderService,
 
-  	Cookie
+  	Cookie,    
+    { provide: DevToolsExtension, useClass: DevToolsExtension }
   ]
 })
 export class CoreModule {
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private devTool: DevToolsExtension) {
 
+    // configure the store here, this is where the enhancers are set
+    this.ngRedux.configureStore(rootReducer, {},
+      isDevMode() ? [createLogger({ collapsed: true })] : [],
+      isDevMode() && devTool.isEnabled() ? [...enhancers, devTool.enhancer()] : [...enhancers]);
+  }
 }
