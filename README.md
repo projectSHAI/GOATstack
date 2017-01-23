@@ -28,9 +28,18 @@ $ # dev environment served to http://localhost:1701
   * explore the depths of the ocean to learn more about the stack
   * mobile compatable
 
+# Coming Soon v3.x [BREAKING]
+
+* Remove segment generator
+  * segments were an attempt to remedy an issue with ng2-redux which is no longer present
+* Create module generator
+  * modules give access to features like lazyLoadingModules and [more](https://angular.io/docs/ts/latest/guide/ngmodule.html)
+  * more inline with the angular way
+
+
 # Future updates
 
-* Server-side render with Angular2 Universal
+* Server-side render with [Angular Universal](https://universal.angular.io/)
 
 
 # Documentation Wiki
