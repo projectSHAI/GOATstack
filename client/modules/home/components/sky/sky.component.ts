@@ -2,7 +2,7 @@ import { Component, AfterViewInit, HostListener, ChangeDetectionStrategy, Change
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
-import { TimeOfDayActions } from '../../../actions/time-of-day/time-of-day.actions';
+import { TimeOfDayActions } from '../../../../redux/actions/time-of-day/time-of-day.actions';
 
 @Component({
   selector: 'the-sky',

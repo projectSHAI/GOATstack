@@ -23,14 +23,13 @@ Modules
 //other necessary modules for this app
 */
 import { NgModule, isDevMode }                       from '@angular/core';
-import { FormsModule }                               from '@angular/forms';
 import { BrowserModule }                             from '@angular/platform-browser';
 import { MaterialModule }                            from '@angular/material';
 
-import { CoreModule }                                from './core/core.module';
-import { HomeModule }                                from './home/home.module';
-import { UserProfileModule }                         from './user-profile/user-profile.module';
-import { Four0FourModule }                           from './404/404.module';
+import { CoreModule }                                from './modules/core/core.module';
+import { HomeModule }                                from './modules/home/home.module';
+import { UserProfileModule }                         from './modules/user-profile/user-profile.module';
+import { Four0FourModule }                           from './modules/404/404.module';
 
 /*
 --------------------------------------------------
@@ -43,7 +42,6 @@ NgModule
   //imports: this object imports helper modules which are children in the module tree
   imports: [
     BrowserModule,
-    FormsModule,
     CoreModule,
     HomeModule,
     UserProfileModule,

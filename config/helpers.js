@@ -2,12 +2,12 @@ var path = require('path');
 var del = require('del');
 
 var client = [
-	'client/**/**/**/*.css*',
-	'client/**/**/**/*.js*',
-	'client/**/**/**/*.shim*',
-	'client/**/**/**/*.ngfactory.ts',
-	'client/**/**/**/*.ngstyle.ts',
-	'client/**/**/**/*.ngsummary.json',
+	'client/**/**/**/**/**/*.css*',
+	'client/**/**/**/**/**/*.js*',
+	'client/**/**/**/**/**/*.shim*',
+	'client/**/**/**/**/**/*.ngfactory.ts',
+	'client/**/**/**/**/**/*.ngstyle.ts',
+	'client/**/**/**/**/**/*.ngsummary.json',
 	'ngc-aot/**',
 	'.com*/**',
 	'.org*/**'

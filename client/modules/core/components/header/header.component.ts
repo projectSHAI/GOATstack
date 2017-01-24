@@ -2,8 +2,8 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener, 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
-import { UserActions }  from '../../../actions/user/user.actions';
-import { UserFormActions } from '../../../actions/userForm/userForm.actions';
+import { UserActions }  from '../../../../redux/actions/user/user.actions';
+import { UserFormActions } from '../../../../redux/actions/userForm/userForm.actions';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
