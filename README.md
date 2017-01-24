@@ -20,6 +20,7 @@ $ # dev environment served to http://localhost:1701
 
 # What's new? v3.x
 
+* Moved to [mgModule](https://angular.io/docs/ts/latest/guide/ngmodule.html) structure
 * Removed segment generator
   * segments were an attempt to remedy an issue with ng2-redux which is no longer present
 * NEW module/submodule generator
@@ -27,9 +28,11 @@ $ # dev environment served to http://localhost:1701
   * more inline with the angular way
 
 
-# Future updates
+# Future updates! v4.x [Angular4]
 
 * Server-side rendering with [Angular Universal](https://universal.angular.io/)
+  * Angular Universal will be integrated into @angular/core upon angular@4.x
+  * we will begin refactoring on the GOATv4 branch once rc.1 publishes in the coming month
 
 
 # Documentation Wiki
