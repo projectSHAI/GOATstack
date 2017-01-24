@@ -3,8 +3,8 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ChangeDetectionStr
 import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 
-import { WonderActions } from '../../../actions/wonder/wonder.actions';
-import { CloudActions } from '../../../actions/cloud/cloud.actions';
+import { WonderActions } from '../../../../redux/actions/wonder/wonder.actions';
+import { CloudActions } from '../../../../redux/actions/cloud/cloud.actions';
 import { WonderService } from '../../../core/services/wonder/wonder.service';
 import { SocketService } from '../../../core/services/socketio/socketio.service';
 

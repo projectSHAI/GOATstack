@@ -1,9 +1,9 @@
 import { Component, ViewChild, AfterViewInit, ElementRef, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
-import { ErrorHandlerActions } from '../actions/error/errorHandler.actions';
-import { UserFormActions } from '../actions/userForm/userForm.actions';
-import { UserActions } from '../actions/user/user.actions';
-import { SEOActions } from '../actions/seo/seo.actions';
+import { ErrorHandlerActions } from '../../redux/actions/error/errorHandler.actions';
+import { UserFormActions } from '../../redux/actions/userForm/userForm.actions';
+import { UserActions } from '../../redux/actions/user/user.actions';
+import { SEOActions } from '../../redux/actions/seo/seo.actions';
 import { Observable } from 'rxjs/Observable';
 
 declare let TweenMax: any;

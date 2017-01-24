@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { NgRedux } from 'ng2-redux';
-import { IAppState } from '../../../store';
+import { IAppState } from '../../../../redux/store';
 
 import * as _ from 'lodash';
 import * as io from 'socket.io-client';

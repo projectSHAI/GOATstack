@@ -1,5 +1,5 @@
 import { Component, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { CloudActions } from '../actions/cloud/cloud.actions';
+import { CloudActions } from '../../redux/actions/cloud/cloud.actions';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';

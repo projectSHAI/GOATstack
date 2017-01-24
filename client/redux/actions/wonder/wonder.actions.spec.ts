@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { NgRedux } from 'ng2-redux';
 import { ErrorHandlerActions } from '../error/errorHandler.actions';
 import { WonderActions } from './wonder.actions';
-import { WonderService } from '../../core/services/wonder/wonder.service';
-import { SocketService } from '../../core/services/socketio/socketio.service';
+import { WonderService } from '../../../modules/core/services/wonder/wonder.service';
+import { SocketService } from '../../../modules/core/services/socketio/socketio.service';
 
 const wonderList = [{
   _id: '1',

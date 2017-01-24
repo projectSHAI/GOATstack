@@ -10,12 +10,12 @@ import { CoreComponent }		                     from './core.component';
 import { HeaderComponent }                       from './components/header/header.component';
 import { FooterComponent }                       from './components/footer/footer.component';
 
-import { ErrorHandlerActions }                   from '../actions/error/errorHandler.actions';
-import { TimeOfDayActions }                      from '../actions/time-of-day/time-of-day.actions';
-import { UserFormActions }                       from '../actions/userForm/userForm.actions';
-import { UserActions }                           from '../actions/user/user.actions';
-import { CloudActions }                          from '../actions/cloud/cloud.actions';
-import { SEOActions }                            from '../actions/seo/seo.actions';
+import { ErrorHandlerActions }                   from '../../redux/actions/error/errorHandler.actions';
+import { TimeOfDayActions }                      from '../../redux/actions/time-of-day/time-of-day.actions';
+import { UserFormActions }                       from '../../redux/actions/userForm/userForm.actions';
+import { UserActions }                           from '../../redux/actions/user/user.actions';
+import { CloudActions }                          from '../../redux/actions/cloud/cloud.actions';
+import { SEOActions }                            from '../../redux/actions/seo/seo.actions';
 
 import { SocketService }                         from './services/socketio/socketio.service';
 import { HttpIntercept }                         from './services/auth/auth.service';
@@ -25,7 +25,7 @@ import { WonderService }                         from './services/wonder/wonder.
 //Angular and 3rd party serices
 import { Cookie }                                from 'ng2-cookies/ng2-cookies';
 
-import { IAppState, rootReducer, enhancers }     from '../store/index';
+import { IAppState, rootReducer, enhancers }     from '../../redux/store/index';
 let createLogger = require('redux-logger');
 
 export function httpFactory(backend: XHRBackend, defaultOptions: RequestOptions) {

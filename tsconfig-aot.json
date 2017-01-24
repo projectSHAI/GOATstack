@@ -19,9 +19,9 @@
     ]
   },
   "files": [
-    "client/main.module.ts",
-    "client/main.ts",
-    "client/main-aot.ts"
+    "client/app.module.ts",
+    "client/app.ts",
+    "client/app-aot.ts"
   ],
   "exclude": [
     "node_modules/@types/mongoose"
@@ -29,6 +29,6 @@
   "angularCompilerOptions": {
     "genDir": "ngc-aot",
     "skipMetadataEmit" : true,
-    "entryModule": "client/main.module#MainModule"
+    "entryModule": "client/app.module#MainModule"
   }
 }

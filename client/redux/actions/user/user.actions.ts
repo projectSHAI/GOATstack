@@ -4,7 +4,7 @@ import { FormGroup, NgForm } from '@angular/forms';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../../store/index';
 
-import { UserService } from '../../core/services/user/user.service';
+import { UserService } from '../../../modules/core/services/user/user.service';
 import { ErrorHandlerActions } from '../error/errorHandler.actions';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
