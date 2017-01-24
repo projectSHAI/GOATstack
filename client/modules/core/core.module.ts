@@ -1,5 +1,5 @@
-import { NgModule, isDevMode }                   from '@angular/core';
-import { HttpModule, JsonpModule }               from '@angular/http';
+import { NgModule }                   from '@angular/core';
+import { HttpModule }               from '@angular/http';
 import { SharedModule }                          from '../shared/shared.module';
 import { CoreRoutingModule }                     from './core-routing.module';
 
