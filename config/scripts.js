@@ -85,7 +85,7 @@ exports.startDev = function startDev() {
 	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
 	prepare(true);
 
-	return spawn(`${cmd.webpackDevServer} --progress --hot --inline --env dev`, {shell: true, stdio: 'inherit'});
+	return spawn(`${cmd.webpackDevServer} --progress --inline --env dev`, {shell: true, stdio: 'inherit'});
 };
 
 /*
