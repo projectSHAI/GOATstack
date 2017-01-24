@@ -10,7 +10,7 @@
 		<!-- Sign up/in/out buttons -->
 		<button md-raised-button id="sign-up-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
 		<button md-raised-button id="sign-in-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
-		<button md-raised-button id="sign-out-btn" [ngClass]="{'hidden': !(user$ | async).has('userItem')}" type="button" (click)="userActions.logout()" color="primary">SIGN OUT</button>
+		<button md-raised-button id="sign-out-btn" routerLink='/' [ngClass]="{'hidden': !(user$ | async).has('userItem')}" type="button" (click)="userActions.logout()" color="primary">SIGN OUT</button>
 	</div>
 </div>
 <button class="nav-trigger" *ngIf="!menuHide" [ngClass]="{'is-active': menuOpen}" (click)="openMenu()" type="button">
