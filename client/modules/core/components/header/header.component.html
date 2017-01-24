@@ -7,13 +7,8 @@
 		<!-- Add your router links here -->
 		<a md-raised-button color="primary" routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">Home</a>
 		<a md-raised-button color="primary" routerLink='/404' routerLinkActive='active'>404</a>
-		<!-- Sign up/in/out buttons -->
-		<button md-raised-button id="sign-up-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
-		<button md-raised-button id="sign-in-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
-		<button md-raised-button id="sign-out-btn" routerLink='/' [ngClass]="{'hidden': !(user$ | async).has('userItem')}" type="button" (click)="userActions.logout()" color="primary">SIGN OUT</button>
 	</div>
 </div>
 <button class="nav-trigger" *ngIf="!menuHide" [ngClass]="{'is-active': menuOpen}" (click)="openMenu()" type="button">
 	<span></span>
 </button>
-<button routerLink='/profile' routerLinkActive='active' md-raised-button id="welcome-user" *ngIf="(user$ | async).has('userItem')" [ngClass]="{'user-mobile': !menuHide}" color="accent">Welcome, {{(user$ | async).getIn(['userItem', 'userName'])}}</button>

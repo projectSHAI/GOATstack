@@ -18,44 +18,6 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.user-sign button:hover {
-    cursor: pointer;
-}
-
-.reg-card {
-    will-change: transform;
-    display: none;
-    position: fixed;
-    width: 400px;
-    margin-left: -200px;
-    top: 20%;
-    left: 50%;
-    z-index: 10000;
-    padding: 0;
-}
-
-.reg-card#reg {
-    top: 15%;
-} 
-
-.reg-card md-input {
-    width: 100%;
-} 
-
-.reg-content {
-    padding: 10px;
-}
-
-.reg-content button {
-    margin-right: 2px;
-}
-.reg-content #login-btn,
-.reg-content #reg-btn {
-    float: right;
-}
-
-
-
 @media (max-width: 800px) {
     .error-card {
         bottom: 0;
@@ -63,16 +25,5 @@
         right: 0;
         width: auto;
         transform: translateY(-400px);  
-    }
-
-    .reg-card {
-        width: auto;
-        margin: 0;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
-    .reg-card#reg {
-        top: 0;
     }
 }

@@ -1,10 +1,8 @@
 // importing modules the es6 way
-import routes from './routes';
 import config from '../config';
 
 import * as mongoose from 'mongoose';
 import * as path from 'path';
-import * as passport from 'passport';
 
 // Some modules still need to be imported via node
 let express = require('express'),
@@ -13,9 +11,7 @@ let express = require('express'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   methodOverride = require('method-override'),
-  cookieParser = require('cookie-parser'),
-  session = require('express-session'),
-  MongoStore = require('connect-mongo')(session);
+  cookieParser = require('cookie-parser');
 
 // let webpack = require('webpack');
 // let webpackConfig = require('../webpack.config')('dev');
@@ -40,8 +36,6 @@ function expressInit(app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
-  // Initialize passport and passport session
-  app.use(passport.initialize());
 
   //initialize morgan express logger
   // NOTE: all node and custom module requests
@@ -50,19 +44,6 @@ function expressInit(app) {
       skip: function (req, res) { return res.statusCode < 400 }
     }));
   }
-
-  app.use(session({
-    secret: config.sessionSecret,
-    saveUninitialized: true,
-    resave: false,
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      db: 'dreams'
-    })
-  }));
-
-  //sets the routes for all the API queries
-  routes(app);
 
   const dist = fs.existsSync('dist');
 

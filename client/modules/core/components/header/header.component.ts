@@ -2,9 +2,6 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener, 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
-import { UserActions }  from '../../../../redux/actions/user/user.actions';
-import { UserFormActions } from '../../../../redux/actions/userForm/userForm.actions';
-
 declare let TweenMax: any;
 declare let TimelineMax: any;
 declare let Power0: any;
@@ -34,13 +31,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
 	constructor(
 		private el: ElementRef,
-		public userActions: UserActions,
-		public userFormActions: UserFormActions,
     	private ref: ChangeDetectorRef
 		) {}
 
 	ngOnInit() {		
-	    this.userActions.getMe();
+
 	}
 
 	ngAfterViewInit() {
@@ -88,14 +83,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 		  .to(this.m.nativeElement.children[0], 0, { ease: Power0.easeNone, css: { className:'+=show' } })
 		  .to(links[0], 0, { x: 150 })
 		  .to(links[1], 0, { x: 150 })
-		  .to(links[4], 0, { x: 150 })
-		  .to(links[2], 0, { x: 150 })
-		  .to(links[3], 0, { x: 150 })
 		  .to(links[0], 0.5, { x: 0 })
-		  .to(links[1], 0.5, { x: 0 }, '-=0.3')
-		  .to(links[4], 0.5, { x: 0 }, '-=0.3')
-		  .to(links[2], 0.5, { x: 0 }, '-=0.5')
-		  .to(links[3], 0.5, { x: 0 }, '-=0.3');
+		  .to(links[1], 0.5, { x: 0 }, '-=0.3');
 	}
 
 

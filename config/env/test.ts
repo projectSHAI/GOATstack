@@ -7,17 +7,5 @@ Used when process.env.NODE_ENV is equal to 'test'
 */
 
 export const testEnv = {
-	port: process.env.PORT || 7001,
-	db: {
-		uri: 'mongodb://localhost/dreams-test',
-		options: {
-	      user: '',
-	      pass: ''
-	    },
-	    // Enable mongoose debug mode
-	    debug: process.env.MONGODB_DEBUG || false
-	},
-	livereload: false,
-	seedDB: true,
-  seedFile: '../config/lib/seed'
+	port: process.env.PORT || 7001
 };
