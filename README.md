@@ -32,14 +32,14 @@ $ # dev environment served to http://localhost:1701
 
 * Remove segment generator
   * segments were an attempt to remedy an issue with ng2-redux which is no longer present
-* Create module generator
+* Create module/submodule generator
   * modules give access to features like lazyLoadingModules and [more](https://angular.io/docs/ts/latest/guide/ngmodule.html)
   * more inline with the angular way
 
 
 # Future updates
 
-* Server-side render with [Angular Universal](https://universal.angular.io/)
+* Server-side rendering with [Angular Universal](https://universal.angular.io/)
 
 
 # Documentation Wiki
