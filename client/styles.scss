@@ -24,8 +24,8 @@ have to load a single css file for Angular Material in your app.*/
 (imported above). For each palette, you can optionally specify a default, lighter, and darker
 hue.*/
 
-$primary: md-palette($md-deep-purple, A200);
-$accent: md-palette($md-blue, 500);
+$primary: md-palette($md-blue, 500);
+$accent: md-palette($md-green, 500);
 
 /*The warn palette is optional (defaults to red).*/
 
@@ -33,22 +33,13 @@ $warn: md-palette($md-red);
 
 /*Create the theme object (a Sass map containing all of the palettes).*/
 
-$theme: md-dark-theme($primary, $accent, $warn);
+$theme: md-light-theme($primary, $accent, $warn);
 
 /*Include theme styles for core and each component used in your app.
 Alternatively, you can import and @include the theme mixins for each component
 that you are using.*/
 
 @include angular-material-theme($theme);
-.day-time {
-    $primary: md-palette($md-blue, 500);
-    $accent: md-palette($md-green, 500);
-    /*The warn palette is optional (defaults to red).*/
-    $warn: md-palette($md-red);
-    /*Create the theme object (a Sass map containing all of the palettes).*/
-    $theme: md-light-theme($primary, $accent, $warn);
-    @include angular-material-theme($theme);
-}
 
 /*
 ---------------------------------------------
@@ -235,102 +226,3 @@ button.zoom-out span.md-button-wrapper {
 * End Reset browser default
 --------------------------------------------------------------------------
 */
-
-
-/*
---------------------------------------------------------------------------
-* Doc formats
---------------------------------------------------------------------------
-*/
-
-.comment {
-    color: #98e698;
-}
-
-.docs {
-    font-size: 1.5vw;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    color: white;
-    border: 10px solid black;
-    padding: 10px;
-    max-width: 50%;
-    margin: 0 auto;
-}
-
-.doc-title {
-    text-align: center;
-    font-size: 3vw;
-    width: 75%;
-    margin: 15px auto;
-    border-bottom: 5px white solid;
-}
-
-.code {
-	width: 75%;
-	margin: 0 auto;
-}
-.code p.doc-block:nth-of-type(odd) {
-    background: #8c8c8c;
-}
-
-.code p.doc-block:nth-of-type(even) {
-    background: #9c9c9c;
-}
-.code p.doc-block:first-of-type {
-    border-radius: 3px 3px 0 0;
-}
-.code p.doc-block:last-of-type {
-    border-radius: 0 0 3px 3px;
-}
-li.doc-block {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-.doc-block a {
-	color: #a2da00;
-	text-decoration: none;
-}
-.doc-block a:hover {
-	color: #beff00;
-}
-.doc-block > p {
-    margin-left: 15.5%;
-}
-.doc-block {
-    padding: 5px;
-    width: 75%;
-    margin: 0 auto;
-}
-
-.bullet {
-    list-style: circle;
-    padding-left: 5%;
-}
-span.note {
-    border-left: 6px solid grey;
-    position: relative;
-    padding-left: 5px;
-    margin-left: 3%;
-    float: left;
-}
-
-@media screen and ( max-width: 1000px ){
-    .docs {
-        max-width: 75%;
-        font-size: 2vw;
-    }
-    .doc-title {
-        font-size: 5vw;
-    }
-}
-
-@media screen and ( max-width: 600px ){
-    .docs {
-        max-width: 90%;
-        font-size: 3vw;
-    }
-    .doc-title {
-        font-size: 8vw;
-    }
-}

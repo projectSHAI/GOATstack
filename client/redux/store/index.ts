@@ -3,9 +3,6 @@ import { combineReducers } from 'redux';
 import * as error from './errorHandler/index';
 import * as userForm from './userForm/index';
 import * as user from './user/index';
-import * as cloud from './cloud/index';
-import * as wonder from './wonder/index';
-import * as timeOfDay from './time-of-day/index';
 // DO NOT REMOVE: template store imports
 
 // IAppState is the applications store where all persistant data
@@ -14,10 +11,6 @@ export class IAppState {
     error?: error.IError;
     user?: user.IUser;
     userForm?: userForm.IUserForm;
-    wonder?: wonder.IWonder;
-    cloudStyle?: cloud.ICloudStyle;
-    animaArray?: cloud.IAnimaArray;
-    timeOfDay?: timeOfDay.ITimeOfDay;
     // DO NOT REMOVE: template store attributes
 };
 
@@ -28,10 +21,6 @@ export const rootReducer = combineReducers<IAppState>({
     error: error.errorHandlerReducer,
     user: user.userReducer,
     userForm: userForm.userFormReducer,
-    wonder: wonder.wonderReducer,
-    cloudStyle: cloud.cloudReducer,
-    animaArray: cloud.animaReducer,
-    timeOfDay: timeOfDay.timeOfDayReducer,
     // DO NOT REMOVE: template reducers
 });
 

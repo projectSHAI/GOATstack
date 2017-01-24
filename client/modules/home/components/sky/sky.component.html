@@ -1,5 +1,0 @@
-<div class="sun-moon" [style.boxShadow]="(toda$ | async).get('sunMoonGlow')" [style.borderColor]="(toda$ | async).get('sunMoonBorder')" [style.transform]="yPos">
-  <h2 class="clock">{{toda.getCurrentTime() | async | date: 'shortTime'}}</h2>
-</div>
-
-<cloud-generator></cloud-generator>

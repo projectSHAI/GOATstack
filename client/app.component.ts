@@ -29,6 +29,5 @@ export class AppComponent {
   //the @select() decorator is from NgRedux.
   //GOATstack embraces the immutible paradigm, and has a redux store which contains the applications state which can be found in root/client/redux
   //you can read more about Redux here: https://github.com/angular-redux/ng2-redux
-  @select('timeOfDay') toda$: Observable<any>;
 
 }
