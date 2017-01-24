@@ -5,7 +5,6 @@ var fs = require('graceful-fs'),
   	spawn = require('child_process').spawn,
   	spawnSync = require('child_process').spawnSync,
   	chalk = require('chalk'),
-  	stevedore = require('stevedore'),
   	inquirer = require('inquirer'),
 
 	config = eval(require('typescript')
