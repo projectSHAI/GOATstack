@@ -31,6 +31,7 @@ Modules
 import { NgModule }                                  from '@angular/core';
 import { BrowserModule }                             from '@angular/platform-browser';
 import { MaterialModule }                            from '@angular/material';
+import { ReduxModule }                               from './redux/redux.module';
 
 import { CoreModule }                                from './modules/core/core.module';
 import { HomeModule }                                from './modules/home/home.module';
@@ -49,6 +50,7 @@ NgModule
   //imports: this object imports helper modules which are children in the module tree
   imports: [
     BrowserModule,
+    ReduxModule,
     CoreModule,
     HomeModule,
     UserProfileModule,

@@ -1,6 +1,5 @@
 import { NgModule, isDevMode }                   from '@angular/core';
 import { HttpModule, JsonpModule }               from '@angular/http';
-import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 import { SharedModule }                          from '../shared/shared.module';
 import { CoreRoutingModule }                     from './core-routing.module';
 
@@ -33,7 +32,7 @@ export function httpFactory(backend: XHRBackend, defaultOptions: RequestOptions)
 }
 
 @NgModule({
-  imports:      [ SharedModule, CoreRoutingModule, NgReduxModule ],
+  imports:      [ SharedModule, CoreRoutingModule ],
   declarations: [ CoreComponent, HeaderComponent, FooterComponent ],
   exports:      [ CoreRoutingModule, HttpModule, CoreComponent, HeaderComponent, FooterComponent ],
   providers: 	[
@@ -53,18 +52,9 @@ export function httpFactory(backend: XHRBackend, defaultOptions: RequestOptions)
     UserService,
     WonderService,
 
-  	Cookie,    
-    { provide: DevToolsExtension, useClass: DevToolsExtension }
+  	Cookie
   ]
 })
 export class CoreModule {
-  constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private devTool: DevToolsExtension) {
 
-    // configure the store here, this is where the enhancers are set
-    this.ngRedux.configureStore(rootReducer, {},
-      isDevMode() ? [createLogger({ collapsed: true })] : [],
-      isDevMode() && devTool.isEnabled() ? [...enhancers, devTool.enhancer()] : [...enhancers]);
-  }
 }
