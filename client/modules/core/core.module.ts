@@ -1,6 +1,5 @@
-import { NgModule, isDevMode }                   from '@angular/core';
-import { HttpModule, JsonpModule }               from '@angular/http';
-import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
+import { NgModule }                              from '@angular/core';
+import { HttpModule }                            from '@angular/http';
 import { SharedModule }                          from '../shared/shared.module';
 import { CoreRoutingModule }                     from './core-routing.module';
 
@@ -20,7 +19,7 @@ import { IAppState, rootReducer, enhancers }     from '../../redux/store/index';
 let createLogger = require('redux-logger');
 
 @NgModule({
-  imports:      [ SharedModule, CoreRoutingModule, NgReduxModule ],
+  imports:      [ SharedModule, CoreRoutingModule ],
   declarations: [ CoreComponent, HeaderComponent, FooterComponent ],
   exports:      [ CoreRoutingModule, HttpModule, CoreComponent, HeaderComponent, FooterComponent ],
   providers: 	[
@@ -28,18 +27,9 @@ let createLogger = require('redux-logger');
   	ErrorHandlerActions,
   	SEOActions,
 
-  	Cookie,    
-    { provide: DevToolsExtension, useClass: DevToolsExtension }
+  	Cookie
   ]
 })
 export class CoreModule {
-  constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private devTool: DevToolsExtension) {
 
-    // configure the store here, this is where the enhancers are set
-    this.ngRedux.configureStore(rootReducer, {},
-      isDevMode() ? [createLogger({ collapsed: true })] : [],
-      isDevMode() && devTool.isEnabled() ? [...enhancers, devTool.enhancer()] : [...enhancers]);
-  }
 }
