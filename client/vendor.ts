@@ -1,3 +1,13 @@
+/*
+==================================================================================
+-- Vendor packages for webpack ---------------------------------------------------
+==================================================================================
+** This is where all vendor resources will be imported                          **
+** This file is used by webpack to include stable vendor packages               **
+** The webpack file is located here: GOATstack/config/webpack/webpack.common.js **
+==================================================================================
+*/
+
 // Angular
 import '@angular/platform-browser';
 import '@angular/platform-browser-dynamic';

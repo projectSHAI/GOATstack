@@ -2,6 +2,12 @@
 ==================================================================
 App component
 ==================================================================
+** The app component in our implementation has two main purposes
+** 1) render all components which will stay persistent on the site
+**    these components are considered view independent and are found
+**    in the core module which is located at: root/client/modules/core/components folder
+** 2) initialize the main router for the webpage.
+**    <router-outlet> is where all the router views will render.
 -->
 
 <div [class]="(toda$ | async).get('theme')">
