@@ -31,7 +31,7 @@ $ # dev environment served to http://localhost:1701
 # Future updates! v4.x [Angular4]
 
 * Server-side rendering with [Angular Universal](https://universal.angular.io/)
-  * Angular Universal will be integrated into @angular/core upon [angular@4.x](https://github.com/angular/angular)
+  * Angular Universal will be integrated into @angular/core upon [angular@4.x](https://github.com/angular/angular/blob/master/CHANGELOG.md)
   * we will begin refactoring on the GOATv4 branch once rc.1 publishes in the coming month
 
 
