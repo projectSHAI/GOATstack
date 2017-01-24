@@ -5,7 +5,7 @@ import { Four0FourComponent }    from './404.component';
 
 @NgModule({
   imports: [RouterModule.forChild([
-    { path: '404', component: Four0FourComponent }
+    { path: 'PageNotFound', component: Four0FourComponent }
   ])],
   exports: [RouterModule]
 })
