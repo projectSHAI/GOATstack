@@ -43,11 +43,13 @@ const generalConfig = {
     dev: {
       port: 1701,
       historyApiFallback: {
-        index: 'http://localhost:1701/index.html/'
+        index: 'http://localhost:1701/index.html'
       },
-      proxy: {
-        '*': 'http://localhost:5000/'
-      },
+      proxy: [{
+        context: ['/api', '/auth', '/socket.io-client'],
+        target: 'http://localhost:5000/',
+        secure: false
+      }],
       stats: {
         warnings: false,
         chunks: false

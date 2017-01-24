@@ -21,8 +21,6 @@ Main component which gets bootstrapped
 ** Named AppComponent in compliance with Angular best practices  **
 */
 import { AppComponent }                              from './app.component';
-require('./styles');
-require('./loader');
 
 /*
 --------------------------------------------------
@@ -30,7 +28,7 @@ Modules
 --------------------------------------------------
 ** other necessary modules for this app
 */
-import { NgModule, isDevMode }                       from '@angular/core';
+import { NgModule }                                  from '@angular/core';
 import { BrowserModule }                             from '@angular/platform-browser';
 import { MaterialModule }                            from '@angular/material';
 
@@ -58,12 +56,9 @@ NgModule
     MaterialModule.forRoot()
   ],
   //declarations: this object imports all child components which are used in this module
-  declarations: [
-    AppComponent,
-    // DO NOT REMOVE: template declarations
-  ],
+  declarations: [ AppComponent ],
   //bootstrap: identifies which component is supposed to be bootstrapped
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 
 //by convention the root module is called AppModule as stated in the Angular2 docs

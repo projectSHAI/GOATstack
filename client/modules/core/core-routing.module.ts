@@ -2,9 +2,9 @@ import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '../home', pathMatch: 'full' },
-  { path: 'profile', redirectTo: '../user-profile', pathMatch: 'full' },
-  { path: '**', redirectTo: '../404', pathMatch: 'full' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'user-profile', redirectTo: 'profile', pathMatch: 'full' },
+  { path: '**', redirectTo: 'PageNotFound', pathMatch: 'full' }
 ];
 
 @NgModule({

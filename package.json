@@ -134,8 +134,8 @@
     "to-string-loader": "1.1.5",
     "tslint": "4.3.1",
     "url-loader": "0.5.7",
-    "webpack": "2.2.0-rc.7",
-    "webpack-dev-server": "2.2.0-rc.0",
+    "webpack": "2.2.0",
+    "webpack-dev-server": "2.2.0",
     "webpack-merge": "2.4.0",
     "webpack-node-externals": "1.5.4",
     "webpack-shell-plugin": "0.5.0"
