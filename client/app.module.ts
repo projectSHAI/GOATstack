@@ -1,16 +1,24 @@
 /*
-==============================================================
-* Root Module
-==============================================================
-// Any assets included in this file will be attached
-// to the global scope of the application.
+==================================================================================
+-- Root Module -------------------------------------------------------------------
+==================================================================================
+** Any assets included in this file will be attached                            **
+** to the global scope of the application.                                      **
+**                                                                              **
+** The Root Module has two main purposes                                        **
+** 1) It tells Angular about all the apps dependencies                          **
+**    so Angular can build the application tree                                 **
+** 2) It tells Angular how to bootstrap the app                                 **
+**                                                                              **
+** Find out more here: https://angular.io/docs/ts/latest/guide/appmodule.html   **
+----------------------------------------------------------------------------------
 */
 
 /*
---------------------------------------------------
+-------------------------------------------------------------------
 Main component which gets bootstrapped
---------------------------------------------------
-//Named AppComponent in compliance with Angular best practices
+-------------------------------------------------------------------
+** Named AppComponent in compliance with Angular best practices  **
 */
 import { AppComponent }                              from './app.component';
 require('./styles');
@@ -20,7 +28,7 @@ require('./loader');
 --------------------------------------------------
 Modules
 --------------------------------------------------
-//other necessary modules for this app
+** other necessary modules for this app
 */
 import { NgModule, isDevMode }                       from '@angular/core';
 import { BrowserModule }                             from '@angular/platform-browser';
@@ -35,8 +43,9 @@ import { Four0FourModule }                           from './modules/404/404.mod
 --------------------------------------------------
 NgModule
 --------------------------------------------------
-//decorator which packages all resources imported above for the app
-//without this decorator Angular cannot use any of those above assets
+** decorator which packages all resources imported above for the app
+** without this decorator Angular cannot use any of those above assets
+** read more here: https://angular.io/docs/ts/latest/guide/ngmodule.html
 */
 @NgModule({
   //imports: this object imports helper modules which are children in the module tree
@@ -58,7 +67,7 @@ NgModule
 })
 
 //by convention the root module is called AppModule as stated in the Angular2 docs
-//we call AppModule in main.ts to bootstrap the application which points to the AppComponent defined in @NgModule
+//we call AppModule in app.ts to bootstrap the application which points to the AppComponent defined in @NgModule
 export class AppModule {
 
 }

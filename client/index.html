@@ -1,3 +1,17 @@
+<!--
+=============================================================
+== This is the entry point for Angular. ===================== 
+=============================================================
+**                                                         **
+** This file gets served to the client by                  **
+** the express server once the client requests             **
+** any route. The location where this file is              **
+** served is in GOATstack/server/express.ts lines 83-86    **
+**                                                         **
+**                                                         **
+=============================================================
+-->
+
 <!DOCTYPE html>
 <html>
 
@@ -13,11 +27,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Google Analytics -->
-    <!-- <script></script> -->
+    <!-- <script> Place your google analytics code block here </script> -->
     <!-- 1. Load libraries -->
-    <!-- GSAP library -->
+
+    <!-- 
+    ===========================================================
+    == GSAP library =========================================== 
+    ===========================================================
+    ** GSAP is a pretty robust javascript animation library. **
+    ** We decided to implement it due to its ease of use     **
+    ** and its multi browser compatibility.                  **
+    **                                                       **
+    ** more about GSAP here: https://greensock.com/          **
+    ===========================================================
+    -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
-    <!-- loading animation -->
+    <!-- 
+    ====================================================================
+    == loading animation ===============================================
+    ====================================================================
+    ** This window.onload is the driver for the loading splash page.  **
+    ** We created the loader with pure javascript so it will start    **
+    ** as soon as the code hits the DOM without having to wait        **
+    ** for Angular to bootstrap.                                      **
+    ====================================================================
+    -->
     <script>
     window.onload = function() {
         document.getElementById('space-goat').className = "zoom";
@@ -73,7 +107,16 @@
             <h2 id="loading">Loading<span class="dot dot1">.</span><span class="dot dot2">.</span><span class="dot dot3">.</span></h2>
         </div>
     </section>
-    <!-- Angular app -->
+    <!-- 
+    ============================================================================================
+    == Angular app =============================================================================
+    ============================================================================================
+    ** The DOM will render everything Angular inside the <my-app> tags.                       **
+    ** <my-app> is defined in the app.component.ts file in this directory.                    **
+    ** We decided to keep this component in the root since it is the bootstrapped component.  **
+    ** app.component.ts is declared in app.module.ts and then bootstrapped in app.ts          **
+    ============================================================================================
+     -->
     <my-app id="app"></my-app>
 </body>
 

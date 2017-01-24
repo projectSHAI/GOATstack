@@ -1,11 +1,12 @@
 /*
-=========================================================================================================
-Bootstrapping component
-=========================================================================================================
-//According to Angular best practices the App component should be used for bootstrapping the application.
-//This component gets bootstrapped through app.module.ts, the magic occurs in the @NgModule decorater's bootstrap property,
-//we set that value to the AppComponent class defined in this component
-//then the app.module.ts gets invoked in the main.ts bootstrap method.
+=================================================================================================================================
+-- Bootstrapping component ------------------------------------------------------------------------------------------------------
+=================================================================================================================================
+** According to Angular best practices the App component should be used for bootstrapping the application.                     **
+** This component gets bootstrapped through app.module.ts, the magic occurs in the @NgModule decorater's bootstrap property,   **
+** we set that value to the AppComponent class defined in this component                                                       **
+** then the app.module.ts gets invoked in the main.ts bootstrap method.                                                        **
+=================================================================================================================================
 */
 
 
@@ -23,10 +24,11 @@ import { Observable } from 'rxjs/Observable';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-//class which is implemented once the AfterViewInit event in tha Angular event lifecycle has fired.
-//-- to learn more about Angular's event lifecycle read here: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
+//the main app component which will act as the parent component to all other components in the app.
 export class AppComponent {
-  //this decorator is for NgRedux. you can read more about Redux here: https://github.com/angular-redux/ng2-redux
+  //the @select() decorator is from NgRedux.
+  //GOATstack embraces the immutible paradigm, and has a redux store which contains the applications state which can be found in root/client/redux
+  //you can read more about Redux here: https://github.com/angular-redux/ng2-redux
   @select('timeOfDay') toda$: Observable<any>;
 
 }
