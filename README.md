@@ -18,21 +18,11 @@ $ [sudo] npm start
 $ # dev environment served to http://localhost:1701
 ```
 
-# What's new? v2.x
+# What's new? v3.x
 
-* ~~SystemJS~~ => Webpack
-  * client-side and server-side bundling with Webpack
-  * removal of gulp task runner / moved to npm scripts
-  * simplified config folder structure
-* Expanded the GOAT universe (client-side demo)
-  * explore the depths of the ocean to learn more about the stack
-  * mobile compatable
-
-# Coming Soon v3.x [BREAKING]
-
-* Remove segment generator
+* Removed segment generator
   * segments were an attempt to remedy an issue with ng2-redux which is no longer present
-* Create module/submodule generator
+* NEW module/submodule generator
   * modules give access to features like lazyLoadingModules and [more](https://angular.io/docs/ts/latest/guide/ngmodule.html)
   * more inline with the angular way
 
