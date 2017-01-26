@@ -78,6 +78,7 @@ describe('Header E2E Tests', function () {
                 element(by.css('#login_password-input')).clear().sendKeys('tes');
                 element(by.css('#login-btn')).click();
 
+                browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
                 browser.sleep(500);
                 expect(element(by.css('#error-text')).getText()).toEqual('This password is not correct!');
             } else {  
@@ -87,6 +88,7 @@ describe('Header E2E Tests', function () {
                 element(by.css('#login_password-input')).clear().sendKeys('tes');
                 element(by.css('#login-btn')).click();
 
+                browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
                 browser.sleep(500);
                 expect(element(by.css('#error-text')).getText()).toEqual('This password is not correct!');
             }
