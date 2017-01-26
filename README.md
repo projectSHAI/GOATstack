@@ -92,8 +92,6 @@ ___
 
 # Follow the GOAT
 
-If you like our Fullstack make sure to stay informed and [get involved!](#contributing) 
-
 Follow us on [Facebook page](https://www.facebook.com/goatstack/) to receive the latest news and updates!
 
 [![Facebook Page][FacebookBanner]](https://www.facebook.com/goatstack/)
@@ -130,7 +128,7 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
     * if you do not want the full blown Visual Studios IDE then you can also download a standalone version of Visual Studio's build tools [here](http://landinghub.visualstudio.com/visual-cpp-build-tools)
      * Make sure to configure npm to use the correct c++ compiler using the following command `npm config set msvs_version 2015` 2015 is the version linked above, replace this number with your version if it differs. If you still have issues during npm install follow the install instructions [here](https://www.npmjs.com/package/node-gyp) for node-gyp.
 
-### 5) Clone and Run
+### 5) Install the generator and run
 
 ```sh
 $ npm install -g yo generator-goatstack
@@ -165,7 +163,7 @@ $ sudo apt-get install -y nodejs
 
 ### 3) Install [MongoDB](https://docs.mongodb.com/manual/administration/install-on-linux/)
 
-### 4) Clone and Run
+### 4) Install the generator and run
 
 ```sh
 $ sudo npm install -g yo generator-goatstack
