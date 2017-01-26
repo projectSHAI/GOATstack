@@ -14,8 +14,7 @@
       "graceful-fs",
       "immutable",
       "lodash",
-      "core-js",
-      "socket.io-client"
+      "core-js"
     ]
   },
   "files": [
