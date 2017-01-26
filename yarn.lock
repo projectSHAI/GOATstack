@@ -2,65 +2,61 @@
 # yarn lockfile v1
 
 
-"@angular/common@^2.4.4":
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-2.4.4.tgz#039520c6395476d7f35ca250973dfef946c62831"
+"@angular/common@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-2.4.5.tgz#ada1a22b7ba01d1fdeb300115584478e031e9a4f"
 
-"@angular/compiler-cli@^2.4.4":
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-2.4.4.tgz#726598f850e599677fa1638d1728096384665a63"
+"@angular/compiler-cli@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-2.4.5.tgz#efabbe10558b233dcdfe985af2bd2e84f1414c97"
   dependencies:
     "@angular/tsc-wrapped" "0.5.1"
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
 
-"@angular/compiler@^2.4.4":
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.4.4.tgz#86b861685ebc4c7b19b1133bf8c5bf4d28c71475"
+"@angular/compiler@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.4.5.tgz#521da325e2e002398e8f9de52cfb03d303729e72"
 
-"@angular/core@^2.4.4":
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.4.4.tgz#eafef7bbdefea321fa5e79998bb2f6707c70729d"
+"@angular/core@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.4.5.tgz#8b05156398afde9636e65527ffb61fc74236af5a"
 
-"@angular/forms@^2.4.4":
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-2.4.4.tgz#9679ca369d5bc2968ee1a67634ac221d75487364"
+"@angular/forms@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-2.4.5.tgz#468bd040518595c3598742ac1a22c506a7f1ab0f"
 
-"@angular/http@^2.4.4":
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.4.4.tgz#e41a9808eeec9cfdf3d5f9f92d0041b5c041fd60"
+"@angular/http@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.4.5.tgz#de94b2daa4ff24e8b6c8839ffaf8089b62d4430b"
 
 "@angular/material@2.0.0-beta.1":
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.1.tgz#106a0b79fb2b48a7606a0682c4e5d0bbe03364a0"
 
-"@angular/platform-browser-dynamic@^2.4.4":
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.4.4.tgz#b5948cf2cac33c9634a400a7ece8fb5600f83107"
+"@angular/platform-browser-dynamic@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.4.5.tgz#36fa975a8ee2dfe3f60bab561143974e6bdb1eff"
 
-"@angular/platform-browser@^2.4.4":
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-2.4.4.tgz#0bff3512d00b199211ff28df0aa5c6841718a19c"
+"@angular/platform-browser@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-2.4.5.tgz#fa1bc891b1309bca83845787b9a08db36a787fee"
 
-"@angular/platform-server@^2.4.4":
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-2.4.4.tgz#2fc2d0b4ac29c8f08a3702a8da3ab79933b737d0"
+"@angular/platform-server@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-2.4.5.tgz#4322d6a3609603edf34101f286d47db8762a08bc"
   dependencies:
     parse5 "^2.2.1"
 
-"@angular/router@^3.4.4":
-  version "3.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-3.4.4.tgz#8564889d5bf322a1a4b679bd82c053df03eabb72"
+"@angular/router@^3.4.5":
+  version "3.4.5"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-3.4.5.tgz#5a471a4e49a7eba6a460761129c0684a4b730a1a"
 
 "@angular/tsc-wrapped@0.5.1":
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-0.5.1.tgz#7a69bec999eef41903dddaaccdc862cfcface52c"
   dependencies:
     tsickle "^0.2"
-
-"@angular/upgrade@^2.4.4":
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/@angular/upgrade/-/upgrade-2.4.4.tgz#707614dfbed4cb6d021e53ecd62a2f449442d590"
 
 "@types/chalk@0.4.31":
   version "0.4.31"
@@ -135,17 +131,13 @@
     "@types/mongodb" "*"
     "@types/node" "*"
 
-"@types/node@*":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.1.tgz#858610f58e4d48dd4410145eef9e12c97e3aacfd"
+"@types/node@*", "@types/node@^7.0.4":
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.4.tgz#9aabc135979ded383325749f508894c662948c8b"
 
 "@types/node@^6.0.46":
   version "6.0.60"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.60.tgz#e7e134ebc674ae6ed93c36c767739b110d2c57fc"
-
-"@types/node@^7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.3.tgz#6bc1d23929bd426eabd409b5898537076bbbdeff"
 
 "@types/passport-local@1.0.29":
   version "1.0.29"
@@ -1590,10 +1582,6 @@ ecdsa-sig-formatter@1.0.9:
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
-
-ejs@2.5.5:
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.5.5.tgz#6ef4e954ea7dcf54f66aad2fe7aa421932d9ed77"
 
 elliptic@^6.0.0:
   version "6.3.2"
@@ -3792,7 +3780,7 @@ mongodb-core@2.1.7:
     bson "~1.0.4"
     require_optional "~1.0.0"
 
-mongodb@2.2.21, "mongodb@>= 1.2.0 <3.0.0":
+mongodb@2.2.21:
   version "2.2.21"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.21.tgz#f7ee56489600e0ac8024c062c0857ac04ddb5f48"
   dependencies:
@@ -3800,7 +3788,7 @@ mongodb@2.2.21, "mongodb@>= 1.2.0 <3.0.0":
     mongodb-core "2.1.6"
     readable-stream "2.1.5"
 
-mongodb@^2.2.22:
+"mongodb@>= 1.2.0 <3.0.0", mongodb@^2.2.22:
   version "2.2.22"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.22.tgz#d67c588fc08f922db19754b1d2e03e2d7d1319fb"
   dependencies:
@@ -5115,10 +5103,6 @@ request@2, request@^2.61.0, request@^2.78.0, request@^2.79.0:
     tunnel-agent "~0.4.1"
     uuid "^3.0.0"
 
-require-all@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/require-all/-/require-all-2.1.0.tgz#109e1c3dab8a5acab2312f552d5e8d27d8de9f77"
-
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
@@ -5614,10 +5598,6 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
-stevedore@0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/stevedore/-/stevedore-0.1.4.tgz#3271c6fcb4282da4efc9bb4a55b4615caf8b4b16"
-
 stream-browserify@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.1.tgz#66266ee5f9bdb9940a4e4514cafb43bb71e5c9db"
@@ -5919,9 +5899,9 @@ tsickle@^0.2:
     source-map "^0.5.6"
     source-map-support "^0.4.2"
 
-tslint@4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.3.1.tgz#28f679c53ca4b273688bcb6fcf0dde7ff1bb2169"
+tslint@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.4.1.tgz#1e06b4f39f1d5c8072f4e57619fedf88a74f1c7d"
   dependencies:
     babel-code-frame "^6.20.0"
     colors "^1.1.2"
@@ -5930,7 +5910,6 @@ tslint@4.3.1:
     glob "^7.1.1"
     optimist "~0.6.0"
     resolve "^1.1.7"
-    underscore.string "^3.3.4"
     update-notifier "^1.0.2"
 
 tty-browserify@0.0.0:
@@ -6001,13 +5980,6 @@ ultron@1.0.x:
 undefsafe@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/undefsafe/-/undefsafe-0.0.3.tgz#ecca3a03e56b9af17385baac812ac83b994a962f"
-
-underscore.string@^3.3.4:
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-3.3.4.tgz#2c2a3f9f83e64762fdc45e6ceac65142864213db"
-  dependencies:
-    sprintf-js "^1.0.3"
-    util-deprecate "^1.0.2"
 
 uniq@^1.0.1:
   version "1.0.1"
@@ -6106,7 +6078,7 @@ useragent@^2.1.10:
   dependencies:
     lru-cache "2.2.x"
 
-util-deprecate@^1.0.2, util-deprecate@~1.0.1:
+util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
