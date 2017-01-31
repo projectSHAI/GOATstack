@@ -39,7 +39,7 @@ var nodeSass = `${cmd.node_sass} -q client -o client`;
 var server_test = `node config/test-libs/server.test && ${cmd.karma} start config/test-libs/karma.config.js`;
 var protractor = `${cmd.concurrently} --raw \"node dist -s\" \"${cmd.protractor} config/test-libs/protractor.config.js\" --kill-others --success first`;
 var e2e = `${cmd.webdriverManager} update && ${cmd.webpack} --progress --hide-modules true --env test && ${cmd.webpack} --hide-modules true --env server:test && ${protractor}`;
-var prod_e2e = `${cmd.webdriverManager} update && ${ngc} && ${cmd.webpack} --progress --hide-modules true --env prod:e2e && node -e "require('./config/helpers').cleanup('client')" && ${protractor}`;
+var prod_e2e = `${cmd.webdriverManager} update && ${cmd.webpack} --progress --hide-modules true --env prod:e2e && node -e "require('./config/helpers').cleanup('client')" && ${protractor}`;
 
 // Script Functions
 function prepare(dev) {
@@ -94,7 +94,7 @@ exports.startProd = function startProd() {
 	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
 	prepare();
 
-	return spawn(`${ngc} && ${cmd.webpack} --progress --hide-modules true --env prod && node -e "require('./config/helpers').cleanup('client')" && node dist`, {shell: true, stdio: 'inherit'});
+	return spawn(`${cmd.webpack} --progress --hide-modules true --env prod && node -e "require('./config/helpers').cleanup('client')" && node dist`, {shell: true, stdio: 'inherit'});
 };
 
 /*
@@ -136,7 +136,7 @@ exports.herokuPrompt = function herokuPrompt() {
 		            	`heroku open --app ${answers.appname}`
             		];
 
-            		return spawn(`${ngc} && ` + command.join(' && '), {shell: true, stdio: 'inherit'});
+            		return spawn(command.join(' && '), {shell: true, stdio: 'inherit'});
 
 				});
 			default:
@@ -166,7 +166,6 @@ exports.herokuPrompt = function herokuPrompt() {
             			`heroku create ${answers.appname}`,
             			`heroku config:set --app ${answers.appname} DB_URI=${answers.db_uri} DB_USER=${answers.db_user} DB_PW=${answers.db_pw}`,
             			'cd ..',
-            			`${ngc}`,
         				`${cmd.webpack} --progress --hide-modules true --env prod`,
         				`node -e "require('./config/helpers').cleanup('client')"`,
         				'cd dist',

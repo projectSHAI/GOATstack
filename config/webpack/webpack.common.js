@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var nodeExternals = require('webpack-node-externals');
+var AotPlugin = require('@ngtools/webpack').AotPlugin;
 
 var helpers = require('../helpers');
 
@@ -74,6 +74,8 @@ module.exports = function(options) {
   if (prod) {
     config.entry.app = './client/app-aot.ts';
 
+    config.module.rules[1].use = ['@ngtools/webpack', 'angular2-template-loader'];
+
     config.module.rules[5] = {
       test: /\.css$/,
       exclude: [helpers.root('client/styles.css'), helpers.root('client/loader.css')],
@@ -81,6 +83,12 @@ module.exports = function(options) {
     };
 
     config.module.rules.splice(0,1);
+
+    config.plugins.push(
+      new AotPlugin({
+        tsConfigPath: './tsconfig-aot.json',
+        entryModule: helpers.root('client/modules/app.module#AppModule')
+      }));
   }
 
   if (options.env === 'karma') {

@@ -4,7 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
 
 //imports the AppModule which is the root module that bootstraps app.component.ts
-import { AppModule } from './app.module';
+import { AppModule } from './modules/app.module';
 
 if (process.env.ENV === 'production') {
   enableProdMode();
