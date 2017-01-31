@@ -15,7 +15,7 @@ const generalConfig = {
   // Specify descriptions for all webpack environments
   devtool: {
     dev: 'cheap-module-eval-source-map',
-    prod: 'source-map',
+    prod: '', // #source-map ngtools/webpack workaround
     test: 'cheap-module-eval-source-map'
   },
 

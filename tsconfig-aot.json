@@ -19,7 +19,7 @@
     ]
   },
   "files": [
-    "client/app.module.ts",
+    "client/modules/app.module.ts",
     "client/app.ts",
     "client/app-aot.ts"
   ],
