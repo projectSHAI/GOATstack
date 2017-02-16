@@ -1,7 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-
-import { select } from 'ng2-redux';
-import { Observable } from 'rxjs/Observable';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
   selector: 'user-profile',
@@ -11,7 +9,8 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class UserProfileComponent {
-
-  @select('user') user$: Observable<any>;
-
+  items: FirebaseListObservable<any[]>;
+  constructor(af: AngularFire) {
+    this.items = af.database.list('/items');
+	}
 }

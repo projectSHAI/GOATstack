@@ -1,1 +1,8 @@
 <h1>Home</h1>
+
+<ul>
+  <li class="text" *ngFor="let post of posts | async">
+	<h4>{{post.title}}</h4>
+    <p>{{post.body}}</p>
+  </li>
+</ul>

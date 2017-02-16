@@ -32,11 +32,28 @@ import { NgModule }                                  from '@angular/core';
 import { BrowserModule }                             from '@angular/platform-browser';
 import { MaterialModule }                            from '@angular/material';
 import { ReduxModule }                               from './redux/redux.module';
+import { AngularFireModule }                         from 'angularfire2';
 
 import { CoreModule }                                from './modules/core/core.module';
 import { HomeModule }                                from './modules/home/home.module';
 import { UserProfileModule }                         from './modules/user-profile/user-profile.module';
 import { Four0FourModule }                           from './modules/404/404.module';
+
+/*
+--------------------------------------------------
+firebase config
+--------------------------------------------------
+** This is the configuration json which lets
+** the client know where your firebase data is
+**  located, and more.
+*/
+export const firebaseConfig = {
+    apiKey: "AIzaSyCrqC3-w7UriZhEARFmh7SQw3TMG2CRksY",
+    authDomain: "goatstack-66d6f.firebaseapp.com",
+    databaseURL: "https://goatstack-66d6f.firebaseio.com",
+    storageBucket: "goatstack-66d6f.appspot.com",
+    messagingSenderId: "555297893377"
+};
 
 /*
 --------------------------------------------------
@@ -55,7 +72,8 @@ NgModule
     HomeModule,
     UserProfileModule,
     Four0FourModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   //declarations: this object imports all child components which are used in this module
   declarations: [ AppComponent ],

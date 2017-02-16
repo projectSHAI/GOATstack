@@ -1,7 +1,6 @@
-import { Component, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, HostListener, ChangeDetectionStrategy, ChangeDetectorRef, OnInit } from '@angular/core';
 
-import { select } from 'ng2-redux';
-import { Observable } from 'rxjs/Observable';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
   selector: 'home-section',
@@ -10,8 +9,17 @@ import { Observable } from 'rxjs/Observable';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  constructor() { }
+	posts: FirebaseListObservable<any[]>;
+	
+	constructor(af: AngularFire) {
+	  this.posts = af.database.list('/posts');
+	}
+
+
+	ngOnInit() {
+		this.posts.subscribe(x => console.log(x););
+	}
 
 }
