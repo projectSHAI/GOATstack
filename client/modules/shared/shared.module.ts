@@ -14,4 +14,6 @@ import { LazyLoadImageModule }                       from 'ng2-lazyload-image';
   	MaterialModule 
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+	
+}
