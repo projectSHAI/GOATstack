@@ -42,71 +42,10 @@
     ===========================================================
     -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
-    <!-- 
-    ====================================================================
-    == loading animation ===============================================
-    ====================================================================
-    ** This window.onload is the driver for the loading splash page.  **
-    ** We created the loader with pure javascript so it will start    **
-    ** as soon as the code hits the DOM without having to wait        **
-    ** for Angular to bootstrap.                                      **
-    ====================================================================
-    -->
-    <script>
-    window.onload = function() {
-        document.getElementById('space-goat').className = "zoom";
-        setTimeout(function() {
-            document.getElementById('app').style.opacity = "1";
-        }, 1000);
-        setTimeout(function() {
-            document.getElementById('load-screen').remove();
-        }, 1000);
-    };
-    </script>
+
 </head>
 
 <body>
-    <!-- loader -->
-    <section id="load-screen">
-        <div id="spinner">
-            <h1 id="title">GOATstack</h1>
-            <div id="border">
-                <div class="square"></div>
-                <div class="square"></div>
-                <div class="square"></div>
-                <div class="square"></div>
-                <div class="square"></div>
-            </div>
-            <div id="container">
-                <div id="overflow">
-                    <div id="space-goat">
-                        <img id="fire-1" src="public/assets/loader/fire-1.png" />
-                        <img id="fire-2" src="public/assets/loader/fire-2.png" />
-                        <img src="public/assets/loader/space-goat.png" />
-                    </div>
-                    <i class="star star1">
-                        <img class="star" src="public/assets/loader/star.svg" />
-                    </i>
-                    <i class="star star2">
-                        <img class="star" src="public/assets/loader/star.svg" />
-                    </i>
-                    <i class="star star3">
-                        <img class="star" src="public/assets/loader/star.svg" />
-                    </i>
-                    <i class="star star4">
-                        <img class="star" src="public/assets/loader/star.svg" />
-                    </i>
-                    <i class="star star5">
-                        <img class="star" src="public/assets/loader/star.svg" />
-                    </i>
-                    <i class="star star6">
-                        <img class="star" src="public/assets/loader/star.svg" />
-                    </i>
-                </div>
-            </div>
-            <h2 id="loading">Loading<span class="dot dot1">.</span><span class="dot dot2">.</span><span class="dot dot3">.</span></h2>
-        </div>
-    </section>
     <!-- 
     ============================================================================================
     == Angular app =============================================================================

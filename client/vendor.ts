@@ -28,4 +28,3 @@ import 'ng2-cookies/ng2-cookies';
 // You can import js, ts, css, sass, ...
 
 require('./styles');
-require('./loader');
