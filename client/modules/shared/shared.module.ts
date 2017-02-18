@@ -19,4 +19,6 @@ import { NgForHookPipe }	                           from './pipes/ngFor-hook.pip
   	MaterialModule 
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  
+}
