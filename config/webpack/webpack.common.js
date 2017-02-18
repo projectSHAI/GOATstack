@@ -42,7 +42,7 @@ module.exports = function(options) {
         },
         {
           test: /\.scss/,
-          include: [helpers.root('client/styles.scss'), helpers.root('client/loader.scss')],
+          include: [helpers.root('client/styles.scss')],
           loader: ExtractTextPlugin.extract({ 
             fallbackLoader: 'style-loader', 
             loader: 'css-loader?sourceMap!sass-loader?sourceMap'
@@ -50,7 +50,7 @@ module.exports = function(options) {
         },
         {
           test: /\.scss/,
-          exclude: [helpers.root('client/styles.scss'), helpers.root('client/loader.scss')],
+          exclude: [helpers.root('client/styles.scss')],
           loader: 'to-string-loader!css-loader?sourceMap!sass-loader?sourceMap'
         },
       ]
