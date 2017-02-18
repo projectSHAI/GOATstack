@@ -9,4 +9,6 @@ import { UserProfileComponent }    from './user-profile.component';
   ])],
   exports: [RouterModule]
 })
-export class UserProfileRoutingModule {}
+export class UserProfileRoutingModule {
+	
+}
