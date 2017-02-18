@@ -32,4 +32,6 @@ import { CloudGeneratorComponent }                   from './components/cloud-ge
   	OceanFloorComponent
   ]
 })
-export class HomeModule { }
+export class HomeModule {
+  
+}
