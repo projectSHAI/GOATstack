@@ -6,7 +6,7 @@ import User from './api/user/user.model';
 import Wonder from './api/wonder/wonder.model';
 
 export default function seed(env?: string): void {
-  
+
   Wonder.find({}).remove().then(() => {
     Wonder.create(
       {
@@ -54,26 +54,56 @@ export default function seed(env?: string): void {
 
   // Insert seeds below
   switch (env) {
-    case "prod":
-      // code...
-      break;
-    
-    default:
+    case "development":
       User.find({}).remove().then(() => {
         User.create({
-          userName: 'AdMiN',
-          firstName: 'admin',
-          lastName: 'admin',
+          username: 'AdMiN',
+          firstname: 'admin',
+          lastname: 'admin',
           email: 'admin@admin.com',
           password: 'admin1'
         }, {
-          userName: 'test',
-          firstName: 'testFirst',
-          lastName: 'testLast',
+          username: 'test',
+          firstname: 'testFirst',
+          lastname: 'testLast',
           email: 'test@test.com',
           password: 'test'
         });
-      });
+      }).catch(error => console.log(error));
+      break;
+    case "test":
+      User.find({}).remove().then(() => {
+        User.create({
+          username: 'test',
+          firstname: 'testFirst',
+          lastname: 'testLast',
+          email: 'test@test.com',
+          password: 'test'
+        });
+      }).catch(error => console.log(error));      
+      break;
+    default:
+    User.find({}).remove().then(() => {
+      User.create({
+        username: 'AdMiN',
+        firstname: 'admin',
+        lastname: 'admin',
+        email: 'admin@admin.com',
+        password: 'admin1'
+      }, {
+        username: 'test',
+        firstname: 'testFirst',
+        lastname: 'testLast',
+        email: 'test@test.com',
+        password: 'test'
+      }, {
+          username: 'test',
+          firstname: 'testFirst',
+          lastname: 'testLast',
+          email: 'test@test.com',
+          password: 'test'
+        });
+    }).catch(error => console.log(error));
       break;
   }
 

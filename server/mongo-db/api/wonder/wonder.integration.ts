@@ -1,4 +1,4 @@
-import app from '../../server';
+import app from '../../../server';
 import request = require('supertest');
 import Wonder from './wonder.model';
 

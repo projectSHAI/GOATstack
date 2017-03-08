@@ -1,4 +1,4 @@
-import app from '../../server';
+import app from '../../../server';
 import request = require('supertest');
 
 import User from './user.model';
@@ -13,7 +13,7 @@ describe('User API:', function () {
   beforeAll(function () {
     return User.remove({}).then(function () {
       user = new User({
-        userName: 'MrFakie',
+        username: 'MrFakie',
         email: 'Fakie@mrfake.com',
         password: 'mrfakie'
       });
@@ -57,9 +57,9 @@ describe('User API:', function () {
             done.fail(err);
           } else {
             expect(res.body._id.toString()).toEqual(user._id.toString());
-            expect(res.body.userName).toEqual(user.userName);
-            expect(res.body.firstName).toEqual(user.firstName);
-            expect(res.body.lastName).toEqual(user.lastName);
+            expect(res.body.username).toEqual(user.username);
+            expect(res.body.firstname).toEqual(user.firstname);
+            expect(res.body.lastname).toEqual(user.lastname);
             expect(res.body.email).toEqual(user.email);
             done();
           }

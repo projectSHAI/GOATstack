@@ -1,6 +1,6 @@
 import User from '../api/user/user.model';
 
-import config from '../../config';
+import config from '../../../config';
 
 import * as jwt from 'jsonwebtoken';
 

@@ -26,7 +26,7 @@ export class UserService {
     let errMsg;
 
     if (body.errors) {
-      errMsg = body.errors.userName ? body.errors.userName : body.errors.email;
+      errMsg = body.errors.username ? body.errors.username : body.errors.email;
     } else {
       errMsg = body ? body :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
@@ -62,7 +62,7 @@ export class UserService {
 
   signup(username: string, email: string, password: string): Observable<any> {
     let body = JSON.stringify({
-      userName: username,
+      username: username,
       email: email,
       password: password
     });

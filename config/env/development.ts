@@ -7,8 +7,8 @@ Used when process.env.NODE_ENV = 'development'
 */
 
 export const devEnv = {
-  db: {
-    uri: 'mongodb://localhost/dreams-dev',
+  mongo: {
+    uri: 'mongodb://localhost/dev',
     options: {
       user: '',
       pass: ''
