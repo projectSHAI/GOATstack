@@ -30,12 +30,12 @@ let UserSchema: mongoose.Schema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  userName: {
+  username: {
     type: String,
     required: 'A user needs at least a username'
   },
-  firstName: String,
-  lastName: String,
+  firstname: String,
+  lastname: String,
   email: {
     type: String,
     lowercase: true,
@@ -77,9 +77,9 @@ UserSchema
   .virtual('profile')
   .get(function() {
     return {
-      'userName': this.userName,
-      'firstName': this.firstName,
-      'lastName': this.lastName,
+      'username': this.username,
+      'firstname': this.firstname,
+      'lastname': this.lastname,
       'role': this.role
     };
   });
@@ -135,13 +135,13 @@ UserSchema
       .catch(err => {
         throw err;
       });
-  }, 'This email address is already in use!');
+  }, 'email must be unique');
 
 // Validate username is not taken
 UserSchema
-  .path('userName')
+  .path('username')
   .validate(function(value, respond) {
-    return this.constructor.findOne({ userName: value }).exec()
+    return this.constructor.findOne({ username: value }).exec()
       .then(user => {
         if (user) {
           if (this.id === user.id) {
@@ -154,7 +154,7 @@ UserSchema
       .catch(err => {
         throw err;
       });
-  }, 'This username is already in use!');
+  }, 'username must be unique');
 
 let validatePresenceOf = function(value) {
   return value && value.length;

@@ -1,7 +1,7 @@
 let express = require('express');
 
 import User from '../api/user/user.model';
-import config from '../../config';
+import config from '../../../config';
 import {localRoutes} from './local/local.router';
 import {localSetup} from './local/local.passport';
 

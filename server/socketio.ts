@@ -4,7 +4,7 @@
 import config from '../config';
 
 // Socket imports go here
-import wonderRegister from './api/wonder/wonder.socket';
+import wonderRegister from './mongo-db/api/wonder/wonder.socket';
 // DO NOT REMOVE: template socket imports
 
 // When the user disconnects.. perform this

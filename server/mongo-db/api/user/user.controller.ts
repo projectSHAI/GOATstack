@@ -1,5 +1,5 @@
 import User from './user.model';
-import config from '../../../config';
+import config from '../../../../config';
 
 import * as jwt from 'jsonwebtoken';
 
