@@ -17,21 +17,8 @@ let express = require('express'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session);
 
-// let webpack = require('webpack');
-// let webpackConfig = require('../webpack.config')('dev');
-// let compiler = webpack(webpackConfig);
-
 // function to initialize the express app
 function expressInit(app) {
-
-  // if (process.env.NODE_ENV === 'development') {
-  //   app.use(require('webpack-dev-middleware')(compiler, {
-  //     noInfo: true,
-  //     publicPath: webpackConfig.output.publicPath
-  //   }));
-  
-  //   app.use(require('webpack-hot-middleware')(compiler));
-  // }
 
   //aditional app Initializations
   app.use(bodyParser.urlencoded({

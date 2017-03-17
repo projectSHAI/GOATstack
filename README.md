@@ -5,26 +5,28 @@
 [![Dependency Status](https://img.shields.io/david/projectSHAI/GOATstack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/master.svg)
 [![Dev-Dependency Status](https://img.shields.io/david/dev/projectSHAI/GOATstack.svg)](https://david-dm.org/projectSHAI/GOAT-stack/tree/master.svg#info=devDependencies)
 
-![Main Banner](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/GOAT-banner.jpg?raw=true)
+![Main Banner](https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/GOAT-banner.jpg?raw=true)
+
+### **GOATstack uses [Yarn](https://yarnpkg.com/en/) package manager and is required for package consistancy**
 
 # Quick Start 
 
 ```sh
-$ [sudo] npm install -g yo generator-goatstack
+$ [sudo] yarn global add yo generator-goatstack
 $ mkdir [dirName] && cd [dirName]
 $ [sudo] yo goatstack [name?]
 $ # [sudo] mongod in another terminal!
-$ [sudo] npm start
+$ [sudo] yarn start
 $ # dev environment served to http://localhost:1701
 ```
 
 # Coming Soon! v3.1
 
-_WARNING: 3.0 => 3.1 brings BREAKING CHANGES with the generator, upgrade with caution_
+**_WARNING: 3.0 => 3.1 brings BREAKING CHANGES to the generator. Upgrade with caution_**
 
-* generator will no longer prompt for what app you would like (demo, helloGOAT, dblessGOAT)
-   * instead it will prompt for what databases you would like (Apache-Cassandra, MongoDB, MySQL, PostgresSQL, MariaDB, SQLite, MSSQL), you can select one or many
-   * Then it will ask what database will be your default where user authentication will be generated
+* generator will no longer prompt for what app you would like to generate (demo, helloGOAT, dblessGOAT)
+   * instead it will prompt for what databases you would like to use (Apache-Cassandra, MongoDB, MySQL, PostgresSQL, MariaDB, SQLite, MSSQL), you can select one or many
+   * Then it will ask what database will be your default, where user authentication will be generated
    * __IF NO DATABASE IS SELECTED__ a dbless solution will be generated
 * All packages updated to the latest
 
@@ -62,12 +64,12 @@ ___
 
 # Why GOAT-stack?
 
-![Houston we have a problem](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
+![Houston we have a problem](https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/Houston-we-have-a-problem-banner.jpg?raw=true)
 
 <a name="problem"></a>
 ## Problem
 
-<img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/critical-space-ship.png?raw=true" align="right">
+<img src="https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/critical-space-ship.png?raw=true" align="right">
 
 ### 1. Initial page load speed 
  * 40% of users leave a webpage that takes more than 3 seconds to load
@@ -85,7 +87,7 @@ ___
 <a name="solution"></a>
 ## Solution
 
-<img src="https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/optimized-space-ship.png?raw=true" align="right">
+<img src="https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/optimized-space-ship.png?raw=true" align="right">
 
 ### 1. Initial page load speed 
  * The GOAT stack capitilizes on Angular2's [Ahead-of-Time](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html) server-side compilation. Having the server do the heavy lifting at build time allows us to serve pre-compiled views for the client to load. This dramatically decreases initial load time.
@@ -112,15 +114,19 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 
 [![Reddit Page][RedditBanner]](https://www.reddit.com/r/GOATStack/)
 
+# Stack Types
+
+* _CANE_ - Cassandra, Angular, NodeJS, Express
+* _MEAN_ - MongoDB, Express, Angular, NodeJS
+* _SEAN_ - SQL, Express, Angular, NodeJS
 
 <a name="reqs"></a>
-# Required Technologies for your Development Environment
+## Required Technologies for your Development Environment
 
-  * [typescript](https://www.typescriptlang.org/)
-  * [nodejs](https://nodejs.org/en/)
-  * [mongodb](https://docs.mongodb.com/)
-  * Your favorite browser (Chrome is prefered because of Devtools)
-  * [Redux DevTools for Google Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+  * [NodeJS](https://nodejs.org/en/)
+  * [Apache-Cassandra](http://cassandra.apache.org/) | [MongoDB](https://docs.mongodb.com/) | [MySQL](https://www.mysql.com/) | [PostgresSQL](https://www.postgresql.org/) | [SQLite](https://www.sqlite.org/) | [MariaDB](https://mariadb.org/) | [MSSQL](https://www.microsoft.com/en-us/sql-server/sql-server-2016)
+  * [Typescript](https://www.typescriptlang.org/)
+  * [Angular2/Angular4](https://angular.io/)
 
 # Installation
 
@@ -132,28 +138,30 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 ### 2) Install [NodeJS](https://nodejs.org/en/)
   * Note: You may need to configure system PATH to appropriate node command
 
-### 3) Install [MongoDB](https://www.mongodb.com/download-center?jmp=nav#community)
-  * Note: You may need to configure system PATH to appropriate mongod command
+### 3) Install [Yarn](https://yarnpkg.com/en/)
 
-### 4) Install [Python](https://www.python.org/downloads/release/python-2712/) and C++ compiler
+### 4) Install [Apache-Cassandra](http://cassandra.apache.org/) || [MongoDB](https://www.mongodb.com/download-center?jmp=nav#community) || [MySQL](https://www.mysql.com/) || [PostgresSQL](https://www.postgresql.org/) || [SQLite](https://www.sqlite.org/) || [MariaDB](https://mariadb.org/) || [MSSQL](https://www.microsoft.com/en-us/sql-server/sql-server-2016)
+  * Note: You may need to configure system PATH to appropriate each command
+
+### 5) Install [Python](https://www.python.org/downloads/release/python-2712/) and C++ compiler
   * Note: Installing [Visual Studios Community](https://www.visualstudio.com/downloads/) will be a sufficiant compiler
     * if you do not want the full blown Visual Studios IDE then you can also download a standalone version of Visual Studio's build tools [here](http://landinghub.visualstudio.com/visual-cpp-build-tools)
      * Make sure to configure npm to use the correct c++ compiler using the following command `npm config set msvs_version 2015` 2015 is the version linked above, replace this number with your version if it differs. If you still have issues during npm install follow the install instructions [here](https://www.npmjs.com/package/node-gyp) for node-gyp.
 
-### 5) Clone and Run
+### 6) Clone and Run
 
 ```sh
-$ npm install -g yo generator-goatstack
+$ yarn global add yo generator-goatstack
 $ mkdir GOATstack && cd GOATstack
 $ yo goatstack [name?]
 $ # mongod in another terminal!
-$ npm start
+$ yarn start
 $ # dev environment served to http://localhost:1701
 ```
 
 ## Linux
 
-### 1) Install Git
+### 1) Install [Git](https://git-scm.com/downloads)
 
 ```sh
 $ sudo apt-get install git
@@ -173,22 +181,32 @@ $ curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
 ```
 
-### 3) Install [MongoDB](https://docs.mongodb.com/manual/administration/install-on-linux/)
-
-### 4) Clone and Run
+### 3) Install [Yarn](https://yarnpkg.com/en/) (Debian/Ubuntu)
+  * [click here](https://yarnpkg.com/lang/en/docs/install/#linux-tab) for more linux installation methods
 
 ```sh
-$ sudo npm install -g yo generator-goatstack
+$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+$ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+$ sudo apt-get update && sudo apt-get install yarn
+```
+
+### 4) Install [Apache-Cassandra](http://cassandra.apache.org/) || [MongoDB](https://docs.mongodb.com/manual/administration/install-on-linux/) || [MySQL](https://www.mysql.com/) || [PostgresSQL](https://www.postgresql.org/) || [SQLite](https://www.sqlite.org/) || [MariaDB](https://mariadb.org/) || [MSSQL](https://www.microsoft.com/en-us/sql-server/sql-server-2016)
+
+### 5) Clone and Run
+
+```sh
+$ sudo yarn global add yo generator-goatstack
 $ mkdir GOATstack && cd GOATstack 
 $ sudo yo goatstack [name?]
 $ # sudo mongod in another terminal!
-$ sudo npm start
+$ sudo yarn start
 $ # dev environment served to http://localhost:1701
 ```
-> Note: npm needs to be elevated with `sudo`, otherwise child_process will throw errors and/or webpack-dev-server will not serve.
+> Note: yarn needs to be elevated with `sudo`, otherwise child_process will throw errors and/or webpack-dev-server will not serve.
 
-# Deploying to Heroku
-![Deployment Banner](https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/goat-deploy-banner.png)
+# Deploying to Heroku (MongoDB)
+![Deployment Banner](https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/goat-deploy-banner.png?raw=true)
 
 Make sure you have [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
@@ -201,7 +219,7 @@ $ heroku login
 ### 2) Run the gulp task
 
 ```sh
-$ [sudo] npm run deploy:heroku
+$ [sudo] yarn run deploy:heroku
 ```
 
 ## Yo Generator Project [here](https://github.com/JCThomas4214/GOAT-yeoman)
@@ -212,20 +230,20 @@ $ [sudo] npm run deploy:heroku
 
 
 <!-- image references -->
-[MongoDB]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/mongo_logo_square.png?raw=true
-[ExpressJS]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/expressjs.png?raw=true
-[Angular2]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/angular2-logo.png?raw=true
-[NodeJS]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/nodejs-logo.png?raw=true
-[Redux]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/logo-redux.png?raw=true 
-[Immutable]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Immutable-logo.png?raw=true 
-[SocketIO]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/SOCKETIOICON.png?raw=true
-[Mongoose]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/mongoose.png?raw=true
-[Passport]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/passport.png?raw=true
-[Jasmine]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/jasmine.png?raw=true
-[Karma]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/karma.png?raw=true
-[Protractor]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/protractor-logo.png?raw=true
-[FacebookBanner]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/facebook.png?raw=true
-[RedditBanner]: https://github.com/JCThomas4214/Documentation/blob/master/GOAT/assets/Reddit-Logo-Transparent.png?raw=true
+[MongoDB]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/mongo_logo_square.png?raw=true
+[ExpressJS]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/expressjs.png?raw=true
+[Angular2]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/angular2-logo.png?raw=true
+[NodeJS]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/nodejs-logo.png?raw=true
+[Redux]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/logo-redux.png?raw=true 
+[Immutable]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/Immutable-logo.png?raw=true 
+[SocketIO]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/SOCKETIOICON.png?raw=true
+[Mongoose]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/mongoose.png?raw=true
+[Passport]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/passport.png?raw=true
+[Jasmine]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/jasmine.png?raw=true
+[Karma]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/karma.png?raw=true
+[Protractor]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/protractor-logo.png?raw=true
+[FacebookBanner]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/facebook.png?raw=true
+[RedditBanner]: https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/Reddit-Logo-Transparent.png?raw=true
 
 <!-- webpage links -->
 [Reddit]: https://www.reddit.com/
