@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-mongoose.Promise = Promise;
+mongoose.Promise = Promise; // promise library plugin
 
 import * as chalk from 'chalk';
 import config from '../../config';

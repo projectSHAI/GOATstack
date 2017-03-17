@@ -37,27 +37,7 @@ export default function seed(env?: string): void {
       }).catch(error => console.log(error));      
       break;
     default:
-    User.find({}).remove().then(() => {
-      User.create({
-        username: 'AdMiN',
-        firstname: 'admin',
-        lastname: 'admin',
-        email: 'admin@admin.com',
-        password: 'admin1'
-      }, {
-        username: 'test',
-        firstname: 'testFirst',
-        lastname: 'testLast',
-        email: 'test@test.com',
-        password: 'test'
-      }, {
-          username: 'test',
-          firstname: 'testFirst',
-          lastname: 'testLast',
-          email: 'test@test.com',
-          password: 'test'
-        });
-    }).catch(error => console.log(error));
+      // code...
       break;
   }
 

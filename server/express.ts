@@ -51,15 +51,15 @@ function expressInit(app) {
     }));
   }
   
-  // app.use(session({
-  //   secret: config.sessionSecret,
-  //   saveUninitialized: true,
-  //   resave: false,
-  //   store: new MongoStore({
-  //     mongooseConnection: mongoose.connection,
-  //     db: 'dreams'
-  //   })
-  // }));
+  app.use(session({
+    secret: config.sessionSecret,
+    saveUninitialized: true,
+    resave: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      db: 'dreams'
+    })
+  }));
 
   //sets the routes for all the API queries
   routes(app);

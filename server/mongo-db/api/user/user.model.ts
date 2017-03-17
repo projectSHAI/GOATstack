@@ -121,16 +121,16 @@ UserSchema
 // Validate email is not taken
 UserSchema
   .path('email')
-  .validate(function(value, respond) {
+  .validate(function(value) {
     return this.constructor.findOne({ email: value }).exec()
       .then(user => {
         if (user) {
           if (this.id === user.id) {
-            return respond(true);
+            return true;
           }
-          return respond(false);
+          return false;
         }
-        return respond(true);
+        return true;
       })
       .catch(err => {
         throw err;
@@ -140,16 +140,16 @@ UserSchema
 // Validate username is not taken
 UserSchema
   .path('username')
-  .validate(function(value, respond) {
+  .validate(function(value) {
     return this.constructor.findOne({ username: value }).exec()
       .then(user => {
         if (user) {
           if (this.id === user.id) {
-            return respond(true);
+            return true;
           }
-          return respond(false);
+          return false;
         }
-        return respond(true);
+        return true;
       })
       .catch(err => {
         throw err;

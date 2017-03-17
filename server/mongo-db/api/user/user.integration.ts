@@ -10,16 +10,16 @@ describe('User API:', function () {
 
   // users are cleared from DB seeding
   // add a new testing user
-  beforeAll(function () {
+  beforeAll(function (done) {
     return User.remove({}).then(function () {
-      user = new User({
-        username: 'MrFakie',
-        email: 'Fakie@mrfake.com',
-        password: 'mrfakie'
-      });
+      user = new User();
+      user.username = 'MrFakie';
+      user.email = 'Fakie@mrfake.com';
+      user.password = 'mrfakie';
 
-      return user.save();
-    });
+      return user.save().then(() => done())
+        .catch(err => console.log(err));
+    }).catch(err => console.log(err));
   });
 
   // Encapsolate GET me enpoint
@@ -36,6 +36,7 @@ describe('User API:', function () {
         .expect(200)
         .end((err, res) => {
           if (err) {
+            console.log(err);
             done.fail(err);
           } else {
             token = res.body.token;
