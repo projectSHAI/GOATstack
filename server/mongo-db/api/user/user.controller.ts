@@ -8,6 +8,7 @@ import * as jwt from 'jsonwebtoken';
 function validationError(res, statusCode = null) {
   statusCode = statusCode || 422;
   return function(err) {
+    console.log(err);
     res.status(statusCode).json(err);
     return null;
   };

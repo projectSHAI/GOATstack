@@ -1,7 +1,7 @@
 import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
-import { NgRedux } from 'ng2-redux';
+import { NgRedux } from '@angular-redux/store';
 import { UserActions } from './user.actions';
 import { UserService } from '../../../modules/core/services/user/user.service';
 import { ErrorHandlerActions } from '../error/errorHandler.actions';

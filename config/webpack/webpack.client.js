@@ -10,12 +10,14 @@ const helpers = require('../helpers');
 
 const cmd = require('../scripts').cmd;
 
+process.noDeprecation = true;
+
 const generalConfig = {
 
   // Specify descriptions for all webpack environments
   devtool: {
     dev: 'cheap-module-eval-source-map',
-    prod: '', // #source-map ngtools/webpack workaround
+    prod: 'source-map',
     test: 'cheap-module-eval-source-map'
   },
 

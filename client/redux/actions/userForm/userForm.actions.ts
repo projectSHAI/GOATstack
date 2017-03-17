@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 
-import { NgRedux } from 'ng2-redux';
+import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../store/index';
 
 import { UserService } from '../../../modules/core/services/user/user.service';

@@ -17,7 +17,21 @@ export const testEnv = {
 	    // Enable mongoose debug mode
 	    debug: process.env.MONGODB_DEBUG || false
 	},
-	livereload: false,
-	seedDB: true,
-  seedFile: '../config/lib/seed'
+	cassandra: {
+	  contactPoints: ['127.0.0.1'],
+	  protocolOptions: { port: 9042 },
+	  queryOptions: { consistency: 1 },
+	  keyspace: 'test'
+	},
+	sql: {
+	  // uri: 'postgres://postgres:postgres@localhost:5432/GOATstack'
+	  database: 'test',
+	  username: 'postgres',
+	  password: 'postgres',
+	  options: {
+	    host: 'localhost',
+	    dialect: 'postgres'||'mysql'||'mariadb'||'sqlite'||'mssql',
+	  }
+	},
+	seedDB: true
 };

@@ -9,6 +9,4 @@ import { Four0FourComponent }    from './404.component';
   ])],
   exports: [RouterModule]
 })
-export class Four0FourRoutingModule {
-	
-}
+export class Four0FourRoutingModule {}

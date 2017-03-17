@@ -1,4 +1,4 @@
-import * as express from 'express';
+import * as express from 'express'
 import * as chalk from 'chalk';
 import * as fs from 'graceful-fs';
 import * as http from 'http';
@@ -56,6 +56,12 @@ function init(): any {
           console.log(
             chalk.bold.cyan(`\tMongoDB:`) +
             chalk.bold.gray(`\n\t - URI:\t\t\t\t ${ config.mongo.uri }\n`));
+
+          console.log(
+            chalk.bold.cyan(`\tCassandra:`) +
+            chalk.bold.gray(`\n\t - ContactPoints:\t\t ${ config.cassandra.contactPoints.join(', ') }`) +
+            chalk.bold.gray(`\n\t - Port:\t\t\t ${ config.cassandra.protocolOptions.port }`) +
+            chalk.bold.gray(`\n\t - Consistency:\t\t\t ${ config.cassandra.queryOptions.consistency }\n`));
 
           if (!process.env.NODE_ENV)
             console.log(

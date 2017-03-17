@@ -18,7 +18,17 @@ $ [sudo] npm start
 $ # dev environment served to http://localhost:1701
 ```
 
-# What's new? v3.x
+# Coming Soon! v3.1
+
+_WARNING: 3.0 => 3.1 brings BREAKING CHANGES with the generator, upgrade with caution_
+
+* generator will no longer prompt for what app you would like (demo, helloGOAT, dblessGOAT)
+   * instead it will prompt for what databases you would like (Apache-Cassandra, MongoDB, MySQL, PostgresSQL, MariaDB, SQLite, MSSQL), you can select one or many
+   * Then it will ask what database will be your default where user authentication will be generated
+   * __IF NO DATABASE IS SELECTED__ a dbless solution will be generated
+* All packages updated to the latest
+
+# What's New! v3.0
 
 * Moved to [ngModule](https://angular.io/docs/ts/latest/guide/ngmodule.html) structure
 * Removed segment generator
@@ -92,6 +102,8 @@ ___
 
 # Follow the GOAT
 
+If you like our Fullstack make sure to stay informed and [get involved!](#contributing) 
+
 Follow us on [Facebook page](https://www.facebook.com/goatstack/) to receive the latest news and updates!
 
 [![Facebook Page][FacebookBanner]](https://www.facebook.com/goatstack/)
@@ -128,7 +140,7 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
     * if you do not want the full blown Visual Studios IDE then you can also download a standalone version of Visual Studio's build tools [here](http://landinghub.visualstudio.com/visual-cpp-build-tools)
      * Make sure to configure npm to use the correct c++ compiler using the following command `npm config set msvs_version 2015` 2015 is the version linked above, replace this number with your version if it differs. If you still have issues during npm install follow the install instructions [here](https://www.npmjs.com/package/node-gyp) for node-gyp.
 
-### 5) Install the generator and run
+### 5) Clone and Run
 
 ```sh
 $ npm install -g yo generator-goatstack
@@ -163,7 +175,7 @@ $ sudo apt-get install -y nodejs
 
 ### 3) Install [MongoDB](https://docs.mongodb.com/manual/administration/install-on-linux/)
 
-### 4) Install the generator and run
+### 4) Clone and Run
 
 ```sh
 $ sudo npm install -g yo generator-goatstack

@@ -8,7 +8,7 @@ describe('Header E2E Tests', function () {
   
     var EC = protractor.ExpectedConditions;
 
-    it('should not display: Welcome, "username"', function (done) {
+    it('should not display: Welcome, "userName"', function (done) {
       browser.wait(EC.invisibilityOf(element(by.id('#load-screen'))), 6000); 
       expect(element(by.css('#welcome-user')).isPresent()).toBeFalsy();
       done();
@@ -56,8 +56,8 @@ describe('Header E2E Tests', function () {
     });
 
     it('should throw "email is not registered" login error', function (done) {
-      element(by.css('#login_email-input')).clear().sendKeys('test@test.co');
-      element(by.css('#login_password-input')).clear().sendKeys('test');
+      element(by.css('#login_email')).clear().sendKeys('test@test.co');
+      element(by.css('#login_password')).clear().sendKeys('test');
       element(by.css('#login-btn')).click();
 
       browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
@@ -74,8 +74,8 @@ describe('Header E2E Tests', function () {
                 browser.sleep(1050);   
                 element(by.css('#sign-in-btn')).click();
                 browser.sleep(1050);
-                element(by.css('#login_email-input')).clear().sendKeys('test@test.com');
-                element(by.css('#login_password-input')).clear().sendKeys('tes');
+                element(by.css('#login_email')).clear().sendKeys('test@test.com');
+                element(by.css('#login_password')).clear().sendKeys('tes');
                 element(by.css('#login-btn')).click();
 
                 browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
@@ -84,8 +84,8 @@ describe('Header E2E Tests', function () {
             } else {  
                 element(by.css('#sign-in-btn')).click();
                 browser.sleep(1050);
-                element(by.css('#login_email-input')).clear().sendKeys('test@test.com');
-                element(by.css('#login_password-input')).clear().sendKeys('tes');
+                element(by.css('#login_email')).clear().sendKeys('test@test.com');
+                element(by.css('#login_password')).clear().sendKeys('tes');
                 element(by.css('#login-btn')).click();
 
                 browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
@@ -104,8 +104,8 @@ describe('Header E2E Tests', function () {
                 browser.sleep(1050);   
                 element(by.css('#sign-in-btn')).click();
                 browser.sleep(1050);
-                element(by.css('#login_email-input')).clear().sendKeys('test@test.com');
-                element(by.css('#login_password-input')).clear().sendKeys('test');
+                element(by.css('#login_email')).clear().sendKeys('test@test.com');
+                element(by.css('#login_password')).clear().sendKeys('test');
                 element(by.css('#login-btn')).click();
 
                 browser.sleep(500);
@@ -118,8 +118,8 @@ describe('Header E2E Tests', function () {
             } else {  
                element(by.css('#sign-in-btn')).click();
                browser.sleep(1050);
-               element(by.css('#login_email-input')).clear().sendKeys('test@test.com');
-               element(by.css('#login_password-input')).clear().sendKeys('test');
+               element(by.css('#login_email')).clear().sendKeys('test@test.com');
+               element(by.css('#login_password')).clear().sendKeys('test');
                element(by.css('#login-btn')).click();
 
                browser.sleep(500);
@@ -167,10 +167,10 @@ describe('Header E2E Tests', function () {
     });
 
     it('should display "username is already in use" register error', function (done) {
-      element(by.id('signup_username-input')).clear().sendKeys('test');
-      element(by.id('signup_email-input')).clear().sendKeys('thisisatest@test.com');
-      element(by.id('signup_password-input')).clear().sendKeys('password');
-      element(by.id('signup_re_password-input')).clear().sendKeys('password');
+      element(by.id('signup_username')).clear().sendKeys('test');
+      element(by.id('signup_email')).clear().sendKeys('thisisatest@test.com');
+      element(by.id('signup_password')).clear().sendKeys('password');
+      element(by.id('signup_re_password')).clear().sendKeys('password');
 
       element(by.css('#reg-btn')).click();
       browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
@@ -186,10 +186,10 @@ describe('Header E2E Tests', function () {
                 browser.sleep(1050);    
                 element(by.css('#sign-up-btn')).click();
                 browser.sleep(1050);
-                element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
-                element(by.css('#signup_email-input')).clear().sendKeys('test@test.com');
-                element(by.css('#signup_password-input')).clear().sendKeys('password');
-                element(by.css('#signup_re_password-input')).clear().sendKeys('password');
+                element(by.css('#signup_username')).clear().sendKeys('testUserName');
+                element(by.css('#signup_email')).clear().sendKeys('test@test.com');
+                element(by.css('#signup_password')).clear().sendKeys('password');
+                element(by.css('#signup_re_password')).clear().sendKeys('password');
 
                 element(by.css('#reg-btn')).click();
                 browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
@@ -198,10 +198,10 @@ describe('Header E2E Tests', function () {
             } else {
                 element(by.css('#sign-up-btn')).click();
                 browser.sleep(1050);
-                element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
-                element(by.css('#signup_email-input')).clear().sendKeys('test@test.com');
-                element(by.css('#signup_password-input')).clear().sendKeys('password');
-                element(by.css('#signup_re_password-input')).clear().sendKeys('password');
+                element(by.css('#signup_username')).clear().sendKeys('testUserName');
+                element(by.css('#signup_email')).clear().sendKeys('test@test.com');
+                element(by.css('#signup_password')).clear().sendKeys('password');
+                element(by.css('#signup_re_password')).clear().sendKeys('password');
 
                 element(by.css('#reg-btn')).click();
                 browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
@@ -220,10 +220,10 @@ describe('Header E2E Tests', function () {
                 browser.sleep(1050);    
                 element(by.css('#sign-up-btn')).click();
                 browser.sleep(1050);
-                element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
-                element(by.css('#signup_email-input')).clear().sendKeys('thisisatest@test.com');
-                element(by.css('#signup_password-input')).clear().sendKeys('password');
-                element(by.css('#signup_re_password-input')).clear().sendKeys('password123');
+                element(by.css('#signup_username')).clear().sendKeys('testUserName');
+                element(by.css('#signup_email')).clear().sendKeys('thisisatest@test.com');
+                element(by.css('#signup_password')).clear().sendKeys('password');
+                element(by.css('#signup_re_password')).clear().sendKeys('password123');
 
                 element(by.css('#reg-btn')).click();
                 browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
@@ -232,10 +232,10 @@ describe('Header E2E Tests', function () {
             } else {   
                 element(by.css('#sign-up-btn')).click();
                 browser.sleep(1050);
-                element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
-                element(by.css('#signup_email-input')).clear().sendKeys('thisisatest@test.com');
-                element(by.css('#signup_password-input')).clear().sendKeys('password');
-                element(by.css('#signup_re_password-input')).clear().sendKeys('password123');
+                element(by.css('#signup_username')).clear().sendKeys('testUserName');
+                element(by.css('#signup_email')).clear().sendKeys('thisisatest@test.com');
+                element(by.css('#signup_password')).clear().sendKeys('password');
+                element(by.css('#signup_re_password')).clear().sendKeys('password123');
 
                 element(by.css('#reg-btn')).click();
                 browser.wait(EC.presenceOf(element(by.css('#error-text'))), 2000);
@@ -254,10 +254,10 @@ describe('Header E2E Tests', function () {
                 browser.sleep(1050);   
                 element(by.css('#sign-up-btn')).click();
                 browser.sleep(1050);
-                element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
-                element(by.css('#signup_email-input')).clear().sendKeys('thisisatest@test.com');
-                element(by.css('#signup_password-input')).clear().sendKeys('password');
-                element(by.css('#signup_re_password-input')).clear().sendKeys('password');
+                element(by.css('#signup_username')).clear().sendKeys('testUserName');
+                element(by.css('#signup_email')).clear().sendKeys('thisisatest@test.com');
+                element(by.css('#signup_password')).clear().sendKeys('password');
+                element(by.css('#signup_re_password')).clear().sendKeys('password');
 
                 element(by.css('#reg-btn')).click();
                 browser.wait(EC.presenceOf(element(by.css('#welcome-user'))), 2000);
@@ -270,10 +270,10 @@ describe('Header E2E Tests', function () {
             } else {
                  element(by.css('#sign-up-btn')).click();
                  browser.sleep(1050);
-                 element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
-                 element(by.css('#signup_email-input')).clear().sendKeys('thisisatest@test.com');
-                 element(by.css('#signup_password-input')).clear().sendKeys('password');
-                 element(by.css('#signup_re_password-input')).clear().sendKeys('password');
+                 element(by.css('#signup_username')).clear().sendKeys('testUserName');
+                 element(by.css('#signup_email')).clear().sendKeys('thisisatest@test.com');
+                 element(by.css('#signup_password')).clear().sendKeys('password');
+                 element(by.css('#signup_re_password')).clear().sendKeys('password');
 
                  element(by.css('#reg-btn')).click();
                  browser.wait(EC.presenceOf(element(by.css('#welcome-user'))), 2000);

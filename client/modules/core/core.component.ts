@@ -1,5 +1,5 @@
 import { Component, ViewChild, AfterViewInit, ElementRef, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { NgRedux, select } from 'ng2-redux';
+import { NgRedux, select } from '@angular-redux/store';
 import { ErrorHandlerActions } from '../../redux/actions/error/errorHandler.actions';
 import { UserFormActions } from '../../redux/actions/userForm/userForm.actions';
 import { UserActions } from '../../redux/actions/user/user.actions';

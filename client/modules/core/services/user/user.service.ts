@@ -66,7 +66,6 @@ export class UserService {
       email: email,
       password: password
     });
-
     return this.http.post(this.userUrl, body)
       .map(this.extractToken)
       .catch(this.handleError);

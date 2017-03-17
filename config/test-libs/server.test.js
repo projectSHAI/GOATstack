@@ -10,15 +10,15 @@ var JasmineReporter = require('jasmine-spec-reporter').SpecReporter;
 process.env.NODE_ENV = 'test';
 
 // Server SPEC tests
-glob('server/api/**', function(er, files) {
+glob('server/**/api/**', function(er, files) {
 	exec('tsc ' + files.join(' ') + ' --outDir dist', () => {
 			
 		jasmine.loadConfig({
 			spec_dir: 'dist',
 			spec_files: [
-				'server/mongo-db/api/**/*.spec.js',
-				'server/mongo-db/api/user/user.integration.js',
-				'server/mongo-db/api/**/*.integration.js'
+				'server/cassandra-db/api/**/*.spec.js',
+				'server/cassandra-db/api/user/user.integration.js',
+				'server/cassandra-db/api/**/*.integration.js'
 			]
 		});
 

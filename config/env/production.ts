@@ -19,5 +19,21 @@ export const prodEnv = {
     // Enable mongoose debug mode
     debug: process.env.MONGODB_DEBUG || false
   },
+  cassandra: {
+    contactPoints: ['127.0.0.1'],
+    protocolOptions: { port: 9042 },
+    queryOptions: { consistency: 1 },
+    keyspace: 'prod'
+  },
+  sql: {
+    // uri: 'postgres://postgres:postgres@localhost:5432/GOATstack'
+    database: 'prod',
+    username: 'postgres',
+    password: 'postgres',
+    options: {
+      host: 'localhost',
+      dialect: 'postgres'||'mysql'||'mariadb'||'sqlite'||'mssql',
+    }
+  },
   seedDB: true
 };
