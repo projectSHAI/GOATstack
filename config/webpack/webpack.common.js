@@ -5,8 +5,6 @@ var nodeExternals = require('webpack-node-externals');
 
 var helpers = require('../helpers');
 
-var path = require('path');
-
 module.exports = function(options) {
   const prod = options.env === 'prod';
 
