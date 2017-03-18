@@ -5,6 +5,8 @@ var nodeExternals = require('webpack-node-externals');
 
 var helpers = require('../helpers');
 
+var path = require('path');
+
 module.exports = function(options) {
   const prod = options.env === 'prod';
 
@@ -67,7 +69,12 @@ module.exports = function(options) {
 
       new HtmlWebpackPlugin({
         template: 'client/index.html'
-      })
+      }),
+
+      new webpack.ContextReplacementPlugin( // fixes angular linker WARNING
+        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+        helpers.root('src')
+      )
     ]
   };
 
