@@ -39,14 +39,14 @@ function expressInit(app) {
     }));
   }
   
-  app.use(session({
-    secret: config.sessionSecret,
-    saveUninitialized: true,
-    resave: false,
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection
-    })
-  }));
+  // app.use(session({
+  //   secret: config.sessionSecret,
+  //   saveUninitialized: true,
+  //   resave: false,
+  //   store: new MongoStore({
+  //     mongooseConnection: mongoose.connection
+  //   })
+  // }));
 
   //sets the routes for all the API queries
   routes(app);
