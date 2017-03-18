@@ -44,8 +44,8 @@ module.exports = function(options) {
           test: /\.scss/,
           include: [helpers.root('client/styles.scss')],
           loader: ExtractTextPlugin.extract({ 
-            fallbackLoader: 'style-loader', 
-            loader: 'css-loader?sourceMap!sass-loader?sourceMap'
+            fallback: 'style-loader', 
+            use: 'css-loader?sourceMap!sass-loader?sourceMap'
           })
         },
         {

@@ -30,13 +30,13 @@ Modules
 */
 import { NgModule }                                  from '@angular/core';
 import { BrowserModule }                             from '@angular/platform-browser';
-import { MaterialModule }                            from '@angular/material';
-import { ReduxModule }                               from './redux/redux.module';
+import { MaterialRootModule }                        from '@angular/material';
+import { ReduxModule }                               from '../redux/redux.module';
 
-import { CoreModule }                                from './modules/core/core.module';
-import { HomeModule }                                from './modules/home/home.module';
-import { UserProfileModule }                         from './modules/user-profile/user-profile.module';
-import { Four0FourModule }                           from './modules/404/404.module';
+import { CoreModule }                                from './core/core.module';
+import { HomeModule }                                from './home/home.module';
+import { UserProfileModule }                         from './user-profile/user-profile.module';
+import { Four0FourModule }                           from './404/404.module';
 
 /*
 --------------------------------------------------
@@ -55,7 +55,7 @@ NgModule
     HomeModule,
     UserProfileModule,
     Four0FourModule,
-    MaterialModule.forRoot()
+    MaterialRootModule
   ],
   //declarations: this object imports all child components which are used in this module
   declarations: [ AppComponent ],

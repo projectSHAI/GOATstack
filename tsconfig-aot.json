@@ -10,6 +10,7 @@
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
     "experimentalDecorators": true,
+    "lib": ["es6", "dom"],
     "types": [
       "graceful-fs",
       "immutable",
@@ -18,12 +19,9 @@
     ]
   },
   "files": [
-    "client/app.module.ts",
+    "client/modules/app.module.ts",
     "client/app.ts",
     "client/app-aot.ts"
-  ],
-  "exclude": [
-    "node_modules/@types/mongoose"
   ],
   "angularCompilerOptions": {
     "genDir": "ngc-aot",

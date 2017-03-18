@@ -11,6 +11,7 @@
         "noImplicitAny": false,
         "allowSyntheticDefaultImports": true,
         "suppressImplicitAnyIndexErrors": true,
+        "lib": ["es6", "dom"],
         "rootDir": "./",
         "outDir": "dist",
         "typeRoots": [
@@ -19,9 +20,9 @@
     },
     "compileOnSave": false,
     "exclude": [
-      "./dist",
-      "./node_modules",
-      "./config/gulp",
+      "dist",
+      "node_modules",
+      "config/gulp",
       "client/app-aot.ts"
     ]
 }

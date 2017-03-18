@@ -51,7 +51,7 @@ const generalConfig = {
         secure: false
       }],
       stats: {
-        warnings: false,
+        // warnings: false,
         chunks: false
       }
     },

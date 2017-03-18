@@ -20,7 +20,7 @@ import '@angular/material';
 // RxJS
 import 'rxjs';
 
-import 'ng2-redux';
+import '@angular-redux/store';
 import 'lodash';
 import 'ng2-cookies/ng2-cookies';
 
