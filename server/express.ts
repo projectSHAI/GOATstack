@@ -5,17 +5,18 @@ import config from '../config';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
 import * as passport from 'passport';
+import * as express from 'express';
+import * as fs from 'graceful-fs';
+import * as chalk from 'chalk';
+import * as morgan from 'morgan';
+import * as bodyParser from 'body-parser';
+import * as methodOverride from 'method-override';
+import * as cookieParser from 'cookie-parser';
+ 
+import * as session from 'express-session';
+import * as connectMongo from 'connect-mongo';
 
-// Some modules still need to be imported via node
-let express = require('express'),
-  fs = require('graceful-fs'),
-  chalk = require('chalk'),
-  morgan = require('morgan'),
-  bodyParser = require('body-parser'),
-  methodOverride = require('method-override'),
-  cookieParser = require('cookie-parser'),
-  session = require('express-session'),
-  MongoStore = require('connect-mongo')(session);
+let MongoStore = connectMongo(session);
 
 // function to initialize the express app
 function expressInit(app) {
@@ -43,8 +44,7 @@ function expressInit(app) {
     saveUninitialized: true,
     resave: false,
     store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      db: 'dreams'
+      mongooseConnection: mongoose.connection
     })
   }));
 
