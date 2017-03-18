@@ -53,7 +53,6 @@ const generalConfig = {
         secure: false
       }],
       stats: {
-        warnings: false,
         chunks: false
       }
     },
@@ -62,12 +61,8 @@ const generalConfig = {
   },
 
   stats: {
-    dev: {
-      warnings: false
-    },
-    prod: {
-      warnings: false
-    },
+    dev: {},
+    prod: {},
     test: 'none'
   }
 };
@@ -90,7 +85,7 @@ module.exports = function(options) {
     ] : options.env === 'test' ? [
       new ExtractTextPlugin('styles.css')
     ] : [
-      new webpack.NoErrorsPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
       new webpack.optimize.UglifyJsPlugin({
         mangle: {
           keep_fnames: true

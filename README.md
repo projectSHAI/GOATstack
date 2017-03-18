@@ -219,7 +219,7 @@ $ heroku login
 ### 2) Run the gulp task
 
 ```sh
-$ [sudo] yarn run deploy:heroku
+$ [sudo] yarn deploy:heroku
 ```
 
 ## Yo Generator Project [here](https://github.com/JCThomas4214/GOAT-yeoman)

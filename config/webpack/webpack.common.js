@@ -67,7 +67,12 @@ module.exports = function(options) {
 
       new HtmlWebpackPlugin({
         template: 'client/index.html'
-      })
+      }),
+
+      new webpack.ContextReplacementPlugin( // fixes angular linker WARNING
+        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+        helpers.root('src')
+      )
     ]
   };
 
