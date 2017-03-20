@@ -23,7 +23,7 @@ export const testEnv = {
 	  queryOptions: { consistency: 1 },
 	  keyspace: 'test'
 	},
-	postgres: {
+	sql: {
 	  // uri: 'postgres://postgres:postgres@localhost:5432/GOATstack'
 	  database: 'test',
 	  username: 'postgres',

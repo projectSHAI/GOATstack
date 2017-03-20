@@ -1,15 +1,15 @@
 import { mongoConnect, mongoDisconnect } from './mongo-db';
 import { cassandraConnect, cassandraDisconnect } from './cassandra-db';
-import { postgresConnect, postgresDisconnect } from './postgres-db';
+import { sequelizeConnect, sequelizeDisconnect } from './sql-db';
 
 export function connect() {
   mongoConnect();
   // cassandraConnect();
-  // postgresConnect();
+  // sequelizeConnect();
 }
 
 export function disconnect() {
   mongoDisconnect();
   // cassandraDisconnect();
-  // postgresDisconnect();
+  // sequelizeDisconnect();
 }

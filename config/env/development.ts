@@ -22,7 +22,7 @@ export const devEnv = {
     queryOptions: { consistency: 1 },
     keyspace: 'dev'
   },
-  postgres: {
+  sql: {
     // uri: 'postgres://postgres:postgres@localhost:5432/GOATstack'
     database: 'dev',
     username: 'postgres',
