@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-import sequelize from "../../../sql-db";
+import sequelize from "../../../postgres-db";
 import * as crypto from "crypto";
 
 let User = sequelize.define("User", {

@@ -4,12 +4,12 @@ import Sequelize from "sequelize";
 import seed from "./seed";
 
 //initilize the database
-let sequelize = new Sequelize(config.sql.database, config.sql.username, config.sql.password, config.sql.options);
+let sequelize = new Sequelize(config.postgres.database, config.postgres.username, config.postgres.password, config.postgres.options);
 
 export default sequelize;
 
 // Initialize sequelize
-export function sequelizeConnect() {
+export function postgresConnect() {
   sequelize.sync().then(function() {
 
       // seed sequelize
@@ -20,6 +20,6 @@ export function sequelizeConnect() {
   });
 };
 
-export function sequelizeDisconnect() {
+export function postgresDisconnect() {
 
 };

@@ -25,7 +25,7 @@ export const prodEnv = {
     queryOptions: { consistency: 1 },
     keyspace: 'prod'
   },
-  sql: {
+  postgres: {
     // uri: 'postgres://postgres:postgres@localhost:5432/GOATstack'
     database: 'prod',
     username: 'postgres',

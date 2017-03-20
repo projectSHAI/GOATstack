@@ -2,7 +2,7 @@
  * Populate DB with sample data on server start
  * to disable, edit config/environment/index.js, and set `seedDB: false`
  */
-import User from './api/user/user.model';
+import User from './api/_user/user.model';
 
 export default function seed(env?: string): void {
 

@@ -1,4 +1,4 @@
-import User from '../api/user/user.model';
+import User from '../api/_user/user.model';
 
 import config from '../../../config';
 
