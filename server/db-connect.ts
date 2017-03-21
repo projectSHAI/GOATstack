@@ -3,13 +3,13 @@ import { cassandraConnect, cassandraDisconnect } from './cassandra-db';
 import { sequelizeConnect, sequelizeDisconnect } from './sql-db';
 
 export function connect() {
-  mongoConnect();
+  // mongoConnect();
   // cassandraConnect();
-  // sequelizeConnect();
+  sequelizeConnect();
 }
 
 export function disconnect() {
-  mongoDisconnect();
+  // mongoDisconnect();
   // cassandraDisconnect();
-  // sequelizeDisconnect();
+  sequelizeDisconnect();
 }

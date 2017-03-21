@@ -11,8 +11,8 @@ describe('User API:', function () {
   // users are cleared from DB seeding
   // add a new testing user
   beforeAll(function (done) {
-    return          User.sync({force: true}).then(() =>{
-        User.destroy({where: {}}).then(() => {
+    return User.sync().then(() =>{
+            User.destroy({truncate: true, cascade: true}).then(() => {
             User.create({
               username: 'test',
               firstname: 'testFirst',
@@ -25,7 +25,7 @@ describe('User API:', function () {
             }).catch(err => console.log(err));
             
           });
-      }).then(() => console.log('success')).catch(err => console.log(err.message));
+      }).catch(err => console.log(err.message));
 
     });
 
@@ -43,7 +43,6 @@ describe('User API:', function () {
         .expect(200)
         .end((err, res) => {
           if (err) {
-            console.log('in done$$$$$$$$$$$$$$',user);
             done.fail(err);
           } else {
             token = res.body.token;

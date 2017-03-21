@@ -30,7 +30,6 @@ export function isAuthenticated() {
       return User.findById(req.user.id)
         .then(user => {
           if (!user) {
-            console.log(req.user.id);
             return res.status(401).json({ message: 'Invalid Token' });
           }
           req.user = user;

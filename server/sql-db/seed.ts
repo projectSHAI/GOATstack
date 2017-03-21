@@ -9,8 +9,8 @@ export default function seed(env?: string): void {
   // Insert seeds below
   switch (env) {
     case "development":
-    User.sync({force: true}).then(() =>{
-          User.destroy({where: {}}).then(() => {
+    User.sync().then(() =>{
+          User.destroy({truncate: true, cascade: true}).then(() => {
               User.create({
                 username: 'AdMiN',
                 firstname:'admin',
@@ -27,31 +27,23 @@ export default function seed(env?: string): void {
                           role:     'a',
                           password: 'a'
                         });
-              });
-            });      
+              });  
+          }).catch(err => console.log('this is the User destroy err', err.message));   
         }).then(() => console.log('success')).catch(err => console.log(err.message));
 
       break;
     case "test":
-    User.sync({force: true}).then(() =>{
-        User.destroy({where: {}}).then(() => {
-            User.create({
-              username: 'test',
-              firstname: 'testFirst',
-              lastname: 'testLast',
-              email: 'test@test.com',
-              password: 'test'
-            }).then(() => {
+    User.sync().then(() =>{
+          User.destroy({truncate: true, cascade: true}).then(() => {
                         User.create({
-                          username: 'AdMiN',
-                          firstname:'admin',
-                          lastname: 'admin',
-                          email:    'admin@admin.com',
-                          role:     'admin',
-                          password: 'admin1'
+                          username: 'iTest',
+                          firstname:'iTest',
+                          lastname: 'iTest',
+                          email:    'iTest@iTest.com',
+                          role:     'iTest',
+                          password: 'iTest'
                         });
-              });
-          });
+          }).catch(err => console.log('this is the User destroy err', err.message));                
       }).then(() => console.log('success')).catch(err => console.log(err.message));
       break;
     default:

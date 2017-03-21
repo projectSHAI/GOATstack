@@ -1,8 +1,8 @@
 import Sequelize from "sequelize";
-import sequelize from "../../../postgres-db";
+import sequelize from "../../../sql-db";
 import * as crypto from "crypto";
 
-let User = sequelize.define("User", {
+let User = sequelize.define("user", {
 	  username:  {type: Sequelize.STRING, 
 	  	unique: true,
 	  	validate: {

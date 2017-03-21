@@ -30,6 +30,7 @@ export const devEnv = {
     options: {
       host: 'localhost',
       dialect: 'postgres'||'mysql'||'mariadb'||'sqlite'||'mssql',
+      logging: false,
     }
   },
   seedDB: true

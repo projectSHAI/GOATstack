@@ -1,9 +1,9 @@
 /**
  * Main application routes
  */
-import {userRoutes} from './mongo-db/api/user/user.router';
+import {userRoutes} from './sql-db/api/_user/user.router';
 // DO NOT REMOVE: template route imports
-import {authRoutes} from './mongo-db/auth/auth.router';
+import {authRoutes} from './sql-db/auth/auth.router';
 
 export default function routes(app) {
   // Insert routes below

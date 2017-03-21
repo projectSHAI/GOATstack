@@ -7,7 +7,6 @@ import * as jwt from 'jsonwebtoken';
 // specificity: validation
 function validationError(res, err, statusCode = null) {
 
-    console.log('error object',err.errors[0]);
   statusCode = statusCode || 422;
 
     res.status(statusCode).json(err.errors[0]);
@@ -82,7 +81,6 @@ export function create(req, res, next) {
       return null;
     })
     .catch(err => {
-        console.log('in create', err);
       validationError(res, err);
     });
 }
@@ -118,7 +116,6 @@ export function show(req, res, next) {
  * Get my info: all user information
  */
 export function me(req, res, next) {
-    console.log('in me');
   let userId = req.user.id;
   let token = req.headers.token;
 
