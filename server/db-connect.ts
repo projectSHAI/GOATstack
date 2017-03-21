@@ -10,7 +10,7 @@ export function connect(): Rx.Observable<any> {
 	obs.push(cassandraConnect());
   	obs.push(sequelizeConnect());
 
-  	return obs.length > 1 ? Rx.Observable.concat.apply(this, obs) : obs[0];
+  	return obs.length > 1 ? Rx.Observable.merge.apply(this, obs) : obs[0];
 }
 
 export function disconnect() {
