@@ -17,7 +17,7 @@ _The GOATyeoman generator is located [here](https://github.com/JCThomas4214/GOAT
 $ [sudo] yarn global add yo generator-goatstack
 $ mkdir [dirName] && cd [dirName]
 $ [sudo] yo goatstack [name?]
-$ # [sudo] mongod in another terminal!
+$ # Make sure to have the database runnning!!
 $ [sudo] yarn start
 $ # dev environment served to http://localhost:1701
 ```
@@ -148,7 +148,7 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 $ yarn global add yo generator-goatstack
 $ mkdir GOATstack && cd GOATstack
 $ yo goatstack [name?]
-$ # mongod in another terminal!
+$ # Make sure to have the database running!!
 $ yarn start
 $ # dev environment served to http://localhost:1701
 ```
@@ -193,7 +193,7 @@ $ sudo apt-get update && sudo apt-get install yarn
 $ sudo yarn global add yo generator-goatstack
 $ mkdir GOATstack && cd GOATstack 
 $ sudo yo goatstack [name?]
-$ # sudo mongod in another terminal!
+$ # Make sure to have the database running!!
 $ sudo yarn start
 $ # dev environment served to http://localhost:1701
 ```
