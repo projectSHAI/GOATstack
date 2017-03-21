@@ -5,8 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css'],
+  template: require('./user-profile.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

@@ -5,8 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'home-section',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  template: require('./home.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

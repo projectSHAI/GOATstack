@@ -11,8 +11,7 @@ declare let Power0: any;
 
 @Component({
   selector: 'header-section',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  template: require('./header.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

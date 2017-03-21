@@ -19,8 +19,7 @@ import { Observable } from 'rxjs/Observable';
 //decorator
 @Component({
   selector: 'my-app',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css'],
+  template: require('./app.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

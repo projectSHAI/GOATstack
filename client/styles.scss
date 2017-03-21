@@ -220,6 +220,13 @@ button.zoom-out span.md-button-wrapper {
     display: block;
 }
 
+@import 'modules/core/core.component';
+@import 'modules/core/components/header/header.component';
+@import 'modules/core/components/footer/footer.component';
+@import 'modules/home/home.component';
+@import 'modules/user-profile/user-profile.component';
+@import 'modules/404/404.component';
+
 
 /*
 --------------------------------------------------------------------------

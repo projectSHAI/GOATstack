@@ -1,78 +1,80 @@
-.error-card {
-    display: none;
-    position: fixed;
-    bottom: 10%;
-    left: 5%;
-    width: 350px;
-    transform: translateY(400px);  
-}
-
-.error-card > md-card {
-    z-index: 10000;
-    padding: 0;
-}
-
-.error-content {
-    padding: 15px;
-    font-size: medium;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.user-sign button:hover {
-    cursor: pointer;
-}
-
-.reg-card {
-    will-change: transform;
-    display: none;
-    position: fixed;
-    width: 400px;
-    margin-left: -200px;
-    top: 20%;
-    left: 50%;
-    z-index: 10000;
-    padding: 0;
-}
-
-.reg-card#reg {
-    top: 15%;
-} 
-
-.reg-card md-input-container {
-    width: 100%;
-} 
-
-.reg-content {
-    padding: 10px;
-}
-
-.reg-content button {
-    margin-right: 2px;
-}
-.reg-content #login-btn,
-.reg-content #reg-btn {
-    float: right;
-}
-
-
-
-@media (max-width: 800px) {
+core-section {
     .error-card {
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: auto;
-        transform: translateY(-400px);  
+        display: none;
+        position: fixed;
+        bottom: 10%;
+        left: 5%;
+        width: 350px;
+        transform: translateY(400px);  
+    }
+
+    .error-card > md-card {
+        z-index: 10000;
+        padding: 0;
+    }
+
+    .error-content {
+        padding: 15px;
+        font-size: medium;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+
+    .user-sign button:hover {
+        cursor: pointer;
     }
 
     .reg-card {
-        width: auto;
-        margin: 0;
-        top: 0;
-        left: 0;
-        right: 0;
+        will-change: transform;
+        display: none;
+        position: fixed;
+        width: 400px;
+        margin-left: -200px;
+        top: 20%;
+        left: 50%;
+        z-index: 10000;
+        padding: 0;
     }
+
     .reg-card#reg {
-        top: 0;
+        top: 15%;
+    } 
+
+    .reg-card md-input-container {
+        width: 100%;
+    } 
+
+    .reg-content {
+        padding: 10px;
+    }
+
+    .reg-content button {
+        margin-right: 2px;
+    }
+    .reg-content #login-btn,
+    .reg-content #reg-btn {
+        float: right;
+    }
+
+
+
+    @media (max-width: 800px) {
+        .error-card {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: auto;
+            transform: translateY(-400px);  
+        }
+
+        .reg-card {
+            width: auto;
+            margin: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        .reg-card#reg {
+            top: 0;
+        }
     }
 }

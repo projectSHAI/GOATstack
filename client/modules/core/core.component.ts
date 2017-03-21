@@ -12,8 +12,7 @@ declare let Power0: any;
 
 @Component({
 	selector: 'core-section',
-	templateUrl: 'core.component.html',
-	styleUrls: ['core.component.css'],
+	template: require('./core.component.html'),
   	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoreComponent implements AfterViewInit {
