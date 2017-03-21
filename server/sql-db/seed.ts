@@ -11,21 +11,23 @@ export default function sqlSeed(env?: string): void {
     case "development":
       User.sync().then(() =>{
             User.destroy({truncate: true, cascade: true}).then(() => {
-                User.create([{
+                User.create({
                   username: 'AdMiN',
                   firstname:'admin',
                   lastname: 'admin',
                   email:    'admin@admin.com',
                   role:     'admin',
                   password: 'admin1'
-                }, {
-                  username: 'test',
-                  firstname:'testFirst',
-                  lastname: 'testLast',
-                  email:    'test@test.com',
-                  role:     'user',
-                  password: 'test'
-                }]).catch(() => {});  
+                }).then(() => {
+                  User.create({
+                    username: 'test',
+                    firstname:'testFirst',
+                    lastname: 'testLast',
+                    email:    'test@test.com',
+                    role:     'user',
+                    password: 'test'
+                  }).catch(() => {});
+                }).catch(() => {});  
             }).catch(err => console.log(err.message));   
           }).catch(err => console.log(err.message));
 

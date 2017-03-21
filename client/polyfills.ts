@@ -15,7 +15,6 @@ require('zone.js/dist/zone');
 if (process.env.ENV === 'production') {
   // Production
 } else {
-  // Development  
-  require('zone.js/dist/long-stack-trace-zone');
+  // Development
   Error.stackTraceLimit = Infinity;
 }

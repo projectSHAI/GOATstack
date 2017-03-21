@@ -58,8 +58,8 @@ connect().subscribe(
               chalk.bold.cyan(`\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }\n`));
 
             console.log(
-              chalk.bold.cyan(`\tPostgres:`) +
-              chalk.bold.cyan(`\n\t - URI:\t\t\t\t postgres://${config.postgres.username}:${config.postgres.password}@localhost:5432/${config.postgres.database}\n`));
+              chalk.bold.cyan(`\tSQL:`) +
+              chalk.bold.cyan(`\n\t - URI:\t\t\t\t sql://${config.sql.username}:${config.sql.password}@localhost:5432/${config.sql.database}\n`));
 
             if (!process.env.NODE_ENV)
               console.log(
