@@ -22,7 +22,7 @@ describe('User API:', function () {
             }).then(u => {
               user = u;
               done();
-            }).catch(err => console.log(err));
+            }).catch(err => done());
             
           });
       }).catch(err => console.log(err.message));
