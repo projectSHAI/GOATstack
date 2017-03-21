@@ -10,12 +10,14 @@ describe('User API:', function () {
 
   // users are cleared from DB seeding
   // add a new testing user
-  beforeAll(function (done) {
+  beforeAll(done => {
     return User.remove({}).then(function () {
       user = new User();
-      user.username = 'MrFakie';
-      user.email = 'Fakie@mrfake.com';
-      user.password = 'mrfakie';
+      user.username = 'test';
+      user.email = 'test@test.com';
+      user.password = 'test';
+      user.firstname = 'testFirst';
+      user.lastname = 'testLast';
 
       return user.save().then(() => done())
         .catch(err => console.log(err));
@@ -26,12 +28,12 @@ describe('User API:', function () {
   describe('GET /api/users/me', function () {
 
     // before every 'it' get new OAuth token representing the user
-    beforeAll(function (done) {
+    beforeAll(done => {
       setTimeout(() => request(app)
         .post('/auth/local')
         .send({
-          email: 'Fakie@mrfake.com',
-          password: 'mrfakie'
+          email: 'test@test.com',
+          password: 'test'
         })
         .expect(200)
         .end((err, res) => {
@@ -47,7 +49,7 @@ describe('User API:', function () {
 
     // If the token was properly set inside the header of the request
     // it should respond with a 200 status code with the user json
-    it('should respond with a user profile when authenticated', function (done) {
+    it('should respond with a user profile when authenticated', done => {
       request(app)
         .get('/api/users/me')
         .set('authorization', 'Bearer ' + token)
@@ -57,7 +59,6 @@ describe('User API:', function () {
           if (err) {
             done.fail(err);
           } else {
-            expect(res.body._id.toString()).toEqual(user._id.toString());
             expect(res.body.username).toEqual(user.username);
             expect(res.body.firstname).toEqual(user.firstname);
             expect(res.body.lastname).toEqual(user.lastname);
@@ -69,7 +70,7 @@ describe('User API:', function () {
 
     // If the token was improperly / not set to the header
     // status code 401 should be thrown 
-    it('should respond with a 401 when not authenticated', function (done) {
+    it('should respond with a 401 when not authenticated', done => {
       request(app)
         .get('/api/users/me')
         .expect(401)

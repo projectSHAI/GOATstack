@@ -1,7 +1,7 @@
 let express = require('express');
 
 import {signToken, isAuthenticated} from '../auth.service';
-import {me} from '../../api/_user/user.controller';
+import {me} from '../../api/user/user.controller';
 import * as passport from 'passport';
 
 let router = express.Router();

@@ -3,22 +3,27 @@ mongoose.Promise = Promise; // promise library plugin
 
 import * as chalk from 'chalk';
 import config from '../../config';
-import seed from './seed';
+
+import * as Rx from 'rxjs';
 
 // Initialize Mongoose
-export function mongoConnect() {
-  mongoose.connect(config.mongo.uri, config.mongo.options, function (err) {
-    // Log Error
-    if (err) {
-      console.error(chalk.bold.red('Could not connect to MongoDB!'));
-      console.log(err);
-    } else {
-      if (config.seedDB) {
-        seed(process.env.NODE_ENV);
+export function mongoConnect(): Rx.Observable<any> {
+  return Rx.Observable.create(observer => {
+
+    mongoose.connect(config.mongo.uri, config.mongo.options, function (err) {
+      // Log Error
+      if (err) {
+        console.error(chalk.bold.red('Could not connect to MongoDB!'));
+        observer.error(err);
+      } else {
+        // Enabling mongoose debug mode if required
+        mongoose.set('debug', config.mongo.debug);
+        
+        observer.next();
+        observer.complete();
       }
-      // Enabling mongoose debug mode if required
-      mongoose.set('debug', config.mongo.debug);
-    }
+    });
+    
   });
 };
 

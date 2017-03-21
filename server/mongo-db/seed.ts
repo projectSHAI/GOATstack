@@ -4,7 +4,7 @@
  */
 import User from './api/user/user.model';
 
-export default function seed(env?: string): void {
+export default function mongoSeed(env?: string): void {
 
   // Insert seeds below
   switch (env) {
