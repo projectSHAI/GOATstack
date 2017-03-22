@@ -2,7 +2,6 @@ import { NgModule, isDevMode }                       from '@angular/core';
 import { CommonModule }                              from '@angular/common';
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 
-
 import { IAppState, rootReducer, enhancers }         from './store/index';
 let createLogger = require('redux-logger');
 

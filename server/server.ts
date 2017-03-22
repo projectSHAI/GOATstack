@@ -4,6 +4,7 @@ import * as fs from 'graceful-fs';
 import * as http from 'http';
 import * as https from 'https';
 import config from '../config';
+const fsbx = require('fuse-box');
 
 import socketInit from './socketio';
 import expressInit from './express';
@@ -39,38 +40,64 @@ connect().subscribe(
   x => {},
   err => console.log(err),
   () => {
-    expressInit(app);
-    socketInit(socketio);
-    
-    if (config.seedDB) {
-      mongoSeed(process.env.NODE_ENV);
-      cassandraSeed(process.env.NODE_ENV);
-      sqlSeed(process.env.NODE_ENV);
+
+    if (process.env.NODE_ENV === 'development') {
+      const fuseBox = fsbx.FuseBox.init({
+        homeDir: `client`,
+        sourcemaps: true,
+        outFile: `dist//client/app.js`,
+        plugins: [
+          [
+            fsbx.SassPlugin({ outputStyle: 'compressed' }),
+              fsbx.CSSPlugin()
+            ],
+            fsbx.TypeScriptHelpers(),
+            fsbx.HTMLPlugin({ useDefault: false })
+         ]
+      });
+
+      server = fuseBox.devServer('>app.ts', {
+        root: 'dist/client',
+        port: 1701
+      }); 
+      expressInit(server.httpServer.app);
+      socketInit(socketio);
+    } else {
+      
+      expressInit(app);
+      socketInit(socketio);
+      
+      if (config.seedDB) {
+        mongoSeed(process.env.NODE_ENV);
+        cassandraSeed(process.env.NODE_ENV);
+        sqlSeed(process.env.NODE_ENV);
+      }
+
+      // Start the server on port / host
+      server.listen(config.port, config.host, () => {
+        let host = server.address().address;
+        let port = server.address().port;
+
+        if (process.env.NODE_ENV !== 'test') {
+              console.log(
+                chalk.bold.cyan(`\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }\n`));
+
+              console.log(
+                chalk.bold.cyan(`\tSQL:`) +
+                chalk.bold.cyan(`\n\t - URI:\t\t\t\t sql://${config.sql.username}:${config.sql.password}@localhost:5432/${config.sql.database}\n`));
+
+              if (!process.env.NODE_ENV)
+                console.log(
+                  chalk.bold.magenta(`\t${isSecure ? 'HTTPS': 'HTTP'} Server`) +
+                  chalk.bold.gray(`\n\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:${ port }\n`));
+              else
+                console.log(
+                  chalk.bold.magenta(`\tWebPack DevServer:`) +
+                  chalk.bold.gray(`\n\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:1701\n`));
+            }
+      });    
+      
     }
-
-    // Start the server on port / host
-    server.listen(config.port, config.host, () => {
-      let host = server.address().address;
-      let port = server.address().port;
-
-      if (process.env.NODE_ENV !== 'test') {
-            console.log(
-              chalk.bold.cyan(`\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }\n`));
-
-            console.log(
-              chalk.bold.cyan(`\tSQL:`) +
-              chalk.bold.cyan(`\n\t - URI:\t\t\t\t sql://${config.sql.username}:${config.sql.password}@localhost:5432/${config.sql.database}\n`));
-
-            if (!process.env.NODE_ENV)
-              console.log(
-                chalk.bold.magenta(`\t${isSecure ? 'HTTPS': 'HTTP'} Server`) +
-                chalk.bold.gray(`\n\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:${ port }\n`));
-            else
-              console.log(
-                chalk.bold.magenta(`\tWebPack DevServer:`) +
-                chalk.bold.gray(`\n\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:1701\n`));
-          }
-    });    
   });
 
 // export express app for testing

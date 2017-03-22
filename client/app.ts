@@ -5,6 +5,8 @@ import 'zone.js/dist/zone';
 import './styles.scss';
 import './loader.scss';
 
+import 'hammerjs/hammer';
+
 //The browser platform with a compiler, used for Just in Time loading.
 //JIT means Angular compiles the application in the browser and then launches the app
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

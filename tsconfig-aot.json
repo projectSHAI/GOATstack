@@ -26,7 +26,6 @@
   ],
   "angularCompilerOptions": {
     "genDir": "ngc-aot",
-    "skipMetadataEmit" : true,
-    "entryModule": "client/app.module#MainModule"
+    "skipMetadataEmit" : true
   }
 }

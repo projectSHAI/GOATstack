@@ -81,10 +81,9 @@ exports.startProdE2E = function startProdE2E() {
  *	Build webpack-dev-server/express server => proxy to express server
  */
 exports.startDev = function startDev() {
-	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
-	prepare(true);
-
-	return spawn(`${cmd.webpackDevServer} --progress --inline --env dev`, {shell: true, stdio: 'inherit'});
+	const fsbx = require('fuse-box');
+	const bundled = require('../dist');
+	bundled.FuseBox.import("./server/server.js");
 };
 
 /*

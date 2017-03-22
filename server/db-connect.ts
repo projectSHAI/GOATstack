@@ -6,7 +6,7 @@ import * as Rx from 'rxjs';
 
 export function connect(): Rx.Observable<any> {
 	let obs = [];
-	obs.push(mongoConnect());
+	// obs.push(mongoConnect());
 	obs.push(cassandraConnect());
   	obs.push(sequelizeConnect());
 
@@ -14,7 +14,7 @@ export function connect(): Rx.Observable<any> {
 }
 
 export function disconnect() {
-  mongoDisconnect();
+  // mongoDisconnect();
   cassandraDisconnect();
   sequelizeDisconnect();
 }
