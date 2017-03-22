@@ -7,7 +7,7 @@
   },
   "scripts": {
     "prestart": "rimraf dist && cpx ./client/index.html ./dist/client/",
-    "start": "node fuse --dev && node fuse",
+    "start": "node fuse --dev && node dist",
     "test": "node -e \"require('./config/scripts').startTest()\"",
     "prod": "ngc -p tsconfig-aot.json",
     "e2e": "node -e \"require('./config/scripts').startE2E()\"",
