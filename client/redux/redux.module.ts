@@ -3,7 +3,7 @@ import { CommonModule }                              from '@angular/common';
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 
 import { IAppState, rootReducer, enhancers }         from './store/index';
-let createLogger = require('redux-logger');
+import { createLogger }                              from 'redux-logger';
 
 @NgModule({
   imports: [ CommonModule, NgReduxModule ],

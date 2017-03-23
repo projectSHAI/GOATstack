@@ -35,7 +35,7 @@ function expressInit(app) {
   // NOTE: all node and custom module requests
   if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('dev', {
-      skip: function (req, res) { return res.statusCode < 400 }
+      skip: function (req, res) { return false }
     }));
   }
   
