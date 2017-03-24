@@ -20,8 +20,14 @@ describe('User API:', function () {
       user.lastname = 'testLast';
 
       return user.save().then(() => done())
-        .catch(err => console.log(err));
-    }).catch(err => console.log(err));
+        .catch(err => {
+          expect(err).not.toBeDefined();
+          done();
+        });
+    }).catch(err => {
+      expect(err).not.toBeDefined();
+      done();
+    });
   });
 
   // Encapsolate GET me enpoint

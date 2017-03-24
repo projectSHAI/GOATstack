@@ -22,10 +22,16 @@ describe('User API:', function () {
             }).then(u => {
               user = u;
               done();
-            }).catch(err => done());
+            }).catch(err => {
+              expect(err).not.toBeDefined();
+              done();
+            });
             
           });
-      }).catch(err => console.log(err.message));
+      }).catch(err => {
+        expect(err).not.toBeDefined();
+        done();
+      });
 
     });
 

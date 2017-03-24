@@ -10,14 +10,20 @@ describe('User API:', function () {
 
   // users are cleared from DB seeding
   // add a new testing user
-  beforeAll(function () {
+  beforeAll(done => {
     User.remove().create({
-        email: 'Fakie@mrfake.com',
-        firstname: 'MrF',
-        lastname: 'jones',
-        password: 'mrfakie',
-        username: 'MrFakie'
-      }).seam().subscribe(u => user = u);
+        email: 'test@test.com',
+        firstname: 'testfirst',
+        lastname: 'testlast',
+        password: 'test',
+        username: 'test'
+      }).seam().subscribe(
+        u => user = u,
+        err => {
+          expect(err).not.toBeDefined();
+          done();
+        },
+        () => done());
   });
 
   // Encapsolate GET me enpoint
@@ -28,8 +34,8 @@ describe('User API:', function () {
       setTimeout(() => request(app)
         .post('/auth/local')
         .send({
-          email: 'Fakie@mrfake.com',
-          password: 'mrfakie'
+          email: 'test@test.com',
+          password: 'test'
         })
         .expect(200)
         .end((err, res) => {
