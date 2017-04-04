@@ -18,6 +18,10 @@ const isSecure = config.https_secure && (process.env.NODE_ENV === 'production' |
 // Initialize express
 let app = express();
 
+if (process.env.NODE_ENV === "production" || !process.env.NODE_ENV) {
+  require("./server-render").serverSideRendering(app);
+}
+
 // Initialize http server
 let server: any = http.createServer(app);
 // If specified in the default assets, https will be used
@@ -44,7 +48,7 @@ connect().subscribe(
     
     if (config.seedDB) {
       mongoSeed(process.env.NODE_ENV);
-      cassandraSeed(process.env.NODE_ENV);
+      // cassandraSeed(process.env.NODE_ENV);
       sqlSeed(process.env.NODE_ENV);
     }
 

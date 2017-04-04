@@ -69,6 +69,11 @@ const generalConfig = {
 
 module.exports = function(options) {
 
+  const ENV = process.env.ENV = process.env.NODE_ENV = options.env === 'dev' ? 'development' :
+    options.env === 'prod' ? 'production' : 'test';
+  const METADATA = {
+    ENV: ENV,
+  };
 
   return webpackMerge(commonConfig(options), {
     devtool: generalConfig.devtool[options.env],
@@ -81,6 +86,14 @@ module.exports = function(options) {
       new WebpackShellPlugin({
         onBuildStart:[`${cmd.webpack} --hide-modules true --env server:dev --watch`],
         onBuildEnd:[`${cmd.nodemon} dist --watch dist`]
+      }),
+      // Dev Plugins
+      new webpack.DefinePlugin({
+        'ENV': JSON.stringify(METADATA.ENV),
+        'process.env': {
+          'ENV': JSON.stringify(METADATA.ENV),
+          'NODE_ENV': JSON.stringify(METADATA.ENV)
+        }
       })
     ] : options.env === 'test' ? [
       new ExtractTextPlugin('styles.css')

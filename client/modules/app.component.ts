@@ -15,6 +15,10 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
+if (process.env.NODE_ENV === 'production' || !process.env.NODE_ENV) {
+  // Production
+  require('reflect-metadata');
+}
 
 //decorator
 @Component({

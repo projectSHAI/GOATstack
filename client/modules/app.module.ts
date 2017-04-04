@@ -30,7 +30,6 @@ Modules
 */
 import { NgModule }                                  from '@angular/core';
 import { BrowserModule }                             from '@angular/platform-browser';
-import { MaterialModule }                            from '@angular/material';
 import { ReduxModule }                               from '../redux/redux.module';
 
 import { CoreModule }                                from './core/core.module';
@@ -49,13 +48,14 @@ NgModule
 @NgModule({
   //imports: this object imports helper modules which are children in the module tree
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({
+      appId: 'universal-demo-app'
+    }),
     ReduxModule,
     CoreModule,
     HomeModule,
     UserProfileModule,
-    Four0FourModule,
-    MaterialModule.forRoot()
+    Four0FourModule
   ],
   //declarations: this object imports all child components which are used in this module
   declarations: [ AppComponent ],

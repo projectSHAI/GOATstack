@@ -12,7 +12,6 @@ import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as methodOverride from 'method-override';
 import * as cookieParser from 'cookie-parser';
- 
 import * as session from 'express-session';
 import * as connectMongo from 'connect-mongo';
 
