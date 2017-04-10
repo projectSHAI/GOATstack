@@ -10,6 +10,8 @@ import expressInit from './express';
 // Initialize express
 let app = express();
 
+// DO NOT REMOVE: server side rendering hook
+
 function init(): any {
   // Initialize http server
   let server: any = http.createServer(app);
