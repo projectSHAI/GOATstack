@@ -16,6 +16,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 
+// DO NOT REMOVE: reflect-metadata for server side rendering
+
 //decorator
 @Component({
   selector: 'my-app',
