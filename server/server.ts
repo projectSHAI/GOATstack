@@ -11,8 +11,8 @@ import expressInit from './express';
 let app = express();
 
 // Angular universal server side rendering
-// if (process.env.NODE_ENV === "production" || !process.env.NODE_ENV) {
-//   require("./server-render").serverSideRendering(app);
+// if (process.env.NODE_ENV === 'production' || !process.env.NODE_ENV) {
+//   require('./server-render').serverSideRendering(app);
 // }
 
 function init(): any {
