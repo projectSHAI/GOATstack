@@ -30,8 +30,8 @@ Modules
 */
 import { NgModule }                                  from '@angular/core';
 import { BrowserModule }                             from '@angular/platform-browser';
-import { MaterialModule }                            from '@angular/material';
 import { ReduxModule }                               from '../redux/redux.module';
+import { BrowserAnimationsModule }                   from '@angular/platform-browser/animations';
 
 import { CoreModule }                                from './core/core.module';
 import { HomeModule }                                from './home/home.module';
@@ -55,7 +55,7 @@ NgModule
     HomeModule,
     UserProfileModule,
     Four0FourModule,
-    MaterialModule.forRoot()
+    BrowserAnimationsModule
   ],
   //declarations: this object imports all child components which are used in this module
   declarations: [ AppComponent ],

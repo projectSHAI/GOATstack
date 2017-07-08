@@ -13,7 +13,7 @@
         "suppressImplicitAnyIndexErrors": true,
         "rootDir": "./",
         "outDir": "dist",
-        "lib": ["es6", "dom"],
+        "lib": ["es2016", "dom"],
         "typeRoots": [
             "./node_modules/@types"
         ]
