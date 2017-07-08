@@ -10,8 +10,7 @@ export const devEnv = {
   mongo: {
     uri: 'mongodb://localhost/dev',
     options: {
-      user: '',
-      pass: ''
+      useMongoClient: true
     },
     // Enable mongoose debug mode
     debug: process.env.MONGODB_DEBUG || false

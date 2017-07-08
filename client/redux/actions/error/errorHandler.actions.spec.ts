@@ -1,19 +1,13 @@
 import { NgRedux } from '@angular-redux/store';
+import { MockNgRedux } from '@angular-redux/store/testing';
 import { ErrorHandlerActions } from './errorHandler.actions';
-
-class MockRedux extends NgRedux<any> {
-  constructor() {
-    super(null);
-  }
-  dispatch: () => {};
-}
 
 describe('ErrorHandler Actions Creator', () => {
   let actions: ErrorHandlerActions;
   let mockRedux: NgRedux<any>;
 
   beforeEach(() => {
-    mockRedux = new MockRedux();
+    mockRedux = MockNgRedux.getInstance();
     actions = new ErrorHandlerActions(mockRedux);
   });
 

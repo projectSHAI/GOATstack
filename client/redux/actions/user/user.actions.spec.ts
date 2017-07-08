@@ -2,6 +2,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
 import { NgRedux } from '@angular-redux/store';
+import { MockNgRedux } from '@angular-redux/store/testing';
 import { UserActions } from './user.actions';
 import { UserService } from '../../../modules/core/services/user/user.service';
 import { ErrorHandlerActions } from '../error/errorHandler.actions';
@@ -23,13 +24,6 @@ const error = {
   url: 'test:7001',
   message: 'this is a test error message'
 };
-
-class MockRedux extends NgRedux<any> {
-  constructor() {
-    super(null);
-  }
-  dispatch: () => {};
-}
 
 class MockUserService extends UserService {
   constructor() {
@@ -58,7 +52,7 @@ describe('User Actions Creator', () => {
     Cookie.delete('token');
 
     userService = new MockUserService();
-    mockRedux = new MockRedux();
+    mockRedux = MockNgRedux.getInstance();
     errorActions = new ErrorHandlerActions(mockRedux);
     actions = new UserActions(mockRedux, errorActions, userService);
   });

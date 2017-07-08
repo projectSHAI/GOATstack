@@ -1,19 +1,13 @@
 import { NgRedux } from '@angular-redux/store';
+import { MockNgRedux } from '@angular-redux/store/testing';
 import { UserFormActions } from './userForm.actions';
-
-class MockRedux extends NgRedux<any> {
-  constructor() {
-    super(null);
-  }
-  dispatch: () => {};
-}
 
 describe('UserForm Actions Creator', () => {
   let actions: UserFormActions;
   let mockRedux: NgRedux<any>;
 
   beforeEach(() => {
-    mockRedux = new MockRedux();
+    mockRedux = MockNgRedux.getInstance();
     actions = new UserFormActions(mockRedux);
   });
 

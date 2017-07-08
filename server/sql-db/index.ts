@@ -1,4 +1,3 @@
-"use strict";
 import config from "../../config";
 import Sequelize from "sequelize";
 
