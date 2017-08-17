@@ -23,11 +23,6 @@ header {
     transform: translateY(400px);  
 }
 
-.error-card > md-card {
-    z-index: 10000;
-    padding: 0;
-}
-
 .error-content {
     padding: 15px;
     font-size: medium;
@@ -52,10 +47,6 @@ header {
 
 .reg-card#reg {
     top: 15%;
-} 
-
-.reg-card md-input {
-    width: 100%;
 } 
 
 .reg-content {

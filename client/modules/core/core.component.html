@@ -1,57 +1,57 @@
 <div #formToast class="user-form">
-	<md-card class="reg-card">
-	  <md-toolbar color="primary">Sign In</md-toolbar>
-	  <md-card-content class="reg-content">
+	<div class="reg-card">
+	  <div color="primary">Sign In</div>
+	  <div class="reg-content">
 	    <form #loginForm="ngForm" (ngSubmit)="userActions.login(loginForm) || userFormActions.loginForm(false)">
 	    	<div>
-	    		<md-input-container>
+	    		<div>
 	    			<input mdInput id="login_email" name="login_email" ngModel required placeholder="Email">
-	    		</md-input-container>
-	    		<md-input-container>
+	    		</div>
+	    		<div>
 	    			<input mdInput id="login_password" type="password" name="login_password" ngModel required placeholder="Password">
-	    		</md-input-container>   		
+	    		</div>   		
 	    	</div>
 	        <div>
-	        	<button md-raised-button id="back-btn" type="button" (click)="userFormActions.loginForm(false)" color="primary">BACK</button>
-	        	<button md-raised-button id="signup-btn" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
-	        	<button md-raised-button id="login-btn" color="accent">LOGIN</button>
+	        	<button id="back-btn" type="button" (click)="userFormActions.loginForm(false)" color="primary">BACK</button>
+	        	<button id="signup-btn" type="button" (click)="userFormActions.registerForm(true)" color="primary">SIGN UP</button>
+	        	<button id="login-btn" color="accent">LOGIN</button>
 	        </div>
 	    </form>
-	  </md-card-content>
-	</md-card>
-	<md-card id="reg" class="reg-card">
-	  <md-toolbar color="primary">Create New User</md-toolbar>
-	  <md-card-content class="reg-content">
+	  </div>
+	</div>
+	<div id="reg" class="reg-card">
+	  <div color="primary">Create New User</div>
+	  <div class="reg-content">
 	    <form #registerForm="ngForm" (ngSubmit)="userActions.register(registerForm) || userFormActions.registerForm(false)">
 	    	<div>
-		    	<md-input-container>
+		    	<div>
 		    		<input mdInput id="signup_username" name="signup_username" ngModel required placeholder="Username" autoComplete="off">
-		    	</md-input-container>
-		    	<md-input-container>
+		    	</div>
+		    	<div>
 		    		<input mdInput id="signup_email" name="signup_email" ngModel required placeholder="Email" autoComplete="off">
-		    	</md-input-container>
-		    	<md-input-container>
+		    	</div>
+		    	<div>
 		    		<input mdInput id="signup_password" type="password" name="signup_password" ngModel required placeholder="Password" autoComplete="off">
-		    	</md-input-container>
-		    	<md-input-container>
+		    	</div>
+		    	<div>
 		    		<input mdInput id="signup_re_password" type="password" name="signup_re_password" ngModel required placeholder="Password Again" autoComplete="off">
-		    	</md-input-container>
+		    	</div>
 	    	</div>
 	    	<div>	    		
-	    		<button md-raised-button id="back-btn2" type="button" (click)="userFormActions.registerForm(false)" color="primary">BACK</button>
-	        	<button md-raised-button id="signin-btn" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
-	    		<button md-raised-button id="reg-btn" color="accent">REGISTER</button>
+	    		<button id="back-btn2" type="button" (click)="userFormActions.registerForm(false)" color="primary">BACK</button>
+	        	<button id="signin-btn" type="button" (click)="userFormActions.loginForm(true)" color="primary">SIGN IN</button>
+	    		<button id="reg-btn" color="accent">REGISTER</button>
 	    	</div>
 	    </form>
-	  </md-card-content>
-	</md-card>
+	  </div>
+	</div>
 </div>
 
 <div #errorToast class="error-card">
-    <md-card>
-        <md-toolbar color="accent">Error Message</md-toolbar>
-        <md-card-content class="error-content">
+    <div>
+        <div color="accent">Error Message</div>
+        <div class="error-content">
         	<div><p id="error-text" *ngIf="(error$ | async).get('message')">{{ (error$ | async).get('message') }}</p></div>
-        </md-card-content>
-    </md-card>
+        </div>
+    </div>
 </div>	

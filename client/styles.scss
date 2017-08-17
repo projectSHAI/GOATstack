@@ -7,46 +7,6 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
-/*
-================================================
-* Angular Material 2
-================================================
-*/
-//imports all the main angular material assets and predefined theming variables
-@import '~@angular/material/theming';
-
-/*Include the base styles for Angular Material core. We include this here so that you only
-have to load a single css file for Angular Material in your app.*/
-
-@include mat-core();
-
-/*Define the palettes for your theme using the Material Design palettes available in palette.scss
-(imported above). For each palette, you can optionally specify a default, lighter, and darker
-hue.*/
-
-$primary: mat-palette($mat-blue);
-$accent: mat-palette($mat-green);
-
-/*The warn palette is optional (defaults to red).*/
-
-$warn: mat-palette($mat-red);
-
-/*Create the theme object (a Sass map containing all of the palettes).*/
-
-$theme: mat-light-theme($primary, $accent, $warn);
-
-/*Include theme styles for core and each component used in your app.
-Alternatively, you can import and @include the theme mixins for each component
-that you are using.*/
-
-@include angular-material-theme($theme);
-
-/*
----------------------------------------------
-* End Angular Material 2
----------------------------------------------
-*/
-
 
 /*
 ==========================================================================
@@ -204,20 +164,6 @@ input:-webkit-autofill {
 html {
     position: relative;
     overflow-y: scroll;
-}
-
-the-island .md-input-placeholder,
-the-island .md-input-underline,
-the-island .md-input-element {
-    color: white;
-    border-color: white;
-}
-
-button.zoom-out span.md-button-wrapper {
-    font-size: 20px;
-    vertical-align: top;
-    line-height: 100%;
-    display: block;
 }
 
 
