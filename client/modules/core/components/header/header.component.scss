@@ -1,4 +1,4 @@
-.active {
+.router-links a.active {
     color: orange;
 }
 
@@ -43,12 +43,26 @@ a:hover {
     width: auto;
 }
 
-.router-links {
+.router-links a {
+    background-color: #2196f3;
+    display: inline-block;
+    text-align: center;
+    height: 35px;
+    width: 88px;
+    line-height: 35px;
+    border-radius: 5px;
+    color: white;
 }
 
 .router-links button {  
     float: right;    
     margin-left: 5px;
+    background-color: #967ADC;
+    border: none;
+    width: 88px;
+    height: 35px;
+    border-radius: 5px;
+    color: white;
 }
 
 .menu-container.menu-mobile > .router-links.show {
@@ -102,10 +116,6 @@ a:hover {
     .app-title h1 {
         display: none;
     }
-    #welcome-user {
-
-    }
-
     #logo {
         width: 60px;
         height: 60px;
