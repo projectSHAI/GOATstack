@@ -27,11 +27,63 @@
     left: 50%;
     z-index: 10000;
     padding: 0;
+    background: white;
+    border-radius: 2px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+
+    .title-color {
+        background: #2196f3;
+        color: white;
+        min-height: 48px;
+        font-size: 20px;
+        padding: 0 16px;
+
+        div {
+            line-height: 48px;
+        }
+
+    }
+
+    .input-wrapper {
+        height: 40px;
+    }
+
+    input {
+        font: inherit;
+        background: 0 0;
+        color: currentColor;
+        border: none;
+        outline: 0;
+        padding: 0;
+        width: 100%;
+        border-bottom: 1px solid #cacaca;
+    }
+
+    input:focus {
+        border-bottom: 2px solid #2196f3;
+    }
+
+    button {
+        background-color: #2196f3;
+        color: white;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        padding: 0 16px;
+        line-height: 35px;
+        border-radius: 2px;
+    }
+
+    button:last-of-type {
+        background-color: #4caf50;
+    }
+
 }
 
 .reg-card#reg {
     top: 15%;
 }
+
+
 
 .reg-content {
     padding: 10px;
@@ -43,6 +95,21 @@
 .reg-content #login-btn,
 .reg-content #reg-btn {
     float: right;
+}
+
+.error-card {
+    .error-color {
+        background: #4caf50;
+        color: white;
+        min-height: 48px;
+        font-size: 20px;
+        padding: 0 16px;
+
+        div {
+            line-height: 48px;
+        }
+
+    }
 }
 
 

@@ -1,13 +1,15 @@
 <div #formToast class="user-form">
 	<div class="reg-card">
-	  <div>Sign In</div>
+		<div class="title-color">
+			<div>Sign In</div>
+		</div>
 	  <div class="reg-content">
 	    <form #loginForm="ngForm" (ngSubmit)="userActions.login(loginForm) || userFormActions.loginForm(false)">
 	    	<div>
-	    		<div>
+	    		<div class="input-wrapper">
 	    			<input id="login_email" name="login_email" ngModel required placeholder="Email">
 	    		</div>
-	    		<div>
+	    		<div class="input-wrapper">
 	    			<input id="login_password" type="password" name="login_password" ngModel required placeholder="Password">
 	    		</div>   		
 	    	</div>
@@ -20,20 +22,22 @@
 	  </div>
 	</div>
 	<div id="reg" class="reg-card">
-	  <div>Create New User</div>
-	  <div class="reg-content">
+		<div class="title-color">
+	  	<div>Create New User</div>
+		</div>
+		<div class="reg-content">
 	    <form #registerForm="ngForm" (ngSubmit)="userActions.register(registerForm) || userFormActions.registerForm(false)">
 	    	<div>
-		    	<div>
+		    	<div class="input-wrapper">
 		    		<input id="signup_username" name="signup_username" ngModel required placeholder="Username" autoComplete="off">
 		    	</div>
-		    	<div>
+		    	<div class="input-wrapper">
 		    		<input id="signup_email" name="signup_email" ngModel required placeholder="Email" autoComplete="off">
 		    	</div>
-		    	<div>
+		    	<div class="input-wrapper">
 		    		<input id="signup_password" type="password" name="signup_password" ngModel required placeholder="Password" autoComplete="off">
 		    	</div>
-		    	<div>
+		    	<div class="input-wrapper">
 		    		<input id="signup_re_password" type="password" name="signup_re_password" ngModel required placeholder="Password Again" autoComplete="off">
 		    	</div>
 	    	</div>
@@ -49,7 +53,9 @@
 
 <div #errorToast class="error-card">
     <div>
-        <div>Error Message</div>
+				<div class="error-color">
+					<div>Error Message</div>
+				</div>
         <div class="error-content">
         	<div><p id="error-text" *ngIf="(error$ | async).get('message')">{{ (error$ | async).get('message') }}</p></div>
         </div>
