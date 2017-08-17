@@ -22,11 +22,13 @@ $ [sudo] yarn start
 $ # dev environment served to http://localhost:1701
 ```
 
-# What's New in v3.1 && v4?
+# What's New in v4.1?
 
-_**NOTE:** v3.1 => Angular@2.4.10, v4 => Angular@4.0.0_
+_**NOTE:** v3.1 => Angular@2.4.10, v4.x.x => Angular@4.3.5_
 
-**_WARNING: v3.0 => v3.1 || v4 brings BREAKING CHANGES to the generator. Upgrade with caution_**
+**_WARNING: v4.0.x => v4.1.x brings BREAKING CHANGES Angular Material was removed to make GOATstack less opinionated_**
+
+* v4.1.x Angular Material is no longer packaged by default
 
 * Angular4 (v4 only)
 * generator will no longer prompt for what app you would like to generate (demo, helloGOAT, dblessGOAT)
@@ -34,11 +36,19 @@ _**NOTE:** v3.1 => Angular@2.4.10, v4 => Angular@4.0.0_
    * Then it will ask what database will be your default, where user authentication will be generated
    * __IF NO DATABASE IS SELECTED__ a dbless solution will be generated
 
-# Future updates in v4.x!
+# Future updates in v4.2.x!
+
+* Postgresql has had some breaking updates, we will refactor the stack to add Postgresql support again.
+
+# Future updates in v4.3.x!
 
 * Server-side rendering with [Angular Universal](https://universal.angular.io/)
   * Angular Universal will be integrated into @angular/core upon [angular@4.x](https://github.com/angular/angular/blob/master/CHANGELOG.md)
   * we will begin refactoring on the GOATv4 branch once rc.1 publishes in the coming month
+  
+ # Beyond the Horizon. V5.x.x and Angular 5!
+ 
+ * Angular 5 is in beta currently, and has a release target for mid October 2017. We plan on integrating Angular 5 and releasing it in Version 5.0.0 of the GOATstack in the 4th quarter.
 
 
 # Documentation Wiki
