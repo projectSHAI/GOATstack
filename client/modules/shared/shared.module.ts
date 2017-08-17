@@ -1,7 +1,6 @@
 import { NgModule }                                  from '@angular/core';
 import { CommonModule }                              from '@angular/common';
 import { FormsModule }                               from '@angular/forms';
-import { LazyLoadImageModule }                       from 'ng2-lazyload-image';
 
 import { 
 	MdButtonModule, 
@@ -14,8 +13,7 @@ import {
   imports:      [ CommonModule ],
   exports:      [
   	CommonModule, 
-  	FormsModule, 
-  	LazyLoadImageModule, 
+  	FormsModule,
   	MdButtonModule, 
   	MdInputModule,
   	MdCardModule,

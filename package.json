@@ -1,9 +1,9 @@
 {
   "name": "goat-stack",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A MEAN stack boilerplate using Angular 2",
   "engines": {
-    "node": "6.9.4"
+    "node": "8.0.9"
   },
   "scripts": {
     "start": "npm run dev",
@@ -52,7 +52,6 @@
     "mongoose": "^4.11.1",
     "morgan": "^1.8.2",
     "ng2-cookies": "^1.0.12",
-    "ng2-lazyload-image": "^2.4.0",
     "passport": "0.3.2",
     "passport-facebook": "2.1.1",
     "passport-google-oauth20": "1.0.0",
