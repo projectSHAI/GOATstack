@@ -47,10 +47,11 @@ a:hover {
     background-color: #2196f3;
     display: inline-block;
     text-align: center;
-    height: 35px;
-    width: 88px;
+    padding: 0 5px;
+    min-height: 35px;
+    min-width: 88px;
     line-height: 35px;
-    border-radius: 5px;
+    border-radius: 2px;
     color: white;
     text-decoration: none;
 }
@@ -58,11 +59,12 @@ a:hover {
 .router-links button {  
     float: right;    
     margin-left: 5px;
+    padding: 0 5px;
     background-color: #967ADC;
     border: none;
-    width: 88px;
-    height: 35px;
-    border-radius: 5px;
+    min-width: 88px;
+    min-height: 35px;
+    border-radius: 2px;
     color: white;
 }
 

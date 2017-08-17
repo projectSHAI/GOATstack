@@ -10,10 +10,10 @@
 		<!-- Sign up/in/out buttons -->
 		<button id="sign-up-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.registerForm(true)">SIGN UP</button>
 		<button id="sign-in-btn" [ngClass]="{'hidden': (user$ | async).has('userItem')}" type="button" (click)="userFormActions.loginForm(true)">SIGN IN</button>
+		<button routerLink='/profile' routerLinkActive='active' id="welcome-user" *ngIf="(user$ | async).has('userItem')" [ngClass]="{'user-mobile': !menuHide}">Welcome, {{(user$ | async).getIn(['userItem', 'username'])}}</button>
 		<button id="sign-out-btn" routerLink='/' [ngClass]="{'hidden': !(user$ | async).has('userItem')}" type="button" (click)="userActions.logout()">SIGN OUT</button>
 	</div>
 </div>
 <button class="nav-trigger" *ngIf="!menuHide" [ngClass]="{'is-active': menuOpen}" (click)="openMenu()" type="button">
 	<span></span>
 </button>
-<button routerLink='/profile' routerLinkActive='active' id="welcome-user" *ngIf="(user$ | async).has('userItem')" [ngClass]="{'user-mobile': !menuHide}">Welcome, {{(user$ | async).getIn(['userItem', 'username'])}}</button>
