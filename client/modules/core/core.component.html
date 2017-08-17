@@ -5,10 +5,10 @@
 	    <form #loginForm="ngForm" (ngSubmit)="userActions.login(loginForm) || userFormActions.loginForm(false)">
 	    	<div>
 	    		<div>
-	    			<input mdInput id="login_email" name="login_email" ngModel required placeholder="Email">
+	    			<input id="login_email" name="login_email" ngModel required placeholder="Email">
 	    		</div>
 	    		<div>
-	    			<input mdInput id="login_password" type="password" name="login_password" ngModel required placeholder="Password">
+	    			<input id="login_password" type="password" name="login_password" ngModel required placeholder="Password">
 	    		</div>   		
 	    	</div>
 	        <div>
@@ -25,16 +25,16 @@
 	    <form #registerForm="ngForm" (ngSubmit)="userActions.register(registerForm) || userFormActions.registerForm(false)">
 	    	<div>
 		    	<div>
-		    		<input mdInput id="signup_username" name="signup_username" ngModel required placeholder="Username" autoComplete="off">
+		    		<input id="signup_username" name="signup_username" ngModel required placeholder="Username" autoComplete="off">
 		    	</div>
 		    	<div>
-		    		<input mdInput id="signup_email" name="signup_email" ngModel required placeholder="Email" autoComplete="off">
+		    		<input id="signup_email" name="signup_email" ngModel required placeholder="Email" autoComplete="off">
 		    	</div>
 		    	<div>
-		    		<input mdInput id="signup_password" type="password" name="signup_password" ngModel required placeholder="Password" autoComplete="off">
+		    		<input id="signup_password" type="password" name="signup_password" ngModel required placeholder="Password" autoComplete="off">
 		    	</div>
 		    	<div>
-		    		<input mdInput id="signup_re_password" type="password" name="signup_re_password" ngModel required placeholder="Password Again" autoComplete="off">
+		    		<input id="signup_re_password" type="password" name="signup_re_password" ngModel required placeholder="Password Again" autoComplete="off">
 		    	</div>
 	    	</div>
 	    	<div>	    		
