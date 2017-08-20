@@ -11,6 +11,7 @@ export const testEnv = {
 	mongo: {
 		uri: 'mongodb://localhost/test',
 		options: {
+				useMongoClient: true,
 	      user: '',
 	      pass: ''
 	    },

@@ -13,6 +13,7 @@ export const prodEnv = {
   mongo: {
     uri: process.env.DB_URI || 'mongodb://localhost/prod',
     options: {
+      useMongoClient: true,
       user: process.env.DB_USER || '',
       pass: process.env.DB_PW || ''
     },
