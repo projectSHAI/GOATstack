@@ -62,7 +62,7 @@
     "redux-localstorage": "0.4.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.2",
-    "sequelize": "4.2.1",
+    "sequelize": "4.6",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3",
     "socketio-jwt": "4.5.0",
