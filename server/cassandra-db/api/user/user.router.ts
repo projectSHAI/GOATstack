@@ -1,9 +1,9 @@
 /**
  * GET     /api/user              ->  allUsers
  * POST    /api/user              ->  create
- * GET     /api/user/:id          ->  show
- * PUT     /api/user/:id/password ->  changePassword
- * DELETE  /api/user/:id          ->  destroy
+ * GET     /api/user/:email          ->  show
+ * PUT     /api/user/:email/password ->  changePassword
+ * DELETE  /api/user/:email          ->  destroy
  */
 
 let express = require('express');
@@ -13,11 +13,11 @@ import * as UserController from './user.controller';
 let router = express.Router();
 
 router.get('/', auth.hasRole('admin'), UserController.index);
-router.delete('/:id', auth.hasRole('admin'), UserController.destroy);
-router.put('/:id/password', auth.isAuthenticated(), UserController.changePassword);
+router.delete('/:email', auth.hasRole('admin'), UserController.destroy);
+router.put('/:email/password', auth.isAuthenticated(), UserController.changePassword);
 
 router.post('/', UserController.create, UserController.me);
 router.get('/me', auth.isAuthenticated(), UserController.me);
-router.get('/:id', auth.isAuthenticated(), UserController.show);
+router.get('/:email', auth.isAuthenticated(), UserController.show);
 
 export {router as userRoutes};

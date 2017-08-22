@@ -1,4 +1,5 @@
-import User from './user.model';
+import UserModel from './user.model';
+import { client } from '../../../cassandra-db';
 import config from '../../../../config';
 
 import * as jwt from 'jsonwebtoken';
@@ -19,7 +20,7 @@ function validationError(res, err) {
 
 export function index(req, res) {
 	let users = [];
-	return User.find().seam().subscribe(
+	return UserModel.allUsers().subscribe(
 		x => users = x, 
 		err => handleError(res, err),
 		() => {
@@ -28,9 +29,9 @@ export function index(req, res) {
 }
 
 export function show(req, res, next) {
-	const userId = req.params.id;
+	const userEmail = req.params.email;
 
-	return User.findById(userId).seam().subscribe(
+	return UserModel.userByEmail(userEmail).subscribe(
 		user => {
 			if (!user) {
 				return res.status(404).end();
@@ -44,13 +45,14 @@ export function show(req, res, next) {
 }
 
 export function changePassword(req, res) {
-	const userId = req.user.id;
+	const userEmail = req.user.email;
 	const oldPass = String(req.body.oldPassword);
 	const newPass = String(req.body.newPassword);
 
-	return User.findById(userId).seam().subscribe(user => {
+	return UserModel.userByEmail(userEmail).subscribe(user => {
 		if (user.authenticate(oldPass)) {
 			user.password = newPass;
+			//need to change .save
 			return user.save().subscribe(
 				x => {}, 
 				err => validationError(res, err),
@@ -66,11 +68,9 @@ export function changePassword(req, res) {
 export function create(req, res, next) {
 	const user = req.body;
 
-	return User.create({
-		email: user.email,
-		password: user.password,
-		username: user.username
-	}).seam().subscribe(user => {
+	console.log(user);
+
+	return UserModel.createUser(user.email, user.password, user.username, 'user').subscribe(user => {
 		
 		const token = jwt.sign(
 			{ 
@@ -90,11 +90,10 @@ export function create(req, res, next) {
 
 export function me(req, res, next) {
 	const token = req.headers.token;
+	console.log('WATTETRRRRRDOSE',req.user);
 	const userEmail = req.user.email;
 
-	return User.find({ email: userEmail }, { 
-		attributes: { exclude: ['password', 'salt', 'facebook', 'google', 'github'] }
-	}).seam().subscribe(user => {
+	return UserModel.userByEmail(userEmail).subscribe(user => {
 	 	if (!user) return res.status(401).json({ message: 'User does not exist' });
 
 		if (token) res.json({ token, user });
@@ -105,9 +104,5 @@ export function me(req, res, next) {
 export function destroy(req, res) {
 	const userId = req.params.id;
 
-	return User.find({ id: userId }).seam().subscribe(user => {
-		user.remove().subscribe(
-			x => res.json(user), 
-			err => handleError(res, err));
-	});
+	return UserModel.destroy(userId).subscribe(user => {}, err => console.error('User not destroyed : ' + err), () => console.log('User removed successfully'));
 }

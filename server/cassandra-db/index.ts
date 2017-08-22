@@ -1,13 +1,15 @@
-import { connect } from 'cassmask';
+const cassandra = require('cassandra-driver');
 import config from '../../config';
 
 import * as Rx from 'rxjs';
+
+export const client = new cassandra.Client(config.cassandra);
 
 // Initialize Express-Cassandra
 export function cassandraConnect(): Rx.Observable<any> {
   return Rx.Observable.create(observer => {
 
-    connect(config.cassandra, function (err, result) {
+    client.connect(function (err){
       if(err) {
         observer.error(err);
       }
@@ -17,6 +19,8 @@ export function cassandraConnect(): Rx.Observable<any> {
 
   });
 };
+
 export function cassandraDisconnect() {
 
 };
+

@@ -1,4 +1,4 @@
-import User from '../api/user/user.model';
+import UserModel from '../api/user/user.model';
 
 import config from '../../../config';
 
@@ -28,7 +28,7 @@ export function isAuthenticated() {
     // Attach user to request
     .use((req, res, next) => {
       let user;
-      return User.findById(req.user.id).seam()
+      return UserModel.userByEmail(req.user.email)
         .subscribe(ur => user = ur, err => next(err), () => {
           if (!user) res.status(401).json({ message: 'Invalid Token' });
 

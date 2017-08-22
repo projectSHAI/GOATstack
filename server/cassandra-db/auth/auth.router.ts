@@ -1,13 +1,13 @@
 let express = require('express');
 
-import User from '../api/user/user.model';
+import UserModel from '../api/user/user.model';
 
 import config from '../../../config';
 import {localRoutes} from './local/local.router';
 import {localSetup} from './local/local.passport';
 
 // Passport configuration
-localSetup(User, config);
+localSetup(UserModel, config);
 
 let router = express.Router();
 

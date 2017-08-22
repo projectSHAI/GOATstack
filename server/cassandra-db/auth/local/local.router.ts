@@ -7,6 +7,7 @@ import * as passport from 'passport';
 let router = express.Router();
 
 function pp(req, res, next) {
+  console.log('pp0', req.body);
   
   passport.authenticate('local', function(err, user, info) {
     let error = err || info;

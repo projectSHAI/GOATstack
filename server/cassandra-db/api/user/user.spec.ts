@@ -60,10 +60,10 @@ describe('User API Router:', function() {
 
   });
 
-  describe('DELETE /api/users/:id', function() {
+  describe('DELETE /api/users/:email', function() {
 
     it('should verify admin role and route to user.controller.destroy', function() {
-      expect(routerStub.delete.withArgs('/:id', 'authService.hasRole.admin', 'userCtrl.destroy').calledOnce)
+      expect(routerStub.delete.withArgs('/:email', 'authService.hasRole.admin', 'userCtrl.destroy').calledOnce)
         .toBe(true);
     });
 
@@ -78,19 +78,19 @@ describe('User API Router:', function() {
 
   });
 
-  describe('PUT /api/users/:id/password', function() {
+  describe('PUT /api/users/:email/password', function() {
 
     it('should be authenticated and route to user.controller.changePassword', function() {
-      expect(routerStub.put.withArgs('/:id/password', 'authService.isAuthenticated', 'userCtrl.changePassword').calledOnce)
+      expect(routerStub.put.withArgs('/:email/password', 'authService.isAuthenticated', 'userCtrl.changePassword').calledOnce)
         .toBe(true);
     });
 
   });
 
-  describe('GET /api/users/:id', function() {
+  describe('GET /api/users/:email', function() {
 
     it('should be authenticated and route to user.controller.show', function() {
-      expect(routerStub.get.withArgs('/:id', 'authService.isAuthenticated', 'userCtrl.show').calledOnce)
+      expect(routerStub.get.withArgs('/:email', 'authService.isAuthenticated', 'userCtrl.show').calledOnce)
         .toBe(true);
     });
 

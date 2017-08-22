@@ -1,166 +1,124 @@
 import * as crypto from 'crypto';
+import * as Rx from 'rxjs';
+import { client } from '../../../cassandra-db';
+import { insertUser, destroyRow, findByEmail, allUsers } from './prepared.statements';
 
-import * as cassmask from 'cassmask';
-import {uuid, toTimeStamp, now} from 'cassmask';
+const Uuid = require('cassandra-driver').types.Uuid;
 
-interface IUserSchema extends cassmask.ISchema {
-	email?: cassmask.TEXT;
-	password?: cassmask.TEXT;
-	created?: cassmask.TIMESTAMP;
+class UserModel {
 
-	username?: cassmask.TEXT;
-	firstname?: cassmask.TEXT;
-	lastname?: cassmask.TEXT;
-	role?: cassmask.TEXT;
-	facebook?: cassmask.TEXT;
-	google?: cassmask.TEXT;
-	github?: cassmask.TEXT;
-	salt?: cassmask.TEXT;
-}
+	private salt: string;
+	private password: string;
 
-class UserSchema extends cassmask.Schema {
-	email = cassmask.TEXT;
-	password = cassmask.TEXT;
-	created = {
-		type: cassmask.TIMESTAMP,
-		default: toTimeStamp(now())
+	/*
+	Auth
+	*/
+	encryptPassword(password: string, byteSize, salt?: string): any {
+
+		const defaultIterations = 10000;
+		const defaultKeyLength = 64;
+
+		if (!salt) {
+			this.salt = crypto.randomBytes(byteSize).toString('base64');
+		}
+		else {
+			this.salt = salt;
+		}
+
+		return crypto.pbkdf2Sync(password, this.salt, defaultIterations, defaultKeyLength, 'sha512')
+			.toString('base64');
+
 	};
 
-	username = cassmask.TEXT;
-	firstname = cassmask.TEXT;
-	lastname = cassmask.TEXT;
-	role = {
-		type: cassmask.TEXT,
-		default: 'user'
+	randNum(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+	}
+
+	authenticate(password: string, salt: string) {
+		return this.password === this.encryptPassword(password, 16, salt);
 	};
 
-	facebook = cassmask.TEXT;
-	google = cassmask.TEXT;
-	github = cassmask.TEXT;
-	salt = cassmask.TEXT;
-	keys = ['email', 'created', 'password', 'salt'];
+	/*
+		Queries
+	*/
 
-	constructor() {
-		super();
+	destroy(email: string): Rx.Observable<any> {
+		return Rx.Observable.create(observer => {
+			observer.next(() => {
+				client.execute(destroyRow, [email], { prepare: true }, (err, result) => {
+					if(err)
+						console.error('Error with user.model destroy fn: ', err);
+				});
+			});
+			observer.complete();
+		});
+	}
+
+	allUsers(): Rx.Observable<any> {
+		return Rx.Observable.create(observer => {
+			observer.next(() => {
+				client.execute(allUsers, (err, result) => {
+					if(err)
+						console.error('Error with user.model allUsers fn: ', err);
+				});
+			});
+			observer.complete();
+		});
+	}
+
+	query(query: string, params: Array<string>, prepared: object): Promise<any> {
+			return client.execute(query, params, prepared);
+	}
+
+	userByEmail(email: string): Rx.Observable<any> {
+		return Rx.Observable.create(observer => {
+			observer.next((err, result) => { 
+				client.execute(findByEmail, [email], { prepare: true })
+					  .then(result => console.log('User with email %s', result.rows[0].email));
+		});
+			observer.complete();
+		});
+	}
+
+	createUser(email: string, password: string, userName: string, role: string) {
+
+		const id = Uuid.random();
+
+		return Rx.Observable.create(observer => {
+			observer.next(
+				this.password = this.encryptPassword(password, 16)
+			);
+			observer.next(() => {
+				client.execute(insertUser, [id, email, Date.now(), password, this.salt, role, userName], { prepare: true }, (err, result) => {
+					if(err)
+						console.error('Error with user.model createUser fn: ', err);
+				});
+			});
+			observer.complete();
+		});
 	}
 
 	/*
 		Set helper functions for Entity
 	*/
 
-	authenticate(password: string, callback?: Function) {
-		if (!callback) {
-		  return this.password === this.encryptPassword(password);
-		}
 
-		this.encryptPassword(password, (err, pwdGen) => {
-	      if (err) {
-	        return callback(err);
-	      }
-
-	      if (this.password === pwdGen) {
-	        callback(null, true);
-	      } else {
-	        callback(null, false);
-	      }
-	    });
-	};
-
-	makeSalt(byteSize, callback?: Function): any {
-	  let defaultByteSize = 16;
-
-	  if (typeof byteSize === 'function') {
-	    callback = byteSize;
-	    byteSize = defaultByteSize;
-	  }
-
-	  if (!byteSize) {
-	    byteSize = defaultByteSize;
-	  }
-	  
-	  if (!callback) {
-	    return crypto.randomBytes(byteSize).toString('base64');
-	  }
-
-	  return crypto.randomBytes(byteSize, (err, salt) => {
-        if (err) {
-          callback(err);
-        } else {
-          callback(null, salt.toString('base64'));
-        }
-      });
-	};
-
-	encryptPassword(password: string, callback?: Function): any {
-	  if (!password || !this.salt) {
-	    if (!callback) {
-		  return null;
-		} else {
-		  return callback('Missing password or salt');
-		}
-	  }
-
-	  const defaultIterations = 10000;
-	  const defaultKeyLength = 64;
-	  const salt = new Buffer(this.salt, 'base64');
-
-	  if (!callback) {
-	    return crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength, 'sha512')
-	      .toString('base64');
-	  }
-
-	  return crypto.pbkdf2(password, salt, defaultIterations, defaultKeyLength, 'sha512', (err, key) => {
-	    if (err) {
-	      callback(err);
-	    } else {
-	      callback(null, key.toString('base64'));
-	    }
-	  });
-	};
 
 	/*
 		Set validation functions for username and email
 	*/
 
-	validate_username(username, next) {
-		return this.model.findOne({ username: username }).seam().subscribe(
-			user => {},
-			err => next(),
-			() => next('username must be unique'));
-	}
+	// validate_email(email) {
+	// 	return this.userByEmail(email).subscribe(
+	// 		user => { },
+	// 		err => console.error(err),
+	// 		() => {
+	// 			return 'email must be unique'
+	// 		});
+	// }
 
-	validate_email(email, next) {
-		return this.model.findOne({ email: email }).seam().subscribe(
-			user => {},
-			err => next(),
-			() => next('email must be unique'));
-	}
-
-	/*
-		Set Event hook functions for create and update
-	*/
-	
-	pre_create(next, err) {
-		if (!this.password) {
-		  	return next();
-		}
-		// Make salt with a callback
-	    this.makeSalt((saltErr, salt) => {
-	      if (saltErr) {
-	        return err(saltErr);
-	      }
-	      this.salt = salt;
-	      this.encryptPassword(this.password, (encryptErr, hashedPassword) => {
-	        if (encryptErr) {
-	          return err(encryptErr);
-	        }
-	        this.password = hashedPassword;
-	        next();
-	      });
-	    });
-	}
-
-	pre_update = this.pre_create;
 }
 
-export default cassmask.model<IUserSchema>('User', new UserSchema(), ['username']);
+export default new UserModel;
