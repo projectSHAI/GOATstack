@@ -45,7 +45,7 @@ connect().subscribe(
     if (config.seedDB) {
       mongoSeed(process.env.NODE_ENV);
       cassandraSeed(process.env.NODE_ENV);
-      sqlSeed(process.env.NODE_ENV);
+      // sqlSeed(process.env.NODE_ENV);
     }
 
     // Start the server on port / host

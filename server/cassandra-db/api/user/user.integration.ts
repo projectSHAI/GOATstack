@@ -18,7 +18,7 @@ describe('User API:', function () {
   beforeAll(done => {
     query(devKeyspace).then((result) => {
       query(usersTable).then((result) => {
-        query(insertUser, ['test@test.com', 'test', 'test', 'admin'], { prepared: true })
+        query(insertUser, ['test@test.com', 'test', 'test'], { prepared: true })
           .then(result => {
             user = result.rows;
           },

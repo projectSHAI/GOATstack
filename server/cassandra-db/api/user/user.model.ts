@@ -1,9 +1,13 @@
 import * as crypto from 'crypto';
+import { client } from '../../../cassandra-db';
+import { query } from '../../query';
+import { allUsers, findByEmail, updatePw, insertUser, destroyRow } from './prepared.statements';
+const Uuid = require('cassandra-driver').types.Uuid;
 
 class UserModel {
 
-	salt: string;
-	password: string;
+	private salt: string;
+	private password: string;
 
 	/*
 	Auth
@@ -15,13 +19,14 @@ class UserModel {
 		const defaultKeyLength = 64;
 
 		if (!salt) {
-			salt = crypto.randomBytes(byteSize).toString('base64');
+			salt = this.salt;
+		}
+		else {
+			this.salt = salt;
 		}
 
-		return {
-			PW: crypto.pbkdf2Sync(password, this.salt, defaultIterations, defaultKeyLength, 'sha512').toString('base64'),
-			salt: salt
-		};
+		return crypto.pbkdf2Sync(password, this.salt, defaultIterations, defaultKeyLength, 'sha512')
+				.toString('base64');
 
 	};
 
@@ -34,6 +39,40 @@ class UserModel {
 	authenticate(password: string, salt: string) {
 		return this.password === this.encryptPassword(password, 16, salt).PW;
 	};
+
+	/*
+	Queries
+	*/
+	allUsers(): Promise<any> {
+		return query(allUsers);
+	}
+
+	userByEmail(email: string): Promise<any> {
+		return query(findByEmail, [email], { prepared: true });
+	}
+
+	updatePassword(userEmail: string, oldPW: string, newPass: string, dbPW: string, dbSalt: string): Promise<any> {
+		
+		const byteSize: number = 16;
+
+		const newSalt = crypto.randomBytes(byteSize).toString('base64')
+		const newHashedPW = this.encryptPassword(newPass, 16, newSalt);
+
+		if (this.authenticate(dbPW, dbSalt)) {
+			return query(updatePw, [newHashedPW, newSalt, userEmail]);
+		}
+	}
+
+	insertUser(email: string, username: string, password: string): Promise<any> {
+
+		const byteSize: number = 16;
+
+		const id: string = new Uuid;
+		const salt = crypto.randomBytes(byteSize).toString('base64');
+		const newHashedPW = this.encryptPassword(password, 16, salt);
+
+		return query(insertUser, [id, email, Date.now(), newHashedPW, salt, 'user', username], { prepared: true });
+	}
 
 }
 

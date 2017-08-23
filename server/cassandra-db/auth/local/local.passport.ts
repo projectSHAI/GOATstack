@@ -1,7 +1,6 @@
 import * as passport from 'passport';
 import {Strategy as LocalStrategy} from 'passport-local';
 
-import { query } from '../../prepared.statements';
 import { findByEmail } from '../../api/user/prepared.statements';
 
 // This is the authentication process that happens in passport before the
@@ -11,7 +10,7 @@ import { findByEmail } from '../../api/user/prepared.statements';
 function localAuthenticate(UserModel, email, password, done) {
   let user;
 
-  query(findByEmail, [email], { prepare: true }).then((result) => {
+  UserModel.userByEmail(email).then((result) => {
       user = result;
       console.log('hehehe', email);
       console.log('aaaaaaaaza', result.rows);

@@ -17,7 +17,7 @@ export default function cassandraSeed(env?: string): void {
       query(devKeyspace).then((result) => {
         query(usersTable).then((result) => {
           query(truncateUsers).then((result) => {
-            query(insertUser, ['test@test.com', 'test', 'test', 'user']).subscribe(x => { }, err => console.log(err));
+            query(insertUser, ['test@test.com', 'test', 'test']).then(result => console.log('Insert user success'), err => console.error(err));
           }, (err) => {
             if(err)
               console.error('error', err);
@@ -43,8 +43,8 @@ export default function cassandraSeed(env?: string): void {
             if(err)
               console.error('error', err);
             
-            UserModel.createUser('admin@admin.com', 'admin1', 'AdMiN', 'admin').subscribe(x => { }, err => console.log(err));
-            UserModel.createUser('test@test.com', 'test', 'test', 'user').subscribe(x => { }, err => console.log(err));
+            UserModel.insertUser('admin@admin.com', 'admin1', 'AdMiN').then(result => console.log('Insert user success'), err => console.error(err));
+            UserModel.insertUser('test@test.com', 'test', 'test').then(result => console.log('Insert user success'), err => console.error(err));
           });
         });
       });
