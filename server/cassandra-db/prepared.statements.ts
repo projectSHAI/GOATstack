@@ -30,14 +30,3 @@ export const usersTable: string = `CREATE TABLE IF NOT EXISTS users (
 
 // delete tables
 export const truncateUsers: string = `TRUNCATE users`;
-
-export function query(query: string, params?: Array<string>, prepared?: object): Promise<any> {
-    if(query && params && prepared)
-        return client.execute(query, params, prepared);
-    if(query && params && !prepared)
-        return client.execute(query, params);
-    if(query && !params && !prepared)
-        return client.execute(query);
-    else
-        return client.execute();
-}

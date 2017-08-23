@@ -10,3 +10,4 @@ export const insertUser = `INSERT INTO users (
 export const destroyRow = 'DELETE FROM users WHERE email = ?';
 export const findByEmail = 'SELECT email, firstName, lastName, middleName, role, userName FROM users WHERE email = ?';
 export const allUsers = 'SELECT email, firstName, lastName, middleName, role, userName FROM users';
+export const updatePw = 'UPDATE users SET password = ? WHERE email=?';
