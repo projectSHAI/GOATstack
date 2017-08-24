@@ -8,24 +8,22 @@ class UserModel {
 
 	private salt: string;
 	private password: string;
+	private prepared: object = { prepared: true };
 
 	/*
 	Auth
 	*/
 
-	encryptPassword(password: string, byteSize: number, salt?: string): any {
+	encryptPassword(password: string, byteSize: number, salt: string = this.salt): any {
 
 		const defaultIterations = 10000;
 		const defaultKeyLength = 64;
 
-		if (!salt) {
-			salt = this.salt;
-		}
-		else {
+		if(this.salt !== salt) {
 			this.salt = salt;
 		}
 
-		return crypto.pbkdf2Sync(password, this.salt, defaultIterations, defaultKeyLength, 'sha512')
+		return crypto.pbkdf2Sync(password, salt, defaultIterations, defaultKeyLength, 'sha512')
 				.toString('base64');
 
 	};
@@ -43,15 +41,15 @@ class UserModel {
 	/*
 	Queries
 	*/
-	allUsers(): Promise<any> {
-		return DbModel.query(allUsers);
+	allUsers(cb?: () => any) {
+		return client.execute(allUsers, undefined, this.prepared, cb);
 	}
 
-	userByEmail(email: string): Promise<any> {
-		return DbModel.query(findByEmail, [email], { prepared: true });
+	userByEmail(email: string, cb?: () => any): Promise<any> {
+		return client.execute(findByEmail, [email], this.prepared, cb);
 	}
 
-	updatePassword(userEmail: string, oldPW: string, newPass: string, dbPW: string, dbSalt: string): Promise<any> {
+	updatePassword(userEmail: string, oldPW: string, newPass: string, dbPW: string, dbSalt: string, cb?: () => any) {
 		
 		const byteSize: number = 16;
 
@@ -59,11 +57,11 @@ class UserModel {
 		const newHashedPW = this.encryptPassword(newPass, 16, newSalt);
 
 		if (this.authenticate(dbPW, dbSalt)) {
-			return DbModel.query(updatePw, [newHashedPW, newSalt, userEmail]);
+			return client.execute(updatePw, [newHashedPW, newSalt, userEmail], this.prepared, cb);
 		}
 	}
 
-	insertUser(email: string, username: string, password: string): Promise<any> {
+	insertUser(email: string, username: string, password: string, cb?: () => any) {
 
 		const byteSize: number = 16;
 
@@ -72,7 +70,7 @@ class UserModel {
 		const salt = crypto.randomBytes(byteSize).toString('base64');
 		const newHashedPW = this.encryptPassword(password, 16, salt);
 
-		return DbModel.query(insertUser, [id, email, Date.now(), newHashedPW, salt, 'user', username], { prepared: true });
+		return client.execute(insertUser, [id, email, Date.now(), newHashedPW, salt, 'user', username], this.prepared, cb);
 	}
 
 }

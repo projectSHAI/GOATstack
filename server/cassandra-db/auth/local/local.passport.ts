@@ -1,5 +1,5 @@
 import * as passport from 'passport';
-import {Strategy as LocalStrategy} from 'passport-local';
+import { Strategy as LocalStrategy } from 'passport-local';
 
 import { findByEmail } from '../../api/user/prepared.statements';
 
@@ -9,16 +9,21 @@ import { findByEmail } from '../../api/user/prepared.statements';
 // local.router.ts
 function localAuthenticate(UserModel, email, password, done) {
   let user;
+  console.log('waddup', UserModel.userByEmail(email, (err, result) => {return result}).then(result => {return result}));
 
-  UserModel.userByEmail(email).then((result) => {
-      user = result.rows;
-      console.log('aaaaaaaaza', user.length != 1);
+  UserModel.userByEmail(email, (err, result) => {
+    console.log('adasdv');
+    if (err) {
+      done(null, false, { message: 'This email is not registered!' });
+    }
+    user = result.rows;
+    console.log('aaaaaaaaza', user.length != 1);
 
     if (user.length != 1) {
       return done(null, false, { message: 'There was more than one user' });
     }
 
-    UserModel.authenticate(password, (err, auth) => {
+    user.authenticate(password, (err, auth) => {
       if (err) {
         return done(null, false, err);
       }
@@ -31,21 +36,17 @@ function localAuthenticate(UserModel, email, password, done) {
       }
 
     });
-
-  }, (err) => {
-    done(null, false, { message: 'This email is not registered!' });
   });
-      
 
-}
+} 
 
 function setup(UserModel, config) {
   passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password' // this is the virtual field on the model
-  }, function (email, password, done) {    
+  }, function (email, password, done) {
     return localAuthenticate(UserModel, email, password, done);
   }));
 }
 
-export {setup as localSetup};
+export { setup as localSetup };

@@ -3,8 +3,8 @@ import request = require('supertest');
 
 import { client } from '../../../cassandra-db';
 import DbModel from '../../db.model';
-import { devKeyspace, usersTable, truncateUsers, seedUsers } from '../../prepared.statements';
 import { insertUser } from './prepared.statements';
+import * as assert from 'assert';
 
 // User Endpoint testing
 describe('User API:', function () {
@@ -14,21 +14,9 @@ describe('User API:', function () {
   // users are cleared from DB seeding
   // add a new testing user
   beforeAll(done => {
-    DbModel.query(devKeyspace).then((result) => {
-      DbModel.query(usersTable).then((result) => {
-        DbModel.batch(seedUsers)
-          .then(result => {
-            user = result.rows[0];
-          },
-          err => {
-            expect(err).not.toBeDefined();
-            done();
-          });
-      }, (err) => {
-        console.error('Error: ', err);
-      });
-    }, (err) => {
-      console.error('Error: ', err);
+    DbModel.seed( DbModel.testKeyspace, DbModel.usersTable, DbModel.truncateUsers, DbModel.seedUsers, (err, result) => {
+      assert.ifError(err);
+      user = result.rows[0];
     });
   });
 

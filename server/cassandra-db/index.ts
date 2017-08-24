@@ -21,6 +21,8 @@ export function cassandraConnect(): Rx.Observable<any> {
 };
 
 export function cassandraDisconnect() {
-
+  client.shutdown(() => {
+    console.log('Cassandra DB is now shutdown.');
+  });
 };
 
