@@ -1,8 +1,9 @@
 import UserModel from './user.model';
 import { client } from '../../../cassandra-db';
-import { query } from '../../query';
+import DbModel from '../../db.model';
 import { allUsers, findByEmail, updatePw, insertUser, destroyRow } from './prepared.statements';
 import config from '../../../../config';
+const Uuid = require('cassandra-driver').types.Uuid;
 
 import * as jwt from 'jsonwebtoken';
 
@@ -22,18 +23,20 @@ function validationError(res, err) {
 
 export function index(req, res) {
 	let users = [];
-	return UserModel.allUsers().then((result) => {
-		users = result.rows
-		res.json(users);
-	}, 
-	(err) => {
-		handleError(res, err)
-	});
+	return DbModel.query(allUsers)
+		.then((result) => {
+			users = result.rows
+			res.json(users);
+		}, 
+		(err) => {
+			handleError(res, err)
+		});
 }
 
 export function show(req, res, next) {
 	const userEmail = req.params.email;
-	return UserModel.userByEmail(userEmail)
+
+	return DbModel.query(userEmail)
 		.then(result => {
 			if (!result) {
 				return res.status(404).end();
@@ -46,49 +49,56 @@ export function show(req, res, next) {
 		}, err => next(err));
 }
 
-export function changePassword(req, res, next) {
-	const userEmail = String(req.user.email);
+export function changePassword(req, res) {
+	const userEmail = req.user.email;
 	const oldPass = String(req.body.oldPassword);
 	const newPass = String(req.body.newPassword);
+	const newHashedPW = UserModel.encryptPassword(newPass, 16); 
 
-	return UserModel.userByEmail(userEmail)
-		.then(result => {
-			const dbPW: string = result.rows[0].password;
-			const dbSalt: string = result.rows[0].salt;
-
-			UserModel.updatePassword(userEmail, oldPass, newPass, dbPW, dbSalt)
-				.then(result => res.status(403).end(), err => next(err));
+	return DbModel.query(findByEmail, [userEmail])
+		.then((result) => {
+			if (result.authenticate(oldPass)) {
+				return DbModel.query(updatePw, [newHashedPW.PW, newHashedPW.salt, userEmail])
+					.then((result) => {
+						res.status(204).end();
+					}, 
+					(err) => validationError(res, err));
+			} else {
+			res.status(403).end();
+			}
 		});
 }
 
 export function create(req, res, next) {
 	const user = req.body;
-	const email: string = user.email;
-	const username: string = user.username;
-	const pw: string = user.password;
 
-	return UserModel.insertUser(email, username, pw)
-		.then(result => {
-			const token = jwt.sign(
-				{ 
-					id: result.rows[0].id, 
-					email: result.rows[0].email,
-					role: result.rows[0].role
-				}, 
-				  config.sessionSecret,
-				  { expiresIn: 60 * 60 * 5 });
-	
-			req.headers.token = token;
-			req.user = result.rows[0];
-			next();
-		}, err => validationError(res, err));
+	const newHashedPW = UserModel.encryptPassword(user.password, 16); 
+
+	const id = Uuid.random();
+	console.log('tits',id);
+	return DbModel.query(insertUser, [id, user.email, Date.now(), newHashedPW, this.salt, user.role, user.userName], { prepare: true }).then(result => {
+		
+		const token = jwt.sign(
+			{ 
+				id: user.id,
+				email: user.email,
+				role: user.role
+			}, 
+		  	config.sessionSecret,
+		  	{ expiresIn: 60 * 60 * 5 });
+
+		req.headers.token = token;
+		req.user = result.rows[0];
+		next();
+
+	}, err => validationError(res, err));
 }
 
 export function me(req, res, next) {
 	const token = req.headers.token;
 	const userEmail = req.user.email;
 
-	return query(findByEmail, [userEmail], { prepared: true }).then(result => {
+	return DbModel.query(findByEmail, [userEmail], { prepared: true }).then(result => {
 		const user = result.rows[0];
 	 	if (!user) return res.status(401).json({ message: 'User does not exist' });
 
@@ -100,7 +110,7 @@ export function me(req, res, next) {
 export function destroy(req, res) {
 	const userEmail = req.user.email;
 
-	return query(destroyRow, [userEmail], { prepared: true }).then(result => {
+	return DbModel.query(destroyRow, [userEmail], { prepared: true }).then(result => {
 		console.log('User removed successfully')
 	}, (err) => {
 		console.error('User not destroyed : ' + err);

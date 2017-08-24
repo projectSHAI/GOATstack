@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 import { client } from '../../../cassandra-db';
-import { query } from '../../query';
+import DbModel from '../../db.model';
 import { allUsers, findByEmail, updatePw, insertUser, destroyRow } from './prepared.statements';
 const Uuid = require('cassandra-driver').types.Uuid;
 
@@ -44,11 +44,11 @@ class UserModel {
 	Queries
 	*/
 	allUsers(): Promise<any> {
-		return query(allUsers);
+		return DbModel.query(allUsers);
 	}
 
 	userByEmail(email: string): Promise<any> {
-		return query(findByEmail, [email], { prepared: true });
+		return DbModel.query(findByEmail, [email], { prepared: true });
 	}
 
 	updatePassword(userEmail: string, oldPW: string, newPass: string, dbPW: string, dbSalt: string): Promise<any> {
@@ -59,7 +59,7 @@ class UserModel {
 		const newHashedPW = this.encryptPassword(newPass, 16, newSalt);
 
 		if (this.authenticate(dbPW, dbSalt)) {
-			return query(updatePw, [newHashedPW, newSalt, userEmail]);
+			return DbModel.query(updatePw, [newHashedPW, newSalt, userEmail]);
 		}
 	}
 
@@ -67,11 +67,12 @@ class UserModel {
 
 		const byteSize: number = 16;
 
-		const id: string = new Uuid;
+		const id = Uuid.random();
+		console.log('tits',id);
 		const salt = crypto.randomBytes(byteSize).toString('base64');
 		const newHashedPW = this.encryptPassword(password, 16, salt);
 
-		return query(insertUser, [id, email, Date.now(), newHashedPW, salt, 'user', username], { prepared: true });
+		return DbModel.query(insertUser, [id, email, Date.now(), newHashedPW, salt, 'user', username], { prepared: true });
 	}
 
 }

@@ -11,15 +11,14 @@ function localAuthenticate(UserModel, email, password, done) {
   let user;
 
   UserModel.userByEmail(email).then((result) => {
-      user = result;
-      console.log('hehehe', email);
-      console.log('aaaaaaaaza', result.rows);
+      user = result.rows;
+      console.log('aaaaaaaaza', user.length != 1);
 
-    if (Array.isArray(user)) {
+    if (user.length != 1) {
       return done(null, false, { message: 'There was more than one user' });
     }
 
-    user.authenticate(password, (err, auth) => {
+    UserModel.authenticate(password, (err, auth) => {
       if (err) {
         return done(null, false, err);
       }

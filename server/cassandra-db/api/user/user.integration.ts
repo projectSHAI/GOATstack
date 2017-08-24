@@ -2,11 +2,9 @@ import app from '../../../server';
 import request = require('supertest');
 
 import { client } from '../../../cassandra-db';
-import { query } from '../../query';
-import { devKeyspace, usersTable, truncateUsers } from '../../prepared.statements';
+import DbModel from '../../db.model';
+import { devKeyspace, usersTable, truncateUsers, seedUsers } from '../../prepared.statements';
 import { insertUser } from './prepared.statements';
-
-const Uuid = require('cassandra-driver').types.Uuid;
 
 // User Endpoint testing
 describe('User API:', function () {
@@ -16,11 +14,11 @@ describe('User API:', function () {
   // users are cleared from DB seeding
   // add a new testing user
   beforeAll(done => {
-    query(devKeyspace).then((result) => {
-      query(usersTable).then((result) => {
-        query(insertUser, ['test@test.com', 'test', 'test'], { prepared: true })
+    DbModel.query(devKeyspace).then((result) => {
+      DbModel.query(usersTable).then((result) => {
+        DbModel.batch(seedUsers)
           .then(result => {
-            user = result.rows;
+            user = result.rows[0];
           },
           err => {
             expect(err).not.toBeDefined();
