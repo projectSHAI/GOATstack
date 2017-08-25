@@ -1,7 +1,7 @@
 import UserModel from './user.model';
 import { client } from '../../../cassandra-db';
 import DbModel from '../../db.model';
-import { allUsers, findByEmail, updatePw, insertUser, destroyRow } from './prepared.statements';
+import { allUsers, findByEmail, updatePw, insertUser } from './prepared.statements';
 import config from '../../../../config';
 const Uuid = require('cassandra-driver').types.Uuid;
 

@@ -13,30 +13,14 @@ export default function cassandraSeed(env?: string): void {
   // Insert seeds below
   switch (env) {
     case "development":
-      DbModel.query(devKeyspace)
-        .then((result) => {
-          DbModel.query(usersTable)
-            .then((result) => {
-              DbModel.query(truncateUsers)
-                .then((result) => {
-                  DbModel.batch(seedUsers)
-                    .then(result => console.log('Insert user batch success'), err => console.error(err))
-                }, (err) => console.error('error', err))
-            }, (err) => console.error('Error(usersTable query)', err))
-        }, err => console.error('Error(devKeypace query)', err));
+      DbModel.seed(devKeyspace, usersTable, truncateUsers, seedUsers)
+        .then(result => console.log('Dev keyspace seeded successfully!'))
+        .catch(err => console.error(err));
       break;
     case "test":
-      DbModel.query(testKeyspace)
-        .then((result) => {
-          DbModel.query(usersTable)
-            .then((result) => {
-              DbModel.query(truncateUsers)
-                .then((result) => {
-                  DbModel.batch(seedUsers)
-                    .then(result => console.log('Insert user batch success'), err => console.error(err))
-                }, (err) => console.error('error', err))
-            }, (err) => console.error('Error(usersTable query)', err))
-        }, err => console.error('Error(devKeypace query)', err));
+      DbModel.seed(testKeyspace, usersTable, truncateUsers, seedUsers)
+        .then(result => console.log('Test keyspace seeded successfully!'))
+        .catch(err => console.error(err));
       break;
     default:
       // code... for production and others

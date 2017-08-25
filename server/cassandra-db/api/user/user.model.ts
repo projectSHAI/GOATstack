@@ -1,7 +1,7 @@
 import * as crypto from 'crypto';
 import { client } from '../../../cassandra-db';
 import DbModel from '../../db.model';
-import { allUsers, findByEmail, updatePw, insertUser, destroyRow } from './prepared.statements';
+import { allUsers, findByEmail, updatePw, insertUser } from './prepared.statements';
 const Uuid = require('cassandra-driver').types.Uuid;
 
 class UserModel {
