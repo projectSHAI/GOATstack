@@ -13,7 +13,6 @@ import * as UserController from './user.controller';
 let router = express.Router();
 
 router.get('/', auth.hasRole('admin'), UserController.index);
-router.delete('/:email', auth.hasRole('admin'), UserController.destroy);
 router.put('/:email/password', auth.isAuthenticated(), UserController.changePassword);
 
 router.post('/', UserController.create, UserController.me);

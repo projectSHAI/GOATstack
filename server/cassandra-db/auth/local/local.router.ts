@@ -10,6 +10,7 @@ function pp(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     let error = err || info;
     if (error) {
+      console.log('waddup fam');
       res.status(401).json(error);
       return null;
     }

@@ -60,15 +60,6 @@ describe('User API Router:', function() {
 
   });
 
-  describe('DELETE /api/users/:email', function() {
-
-    it('should verify admin role and route to user.controller.destroy', function() {
-      expect(routerStub.delete.withArgs('/:email', 'authService.hasRole.admin', 'userCtrl.destroy').calledOnce)
-        .toBe(true);
-    });
-
-  });
-
   describe('GET /api/users/me', function() {
 
     it('should be authenticated and route to user.controller.me', function() {
