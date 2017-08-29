@@ -9,16 +9,14 @@ import { findByEmail } from '../../api/user/prepared.statements';
 // local.router.ts
 function localAuthenticate(UserModel, email, password, done) {
   let user;
+  UserModel.userByEmail(email).then(result => {
+      user = result.rows[0];
 
-  UserModel.userByEmail(email).then((result) => {
-      user = result.rows;
-      console.log('aaaaaaaaza', user.length != 1);
-
-    if (user.length != 1) {
+    if (Object.keys(result.rows).length != 1) {
       return done(null, false, { message: 'There was more than one user' });
     }
 
-    UserModel.authenticate(password, (err, auth) => {
+    user.authenticate(password, (err, auth) => {
       if (err) {
         return done(null, false, err);
       }
@@ -29,10 +27,11 @@ function localAuthenticate(UserModel, email, password, done) {
         delete user.salt;
         return done(null, user);
       }
-
     });
 
-  }, (err) => {
+  })
+  .catch(err => {
+    console.error('This email is not registered!');
     done(null, false, { message: 'This email is not registered!' });
   });
       

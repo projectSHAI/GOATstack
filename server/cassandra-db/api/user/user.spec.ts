@@ -5,7 +5,6 @@ import sinon = require('sinon');
 // userCtrlStub is used to mimic the router
 let userCtrlStub = {
   index: 'userCtrl.index',
-  destroy: 'userCtrl.destroy',
   me: 'userCtrl.me',
   changePassword: 'userCtrl.changePassword',
   show: 'userCtrl.show',
@@ -26,8 +25,7 @@ let authServiceStub = {
 let routerStub = {
   get: sinon.spy(),
   put: sinon.spy(),
-  post: sinon.spy(),
-  delete: sinon.spy()
+  post: sinon.spy()
 };
 
 // require the index with our stubbed out modules
@@ -55,15 +53,6 @@ describe('User API Router:', function() {
     // expect with each request the approapriate endpoint was called
     it('should verify admin role and route to user.controller.index', function() {
       expect(routerStub.get.withArgs('/', 'authService.hasRole.admin', 'userCtrl.index').calledOnce)
-        .toBe(true);
-    });
-
-  });
-
-  describe('DELETE /api/users/:email', function() {
-
-    it('should verify admin role and route to user.controller.destroy', function() {
-      expect(routerStub.delete.withArgs('/:email', 'authService.hasRole.admin', 'userCtrl.destroy').calledOnce)
         .toBe(true);
     });
 

@@ -29,12 +29,15 @@ export function isAuthenticated() {
     .use((req, res, next) => {
       let user;
       return UserModel.userByEmail(req.user.email)
-        .subscribe(ur => user = ur, err => next(err), () => {
-          if (!user) res.status(401).json({ message: 'Invalid Token' });
-
+        .then(result => {
+          user = result.rows[0];
+          if (!user || user > 1) 
+            res.status(401).json({ message: 'Invalid Token' });
+          
           req.user = user;
           next();
-        });
+        })
+        .catch(err => next(err));
     });
 }
 
