@@ -111,6 +111,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/cassandra-driver@^0.8.12":
+  version "0.8.12"
+  resolved "https://registry.yarnpkg.com/@types/cassandra-driver/-/cassandra-driver-0.8.12.tgz#34b3064c85b863c3fa3773711fb4d839af094363"
+  dependencies:
+    "@types/long" "*"
+    "@types/node" "*"
+
 "@types/chalk@0.4.31":
   version "0.4.31"
   resolved "https://registry.yarnpkg.com/@types/chalk/-/chalk-0.4.31.tgz#a31d74241a6b1edbb973cf36d97a2896834a51f9"
@@ -179,6 +186,10 @@
 "@types/lodash@*", "@types/lodash@^4.14.68":
   version "4.14.68"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.68.tgz#754fbab68bd2bbb69547dc8ce7574f7012eed7f6"
+
+"@types/long@*":
+  version "3.0.32"
+  resolved "https://registry.yarnpkg.com/@types/long/-/long-3.0.32.tgz#f4e5af31e9e9b196d8e5fca8a5e2e20aa3d60b69"
 
 "@types/method-override@^0.0.29":
   version "0.0.29"
@@ -997,7 +1008,7 @@ caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
 
-cassandra-driver@^3.2.0:
+cassandra-driver@^3.2.0, cassandra-driver@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/cassandra-driver/-/cassandra-driver-3.2.2.tgz#bcbae15169141df08b4e32d477fa58b99eac5040"
   dependencies:
@@ -6011,6 +6022,10 @@ sequelize@4.6:
     uuid "^3.0.0"
     validator "^8.0.0"
     wkx "^0.4.1"
+
+serialize-javascript@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-1.4.0.tgz#7c958514db6ac2443a8abc062dc9f7886a7f6005"
 
 serve-index@^1.7.2:
   version "1.9.0"

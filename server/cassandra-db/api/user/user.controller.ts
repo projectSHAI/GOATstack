@@ -66,25 +66,34 @@ export function changePassword(req, res) {
 
 export function create(req, res, next) {
 	const user = req.body;
-	return UserModel.insertUser(user.email, user.username, user.password)
-		.then(result => {
-			console.log('wer', result);
-			const token = jwt.sign(
-				{ 
-					email: user.email,
-					role: user.role
-				}, 
-				config.sessionSecret,
-				{ expiresIn: 60 * 60 * 5 });
+	return UserModel.userByEmail(user.email).then(result => {
+		if(result.rows[0] === undefined) {
+			return UserModel.insertUser(user.email, user.username, user.password)
+			.then(result => {
+				const token = jwt.sign(
+					{ 
+						email: user.email,
+						role: user.role
+					}, 
+					config.sessionSecret,
+					{ expiresIn: 60 * 60 * 5 });
+	
+				req.headers.token = token;
+				req.user = user;
+				next();
+	
+			})
+			.catch(err => {
+				validationError(res, err)});
+		}
+		else {
+			const duplicate: object = {message: 'Email is already in use!'};
 
-			req.headers.token = token;
-			req.user = result.rows[0];
-			next();
+			validationError(res, duplicate);
+			return res.status(403).json(duplicate);
+		}
+	}).catch();
 
-		})
-		.catch(err => {
-			console.log('waer', err);
-			validationError(res, err)});
 }
 
 export function me(req, res, next) {

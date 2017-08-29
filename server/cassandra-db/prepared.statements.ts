@@ -13,6 +13,7 @@ export const testKeyspace: string = `CREATE KEYSPACE IF NOT EXISTS dev WITH REPL
 
 // create tables
 export const usersTable: string = `CREATE TABLE IF NOT EXISTS users (
+      id uuid,
       email text,
       created timestamp,
       password text,
@@ -34,17 +35,17 @@ export const truncateUsers: string = `TRUNCATE users`;
 // seed
 
 export const seedUsers: Array<{ query: string, params: Array<string> }> = [{
-  query: 'INSERT INTO users (email, created, password, salt, role, username ) VALUES (?, ?, ?, ?, ?, ?)',
+  query: 'INSERT INTO users (id, email, created, password, salt, role, username ) VALUES (?, ?, ?, ?, ?, ?, ?)',
   params: [Uuid.random(), 'admin@admin.com', Date.now(), 'admin1', '12364', 'admin', 'AdMiN']
 },
 {
-  query: 'INSERT INTO users (email, created, password, salt, role, username ) VALUES (?, ?, ?, ?, ?, ?)',
+  query: 'INSERT INTO users (id, email, created, password, salt, role, username ) VALUES (?, ?, ?, ?, ?, ?, ?)',
   params: [Uuid.random(), 'test@test.com', Date.now(), 'test', '12364', 'test', 'test']
 }];
 
 //test seeds
 
 export const testUser: Array<{ query: string, params: Array<string> }> = [{
-  query: 'INSERT INTO users (email, created, password, salt, role, username ) VALUES (?, ?, ?, ?, ?, ?)',
+  query: 'INSERT INTO users (id, email, created, password, salt, role, username ) VALUES (?, ?, ?, ?, ?, ?, ?)',
   params: [Uuid.random(), 'test@test.com', Date.now(), 'test', '12364', 'test', 'test']
 }];

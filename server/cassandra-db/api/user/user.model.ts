@@ -2,7 +2,7 @@ import * as crypto from 'crypto';
 import { client } from '../../../cassandra-db';
 import DbModel from '../../db.model';
 import { allUsers, findByEmail, insertUser } from './prepared.statements';
-const types = require('cassandra-driver').types;
+const Uuid = require('cassandra-driver').types.Uuid;
 class UserModel {
 
 	private password: string;
@@ -73,15 +73,15 @@ class UserModel {
 	insertUser(email: string, username: string, password: string): Promise<any> {
 
 		const byteSize: number = 16;
-
+		const id: string = String(Uuid.random());
 		const salt: Buffer = crypto.randomBytes(byteSize);
+		const saltString: string = String(salt);
 		const newHashedPW = this.encryptPassword(password, 16, salt);
-
 		const queryOptions = {
 			prepared: true
 		};
 
-		return client.execute(insertUser, [email, Date.now(), newHashedPW, salt, 'user', username], queryOptions);
+		return client.execute(insertUser, [id, email, Date.now(), newHashedPW, saltString, 'user', username], queryOptions);
 	}
 
 }
