@@ -36,11 +36,18 @@ _**NOTE:** v3.1 => Angular@2.4.10, v4.x.x => Angular@4.3.5_
    * Then it will ask what database will be your default, where user authentication will be generated
    * __IF NO DATABASE IS SELECTED__ a dbless solution will be generated
 
-# Future updates in v4.2.x!
+# ~~Future updates in v4.2.x!~~
 
+* This update is finished and will be released packaged with v4.3.x
 * Postgresql has had some breaking updates, we will refactor the stack to add Postgresql support again.
 
 # Future updates in v4.3.x!
+
+* This update will contain the sequelize changes necessary to fix past issues experienced with connecting to Postgresql
+* CassMask will no longer be used, or supported. This will be a breaking change from past versions.
+* In place of CassMask we will use the [Cassandra Node.js driver](https://github.com/datastax/nodejs-driver) which is compatible with DataStax enterprise solutions.
+
+# Future updates in v4.4.x!
 
 * Server-side rendering with [Angular Universal](https://universal.angular.io/)
   * Angular Universal will be integrated into @angular/core upon [angular@4.x](https://github.com/angular/angular/blob/master/CHANGELOG.md)
