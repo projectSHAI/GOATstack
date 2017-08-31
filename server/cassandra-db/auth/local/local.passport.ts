@@ -1,7 +1,5 @@
 import * as passport from 'passport';
-import {Strategy as LocalStrategy} from 'passport-local';
-
-import { findByEmail } from '../../api/user/prepared.statements';
+import { Strategy as LocalStrategy } from 'passport-local';
 
 // This is the authentication process that happens in passport before the
 // router callback function.
@@ -10,13 +8,13 @@ import { findByEmail } from '../../api/user/prepared.statements';
 function localAuthenticate(UserModel, email, password, done) {
   let user;
 
-  UserModel.getCredentials(email).then( result => {
-    
+  UserModel.getCredentials(email).then(result => {
+
     if (Object.keys(result.rows).length > 1) {
       //TODO send an email to admin account notifying multiple users with the same credentials
       return done(null, false, { message: 'There was more than one user!' });
     }
-    else if(Object.keys(result.rows).length < 1){
+    else if (Object.keys(result.rows).length < 1) {
       return done(null, false, { message: 'Account does not exist!' });
     }
     else {
@@ -35,11 +33,11 @@ function localAuthenticate(UserModel, email, password, done) {
 
 
   })
-  .catch(err => {
-    console.error('This email is not registered!', email);
-    done(null, false, { message: 'This email is not registered!' + email });
-  });
-      
+    .catch(err => {
+      console.error('This email is not registered!', email);
+      done(null, false, { message: 'This email is not registered!' + email });
+    });
+
 
 }
 
@@ -52,4 +50,4 @@ function setup(UserModel, config) {
   }));
 }
 
-export {setup as localSetup};
+export { setup as localSetup };

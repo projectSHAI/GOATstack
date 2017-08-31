@@ -1,8 +1,6 @@
 import UserModel from './user.model';
 import { client } from '../../../cassandra-db';
-import { allUsers, findByEmail, insertUser } from './prepared.statements';
 import config from '../../../../config';
-
 import * as jwt from 'jsonwebtoken';
 
 // Handles status codes and error message json
@@ -14,9 +12,9 @@ function handleError(res, err) {
 }
 
 function validationError(res, err) {
-  if (err) {
-    res.status(422).json(err);
-  }
+	if (err) {
+		res.status(422).json(err);
+	}
 }
 
 export function index(req, res) {
@@ -25,7 +23,7 @@ export function index(req, res) {
 		.then(result => {
 			users = result.rows
 			res.json(users);
-		}) 
+		})
 		.catch(err => {
 			handleError(res, err)
 		});
@@ -67,27 +65,28 @@ export function changePassword(req, res) {
 export function create(req, res, next) {
 	const user = req.body;
 	return UserModel.userByEmail(user.email).then(result => {
-		if(result.rows[0] === undefined) {
+		if (result.rows[0] === undefined) {
 			return UserModel.insertUser(user.email, user.username, user.password)
-			.then(result => {
-				const token = jwt.sign(
-					{ 
-						email: user.email,
-						role: user.role
-					}, 
-					config.sessionSecret,
-					{ expiresIn: 60 * 60 * 5 });
-	
-				req.headers.token = token;
-				req.user = user;
-				next();
-	
-			})
-			.catch(err => {
-				validationError(res, err)});
+				.then(result => {
+					const token = jwt.sign(
+						{
+							email: user.email,
+							role: user.role
+						},
+						config.sessionSecret,
+						{ expiresIn: 60 * 60 * 5 });
+
+					req.headers.token = token;
+					req.user = user;
+					next();
+
+				})
+				.catch(err => {
+					validationError(res, err)
+				});
 		}
 		else {
-			const duplicate: object = {message: 'Email is already in use!'};
+			const duplicate: object = { message: 'Email is already in use!' };
 
 			validationError(res, duplicate);
 			return res.status(403).json(duplicate);

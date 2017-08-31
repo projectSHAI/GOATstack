@@ -3,8 +3,8 @@ let express = require('express');
 import UserModel from '../api/user/user.model';
 
 import config from '../../../config';
-import {localRoutes} from './local/local.router';
-import {localSetup} from './local/local.passport';
+import { localRoutes } from './local/local.router';
+import { localSetup } from './local/local.passport';
 
 // Passport configuration
 localSetup(UserModel, config);
@@ -16,4 +16,4 @@ let router = express.Router();
 router.use('/local', localRoutes);
 
 // export the es6 way
-export {router as authRoutes};
+export { router as authRoutes };

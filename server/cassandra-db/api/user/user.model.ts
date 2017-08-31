@@ -1,7 +1,14 @@
 import * as crypto from 'crypto';
 import { client } from '../../../cassandra-db';
-import { allUsers, findByEmail, insertUser } from './prepared.statements';
+import UserStmts from './prepared.statements';
 const Uuid = require('cassandra-driver').types.Uuid;
+
+// Define Prepared Statments
+const allRows: string = UserStmts.allRows;
+const findByEmail: string = UserStmts.findByEmail;
+const insertRow: string = UserStmts.insertRow;
+
+
 class UserModel {
 
 	private password: string;
@@ -44,7 +51,7 @@ class UserModel {
 	Queries
 	*/
 	allUsers(): Promise<any> {
-		return client.execute(allUsers, undefined, this.queryOptions);
+		return client.execute(allRows, undefined, this.queryOptions);
 	}
 
 	userByEmail(email: string): Promise<any> {
@@ -82,7 +89,7 @@ class UserModel {
 		const queryOptions = {
 			prepared: true
 		};
-		return client.execute(insertUser, [id, email, Date.now(), newHashedPW, salt, 'user', username], queryOptions);
+		return client.execute(insertRow, [id, email, Date.now(), newHashedPW, salt, 'user', username], queryOptions);
 	}
 
 }

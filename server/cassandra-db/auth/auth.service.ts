@@ -31,9 +31,9 @@ export function isAuthenticated() {
       return UserModel.userByEmail(req.user.email)
         .then(result => {
           user = result.rows[0];
-          if (!user || user > 1) 
+          if (!user || user > 1)
             res.status(401).json({ message: 'Invalid Token' });
-          
+
           req.user = user;
           next();
         })
@@ -70,8 +70,8 @@ export function signToken(id, email, role) {
     email: email,
     role: role
   }, config.sessionSecret, {
-    expiresIn: 60 * 60 * 5
-  });
+      expiresIn: 60 * 60 * 5
+    });
 }
 
 /**

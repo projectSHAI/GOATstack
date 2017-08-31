@@ -1,13 +1,13 @@
 let express = require('express');
 
-import {signToken, isAuthenticated} from '../auth.service';
-import {me} from '../../api/user/user.controller';
+import { signToken, isAuthenticated } from '../auth.service';
+import { me } from '../../api/user/user.controller';
 import * as passport from 'passport';
 
 let router = express.Router();
 
 function pp(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
+  passport.authenticate('local', function (err, user, info) {
     let error = err || info;
     if (error) {
       res.status(401).json(error);
@@ -31,4 +31,4 @@ function pp(req, res, next) {
 // in .passport.ts file
 router.post('/', pp, me);
 
-export {router as localRoutes};
+export { router as localRoutes };
