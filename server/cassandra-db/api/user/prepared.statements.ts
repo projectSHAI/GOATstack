@@ -47,9 +47,9 @@ params: [Uuid.random(), 'test@test.com', Date.now(), 'JOe+CGVaNXUK2wZuOLzhpiCfXO
 ////////////
 
 // create
-export const insertUser = `INSERT INTO users (id, email, created, password, salt, role, username ) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+export const insertUser: string = `INSERT INTO users (id, email, created, password, salt, role, username ) VALUES (?, ?, ?, ?, ?, ?, ?)`;
 // read
-export const findByEmail = 'SELECT email, firstname, lastname, middlename, role, username FROM users WHERE email = ?';
-export const allUsers = 'SELECT email, firstname, lastname, middlename, role, username FROM users';
+export const findByEmail: string = 'SELECT email, firstname, lastname, middlename, role, username FROM users WHERE email = ?';
+export const allUsers: string = 'SELECT email, firstname, lastname, middlename, role, username FROM users';
 // update - NA
 // delete - NA

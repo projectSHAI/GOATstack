@@ -1,13 +1,12 @@
 import * as crypto from 'crypto';
 import { client } from '../../../cassandra-db';
-import DbModel from '../../db.model';
 import { allUsers, findByEmail, insertUser } from './prepared.statements';
 const Uuid = require('cassandra-driver').types.Uuid;
 class UserModel {
 
 	private password: string;
 	private queryOptions: object = { prepared: true };
-	private updatePw: string = 'UPDATE users SET password = ?, salt = ? WHERE email=?';
+	private updatePw: string = 'UPDATE users SET password = ?, salt = ? WHERE email = ?';
 	private credentials: string = 'SELECT email, firstname, lastname, middlename, role, username, password, salt FROM users WHERE email = ?'
 
 	/*
