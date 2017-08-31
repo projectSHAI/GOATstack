@@ -2,9 +2,6 @@ import { client } from '../cassandra-db';
 
 class DbModel {
 
-    // delete tables
-    truncateUsers: string = `TRUNCATE users`;
-
     /////////////////
     //seed function//
     /////////////////
