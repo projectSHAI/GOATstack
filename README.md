@@ -43,7 +43,8 @@ _**NOTE:** v3.1 => Angular@2.4.10, v4.x.x => Angular@4.3.5_
 
 # Future updates in v4.3.x!
 
-* This update will contain the sequelize changes necessary to fix past issues experienced with connecting to Postgresql
+* ~~This update will contain the sequelize changes necessary to fix past issues experienced with connecting to Postgresql~~
+* Sequelize will be worked on at a later date.
 * CassMask will no longer be used, or supported. This will be a breaking change from past versions.
 * In place of CassMask we will use the [Cassandra Node.js driver](https://github.com/datastax/nodejs-driver) which is compatible with DataStax enterprise solutions.
 
