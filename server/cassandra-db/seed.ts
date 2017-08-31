@@ -5,7 +5,8 @@
 import { client } from '../cassandra-db';
 import DbModel from './db.model';
 import UserModel from './api/user/user.model';
-import { devKeyspace, testKeyspace, usersTable, truncateUsers, seedUsers } from './prepared.statements';
+import { devKeyspace, testKeyspace } from './prepared.statements';
+import { usersTable, truncateUsers, seedUsers } from './api/user/prepared.statements';
 import { insertUser } from './api/user/prepared.statements';
 
 export default function cassandraSeed(env?: string): void {

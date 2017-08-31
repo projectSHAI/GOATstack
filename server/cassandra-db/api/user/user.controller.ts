@@ -102,7 +102,6 @@ export function me(req, res, next) {
 
 	return UserModel.userByEmail(userEmail)
 		.then(result => {
-			console.log('me', result.rows[0]);
 			const user = result.rows[0];
 			if (!user) return res.status(401).json({ message: 'User does not exist' });
 

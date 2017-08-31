@@ -3,8 +3,9 @@ import request = require('supertest');
 
 import { client } from '../../../cassandra-db';
 import DbModel from '../../db.model';
-import { devKeyspace, usersTable, truncateUsers, seedUsers, testUser } from '../../prepared.statements';
-import { insertUser } from './prepared.statements';
+import { devKeyspace } from '../../prepared.statements';
+import { usersTable, truncateUsers, seedUsers, testUser } from './prepared.statements';
+import UserModel from './user.model';
 
 // User Endpoint testing
 describe('User API:', function () {
@@ -14,15 +15,16 @@ describe('User API:', function () {
   // users are cleared from DB seeding
   // add a new testing user
   beforeAll(done => {
-    DbModel.seed(devKeyspace, usersTable, truncateUsers, testUser)
-      .then(result => {
-        user = result.rows[0];
-        done();
-      })
-      .catch(err => {
-        expect(err).not.toBeDefined();
-        done();
-      });
+        UserModel.userByEmail('test@test.com').then(result => {
+          user = result.rows[0];
+          done();
+        })
+        .catch(err => {
+          expect(err).not.toBeDefined();
+          done();
+        });
+
+      
   });
 
 
@@ -35,16 +37,14 @@ describe('User API:', function () {
         .post('/auth/local')
         .send({
           email: 'test@test.com',
-          password: 'test'
+          password: 'test1'
         })
         .expect(200)
         .end((err, res) => {
           if (err) {
-            console.log('token ', err);
             done.fail(err);
           } else {
             token = res.body.token;
-            console.log('token ', token);
             done();
           }
         }), 2000);

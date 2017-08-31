@@ -10,7 +10,6 @@ function pp(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     let error = err || info;
     if (error) {
-      console.log('titles', error);
       res.status(401).json(error);
       return null;
     }
@@ -22,7 +21,6 @@ function pp(req, res, next) {
     let token = signToken(user.id, user.email, user.role);
     req.headers.token = token;
     req.user = user;
-    console.log('wowshit', user);
     next();
 
   })(req, res, next);

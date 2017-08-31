@@ -72,7 +72,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 			this.ref.markForCheck();
 		} else if (window.innerWidth > this.savedWidth && !this.menuHide) {
 			this.menuHide = true;
-			console.log('BIG');
 
 			this.ref.markForCheck();
 		}

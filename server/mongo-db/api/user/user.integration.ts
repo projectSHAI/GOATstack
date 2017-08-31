@@ -44,7 +44,6 @@ describe('User API:', function () {
         .expect(200)
         .end((err, res) => {
           if (err) {
-            console.log(err);
             done.fail(err);
           } else {
             token = res.body.token;
