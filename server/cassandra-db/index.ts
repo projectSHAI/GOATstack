@@ -9,8 +9,8 @@ export const client = new cassandra.Client(config.cassandra);
 export function cassandraConnect(): Rx.Observable<any> {
   return Rx.Observable.create(observer => {
 
-    client.connect(function (err){
-      if(err) {
+    client.connect(function (err) {
+      if (err) {
         observer.error(err);
       }
       observer.next();

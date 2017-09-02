@@ -19,4 +19,4 @@ router.post('/', UserController.create, UserController.me);
 router.get('/me', auth.isAuthenticated(), UserController.me);
 router.get('/:email', auth.isAuthenticated(), UserController.show);
 
-export {router as userRoutes};
+export { router as userRoutes };

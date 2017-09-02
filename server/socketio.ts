@@ -34,13 +34,13 @@ function socketInit(socketio) {
   //   handshake: true
   // }));
 
-  socketio.on('connection', function(socket) {
+  socketio.on('connection', function (socket) {
     socket.address = socket.request.connection.remoteAddress +
       ':' + socket.request.connection.remotePort;
 
     socket.connectedAt = new Date();
 
-    socket.log = function(...data) {
+    socket.log = function (...data) {
       console.log(`SocketIO ${socket.nsp.name} [${socket.address}]`, ...data);
     };
 

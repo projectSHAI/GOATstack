@@ -1,10 +1,7 @@
 import app from '../../../server';
 import request = require('supertest');
-
 import { client } from '../../../cassandra-db';
 import DbModel from '../../db.model';
-import { devKeyspace } from '../../prepared.statements';
-import { usersTable, truncateUsers, seedUsers, testUser } from './prepared.statements';
 import UserModel from './user.model';
 
 // User Endpoint testing
@@ -15,16 +12,15 @@ describe('User API:', function () {
   // users are cleared from DB seeding
   // add a new testing user
   beforeAll(done => {
-        UserModel.userByEmail('test@test.com').then(result => {
-          user = result.rows[0];
-          done();
-        })
-        .catch(err => {
-          expect(err).not.toBeDefined();
-          done();
-        });
-
-      
+    UserModel.userByEmail('test@test.com')
+      .then(result => {
+        user = result.rows[0];
+        done();
+      })
+      .catch(err => {
+        expect(err).not.toBeDefined();
+        done();
+      });
   });
 
 

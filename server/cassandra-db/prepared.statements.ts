@@ -1,11 +1,15 @@
-import { client } from '../cassandra-db';
+class DbStmts {
 
-//keyspaces
-export const devKeyspace: string = `CREATE KEYSPACE IF NOT EXISTS dev WITH REPLICATION = { 
+  //keyspaces
+  public devKeyspace: string = `CREATE KEYSPACE IF NOT EXISTS dev WITH REPLICATION = { 
     'class' : 'SimpleStrategy',
     'replication_factor' : 1
   };`;
-export const testKeyspace: string = `CREATE KEYSPACE IF NOT EXISTS dev WITH REPLICATION = { 
+  public testKeyspace: string = `CREATE KEYSPACE IF NOT EXISTS dev WITH REPLICATION = { 
     'class' : 'SimpleStrategy',
     'replication_factor' : 1
   };`;
+
+}
+
+export default new DbStmts;
