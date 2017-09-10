@@ -13,6 +13,7 @@ const testKeyspace: string = DbStmts.testKeyspace;
 const userTable: string = UserStmts.userTable;
 const truncateUserTable: string = UserStmts.truncateUserTable;
 const seedUserTable: Array<{ query: string, params: Array<string> }> = UserStmts.seedUserTable;
+const quertOptions: object = {prepared: true};
 
 
 export default function cassandraSeed(env?: string): void {
@@ -24,7 +25,7 @@ export default function cassandraSeed(env?: string): void {
         .then(result => {
           console.log('Dev keyspace ready to seed!');
           // list all your batch queries here by table
-          DbModel.seed(userTable, truncateUserTable, seedUserTable)
+          DbModel.seed(userTable, truncateUserTable, seedUserTable, this.queryOptions)
             .then(result => console.log('User Table seeded succesfully!'))
             .catch(err => console.error(err));
 
@@ -37,7 +38,7 @@ export default function cassandraSeed(env?: string): void {
           console.log('Test keyspace ready to seed!');
 
           // list all your batch queries here by table
-          DbModel.seed(userTable, truncateUserTable, seedUserTable)
+          DbModel.seed(userTable, truncateUserTable, seedUserTable, this.queryOptions)
             .then(result => console.log('User Table seeded succesfully!'))
             .catch(err => console.error(err));
 

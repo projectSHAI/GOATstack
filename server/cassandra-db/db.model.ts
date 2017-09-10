@@ -9,16 +9,16 @@ class DbModel {
         return client.execute(keyspace);
     }
 
-    public seed(table: string, truncate: string, queries: Array<{ query: string, params: Array<any> }>): Promise<any> {
+    public seed(table: string, truncate: string, queries: Array<{ query: string, params: Array<any> }>, queryOptions: object): Promise<any> {
         return client.execute(table).then(result => {
             client.execute(truncate).then(result => {
-                client.batch(queries).then(result => console.log('seed batching succesful!')).catch(err => console.error(err));
+                this.batch(queries, queryOptions).then(() => console.log('Batching succesful!')).catch(err => console.error(err));
             }).catch(err => console.error(err));
         }).catch(err => console.error(err));
     }
 
     public batch(queries: Array<{ query: string, params: Array<any> }>, queryOptions: object) {
-        return client.batch(queries, queryOptions).then(result => console.log('Batching succesful!')).catch(err => console.error(err));
+        return client.batch(queries, queryOptions);
     }
 
 }
