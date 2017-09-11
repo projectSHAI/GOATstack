@@ -1,6 +1,6 @@
 {
   "name": "goat-stack",
-  "version": "4.1.0",
+  "version": "4.3.0",
   "description": "A MEAN stack boilerplate using Angular 2",
   "engines": {
     "node": "8.0.9"
