@@ -55,20 +55,20 @@ connect().subscribe(
 
       if (process.env.NODE_ENV !== 'test') {
             console.log(
-              chalk.bold.cyan(`\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }\n`));
+              chalk.default.bold.cyan(`\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }\n`));
 
             console.log(
-              chalk.bold.cyan(`\tSQL:`) +
-              chalk.bold.cyan(`\n\t - URI:\t\t\t\t sql://${config.sql.username}:${config.sql.password}@localhost:5432/${config.sql.database}\n`));
+              chalk.default.bold.cyan(`\tSQL:`) +
+              chalk.default.bold.cyan(`\n\t - URI:\t\t\t\t sql://${config.sql.username}:${config.sql.password}@localhost:5432/${config.sql.database}\n`));
 
             if (!process.env.NODE_ENV)
               console.log(
-                chalk.bold.magenta(`\t${isSecure ? 'HTTPS': 'HTTP'} Server`) +
-                chalk.bold.gray(`\n\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:${ port }\n`));
+                chalk.default.bold.magenta(`\t${isSecure ? 'HTTPS': 'HTTP'} Server`) +
+                chalk.default.bold.gray(`\n\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:${ port }\n`));
             else
               console.log(
-                chalk.bold.magenta(`\tWebPack DevServer:`) +
-                chalk.bold.gray(`\n\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:1701\n`));
+                chalk.default.bold.magenta(`\tWebPack DevServer:`) +
+                chalk.default.bold.gray(`\n\tServer Address:\t\t\t ${isSecure ? 'https': 'http'}://localhost:1701\n`));
           }
     });    
   });

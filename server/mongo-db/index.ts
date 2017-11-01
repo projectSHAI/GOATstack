@@ -13,7 +13,7 @@ export function mongoConnect(): Rx.Observable<any> {
     mongoose.connect(config.mongo.uri, config.mongo.options, function (err) {
       // Log Error
       if (err) {
-        console.error(chalk.bold.red('Could not connect to MongoDB!'));
+        console.error(chalk.default.bold.red('Could not connect to MongoDB!'));
         observer.error(err);
       } else {
         // Enabling mongoose debug mode if required
@@ -29,6 +29,6 @@ export function mongoConnect(): Rx.Observable<any> {
 
 export function mongoDisconnect() {
   mongoose.disconnect(function (err) {
-    console.log(chalk.bold.yellow('Disconnected from MongoDB.'));
+    console.log(chalk.default.bold.yellow('Disconnected from MongoDB.'));
   });
 };
