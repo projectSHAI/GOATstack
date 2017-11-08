@@ -34,9 +34,6 @@ import { ReduxModule }                               from '../redux/redux.module
 import { BrowserAnimationsModule }                   from '@angular/platform-browser/animations';
 
 import { CoreModule }                                from './core/core.module';
-import { HomeModule }                                from './home/home.module';
-import { UserProfileModule }                         from './user-profile/user-profile.module';
-import { Four0FourModule }                           from './404/404.module';
 
 /*
 --------------------------------------------------
@@ -52,9 +49,6 @@ NgModule
     BrowserModule,
     ReduxModule,
     CoreModule,
-    HomeModule,
-    UserProfileModule,
-    Four0FourModule,
     BrowserAnimationsModule
   ],
   //declarations: this object imports all child components which are used in this module
