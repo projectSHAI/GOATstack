@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
@@ -9,16 +8,16 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   // Private variables that only this service can use
   private authUrl = 'auth/local';
   private userUrl = 'api/users';
 
-  private extractToken(res: Response) {
-    let body = res.json();
-    Cookie.set('token', body.token);
-    return body.user;
+  private extractToken(res: HttpResponse<any>) {
+
+    Cookie.set('token', res.token);
+    return res.user;
   }
 
   private handleError(error: any) {
@@ -47,7 +46,6 @@ export class UserService {
   // sign in
   getMe(): Observable<any> {
     return this.http.get(this.userUrl + '/me')
-      .map(res => res.json())
       .catch(this.handleError);
   }
 

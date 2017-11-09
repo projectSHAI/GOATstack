@@ -1,25 +1,73 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { UserService } from '../user/user.service';
-import { Observable } from 'rxjs/Rx';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+
+import { Observable } from 'rxjs/Observable';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
-import * as _ from 'lodash';
 
-// Extending the Http class so connect a OAuth token if present in the cookies
-// When the request is recieved on the server authenticated endpoints will 
-// have varification that give them the ability to execute
+import 'rxjs/Rx';
+
 @Injectable()
-export class HttpIntercept implements HttpInterceptor {
-    constructor(public auth: UserService) { }
+export class AuthService {
+  constructor(private http: HttpClient) { }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        req = req.clone({
-            setHeaders: {
-                Authorization: `Bearer ${Cookie.get('Token')}`
-            }
-        }); 
+  // Private variables that only this service can use
+  private authUrl = 'auth/local';
+  private userUrl = 'api/users';
 
-        return next.handle(req);
+  private extractToken(res: HttpResponse<any>) {
+
+    Cookie.set('token', res.token);
+    return res.user;
+  }
+
+  private handleError(error: any) {
+    // In a real world app, we might use a remote logging infrastructure
+    // We'd also dig deeper into the error to get a better message
+    const body = JSON.parse(error._body);
+    let errMsg;
+
+    if (body.errors) {
+      errMsg = body.errors.username ? body.errors.username : body.errors.email;
+    } else {
+      errMsg = body ? body :
+        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     }
 
+    return Observable.throw({
+      status: error.status,
+      statusText: error.statusText,
+      url: error.url,
+      message: errMsg.message
+    });
+  }
+
+  // This is called when there is a cookie OAuth token
+  // present in the browser so the user will automatically
+  // sign in
+  currentUser(): Observable<any> {
+    return this.http.get(this.userUrl + '/me')
+      .catch(this.handleError);
+  }
+
+  login(email: string, password: string): Observable<any> {
+    let body = JSON.stringify({
+      email: email,
+      password: password
+    });
+
+    return this.http.post(this.authUrl, body)
+      .map(this.extractToken)
+      .catch(this.handleError);
+  }
+
+  signup(username: string, email: string, password: string): Observable<any> {
+    let body = JSON.stringify({
+      username: username,
+      email: email,
+      password: password
+    });
+    return this.http.post(this.userUrl, body)
+      .map(this.extractToken)
+      .catch(this.handleError);
+  }
 }
