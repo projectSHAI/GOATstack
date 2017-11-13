@@ -30,7 +30,7 @@ class MockAuthService extends AuthService {
     super(null);
   }
 
-  getMe(): Observable<any> {
+  autoLogin(): Observable<any> {
     return Observable.of(testUser);
   }
   login(email: string, password: string): Observable<any> {
@@ -57,7 +57,7 @@ describe('User Actions Creator', () => {
     actions = new UserActions(mockRedux, errorActions, authService);
   });
 
-  it('should dispatch LOGIN_USER action when getMe() called', () => {
+  it('should dispatch LOGIN_USER action when autoLogin() called', () => {
     Cookie.set('token', 'testCookie');
 
     const expectedActionPre = {
