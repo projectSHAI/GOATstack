@@ -27,12 +27,12 @@ function init(): any {
 
     if (process.env.NODE_ENV !== 'test') {
       console.log(
-        chalk.bold.cyan(`\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }`));
+        chalk.default.bold.cyan(`\n\tEnvironment:\t\t\t ${ process.env.NODE_ENV || 'production' }`));
     
       if (!process.env.NODE_ENV)
         console.log(
-          chalk.bold.magenta(`\tHTTP Server`) +
-          chalk.bold.gray(`\n\tServer Address:\t\t\t http://localhost:${ port }\n`));
+          chalk.default.bold.magenta(`\tHTTP Server`) +
+          chalk.default.bold.gray(`\n\tServer Address:\t\t\t http://localhost:${ port }\n`));
     }
   });
 };
