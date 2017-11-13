@@ -8,8 +8,6 @@ import { Four0FourModule }                       from '../404/404.module';
 
 import { HttpClientModule, HttpClient, HttpInterceptor, HTTP_INTERCEPTORS }           from '@angular/common/http';
 
-import { XHRBackend, RequestOptions }            from '@angular/http';
-
 import { CoreComponent }		                     from './core.component';
 import { HeaderComponent }                       from './components/header/header.component';
 import { FooterComponent }                       from './components/footer/footer.component';
