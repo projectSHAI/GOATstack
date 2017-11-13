@@ -46,7 +46,7 @@
     "method-override": "2.3.10",
     "morgan": "^1.9.0",
     "ng2-cookies": "^1.0.12",
-    "ng2-lazyload-image": "^2.4.0",
+    "ng-lazyload-image": "^2.4.0",
     "preboot": "5.1.7",
     "redux": "3.7.2",
     "redux-localstorage": "0.4.1",
