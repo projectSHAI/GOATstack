@@ -6,6 +6,18 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 import 'rxjs/Rx';
 
+//instead of HttpResponse<any> create custom response interface for extractToken
+interface tokenExtraction {
+  token: string,
+  user: {
+    created: string,
+    email: string,
+    provider: string,
+    role: string,
+    username: string
+  }
+}
+
 @Injectable()
 export class AuthService {
   constructor(private http: HttpClient) { }
@@ -14,8 +26,7 @@ export class AuthService {
   private authUrl = 'auth/local';
   private userUrl = 'api/users';
 
-  private extractToken(res: HttpResponse<any>) {
-
+  private extractToken(res: tokenExtraction) {
     Cookie.set('token', res.token);
     return res.user;
   }
@@ -23,13 +34,13 @@ export class AuthService {
   private handleError(error: any) {
     // In a real world app, we might use a remote logging infrastructure
     // We'd also dig deeper into the error to get a better message
-    const body = JSON.parse(error._body);
+    console.log('errorhandler', error);
     let errMsg;
 
-    if (body.errors) {
-      errMsg = body.errors.username ? body.errors.username : body.errors.email;
+    if (error.errors) {
+      errMsg = error.errors.username ? error.errors.username : error.errors.email;
     } else {
-      errMsg = body ? body :
+      errMsg = error ? error :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     }
 
@@ -37,23 +48,23 @@ export class AuthService {
       status: error.status,
       statusText: error.statusText,
       url: error.url,
-      message: errMsg.message
+      message: errMsg.error.message
     });
   }
 
   // This is called when there is a cookie OAuth token
   // present in the browser so the user will automatically
   // sign in
-  currentUser(): Observable<any> {
+  autoLogin(): Observable<any> {
     return this.http.get(this.userUrl + '/me')
       .catch(this.handleError);
   }
 
   login(email: string, password: string): Observable<any> {
-    let body = JSON.stringify({
+    let body = {
       email: email,
       password: password
-    });
+    };
 
     return this.http.post(this.authUrl, body)
       .map(this.extractToken)
@@ -61,11 +72,11 @@ export class AuthService {
   }
 
   signup(username: string, email: string, password: string): Observable<any> {
-    let body = JSON.stringify({
+    let body = {
       username: username,
       email: email,
       password: password
-    });
+    };
     return this.http.post(this.userUrl, body)
       .map(this.extractToken)
       .catch(this.handleError);

@@ -4,8 +4,6 @@ import { FormGroup, NgForm } from '@angular/forms';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../store/index';
 
-import { UserService } from '../../../modules/core/services/user/user.service';
-
 /////////////////////////////////////////////////////////////////////////
 /* UserForm Actions: used to call dispatches to change the userForm
                      object in the store

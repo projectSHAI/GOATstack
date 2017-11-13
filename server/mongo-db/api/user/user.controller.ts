@@ -6,6 +6,7 @@ import * as jwt from 'jsonwebtoken';
 // Handles status codes and error message json
 // specificity: validation
 function validationError(res, statusCode = null) {
+  console.log('duuude');
   statusCode = statusCode || 422;
   return function(err) {
     res.status(statusCode).json(err);
@@ -16,6 +17,7 @@ function validationError(res, statusCode = null) {
 // Handles status codes and error message json
 // specificity: error
 function handleError(res, statusCode = null) {
+  console.log('duuwowude');
   statusCode = statusCode || 500;
   return function(err) {
     res.status(statusCode).send(err);
@@ -62,6 +64,7 @@ export function index(req, res) {
  * Creates a new user endpoint
  */
 export function create(req, res, next) {
+  console.log('duuudaaaaae');
   let newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';

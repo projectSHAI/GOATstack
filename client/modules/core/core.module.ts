@@ -21,7 +21,7 @@ import { SEOActions }                            from '../../redux/actions/seo/s
 
 import { SocketService }                         from './services/socketio/socketio.service';
 import { TokenInterceptor }                      from './services/auth/token-interceptor.service';
-import { UserService }                           from './services/user/user.service';
+import { AuthService }                           from './services/auth/auth.service';
 
 //Angular and 3rd party serices
 import { Cookie }                                from 'ng2-cookies/ng2-cookies';
@@ -38,7 +38,7 @@ import { Cookie }                                from 'ng2-cookies/ng2-cookies';
   providers: 	[
   	{
   	  provide: HTTP_INTERCEPTORS,
-  	  useFactory: TokenInterceptor,
+  	  useClass: TokenInterceptor,
   	  multi: true
 		},
 		HttpClient,
@@ -48,7 +48,7 @@ import { Cookie }                                from 'ng2-cookies/ng2-cookies';
   	SEOActions,
 
     SocketService,
-    UserService,
+    AuthService,
 
   	Cookie
   ]

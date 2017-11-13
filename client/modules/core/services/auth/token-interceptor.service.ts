@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { UserService } from '../user/user.service';
 import { Observable } from 'rxjs/Rx';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import * as _ from 'lodash';
@@ -10,20 +9,18 @@ import * as _ from 'lodash';
 // have varification that give them the ability to execute
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    constructor(private currentUser: UserService) { }
+    constructor() { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         // get the token from a service
-        const token: string = this.currentUser.token;
+        const authHeader = `Bearer ${Cookie.get('token')}`;
+        const authReq = req.clone({setHeaders: {Authorization: authHeader}});
 
-        req = req.clone({
-            setHeaders: {
-                Authorization: `Bearer ${Cookie.get('Token')}`
-            }
-        }); 
-
-        return next.handle(req);
+        if(authHeader)
+            return next.handle(authReq);
+        else
+            return next.handle(req);    
     }
 
 }
