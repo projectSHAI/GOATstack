@@ -1,6 +1,7 @@
 import Sequelize from "sequelize";
 import sequelize from "../../../sql-db";
-import * as crypto from "crypto";
+
+const crypto = require('crypto');
 
 let User = sequelize.define("user", {
 	  username:  {type: Sequelize.STRING, 

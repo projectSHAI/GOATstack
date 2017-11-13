@@ -1,7 +1,7 @@
-import * as crypto from 'crypto';
 import * as mongoose from 'mongoose';
 
-const authTypes = ['github', 'twitter', 'facebook', 'google'];
+const crypto = require('crypto'),
+      authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 // Mongoose Model te typescript way
 // Interface is necessary to describe the type

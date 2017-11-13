@@ -1,12 +1,12 @@
-import * as crypto from 'crypto';
 import { client } from '../../../cassandra-db';
 import UserStmts from './prepared.statements';
-const Uuid = require('cassandra-driver').types.Uuid;
 
+const Uuid = require('cassandra-driver').types.Uuid,
+	  crypto = require('crypto');
 // Define Prepared Statments
-const allRows: string = UserStmts.allRows;
-const findByEmail: string = UserStmts.findByEmail;
-const insertRow: string = UserStmts.insertRow;
+const allRows: string = UserStmts.allRows,
+      findByEmail: string = UserStmts.findByEmail,
+      insertRow: string = UserStmts.insertRow;
 
 
 class UserModel {
