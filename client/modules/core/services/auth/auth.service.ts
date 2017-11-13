@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
@@ -7,7 +7,7 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 import 'rxjs/Rx';
 
 //instead of HttpResponse<any> create custom response interface for extractToken
-interface tokenExtraction {
+interface tokenExtraction extends HttpResponse<any> {
   token: string,
   user: {
     created: string,
@@ -31,33 +31,11 @@ export class AuthService {
     return res.user;
   }
 
-  private handleError(error: any) {
-    // In a real world app, we might use a remote logging infrastructure
-    // We'd also dig deeper into the error to get a better message
-    console.log('errorhandler', error);
-    let errMsg;
-
-    if (error.errors) {
-      errMsg = error.errors.username ? error.errors.username : error.errors.email;
-    } else {
-      errMsg = error ? error :
-        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    }
-
-    return Observable.throw({
-      status: error.status,
-      statusText: error.statusText,
-      url: error.url,
-      message: errMsg.error.message
-    });
-  }
-
   // This is called when there is a cookie OAuth token
   // present in the browser so the user will automatically
   // sign in
   autoLogin(): Observable<any> {
-    return this.http.get(this.userUrl + '/me')
-      .catch(this.handleError);
+    return this.http.get(this.userUrl + '/me');
   }
 
   login(email: string, password: string): Observable<any> {
@@ -67,8 +45,7 @@ export class AuthService {
     };
 
     return this.http.post(this.authUrl, body)
-      .map(this.extractToken)
-      .catch(this.handleError);
+      .map(this.extractToken);
   }
 
   signup(username: string, email: string, password: string): Observable<any> {
@@ -78,7 +55,6 @@ export class AuthService {
       password: password
     };
     return this.http.post(this.userUrl, body)
-      .map(this.extractToken)
-      .catch(this.handleError);
+      .map(this.extractToken);
   }
 }
