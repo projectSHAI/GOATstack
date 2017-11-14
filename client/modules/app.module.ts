@@ -28,15 +28,22 @@ Modules
 --------------------------------------------------
 ** other necessary modules for this app
 */
-import { NgModule }                                  from '@angular/core';
-import { BrowserModule }                             from '@angular/platform-browser';
-import { MaterialRootModule }                        from '@angular/material';
-import { ReduxModule }                               from '../redux/redux.module';
+import {NgModule}                                  from '@angular/core';
+import {BrowserModule}                             from '@angular/platform-browser';
+import {ReduxModule}                               from '../redux/redux.module';
+import {BrowserAnimationsModule}                   from '@angular/platform-browser/animations';
+import {HttpClientModule, HttpClient}              from '@angular/common/http';
+import {MatButtonModule, MatCardModule, MatToolbarModule}        from '@angular/material';
 
-import { CoreModule }                                from './core/core.module';
-import { HomeModule }                                from './home/home.module';
-import { UserProfileModule }                         from './user-profile/user-profile.module';
-import { Four0FourModule }                           from './404/404.module';
+/*
+--------------------------------------------------
+Core Module
+--------------------------------------------------
+** As a rule of thumb we place all angular necessary imports into the app.module
+** Any modules/components/services/etc which are third party or built in house will be placed into the Core module
+** This allows for better organization and load order with module lazy loading.
+*/
+import {CoreModule}                                from './core/core.module';
 
 /*
 --------------------------------------------------
@@ -52,15 +59,24 @@ NgModule
     BrowserModule,
     ReduxModule,
     CoreModule,
-    HomeModule,
-    UserProfileModule,
-    Four0FourModule,
-    MaterialRootModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatCardModule,
+    MatToolbarModule
+
   ],
   //declarations: this object imports all child components which are used in this module
-  declarations: [ AppComponent ],
+  declarations: [ 
+    AppComponent
+   ],
+  providers: [
+    HttpClient
+  ],
   //bootstrap: identifies which component is supposed to be bootstrapped
-  bootstrap: [ AppComponent ]
+  bootstrap: [ 
+    AppComponent
+   ]
 })
 
 //by convention the root module is called AppModule as stated in the Angular2 docs

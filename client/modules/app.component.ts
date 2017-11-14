@@ -10,11 +10,14 @@
 */
 
 
-//main imports
+// Main imports
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
+
+// Hammer used for gesture support like touch
+import 'hammerjs';
 
 //decorator
 @Component({

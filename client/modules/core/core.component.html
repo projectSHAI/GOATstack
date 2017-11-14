@@ -1,8 +1,8 @@
 <div #errorToast class="error-card">
     <md-card>
-        <md-toolbar color="accent">Error Message</md-toolbar>
-        <md-card-content class="error-content">
+        <mat-toolbar color="accent">Error Message</mat-toolbar>
+        <mat-card class="error-content">
         	<div><p id="error-text" *ngIf="(error$ | async).get('message')">{{ (error$ | async).get('message') }}</p></div>
-        </md-card-content>
+        </mat-card>
     </md-card>
 </div>	

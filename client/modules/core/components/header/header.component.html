@@ -5,8 +5,8 @@
 <div #menu class="menu-container" [ngClass]="{'menuOpen': menuOpen, 'menu-mobile': !menuHide}">
 	<div class="router-links">
 		<!-- Add your router links here -->
-		<a md-raised-button color="primary" routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">Home</a>
-		<a md-raised-button color="primary" routerLink='/PageNotFound' routerLinkActive='active'>404</a>
+		<a mat-raised-button color="primary" routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">Home</a>
+		<a mat-raised-button color="primary" routerLink='/PageNotFound' routerLinkActive='active'>404</a>
 	</div>
 </div>
 <button class="nav-trigger" *ngIf="!menuHide" [ngClass]="{'is-active': menuOpen}" (click)="openMenu()" type="button">
