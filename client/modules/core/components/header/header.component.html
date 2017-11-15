@@ -2,13 +2,11 @@
     <img id="logo" src="public/assets/goatlogo.svg" />
     <h1>GOATstack</h1>
 </div>
-<div #menu class="menu-container" [ngClass]="{'menuOpen': menuOpen, 'menu-mobile': !menuHide}">
-	<div class="router-links">
-		<!-- Add your router links here -->
-		<a mat-raised-button color="primary" routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">Home</a>
-		<a mat-raised-button color="primary" routerLink='/PageNotFound' routerLinkActive='active'>404</a>
-	</div>
-</div>
-<button class="nav-trigger" *ngIf="!menuHide" [ngClass]="{'is-active': menuOpen}" (click)="openMenu()" type="button">
+
+<mat-menu #appMenu="matMenu">
+		<button mat-raised-button color="primary" routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">Home</button>
+		<button mat-raised-button color="primary" routerLink='/PageNotFound' routerLinkActive='active'>404</button>
+</mat-menu>
+<button [matMenuTriggerFor]="appMenu" class="menu">
 	<span></span>
 </button>

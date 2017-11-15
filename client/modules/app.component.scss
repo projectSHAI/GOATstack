@@ -11,7 +11,15 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10000;
+    z-index: 500;
+}
+
+header-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 23px 2.5%;
 }
 
 .error-card {

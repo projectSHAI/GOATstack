@@ -1,17 +1,26 @@
-import {NgModule}                              from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import {MatButtonModule, MatCardModule}        from '@angular/material';
+import {
+  MatButtonModule, 
+  MatCardModule,
+  MatMenuModule,
+  MatIconModule
+} from '@angular/material';
 
 let createLogger = require('redux-logger');
 
 @NgModule({
   imports:      [ 
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule
   ],
   exports:      [     
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule
  ]
 
 })
