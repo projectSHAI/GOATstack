@@ -5,6 +5,7 @@ import {CoreRoutingModule}                     from './core-routing.module';
 import {HomeModule}                            from '../home/home.module';
 import {UserProfileModule}                     from '../user-profile/user-profile.module';
 import {Four0FourModule}                       from '../404/404.module';
+import {AngularMaterialModule}                 from '../angular-material/angular-material.module';
 
 import {CoreComponent}		                     from './core.component';
 import {HeaderComponent}                       from './components/header/header.component';
@@ -17,8 +18,7 @@ import {SEOActions}                            from '../../redux/actions/seo/seo
 import {Cookie}                                from 'ng2-cookies/ng2-cookies';
 
 import {IAppState, rootReducer, enhancers}     from '../../redux/store/index';
-import {MatButtonModule, MatCardModule}        from '@angular/material';
-import {MatToolbarModule} from '@angular/material/toolbar';
+
 let createLogger = require('redux-logger');
 
 @NgModule({
@@ -28,10 +28,7 @@ let createLogger = require('redux-logger');
     HomeModule, 
     UserProfileModule, 
     Four0FourModule,
-    
-    MatButtonModule,
-    MatCardModule,
-    MatToolbarModule
+    AngularMaterialModule
   ],
   declarations: [ 
     CoreComponent, 
@@ -42,11 +39,8 @@ let createLogger = require('redux-logger');
     CoreRoutingModule,
     CoreComponent, 
     HeaderComponent, 
-    FooterComponent,
-    
-    MatButtonModule,
-    MatCardModule,
-    MatToolbarModule ],
+    FooterComponent
+  ],
   providers: 	[
   	ErrorHandlerActions,
   	SEOActions,
