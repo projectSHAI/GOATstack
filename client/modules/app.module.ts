@@ -33,7 +33,7 @@ import {BrowserModule}                             from '@angular/platform-brows
 import {ReduxModule}                               from '../redux/redux.module';
 import {BrowserAnimationsModule}                   from '@angular/platform-browser/animations';
 import {HttpClientModule, HttpClient}              from '@angular/common/http';
-import {MatButtonModule, MatCardModule, MatToolbarModule}        from '@angular/material';
+
 
 /*
 --------------------------------------------------
@@ -60,11 +60,7 @@ NgModule
     ReduxModule,
     CoreModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatCardModule,
-    MatToolbarModule
-
+    HttpClientModule
   ],
   //declarations: this object imports all child components which are used in this module
   declarations: [ 

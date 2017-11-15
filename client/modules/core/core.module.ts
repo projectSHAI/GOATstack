@@ -17,7 +17,8 @@ import {SEOActions}                            from '../../redux/actions/seo/seo
 import {Cookie}                                from 'ng2-cookies/ng2-cookies';
 
 import {IAppState, rootReducer, enhancers}     from '../../redux/store/index';
-
+import {MatButtonModule, MatCardModule}        from '@angular/material';
+import {MatToolbarModule} from '@angular/material/toolbar';
 let createLogger = require('redux-logger');
 
 @NgModule({
@@ -26,7 +27,11 @@ let createLogger = require('redux-logger');
     CoreRoutingModule, 
     HomeModule, 
     UserProfileModule, 
-    Four0FourModule 
+    Four0FourModule,
+    
+    MatButtonModule,
+    MatCardModule,
+    MatToolbarModule
   ],
   declarations: [ 
     CoreComponent, 
@@ -37,7 +42,11 @@ let createLogger = require('redux-logger');
     CoreRoutingModule,
     CoreComponent, 
     HeaderComponent, 
-    FooterComponent ],
+    FooterComponent,
+    
+    MatButtonModule,
+    MatCardModule,
+    MatToolbarModule ],
   providers: 	[
   	ErrorHandlerActions,
   	SEOActions,
