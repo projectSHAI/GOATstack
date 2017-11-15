@@ -29,6 +29,14 @@ a:hover {
     margin-top: -10px;
 }
 
+#menu-btn {
+    float: right;
+}
+
+button.mat-menu-item {
+    min-width: 175px;
+}
+
 @media (max-width: 550px) {
     .app-title {
         width: auto;
