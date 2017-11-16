@@ -3,16 +3,17 @@
     <h1>GOATstack</h1>
 </div>
 
-<mat-menu direction="right" class="menu" #appMenu="matMenu">
-		<button mat-menu-item color="primary" routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">
+<mat-sidenav #sidenav position='end'>
+		<button color="primary" mat-menu-item  routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">
 		    <mat-icon>home</mat-icon>
 			<span>Home</span>
 		</button>
-		<button mat-menu-item color="primary" routerLink='/PageNotFound' routerLinkActive='active'>
+		<button color="primary" mat-menu-item  routerLink='/PageNotFound' routerLinkActive='active'>
 		    <mat-icon color="warn">error_outline</mat-icon>
 			<span>404</span>
 		</button>
-</mat-menu>
-<button id="menu-btn" mat-fab [matMenuTriggerFor]="appMenu" class="menu">
+</mat-sidenav>
+<button id="menu-btn" mat-fab (click)="sidenav.toggle()">
 	<mat-icon>menu</mat-icon>
 </button>
+

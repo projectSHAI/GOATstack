@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 import {
   MatButtonModule, 
   MatCardModule,
-  MatMenuModule,
-  MatIconModule
+  MatIconModule,
+  MatSidenavModule
 } from '@angular/material';
 
 let createLogger = require('redux-logger');
@@ -13,14 +13,14 @@ let createLogger = require('redux-logger');
   imports:      [ 
     MatButtonModule,
     MatCardModule,
-    MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule
   ],
   exports:      [     
     MatButtonModule,
     MatCardModule,
-    MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule
  ]
 
 })
