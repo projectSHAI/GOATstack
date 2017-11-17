@@ -44,7 +44,7 @@ Core Module
 ** Any modules/components/services/etc which are third party or built in house will be placed into the Core module
 ** This allows for better organization and load order with module lazy loading.
 */
-import {CoreModule}                                from './core/core.module';
+import {CoreModule}                                from './core-module/core.module';
 
 /*
 --------------------------------------------------
