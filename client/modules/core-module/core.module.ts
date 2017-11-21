@@ -14,7 +14,7 @@ import {FooterComponent}                       from './components/footer/footer.
 import {ErrorHandlerActions}                   from '../../redux/actions/error/errorHandler.actions';
 import {SEOActions}                            from '../../redux/actions/seo/seo.actions';
 
-//Angular and 3rd party serices
+//3rd party imports
 import {Cookie}                                from 'ng2-cookies/ng2-cookies';
 
 import {IAppState, rootReducer, enhancers}     from '../../redux/store/index';
@@ -37,9 +37,7 @@ let createLogger = require('redux-logger');
   ],
   exports:      [ 
     CoreRoutingModule,
-    CoreComponent, 
-    HeaderComponent, 
-    FooterComponent,
+    CoreComponent,
     AngularMaterialModule
   ],
   providers: 	[
