@@ -70,7 +70,7 @@ module.exports = function(options) {
       }),
 
       new webpack.ContextReplacementPlugin( // fixes angular linker WARNING
-        /angular(\\|\/)core(\\|\/)@angular/,
+        /\@angular(\\|\/)core(\\|\/)esm5/,
         helpers.root('src')
       )
     ]
