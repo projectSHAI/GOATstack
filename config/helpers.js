@@ -22,6 +22,7 @@ var _root = path.resolve(process.cwd());
 
 function root(args) {
   args = Array.prototype.slice.call(arguments, 0);
+  console.log('rootshit', path.join.apply(path, [_root].concat(args)));
   return path.join.apply(path, [_root].concat(args));
 }
 

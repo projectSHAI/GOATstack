@@ -34,7 +34,7 @@ var cmd = {
 exports.cmd = cmd;
 
 // Script Commands
-var ngc = `${cmd.ngc} -p tsconfig-aot.json --exclude client/**/**/**/*.spec.ts`;
+var ngc = `${cmd.ngc} -p tsconfig-aot.json`;
 var nodeSass = `${cmd.node_sass} -q client -o client`;
 var server_test = `node config/test-libs/server.test && ${cmd.karma} start config/test-libs/karma.config.js`;
 var protractor = `${cmd.concurrently} --raw \"node dist -s\" \"${cmd.protractor} config/test-libs/protractor.config.js\" --kill-others --success first`;
