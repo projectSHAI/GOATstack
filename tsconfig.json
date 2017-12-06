@@ -22,7 +22,6 @@
     "exclude": [
       "dist",
       "node_modules",
-      "config/gulp",
       "client/app-aot.ts"
     ]
 }

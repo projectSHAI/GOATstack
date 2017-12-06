@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{"testEnv":{"port":{"__symbolic":"binop","operator":"||","left":{"__symbolic":"select","expression":{"__symbolic":"select","expression":{"__symbolic":"reference","name":"process"},"member":"env"},"member":"PORT"},"right":7001}}}}]

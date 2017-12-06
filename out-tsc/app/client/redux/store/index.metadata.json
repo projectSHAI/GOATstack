@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{"IAppState":{"__symbolic":"class"},"rootReducer":{"__symbolic":"call","expression":{"__symbolic":"reference","module":"redux","name":"combineReducers"},"arguments":[{"error":{"__symbolic":"reference","module":"./errorHandler/index","name":"errorHandlerReducer"}}]},"enhancers":[]}}]

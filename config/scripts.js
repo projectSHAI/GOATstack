@@ -34,7 +34,7 @@ var cmd = {
 exports.cmd = cmd;
 
 // Script Commands
-var ngc = `${cmd.ngc} -p tsconfig-aot.json`;
+var ngc = `${cmd.ngc} -p tsconfig.server.json`;
 var nodeSass = `${cmd.node_sass} -q client -o client`;
 var server_test = `node config/test-libs/server.test && ${cmd.karma} start config/test-libs/karma.config.js`;
 var protractor = `${cmd.concurrently} --raw \"node dist -s\" \"${cmd.protractor} config/test-libs/protractor.config.js\" --kill-others --success first`;
@@ -80,21 +80,11 @@ exports.startProdE2E = function startProdE2E() {
 /*
  *	Build webpack-dev-server/express server => proxy to express server
  */
-exports.startDev = function startDev() {
-	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
-	prepare(true);
-
-	return spawn(`${cmd.webpackDevServer} --progress --inline --env dev`, {shell: true, stdio: 'inherit'});
-};
-
-/*
- *	Build server and client => start the express server in production
- */
-exports.startProd = function startProd() {
+exports.build = function build() {
 	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
 	prepare();
 
-	return spawn(`${ngc} && ${cmd.webpack} --progress --hide-modules true --env prod && node -e "require('./config/helpers').cleanup('client')" && node dist`, {shell: true, stdio: 'inherit'});
+	return spawn(`${ngc} && ${cmd.webpack} --progress --hide-modules false --env dev && node -e "require('./config/helpers').cleanup('client')"`, {shell: true, stdio: 'inherit'});
 };
 
 /*

@@ -28,12 +28,13 @@ Modules
 --------------------------------------------------
 ** other necessary modules for this app
 */
-import {NgModule}                                  from '@angular/core';
-import {BrowserModule}                             from '@angular/platform-browser';
-import {ReduxModule}                               from '../redux/redux.module';
-import {BrowserAnimationsModule}                   from '@angular/platform-browser/animations';
-import {HttpClientModule, HttpClient}              from '@angular/common/http';
-import {AngularMaterialModule}                     from './feature-modules/extension-modules/angular-material/angular-material.module';
+import { NgModule, PLATFORM_ID, APP_ID, Inject }     from '@angular/core';
+import { BrowserModule }                             from '@angular/platform-browser';
+import { ReduxModule }                               from '../redux/redux.module';
+import { BrowserAnimationsModule }                   from '@angular/platform-browser/animations';
+import { isPlatformBrowser }                         from '@angular/common';
+import { HttpClientModule, HttpClient }              from '@angular/common/http';
+import { AngularMaterialModule }                     from './feature-modules/extension-modules/angular-material/angular-material.module';
 
 
 /*
@@ -57,7 +58,7 @@ NgModule
 @NgModule({
   //imports: this object imports helper modules which are children in the module tree
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'tour-of-heroes' }),
     ReduxModule,
     CoreModule,
     BrowserAnimationsModule,
@@ -79,5 +80,11 @@ NgModule
 //by convention the root module is called AppModule as stated in the Angular2 docs
 //we call AppModule in app.ts to bootstrap the application which points to the AppComponent defined in @NgModule
 export class AppModule {
-
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(APP_ID) private appId: string) {
+    const platform = isPlatformBrowser(platformId) ?
+      'on the server' : 'in the browser';
+    console.log(`Running ${platform} with appId=${appId}`);
+  }
 }

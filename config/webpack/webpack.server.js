@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var nodeExternals = require('webpack-node-externals');
 var WebpackShellPlugin = require('webpack-shell-plugin');
+const path = require('path');
 
 const helpers = require('../helpers');
 const cmd = require('../scripts').cmd;

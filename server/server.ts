@@ -1,3 +1,10 @@
+// These are important and needed before anything else
+import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
+
+import { enableProdMode } from '@angular/core';
+import { join } from 'path';
+
 import * as express from 'express'
 import * as chalk from 'chalk';
 import * as fs from 'graceful-fs';
@@ -7,13 +14,13 @@ import config from '../config';
 
 import expressInit from './express';
 
-// Initialize express
-let app = express();
+// Faster server renders w/ Prod mode (dev mode never needed)
+enableProdMode();
 
-// Angular universal server side rendering
-// if (process.env.NODE_ENV === 'production' || !process.env.NODE_ENV) {
-//   require('./server-render').serverSideRendering(app);
-// }
+// Initialize express
+const app = express();
+const DIST_FOLDER = ('/dist');
+
 
 function init(): any {
   // Initialize http server

@@ -1,0 +1,1 @@
+{"moduleName":null,"summaries":[{"symbol":{"__symbol":0,"members":[]},"metadata":{"__symbolic":"interface"}},{"symbol":{"__symbol":1,"members":[]},"metadata":{"__symbolic":"interface"}}],"symbols":[{"__symbol":0,"name":"IErrorItem","filePath":"./errorHandler.types"},{"__symbol":1,"name":"IError","filePath":"./errorHandler.types"}]}

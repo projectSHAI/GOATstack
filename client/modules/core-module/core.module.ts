@@ -19,7 +19,6 @@ import {Cookie}                                from 'ng2-cookies/ng2-cookies';
 
 import {IAppState, rootReducer, enhancers}     from '../../redux/store/index';
 
-let createLogger = require('redux-logger');
 
 @NgModule({
   imports:      [ 
