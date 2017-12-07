@@ -17,7 +17,7 @@ var module_map_ngfactory_loader_1 = require("@nguniversal/module-map-ngfactory-l
 // function to initialize the express app
 function expressInit(app) {
     // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-    var _a = require('./dist/server/main.bundle'), AppServerModuleNgFactory = _a.AppServerModuleNgFactory, LAZY_MODULE_MAP = _a.LAZY_MODULE_MAP;
+    var _a = require('dist/server/index.js'), AppServerModuleNgFactory = _a.AppServerModuleNgFactory, LAZY_MODULE_MAP = _a.LAZY_MODULE_MAP;
     app.engine('html', express_engine_1.ngExpressEngine({
         bootstrap: AppServerModuleNgFactory,
         providers: [

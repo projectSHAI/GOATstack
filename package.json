@@ -9,7 +9,7 @@
     "start": "npm run build && npm run serve",
     "test": "node -e \"require('./config/scripts').startTest()\"",
     "build": "node -e \"require('./config/scripts').build()\"",
-    "serve": "node dist",
+    "serve": "node dist/server",
     "e2e": "node -e \"require('./config/scripts').startE2E()\"",
     "e2e:prod": "node -e \"require('./config/scripts').startProdE2E()\"",
     "deploy:heroku": "node -e \"require('./config/scripts').herokuPrompt()\"",

@@ -18,7 +18,7 @@ import * as cookieParser from 'cookie-parser';
 function expressInit(app) {
 
   // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-  const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main.bundle');
+  const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('dist/server/index.js');
 
   app.engine('html', ngExpressEngine({
     bootstrap: AppServerModuleNgFactory,

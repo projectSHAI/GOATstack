@@ -84,7 +84,7 @@ exports.build = function build() {
 	console.log(chalk.bold.magenta('\n\tPlease Wait ... This will take some time\n\n'));
 	prepare();
 
-	return spawn(`${ngc} && ${cmd.webpack} --progress --hide-modules false --env dev && node -e "require('./config/helpers').cleanup('client')"`, {shell: true, stdio: 'inherit'});
+	return spawn(`${ngc} && ${cmd.webpack} --progress --hide-modules false --env dev --display-error-details && node -e "require('./config/helpers').cleanup('client')"`, {shell: true, stdio: 'inherit'});
 };
 
 /*

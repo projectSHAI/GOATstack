@@ -20,7 +20,7 @@ module.exports = function(options) {
     }, 
 
     output: {
-      path: helpers.root('dist'),
+      path: helpers.root('dist/server'),
       filename: 'index.js'
     },
 
