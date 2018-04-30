@@ -14,11 +14,12 @@ _The GOATyeoman generator is located [here](https://github.com/JCThomas4214/GOAT
 # Quick Start 
 
 ```sh
-$ [sudo] yarn global add yo generator-goatstack
-$ mkdir [dirName] && cd [dirName]
-$ [sudo] yo goatstack [name?]
+$ git clone https://github.com/JCThomas4214/GOAT-yeoman
+$ cd GOAT-yeoman && yarn link && cd ..
+$ mkdir [dirName] && cd [dirName] && yarn link "generator-goatstack"
+$ yo goatstack [name?]
 $ # Make sure to have the database runnning!!
-$ [sudo] yarn start
+$ yarn start
 $ # dev environment served to http://localhost:1701
 ```
 
