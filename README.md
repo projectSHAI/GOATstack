@@ -12,8 +12,7 @@ _The GOATyeoman generator is located [here](https://github.com/JCThomas4214/GOAT
 # Quick Start 
 
 ```sh
-$ git clone https://github.com/JCThomas4214/GOAT-yeoman
-$ cd GOAT-yeoman && npm link && cd ..
+$ npm i -g yo generator-goatstack
 $ mkdir [dirName] && cd [dirName]
 $ yo goatstack [name?]
 $ # Make sure to have the database runnning!!
