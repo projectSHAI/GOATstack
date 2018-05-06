@@ -3,7 +3,7 @@
   "version": "4.3.0",
   "description": "A MEAN stack boilerplate using Angular 2",
   "engines": {
-    "node": "8.0.9"
+    "node": "8.10.1"
   },
   "scripts": {
     "start": "npm run dev",
@@ -16,7 +16,7 @@
     "cleanup": "node -e \"require('./config/helpers').cleanup()\""
   },
   "dependencies": {
-    "@angular-redux/store": "^6.5.7",
+    "@angular-redux/store": "^6.5.7", 
     "@angular/animations": "^5.0.1",
     "@angular/cdk": "^2.0.0-beta.12",
     "@angular/common": "^5.0.1",
@@ -32,7 +32,7 @@
     "body-parser": "^1.18.2",
     "bootstrap": "3.3.7",
     "cassandra-driver": "^3.3.0",
-    "chalk": "^2.3.0",
+    "chalk": "2.0.1",
     "composable-middleware": "0.3.0",
     "connect-mongo": "2.0.0",
     "cookie-parser": "1.4.3",

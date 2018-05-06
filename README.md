@@ -9,17 +9,15 @@
 
 _The GOATyeoman generator is located [here](https://github.com/JCThomas4214/GOAT-yeoman)_
 
-### **GOATstack uses [Yarn](https://yarnpkg.com/en/) package manager and is required for package consistancy**
-
 # Quick Start 
 
 ```sh
 $ git clone https://github.com/JCThomas4214/GOAT-yeoman
-$ cd GOAT-yeoman && yarn link && cd ..
-$ mkdir [dirName] && cd [dirName] && yarn link "generator-goatstack"
+$ cd GOAT-yeoman && npm link && cd ..
+$ mkdir [dirName] && cd [dirName]
 $ yo goatstack [name?]
 $ # Make sure to have the database runnning!!
-$ yarn start
+$ npm start
 $ # dev environment served to http://localhost:1701
 ```
 
@@ -133,24 +131,22 @@ If you end up not liking the GOAT Stack, that's ok too! Please drop by our [Redd
 ### 2) Install [NodeJS](https://nodejs.org/en/)
   * Note: You may need to configure system PATH to appropriate node command
 
-### 3) Install [Yarn](https://yarnpkg.com/en/)
-
-### 4) Install [Apache-Cassandra](http://cassandra.apache.org/) || [MongoDB](https://www.mongodb.com/download-center?jmp=nav#community) || [MySQL](https://www.mysql.com/) || [PostgresSQL](https://www.postgresql.org/) || [SQLite](https://www.sqlite.org/) || [MariaDB](https://mariadb.org/) || [MSSQL](https://www.microsoft.com/en-us/sql-server/sql-server-2016)
+### 3) Install [Apache-Cassandra](http://cassandra.apache.org/) || [MongoDB](https://www.mongodb.com/download-center?jmp=nav#community) || [MySQL](https://www.mysql.com/) || [PostgresSQL](https://www.postgresql.org/) || [SQLite](https://www.sqlite.org/) || [MariaDB](https://mariadb.org/) || [MSSQL](https://www.microsoft.com/en-us/sql-server/sql-server-2016)
   * Note: You may need to configure system PATH to appropriate each command
 
-### 5) Install [Python](https://www.python.org/downloads/release/python-2712/) and C++ compiler
+### 4) Install [Python](https://www.python.org/downloads/release/python-2712/) and C++ compiler
   * Note: Installing [Visual Studios Community](https://www.visualstudio.com/downloads/) will be a sufficiant compiler
     * if you do not want the full blown Visual Studios IDE then you can also download a standalone version of Visual Studio's build tools [here](http://landinghub.visualstudio.com/visual-cpp-build-tools)
      * Make sure to configure npm to use the correct c++ compiler using the following command `npm config set msvs_version 2015` 2015 is the version linked above, replace this number with your version if it differs. If you still have issues during npm install follow the install instructions [here](https://www.npmjs.com/package/node-gyp) for node-gyp.
 
-### 6) Clone and Run
+### 5) Clone and Run
 
 ```sh
-$ yarn global add yo generator-goatstack
+$ npm i -g yo generator-goatstack
 $ mkdir GOATstack && cd GOATstack
 $ yo goatstack [name?]
 $ # Make sure to have the database running!!
-$ yarn start
+$ npm start
 $ # dev environment served to http://localhost:1701
 ```
 
@@ -176,29 +172,19 @@ $ curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
 ```
 
-### 3) Install [Yarn](https://yarnpkg.com/en/) (Debian/Ubuntu)
-  * [click here](https://yarnpkg.com/lang/en/docs/install/#linux-tab) for more linux installation methods
+### 3) Install [Apache-Cassandra](http://cassandra.apache.org/) || [MongoDB](https://docs.mongodb.com/manual/administration/install-on-linux/) || [MySQL](https://www.mysql.com/) || [PostgresSQL](https://www.postgresql.org/) || [SQLite](https://www.sqlite.org/) || [MariaDB](https://mariadb.org/) || [MSSQL](https://www.microsoft.com/en-us/sql-server/sql-server-2016)
+
+### 4) Clone and Run
 
 ```sh
-$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-$ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-
-$ sudo apt-get update && sudo apt-get install yarn
-```
-
-### 4) Install [Apache-Cassandra](http://cassandra.apache.org/) || [MongoDB](https://docs.mongodb.com/manual/administration/install-on-linux/) || [MySQL](https://www.mysql.com/) || [PostgresSQL](https://www.postgresql.org/) || [SQLite](https://www.sqlite.org/) || [MariaDB](https://mariadb.org/) || [MSSQL](https://www.microsoft.com/en-us/sql-server/sql-server-2016)
-
-### 5) Clone and Run
-
-```sh
-$ sudo yarn global add yo generator-goatstack
+$ sudo npm i -g yo generator-goatstack
 $ mkdir GOATstack && cd GOATstack 
 $ sudo yo goatstack [name?]
 $ # Make sure to have the database running!!
-$ sudo yarn start
+$ sudo npm start
 $ # dev environment served to http://localhost:1701
 ```
-> Note: yarn needs to be elevated with `sudo`, otherwise child_process will throw errors and/or webpack-dev-server will not serve.
+> Note: npm needs to be elevated with `sudo`, otherwise child_process will throw errors and/or webpack-dev-server will not serve.
 
 # Deploying to Heroku (MongoDB)
 ![Deployment Banner](https://github.com/JCThomas4214/Documentation/raw/master/GOAT/assets/goat-deploy-banner.png?raw=true)
@@ -214,7 +200,7 @@ $ heroku login
 ### 2) Run the gulp task
 
 ```sh
-$ [sudo] yarn deploy:heroku
+$ [sudo] npm deploy:heroku
 ```
 
 ## Created By
